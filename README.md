@@ -1,2 +1,5 @@
-# Website
-ASP.NET project and associated files representing the code for the GoldSim.com website.
+# Purpose
+This repository is intended to support deployment efforts associated with the code responsible for the [GoldSim website](https://www.goldsim.com).
+
+# Status
+In Development
