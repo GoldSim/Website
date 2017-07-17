@@ -36,6 +36,9 @@ bld/
 # Uncomment if you have tasks that create the project's static files in wwwroot
 # wwwroot/
 
+# Roslyn cache directories
+*.ide/
+
 # MSTest test Results
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
@@ -150,7 +153,7 @@ TestResults/
 # Publish Web Output
 *.[Pp]ublish.xml
 *.azurePubxml
-# TODO: Comment the next line if you want to checkin your web deploy settings 
+# TODO: Comment the next line if you want to checkin your web deploy settings
 # but database connection strings (with potential passwords) will be unencrypted
 *.pubxml
 *.publishproj
@@ -201,7 +204,7 @@ ClientBin/
 node_modules/
 orleans.codegen.cs
 
-# Since there are multiple workflows, uncomment next line to ignore bower_components 
+# Since there are multiple workflows, uncomment next line to ignore bower_components
 # (https://github.com/github/gitignore/pull/1529#issuecomment-104372622)
 # bower_components/
 
@@ -278,7 +281,7 @@ _Pvt_Extensions
 *.tar
 *.zip
 
-# Logs 
+# Logs
 logs
 *.log
 npm-debug.log*
