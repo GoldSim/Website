@@ -358,5 +358,5 @@ config.yml
 gulpSecrets.js
 /_site
 assets/logo.png
-connectionStrings.config
-smtp.config
+**/connectionStrings.config
+**/smtp.config
