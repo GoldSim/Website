@@ -44,11 +44,14 @@ namespace GoldSim.Web
       routes.MapRoute(
         name: "Topics",
         url: "{*path}",
-        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional }
+        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle default route convention
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### NOTE JJC071917: Since the Topics route intercepts ALL paths, this will never be called. This is something we'll need
+      | to revisit in the future.
       \-----------------------------------------------------------------------------------------------------------------------*/
       routes.MapRoute(
         name: "Default",

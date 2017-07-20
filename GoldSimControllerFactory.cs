@@ -48,11 +48,8 @@ namespace GoldSim.Web {
       if (topicRoutingService.Topic != null) {
         return new TopicController<Topic>(topicRepository, topicRoutingService.Topic);
       }
-      else {
-        return new TopicController<Topic>(topicRepository, rootTopic.GetTopic("Web:Home"));
-      }
 
-      //return base.GetControllerInstance(requestContext, controllerType);
+      return base.GetControllerInstance(requestContext, controllerType);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Release
