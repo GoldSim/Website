@@ -28,7 +28,7 @@
 <h2>Applications (Relationship)</h2>
 <ul>
   @foreach (Ignia.Topics.Topic application in Model.Topic.Relationships["Applications"]) {
-    <li>application.Title</li>
+    <li>@application.Title</li>
   }
 </ul>
 
