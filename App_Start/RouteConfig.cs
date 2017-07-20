@@ -42,6 +42,15 @@ namespace GoldSim.Web
       | Handle default route convention
       \-----------------------------------------------------------------------------------------------------------------------*/
       routes.MapRoute(
+        name: "Topics",
+        url: "{*path}",
+        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional }
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle default route convention
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      routes.MapRoute(
         name: "Default",
         url: "{controller}/{action}/{id}",
         defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
