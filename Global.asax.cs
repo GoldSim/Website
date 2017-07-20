@@ -86,7 +86,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Handles errors that are not otherwise handled by the page_error object or inline error handling code.
     /// </summary>
-    void Application_Error(Object sender, EventArgs e) {
+    void xApplication_Error(Object sender, EventArgs e) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle HTTP exceptions (namely, 404s)
