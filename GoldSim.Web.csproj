@@ -166,6 +166,8 @@
     <Content Include="Configuration\connectionStrings.config" />
     <Content Include="packages.config" />
     <Content Include="Configuration\smtp.config" />
+    <Content Include="Views\Topic\Index.cshtml" />
+    <Content Include="Views\Page\Page.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

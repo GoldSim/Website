@@ -1,0 +1,12 @@
+﻿
+@{
+    ViewBag.Title = ViewBag.Topic.Title;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Page Content Type</h2>
+
+<h1>@ViewBag.Topic.Title</h1>
+<h2>@ViewBag.Topic.Attributes.Get("Title")</h2>
+
+<br>(~/Views/Page/Page.cshtml)
