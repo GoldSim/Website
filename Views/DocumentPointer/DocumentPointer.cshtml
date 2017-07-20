@@ -10,4 +10,25 @@
 <h1>@Model.Topic.Title</h1>
 <h2>@Model.Topic.Attributes.Get("Title")</h2>
 
+<p>@Model.Topic.Attributes.Get("Body")</p>
+
+<h2>Attributes (ApplicationPageBase)</h2>
+<ul>
+  <li><strong>Abstract:</strong> @Model.Topic.Attributes.Get("Abstract")</li>
+  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
+  <li><strong>Learn More (URL):</strong> @Model.Topic.Attributes.Get("LearnMoreUrl")</li>
+</ul>
+
+<h2>Attributes (DocumentPointer)</h2>
+<ul>
+  <li><strong>Document Type:</strong> @Model.Topic.Attributes.Get("DocumentType")</li>
+</ul>
+
+<h2>Applications (Relationship)</h2>
+<ul>
+  @foreach (Ignia.Topics.Topic application in Model.Topic.Relationships["Applications"]) {
+    <li>application.Title</li>
+  }
+</ul>
+
 <br>(~/Views/DocumentPointer/DocumentPointer.cshtml)

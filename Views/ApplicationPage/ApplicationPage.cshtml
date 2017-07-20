@@ -1,0 +1,39 @@
+﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+
+@{
+  ViewBag.Title = Model.Topic.Title;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Application Content Type</h2>
+
+<h1>@Model.Topic.Title</h1>
+<h2>@Model.Topic.Attributes.Get("Title")</h2>
+
+<p>@Model.Topic.Attributes.Get("Body")</p>
+
+<h2>Attributes (ApplicationPageBase)</h2>
+<ul>
+  <li><strong>Abstract:</strong> @Model.Topic.Attributes.Get("Abstract")</li>
+  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
+  <li><strong>Learn More (URL):</strong> @Model.Topic.Attributes.Get("LearnMoreUrl")</li>
+</ul>
+
+<h2>Attributes (ApplicationPage)</h2>
+<ul>
+  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
+  <li><strong>Category:</strong> @Model.Topic.Attributes.Get("Category")</li>
+  <li><strong>Compare To:</strong> @Model.Topic.Attributes.Get("CompareTo")</li>
+  <li><strong>Learn More (Label):</strong> @Model.Topic.Attributes.Get("LearnMoreLabel")</li>
+  <li><strong>Model Image:</strong> @Model.Topic.Attributes.Get("ModelImage")</li>
+  <li><strong>White Paper:</strong> @Model.Topic.Attributes.Get("WhitePaper")</li>
+</ul>
+
+<h2>Modules (Relationship)</h2>
+<ul>
+@foreach (Ignia.Topics.Topic module in Model.Topic.Relationships["Modules"]) {
+  <li>module.Title</li>
+}
+</ul>
+
+<br>(~/Views/Application/Application.cshtml)
