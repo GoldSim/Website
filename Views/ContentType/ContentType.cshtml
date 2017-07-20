@@ -1,0 +1,13 @@
+﻿@{
+  ViewBag.Title = Model.Topic.Title;
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Page Content Type</h2>
+
+<h1>@Model.Topic.Title</h1>
+<h2>@Model.Topic.Attributes.Get("Title")</h2>
+
+<h2>@Model.Topic.IsTypeOf("ContentTypes")</h2>
+
+<br>(~/Views/ContentType/ContentType.cshtml)
