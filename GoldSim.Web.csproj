@@ -171,6 +171,19 @@
     <Content Include="Views\Topic\Index.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\ContentType\ContentType.cshtml" />
+    <Content Include="Views\ApplicationIndex\ApplicationIndex.cshtml" />
+    <Content Include="Views\ApplicationPage\ApplicationPage.cshtml" />
+    <Content Include="Views\CaseStudy\CaseStudy.cshtml" />
+    <Content Include="Views\ContentList\Accordion.cshtml" />
+    <Content Include="Views\ContentList\ContentList.cshtml" />
+    <Content Include="Views\ContentList\IndexedList.cshtml" />
+    <Content Include="Views\ContentList\LinkedList.cshtml" />
+    <Content Include="Views\DocumentPointer\DocumentPointer.cshtml" />
+    <Content Include="Views\FAQ\FAQ.cshtml" />
+    <Content Include="Views\Glossary\Glossary.cshtml" />
+    <Content Include="Views\Slideshow\Slideshow.cshtml" />
+    <Content Include="Views\TechnicalPaperIndex\TechnicalPaperIndex.cshtml" />
+    <Content Include="Views\Video\Video.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
