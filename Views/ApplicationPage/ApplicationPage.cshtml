@@ -6,7 +6,7 @@
 
 <h2>Application Content Type</h2>
 
-<p>@Model.Topic.Attributes.Get("Body")</p>
+<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Attributes (ApplicationPageBase)</h2>
 <ul>

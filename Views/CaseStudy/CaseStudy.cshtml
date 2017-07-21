@@ -1,13 +1,12 @@
 ﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
 
 @{
-  ViewBag.Title = Model.Topic.Title;
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Case Study Content Type</h2>
 
-<p>@Model.Topic.Attributes.Get("Body")</p>
+<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Attributes (ApplicationPageBase)</h2>
 <ul>
