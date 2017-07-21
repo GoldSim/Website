@@ -72,7 +72,7 @@
     </Reference>
     <Reference Include="Ignia.Topics.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ignia.Topics.Web.Mvc.dll</HintPath>
+      <HintPath>..\..\..\Ignia\Repositories\Topics-Library\Ignia.Topics.Web.Mvc\bin\Release\Ignia.Topics.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -147,6 +147,7 @@
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Logo.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -181,6 +182,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Shared\Fonts\" />
+    <Folder Include="Shared\Scripts\" />
+    <Folder Include="Shared\Styles\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
