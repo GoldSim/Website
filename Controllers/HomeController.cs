@@ -6,6 +6,7 @@
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Web;
+using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web.Controllers
 {
@@ -30,13 +31,13 @@ namespace GoldSim.Web.Controllers
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish Page Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic topic               = TopicRepository.RootTopic.GetTopic("Web:Home");
-      ViewBag.Topic             = topic;
+      Topic topic                       = TopicRepository.RootTopic.GetTopic("Web:Home");
+      TopicViewModel topicViewModel     = new TopicViewModel(TopicRepository.DataProvider, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the homepage view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View();
+      return View(topicViewModel);
 
     }
 
