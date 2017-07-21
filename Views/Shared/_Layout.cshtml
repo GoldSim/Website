@@ -4,16 +4,111 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-
-    <title>@ViewBag.Title - GoldSim</title>
-
+    <title>@Model.Topic.Attributes.Get("MetaTitle", @Model.Topic.Title) - GoldSim</title>
+    <meta name="keywords" content="@Model.Topic.Attributes.Get("MetaKeywords")" />
+    <meta name="description" content="@Model.Topic.Attributes.Get("MetaDescription", @Model.Topic.Attributes.Get("Subtitle", ""))" />
+    <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
+    <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
+    <link rel="canonical" href="http://www.goldsim.com/@Request.Path.ToLower()" />
     @RenderSection("Head", false)
+    <script>
+      // Google Analytics
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2082450-1', 'auto');
+      ga('send', 'pageview');
+    </script>
   </head>
-  <body itemscope itemtype="http://schema.org/WebPage">
-    @RenderBody()
+  <body vocab="http://schema.org/" typeof="WebPage">
+
+    <!-- Site Header Area -->
+	  @if (IsSectionDefined("HeaderSection")) {
+	    @RenderSection("HeaderSection")
+    }
+    else {
+      <header id="SiteHeader" class="header" role="banner" vocab="http://schema.org" typeof="WPHeader">
+        @if (IsSectionDefined("PrimaryNavigationSection")) {
+          @RenderSection("PrimaryNavigationSection")
+        }
+        else {
+          <!-- Logo -->
+          <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
+
+          <!-- Primary Navigation -->
+          <nav id="PrimaryNavigation" class="navigation primary" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
+            <ul>
+            @foreach (var topic in @Model.RootTopic["Web"]) {
+              if (topic.Key != "Home") {
+                <li>
+                  <a href="@topic.WebPath">@topic.Title</a>
+                  <ul>
+                  @foreach (var childTopic in topic) {
+                    <li><a href="@childTopic.WebPath">@childTopic.Title</a></li>
+                  }
+                  </ul>
+                </li>
+              }
+            }
+            </ul>
+          </nav>
+          <!-- /Primary Navigation -->
+
+          <!-- Site Search -->
+          <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+          <!-- /Site Search -->
+
+        }
+      </header>
+    }
+    <!-- /Site Header Area -->
+
+    @if (IsSectionDefined("MainContentSection")) {
+      @RenderSection("MainContentSection")
+    }
+    else {
+      <!-- Main Site Content Area -->
+      <main role="main">
+        <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage">
+          @RenderBody()
+        </article>
+      </main>
+      <!-- /Main Site Content Area -->
+    }
+
+    @if (IsSectionDefined("FooterSection")) {
+      @RenderSection("FooterSection")
+    }
+    else {
+      <!-- Site Footer Area -->
+      <footer id="SiteFooter" class="footer" role="contentinfo">
+        <nav id="FooterNavigation" class="navigation" role="navigation">
+          <ul>
+            @foreach (var topic in @Model.RootTopic.GetTopic("Web:Company")) {
+              <li><a href="@topic.WebPath">@topic.Title</a></li>
+            }
+          </ul>
+        </nav>
+
+      </footer>
+      <!-- /Site Footer Area -->
+    }
 
     @RenderSection("Scripts", false)
-
-    <br>(~/Views/Shared/_Layout.cshtml)
+    <script>
+      /**
+       * Google Custom Search script bootstrapping
+       */
+      (function() {
+        var
+          cx            = '001116227355942586376:hfih0l8kboc',
+          gcse          = document.createElement('script');
+        gcse.type       = 'text/javascript';
+        gcse.async      = true;
+        gcse.src        = (document.location.protocol == 'https' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+        var s           = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
   </body>
 </html>
