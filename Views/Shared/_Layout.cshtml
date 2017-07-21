@@ -59,7 +59,7 @@
           <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
           <!-- /Site Search -->
 
-          @if (IsSectionDefined("ShortPageTitleSection")) {
+          if (IsSectionDefined("ShortPageTitleSection")) {
             @RenderSection("ShortPageTitleSection")
           }
           else {
@@ -67,7 +67,7 @@
           <h1 class="page title short">@Model.Topic.Title</h1>
           }
 
-          @if (IsSectionDefined("PageLevelNavigationSection")) {
+          if (IsSectionDefined("PageLevelNavigationSection")) {
             @RenderSection("PageLevelNavigationSection")
           }
           else {
