@@ -10,6 +10,8 @@
 <h1>@Model.Topic.Title</h1>
 <h2>@Model.Topic.Attributes.Get("Title")</h2>
 
+<p>@Model.Topic.Attributes.Get("Body")</p>
+
 <h2>Technical Papers (Nested Topics)</h2>
 <ul>
   @foreach (Ignia.Topics.Topic paper in Model.Topic["ContentItems"]) {
