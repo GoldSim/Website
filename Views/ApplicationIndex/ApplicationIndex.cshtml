@@ -1,14 +1,10 @@
 ﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
 
 @{
-  ViewBag.Title = Model.Topic.Title;
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>Application List Content Type</h2>
-
-<h1>@Model.Topic.Title</h1>
-<h2>@Model.Topic.Attributes.Get("Title")</h2>
 
 <p>@Model.Topic.Attributes.Get("Body")</p>
 

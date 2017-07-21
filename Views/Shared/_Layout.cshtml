@@ -59,6 +59,21 @@
           <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
           <!-- /Site Search -->
 
+          @if (IsSectionDefined("ShortPageTitleSection")) {
+            @RenderSection("ShortPageTitleSection")
+          }
+          else {
+          <!-- Page Title -->
+          <h1 class="page title short">@Model.Topic.Title</h1>
+          }
+
+          @if (IsSectionDefined("PageLevelNavigationSection")) {
+            @RenderSection("PageLevelNavigationSection")
+          }
+          else {
+            <!-- Placeholder: Page-Level Navigation -->
+          }
+
         }
       </header>
     }
@@ -71,7 +86,14 @@
       <!-- Main Site Content Area -->
       <main role="main">
         <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage">
+
+          <!-- Long Title (Subtitle) -->
+          <h2 class="page title long">@Model.Topic.Attributes.Get("Subtitle")</h2>
+
+          <!-- Main Page Content -->
           @RenderBody()
+          <!-- /Main Page Content -->
+
         </article>
       </main>
       <!-- /Main Site Content Area -->

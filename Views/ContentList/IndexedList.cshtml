@@ -6,9 +6,6 @@
 
 <h2>Content List: Indexed List View</h2>
 
-<h1>@Model.Topic.Title</h1>
-<h2>@Model.Topic.Attributes.Get("Subitle")</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Categories (Nested Topics)</h2>

@@ -6,9 +6,6 @@
 
 <h2>Page Content Type</h2>
 
-<h1>@Model.Topic.Title</h1>
-<h2>@Model.Topic.Attributes.Get("Subtitle")</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <br>(~/Views/Page/Page.cshtml)
