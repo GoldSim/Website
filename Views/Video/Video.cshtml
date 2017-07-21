@@ -10,4 +10,10 @@
 <h1>@Model.Topic.Title</h1>
 <h2>@Model.Topic.Attributes.Get("Title")</h2>
 
+<h2>Attributes</h2>
+<ul>
+  <li><strong>Video (URL):</strong> @Model.Topic.Attributes.Get("URL")</li>
+  <li><strong>Description:</strong> @Model.Topic.Attributes.Get("Description")</li>
+</ul>
+
 <br>(~/Views/Video/Video.cshtml)
