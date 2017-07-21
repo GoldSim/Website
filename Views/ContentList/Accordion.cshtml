@@ -10,4 +10,18 @@
 <h1>@Model.Topic.Title</h1>
 <h2>@Model.Topic.Attributes.Get("Title")</h2>
 
+<h2>Categories (Nested Topics)</h2>
+<ul>
+  @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+    <li>@category.Title</li>
+  }
+</ul>
+
+<h2>Content Items (Nested Topics)</h2>
+<ul>
+  @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+    <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
+  }
+</ul>
+
 <br>(~/Views/ContentList/Accordion.cshtml)
