@@ -39,12 +39,12 @@
           <!-- Primary Navigation -->
           <nav id="PrimaryNavigation" class="navigation primary" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
             <ul>
-            @foreach (var topic in @Model.RootTopic["Web"]) {
+            @foreach (Ignia.Topics.Topic topic in @Model.RootTopic["Web"]) {
               if (topic.Key != "Home") {
                 <li>
                   <a href="@topic.WebPath">@topic.Title</a>
                   <ul>
-                  @foreach (var childTopic in topic) {
+                  @foreach (Ignia.Topics.Topic childTopic in topic) {
                     <li><a href="@childTopic.WebPath">@childTopic.Title</a></li>
                   }
                   </ul>
@@ -85,9 +85,9 @@
       <footer id="SiteFooter" class="footer" role="contentinfo">
         <nav id="FooterNavigation" class="navigation" role="navigation">
           <ul>
-            @foreach (var topic in @Model.RootTopic.GetTopic("Web:Company")) {
-              <li><a href="@topic.WebPath">@topic.Title</a></li>
-            }
+          @foreach (Ignia.Topics.Topic topic in @Model.RootTopic.GetTopic("Web:Company")) {
+            <li><a href="@topic.WebPath">@topic.Title</a></li>
+          }
           </ul>
         </nav>
 
