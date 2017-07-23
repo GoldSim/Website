@@ -2,7 +2,7 @@
 
 @if (Model.NavigationRootTopic != null) {
   <!-- Page Navigation Area -->
-  <nav id="FooterNavigation" class="navigation" role="navigation">
+  <nav id="PageNavigation" class="navigation" role="navigation">
     <ul>
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic) {
         if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
