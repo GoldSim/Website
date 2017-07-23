@@ -125,9 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\AntiXssLibrary.dll" />
-    <Content Include="bin\AntiXssLibrary.xml" />
     <Content Include="bin\HtmlSanitizationLibrary.dll" />
-    <Content Include="bin\HtmlSanitizationLibrary.xml" />
     <Content Include="bin\Ignia.Toolbox.dll" />
     <Content Include="bin\Ignia.Topics.Data.Caching.dll" />
     <Content Include="bin\Ignia.Topics.Data.Caching.pdb" />
