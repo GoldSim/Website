@@ -40,7 +40,6 @@ namespace GoldSim.Web {
       var topicRepository       = TopicRepository.DataProvider;
       var rootTopic             = TopicRepository.RootTopic;
       var topicRoutingService   = new TopicRoutingService(topicRepository, requestContext);
-      //var topicViewModel        = new TopicViewModel(topicRepository, topicRoutingService.Topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
@@ -58,6 +57,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Release
       \-----------------------------------------------------------------------------------------------------------------------*/
+      //There are no resources to release
 
     }
 
