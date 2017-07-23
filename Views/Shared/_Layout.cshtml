@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@Model.Topic.Attributes.Get("MetaTitle", @Model.Topic.Title) - GoldSim</title>
+    <title>@Model.Topic.Attributes.Get("MetaTitle", Model.Topic.Title) - GoldSim</title>
     <meta name="keywords" content="@Model.Topic.Attributes.Get("MetaKeywords")" />
-    <meta name="description" content="@Model.Topic.Attributes.Get("MetaDescription", @Model.Topic.Attributes.Get("Subtitle", ""))" />
+    <meta name="description" content="@Model.Topic.Attributes.Get("MetaDescription", Model.Topic.Attributes.Get("Subtitle", ""))" />
     <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
     <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
     <link rel="canonical" href="http://www.goldsim.com/@Request.Path.ToLower()" />
@@ -25,12 +25,12 @@
 
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
-	    @RenderSection("HeaderSection")
+      RenderSection("HeaderSection");
     }
     else {
       <header id="SiteHeader" class="header" role="banner" vocab="http://schema.org" typeof="WPHeader">
         @if (IsSectionDefined("PrimaryNavigationSection")) {
-          @RenderSection("PrimaryNavigationSection")
+          RenderSection("PrimaryNavigationSection");
         }
         else {
           <!-- Logo -->
@@ -80,7 +80,7 @@
     <!-- /Site Header Area -->
 
     @if (IsSectionDefined("MainContentSection")) {
-      @RenderSection("MainContentSection")
+      RenderSection("MainContentSection");
     }
     else {
       <!-- Main Site Content Area -->
@@ -100,7 +100,7 @@
     }
 
     @if (IsSectionDefined("FooterSection")) {
-      @RenderSection("FooterSection")
+      RenderSection("FooterSection");
     }
     else {
       <!-- Site Footer Area -->
