@@ -46,6 +46,9 @@ namespace GoldSim.Web {
       var sqlTopicRepository            = new SqlTopicRepository(connectionString);
       var cachedTopicRepository         = new CachedTopicRepository(sqlTopicRepository);
 
+      //Preload data to ensure it's available to subsequent applications
+      cachedTopicRepository.Load();
+
       TopicRepository.DataProvider      = cachedTopicRepository;
 
       /*------------------------------------------------------------------------------------------------------------------------
