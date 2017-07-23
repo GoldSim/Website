@@ -47,48 +47,34 @@
           <!-- Logo -->
           <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
 
-          <!-- Primary Navigation -->
-          <nav id="PrimaryNavigation" class="navigation primary" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
-            <ul>
-            @foreach (Ignia.Topics.Topic topic in @Model.RootTopic["Web"]) {
-              if (topic.Key != "Home") {
-                <li>
-                  <a href="@topic.WebPath">@topic.Title</a>
-                  <ul>
-                  @foreach (Ignia.Topics.Topic childTopic in topic) {
-                    <li><a href="@childTopic.WebPath">@childTopic.Title</a></li>
-                  }
-                  </ul>
-                </li>
-              }
-            }
-            </ul>
-          </nav>
-          <!-- /Primary Navigation -->
+          @Html.Action("Menu", "Layout")
 
           <!-- Site Search -->
           <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
           <!-- /Site Search -->
 
-          if (IsSectionDefined("ShortPageTitleSection")) {
-            @RenderSection("ShortPageTitleSection")
-          }
-          else {
-          <!-- Page Title -->
-          <h1 class="page title short">@Model.Topic.Title</h1>
-          }
-
-          if (IsSectionDefined("PageLevelNavigationSection")) {
-            @RenderSection("PageLevelNavigationSection")
-          }
-          else {
-            <!-- Placeholder: Page-Level Navigation -->
-          }
-
         }
       </header>
     }
     <!-- /Site Header Area -->
+
+    <!-- Page Header Area -->
+    @if (IsSectionDefined("ShortPageTitleSection")) {
+      RenderSection("ShortPageTitleSection");
+    }
+    else {
+      <!-- Page Title -->
+      <h1 class="page title short">@Model.Topic.Title</h1>
+    }
+
+    @if (IsSectionDefined("PageLevelNavigationSection")) {
+      RenderSection("PageLevelNavigationSection");
+    }
+    else {
+      Html.Action("PageLevelNavigation", "Layout");
+    }
+    <!-- /Page Header Area -->
+
 
     @if (IsSectionDefined("MainContentSection")) {
       RenderSection("MainContentSection");
@@ -114,18 +100,7 @@
       RenderSection("FooterSection");
     }
     else {
-      <!-- Site Footer Area -->
-      <footer id="SiteFooter" class="footer" role="contentinfo">
-        <nav id="FooterNavigation" class="navigation" role="navigation">
-          <ul>
-          @foreach (Ignia.Topics.Topic topic in @Model.RootTopic.GetTopic("Web:Company")) {
-            <li><a href="@topic.WebPath">@topic.Title</a></li>
-          }
-          </ul>
-        </nav>
-
-      </footer>
-      <!-- /Site Footer Area -->
+      Html.Action("Footer", "Layout");
     }
 
     @RenderSection("Scripts", false)

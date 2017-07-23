@@ -185,6 +185,9 @@
     <Content Include="Views\TechnicalPaperIndex\TechnicalPaperIndex.cshtml" />
     <Content Include="Views\Video\Video.cshtml" />
     <None Include="Properties\PublishProfiles\GoldSimWebStaging.pubxml" />
+    <Content Include="Views\Layout\Menu.cshtml" />
+    <Content Include="Views\Layout\Footer.cshtml" />
+    <Content Include="Views\Layout\PageLevelNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

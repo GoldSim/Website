@@ -1,0 +1,24 @@
+﻿@model GoldSim.Web.Models.NavigationViewModel
+
+<!-- Primary Navigation -->
+@if (Model.NavigationRootTopic != null) {
+  <nav id="PrimaryNavigation" class="navigation primary" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
+    <ul>
+      @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic) {
+        if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
+          <li>
+            <a href="@topic.WebPath" class="@((Model.Topic == topic || Model.Topic?.Parent == topic || Model.Topic?.Parent.Parent == topic)? "selected" : "")">@topic.Title</a>
+            <ul>
+              @foreach (Ignia.Topics.Topic childTopic in topic) {
+              if (childTopic.Attributes.Get("IsHidden", "0").Equals("0")) {
+                  <li><a href="@childTopic.WebPath" class="@((Model.Topic == childTopic || Model.Topic?.Parent == childTopic)? "selected" : "")">@childTopic.Title</a></li>
+                }
+              }
+            </ul>
+          </li>
+        }
+      }
+    </ul>
+  </nav>
+}
+<!-- /Primary Navigation -->
