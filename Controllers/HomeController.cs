@@ -8,8 +8,7 @@ using Ignia.Topics;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
 
-namespace GoldSim.Web.Controllers
-{
+namespace GoldSim.Web.Controllers {
 
   /*============================================================================================================================
   | CLASS: HOME CONTROLLER
