@@ -182,6 +182,7 @@
     <Content Include="Views\Slideshow\Slideshow.cshtml" />
     <Content Include="Views\TechnicalPaperIndex\TechnicalPaperIndex.cshtml" />
     <Content Include="Views\Video\Video.cshtml" />
+    <None Include="Properties\PublishProfiles\GoldSimWebStaging.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
