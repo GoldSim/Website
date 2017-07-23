@@ -6,8 +6,7 @@
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace GoldSim.Web
-{
+namespace GoldSim.Web {
 
   /*============================================================================================================================
   | CLASS: ROUTE CONFIGURATION
@@ -39,19 +38,25 @@ namespace GoldSim.Web
       routes.MapMvcAttributeRoutes();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Handle default route convention
+      | Handle OnTopic Web namespace
       \-----------------------------------------------------------------------------------------------------------------------*/
       routes.MapRoute(
-        name: "Topics",
-        url: "{*path}",
-        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+        name: "WebTopics",
+        url: "Web/{*path}",
+        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional }
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle OnTopic Web namespace
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      routes.MapRoute(
+        name: "CustomerTopics",
+        url: "Customers/{*path}",
+        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle default route convention
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### NOTE JJC071917: Since the Topics route intercepts ALL paths, this will never be called. This is something we'll need
-      | to revisit in the future.
       \-----------------------------------------------------------------------------------------------------------------------*/
       routes.MapRoute(
         name: "Default",
@@ -61,6 +66,5 @@ namespace GoldSim.Web
 
     }
 
-  }
-
-}
+  } //Class
+} //Namespace
