@@ -26,8 +26,8 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     ITopicRepository                _topicRepository        = null;
-    private     Topic                           _currentTopic           = null;
+    private     ITopicRepository        _topicRepository        = null;
+    private     Topic                   _currentTopic           = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -37,8 +37,8 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base(topicRepository, currentTopic) {
-      _topicRepository = topicRepository;
-      _currentTopic    = currentTopic;
+      _topicRepository          = topicRepository;
+      _currentTopic             = currentTopic;
     }
 
     /*==========================================================================================================================
@@ -52,38 +52,38 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic currentTopic = _currentTopic;
+      Topic currentTopic        = _currentTopic;
       Topic navigationRootTopic = null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify current topic
       >-------------------------------------------------------------------------------------------------------------------------
       | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root. Because
-      | there are potentially three tiers of navigation, however, the currentTopic will be the upwards of four levels from the 
-      | root. 
+      | there are potentially three tiers of navigation, however, the currentTopic will be the upwards of four levels from the
+      | root.
       \-----------------------------------------------------------------------------------------------------------------------*/
       while (currentTopic?.Parent?.Parent?.Parent?.Parent != null) {
-        currentTopic = currentTopic.Parent;
+        currentTopic            = currentTopic.Parent;
         }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
       >-------------------------------------------------------------------------------------------------------------------------
-      | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root. 
+      | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
       \-----------------------------------------------------------------------------------------------------------------------*/
       navigationRootTopic = currentTopic;
       while (navigationRootTopic?.Parent?.Parent != null) {
-        navigationRootTopic = navigationRootTopic.Parent;
+        navigationRootTopic     = navigationRootTopic.Parent;
       }
 
       if (navigationRootTopic == null) {
-        navigationRootTopic = _topicRepository.Load("Web");
+        navigationRootTopic     = _topicRepository.Load("Web");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -97,7 +97,7 @@ namespace GoldSim.Web.Controllers {
     | PAGE LEVEL NAVIGATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides page-level navigation for the current page. 
+    ///   Provides page-level navigation for the current page.
     /// </summary>
     public PartialViewResult PageLevelNavigation() {
 
@@ -105,17 +105,17 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic navigationRootTopic = null;
-      Topic currentTopic = _currentTopic;
+      Topic currentTopic        = _currentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
       >-------------------------------------------------------------------------------------------------------------------------
       | The navigation root in the case of the page-level navigation any parent of content type "PageGroup".
       \-----------------------------------------------------------------------------------------------------------------------*/
-      navigationRootTopic = currentTopic;
+      navigationRootTopic       = currentTopic;
       if (navigationRootTopic != null) {
         while (navigationRootTopic.Parent != null && !navigationRootTopic.ContentType.Equals("PageGroup")) {
-          navigationRootTopic = navigationRootTopic.Parent;
+          navigationRootTopic   = navigationRootTopic.Parent;
         }
       }
 
@@ -124,11 +124,11 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify current topic
       >-------------------------------------------------------------------------------------------------------------------------
-      | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This 
-      | should be skipped if the navigation root is null, as that suggests the current page is not a descendent of a group page. 
+      | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This
+      | should be skipped if the navigation root is null, as that suggests the current page is not a descendent of a group page.
       \-----------------------------------------------------------------------------------------------------------------------*/
       while (navigationRootTopic != null && currentTopic?.Parent != navigationRootTopic) {
-        currentTopic = currentTopic.Parent;
+        currentTopic            = currentTopic.Parent;
       }
 
       if (currentTopic?.Parent != navigationRootTopic) currentTopic = null;
@@ -136,7 +136,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -158,16 +158,16 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic navigationRootTopic = _topicRepository.Load("Web:Company");
-      Topic currentTopic = _currentTopic;
+      Topic currentTopic        = _currentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify current topic
       >-------------------------------------------------------------------------------------------------------------------------
       | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This may
-      | be null if the current page is not a descendent of company. 
+      | be null if the current page is not a descendent of company.
       \-----------------------------------------------------------------------------------------------------------------------*/
       while (currentTopic?.Parent != null && currentTopic?.Parent != navigationRootTopic) {
-        currentTopic = currentTopic.Parent;
+        currentTopic            = currentTopic.Parent;
       }
 
       if (currentTopic?.Parent != navigationRootTopic) currentTopic = null;
@@ -175,7 +175,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
