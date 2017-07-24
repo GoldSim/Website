@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.5\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.2.3.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -25,6 +26,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
+    <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -134,6 +136,7 @@
     <Content Include="bin\Ignia.Topics.dll" />
     <Content Include="bin\Ignia.Topics.pdb" />
     <Content Include="bin\Ignia.Topics.Web.dll" />
+    <Content Include="bin\Ignia.Topics.Web.Mvc.dll" />
     <Content Include="bin\Ignia.Topics.Web.pdb" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
     <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml" />
@@ -146,6 +149,13 @@
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="Global.asax" />
     <Content Include="Images\Logo.png" />
+    <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.js" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ZURB\foundation.js" />
+    <Content Include="Shared\Scripts\Vendor\ZURB\foundation.min.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -188,6 +198,125 @@
     <Content Include="Views\Layout\Menu.cshtml" />
     <Content Include="Views\Layout\Footer.cshtml" />
     <Content Include="Views\Layout\PageLevelNavigation.cshtml" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.map" />
+    <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.map" />
+    <Content Include="Shared\Styles\Vendor\Normalize\normalize\_import-now.scss" />
+    <Content Include="Shared\Styles\Vendor\Normalize\normalize\_normalize-mixin.scss" />
+    <Content Include="Shared\Styles\Vendor\Normalize\normalize\_variables.scss" />
+    <Content Include="Shared\Styles\Vendor\Normalize\normalize\_vertical-rhythm.scss" />
+    <Content Include="Shared\Styles\Vendor\Normalize\_normalize.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\functions\_purge.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\functions\_remove.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\functions\_replace.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\functions\_to-list.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\helpers\_missing-dependencies.scss" />
+    <Content Include="Shared\Styles\Vendor\SassyLists\helpers\_true.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_accordion-menu.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_accordion.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_badge.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_breadcrumbs.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_button-group.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_button.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_callout.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_card.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_close-button.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_drilldown.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_dropdown-menu.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_dropdown.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_flex-video.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_flex.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_float.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_label.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_media-object.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_menu-icon.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_menu.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_off-canvas.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_orbit.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_pagination.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_progress-bar.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_responsive-embed.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_reveal.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_slider.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_sticky.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_switch.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_table.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_tabs.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_thumbnail.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_title-bar.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_tooltip.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_top-bar.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\components\_visibility.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_checkbox.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_error.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_fieldset.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_forms.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_help-text.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_input-group.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_label.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_meter.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_progress.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_range.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_select.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\forms\_text.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\foundation.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_classes.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_column.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_flex-grid.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_grid.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_gutter.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_layout.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_position.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_row.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\grid\_size.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_arrow.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_border-box.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_border-none.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_bordered.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_box.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_display.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_font-styling.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_list-style-type.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_overflow.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_position.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_prototype.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_relation.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_rotate.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_rounded.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_separator.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_shadow.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_sizing.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_spacing.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_text-decoration.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_text-transformation.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_text-utilities.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\prototype\_typescale.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\settings\_settings.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\typography\_alignment.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\typography\_base.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\typography\_helpers.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\typography\_print.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\typography\_typography.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_breakpoint.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_color.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_direction.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_flex.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_math.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_mixins.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_selector.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_typography.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_unit.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_util.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\util\_value.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_cell.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_classes.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_collapse.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_frame.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_grid.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_gutters.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_layout.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_position.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_xy-grid.scss" />
+    <Content Include="Shared\Styles\Vendor\ZURB\_global.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -199,14 +328,19 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Shared\Fonts\" />
-    <Folder Include="Shared\Scripts\" />
-    <Folder Include="Shared\Styles\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Shared\Scripts\Vendor\ZURB\foundation.d.ts" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
   <ProjectExtensions>
