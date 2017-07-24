@@ -156,6 +156,12 @@
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.min.js" />
+    <Content Include="Shared\Styles\Style.css">
+      <DependentUpon>Style.scss</DependentUpon>
+    </Content>
+    <Content Include="Shared\Styles\Style.min.css">
+      <DependentUpon>Style.css</DependentUpon>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -317,6 +323,7 @@
     <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_position.scss" />
     <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_xy-grid.scss" />
     <Content Include="Shared\Styles\Vendor\ZURB\_global.scss" />
+    <Content Include="Shared\Styles\Style.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
