@@ -1,0 +1,51 @@
+{
+  "name": "gulp-workflow",
+  "version": "0.0.1",
+  "description": "Ignia's default front-end workflow using Gulp, Bower, and Sass",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ignia/gulp-workflow.git"
+  },
+  "keywords": [
+    "Gulp",
+    "Bower",
+    "Sass",
+    "workflow",
+    "build",
+    "process",
+    "boilerplate",
+    "Ignia"
+  ],
+  "author": "Ignia, LLC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Ignia/gulp-workflow/issues"
+  },
+  "homepage": "https://github.com/Ignia/gulp-workflow",
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "del": "^2.2.2",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-connect": "^5.0.0",
+    "gulp-if": "^2.0.2",
+    "gulp-imagemin": "^3.1.1",
+    "gulp-jsonminify": "^1.0.0",
+    "gulp-livereload": "^3.8.1",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-minify-html": "^1.0.6",
+    "gulp-notify": "^3.0.0",
+    "gulp-sass": "^3.1.0",
+    "gulp-sourcemaps": "^2.4.1",
+    "gulp-uglify": "^2.1.0",
+    "gulp-util": "^3.0.8",
+    "imagemin-pngcrush": "^5.0.0",
+    "jsonminify": "^0.4.1"
+  }
+}
