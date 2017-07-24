@@ -350,12 +350,17 @@ typings/
 # dotenv environment variables file
 .env
 
-# Custom
-*.sass-cache*
+# Gulp build process files
 /node_modules
+/bower_components
+**/*/.sass-cache
+*.sass-cache*
+gulpFile.js
+gulpSecrets.js
+
+# Custom
 grunt-config.json
 config.yml
-gulpSecrets.js
 /_site
 assets/logo.png
 **/connectionStrings.config
