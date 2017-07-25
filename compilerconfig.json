@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Shared/Styles/Vendor/ZURB/foundation.css",
+    "inputFile": "Shared/Styles/Vendor/ZURB/foundation.scss"
+  },
+  {
+    "outputFile": "Shared/Styles/Style.css",
+    "inputFile": "Shared/Styles/Style.scss"
+  }
+]
