@@ -37,12 +37,12 @@
 
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
-      RenderSection("HeaderSection");
+      @RenderSection("HeaderSection")
     }
     else {
       <header id="SiteHeader" class="header" role="banner" vocab="http://schema.org" typeof="WPHeader">
         @if (IsSectionDefined("PrimaryNavigationSection")) {
-          RenderSection("PrimaryNavigationSection");
+          @RenderSection("PrimaryNavigationSection")
         }
         else {
           <!-- Logo -->
@@ -61,7 +61,7 @@
 
     <!-- Page Header Area -->
     @if (IsSectionDefined("ShortPageTitleSection")) {
-      RenderSection("ShortPageTitleSection");
+      @RenderSection("ShortPageTitleSection")
     }
     else {
       <!-- Page Title -->
@@ -69,16 +69,16 @@
     }
 
     @if (IsSectionDefined("PageLevelNavigationSection")) {
-      RenderSection("PageLevelNavigationSection");
+      @RenderSection("PageLevelNavigationSection")
     }
     else {
-      Html.Action("PageLevelNavigation", "Layout");
+      @Html.Action("PageLevelNavigation", "Layout")
     }
     <!-- /Page Header Area -->
 
 
     @if (IsSectionDefined("MainContentSection")) {
-      RenderSection("MainContentSection");
+      @RenderSection("MainContentSection")
     }
     else {
       <!-- Main Site Content Area -->
@@ -98,10 +98,9 @@
     }
 
     @if (IsSectionDefined("FooterSection")) {
-      RenderSection("FooterSection");
-    }
-    else {
-      Html.Action("Footer", "Layout");
+      @RenderSection("FooterSection")
+    } else {
+      @Html.Action("Footer", "Layout")
     }
 
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
