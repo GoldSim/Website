@@ -149,7 +149,10 @@
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="Global.asax" />
     <Content Include="Images\Logo.png" />
-    <None Include="Properties\PublishProfiles\GoldSimWebStaging - Web Deploy.pubxml" />
+    <None Include="compilerconfig.json" />
+    <None Include="compilerconfig.json.defaults">
+      <DependentUpon>compilerconfig.json</DependentUpon>
+    </None>
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />

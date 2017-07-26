@@ -10,6 +10,7 @@
     <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
     <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
     <link rel="canonical" href="http://www.goldsim.com/@Request.Path.ToLower()" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" />
     <style>
       a.selected {
         background-color: #000;
@@ -36,12 +37,12 @@
 
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
-      RenderSection("HeaderSection");
+      @RenderSection("HeaderSection")
     }
     else {
       <header id="SiteHeader" class="header" role="banner" vocab="http://schema.org" typeof="WPHeader">
         @if (IsSectionDefined("PrimaryNavigationSection")) {
-          RenderSection("PrimaryNavigationSection");
+          @RenderSection("PrimaryNavigationSection")
         }
         else {
           <!-- Logo -->
@@ -60,7 +61,7 @@
 
     <!-- Page Header Area -->
     @if (IsSectionDefined("ShortPageTitleSection")) {
-      RenderSection("ShortPageTitleSection");
+      @RenderSection("ShortPageTitleSection")
     }
     else {
       <!-- Page Title -->
@@ -68,16 +69,16 @@
     }
 
     @if (IsSectionDefined("PageLevelNavigationSection")) {
-      RenderSection("PageLevelNavigationSection");
+      @RenderSection("PageLevelNavigationSection")
     }
     else {
-      Html.Action("PageLevelNavigation", "Layout");
+      @Html.Action("PageLevelNavigation", "Layout")
     }
     <!-- /Page Header Area -->
 
 
     @if (IsSectionDefined("MainContentSection")) {
-      RenderSection("MainContentSection");
+      @RenderSection("MainContentSection")
     }
     else {
       <!-- Main Site Content Area -->
@@ -97,10 +98,9 @@
     }
 
     @if (IsSectionDefined("FooterSection")) {
-      RenderSection("FooterSection");
-    }
-    else {
-      Html.Action("Footer", "Layout");
+      @RenderSection("FooterSection")
+    } else {
+      @Html.Action("Footer", "Layout")
     }
 
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
