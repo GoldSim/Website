@@ -2,15 +2,21 @@
 
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="footer" role="contentinfo">
-  <nav id="FooterNavigation" class="navigation" role="navigation">
-    <ul>
-    @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic) {
-      if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
-        <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
-      }
-    }
-    </ul>
-  </nav>
+  <div class="grid-container">
+    <div class="grid-x grid-padding-x">
+      <nav id="FooterNavigation" class="navigation cell small-12 medium-6 large-3" role="navigation">
+        <ul>
+          @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic)
+          {
+            if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+            {
+              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
+            }
+          }
+        </ul>
+      </nav>
+    </div>
+  </div>
 </footer>
 <!-- /Site Footer Area -->
 
