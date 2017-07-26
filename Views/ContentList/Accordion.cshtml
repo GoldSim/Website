@@ -4,8 +4,6 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Content List: Accordion</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Categories (Nested Topics)</h2>
@@ -22,4 +20,8 @@
   }
 </ul>
 
-<br>(~/Views/ContentList/Accordion.cshtml)
+<!--
+  Content Type: Content List
+  View Type: Accordion
+  View Location: ~/Views/ContentList/Accordion.cshtml
+-->

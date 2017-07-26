@@ -4,8 +4,6 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Content List Type</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Categories (Nested Topics)</h2>
@@ -22,4 +20,8 @@
   }
 </ul>
 
-<br>(~/Views/ContentList/ContentList.cshtml)
+<!--
+  Content Type: Content List
+  View Type: Content List
+  View Location: ~/Views/ContentList/ContentList.cshtml
+-->

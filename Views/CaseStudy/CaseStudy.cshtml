@@ -4,8 +4,6 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Case Study Content Type</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Attributes (ApplicationPageBase)</h2>
@@ -28,4 +26,7 @@
   }
 </ul>
 
-<br>(~/Views/CaseStudy/CaseStudy.cshtml)
+<!--
+  Content Type: Case Study
+  View Location: ~/Views/CaseStudy/CaseStudy.cshtml
+-->

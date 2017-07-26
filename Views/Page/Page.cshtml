@@ -4,8 +4,9 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Page Content Type</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
-<br>(~/Views/Page/Page.cshtml)
+<!--
+  Content Type: Page
+  View Location: ~/Views/Page/Page.cshtml
+-->

@@ -4,8 +4,6 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Application Content Type</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Attributes (ApplicationPageBase)</h2>
@@ -32,4 +30,7 @@
 }
 </ul>
 
-<br>(~/Views/Application/Application.cshtml)
+<!--
+  Content Type: Application Page
+  View Location: ~/Views/Application/ApplicationPage.cshtml
+-->

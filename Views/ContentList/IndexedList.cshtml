@@ -4,8 +4,6 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Content List: Indexed List View</h2>
-
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
 <h2>Categories (Nested Topics)</h2>
@@ -22,4 +20,8 @@
   }
 </ul>
 
-<br>(~/Views/ContentList/IndexedList.cshtml)
+<!--
+  Content Type: Content List
+  View Type: Indexed List
+  View Location: ~/Views/ContentList/IndexedList.cshtml
+-->
