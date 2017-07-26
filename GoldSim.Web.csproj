@@ -328,6 +328,11 @@
     <Content Include="Shared\Styles\Vendor\ZURB\xy-grid\_xy-grid.scss" />
     <Content Include="Shared\Styles\Vendor\ZURB\_global.scss" />
     <Content Include="Shared\Styles\Style.scss" />
+    <Content Include="Shared\Styles\_foundationSettings.scss" />
+    <Content Include="Shared\Styles\_variables.scss" />
+    <Content Include="Shared\Styles\Base\_base.scss" />
+    <Content Include="Shared\Styles\Layout\_layout.scss" />
+    <Content Include="Shared\Styles\Views\_views.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
