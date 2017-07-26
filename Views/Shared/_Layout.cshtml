@@ -17,11 +17,13 @@
         background-color: #000;
         color: #fff;
       }
+      /*
       #SiteHeader {
         float: left;
         width: 250px;
         padding-right: 25px;
       }
+      */
     </style>
     @RenderSection("Head", false)
     <script>
@@ -41,20 +43,26 @@
       @RenderSection("HeaderSection")
     }
     else {
-      <header id="SiteHeader" class="header" role="banner" vocab="http://schema.org" typeof="WPHeader">
+      <header id="SiteHeader" class="header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
         @if (IsSectionDefined("PrimaryNavigationSection")) {
           @RenderSection("PrimaryNavigationSection")
         }
         else {
-          <!-- Logo -->
-          <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
-
-          @Html.Action("Menu", "Layout")
-
-          <!-- Site Search -->
-          <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
-          <!-- /Site Search -->
-
+          <div class="title-bar-left">
+            <!-- Primary Navigation -->
+            <button class="menu-icon" type="button" data-open="PrimaryNavigation"></button>
+            @Html.Action("Menu", "Layout")
+            <!-- /Primary Navigation -->
+          </div>
+          <div class="title-bar-middle">
+            <!-- Logo -->
+            <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
+          </div>
+          <div class="title-bar-right">
+            <!-- Site Search -->
+            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+            <!-- /Site Search -->
+          </div>
         }
       </header>
     }
