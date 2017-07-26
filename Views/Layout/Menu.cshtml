@@ -2,7 +2,7 @@
 
 <!-- Primary Navigation -->
 @if (Model.NavigationRootTopic != null) {
-  <nav id="PrimaryNavigation" class="navigation primary" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
+  <nav id="PrimaryNavigation" class="navigation primary off-canvas position-left" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic) {
         if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
