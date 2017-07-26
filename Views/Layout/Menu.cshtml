@@ -3,7 +3,10 @@
 <!-- Primary Navigation -->
 @if (Model.NavigationRootTopic != null) {
   <nav id="PrimaryNavigation" class="navigation primary off-canvas position-left" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
-    <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+    <button class="close-button" aria-label="Close menu" type="button" data-close style="clear:right;margin-bottom:15px">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true" style="margin-top:30px">
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic) {
         if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
           <li>
