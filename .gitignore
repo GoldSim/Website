@@ -350,6 +350,10 @@ typings/
 # dotenv environment variables file
 .env
 
+# Application settings
+**/connectionStrings.config
+**/smtp.config
+
 # Gulp build process files
 /node_modules
 /bower_components
@@ -363,5 +367,5 @@ grunt-config.json
 config.yml
 /_site
 assets/logo.png
-**/connectionStrings.config
-**/smtp.config
+compilerconfig.json
+compilerconfig.json.defaults
