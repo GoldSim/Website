@@ -359,6 +359,9 @@
     <Content Include="Shared\Styles\Vendor\FontAwesome\_screen-reader.scss" />
     <Content Include="Shared\Styles\Vendor\FontAwesome\_stacked.scss" />
     <Content Include="Shared\Styles\Vendor\FontAwesome\_variables.scss" />
+    <Content Include="Shared\Styles\Base\_utilities.scss" />
+    <Content Include="Shared\Styles\Base\_typography.scss" />
+    <Content Include="Shared\Styles\Base\_fonts.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

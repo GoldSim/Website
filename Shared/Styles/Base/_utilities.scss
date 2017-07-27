@@ -1,26 +1,34 @@
 ﻿//==============================================================================================
-// BASE CLASSES
+// UTILITIES
 //----------------------------------------------------------------------------------------------
-// Provides global overrides for standard HTML elements based on element, attribute, and single-
-// class selectors. Selectors in this section should never be nested more than two layers deep.
+// Provides centralized, reusable selectors and corresponding treatments for commonly-needed
+// style applications.
 //----------------------------------------------------------------------------------------------
+// NOTE: These selectors may be used within the site's HTML or in the Sass by invoking them
+// via the @extend [.selector] directive.
+//==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// IMPORTS
+// DISPLAY
 //----------------------------------------------------------------------------------------------
-@import "fonts";
-@import "typography";
-@import "utilities";
+.hidden {
+  display                       : none;
+}
 
 //----------------------------------------------------------------------------------------------
-// DOCUMENT
+// POSITIONING
 //----------------------------------------------------------------------------------------------
+.centered {
+  text-align                    : center;
+}
 
 //----------------------------------------------------------------------------------------------
-// COMMON ELEMENTS
+// TEXT
 //----------------------------------------------------------------------------------------------
+.uppercase {
+  text-transform                : uppercase;
+}
 
-//----------------------------------------------------------------------------------------------
-// UI ELEMENTS
-//----------------------------------------------------------------------------------------------
-
+.no-transform {
+  text-transform                : none;
+}
