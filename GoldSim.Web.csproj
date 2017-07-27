@@ -186,6 +186,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
+    <Compile Include="Controllers\SitemapController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -362,6 +363,7 @@
     <Content Include="Shared\Styles\Base\_utilities.scss" />
     <Content Include="Shared\Styles\Base\_typography.scss" />
     <Content Include="Shared\Styles\Base\_fonts.scss" />
+    <Content Include="Views\Shared\Sitemap.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
