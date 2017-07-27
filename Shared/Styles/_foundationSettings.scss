@@ -62,14 +62,18 @@
 //  55. Top Bar
 //  56. Xy Grid
 
+//----------------------------------------------------------------------------------------------
+// IMPORT DEPENDENCIES
+//----------------------------------------------------------------------------------------------
 @import 'Vendor/ZURB/util/util';
+@import 'variables';
 
 //----------------------------------------------------------------------------------------------
 // 1. Global
 //----------------------------------------------------------------------------------------------
 
 $global-font-size               : 100%;
-$global-width                   : rem-calc(1200);
+$global-width                   : rem-calc(960);                // WAS rem-calc(1200)
 $global-lineheight              : 1.5;
 $foundation-palette             : (
   primary       : #1779ba,
@@ -78,11 +82,11 @@ $foundation-palette             : (
   warning       : #ffae00,
   alert         : #cc4b37,
 );
-$light-gray                     : #e6e6e6;
-$medium-gray                    : #cacaca;
-$dark-gray                      : #8a8a8a;
-$black                          : #0a0a0a;
-$white                          : #fefefe;
+$light-gray                     : $palette-grey-lighter;        // WAS #e6e6e6
+$medium-gray                    : $palette-grey-light;          // WAS #cacaca
+$dark-gray                      : $palette-grey-dark;           // WAS #8a8a8a
+$black                          : $palette-black;               // WAS #0a0a0a
+$white                          : $palette-white;               // WAS #fefefe
 $body-background                : $white;
 $body-font-color                : $black;
 $body-font-family               : 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
