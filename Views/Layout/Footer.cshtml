@@ -4,6 +4,8 @@
 <footer id="SiteFooter" class="footer" role="contentinfo">
   <div class="grid-container">
     <div class="grid-x grid-padding-x">
+
+      <!-- Footer Navigation -->
       <nav id="FooterNavigation" class="navigation cell small-12 medium-6 large-3" role="navigation">
         <ul>
           @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic)
@@ -15,6 +17,14 @@
           }
         </ul>
       </nav>
+      <!-- /Footer Navigation -->
+
+      <!-- Copyright Information -->
+      <div class="copyright cell small-12">
+        <small><span class="fa fa-copyright"></span> @DateTime.Now.Year GoldSim Technology Group</small>
+      </div>
+      <!-- Copyright Information -->
+
     </div>
   </div>
 </footer>
