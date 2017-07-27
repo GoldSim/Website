@@ -1,4 +1,5 @@
-﻿//==============================================================================================
+﻿@charset "utf-8";
+//==============================================================================================
 // STYLE
 //----------------------------------------------------------------------------------------------
 // Primary entry point for application. Imports all other manifest files, including variables.
@@ -10,7 +11,7 @@
 // NOTE: When possible, all changes should be made to variables. Only when that is not practical
 // should changes be made elsewhere.
 //----------------------------------------------------------------------------------------------
-// @import "variables";
+@import "variables";
 
 //----------------------------------------------------------------------------------------------
 // IMPORT FONTS
@@ -21,18 +22,12 @@
 //----------------------------------------------------------------------------------------------
 // IMPORT EXTERNAL LIBRARIES
 //----------------------------------------------------------------------------------------------
-@charset "utf-8";
 @import "Vendor/Zurb/foundation";
 @include foundation-everything;
 
 //----------------------------------------------------------------------------------------------
-// TEMPORARY STYLES
+// IMPORT OTHER MANIFESTS
 //----------------------------------------------------------------------------------------------
-body {
-  font-family                   : 'Source Sans Pro', sans-serif;
-  font-weight                   : 400;
-}
-h1, h2, h3, h4, h5, h6 {
-  font-family                   : 'Oxygen', 'Source Sans Pro', sans-serif;
-  font-weight                   : 700;
-}
+@import "Base/base";
+@import "Layout/layout";
+@import "Views/views";
