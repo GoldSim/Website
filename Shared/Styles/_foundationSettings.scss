@@ -87,6 +87,7 @@ $medium-gray                    : $palette-grey-light;          // WAS #cacaca
 $dark-gray                      : $palette-grey-dark;           // WAS #8a8a8a
 $black                          : $palette-black;               // WAS #0a0a0a
 $white                          : $palette-white;               // WAS #fefefe
+$yellow                         : $palette-yellow;              // NEW
 $body-background                : $white;
 $body-font-color                : $black;
 $body-font-family               : 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -535,7 +536,7 @@ $offcanvas-reveal-zindex        : 12;
 $offcanvas-transition-length    : 0.5s;
 $offcanvas-transition-timing    : ease;
 $offcanvas-fixed-reveal         : true;
-$offcanvas-exit-background      : rgba($white, 0.25);
+$offcanvas-exit-background      : rgba($yellow, 0.65);          // WAS rgba($white, 0.25);
 $maincontent-class              : 'off-canvas-content';
 
 //----------------------------------------------------------------------------------------------
@@ -872,12 +873,12 @@ $thumbnail-radius                       : $global-radius;
 // 53. Title Bar
 //----------------------------------------------------------------------------------------------
 
-$titlebar-background                    : $black;
-$titlebar-color                         : $white;
+$titlebar-background                    : $white;               // WAS $black
+$titlebar-color                         : $black;               // WAS $white
 $titlebar-padding                       : 0.5rem;
 $titlebar-text-font-weight              : bold;
-$titlebar-icon-color                    : $white;
-$titlebar-icon-color-hover              : $medium-gray;
+$titlebar-icon-color                    : $black;               // WAS $white
+$titlebar-icon-color-hover              : $dark-gray;           // WAS $medium-gray
 $titlebar-icon-spacing                  : 0.25rem;
 
 //----------------------------------------------------------------------------------------------

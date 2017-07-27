@@ -30,18 +30,34 @@ body {
   margin                        : 0;
   padding-bottom                : 6rem;
   min-height                    : 100%;
+  background-color              : $palette-grey-lightest;
 }
 
 //----------------------------------------------------------------------------------------------
 // HEADER
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
+  height                        : 100px;
+  color                         : $palette-black;
+  background-color              : $palette-white;
+
+  // Title Bar (Foundation) "Cells"
+  div[class^="title-bar-"] {
+    width                       : 33%;
+  }
 
 }
 
 //----------------------------------------------------------------------------------------------
 // NAVIGATION
 //----------------------------------------------------------------------------------------------
+#PrimaryNavigation {
+  min-width                     : 18.75rem;                     // 300px
+  background-color              : $palette-black;
+  @include breakpoint(large) {
+    min-width                   : 31.25rem;                     // 500px;
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 // PRIMARY CONTENT AREA
