@@ -1,5 +1,9 @@
 ﻿@model GoldSim.Web.Models.NavigationViewModel
 
+@{
+  Ignia.Topics.Topic CompanyTopic       = @Model.NavigationRootTopic;
+}
+
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="footer" role="contentinfo">
   <div class="grid-container">
@@ -7,8 +11,9 @@
 
       <!-- Footer Navigation -->
       <nav id="FooterNavigation" class="navigation cell small-12 medium-6 large-3" role="navigation">
+        <h1>@CompanyTopic.Title</h1>
         <ul>
-          @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic)
+          @foreach (Ignia.Topics.Topic topic in CompanyTopic)
           {
             if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
             {
