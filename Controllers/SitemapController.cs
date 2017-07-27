@@ -3,67 +3,67 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Controllers;
+using System.Web.Mvc;
 using Ignia.Topics;
+using Ignia.Topics.Repositories;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
-using System.Web.Routing;
 
-namespace GoldSim.Web {
+namespace GoldSim.Web.Controllers {
 
   /*============================================================================================================================
-  | CLASS: HOME CONTROLLER
+  | CLASS: SITEMAP CONTROLLER
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  class GoldSimControllerFactory : DefaultControllerFactory {
+  public class SitemapController : Controller {
 
     /*==========================================================================================================================
-    | GET CONTROLLER INSTANCE
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private     ITopicRepository        _topicRepository        = null;
+    private     Topic                   _currentTopic           = null;
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Overrides the factory method for creating new instances of controllers.
+    ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
-    protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType) {
+    /// <returns>A topic controller for loading OnTopic views.</returns>
+    public SitemapController(ITopicRepository topicRepository, Topic currentTopic) {
+      _topicRepository          = topicRepository;
+      _currentTopic             = currentTopic;
+    }
+
+    /*==========================================================================================================================
+    | GET: /
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the Sitemap.org sitemap for the site.
+    /// </summary>
+    /// <returns>The site's homepage view.</returns>
+    public ActionResult Index() {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Register
+      | Establish Page Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicRepository       = TopicRepository.DataProvider;
-      var rootTopic             = TopicRepository.RootTopic;
-      var topicRoutingService   = new TopicRoutingService(topicRepository, requestContext);
+      Topic topic = _topicRepository.Load();
+      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, _topicRepository.Load());
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Resolve
+      | DEFINE CONTENT TYPE
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, topicRoutingService.Topic);
-      }
-
-      if (controllerType == typeof(SitemapController)) {
-        return new SitemapController(topicRepository, null);
-      }
-
-      if (topicRoutingService.Topic != null) {
-        return new TopicController<Topic>(topicRepository, topicRoutingService.Topic);
-      }
-
-      return base.GetControllerInstance(requestContext, controllerType);
+      Response.ContentType = "text/xml";
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Release
+      | Return the homepage view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //There are no resources to release
+      return View("Sitemap", topicViewModel);
 
     }
 
-  } //Class
-} //Namespace
+  }
+
+}
