@@ -362,13 +362,10 @@
     <Content Include="Shared\Styles\Base\_utilities.scss" />
     <Content Include="Shared\Styles\Base\_typography.scss" />
     <Content Include="Shared\Styles\Base\_fonts.scss" />
-<<<<<<< HEAD
     <Content Include="Shared\Styles\Components\_components.scss" />
     <Content Include="Shared\Styles\_foundationSettings.scss" />
     <Content Include="Shared\Styles\Components\Menu\_menu.scss" />
-=======
     <Content Include="Views\Shared\Sitemap.cshtml" />
->>>>>>> 2731876a81cee88dd034e7aa483e622621bdae29
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
