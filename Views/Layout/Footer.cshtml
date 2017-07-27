@@ -5,27 +5,31 @@
 }
 
 <!-- Site Footer Area -->
-<footer id="SiteFooter" class="footer" role="contentinfo">
+<footer id="SiteFooter" class="site footer" role="contentinfo">
   <div class="grid-container">
     <div class="grid-x grid-padding-x">
 
       <!-- Footer Navigation -->
-      <nav id="FooterNavigation" class="navigation cell small-12 medium-6 large-3" role="navigation">
-        <h1>@CompanyTopic.Title</h1>
-        <ul>
-          @foreach (Ignia.Topics.Topic topic in CompanyTopic)
-          {
-            if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
-            {
-              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
+      <nav id="FooterNavigation" class="navigation" role="navigation">
+
+        <!-- Company Information -->
+        <div class="cell small-12 medium-6 large-3">
+          <p class="list heading">@CompanyTopic.Title</p>
+          <ul>
+            @foreach (Ignia.Topics.Topic topic in CompanyTopic) {
+              if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
+                <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
+              }
             }
-          }
-        </ul>
+          </ul>
+        </div>
+        <!-- /Company Information -->
+
       </nav>
       <!-- /Footer Navigation -->
 
       <!-- Copyright Information -->
-      <div class="copyright cell small-12">
+      <div class="copyright cell small-12 centered">
         <small><span class="fa fa-copyright"></span> @DateTime.Now.Year GoldSim Technology Group</small>
       </div>
       <!-- Copyright Information -->
