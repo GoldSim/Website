@@ -3960,7 +3960,7 @@ select {
   height: 100%;
   -webkit-transition: opacity 0.5s ease, visibility 0.5s ease;
   transition: opacity 0.5s ease, visibility 0.5s ease;
-  background: rgba(254, 193, 13, 0.65);
+  background: rgba(240, 173, 32, 0.85);
   opacity: 0;
   visibility: hidden;
   overflow: hidden; }
@@ -5585,6 +5585,12 @@ a.thumbnail {
 .no-transform {
   text-transform: none; }
 
+.panel {
+  padding: 5rem 6.875rem;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.07);
+          box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.07); }
+
 main.page.content > section > header {
   background-color: #666666; }
   main.page.content > section > header .grid-container {
@@ -5598,7 +5604,7 @@ main.page.content > section > header {
 
 main.page.content article header h2.title.long {
   margin: 0;
-  padding: 4rem 7rem;
+  padding: 4rem 6.875rem;
   color: #666666; }
 
 .site.footer .navigation p.list.heading {
