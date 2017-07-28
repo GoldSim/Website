@@ -24,3 +24,30 @@
 // UI ELEMENTS
 //----------------------------------------------------------------------------------------------
 
+//----------------------------------------------------------------------------------------------
+// FOOTER
+//----------------------------------------------------------------------------------------------
+.site.footer {
+  .navigation {
+    p.list.heading {
+      margin-bottom             : 0;
+      font-size                 : 1.25rem;
+      color                     : $palette-grey-lighter;
+    }
+    ul {
+      @extend .no-list-style;
+      margin-bottom             : 0;
+      margin-left               : 0;
+      li {
+        margin-top              : 0.75rem;
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+          color                 : $palette-grey-medium;
+        }
+      }
+    }
+  }
+}
+
