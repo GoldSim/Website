@@ -351,7 +351,7 @@ typings/
 .env
 
 # Application settings
-**/connectionStrings.config
+**/connectionStrings.*
 **/smtp.config
 
 # Gulp build process files
