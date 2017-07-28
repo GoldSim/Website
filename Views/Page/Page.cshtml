@@ -4,7 +4,9 @@
   Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+<section class="panel body">
+  @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+</section>
 
 <!--
   Content Type: Page
