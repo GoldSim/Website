@@ -50,20 +50,20 @@
           @RenderSection("PrimaryNavigationSection")
         }
         else {
-          <div class="title-bar-left">
+          <div class="title-bar-left menu">
             <!-- Primary Navigation -->
             <button class="menu-icon" type="button" data-open="PrimaryNavigation"></button>
             @Html.Action("Menu", "Layout")
             <!-- /Primary Navigation -->
           </div>
-          <div class="title-bar-middle centered">
+          <div class="title-bar-middle logo centered">
             <!-- Logo -->
             <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
           </div>
-          <div class="title-bar-right">
+          <div class="title-bar-right search">
             <!-- Site Search -->
-            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
             <img src="/Images/Icons/Search.Icon.png" alt="Search GoldSim.com" class="icon search" />
+            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
             <!-- /Site Search -->
           </div>
         }

@@ -5634,6 +5634,7 @@ body {
   background-color: #f3f3f3; }
 
 #SiteHeader {
+  padding: 0;
   height: 6.25rem;
   color: black;
   background-color: white; }
@@ -5675,7 +5676,7 @@ button.close-button {
     outline: 0; }
 
 .title-bar .menu-icon {
-  margin-left: 3rem; }
+  margin-left: 2.5rem; }
 
 nav.navigation.primary button.close-button {
   top: 2rem;
@@ -5704,3 +5705,36 @@ nav.navigation.primary ul.menu {
     padding-left: 1.5rem; }
     nav.navigation.primary ul.menu.nested li {
       font-size: 1.5rem; }
+
+td.gsc-search-button,
+td.gsc-clear-button,
+td.gsib_b {
+  display: none; }
+
+td.gsc-input {
+  padding: 0; }
+
+.gsc-input-box {
+  border: 0 none transparent;
+  background: transparent; }
+  .gsc-input-box table {
+    margin-bottom: 0;
+    width: auto; }
+    .gsc-input-box table tbody {
+      border: 0 none transparent;
+      background-color: transparent; }
+    .gsc-input-box table td.gsib_a {
+      padding: 0; }
+
+.search div {
+  display: inline-block; }
+
+.search input {
+  background-color: #fec10d !important;
+  -webkit-box-shadow: none;
+          box-shadow: none; }
+
+.search .icon.search {
+  float: right;
+  margin-right: 2.5rem;
+  cursor: pointer; }

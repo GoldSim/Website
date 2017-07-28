@@ -16,5 +16,56 @@
 //----------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------
+// OVERRIDES
+//----------------------------------------------------------------------------------------------
+// NOTE: These should be moved to a centralized _overrides.scss file. For discoverability,
+// however, the overrides are being placed here instead.
+//----------------------------------------------------------------------------------------------
+td.gsc-search-button,
+td.gsc-clear-button,
+td.gsib_b {
+  display                       : none;
+}
+td.gsc-input {
+  padding                       : 0;
+}
+.gsc-input-box {
+  border                        : 0 none transparent;
+  background                    : transparent;
+  table {
+    margin-bottom               : 0;
+    width                       : auto;
+    tbody {
+      border                    : 0 none transparent;
+      background-color          : transparent;
+    }
+    td.gsib_a {
+      padding                   : 0;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
 // CORE
 //----------------------------------------------------------------------------------------------
+.search {
+
+  div {
+    display                     : inline-block;
+  }
+
+  input {
+    background-color            : $palette-yellow !important;   // !important needed for GCSE
+    box-shadow                  : none;
+  }
+
+  // Buttons
+  .icon {
+    &.search {
+      float                     : right;
+      margin-right              : 2.5rem;                       // 40px;
+      cursor                    : pointer;
+    }
+  }
+
+}
