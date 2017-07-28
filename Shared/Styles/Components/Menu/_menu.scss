@@ -22,6 +22,8 @@
 // Toggles (open and close)
 button {
   &.menu-icon {
+    width                       : 2rem;
+    height                      : 1.5rem;
     color                       : $palette-black;
   }
   &.close-button {
@@ -38,9 +40,17 @@ button {
 // CORE
 //----------------------------------------------------------------------------------------------
 
+// Menu Toggle
+.title-bar {
+  .menu-icon {
+    margin-left                 : 3rem;
+  }
+}
+
+// Menu
 nav.navigation.primary {
 
-  // Close Button
+  // close button
   button.close-button {
     top                         : 2rem;
     right                       : auto;
@@ -48,14 +58,15 @@ nav.navigation.primary {
     font-size                   : 3.25rem;                      // 52px
     color                       : $palette-white;
   }
-  // Nested Menu Toggle
+
+  // nested menu toggle
   button.submenu-toggle {
     &:after {
       border-top-color          : $palette-white;
     }
   }
 
-  // Navigation Items
+  // navigation items
   ul.menu {
     position                    : relative;
     top                         : 6.25rem;                      // 100px
