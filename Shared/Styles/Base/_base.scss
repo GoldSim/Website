@@ -25,6 +25,44 @@
 //----------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------
+// MAIN CONTENT
+//----------------------------------------------------------------------------------------------
+main.page.content {
+
+  // Page (Short) Title Area
+  > section > header {
+    background-color            : $palette-grey-dark;
+
+    .grid-container {
+      position                  : relative;
+      min-height                : 12.5rem;                      // 200px
+    }
+
+    h1.title.short {
+      position                  : absolute;
+      bottom                    : 0;
+      padding-bottom            : 2rem;                         // 32px
+      color                     : $palette-white;
+    }
+
+  }
+
+  // Primary Page Content
+  article {
+
+    // Long Title (Subtitle) Area
+    header h2.title.long {
+      margin                    : 0;
+      padding                   : 4rem 7rem;                    // 64px 112px
+      color                     : $palette-grey-dark;
+    }
+
+  }
+
+
+}
+
+//----------------------------------------------------------------------------------------------
 // FOOTER
 //----------------------------------------------------------------------------------------------
 .site.footer {

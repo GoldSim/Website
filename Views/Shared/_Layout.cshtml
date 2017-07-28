@@ -78,20 +78,21 @@
       <main id="MainContentArea" class="page content" role="main">
 
         <!-- Page Header Area -->
-        <section id="PageHeaderSection" class="header">
+        <section id="PageHeaderSection">
 
           @if (IsSectionDefined("ShortPageTitleSection")) {
             @RenderSection("ShortPageTitleSection")
           }
           else {
-            <header>
-              <!-- Page Title -->
+            <!-- Page Title Area -->
+            <header class="header">
               <div class="grid-container">
                 <div class="grid-x">
                   <h1 class="title short cell">@Model.Topic.Title</h1>
                 </div>
               </div>
             </header>
+            <!-- /Page Title Area -->
           }
 
           @if (IsSectionDefined("PageLevelNavigationSection")) {
