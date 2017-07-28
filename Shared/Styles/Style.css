@@ -5576,11 +5576,46 @@ a.thumbnail {
 .centered {
   text-align: center; }
 
+.no-list-style, .site.footer .navigation ul {
+  list-style: none; }
+
 .uppercase {
   text-transform: uppercase; }
 
 .no-transform {
   text-transform: none; }
+
+main.page.content > section > header {
+  background-color: #666666; }
+  main.page.content > section > header .grid-container {
+    position: relative;
+    min-height: 12.5rem; }
+  main.page.content > section > header h1.title.short {
+    position: absolute;
+    bottom: 0;
+    padding-bottom: 2rem;
+    color: white; }
+
+main.page.content article header h2.title.long {
+  margin: 0;
+  padding: 4rem 7rem;
+  color: #666666; }
+
+.site.footer .navigation p.list.heading {
+  margin-bottom: 0;
+  font-size: 1.25rem;
+  color: #e3e3e3; }
+
+.site.footer .navigation ul {
+  margin-bottom: 0;
+  margin-left: 0; }
+  .site.footer .navigation ul li {
+    margin-top: 0.75rem; }
+    .site.footer .navigation ul li a,
+    .site.footer .navigation ul li a:hover,
+    .site.footer .navigation ul li a:focus,
+    .site.footer .navigation ul li a:active {
+      color: #9b9b9b; }
 
 html {
   height: 100%; }
@@ -5588,12 +5623,12 @@ html {
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 6rem;
+  padding-bottom: 22rem;
   min-height: 100%;
   background-color: #f3f3f3; }
 
 #SiteHeader {
-  height: 100px;
+  height: 6.25rem;
   color: black;
   background-color: white; }
   #SiteHeader div[class^="title-bar-"] {
@@ -5607,6 +5642,7 @@ body {
       min-width: 31.25rem; } }
 
 #MainContentArea {
+  padding-bottom: 3rem;
   background-color: #f3f3f3; }
 
 #SiteFooter {
@@ -5616,18 +5652,24 @@ body {
   left: 0;
   padding-top: 3.45rem;
   padding-bottom: 1.56rem;
+  max-height: 22rem;
   color: #9b9b9b;
   background-color: #666666; }
   #SiteFooter nav {
-    padding-bottom: 5.3rem; }
+    padding-bottom: 2rem; }
 
 button.menu-icon {
+  width: 2rem;
+  height: 1.5rem;
   color: black; }
 
 button.close-button {
   outline-width: 0; }
   [data-whatinput='mouse'] button.close-button {
     outline: 0; }
+
+.title-bar .menu-icon {
+  margin-left: 3rem; }
 
 nav.navigation.primary button.close-button {
   top: 2rem;
