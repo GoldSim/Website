@@ -148,6 +148,7 @@
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Icons\Search.Icon.png" />
     <Content Include="Images\Logo.png" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
@@ -366,6 +367,7 @@
     <Content Include="Shared\Styles\_foundationSettings.scss" />
     <Content Include="Shared\Styles\Components\Menu\_menu.scss" />
     <Content Include="Views\Shared\Sitemap.cshtml" />
+    <Content Include="Shared\Styles\Components\SearchBar\_searchBar.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
