@@ -370,6 +370,7 @@
     <Content Include="Shared\Styles\Components\Menu\_menu.scss" />
     <Content Include="Views\Shared\Sitemap.cshtml" />
     <Content Include="Shared\Styles\Components\SearchBar\_searchBar.scss" />
+    <Content Include="Shared\Styles\Views\Home.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

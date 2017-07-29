@@ -1,0 +1,7 @@
+main > section > header {
+  padding: 3rem 0; }
+
+.page.title.short {
+  position: static;
+  font-size: 1.875rem;
+  color: #cccccc; }
