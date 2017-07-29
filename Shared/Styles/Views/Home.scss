@@ -16,23 +16,47 @@
 //----------------------------------------------------------------------------------------------
 // LAYOUT
 //----------------------------------------------------------------------------------------------
-main > section > header {
-  padding                       : 3rem 0;
+main {
+  > section > header,
+  > article {
+    padding                     : 3rem 0;
+  }
+  > section > header {
+    .video {
+      max-width                 : 33.4375rem;                   // 535px
+      background-color          : $palette-white;
+    }
+  }
 }
+
 
 //----------------------------------------------------------------------------------------------
 // SKIN
 //----------------------------------------------------------------------------------------------
+.panel {
+
+  // Introduction
+  &.introduction {
+    padding-right               : 26.75rem;                     // 428px
+    background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
+  }
+
+}
 
 //----------------------------------------------------------------------------------------------
 // OVERRIDES
 //----------------------------------------------------------------------------------------------
 
 // Typography
-.page.title {
+h1.title {
   &.short {
     position                    : static;
+    padding-bottom              : 0.5rem;                       // 8px
     font-size                   : 1.875rem;                     // 30px
     color                       : $palette-grey-light;
+  }
+  &.long {
+    margin-bottom               : 2.75rem;                      // 44px
+    color                       : $palette-white;
   }
 }

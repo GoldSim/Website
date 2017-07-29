@@ -169,18 +169,16 @@
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.min.js" />
-    <Content Include="Shared\Styles\Style.css">
-      <DependentUpon>Style.scss</DependentUpon>
-    </Content>
-    <Content Include="Shared\Styles\Style.min.css">
-      <DependentUpon>Style.css</DependentUpon>
-    </Content>
+    <Content Include="Shared\Styles\Style.css" />
+    <Content Include="Shared\Styles\Style.min.css" />
     <Content Include="Shared\Styles\Vendor\FontAwesome\font-awesome.css">
       <DependentUpon>font-awesome.scss</DependentUpon>
     </Content>
     <Content Include="Shared\Styles\Vendor\FontAwesome\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
+    <Content Include="Shared\Styles\Views\Home.css" />
+    <Content Include="Shared\Styles\Views\Home.min.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

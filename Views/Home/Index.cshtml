@@ -19,10 +19,22 @@
         <div class="grid-container">
           <div class="grid-x grid-padding-x">
             <div class="small-12 medium-8 medium-offset-2 centered">
+
               <!-- Short Title -->
               <h1 class="page title short">@Model.Topic.Title</h1>
+
               <!-- Long Title (Subtitle) -->
               <h1 class="page title long">@Model.Topic.Attributes.Get("Subtitle")</h1>
+
+              <!-- Video -->
+              <div class="responsive-embed widescreen video">
+                <video controls="">
+                  <source src="http://3fdaec166a0b35abfa2a-3991774b1862aed7fa3658c502b53d27.r19.cf1.rackcdn.com/GoldSim%20in%20Nutshell.mp4" type="video/mp4">
+                  Your browser does not support the HTML5 video.
+                </video>
+              </div>
+              <!-- /Video -->
+
             </div>
           </div>
         </div>

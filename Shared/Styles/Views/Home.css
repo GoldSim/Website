@@ -1,7 +1,21 @@
-main > section > header {
+main > section > header,
+main > article {
   padding: 3rem 0; }
 
-.page.title.short {
+main > section > header .video {
+  max-width: 33.4375rem;
+  background-color: white; }
+
+.panel.introduction {
+  padding-right: 26.75rem;
+  background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
+
+h1.title.short {
   position: static;
+  padding-bottom: 0.5rem;
   font-size: 1.875rem;
   color: #cccccc; }
+
+h1.title.long {
+  margin-bottom: 2.75rem;
+  color: white; }
