@@ -72,7 +72,7 @@
 // 1. Global
 //----------------------------------------------------------------------------------------------
 
-$global-font-size               : 100%;
+$global-font-size               : 112.5%;                       // WAS 100%
 $global-width                   : rem-calc(960);                // WAS rem-calc(1200)
 $global-lineheight              : 1.5;
 $foundation-palette             : (
@@ -89,7 +89,7 @@ $black                          : $palette-black;               // WAS #0a0a0a
 $white                          : $palette-white;               // WAS #fefefe
 $yellow                         : $palette-yellow;              // NEW
 $body-background                : $white;
-$body-font-color                : $black;
+$body-font-color                : lighten($black, 13%);         // WAS $black
 $body-font-family               : 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased               : true;
 $global-margin                  : 1rem;
@@ -141,7 +141,7 @@ $block-grid-max: 8;
 //----------------------------------------------------------------------------------------------
 
 $header-font-family             : 'Oxygen', $body-font-family;
-$header-font-weight             : $global-weight-normal;
+$header-font-weight             : 300;                          // WAS $global-weight-normal
 $header-font-style              : normal;
 $font-family-monospace          : Consolas, 'Liberation Mono', Courier, monospace;
 $header-color                   : inherit;

@@ -48,6 +48,7 @@ main.page.content {
     h1.title.short {
       position                  : absolute;
       bottom                    : 0;
+      margin                    : 0;
       padding-bottom            : 2rem;                         // 32px
       color                     : $palette-white;
     }
@@ -58,7 +59,7 @@ main.page.content {
   article {
 
     // Long Title (Subtitle) Area
-    header h2.title.long {
+    header h1.title.long {
       margin                    : 0;
       padding                   : 4rem 6.875rem;                // 64px 110px
       color                     : $palette-grey-dark;
@@ -76,14 +77,14 @@ main.page.content {
     p.list.heading {
       margin-bottom             : 0;
       font-size                 : 1.25rem;
-      color                     : $palette-grey-lighter;
+      color                     : $palette-grey-light;
     }
     ul {
       @extend .no-list-style;
       margin-bottom             : 0;
       margin-left               : 0;
       li {
-        margin-top              : 0.75rem;
+        margin-top              : 1rem;
         a,
         a:hover,
         a:focus,
