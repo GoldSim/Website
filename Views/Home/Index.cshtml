@@ -1,3 +1,57 @@
-﻿<h1>@Model.Topic.Title</h1>
+﻿@{
+  Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Home.css" />
+}
+
+@section MainContentSection {
+
+  <!-- Main Site Content Area -->
+  <main id="MainContentArea" class="page content" role="main">
+
+    <!-- Page Header Area -->
+    <section id="PageHeaderSection">
+
+      <!-- Page Title Area -->
+      <header class="header">
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <div class="small-12 medium-8 medium-offset-2 centered">
+              <!-- Short Title -->
+              <h1 class="page title short">@Model.Topic.Title</h1>
+              <!-- Long Title (Subtitle) -->
+              <h1 class="page title long">@Model.Topic.Attributes.Get("Subtitle")</h1>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- /Page Title Area -->
+
+    </section>
+    <!-- /Page Header Area -->
+
+    <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
+
+      <!-- Main Page Content -->
+      <div class="grid-x">
+
+        <!-- Introduction Pane -->
+        <section class="panel introduction">
+          @Html.Raw(@Model.Topic.Attributes.Get("Introduction"))
+        </section>
+        <!-- /Introduction Pane -->
+
+      </div>
+      <!-- /Main Page Content -->
+
+    </article>
+
+  </main>
+  <!-- /Main Site Content Area -->
+
+
+}
 
 <!-- View Location: ~/Home/Index.cshtml -->
