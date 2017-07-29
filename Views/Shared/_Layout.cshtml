@@ -78,33 +78,40 @@
       <!-- Main Site Content Area -->
       <main id="MainContentArea" class="page content" role="main">
 
-        <!-- Page Header Area -->
-        <section id="PageHeaderSection">
+        @if (IsSectionDefined("PageHeaderSection")) {
+          @RenderSection("PageHeaderSection")
+        }
+        else {
 
-          @if (IsSectionDefined("ShortPageTitleSection")) {
-            @RenderSection("ShortPageTitleSection")
-          }
-          else {
-            <!-- Page Title Area -->
-            <header class="header">
-              <div class="grid-container">
-                <div class="grid-x">
-                  <h1 class="title short cell">@Model.Topic.Title</h1>
+          <!-- Page Header Area -->
+          <section id="PageHeaderSection">
+
+            @if (IsSectionDefined("ShortPageTitleSection")) {
+              @RenderSection("ShortPageTitleSection")
+            }
+            else {
+              <!-- Page Title Area -->
+              <header class="header">
+                <div class="grid-container">
+                  <div class="grid-x">
+                    <h1 class="title short cell">@Model.Topic.Title</h1>
+                  </div>
                 </div>
-              </div>
-            </header>
-            <!-- /Page Title Area -->
-          }
+              </header>
+              <!-- /Page Title Area -->
+            }
 
-          @if (IsSectionDefined("PageLevelNavigationSection")) {
-            @RenderSection("PageLevelNavigationSection")
-          }
-          else {
-            @Html.Action("PageLevelNavigation", "Layout")
-          }
+            @if (IsSectionDefined("PageLevelNavigationSection")) {
+              @RenderSection("PageLevelNavigationSection")
+            }
+            else {
+              @Html.Action("PageLevelNavigation", "Layout")
+            }
 
-        </section>
-        <!-- /Page Header Area -->
+          </section>
+          <!-- /Page Header Area -->
+
+        }
 
         <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
 
