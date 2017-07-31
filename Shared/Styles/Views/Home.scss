@@ -53,6 +53,43 @@ main {
 
 }
 
+// Usage Slideshow
+.usage {
+  .orbit-container {
+    margin                      : 2.5rem 6.875rem 0;            // 40px 110px 0;
+  }
+  .orbit-controls {
+    button {
+      color                     : lighten($palette-black, 57.5%);       // #959595
+      cursor                    : pointer;
+      &:hover,
+      &:focus,
+      &:active {
+        background-color        : transparent;
+      }
+    }
+    .orbit-previous {
+      left                      : 1.75rem;                      // 28px
+    }
+    .orbit-next {
+      right                     : 1.75rem;                      // 28px
+    }
+  }
+  h3 {
+    font-size                   : 1.5rem;
+    font-weight                 : 600;
+  }
+  .text {
+    padding-right               : 2.5rem;
+  }
+  .screenshot {
+    min-height                  : 320px;
+    height                      : 100%;
+    border                      : 2px solid $palette-grey-lighter;
+  }
+}
+
+
 // Applications Cards
 .applications {
   .card {

@@ -17,6 +17,33 @@ main section[role="region"] {
   padding-right: 20rem;
   background: white url("/Images/Home/CTAs.Background.png") no-repeat 115% -8rem; }
 
+.usage .orbit-container {
+  margin: 2.5rem 6.875rem 0; }
+
+.usage .orbit-controls button {
+  color: #939393;
+  cursor: pointer; }
+  .usage .orbit-controls button:hover, .usage .orbit-controls button:focus, .usage .orbit-controls button:active {
+    background-color: transparent; }
+
+.usage .orbit-controls .orbit-previous {
+  left: 1.75rem; }
+
+.usage .orbit-controls .orbit-next {
+  right: 1.75rem; }
+
+.usage h3 {
+  font-size: 1.5rem;
+  font-weight: 600; }
+
+.usage .text {
+  padding-right: 2.5rem; }
+
+.usage .screenshot {
+  min-height: 320px;
+  height: 100%;
+  border: 2px solid #e3e3e3; }
+
 .applications .card {
   margin-bottom: 0;
   padding: 1px 1px 3rem; }
