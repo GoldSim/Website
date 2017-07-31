@@ -12,6 +12,7 @@
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
   @import "../variables";
+  @import "../foundationSettings";
 
 //----------------------------------------------------------------------------------------------
 // LAYOUT
@@ -32,6 +33,22 @@ main {
   }
 }
 
+// Applications Cards
+.applications {
+  .card {
+    margin-bottom               : 0;
+    padding                     : 1rem 1rem 3rem;               // 16px 16px 48px
+    h3 {
+      font-size                 : 1.5rem;                       // 24px
+      color                     : $body-font-color;
+    }
+    ul {
+      li {
+
+      }
+    }
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 // SKIN
