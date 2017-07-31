@@ -40,6 +40,15 @@
 //----------------------------------------------------------------------------------------------
 main {
 
+  // Links
+  a {
+    font-weight                 : 600;
+    background-image            : linear-gradient(to bottom, rgba($palette-yellow, 1) 0%, $palette-yellow 1px);
+    background-size             : 1px 3px;
+    background-position         : 1px 1.125rem;
+    background-repeat           : repeat-x;
+  }
+
   // Page Header Area
   > section > header {
     background-color            : $palette-grey-dark;
