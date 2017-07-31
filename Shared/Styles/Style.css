@@ -5588,11 +5588,15 @@ body {
 .no-transform {
   text-transform: none; }
 
-.panel {
-  padding: 5rem 6.875rem;
+.panel,
+.callout,
+.card {
   background-color: white;
   -webkit-box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.07);
           box-shadow: 0px 0px 9px 2px rgba(0, 0, 0, 0.07); }
+
+.panel {
+  padding: 5rem 6.875rem; }
 
 main > section > header {
   background-color: #666666; }
@@ -5621,7 +5625,7 @@ article header h1.title.long {
   margin-bottom: 0;
   margin-left: 0; }
   .site.footer .navigation ul li {
-    margin-top: 1rem; }
+    margin-top: 0.75rem; }
     .site.footer .navigation ul li a,
     .site.footer .navigation ul li a:hover,
     .site.footer .navigation ul li a:focus,
