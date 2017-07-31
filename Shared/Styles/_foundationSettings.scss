@@ -158,10 +158,10 @@ $header-styles                  : (
   ),
   medium                        : (
     'h1'        : ('font-size': 48),
-    'h2'        : ('font-size': 40),
-    'h3'        : ('font-size': 31),
-    'h4'        : ('font-size': 25),
-    'h5'        : ('font-size': 20),
+    'h2'        : ('font-size': 32),                            // WAS 40
+    'h3'        : ('font-size': 18),                            // WAS 31
+    'h4'        : ('font-size': 18),                            // WAS 25
+    'h5'        : ('font-size': 18),                            // WAS 20
     'h6'        : ('font-size': 16),
   ),
 );
