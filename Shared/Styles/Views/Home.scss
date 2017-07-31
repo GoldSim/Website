@@ -20,7 +20,7 @@
 main {
   > section > header,
   > article {
-    padding                     : 3rem 0;
+    padding                     : 5rem 0;
   }
   > section > header {
     .video {
@@ -30,12 +30,24 @@ main {
   }
   section[role="region"] {
     margin-bottom               : 5rem;                         // 80px
+    &:last-child {
+      margin-bottom             : 0;
+    }
   }
 }
 
 //----------------------------------------------------------------------------------------------
 // SKIN
 //----------------------------------------------------------------------------------------------
+
+.pane {
+  header {
+    h2 {
+      margin-bottom             : 2.5rem;
+      padding-left              : 6.875rem;
+    }
+  }
+}
 
 .panel {
 

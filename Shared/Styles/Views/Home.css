@@ -1,6 +1,6 @@
 main > section > header,
 main > article {
-  padding: 3rem 0; }
+  padding: 5rem 0; }
 
 main > section > header .video {
   max-width: 33.4375rem;
@@ -8,6 +8,12 @@ main > section > header .video {
 
 main section[role="region"] {
   margin-bottom: 5rem; }
+  main section[role="region"]:last-child {
+    margin-bottom: 0; }
+
+.pane header h2 {
+  margin-bottom: 2.5rem;
+  padding-left: 6.875rem; }
 
 .panel.introduction {
   padding-right: 26.75rem;
