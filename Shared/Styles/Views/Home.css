@@ -11,8 +11,11 @@ main section[role="region"] {
   main section[role="region"]:last-child {
     margin-bottom: 0; }
 
+.pane header h2,
+.panel header h2 {
+  margin-bottom: 2.5rem; }
+
 .pane header h2 {
-  margin-bottom: 2.5rem;
   padding-left: 6.875rem; }
 
 .panel.introduction {

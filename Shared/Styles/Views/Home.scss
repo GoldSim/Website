@@ -40,10 +40,18 @@ main {
 // SKIN
 //----------------------------------------------------------------------------------------------
 
-.pane {
+// Pane Headings
+.pane,
+.panel {
   header {
     h2 {
       margin-bottom             : 2.5rem;
+    }
+  }
+}
+.pane {
+  header {
+    h2 {
       padding-left              : 6.875rem;
     }
   }
