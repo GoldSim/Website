@@ -6,6 +6,9 @@ main > section > header .video {
   max-width: 33.4375rem;
   background-color: white; }
 
+main section[role="region"] {
+  margin-bottom: 5rem; }
+
 .panel.introduction {
   padding-right: 26.75rem;
   background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
