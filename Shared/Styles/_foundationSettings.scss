@@ -76,11 +76,11 @@ $global-font-size               : 100%;
 $global-width                   : rem-calc(960);                // WAS rem-calc(1200)
 $global-lineheight              : 1.5;
 $foundation-palette             : (
-  primary       : #1779ba,
-  secondary     : #767676,
-  success       : #3adb76,
-  warning       : #ffae00,
-  alert         : #cc4b37,
+  primary       : $palette-yellow,                              // WAS #1779ba
+  secondary     : $palette-grey-light,                          // WAS #767676
+  success       : $palette-green,                               // WAS #3adb76
+  warning       : rgb(197, 145, 14),                          // WAS #ffae00
+  alert         : $palette-red,                                 // WAS #cc4b37
 );
 $light-gray                     : $palette-grey-lighter;        // WAS #e6e6e6
 $medium-gray                    : $palette-grey-light;          // WAS #cacaca
