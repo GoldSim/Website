@@ -33,6 +33,26 @@ main {
   }
 }
 
+//----------------------------------------------------------------------------------------------
+// SKIN
+//----------------------------------------------------------------------------------------------
+
+.panel {
+
+  // Introduction
+  &.introduction {
+    padding-right               : 26.75rem;                     // 428px
+    background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
+  }
+
+  // CTAs
+  &.cta-links {
+    padding-right               : 20rem;                        // 320px
+    background                  : $palette-white url('/Images/Home/CTAs.Background.png') no-repeat 115% -8rem;
+  }
+
+}
+
 // Applications Cards
 .applications {
   .card {
@@ -48,19 +68,6 @@ main {
       }
     }
   }
-}
-
-//----------------------------------------------------------------------------------------------
-// SKIN
-//----------------------------------------------------------------------------------------------
-.panel {
-
-  // Introduction
-  &.introduction {
-    padding-right               : 26.75rem;                     // 428px
-    background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
-  }
-
 }
 
 //----------------------------------------------------------------------------------------------
