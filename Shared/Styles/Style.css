@@ -5570,6 +5570,12 @@ a.thumbnail {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse; } }
 
+* {
+  outline-width: 0;
+  outline-color: transparent; }
+  [data-whatinput='mouse'] * {
+    outline: 0; }
+
 body {
   font-size: 1.125rem; }
 

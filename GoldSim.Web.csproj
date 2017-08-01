@@ -373,6 +373,7 @@
     <Content Include="Views\Shared\Sitemap.cshtml" />
     <Content Include="Shared\Styles\Components\SearchBar\_searchBar.scss" />
     <Content Include="Shared\Styles\Views\Home.scss" />
+    <Content Include="Shared\Styles\Overrides\_overrides.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -389,7 +390,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Shared\Styles\Overrides\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
