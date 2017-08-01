@@ -166,6 +166,7 @@
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.woff2" />
     <Content Include="Shared\Fonts\FontAwesome\FontAwesome.otf" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
+    <Content Include="Shared\Scripts\Script.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.js" />
