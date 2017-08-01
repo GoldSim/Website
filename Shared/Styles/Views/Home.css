@@ -27,7 +27,8 @@ main section[role="region"] {
   background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
 
 .panel.customers {
-  background: white url("/Images/Home/Customers.Background.png") no-repeat 125% -8rem; }
+  padding-right: 26.75rem;
+  background: white url("/Images/Home/Customers.Background.png") no-repeat 120% -1rem; }
 
 .panel.cta-links {
   padding-right: 20rem;
