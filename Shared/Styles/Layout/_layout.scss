@@ -58,6 +58,13 @@ body {
   @include breakpoint(large) {
     min-width                   : 31.25rem;                     // 500px;
   }
+
+  // Submenu Toggle
+  .submenu-toggle {
+    top                         : 1.25rem;                      // 20px
+    right                       : 1.5rem;                       // 24px
+  }
+
 }
 
 //----------------------------------------------------------------------------------------------
