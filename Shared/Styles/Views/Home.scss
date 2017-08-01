@@ -66,7 +66,6 @@ main {
   }
 
 }
-
 .panel {
 
   // Introduction
@@ -77,7 +76,8 @@ main {
 
   // Customers
   &.customers {
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 125% -8rem;
+    padding-right               : 26.75rem;                     // 428px
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 120% -1rem;
   }
 
   // CTAs
