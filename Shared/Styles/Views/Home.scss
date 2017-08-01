@@ -40,7 +40,7 @@ main {
 // SKIN
 //----------------------------------------------------------------------------------------------
 
-// Pane Headings
+// Pane/Panel Headings and Text
 .pane,
 .panel {
   header {
@@ -50,11 +50,21 @@ main {
   }
 }
 .pane {
+
   header {
     h2 {
-      padding-left              : 6.875rem;
+      padding                   : 0 6.875rem;
     }
   }
+
+  // Applications text content
+  &.applications {
+    p.text {
+      margin-bottom             : 3rem;
+      padding                   : 0 6.875rem;
+    }
+  }
+
 }
 
 .panel {
@@ -63,6 +73,11 @@ main {
   &.introduction {
     padding-right               : 26.75rem;                     // 428px
     background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
+  }
+
+  // Customers
+  &.customers {
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 125% -8rem;
   }
 
   // CTAs

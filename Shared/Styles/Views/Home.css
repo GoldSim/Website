@@ -16,11 +16,18 @@ main section[role="region"] {
   margin-bottom: 2.5rem; }
 
 .pane header h2 {
-  padding-left: 6.875rem; }
+  padding: 0 6.875rem; }
+
+.pane.applications p.text {
+  margin-bottom: 3rem;
+  padding: 0 6.875rem; }
 
 .panel.introduction {
   padding-right: 26.75rem;
   background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
+
+.panel.customers {
+  background: white url("/Images/Home/Customers.Background.png") no-repeat 125% -8rem; }
 
 .panel.cta-links {
   padding-right: 20rem;
