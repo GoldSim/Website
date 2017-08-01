@@ -3,7 +3,6 @@ main > article {
   padding: 5rem 0; }
 
 main > section > header .video {
-  max-width: 33.4375rem;
   background-color: white; }
 
 main section[role="region"] {
