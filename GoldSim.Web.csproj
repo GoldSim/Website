@@ -1878,10 +1878,10 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Configuration\connectionStrings.Debug.config">
-      <DependentUpon>Configuration\connectionStrings.config</DependentUpon>
+      <DependentUpon>connectionStrings.config</DependentUpon>
     </None>
     <None Include="Configuration\connectionStrings.Release.config">
-      <DependentUpon>Configuration\connectionStrings.config</DependentUpon>
+      <DependentUpon>connectionStrings.config</DependentUpon>
     </None>
     <Content Include="Views\_ViewStart.cshtml" />
   </ItemGroup>
@@ -1938,6 +1938,6 @@
   -->
   <Target Name="AfterBuild">
     <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="$(OutputPath)\$(AssemblyName).config" />
-    <TransformXml Source="Configuration\connectionStrings.config" Transform="Configuration\connectionStrings.$(Configuration).config" Destination="$(OutputPath)\Configuration\connectionStrings.config" />
+    <TransformXml Source="Configuration\connectionStrings.config" Transform="Configuration\connectionStrings.$(Configuration).config" Destination="$(WebProjectOutputDir)\Configuration\connectionStrings.config" />
   </Target>
 </Project>
