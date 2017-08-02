@@ -127,6 +127,8 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\Login.aspx" />
+    <Content Include="Account\Logout.aspx" />
     <Content Include="bin\AntiXssLibrary.dll" />
     <Content Include="bin\HtmlSanitizationLibrary.dll" />
     <Content Include="bin\Ignia.Toolbox.dll" />
@@ -149,12 +151,35 @@
     <Content Include="bin\System.Web.Webpages.Deployment.dll" />
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="Common\Global\Controls\BingSearch.ascx" />
+    <Content Include="Common\Global\Controls\ClientValidation.ascx" />
+    <Content Include="Common\Global\Controls\Debug.ascx" />
+    <Content Include="Common\Global\Controls\Flash.ascx" />
+    <Content Include="Common\Global\Controls\FormField.ascx" />
+    <Content Include="Common\Global\Controls\ImageReplace.ascx" />
+    <Content Include="Common\Global\Controls\LookupBox.ascx" />
+    <Content Include="Common\Global\Controls\Menu.ascx" />
+    <Content Include="Common\Global\Controls\Menu.css" />
+    <Content Include="Common\Global\Controls\MenuItem.ascx" />
+    <Content Include="Common\Global\Controls\Pager.ascx" />
+    <Content Include="Common\Global\Controls\SMS.ascx" />
+    <Content Include="Common\Global\Controls\TextImage.ascx" />
+    <Content Include="Common\Global\Controls\TextTruncation.ascx" />
+    <Content Include="Common\Global\CS.Functions\AddAttributeToFields.aspx" />
+    <Content Include="Common\Global\CS.Functions\AddSQLParameter.aspx" />
+    <Content Include="Common\Global\CS.Functions\BindXmlToControl.aspx" />
+    <Content Include="Common\Global\CS.Functions\GetDataFrom.aspx" />
+    <Content Include="Common\Global\CS.Functions\ImportFromQuerystring.aspx" />
+    <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
+    <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
+    <Content Include="Common\Global\Headers\Form.Headers.inc.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
     <Content Include="Images\Icons\Search.Icon.png" />
     <Content Include="Images\Logo.png" />
+    <Content Include="Account\Web.Config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -189,6 +214,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <None Include="Common\Global\Controls\FormField.ascx.cs">
+      <DependentUpon>FormField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </None>
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
