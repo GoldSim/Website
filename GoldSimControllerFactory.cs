@@ -44,6 +44,10 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
+      if (controllerType == typeof(RedirectController)) {
+        return new RedirectController(topicRepository);
+      }
+
       if (controllerType == typeof(LayoutController)) {
         return new LayoutController(topicRepository, topicRoutingService.Topic);
       }
