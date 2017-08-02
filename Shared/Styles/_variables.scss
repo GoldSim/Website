@@ -26,7 +26,7 @@ $palette-red                    : rgb(235, 93, 98);           // #EB5D62
 $palette-blue                   : rgb(0, 173, 239);           // #00ADEF
 
 // Text
-$text-color                     : $palette-black;
+$text-color                     : lighten($palette-black, 12.5%);       // #202020
 $link-color                     : $palette-black;
 $link-text-decoration           : $palette-yellow;
 

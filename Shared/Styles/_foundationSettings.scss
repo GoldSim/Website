@@ -89,7 +89,7 @@ $black                          : $palette-black;               // WAS #0a0a0a
 $white                          : $palette-white;               // WAS #fefefe
 $yellow                         : $palette-yellow;              // NEW
 $body-background                : $white;
-$body-font-color                : lighten($black, 12.5%);       // WAS $black
+$body-font-color                : $text-color;                  // WAS $black
 $body-font-family               : 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
 $body-antialiased               : true;
 $global-margin                  : 1rem;
@@ -301,7 +301,7 @@ $button-margin                  : 0 0 $global-margin 0;
 $button-fill                    : solid;
 $button-background              : $primary-color;
 $button-background-hover        : scale-color($button-background, $lightness: -15%);
-$button-color                   : $white;
+$button-color                   : $body-font-color;             // WAS $white
 $button-color-alt               : $black;
 $button-radius                  : $global-radius;
 $button-hollow-border-width     : 1px;

@@ -2580,12 +2580,12 @@ select {
   text-align: center;
   cursor: pointer;
   background-color: #fec10d;
-  color: white; }
+  color: #202020; }
   [data-whatinput='mouse'] .button {
     outline: 0; }
   .button:hover, .button:focus {
     background-color: #e2a901;
-    color: white; }
+    color: #202020; }
   .button.tiny {
     font-size: 0.6rem; }
   .button.small {
@@ -2632,7 +2632,7 @@ select {
     cursor: not-allowed; }
     .button.disabled, .button.disabled:hover, .button.disabled:focus, .button[disabled], .button[disabled]:hover, .button[disabled]:focus {
       background-color: #fec10d;
-      color: white; }
+      color: #202020; }
     .button.disabled.primary, .button[disabled].primary {
       opacity: 0.25;
       cursor: not-allowed; }
