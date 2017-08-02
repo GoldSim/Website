@@ -157,7 +157,45 @@
     <Content Include="!Admin\Topics\Common\Fonts\lato-regular-webfont.svg" />
     <Content Include="!Admin\Topics\Common\Fonts\lato-regular-webfont.ttf" />
     <Content Include="!Admin\Topics\Common\Fonts\lato-regular-webfont.woff" />
-    <Content Include="!Admin\Topics\Common\Layout.css" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\Activate.MSIE.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\ClientValidation.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\dhtmlHistory.FlashInit.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\dhtmlHistory.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\dotIR.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\Flash.Sniffer.inc" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\FormatPhone.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\GetFlash.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\HighlightForm.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\HighlightTable.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\jQuery.MaskedInput.Pack.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\jQuery.Pack.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\Main.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\Menu.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\MSIE.Png.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\swfObject.js" />
+    <Content Include="!Admin\Topics\Common\Global\Client.Scripts\Tooltip.js" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\BingSearch.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\ClientValidation.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\Debug.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\Flash.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\FormField.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\ImageReplace.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\LookupBox.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\Menu.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\Menu.css" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\MenuItem.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\Pager.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\SMS.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\TextImage.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\Controls\TextTruncation.ascx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\AddAttributeToFields.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\AddSQLParameter.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\BindXmlToControl.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\GetDataFrom.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\ImportFromQuerystring.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\TreeView.Functions.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
+    <Content Include="!Admin\Topics\Common\Global\Headers\Form.Headers.inc.aspx" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\adapters\jquery.js" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\build-config.js" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\CHANGES.md" />
@@ -1636,6 +1674,7 @@
     <Content Include="!Admin\Topics\Common\Styles\Vendor\Bootstrap\less\variables.less" />
     <Content Include="!Admin\Topics\Common\Styles\Vendor\Bootstrap\less\wells.less" />
     <Content Include="!Admin\Topics\Common\Templates\Page.Layout.master" />
+    <Content Include="bin\Configuration\connectionStrings.config" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
@@ -1669,18 +1708,22 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="!Admin\Topics\Common\Controls\FormField.ascx.cs">
+    <Content Include="!Admin\Topics\Common\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </None>
-    <None Include="!Admin\Topics\Default.aspx.cs">
+    </Content>
+    <Content Include="!Admin\Topics\Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
-    </None>
+    </Content>
     <None Include="!Admin\Topics\Migration\ContentCleanup.aspx.cs">
       <DependentUpon>ContentCleanup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
+    <Compile Include="!Admin\Topics\Common\Global\Controls\FormField.ascx.cs">
+      <DependentUpon>FormField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
