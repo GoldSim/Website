@@ -369,6 +369,6 @@ config.yml
 assets/logo.png
 compilerconfig.json
 compilerconfig.json.defaults
-Common/
+Common/Global/
 \!Admin/
 Images/Content/

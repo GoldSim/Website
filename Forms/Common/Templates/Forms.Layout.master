@@ -1,0 +1,35 @@
+<%@ Master ClassName="FormsLayout" MasterPageFile="/Common/Templates/Page.Layout.Master" Inherits="GoldSim.Forms.Common.Templates.FormsLayoutMaster" CodeFile="Forms.Layout.Master.cs" %>
+
+<%@ MasterType VirtualPath="/Common/Templates/Page.Layout.Master" %>
+
+<asp:Content ContentPlaceHolderID="PageHead" RunAt="Server">
+  <asp:ContentPlaceHolder ID="PageHead" RunAt="Server" />
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="Content" RunAt="Server">
+
+  <asp:Label ID="Notification" CssClass="Notification" Visible="False" RunAt="Server">
+    <p>Your request has been submitted to GoldSim. We process requests within five business days.</p>
+  </asp:Label>
+
+  <div class="Validation Instructions">
+    <Ignia:ClientValidation ID="ClientValidation" RunAt="Server" />
+  </div>
+
+  <asp:ContentPlaceHolder ID="Content" RunAt="Server"/>
+
+  <asp:ContentPlaceHolder ID="ButtonArea" RunAt="Server">
+    <asp:Button
+      ID                        = "Submit"
+      OnCommand                 = "OnProcessForm"
+      Text                      = "Submit"
+      CssClass                  = "Submit Button"
+      RunAt                     = "Server"
+    />
+  </asp:ContentPlaceHolder>
+
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="AddThisContainer" RunAt="Server">
+  <asp:ContentPlaceHolder ID="AddThisContainer" RunAt="Server" />
+</asp:Content>
