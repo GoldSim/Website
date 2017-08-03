@@ -1533,6 +1533,34 @@
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
     <Content Include="Common\Global\Headers\Form.Headers.inc.aspx" />
+    <Content Include="Forms\Academic.aspx" />
+    <Content Include="Forms\BuyGoldSim.aspx" />
+    <Content Include="Forms\Common\FormFields\AddressBlock.ascx" />
+    <Content Include="Forms\Common\FormFields\AreaOfFocusSelection.ascx" />
+    <Content Include="Forms\Common\FormFields\CountrySelection.ascx" />
+    <Content Include="Forms\Common\FormFields\Email.ascx" />
+    <Content Include="Forms\Common\FormFields\Fax.ascx" />
+    <Content Include="Forms\Common\FormFields\LicenseQuantitySelection.ascx" />
+    <Content Include="Forms\Common\FormFields\ModuleInterestSelection.ascx" />
+    <Content Include="Forms\Common\FormFields\NameBlock.ascx" />
+    <Content Include="Forms\Common\FormFields\Organization.ascx" />
+    <Content Include="Forms\Common\FormFields\Phone.ascx" />
+    <Content Include="Forms\Common\FormFields\ProductConfiguration.ascx" />
+    <Content Include="Forms\DenverTraining.aspx" />
+    <Content Include="Forms\Evaluation.aspx" />
+    <Content Include="Forms\Evaluation.Receipt.html" />
+    <Content Include="Forms\Newsletter.aspx" />
+    <Content Include="Forms\PlayerDownload.aspx" />
+    <Content Include="Forms\Quote.aspx" />
+    <Content Include="Forms\Support.aspx" />
+    <Content Include="Forms\Support_original.aspx" />
+    <Content Include="Forms\Training.aspx" />
+    <Content Include="Forms\Training1.aspx" />
+    <Content Include="Forms\Training2.aspx" />
+    <Content Include="Forms\Training_Australia.aspx" />
+    <Content Include="Forms\User_Conference.aspx" />
+    <Content Include="Forms\Webinars.aspx" />
+    <Content Include="Forms\Webinars1.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
@@ -1657,12 +1685,15 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Search\Default.aspx" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.eot" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.ttf" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.woff" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.woff2" />
     <Content Include="Shared\Fonts\FontAwesome\FontAwesome.otf" />
+    <Content Include="Forms\Common\Templates\Forms.Layout.master" />
+    <Content Include="Forms\Web.Config" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\Script.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
@@ -1707,6 +1738,10 @@
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
+    <Compile Include="Forms\Common\Templates\Forms.Layout.master.cs">
+      <DependentUpon>Forms.Layout.master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
