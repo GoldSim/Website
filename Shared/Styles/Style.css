@@ -5641,6 +5641,49 @@ h6 a {
     border-color: #fec10d;
     color: #fec10d; }
 
+a[href$=".pdf"]:after,
+a[href$=".exe"]:after,
+a[href$=".zip"]:after,
+a[href$=".doc"]:after,
+a[href$=".docx"]:after,
+a[href$=".ppt"]:after,
+a[href$=".pptx"]:after,
+a[href$=".xls"]:after,
+a[href$=".xlsx"]:after {
+  display: inline-block;
+  padding-left: 0.3125rem; }
+
+a[href$=".pdf"]:after {
+  content: "\f1c1";
+  color: #e51f00; }
+
+a[href$=".exe"]:after {
+  content: "\f019";
+  color: #fec10d; }
+
+a[href$=".zip"]:after {
+  content: "\f1c6";
+  color: #fec10d; }
+
+a[href$=".doc"]:after,
+a[href$=".docx"]:after {
+  content: "\f1c2";
+  color: #2a5699; }
+
+a[href$=".ppt"]:after,
+a[href$=".pptx"]:after {
+  content: "\f1c4";
+  color: #d14424; }
+
+a[href$=".xls"]:after,
+a[href$=".xlsx"]:after {
+  content: "\f1c3";
+  color: #207144; }
+
+a[href$=".gsm"] {
+  padding: 0.125rem 1.5625rem 0.125rem 0;
+  background: transparent url("/Images/Icons/Small/GSM.gif") no-repeat right center; }
+
 ul,
 ol {
   margin: 2.25rem 0 2.25rem 4rem; }
@@ -5713,7 +5756,11 @@ table {
   table th,
   table td {
     border: 4px solid white;
-    border-collapse: separate; }
+    border-collapse: separate;
+    padding: 1rem 1.125rem; }
+    table th.right,
+    table td.right {
+      text-align: right; }
   table td {
     vertical-align: top;
     background-color: #efefef; }
@@ -5739,6 +5786,11 @@ table {
   table tr td:last-child,
   table tr th:last-child {
     border-right-width: 0; }
+  table.download th,
+  table.download td {
+    border: 4px solid white;
+    border-collapse: separate;
+    padding: 1.75rem 1.75rem; }
 
 main > section > header {
   background-color: #666666; }
