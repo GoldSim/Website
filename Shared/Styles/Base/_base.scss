@@ -147,6 +147,7 @@ ol {
 //----------------------------------------------------------------------------------------------
 figure {
   margin                        : rem-calc(40) auto;
+  @extend .centered;
   img {
     border                      : 2px solid $palette-grey-light;
     padding                     : rem-calc(28 32);
