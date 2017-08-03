@@ -5712,7 +5712,7 @@ table {
   border: 0 none transparent; }
   table th,
   table td {
-    border: 2px solid white;
+    border: 4px solid white;
     border-collapse: separate; }
   table td {
     vertical-align: top;
