@@ -1,3 +1,18 @@
+.hidden {
+  display: none; }
+
+.centered, .pane.applications h2 {
+  text-align: center; }
+
+.no-list-style {
+  list-style: none; }
+
+.uppercase {
+  text-transform: uppercase; }
+
+.no-transform {
+  text-transform: none; }
+
 main > section > header,
 main > article {
   padding: 5rem 0; }
@@ -17,6 +32,11 @@ main section[role="region"] {
 .pane header h1 {
   padding: 0 6.875rem; }
 
+.pane.applications h2 {
+  margin: 1.75rem auto;
+  font-size: 1.5rem;
+  font-weight: normal; }
+
 .pane.applications p.text {
   margin-bottom: 3rem;
   padding: 0 6.875rem; }
@@ -34,10 +54,10 @@ main section[role="region"] {
   background: white url("/Images/Home/CTAs.Background.png") no-repeat 115% -8rem; }
 
 .usage .orbit-container {
-  margin: 2.5rem 6.875rem 0; }
+  margin: 0 6.875rem; }
 
 .usage .orbit-controls button {
-  color: #b3b3b3;
+  color: #919191;
   cursor: pointer; }
   .usage .orbit-controls button:hover, .usage .orbit-controls button:focus, .usage .orbit-controls button:active {
     background-color: transparent; }
@@ -48,8 +68,9 @@ main section[role="region"] {
 .usage .orbit-controls .orbit-next {
   right: 1.75rem; }
 
-.usage h3 {
-  font-size: 1.5rem;
+.usage h2 {
+  font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1.125rem;
   font-weight: 600; }
 
 .usage .text {
@@ -62,25 +83,26 @@ main section[role="region"] {
 
 .applications .card {
   margin-bottom: 0;
-  padding: 1px 1px 3rem; }
+  padding: 0.0625rem 0.0625rem 3rem 0.0625rem; }
   .applications .card picture {
     overflow: hidden;
     width: 100%;
     height: 100%;
-    max-height: 225px; }
+    max-height: 14.0625rem; }
     .applications .card picture img {
       width: 100%; }
-  .applications .card h3 {
-    margin: 2rem auto;
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #202020;
-    text-align: center; }
   .applications .card ul {
-    margin: 0 2.5rem; }
+    margin: 0 3rem; }
     .applications .card ul li {
-      padding-bottom: 0.5rem;
-      line-height: 1.4; }
+      margin-bottom: 0.75rem;
+      line-height: 1.11;
+      font-style: italic; }
+      .applications .card ul li a {
+        font-weight: normal;
+        border: 0 none transparent;
+        padding-bottom: 0; }
+        .applications .card ul li a:visited {
+          color: #202020; }
 
 h1.title.short {
   position: static;
