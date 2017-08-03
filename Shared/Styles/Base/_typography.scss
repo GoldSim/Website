@@ -24,22 +24,6 @@ body {
 //----------------------------------------------------------------------------------------------
 // HEADINGS
 //----------------------------------------------------------------------------------------------
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  a {
-    border-bottom               : 2px solid $palette-grey-light;
-    &:hover,
-    &:focus,
-    &:active {
-      border-color              : $palette-yellow;
-      color                     : $palette-yellow;
-    }
-  }
-}
 h1 {
   &.title {
     font-size                   : rem-calc(48);
