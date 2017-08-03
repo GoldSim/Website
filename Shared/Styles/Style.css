@@ -5612,6 +5612,8 @@ main a {
     color: #fec10d; }
   main a:visited {
     color: #999999; }
+    main a:visited:hover, main a:visited:focus, main a:visited:active {
+      color: #fec10d; }
   main a ~ img {
     border: 0 none transparent; }
 

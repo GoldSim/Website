@@ -27,6 +27,11 @@ main {
     }
     &:visited {
       color                     : $palette-grey-medium;
+      &:hover,
+      &:focus,
+      &:active {
+        color                   : $palette-yellow;
+      }
     }
     ~ img {
       border                    : 0 none transparent;
