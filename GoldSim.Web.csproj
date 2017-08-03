@@ -47,6 +47,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AntiXssLibrary">
@@ -1906,6 +1907,7 @@
     <Folder Include="!Admin\Topics\Common\Scripts\Vendor\ExtJS\resources\images\vista\dd\" />
     <Folder Include="!Admin\Topics\Common\Scripts\Vendor\ExtJS\resources\images\vista\tree\" />
     <Folder Include="App_Data\" />
+    <Folder Include="Images\Content\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
