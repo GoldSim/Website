@@ -13,40 +13,132 @@
 @import "utilities";
 
 //----------------------------------------------------------------------------------------------
-// DOCUMENT
+// LISTS
 //----------------------------------------------------------------------------------------------
+ul,
+ol {
+  margin                        : rem-calc(36 0 36 64);
+  li {
+    margin-bottom               : rem-calc(16);
+    &:last-child {
+      margin-bottom             : 0;
+    }
+  }
+}
 
 //----------------------------------------------------------------------------------------------
-// COMMON ELEMENTS
+// BUTTONS
 //----------------------------------------------------------------------------------------------
+.button {
+  min-width                     : rem-calc(208);
+  font-size                     : 1rem;
+  font-weight                   : 600;
+  &.primary {
+    &:hover {
+      color                     : $palette-yellow;
+      background-color          : $palette-black;
+    }
+    &:focus,
+    &:active {
+      border-color              : $palette-yellow;
+      color                     : $palette-yellow;
+      background-color          : $palette-white;
+    }
+  }
+}
 
 //----------------------------------------------------------------------------------------------
-// UI ELEMENTS
+// CONTENT BLOCKS (e.g., panels, callouts, cards)
 //----------------------------------------------------------------------------------------------
 
-// Content Blocks (e.g., panels, callouts, cards )
 .panel,
 .callout,
 .card {
   background-color              : $palette-white;
-  box-shadow                    : 0px 0px 9px 2px rgba(0, 0, 0, 0.07);
+  box-shadow                    : 0 0 9px 2px rgba(0, 0, 0, 0.07);
 }
+
 .panel {
-  padding                       : 5rem 6.875rem;                // 80px 110px
+  padding                       : rem-calc(80 110);
 }
 
 //----------------------------------------------------------------------------------------------
-// MAIN CONTENT
+// QUOTES
 //----------------------------------------------------------------------------------------------
+
+.quote {
+  font-size                     : rem-calc(30);
+  line-height                   : 1.333;
+  &.right,
+  &.left {
+    max-width                   : 45%;
+  }
+  &.right {
+    float                       : right;
+    margin-left                 : rem-calc(56);
+  }
+  &.left {
+    float                       : left;
+    margin-right                : rem-calc(56);
+    border-left-width           : 0;
+    border-right                : 2px solid $palette-grey-medium;
+  }
+  &.full {
+    margin                      : rem-calc(48) 0;
+    padding                     : rem-calc(44) 0;
+    font-family                 : $header-font-family;
+    font-size                   : rem-calc(48);
+    line-height                 : 1.25;
+    color                       : $palette-yellow;
+  }
+  cite {
+    padding-top                 : rem-calc(24);
+    text-align                  : right;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// FIGURES
+//----------------------------------------------------------------------------------------------
+figure {
+  margin                        : rem-calc(40) auto;
+  img {
+    border                      : 2px solid $palette-grey-light;
+    padding                     : rem-calc(28 32);
+    text-align                  : center;
+  }
+  figcaption {
+    margin-top                  : rem-calc(16);
+    font-style                  : italic;
+    color                       : $palette-grey-medium;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// MAIN CONTENT AREA ELEMENTS
+//----------------------------------------------------------------------------------------------
+
 main {
 
   // Links
   a {
+    border-bottom               : 2px solid $palette-yellow;
     font-weight                 : 600;
-    background-image            : linear-gradient(to bottom, rgba($palette-yellow, 1) 0%, $palette-yellow 1px);
-    background-size             : 1px 3px;
-    background-position         : 1px 1.125rem;
-    background-repeat           : repeat-x;
+  //background-image            : linear-gradient(to bottom, rgba($palette-yellow, 1) 0%, $palette-yellow 1px);
+  //background-size             : 1px 3px;
+  //background-position         : 1px 1.125rem;
+  //background-repeat           : repeat-x;
+    &:hover,
+    &:focus,
+    &:active {
+      color                     : $palette-yellow;
+    }
+    &:visited {
+      color                     : $palette-grey-medium;
+    }
+    ~ img {
+      border                    : 0 none transparent;
+    }
   }
 
   // Page Header Area
@@ -55,7 +147,7 @@ main {
 
     .grid-container {
       position                  : relative;
-      min-height                : 12.5rem;                      // 200px
+      min-height                : rem-calc(200)
     }
 
   }
@@ -67,7 +159,7 @@ h1.title.short {
   position                      : absolute;
   bottom                        : 0;
   margin                        : 0;
-  padding-bottom                : 2rem;                         // 32px
+  padding-bottom                : rem-calc(32);
   color                         : $palette-white;
 }
 
@@ -77,20 +169,21 @@ article {
   // Long Title (Subtitle) Area
   header h1.title.long {
     margin                      : 0;
-    padding                     : 4rem 6.875rem;                // 64px 110px
+    padding                     : rem-calc(64 110);
     color                       : $palette-grey-dark;
   }
 
 }
 
 //----------------------------------------------------------------------------------------------
-// FOOTER
+// FOOTER ELEMENTS
 //----------------------------------------------------------------------------------------------
+
 .site.footer {
   .navigation {
     p.list.heading {
       margin-bottom             : 0;
-      font-size                 : 1.25rem;
+      font-size                 : rem-calc(20);
       color                     : $palette-grey-light;
     }
     ul {
@@ -98,7 +191,8 @@ article {
       margin-bottom             : 0;
       margin-left               : 0;
       li {
-        margin-top              : 0.75rem;
+        margin-top              : rem-calc(12);
+        margin-bottom           : 0;
         a,
         a:hover,
         a:focus,

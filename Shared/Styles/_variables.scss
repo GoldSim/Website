@@ -13,8 +13,8 @@
 //----------------------------------------------------------------------------------------------
 
 // Base / palette colors
-$palette-black                  : rgb(0, 0, 0);
-$palette-white                  : rgb(255, 255, 255);
+$palette-black                  : rgb(32, 32, 32);            // #202020
+$palette-white                  : rgb(255, 255, 255);         // #FFFFFF
 $palette-grey-dark              : rgb(102, 102, 102);         // #666666
 $palette-grey-medium            : rgb(153, 153, 153);         // #999999
 $palette-grey-light             : rgb(204, 204, 204);         // #CCCCCC
@@ -26,7 +26,8 @@ $palette-red                    : rgb(235, 93, 98);           // #EB5D62
 $palette-blue                   : rgb(0, 173, 239);           // #00ADEF
 
 // Text
-$text-color                     : lighten($palette-black, 12.5%);       // #202020
+$text-color                     : $palette-black;
+$body-text-size                 : rem-calc(18);
 $link-color                     : $palette-black;
 $link-text-decoration           : $palette-yellow;
 

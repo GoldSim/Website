@@ -157,8 +157,8 @@ $header-styles                  : (
     'h6'        : ('font-size': 16),
   ),
   medium                        : (
-    'h1'        : ('font-size': 48),
-    'h2'        : ('font-size': 32),                            // WAS 40
+    'h1'        : ('font-size': 32),                            // WAS 48
+    'h2'        : ('font-size': 20),                            // WAS 40
     'h3'        : ('font-size': 18),                            // WAS 31
     'h4'        : ('font-size': 18),                            // WAS 25
     'h5'        : ('font-size': 18),                            // WAS 20
@@ -193,11 +193,11 @@ $list-nested-side-margin        : 1.25rem;
 $defnlist-margin-bottom         : 1rem;
 $defnlist-term-weight           : $global-weight-bold;
 $defnlist-term-margin-bottom    : 0.3rem;
-$blockquote-color               : $dark-gray;
-$blockquote-padding             : rem-calc(9 20 0 19);
-$blockquote-border              : 1px solid $medium-gray;
-$cite-font-size                 : rem-calc(13);
-$cite-color                     : $dark-gray;
+$blockquote-color               : $palette-grey-medium;         // WAS $dark-gray
+$blockquote-padding             : rem-calc(0 0 16 30);          // WAS rem-calc(9 20 0 19)
+$blockquote-border              : 2px solid $palette-grey-medium;       // WAS 1px solid $medium-gray
+$cite-font-size                 : rem-calc(18);                 // WAS rem-calc(13)
+$cite-color                     : $palette-grey-medium;         // WAS $dark-gray
 $cite-pseudo-content            : '\2014 \0020';
 $keystroke-font                 : $font-family-monospace;
 $keystroke-color                : $black;
@@ -296,15 +296,15 @@ $breadcrumbs-item-separator-color       : $medium-gray;
 //----------------------------------------------------------------------------------------------
 
 $button-font-family             : inherit;
-$button-padding                 : 0.85em 1em;
+$button-padding                 : 0.75rem;                      // WAS 0.85em 1em
 $button-margin                  : 0 0 $global-margin 0;
 $button-fill                    : solid;
 $button-background              : $primary-color;
 $button-background-hover        : scale-color($button-background, $lightness: -15%);
 $button-color                   : $body-font-color;             // WAS $white
 $button-color-alt               : $black;
-$button-radius                  : $global-radius;
-$button-hollow-border-width     : 1px;
+$button-radius                  : 2px;                          // WAS $global-radius
+$button-hollow-border-width     : 2px;
 $button-sizes                   : (
   tiny          : 0.6rem,
   small         : 0.75rem,

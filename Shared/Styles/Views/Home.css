@@ -10,11 +10,11 @@ main section[role="region"] {
   main section[role="region"]:last-child {
     margin-bottom: 0; }
 
-.pane header h2,
-.panel header h2 {
-  margin-bottom: 2.5rem; }
+.pane header h1,
+.panel header h1 {
+  margin-bottom: 2rem; }
 
-.pane header h2 {
+.pane header h1 {
   padding: 0 6.875rem; }
 
 .pane.applications p.text {
@@ -37,7 +37,7 @@ main section[role="region"] {
   margin: 2.5rem 6.875rem 0; }
 
 .usage .orbit-controls button {
-  color: #939393;
+  color: #b3b3b3;
   cursor: pointer; }
   .usage .orbit-controls button:hover, .usage .orbit-controls button:focus, .usage .orbit-controls button:active {
     background-color: transparent; }
