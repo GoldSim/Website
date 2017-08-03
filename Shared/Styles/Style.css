@@ -5641,43 +5641,22 @@ h6 a {
     border-color: #fec10d;
     color: #fec10d; }
 
-a[href$=".pdf"]:after,
-a[href$=".exe"]:after,
-a[href$=".zip"]:after,
-a[href$=".doc"]:after,
-a[href$=".docx"]:after,
-a[href$=".ppt"]:after,
-a[href$=".pptx"]:after,
-a[href$=".xls"]:after,
-a[href$=".xlsx"]:after {
-  display: inline-block;
+a ~ i {
   padding-left: 0.3125rem; }
 
-a[href$=".pdf"]:after {
-  content: "\f1c1";
+i.fa-file-pdf-o {
   color: #e51f00; }
 
-a[href$=".exe"]:after {
-  content: "\f019";
+i.fa-download, i.fa-file-archive-o {
   color: #fec10d; }
 
-a[href$=".zip"]:after {
-  content: "\f1c6";
-  color: #fec10d; }
-
-a[href$=".doc"]:after,
-a[href$=".docx"]:after {
-  content: "\f1c2";
+i.fa-file-word-o {
   color: #2a5699; }
 
-a[href$=".ppt"]:after,
-a[href$=".pptx"]:after {
-  content: "\f1c4";
+i.fa-file-powerpoint-o {
   color: #d14424; }
 
-a[href$=".xls"]:after,
-a[href$=".xlsx"]:after {
-  content: "\f1c3";
+i.fa-file-excel-o {
   color: #207144; }
 
 a[href$=".gsm"] {
@@ -5788,8 +5767,6 @@ table {
     border-right-width: 0; }
   table.download th,
   table.download td {
-    border: 4px solid white;
-    border-collapse: separate;
     padding: 1.75rem 1.75rem; }
 
 main > section > header {

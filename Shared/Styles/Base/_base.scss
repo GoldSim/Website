@@ -61,59 +61,28 @@ h6 {
 // ICONS
 //----------------------------------------------------------------------------------------------
 
-a[href $=".pdf"],
-a[href $=".exe"],
-a[href $=".zip"],
-a[href $=".doc"],
-a[href $=".docx"],
-a[href $=".ppt"],
-a[href $=".pptx"],
-a[href $=".xls"],
-a[href $=".xlsx"] {
-  &:after {
-    display                     : inline-block;
-    padding-left                : rem-calc(5);
-  }
+a ~ i {
+  padding-left                  : rem-calc(5);
 }
-a[href $=".pdf"] {
-  &:after {
-    content                     : "\f1c1";
+i {
+  &.fa-file-pdf-o {
     color                       : rgb(229, 31, 0);
   }
-}
-a[href $=".exe"] {
-  &:after {
-    content                     : "\f019";
+  &.fa-download,
+  &.fa-file-archive-o {
     color                       : $palette-yellow;
   }
-}
-a[href $=".zip"] {
-  &:after {
-    content                     : "\f1c6";
-    color                       : $palette-yellow;
-  }
-}
-a[href $=".doc"],
-a[href $=".docx"] {
-  &:after {
-    content                     : "\f1c2";
+  &.fa-file-word-o {
     color                       : rgb(42, 86, 153);
   }
-}
-a[href $=".ppt"],
-a[href $=".pptx"] {
-  &:after {
-    content                     : "\f1c4";
+  &.fa-file-powerpoint-o {
     color                       : rgb(209, 68, 36);
   }
-}
-a[href $=".xls"],
-a[href $=".xlsx"] {
-  &:after {
-    content                     : "\f1c3";
+  &.fa-file-excel-o {
     color                       : rgb(32, 113, 68);
   }
 }
+
 a[href $=".gsm"] {
   padding                       : rem-calc(2 25 2 0);
   background                    : transparent url('/Images/Icons/Small/GSM.gif') no-repeat right center;
@@ -277,8 +246,6 @@ table {
   &.download {
     th,
     td {
-      border                      : 4px solid $palette-white;
-      border-collapse             : separate;
       padding                     : rem-calc(28 28);
     }
   }

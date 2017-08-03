@@ -18,7 +18,8 @@
     var
       $window                   = $(window),
       $siteHeader               = $('header.site.header'),
-      $paneFullHeight           = ($window.height() - $siteHeader.height());
+      $paneFullHeight           = ($window.height() - $siteHeader.height()),
+      $fileTypes                = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
     /**
      * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
@@ -26,6 +27,48 @@
     $('.js-full-height').each(function() {
       var $this                 = $(this);
       $this.innerHeight($paneFullHeight);
+    });
+
+    /**
+     * Appends icon font elements to links
+     */
+    $($fileTypes).each(function (index, value) {
+      var
+        fileType                = value,
+        $iconClass              = "file-pdf-o";
+
+      switch (fileType) {
+        case    'pdf'           :
+          break;
+        case    'exe'           :
+          $iconClass            = 'download';
+          break;
+        case    'zip'           :
+          $iconClass            = 'file-archive-o';
+          break;
+        case    'doc'           :
+          $iconClass            = 'file-word-o';
+          break;
+        case    'docx'          :
+          $iconClass            = 'file-word-o';
+          break;
+        case 'ppt'              :
+          $iconClass            = 'file-powerpoint-o';
+          break;
+        case 'pptx'             :
+          $iconClass            = 'file-powerpoint-o';
+          break;
+        case 'xls'              :
+          $iconClass            = 'file-excel-o';
+          break;
+        case 'xlsx'             :
+          $iconClass            = 'file-excel-o';
+          break;
+        default:
+          break;
+      }
+
+      $('a[href $=".' + fileType + '"]').not('[class*="button"]').after('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
     });
 
   });
