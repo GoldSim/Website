@@ -5,21 +5,63 @@
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-    <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true">
+    <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true" data-multi-open="false">
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.OrderBy(t => t.SortOrder)) {
-        if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
-          <li>
-            <a href="@topic.WebPath" class="@((Model.Topic == topic || Model.Topic?.Parent == topic || Model.Topic?.Parent.Parent == topic)? "selected" : "")">@topic.Title</a>
-            <ul class="menu vertical nested">
-              @foreach (Ignia.Topics.Topic childTopic in topic.OrderBy(t => t.SortOrder)) {
-              if (childTopic.Attributes.Get("IsHidden", "0").Equals("0")) {
-                  <li><a href="@childTopic.WebPath" class="@((Model.Topic == childTopic || Model.Topic?.Parent == childTopic)? "selected" : "")">@childTopic.Title</a></li>
-                }
-              }
-            </ul>
-          </li>
-        }
+        @WriteMenu(topic, 1);
       }
     </ul>
   </nav>
 }
+
+@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel) {
+
+  @*=========================================================================================================================
+  | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
+  \------------------------------------------------------------------------------------------------------------------------*@
+  if (!IsValid(topic)) { return; }
+
+  @*=========================================================================================================================
+  | WRITE NODE
+  \------------------------------------------------------------------------------------------------------------------------*@
+  <li>
+    <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">@topic.Title</a>
+
+    @*=======================================================================================================================
+    | OPEN NODE
+    \----------------------------------------------------------------------------------------------------------------------*@
+    @if (!topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2) {
+      <ul class="menu vertical nested">
+        @foreach (Ignia.Topics.Topic childTopic in topic.OrderBy(t => t.SortOrder)) {
+          @WriteMenu(childTopic, indentLevel + 1);
+        }
+      </ul>
+    }
+  </li>
+
+}
+
+@functions{
+
+  /*=========================================================================================================================
+  | DETERMINE VALID
+  \------------------------------------------------------------------------------------------------------------------------*/
+  public bool IsValid(Ignia.Topics.Topic topic) {
+    return
+    topic.Attributes.Get("IsInactive") != "1" &&
+    topic.Attributes.Get("IsDisabled") != "1" &&
+    topic.Attributes.Get("IsHidden") != "1";
+  }
+
+  /*=========================================================================================================================
+  | DETERMINE SELECTED
+  \------------------------------------------------------------------------------------------------------------------------*/
+  public bool IsSelected(Ignia.Topics.Topic topic, Ignia.Topics.Topic currentTopic) {
+    while (currentTopic != null) {
+      if (currentTopic == topic) return true;
+      currentTopic = currentTopic.Parent;
+    }
+    return false;
+  }
+
+}
+

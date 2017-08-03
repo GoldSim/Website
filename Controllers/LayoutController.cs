@@ -58,13 +58,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify current topic
       >-------------------------------------------------------------------------------------------------------------------------
-      | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root. Because
-      | there are potentially three tiers of navigation, however, the currentTopic will be the upwards of four levels from the
-      | root.
+      | Since the current topic logic for the main menu is complicated by the fact that a) it is a hierarchical menu, and b)
+      | not all menu items are displayed according to their depth (e.g., due to PageGroup and hidden topics), this will simply
+      | return the current topic, and allow the view to determine if it is a decendent of the navigation item.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      while (currentTopic?.Parent?.Parent?.Parent?.Parent != null) {
-        currentTopic            = currentTopic.Parent;
-        }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
