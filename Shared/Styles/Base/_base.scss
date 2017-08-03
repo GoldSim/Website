@@ -145,6 +145,7 @@ ol {
 //----------------------------------------------------------------------------------------------
 // FIGURES
 //----------------------------------------------------------------------------------------------
+
 figure {
   margin                        : rem-calc(40) auto;
   @extend .centered;
@@ -157,6 +158,52 @@ figure {
     margin-top                  : rem-calc(16);
     font-style                  : italic;
     color                       : $palette-grey-medium;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// TABLES
+//----------------------------------------------------------------------------------------------
+table {
+  border                        : 0 none transparent;
+  th,
+  td {
+    border                      : 2px solid $palette-white;
+    border-collapse             : separate;
+  }
+  td {
+    vertical-align              : top;
+    background-color            : rgb(239, 239, 239);         // #EFEFEF
+    &.highlight {
+      background-color          : $palette-grey-light;
+    }
+    p {
+      margin                    : rem-calc(8 0 0);
+    }
+    ul {
+      margin                    : rem-calc(0 0 20 36);
+    }
+  }
+  th,
+  thead td {
+    border-color                : $palette-black;
+    vertical-align              : middle;
+    color                       : $palette-white;
+    background-color            : $palette-black;
+    &.highlight {
+      color                     : $palette-grey-light;
+      background-color          : $palette-black;
+    }
+  }
+  tr {
+    td:first-child,
+    th:first-child {
+      border-left-width         : 0;
+    }
+    td:last-child,
+    th:last-child {
+      border-right-width        : 0;
+    }
   }
 }
 

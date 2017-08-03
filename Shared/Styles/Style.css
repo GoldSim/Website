@@ -4819,16 +4819,16 @@ table {
   margin-bottom: 1rem;
   border-radius: 0; }
   thead, tbody, tfoot {
-    border: 1px solid #f2f2f2;
-    background-color: white; }
+    border: 5px solid white;
+    background-color: #efefef; }
   caption {
     padding: 0.5rem 0.625rem 0.625rem;
     font-weight: bold; }
   thead {
-    background: #f9f9f9;
+    background: #e9e9e9;
     color: #202020; }
   tfoot {
-    background: #f2f2f2;
+    background: #e3e3e3;
     color: #202020; }
   thead tr, tfoot tr {
     background: transparent; }
@@ -4838,15 +4838,13 @@ table {
     text-align: left; }
   tbody th, tbody td {
     padding: 0.5rem 0.625rem 0.625rem; }
-  tbody tr:nth-child(even) {
+  tbody tr {
     border-bottom: 0;
-    background-color: #f2f2f2; }
-  table.unstriped tbody {
-    background-color: white; }
-    table.unstriped tbody tr {
-      border-bottom: 0;
-      border-bottom: 1px solid #f2f2f2;
-      background-color: white; }
+    border-bottom: 5px solid white;
+    background-color: #efefef; }
+  table.striped tbody tr:nth-child(even) {
+    border-bottom: 0;
+    background-color: #e3e3e3; }
 
 @media screen and (max-width: 63.9375em) {
   table.stack thead {
@@ -4866,16 +4864,16 @@ table.scroll {
   overflow-x: auto; }
 
 table.hover thead tr:hover {
-  background-color: #f4f4f4; }
+  background-color: #e4e4e4; }
 
 table.hover tfoot tr:hover {
-  background-color: #ededed; }
+  background-color: #dedede; }
 
 table.hover tbody tr:hover {
-  background-color: #fafafa; }
+  background-color: #eaeaea; }
 
-table.hover:not(.unstriped) tr:nth-of-type(even):hover {
-  background-color: #ededed; }
+table.hover.striped tr:nth-of-type(even):hover {
+  background-color: #dddddd; }
 
 .table-scroll {
   overflow-x: auto; }
@@ -5592,7 +5590,7 @@ h6 {
 .hidden {
   display: none; }
 
-.centered {
+.centered, figure {
   text-align: center; }
 
 .no-list-style, .site.footer .navigation ul {
@@ -5709,6 +5707,38 @@ figure {
     margin-top: 1rem;
     font-style: italic;
     color: #999999; }
+
+table {
+  border: 0 none transparent; }
+  table th,
+  table td {
+    border: 2px solid white;
+    border-collapse: separate; }
+  table td {
+    vertical-align: top;
+    background-color: #efefef; }
+    table td.highlight {
+      background-color: #cccccc; }
+    table td p {
+      margin: 0.5rem 0 0; }
+    table td ul {
+      margin: 0 0 1.25rem 2.25rem; }
+  table th,
+  table thead td {
+    border-color: #202020;
+    vertical-align: middle;
+    color: white;
+    background-color: #202020; }
+    table th.highlight,
+    table thead td.highlight {
+      color: #cccccc;
+      background-color: #202020; }
+  table tr td:first-child,
+  table tr th:first-child {
+    border-left-width: 0; }
+  table tr td:last-child,
+  table tr th:last-child {
+    border-right-width: 0; }
 
 main > section > header {
   background-color: #666666; }
