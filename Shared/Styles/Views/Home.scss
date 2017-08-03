@@ -12,7 +12,6 @@
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
   @import "../variables";
-  @import "../Base/_utilities.scss";
   @import "../foundationSettings";
 
 //----------------------------------------------------------------------------------------------
@@ -64,7 +63,7 @@ main {
       margin                    : rem-calc(28) auto;
       font-size                 : rem-calc(24);
       font-weight               : normal;
-      @extend .centered;
+      text-align                : center;
     }
     p.text {
       margin-bottom             : rem-calc(48);
