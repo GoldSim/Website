@@ -37,6 +37,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1694,6 +1695,8 @@
     <Content Include="Shared\Fonts\FontAwesome\FontAwesome.otf" />
     <Content Include="Forms\Common\Templates\Forms.Layout.master" />
     <Content Include="Forms\Web.Config" />
+    <Content Include="Configuration\rewriteMaps.config" />
+    <Content Include="Configuration\rewriteRules.config" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\Script.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
