@@ -27,6 +27,11 @@ main section[role="region"] {
   margin-bottom: 3rem;
   padding: 0 6.875rem; }
 
+.pane.cta-links p.text {
+  padding: 0 6.875rem; }
+  .pane.cta-links p.text ~ p.text {
+    margin-bottom: 3rem; }
+
 .panel.introduction {
   padding-right: 26.75rem;
   background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
@@ -89,6 +94,10 @@ main section[role="region"] {
         padding-bottom: 0; }
         .applications .card ul li a:visited {
           color: #202020; }
+
+.cta-links .button {
+  -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07); }
 
 h1.title.short {
   position: static;
