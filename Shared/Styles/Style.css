@@ -5740,6 +5740,21 @@ table {
     table th.right,
     table td.right {
       text-align: right; }
+    table th h1,
+    table th h2,
+    table th h3,
+    table th h4,
+    table th h5,
+    table th h6,
+    table th .button,
+    table td h1,
+    table td h2,
+    table td h3,
+    table td h4,
+    table td h5,
+    table td h6,
+    table td .button {
+      margin-bottom: 0; }
   table td {
     vertical-align: top;
     background-color: #efefef; }
