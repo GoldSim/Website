@@ -94,8 +94,11 @@ main {
 
   // Customers
   &.customers {
-    padding-right               : rem-calc(428);
+    padding-right               : rem-calc(540);
     background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 120% -1rem;
+    > header {
+      padding-right             : rem-calc(32);
+    }
   }
 
   // CTAs
