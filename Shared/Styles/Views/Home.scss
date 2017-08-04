@@ -18,9 +18,11 @@
 // LAYOUT
 //----------------------------------------------------------------------------------------------
 main {
-  > section > header,
-  > article {
+  > section > header {
     padding                     : rem-calc(80 0);
+  }
+  > article {
+    padding                     : rem-calc(80 0 32);
   }
   > section > header {
     .video {

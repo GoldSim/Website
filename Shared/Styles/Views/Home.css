@@ -1,6 +1,8 @@
-main > section > header,
-main > article {
+main > section > header {
   padding: 5rem 0; }
+
+main > article {
+  padding: 5rem 0 2rem; }
 
 main > section > header .video {
   background-color: white; }
