@@ -310,8 +310,9 @@ $button-sizes                   : (
   small         : 0.75rem,
   default       : 0.9rem,
   large         : 1.25rem,
+  huge          : rem-calc(24)                                  // NEW
 );
-$button-palette                 : $foundation-palette;
+$button-palette                 : map-merge($foundation-palette, (white: $palette-white));
 $button-opacity-disabled        : 0.25;
 $button-background-hover-lightness      : -20%;
 $button-hollow-hover-lightness  : -50%;

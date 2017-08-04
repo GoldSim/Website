@@ -111,6 +111,11 @@ ol {
   min-width                     : rem-calc(208);
   font-size                     : 1rem;
   font-weight                   : 600;
+  &.huge {
+    padding-top                 : rem-calc(40);
+    padding-bottom              : rem-calc(40);
+    min-width                   : rem-calc(460);
+  }
   &.primary {
     &:hover {
       color                     : $palette-yellow;
@@ -121,6 +126,16 @@ ol {
       border-color              : $palette-yellow;
       color                     : $palette-yellow;
       background-color          : $palette-white;
+    }
+  }
+  &.white {
+    &:hover {
+      background-color          : $palette-yellow;
+    }
+    &:focus,
+    &:active {
+      border-color              : $palette-yellow;
+      background-color          : $palette-yellow;
     }
   }
 }
