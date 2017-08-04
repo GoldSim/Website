@@ -36,7 +36,8 @@ main section[role="region"] {
 
 .panel.introduction {
   padding-right: 26.75rem;
-  background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right; }
+  background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right;
+  background-size: contain; }
 
 .panel.customers {
   padding-right: 33.75rem;

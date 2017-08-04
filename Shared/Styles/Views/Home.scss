@@ -90,6 +90,7 @@ main {
   &.introduction {
     padding-right               : rem-calc(428);
     background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
+    background-size             : contain;
   }
 
   // Customers
