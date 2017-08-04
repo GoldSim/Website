@@ -5963,25 +5963,27 @@ nav.navigation.primary ul.menu {
   nav.navigation.primary ul.menu:not(.submenu) > li > ul.nested {
     margin-bottom: 2rem; }
 
-td.gsc-search-button,
-td.gsc-clear-button,
-td.gsib_b {
+form.gsc-search-box.gsc-search-box-tools td.gsc-search-button,
+form.gsc-search-box.gsc-search-box-tools td.gsc-clear-button,
+form.gsc-search-box.gsc-search-box-tools td.gsib_b {
   display: none; }
 
-td.gsc-input {
-  padding: 0; }
-
-.gsc-input-box {
-  border: 0 none transparent;
-  background: transparent; }
-  .gsc-input-box table {
-    margin-bottom: 0;
-    width: auto; }
-    .gsc-input-box table tbody {
+form.gsc-search-box.gsc-search-box-tools table.gsc-search-box {
+  padding-right: 0; }
+  form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input {
+    padding: 0;
+    background-color: transparent; }
+    form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box {
       border: 0 none transparent;
       background-color: transparent; }
-    .gsc-input-box table td.gsib_a {
-      padding: 0; }
+      form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box table {
+        margin-bottom: 0;
+        width: auto; }
+        form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box table tbody {
+          border: 0 none transparent;
+          background-color: transparent; }
+        form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box table td.gsib_a {
+          padding: 0; }
 
 .search div {
   display: inline-block; }
