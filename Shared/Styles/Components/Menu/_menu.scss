@@ -43,7 +43,7 @@ button {
 // Menu Toggle
 .title-bar {
   .menu-icon {
-    margin-left                 : 2.5rem;                       // 40px;
+    margin-left                 : rem-calc(40);
   }
 }
 
@@ -52,10 +52,10 @@ nav.navigation.primary {
 
   // close button
   button.close-button {
-    top                         : 2rem;
+    top                         : rem-calc(32);
     right                       : auto;
-    left                        : 2rem;
-    font-size                   : 3.25rem;                      // 52px
+    left                        : rem-calc(32);
+    font-size                   : rem-calc(52);
     color                       : $palette-white;
   }
 
@@ -69,27 +69,36 @@ nav.navigation.primary {
   // navigation items
   ul.menu {
     position                    : relative;
-    top                         : 6.25rem;                      // 100px
-    padding-left                : 4rem;                         // 64px
+    top                         : rem-calc(100);
+    padding-left                : rem-calc(64);
     li {
       font-family               : $header-font-family;
-      font-size                 : 3rem;                         // 48px
+      font-size                 : rem-calc(48);
       font-weight               : $header-font-weight;
       a,
       a:hover,
       a:focus,
       a:active {
+        padding                 : rem-calc(9 16);
         color                   : $palette-white;
       }
     }
     &.nested {
-      top                       : 0;
+      top                       : rem-calc(6);
       margin-left               : 0;
-      padding-left              : 2.5rem;                       // 40px
+      padding-left              : rem-calc(40);
       li {
-        font-size               : 1rem;                         // 18px
+        margin-bottom           : 0;
+        font-size               : rem-calc(18);
         font-weight             : 600;
       }
+      ul.nested {
+        top                     : 0;
+        padding-left            : rem-calc(48);
+      }
+    }
+    &:not(.submenu) > li > ul.nested {
+      margin-bottom             : rem-calc(32);
     }
   }
 

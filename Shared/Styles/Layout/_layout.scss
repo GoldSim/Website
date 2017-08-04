@@ -28,7 +28,7 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
-  padding-bottom                : 23rem;                        // 368px
+  padding-bottom                : rem-calc(368);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
 }
@@ -38,7 +38,7 @@ body {
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
   padding                       : 0;
-  height                        : 6.25rem;                      // 100px
+  height                        : rem-calc(100);
   color                         : $palette-black;
   background-color              : $palette-white;
 
@@ -53,16 +53,21 @@ body {
 // NAVIGATION
 //----------------------------------------------------------------------------------------------
 #PrimaryNavigation {
-  min-width                     : 18.75rem;                     // 300px
+  min-width                     : rem-calc(300);
   background-color              : $palette-black;
   @include breakpoint(large) {
-    min-width                   : 31.25rem;                     // 500px;
+    min-width                   : rem-calc(500);
   }
 
   // Submenu Toggle
   .submenu-toggle {
-    top                         : 1.25rem;                      // 20px
-    right                       : 1.5rem;                       // 24px
+    top                         : rem-calc(20);
+    right                       : rem-calc(24);
+  }
+  .nested {
+    .submenu-toggle {
+      top                       : rem-calc(-3);
+    }
   }
 
 }
@@ -71,7 +76,7 @@ body {
 // PRIMARY CONTENT AREA
 //----------------------------------------------------------------------------------------------
 #MainContentArea {
-  padding-bottom                : 3rem;                         // 48px
+  padding-bottom                : rem-calc(48);
   background-color              : $palette-grey-lightest;
 }
 
@@ -83,15 +88,15 @@ body {
   right                         : 0;
   bottom                        : 0;
   left                          : 0;
-  padding-top                   : 3.45rem;                      // ~ 55px
-  padding-bottom                : 1.56rem;                      // ~ 25px
-  max-height                    : 23rem;                        // 368px
+  padding-top                   : rem-calc(54);
+  padding-bottom                : rem-calc(24);
+  max-height                    : rem-calc(368);
   color                         : $palette-grey-medium;
   background-color              : $palette-grey-dark;
 
   // Navigation
   nav {
-    padding-bottom              : 2rem;                         // ~ 32px
+    padding-bottom              : rem-calc(32);
   }
 
 }
