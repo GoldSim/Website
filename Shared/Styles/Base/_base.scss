@@ -328,8 +328,7 @@ article {
     }
     ul {
       @extend .no-list-style;
-      margin-bottom             : 0;
-      margin-left               : 0;
+      margin                    : 0;
       li {
         margin-top              : rem-calc(12);
         margin-bottom           : 0;

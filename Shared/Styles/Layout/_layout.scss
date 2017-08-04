@@ -28,7 +28,7 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
-  padding-bottom                : rem-calc(368);
+  padding-bottom                : rem-calc(408);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
 }
@@ -90,7 +90,7 @@ body {
   left                          : 0;
   padding-top                   : rem-calc(54);
   padding-bottom                : rem-calc(24);
-  max-height                    : rem-calc(368);
+  max-height                    : rem-calc(408);
   color                         : $palette-grey-medium;
   background-color              : $palette-grey-dark;
 

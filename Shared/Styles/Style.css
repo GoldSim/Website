@@ -5855,8 +5855,7 @@ article header h1.title.long {
   color: #cccccc; }
 
 .site.footer .navigation ul {
-  margin-bottom: 0;
-  margin-left: 0; }
+  margin: 0; }
   .site.footer .navigation ul li {
     margin-top: 0.75rem;
     margin-bottom: 0; }
@@ -5872,7 +5871,7 @@ html {
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 23rem;
+  padding-bottom: 25.5rem;
   min-height: 100%;
   background-color: #f3f3f3; }
 
@@ -5907,7 +5906,7 @@ body {
   left: 0;
   padding-top: 3.375rem;
   padding-bottom: 1.5rem;
-  max-height: 23rem;
+  max-height: 25.5rem;
   color: #999999;
   background-color: #666666; }
   #SiteFooter nav {
