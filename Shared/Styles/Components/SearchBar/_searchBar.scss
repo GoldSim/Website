@@ -10,6 +10,7 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
+@import "../../variables";
 
 //----------------------------------------------------------------------------------------------
 // VARIABLES
@@ -22,6 +23,8 @@
 // however, the overrides are being placed here instead.
 //----------------------------------------------------------------------------------------------
 form.gsc-search-box.gsc-search-box-tools {
+  margin-bottom                 : 0;
+  font-size                     : $body-text-size;
   td.gsc-search-button,
   td.gsc-clear-button,
   td.gsib_b {
@@ -50,7 +53,6 @@ form.gsc-search-box.gsc-search-box-tools {
     }
 
   }
-
 }
 
 //----------------------------------------------------------------------------------------------
@@ -58,8 +60,29 @@ form.gsc-search-box.gsc-search-box-tools {
 //----------------------------------------------------------------------------------------------
 .search {
 
-  div {
-    display                     : inline-block;
+  &.title-bar-right {
+    position                    : relative;
+    height                      : 100%;
+  }
+
+  &.form {
+    position                    : absolute;
+    top                         : 0;
+    right                       : 0;
+    bottom                      : 0;
+    padding-right               : rem-calc(40);
+    &.closed {
+      .gsc-control-searchbox-only {
+        width                   : 0;
+      }
+     .icon {
+        background-image          : url('/Images/Icons/Search.Icon.png');
+      }
+    }
+    div#___gcse_0,
+    button {
+      display                   : table-cell;
+    }
   }
 
   input {
@@ -69,11 +92,14 @@ form.gsc-search-box.gsc-search-box-tools {
 
   // Buttons
   .icon {
-    &.search {
-      float                     : right;
-      margin-right              : 2.5rem;                       // 40px;
-      cursor                    : pointer;
-    }
+    min-width                   : rem-calc(32);
+    width                       : rem-calc(32);
+    min-height                  : rem-calc(32);
+    background-position         : center center;
+    background-size             : contain;
+    background-repeat           : no-repeat;
+    background-color            : transparent;
+    cursor                      : pointer;
   }
 
 }

@@ -51,8 +51,12 @@
           </div>
           <div class="title-bar-right search">
             <!-- Site Search -->
-            <img src="/Images/Icons/Search.Icon.png" alt="Search GoldSim.com" class="icon search" />
-            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+            <div class="search form closed">
+              <!-- Search Input -->
+              <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+              <!-- Search Open / Close Button -->
+              <button type="button" class="icon"></button>
+            </div>
             <!-- /Site Search -->
           </div>
         }
