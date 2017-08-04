@@ -261,13 +261,7 @@ namespace GoldSim.Forms.Common.Templates {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      // Temporary measure (client requested) -- specifically block spammer mark357177@hotmail.com from sending
-      if (EmailSender.ToLower() == "mark357177@hotmail.com") {
-        return;
-      }
-      else {
-        new SmtpClient().Send(mail);
-      }
+      new SmtpClient().Send(mail);
 
     }
 
