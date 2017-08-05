@@ -71,6 +71,23 @@
       $('a[href $=".' + fileType + '"]').not('[class*="button"]').after('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
     });
 
+    /**
+     * Adds placeholder text to GCSE input
+     */
+    $('#gsc-i-id1').attr('placeholder', 'Search').val('').focus().blur();
+
+    /**
+     * Capture search button trigger, set open/closed state
+     */
+    $('.search.form .buttons button').click(function (event) {
+      if ($(this).hasClass('closed')) {
+        $(this).addClass('open').removeClass('closed');
+      }
+      else {
+        $(this).addClass('closed').removeClass('open');
+      }
+    });
+
   });
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
