@@ -54,8 +54,15 @@
             <div class="search form closed">
               <!-- Search Input -->
               <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Search/Default.aspx" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+              <style type="text/css">
+                .gsc-input input.gsc-input {
+                  background: none repeat scroll 0% 0% transparent !important;
+                }
+              </style>
               <!-- Search Open / Close Button -->
-              <button type="button" class="icon"></button>
+              <div class="buttons">
+                <button type="button" class="icon"></button>
+              </div>
             </div>
             <!-- /Site Search -->
           </div>
