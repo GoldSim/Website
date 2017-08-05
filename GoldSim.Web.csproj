@@ -1566,6 +1566,7 @@
     <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
+    <Content Include="Images\Icons\CloseX.Icon.png" />
     <Content Include="Images\Icons\Search.Icon.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Account\Web.Config" />
