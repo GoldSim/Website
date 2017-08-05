@@ -17,6 +17,26 @@
 //----------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------------------------
+// HELPERS
+//----------------------------------------------------------------------------------------------
+@keyframes fadeInBackground {
+  0%   {
+    background-color            : transparent;
+  }
+  100% {
+    background-color            : $palette-yellow;
+  }
+}
+@keyframes fadeOutBackground {
+  0%   {
+    background-color            : $palette-yellow;
+  }
+  100% {
+    background-color            : transparent;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
 // OVERRIDES
 //----------------------------------------------------------------------------------------------
 // NOTE: These should be moved to a centralized _overrides.scss file. For discoverability,
@@ -27,16 +47,37 @@ form.gsc-search-box.gsc-search-box-tools {
   font-size                     : $body-text-size;
   td.gsc-search-button,
   td.gsc-clear-button,
-  td.gsib_b {
+  td.gsib_b,
+  table.gsc-branding {
     display                     : none;
   }
+  table td {
+    border                      : 0 none transparent;
+    background-color            : transparent;
+  }
   table.gsc-search-box {
+    margin-bottom               : 0;
     padding-right               : 0;
+    tbody {
+      border                    : 0 none transparent;
+      background-color          : transparent;
+      tr {
+        border-bottom           : 0 none transparent;
+        background-color        : transparent;
+      }
+    }
+    .gsc-input > input:hover,
+    .gsc-input-box-hover,
+    .gsc-input-box-focus {
+      box-shadow                : none !important;
+    }
     td.gsc-input {
+      border                    : 0 none transparent;
       padding                   : 0;
       background-color          : transparent;
       .gsc-input-box {
         border                  : 0 none transparent;
+        height                  : rem-calc(32);
         background-color        : transparent;
         table {
           margin-bottom         : 0;
@@ -47,7 +88,13 @@ form.gsc-search-box.gsc-search-box-tools {
           }
           td.gsib_a {
             padding             : 0;
+            input#gsc-i-id1 {
+              background-color  : transparent !important;
+            }
           }
+        }
+        input.gsc-input {
+          font-size             : $body-text-size;
         }
       }
     }
@@ -66,22 +113,46 @@ form.gsc-search-box.gsc-search-box-tools {
   }
 
   &.form {
+    display                     : table;
     position                    : absolute;
     top                         : 0;
     right                       : 0;
     bottom                      : 0;
-    padding-right               : rem-calc(40);
+    max-width                   : rem-calc(420);
+    height                      : 100%;
     &.closed {
+    //background-color          : transparent;
+      animation                 : fadeOutBackground 2s ease-in-out;
       .gsc-control-searchbox-only {
         width                   : 0;
       }
      .icon {
-        background-image          : url('/Images/Icons/Search.Icon.png');
+        background-image        : url('/Images/Icons/Search.Icon.png');
+      }
+    }
+    &.open {
+      width                     : 100%;
+    //background-color          : $palette-yellow;
+      animation                 : fadeInBackground 2s ease-in-out;
+      .gsc-control-searchbox-only {
+        width                   : 100%;
+      }
+     .icon {
+        background-image        : url('/Images/Icons/CloseX.Icon.png');
       }
     }
     div#___gcse_0,
-    button {
+    .buttons {
       display                   : table-cell;
+      vertical-align            : middle;
+      height                    : 100%;
+    }
+    .gsc-control-searchbox-only {
+      margin-top                : rem-calc(-5);
+      padding-left              : rem-calc(40);
+    }
+    .buttons {
+      padding-right             : rem-calc(40);
     }
   }
 
