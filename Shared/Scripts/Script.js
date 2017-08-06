@@ -19,7 +19,7 @@
       $window                   = $(window),
       $siteHeader               = $('header.site.header'),
       $paneFullHeight           = ($window.height() - $siteHeader.height()),
-      $fileTypes                = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
+      fileTypes                 = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
     /**
      * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
@@ -32,7 +32,7 @@
     /**
      * Appends icon font elements to links
      */
-    $($fileTypes).each(function (index, value) {
+    $(fileTypes).each(function (index, value) {
       var
         fileType                = value,
         $iconClass              = "file-pdf-o";
@@ -80,11 +80,12 @@
      * Capture search button trigger, set open/closed state
      */
     $('.search.form .buttons button').click(function (event) {
-      if ($(this).hasClass('closed')) {
-        $(this).addClass('open').removeClass('closed');
+      var $searchBar            = $('div.search.form');
+      if ($searchBar.hasClass('closed')) {
+        $searchBar.addClass('open').removeClass('closed');
       }
       else {
-        $(this).addClass('closed').removeClass('open');
+        $searchBar.addClass('closed').removeClass('open');
       }
     });
 
