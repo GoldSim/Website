@@ -1928,6 +1928,7 @@
     <Content Include="Shared\Styles\Components\SearchBar\_searchBar.scss" />
     <Content Include="Shared\Styles\Views\Home.scss" />
     <Content Include="Shared\Styles\Overrides\_overrides.scss" />
+    <Content Include="Shared\Styles\Base\_forms.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
