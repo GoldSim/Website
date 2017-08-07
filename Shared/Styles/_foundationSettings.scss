@@ -303,7 +303,7 @@ $button-background              : $primary-color;
 $button-background-hover        : scale-color($button-background, $lightness: -15%);
 $button-color                   : $body-font-color;             // WAS $white
 $button-color-alt               : $black;
-$button-radius                  : 2px;                          // WAS $global-radius
+$button-radius                  : 3px;                          // WAS $global-radius
 $button-hollow-border-width     : 2px;
 $button-sizes                   : (
   tiny          : 0.6rem,
@@ -412,7 +412,7 @@ $dropdown-sizes                 : (
 
 $dropdownmenu-arrows            : true;
 $dropdownmenu-arrow-color       : $anchor-color;
-$dropdownmenu-arrow-size        : 6px;
+$dropdownmenu-arrow-size        : rem-calc(12);                 // WAS 6px
 $dropdownmenu-arrow-padding     : 1.5rem;
 $dropdownmenu-min-width         : 200px;
 $dropdownmenu-background        : $white;
