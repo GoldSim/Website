@@ -5627,11 +5627,15 @@ h6 {
 
 h1,
 h2 {
-  margin-bottom: 1.5rem; }
+  margin-bottom: 2.125rem; }
+  h1.link,
+  h2.link {
+    margin-bottom: 1.25rem;
+    font-size: 1.25rem; }
 
 p ~ h1,
 p ~ h2 {
-  padding-top: 0.5rem; }
+  padding-top: 0.9375rem; }
 
 .hidden {
   display: none; }
@@ -5738,7 +5742,7 @@ input:active, input:focus {
 .checkbox input[type="checkbox"]:checked + label:before {
   background-color: #fec10d; }
 
-label .required {
+label.required {
   font-weight: 600; }
 
 .is-invalid-label {
@@ -5908,11 +5912,11 @@ ol {
     border-left-width: 0;
     border-right: 2px solid #999999; }
   .quote.full {
-    margin: 3rem 0;
+    margin: 2.5rem 0;
     border-top: 2px solid #cccccc;
     border-bottom: 2px solid #cccccc;
     border-left: 0 none transparent;
-    padding: 2.75rem 0;
+    padding: 2.25rem 0;
     font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
     font-size: 3rem;
     font-weight: 300;
@@ -6030,7 +6034,7 @@ ul.accordion {
     margin-top: -2.125rem; }
 
 .accordion-title {
-  padding: 1.875rem 3rem 1.375rem 6.875rem;
+  padding: 1.875rem 6.875rem 1.375rem 6.875rem;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 2rem;
   line-height: 1.2;
@@ -6042,7 +6046,7 @@ ul.accordion {
     font-size: 1.25rem;
     color: #cccccc; }
   .accordion-title:hover, .accordion-title:focus, .accordion-title:active, .accordion-title:visited {
-    color: #202020; }
+    color: #202020 !important; }
   .accordion-title:hover, .accordion-title:focus, .accordion-title:active {
     background-color: transparent; }
 

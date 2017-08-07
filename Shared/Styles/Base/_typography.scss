@@ -38,12 +38,16 @@ h6 {
 }
 h1,
 h2 {
-  margin-bottom                 : rem-calc(24);
+  margin-bottom                 : rem-calc(34);
+  &.link {
+    margin-bottom               : rem-calc(20);
+    font-size                   : rem-calc(20);
+  }
 }
 p {
   ~ h1,
   ~ h2 {
-    padding-top                 : rem-calc(8);
+    padding-top                 : rem-calc(15);
   }
 }
 

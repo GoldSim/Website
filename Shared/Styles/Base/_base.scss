@@ -228,11 +228,11 @@ ol {
     border-right                : 2px solid $palette-grey-medium;
   }
   &.full {
-    margin                      : rem-calc(48) 0;
+    margin                      : rem-calc(40) 0;
     border-top                  : 2px solid $palette-grey-light;
     border-bottom               : 2px solid $palette-grey-light;
     border-left                 : 0 none transparent;
-    padding                     : rem-calc(44) 0;
+    padding                     : rem-calc(36) 0;
     font-family                 : $header-font-family;
     font-size                   : rem-calc(48);
     font-weight                 : 300;
@@ -388,7 +388,7 @@ ul.accordion {
   }
 }
 .accordion-title {
-  padding                       : rem-calc(30 48 22 110);
+  padding                       : rem-calc(30 110 22 110);
   font-family                   : $header-font-family;
   font-size                     : rem-calc(32);
   line-height                   : 1.2;
@@ -404,7 +404,7 @@ ul.accordion {
   &:focus,
   &:active,
   &:visited {
-    color                       : $text-color;
+    color                       : $text-color !important;
   }
   &:hover,
   &:focus,
