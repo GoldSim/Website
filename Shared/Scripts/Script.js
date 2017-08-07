@@ -74,7 +74,9 @@
     /**
      * Adds placeholder text to GCSE input
      */
-    $('#gsc-i-id1').attr('placeholder', 'Search').val('').focus().blur();
+    setTimeout(function () {
+      $('#gsc-i-id1').attr('placeholder', 'Search'); //.val('').focus().blur()
+    }, 2000);
 
     /**
      * Capture search button trigger, set open/closed state
