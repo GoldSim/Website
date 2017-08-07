@@ -118,11 +118,13 @@ form.gsc-search-box.gsc-search-box-tools {
     top                         : 0;
     right                       : 0;
     bottom                      : 0;
+    width                       : auto;
     max-width                   : rem-calc(420);
     height                      : 100%;
+  //transition                  : width 1.5s linear; //, background-color 0.5s linear;
     &.closed {
-    //background-color          : transparent;
-      animation                 : fadeOutBackground 2s ease-in-out;
+      background-color          : transparent;
+    //animation                 : fadeOutBackground 0.75s linear;
       .gsc-control-searchbox-only {
         width                   : 0;
       }
@@ -131,9 +133,9 @@ form.gsc-search-box.gsc-search-box-tools {
       }
     }
     &.open {
-      width                     : 100%;
-    //background-color          : $palette-yellow;
-      animation                 : fadeInBackground 2s ease-in-out;
+    //width                     : 100%;
+      background-color          : $palette-yellow;
+    //animation                 : fadeInBackground 0.75s linear;
       .gsc-control-searchbox-only {
         width                   : 100%;
       }
@@ -150,15 +152,23 @@ form.gsc-search-box.gsc-search-box-tools {
     .gsc-control-searchbox-only {
       margin-top                : rem-calc(-5);
       padding-left              : rem-calc(40);
+      transition                : width 1s linear;
     }
     .buttons {
       padding-right             : rem-calc(40);
+      .icon {
+      //transition              : background-image 0.25s ease-in-out;
+      }
     }
   }
 
   input {
     background-color            : $palette-yellow !important;   // !important needed for GCSE
     box-shadow                  : none;
+    &::placeholder {
+      font-size                 : $body-text-size;
+      color                     : $palette-black;
+    }
   }
 
   // Buttons
