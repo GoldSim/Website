@@ -5811,6 +5811,17 @@ h6 a {
 h1 a {
   font-weight: 300; }
 
+a[href$=".pdf"],
+a[href$=".exe"],
+a[href$=".zip"],
+a[href$=".doc"],
+a[href$=".docx"],
+a[href$=".ppt"],
+a[href$=".pptx"],
+a[href$=".xls"],
+a[href$=".xlsx"] {
+  line-height: 1.3; }
+
 a ~ i {
   padding-left: 0.3125rem; }
 

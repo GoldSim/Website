@@ -70,6 +70,17 @@ h1 {
 // ICONS
 //----------------------------------------------------------------------------------------------
 
+a[href$=".pdf"],
+a[href$=".exe"],
+a[href$=".zip"],
+a[href$=".doc"],
+a[href$=".docx"],
+a[href$=".ppt"],
+a[href$=".pptx"],
+a[href$=".xls"],
+a[href$=".xlsx"] {
+  line-height                   : 1.3;
+}
 a ~ i {
   padding-left                  : rem-calc(5);
 }
