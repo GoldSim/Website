@@ -1714,6 +1714,8 @@
     <Content Include="Shared\Styles\Vendor\FontAwesome\font-awesome.min.css">
       <DependentUpon>font-awesome.css</DependentUpon>
     </Content>
+    <Content Include="Shared\Styles\Vendor\RedCastor\awesome-foundation6-checkbox.css" />
+    <Content Include="Shared\Styles\Vendor\RedCastor\awesome-foundation6-checkbox.min.css" />
     <Content Include="Shared\Styles\Views\Home.css" />
     <Content Include="Shared\Styles\Views\Home.min.css" />
     <Content Include="Web.config">
