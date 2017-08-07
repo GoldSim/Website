@@ -64,6 +64,8 @@ input {
 .radio,
 .checkbox {
   label {
+    height                      : auto !important;
+    line-height                 : rem-calc(20) !important;
     &:before {
       border                    : 2px solid $palette-grey-light !important;
     }
@@ -97,6 +99,12 @@ input {
   }
 }
 .checkbox {
+  label {
+    &:after {
+      line-height               : 1.8 !important;
+      color                     : $palette-black !important;
+    }
+  }
   input[type="checkbox"] {
     &:checked {
       + label {

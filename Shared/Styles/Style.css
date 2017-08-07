@@ -5708,9 +5708,13 @@ input:active, input:focus {
   -webkit-box-shadow: none;
           box-shadow: none; }
 
-.radio label:before,
-.checkbox label:before {
-  border: 2px solid #cccccc !important; }
+.radio label,
+.checkbox label {
+  height: auto !important;
+  line-height: 1.25rem !important; }
+  .radio label:before,
+  .checkbox label:before {
+    border: 2px solid #cccccc !important; }
 
 .radio input[type="radio"]:checked + label:before,
 .radio input[type="checkbox"]:checked + label:before,
@@ -5726,6 +5730,10 @@ input:active, input:focus {
 
 .radio input[type="radio"]:checked + label:after {
   background-color: #fec10d; }
+
+.checkbox label:after {
+  line-height: 1.8 !important;
+  color: #202020 !important; }
 
 .checkbox input[type="checkbox"]:checked + label:before {
   background-color: #fec10d; }
