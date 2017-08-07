@@ -6052,6 +6052,7 @@ ul.accordion {
   font-weight: 300;
   color: #202020; }
   .accordion-title:before {
+    top: 2.0625rem;
     right: 3rem;
     content: '▼';
     font-size: 1.25rem;
