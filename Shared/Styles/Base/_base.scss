@@ -122,9 +122,10 @@ img.logo {
 
 ul,
 ol {
-  margin                        : rem-calc(36 0 36 64);
+  margin                        : rem-calc(32 0 36 64);
   li {
     margin-bottom               : rem-calc(16);
+    padding-left                : rem-calc(18);
     &:last-child {
       margin-bottom             : 0;
     }
@@ -192,7 +193,7 @@ ol {
 
 .button-group {
   .button {
-    margin-right                : rem-calc(4);
+    margin-right                : rem-calc(10);
     &.large {
       font-size                 : rem-calc(20);
     }
@@ -261,7 +262,7 @@ ol {
 //----------------------------------------------------------------------------------------------
 
 figure {
-  margin                        : rem-calc(40) auto;
+  margin                        : rem-calc(40 auto 36);
   @extend .centered;
   img {
     border                      : 2px solid $palette-grey-light;
@@ -281,8 +282,8 @@ figure {
 //----------------------------------------------------------------------------------------------
 .table-wrapper {
   &.wide {
-    margin-right                : rem-calc(-88);
-    margin-left                 : rem-calc(-88);
+    margin-right                : rem-calc(-104);
+    margin-left                 : rem-calc(-104);
   }
 }
 table {
@@ -342,7 +343,12 @@ table {
   &.download {
     th,
     td {
-      padding                     : rem-calc(28 28);
+      padding                   : rem-calc(18 28);
+    }
+    tr:last-child {
+      td {
+        padding-bottom          : rem-calc(34);
+      }
     }
   }
 }

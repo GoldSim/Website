@@ -5630,7 +5630,7 @@ h2 {
   margin-bottom: 2.125rem; }
   h1.link,
   h2.link {
-    margin-bottom: 1.25rem;
+    margin-bottom: 0.75rem;
     font-size: 1.25rem; }
 
 p ~ h1,
@@ -5849,10 +5849,11 @@ img.logo {
 
 ul,
 ol {
-  margin: 2.25rem 0 2.25rem 4rem; }
+  margin: 2rem 0 2.25rem 4rem; }
   ul li,
   ol li {
-    margin-bottom: 1rem; }
+    margin-bottom: 1rem;
+    padding-left: 1.125rem; }
     ul li:last-child,
     ol li:last-child {
       margin-bottom: 0; }
@@ -5893,7 +5894,7 @@ ol {
     background-color: #fec10d; }
 
 .button-group .button {
-  margin-right: 0.25rem; }
+  margin-right: 0.625rem; }
   .button-group .button.large {
     font-size: 1.25rem; }
 
@@ -5938,7 +5939,7 @@ ol {
     text-align: right; }
 
 figure {
-  margin: 2.5rem auto; }
+  margin: 2.5rem auto 2.25rem; }
   figure img {
     border: 2px solid #cccccc;
     padding: 1.75rem 2rem;
@@ -5950,8 +5951,8 @@ figure {
     color: #999999; }
 
 .table-wrapper.wide {
-  margin-right: -5.5rem;
-  margin-left: -5.5rem; }
+  margin-right: -6.5rem;
+  margin-left: -6.5rem; }
 
 table {
   border: 0 none transparent; }
@@ -6005,7 +6006,9 @@ table {
     border-right-width: 0; }
   table.download th,
   table.download td {
-    padding: 1.75rem 1.75rem; }
+    padding: 1.125rem 1.75rem; }
+  table.download tr:last-child td {
+    padding-bottom: 2.125rem; }
 
 ul.accordion {
   margin: 0; }
