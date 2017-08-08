@@ -82,6 +82,9 @@ nav.navigation.primary {
         padding                 : rem-calc(9 16);
         color                   : $palette-white;
       }
+      a.selected {
+        color                   : $palette-yellow;
+      }
     }
     &.nested {
       top                       : rem-calc(6);

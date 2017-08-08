@@ -6185,6 +6185,8 @@ nav.navigation.primary ul.menu {
     nav.navigation.primary ul.menu li a:active {
       padding: 0.5625rem 1rem;
       color: white; }
+    nav.navigation.primary ul.menu li a.selected {
+      color: #fec10d; }
   nav.navigation.primary ul.menu.nested {
     top: 0.375rem;
     margin-left: 0;
