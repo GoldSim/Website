@@ -6035,6 +6035,9 @@ ul.accordion {
       line-height: 0.9375;
       font-weight: 600;
       color: #fec10d; }
+  .accordion-title.question .marker,
+  .accordion-content.question .marker {
+    top: 2rem; }
   .accordion-title.answer .marker,
   .accordion-content.answer .marker {
     position: relative;
@@ -6052,7 +6055,6 @@ ul.accordion {
   font-weight: 300;
   color: #202020; }
   .accordion-title:before {
-    top: 2.0625rem;
     right: 3rem;
     content: '▼';
     font-size: 1.25rem;

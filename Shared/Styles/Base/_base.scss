@@ -385,6 +385,12 @@ ul.accordion {
       color                     : $palette-yellow;
     }
   }
+  &.question {
+    .marker {
+      top                       : rem-calc(32);
+
+    }
+  }
   &.answer {
     .marker {
       position                  : relative;
@@ -406,7 +412,6 @@ ul.accordion {
   font-weight                   : 300;
   color                         : $text-color;
   &:before {
-    top                         : rem-calc(33);
     right                       : rem-calc(48);
     content                     : '▼';
     font-size                   : rem-calc(20);
