@@ -262,7 +262,7 @@ ol {
 //----------------------------------------------------------------------------------------------
 
 figure {
-  margin                        : rem-calc(40 auto 36);
+  margin                        : rem-calc(40) auto rem-calc(36);
   @extend .centered;
   img {
     border                      : 2px solid $palette-grey-light;
