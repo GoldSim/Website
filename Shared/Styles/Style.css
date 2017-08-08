@@ -6227,7 +6227,7 @@ nav.navigation.primary ul.menu {
 
 form.gsc-search-box.gsc-search-box-tools {
   margin-bottom: 0;
-  font-size: 1.125rem; }
+  font-size: 1.875rem; }
   form.gsc-search-box.gsc-search-box-tools td.gsc-search-button,
   form.gsc-search-box.gsc-search-box-tools td.gsc-clear-button,
   form.gsc-search-box.gsc-search-box-tools td.gsib_b,
@@ -6266,10 +6266,9 @@ form.gsc-search-box.gsc-search-box-tools {
             background-color: transparent; }
           form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box table td.gsib_a {
             padding: 0; }
-            form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box table td.gsib_a input#gsc-i-id1 {
-              background-color: transparent !important; }
         form.gsc-search-box.gsc-search-box-tools table.gsc-search-box td.gsc-input .gsc-input-box input.gsc-input {
-          font-size: 1.125rem; }
+          font-size: 1.875rem;
+          line-height: 2rem; }
 
 .search.title-bar-right {
   position: relative;
@@ -6284,16 +6283,52 @@ form.gsc-search-box.gsc-search-box-tools {
   width: auto;
   max-width: 26.25rem;
   height: 100%; }
+  .search.form input {
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    background-color: transparent !important; }
+    .search.form input::-webkit-input-placeholder {
+      color: transparent;
+      -webkit-transition: color 0.15s linear 0s;
+      transition: color 0.15s linear 0s; }
+    .search.form input:-ms-input-placeholder {
+      color: transparent;
+      -webkit-transition: color 0.15s linear 0s;
+      transition: color 0.15s linear 0s; }
+    .search.form input::placeholder {
+      color: transparent;
+      -webkit-transition: color 0.15s linear 0s;
+      transition: color 0.15s linear 0s; }
   .search.form.closed {
-    background-color: transparent; }
-    .search.form.closed .gsc-control-searchbox-only {
-      width: 0; }
+    background-color: transparent;
+    -webkit-transition: background-color 0.2s linear 0.3s;
+    transition: background-color 0.2s linear 0.3s; }
+    .search.form.closed input.gsc-input {
+      width: 0 !important;
+      -webkit-transition: width 0.4s linear;
+      transition: width 0.4s linear; }
     .search.form.closed .icon {
       background-image: url("/Images/Icons/Search.Icon.png"); }
   .search.form.open {
-    background-color: #fec10d; }
-    .search.form.open .gsc-control-searchbox-only {
-      width: 100%; }
+    background-color: #fec10d;
+    -webkit-transition: background-color 0.25s linear 0s;
+    transition: background-color 0.25s linear 0s; }
+    .search.form.open input::-webkit-input-placeholder {
+      color: darkgray;
+      -webkit-transition: color 0.1s linear 0.25s;
+      transition: color 0.1s linear 0.25s; }
+    .search.form.open input:-ms-input-placeholder {
+      color: darkgray;
+      -webkit-transition: color 0.1s linear 0.25s;
+      transition: color 0.1s linear 0.25s; }
+    .search.form.open input::placeholder {
+      color: darkgray;
+      -webkit-transition: color 0.1s linear 0.25s;
+      transition: color 0.1s linear 0.25s; }
+    .search.form.open input.gsc-input {
+      width: 18.125rem !important;
+      -webkit-transition: width 0.4s linear;
+      transition: width 0.4s linear; }
     .search.form.open .icon {
       background-image: url("/Images/Icons/CloseX.Icon.png"); }
   .search.form div#___gcse_0,
@@ -6303,25 +6338,10 @@ form.gsc-search-box.gsc-search-box-tools {
     height: 100%; }
   .search.form .gsc-control-searchbox-only {
     margin-top: -0.3125rem;
-    padding-left: 2.5rem;
-    -webkit-transition: width 1s linear;
-    transition: width 1s linear; }
+    padding-left: 2.5rem; }
   .search.form .buttons {
-    padding-right: 2.5rem; }
-
-.search input {
-  background-color: #fec10d !important;
-  -webkit-box-shadow: none;
-          box-shadow: none; }
-  .search input::-webkit-input-placeholder {
-    font-size: 1.125rem;
-    color: #202020; }
-  .search input:-ms-input-placeholder {
-    font-size: 1.125rem;
-    color: #202020; }
-  .search input::placeholder {
-    font-size: 1.125rem;
-    color: #202020; }
+    padding-right: 2.5rem;
+    width: 5.5rem; }
 
 .search .icon {
   min-width: 2rem;

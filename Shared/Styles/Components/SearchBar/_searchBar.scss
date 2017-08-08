@@ -44,7 +44,7 @@
 //----------------------------------------------------------------------------------------------
 form.gsc-search-box.gsc-search-box-tools {
   margin-bottom                 : 0;
-  font-size                     : $body-text-size;
+  font-size                     : rem-calc(30);
   td.gsc-search-button,
   td.gsc-clear-button,
   td.gsib_b,
@@ -88,13 +88,11 @@ form.gsc-search-box.gsc-search-box-tools {
           }
           td.gsib_a {
             padding             : 0;
-            input#gsc-i-id1 {
-              background-color  : transparent !important;
-            }
           }
         }
         input.gsc-input {
-          font-size             : $body-text-size;
+          font-size             : rem-calc(30);
+          line-height           : rem-calc(32);
         }
       }
     }
@@ -121,23 +119,61 @@ form.gsc-search-box.gsc-search-box-tools {
     width                       : auto;
     max-width                   : rem-calc(420);
     height                      : 100%;
-  //transition                  : width 1.5s linear; //, background-color 0.5s linear;
+    input {
+      box-shadow                : none;
+      background-color          : transparent !important;
+      &::-webkit-input-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &::-moz-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &:-ms-input-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &::placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+    }
     &.closed {
       background-color          : transparent;
-    //animation                 : fadeOutBackground 0.75s linear;
-      .gsc-control-searchbox-only {
-        width                   : 0;
+      transition                : background-color 0.2s linear 0.3s;
+      input.gsc-input {
+        width                   : 0 !important;
+        transition              : width 0.4s linear;
       }
      .icon {
         background-image        : url('/Images/Icons/Search.Icon.png');
       }
     }
     &.open {
-    //width                     : 100%;
       background-color          : $palette-yellow;
-    //animation                 : fadeInBackground 0.75s linear;
-      .gsc-control-searchbox-only {
-        width                   : 100%;
+      transition                : background-color 0.25s linear 0s;
+      input {
+        &::-webkit-input-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &::-moz-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &:-ms-input-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &::placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &.gsc-input {
+          width                 : rem-calc(290) !important;
+          transition            : width 0.4s linear;
+        }
       }
      .icon {
         background-image        : url('/Images/Icons/CloseX.Icon.png');
@@ -152,22 +188,10 @@ form.gsc-search-box.gsc-search-box-tools {
     .gsc-control-searchbox-only {
       margin-top                : rem-calc(-5);
       padding-left              : rem-calc(40);
-      transition                : width 1s linear;
     }
     .buttons {
       padding-right             : rem-calc(40);
-      .icon {
-      //transition              : background-image 0.25s ease-in-out;
-      }
-    }
-  }
-
-  input {
-    background-color            : $palette-yellow !important;   // !important needed for GCSE
-    box-shadow                  : none;
-    &::placeholder {
-      font-size                 : $body-text-size;
-      color                     : $palette-black;
+      width                     : rem-calc(88);
     }
   }
 
