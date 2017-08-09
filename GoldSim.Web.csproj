@@ -1762,7 +1762,6 @@
     <Content Include="Configuration\connectionStrings.config" />
     <Content Include="packages.config" />
     <Content Include="Configuration\smtp.config" />
-    <Content Include="Views\Topic\Index.cshtml" />
     <Content Include="Views\Page\Page.cshtml" />
     <Content Include="Views\ContentType\ContentType.cshtml" />
     <Content Include="Views\ApplicationIndex\ApplicationIndex.cshtml" />
