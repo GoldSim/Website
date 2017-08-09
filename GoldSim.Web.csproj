@@ -1704,6 +1704,16 @@
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.gsap.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.gsap.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.velocity.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.velocity.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\debug.addIndicators.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\debug.addIndicators.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\jquery.ScrollMagic.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\jquery.ScrollMagic.min.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\ScrollMagic.js" />
+    <Content Include="Shared\Scripts\Vendor\ScrollMagic\ScrollMagic.min.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.js" />
     <Content Include="Shared\Scripts\Vendor\ZURB\foundation.min.js" />
     <Content Include="Shared\Styles\Style.css" />

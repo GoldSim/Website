@@ -113,6 +113,9 @@
             <h1>Where in the World is GoldSim?</h1>
           </header>
           <p>GoldSim is used by over 600 commercial and government organizations in nearly 60 countries worldwide. You can view a partial list of these organizations <a href="/Topic/19/">here</a>.</p>
+          <aside id="CountryList" role="complementary">
+            Congo<br />Côte d'Ivoire<br />Croatia<br />Czech Republic<br />Egypt<br />Ethiopia<br />Finland<br />France<br />Germany<br />Ghana<br />Guatemala<br />Hungary<br />India<br />Indonesia<br />Italy<br />Japan<br />Kuwait<br />Laos<br />Lithuania<br />Luxembourg<br />Macedonia<br />Madagascar<br />Malaysia<br />Mauritania<br />Mexico<br />Mongolia<br />Netherlands<br />New Zealand<br />Pakistan<br />Peru<br />Poland<br />Portugal<br />Romania<br />Russia<br />Singapore<br />Slovakia<br />South Africa<br />South Korea<br />Spain<br />Sweden<br />Switzerland<br />Taiwan<br />Tanzania<br />Turkey<br />Ukraine<br />United Arab Emirates<br />United Kingdom<br />United States<br />Vietnam<br />Zambia
+          </aside>
         </section>
         <!-- /Customers Pane -->
 
@@ -201,7 +204,36 @@
   </main>
   <!-- /Main Site Content Area -->
 
+}
 
+@section Scripts {
+  <!-- ScrollMagic and GSAP -->
+  <script src="~/Shared/Scripts/Vendor/ScrollMagic/plugins/animation.gsap.js"></script>
+  <script src="~/Shared/Scripts/Vendor/ScrollMagic/plugins/debug.addIndicators.js"></script>
+  <script src="~/Shared/Scripts/Vendor/ScrollMagic/ScrollMagic.js"></script>
+
+  <script>
+    $(function () {
+
+      /**
+       * Configures animation for countries list
+       */
+      var
+        $countryList            = $('#CountryList'),
+        countryListAnimation    = TweenMax.fromTo($countryList, 1, { top: '0', bottom: 'auto' }, { top: 'auto', bottom: '0' }),
+        sceneController         = new ScrollMagic.Controller(),
+        scene                   = new ScrollMagic.Scene({
+          triggerElement        : '#Customers',
+          duration              : $('main').height(),
+          triggerHook           : 1,
+          reverse               : true
+        })
+        .setTween(countryListAnimation)
+        .addIndicators()
+        .addTo(sceneController);
+
+    });
+  </script>
 }
 
 <!-- View Location: ~/Home/Index.cshtml -->
