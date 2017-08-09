@@ -10,7 +10,7 @@
   <h2>@category.Title</h2>
   <section id="Group-@category.Key">
     <ul>
-      @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category)) {
+      @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
         @WriteContentItem(contentItem)
       }
     </ul>
