@@ -6,19 +6,28 @@
 
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
-<h2>Categories (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-    <li>@category.Title</li>
-  }
-</ul>
+@foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+  <h2>@category.Title</h2>
+  <section id="Group-@category.Key">
+    <ul>
+      @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category)) {
+        @WriteContentItem(contentItem)
+      }
+    </ul>
+  </section>
+}
 
-<h2>Content Items (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-    <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
-  }
-</ul>
+@if (Model.Topic["Categories"].Count == 0) {
+  <ul>
+    @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+      @WriteContentItem(contentItem)
+    }
+  </ul>
+}
+
+@helper WriteContentItem(Ignia.Topics.Topic contentItem) {
+  <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
+}
 
 <!--
   Content Type: Content List
