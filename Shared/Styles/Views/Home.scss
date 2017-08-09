@@ -20,15 +20,13 @@
 main {
   > section > header {
     padding                     : rem-calc(80 0);
-  }
-  > article {
-    padding                     : rem-calc(80 0 32);
-  }
-  > section > header {
     .video {
     //max-width                 : 33.4375rem;                   // 535px
       background-color          : $palette-white;
     }
+  }
+  > article {
+    padding                     : rem-calc(80 0 32);
   }
   section[role="region"] {
     margin-bottom               : rem-calc(80);
@@ -95,10 +93,24 @@ main {
 
   // Customers
   &.customers {
+    position                    : relative;
     padding-right               : rem-calc(540);
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 120% -1rem;
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 244% -1rem;
     > header {
       padding-right             : rem-calc(32);
+    }
+    aside {
+      position                  : absolute;
+      top                       : 0;
+      right                     : 0;
+      bottom                    : auto;
+      overflow                  : hidden;
+      padding                   : rem-calc(0 110);
+      height                    : 100%;
+      font-size                 : rem-calc(30);
+      font-weight               : 600;
+      color                     : $palette-yellow;
+      text-align                : center;
     }
   }
 

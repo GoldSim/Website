@@ -1,11 +1,10 @@
 main > section > header {
   padding: 5rem 0; }
+  main > section > header .video {
+    background-color: white; }
 
 main > article {
   padding: 5rem 0 2rem; }
-
-main > section > header .video {
-  background-color: white; }
 
 main section[role="region"] {
   margin-bottom: 5rem; }
@@ -40,10 +39,22 @@ main section[role="region"] {
   background-size: contain; }
 
 .panel.customers {
+  position: relative;
   padding-right: 33.75rem;
   background: white url("/Images/Home/Customers.Background.png") no-repeat 120% -1rem; }
   .panel.customers > header {
     padding-right: 2rem; }
+  .panel.customers aside {
+    position: absolute;
+    top: 0;
+    right: 0;
+    overflow: hidden;
+    padding: 0 6.875rem;
+    height: 100%;
+    font-size: 1.875rem;
+    font-weight: 600;
+    color: #fec10d;
+    text-align: center; }
 
 .panel.cta-links {
   padding-right: 20rem;
