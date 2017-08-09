@@ -1931,6 +1931,7 @@
     <Content Include="Shared\Styles\Views\Home.scss" />
     <Content Include="Shared\Styles\Overrides\_overrides.scss" />
     <Content Include="Shared\Styles\Base\_forms.scss" />
+    <Content Include="Views\PageGroup\PageGroup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

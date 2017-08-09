@@ -124,7 +124,12 @@ namespace GoldSim.Web.Controllers {
       | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This
       | should be skipped if the navigation root is null, as that suggests the current page is not a descendent of a group page.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      while (navigationRootTopic != null && currentTopic?.Parent != navigationRootTopic) {
+      while (
+        navigationRootTopic != null && 
+        currentTopic != null && 
+        currentTopic != navigationRootTopic && 
+        currentTopic?.Parent != navigationRootTopic
+      ) {
         currentTopic            = currentTopic.Parent;
       }
 
