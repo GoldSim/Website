@@ -33,7 +33,7 @@
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Environmental"))) {
             <div class="medium-6 cell">
               <div class="card application" data-equalizer-watch>
-                <span class="type icon application"></span>
+                <i class="type icon application" aria-hidden="true"></i>
                 <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
                 <a href="@application.WebPath" class="title">@application.Title</a>
               </div>
@@ -53,7 +53,7 @@
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Engineered"))) {
             <div class="medium-6 cell">
               <div class="card application" data-equalizer-watch>
-                <span class="type icon application"></span>
+                <i class="type icon application" aria-hidden="true"></i>
                 <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
                 <a href="@application.WebPath" class="title">@application.Title</a>
               </div>
@@ -73,7 +73,7 @@
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Business"))) {
             <div class="medium-6 cell">
               <div class="card application" data-equalizer-watch>
-                <span class="type icon application"></span>
+                <i class="type icon application" aria-hidden="true"></i>
                 <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
                 <a href="@application.WebPath" class="title">@application.Title</a>
               </div>
