@@ -6,7 +6,7 @@
 
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
 
-@if (Model.Topic["Categories"] != null) {
+@if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null) {
   if (Model.Topic["Categories"].Count == 0) {
     <ul>
       @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
