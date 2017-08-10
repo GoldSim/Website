@@ -1,7 +1,7 @@
 ﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
 
 @{
-  Layout = "~/Views/Shared/_Layout.cshtml";
+  Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
