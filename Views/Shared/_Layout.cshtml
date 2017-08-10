@@ -124,13 +124,11 @@
 
         <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
 
-          @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Subtitle"))) {
-            <!-- Long Title (Subtitle) -->
-            <header class="grid-x">
-              <h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle")</h1>
-            </header>
-            <!-- /Long Title (Subtitle) -->
-          }
+          <!-- Long Title (Subtitle) -->
+          <header class="grid-x">
+            <h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1>
+          </header>
+          <!-- /Long Title (Subtitle) -->
 
           <!-- Main Page Content -->
           <div class="grid-container">
