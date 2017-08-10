@@ -84,17 +84,6 @@
             @if (IsSectionDefined("ShortPageTitleSection")) {
               @RenderSection("ShortPageTitleSection")
             }
-            else {
-              <!-- Page Title Area -->
-              <header class="header">
-                <div class="grid-container">
-                  <div class="grid-x">
-                    <h1 class="title short cell">@Model.Topic.Title</h1>
-                  </div>
-                </div>
-              </header>
-              <!-- /Page Title Area -->
-            }
 
             @if (IsSectionDefined("PageLevelNavigationSection")) {
               @RenderSection("PageLevelNavigationSection")
