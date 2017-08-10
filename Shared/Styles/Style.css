@@ -4988,10 +4988,10 @@ table.hover.striped tr:nth-of-type(even):hover {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 1rem;
-  border: solid 4px white;
+  border: none 0 transparent;
   border-radius: 0;
-  -webkit-box-shadow: 0 0 0 1px rgba(32, 32, 32, 0.2);
-          box-shadow: 0 0 0 1px rgba(32, 32, 32, 0.2);
+  -webkit-box-shadow: none;
+          box-shadow: none;
   line-height: 0; }
 
 a.thumbnail {
@@ -5000,8 +5000,8 @@ a.thumbnail {
   transition: box-shadow 200ms ease-out;
   transition: box-shadow 200ms ease-out, -webkit-box-shadow 200ms ease-out; }
   a.thumbnail:hover, a.thumbnail:focus {
-    -webkit-box-shadow: 0 0 6px 1px rgba(254, 193, 13, 0.5);
-            box-shadow: 0 0 6px 1px rgba(254, 193, 13, 0.5); }
+    -webkit-box-shadow: none;
+            box-shadow: none; }
   a.thumbnail image {
     -webkit-box-shadow: none;
             box-shadow: none; }
@@ -5936,6 +5936,43 @@ ol {
       content: ' '; }
     .callout.picture:after {
       clear: both; }
+
+.card {
+  position: relative; }
+  .card a.thumbnail,
+  .card a.title {
+    display: block;
+    margin: 0;
+    border: 0 none transparent; }
+  .card a.thumbnail {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    max-height: 11.25rem; }
+  .card .thumbnail img,
+  .card img.thumbnail {
+    margin: 0;
+    border: 0 none transparent;
+    width: 100%; }
+  .card a.title {
+    padding: 1.125rem;
+    min-height: 5.875rem; }
+    .card a.title:hover, .card a.title:focus, .card a.title:active {
+      color: #202020;
+      background-color: #fec10d; }
+    .card a.title:visited {
+      color: #202020; }
+  .card .icon.type {
+    z-index: 9;
+    display: block;
+    position: absolute;
+    top: 1.125rem;
+    right: 1.125rem;
+    border-radius: 50%;
+    width: 3.25rem;
+    height: 3.25rem; }
+    .card .icon.type.application {
+      background-color: #eb5d62; }
 
 .quote {
   font-size: 1.875rem;

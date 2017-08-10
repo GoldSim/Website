@@ -1941,6 +1941,7 @@
     <Content Include="Shared\Styles\Base\_forms.scss" />
     <Content Include="Views\PageGroup\PageGroup.cshtml" />
     <Content Include="Views\Layout\_Layout.cshtml" />
+    <Content Include="Shared\Styles\Views\ApplicationIndex.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
