@@ -131,11 +131,16 @@
           <!-- /Long Title (Subtitle) -->
 
           <!-- Main Page Content -->
-          <div class="grid-container">
-            <div class="grid-x">
-              @RenderBody()
+          @if (IsSectionDefined("PageBodySection")) {
+            @RenderSection("PageBodySection")
+          }
+          else {
+            <div class="grid-container">
+              <div class="grid-x">
+                @RenderBody()
+              </div>
             </div>
-          </div>
+          }
           <!-- /Main Page Content -->
 
         </article>
