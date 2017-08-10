@@ -2,6 +2,17 @@
 
 @if (Model.NavigationRootTopic != null) {
   <!-- Page Navigation Area -->
+
+  <!-- Page Title Area -->
+  <header class="header">
+    <div class="grid-container">
+      <div class="grid-x">
+        <h1 class="title short cell">@Model.NavigationRootTopic.Attributes.Get("Subtitle", Model.NavigationRootTopic.Title)</h1>
+      </div>
+    </div>
+  </header>
+  <!-- /Page Title Area -->
+
   <nav id="PageNavigation" class="navigation" role="navigation">
     <ul>
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.OrderBy(t => t.SortOrder)) {
