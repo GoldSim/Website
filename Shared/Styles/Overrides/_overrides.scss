@@ -22,3 +22,19 @@
   outline-width                 : 0;
   outline-color                 : transparent;
 }
+
+//----------------------------------------------------------------------------------------------
+// GOOGLE CUSTOM SEARCH
+//----------------------------------------------------------------------------------------------
+#gsc-i-id1::-webkit-input-placeholder {
+    font-size: 1.875rem !important;
+}
+#gsc-i-id1::-moz-placeholder {
+    font-size: 1.875rem !important;
+}
+#gsc-i-id1:-ms-input-placeholder {
+    font-size: 1.875rem !important;
+}
+.gsc-input input.gsc-input {
+    background: none repeat scroll 0% 0% transparent !important;
+}
