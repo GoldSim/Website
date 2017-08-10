@@ -2,34 +2,61 @@
 
 @{
   Layout = "~/Views/Shared/_Layout.cshtml";
+
+  string contentType = Model.Topic.Attributes.Get("ContentType").ToLower();
+  string viewType = contentType;
+
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+@section PageBodySection {
 
-@if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null) {
-  if (Model.Topic["Categories"].Count == 0) {
-    <ul>
-      @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-        @WriteContentItem(contentItem)
+  <section class="panel body">
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+  </section>
+
+  <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+        <h2>@category.Title</h2>
+        <section id="Group-@category.Key">
+          <ul class="accordion" data-accordion>
+            @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+              @WriteContentItem(contentItem, viewType)
+            }
+          </ul>
+        </section>
       }
-    </ul>
-  }
-  else {
-    foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-      <h2>@category.Title</h2>
-      <section id="Group-@category.Key">
-        <ul>
-          @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
-            @WriteContentItem(contentItem)
-          }
-        </ul>
-      </section>
     }
-  }
+    else {
+      <ul class="accordion" data-accordion>
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+          @WriteContentItem(contentItem, viewType)
+        }
+      </ul>
+    }
+
+  </section>
+
 }
 
-@helper WriteContentItem(Ignia.Topics.Topic contentItem) {
-  <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
+@helper WriteContentItem(Ignia.Topics.Topic contentItem, string viewType) {
+  <li class="accordion-item" data-accordion-item>
+    <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#">
+      @if (viewType.Equals("faq")) {
+        <span class="marker">Q:</span>
+      }
+      @contentItem.Title
+    </a>
+    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content>
+      @if (viewType.Equals("faq")) {
+        <span class="marker">A:</span>
+      }
+      @Html.Raw(@contentItem.Attributes.Get("Description"))
+      @if (!String.IsNullOrEmpty(contentItem.Attributes.Get("LearnMoreURL"))) {
+        <p><strong><a href="@contentItem.Attributes.Get("LearnMoreURL")">Learn More</a></strong></p>
+      }
+    </div>
+  </li>
 }
 
 <!--
