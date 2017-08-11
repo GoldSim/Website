@@ -284,6 +284,12 @@ ol {
       &.application {
         background-color        : $palette-red;
       }
+      &.case-study {
+        background-color        : $palette-green;
+      }
+      &.module {
+        background-color        : $palette-blue;
+      }
     }
   }
 }
