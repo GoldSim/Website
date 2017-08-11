@@ -1726,8 +1726,20 @@
     </Content>
     <Content Include="Shared\Styles\Vendor\RedCastor\awesome-foundation6-checkbox.css" />
     <Content Include="Shared\Styles\Vendor\RedCastor\awesome-foundation6-checkbox.min.css" />
+    <Content Include="Shared\Styles\Views\Accordion.css" />
+    <Content Include="Shared\Styles\Views\Accordion.min.css" />
+    <Content Include="Shared\Styles\Views\ApplicationIndex.css" />
+    <Content Include="Shared\Styles\Views\ApplicationIndex.min.css" />
+    <Content Include="Shared\Styles\Views\ApplicationPage.css" />
+    <Content Include="Shared\Styles\Views\ApplicationPage.min.css" />
+    <Content Include="Shared\Styles\Views\CaseStudy.css" />
+    <Content Include="Shared\Styles\Views\CaseStudy.min.css" />
     <Content Include="Shared\Styles\Views\Home.css" />
     <Content Include="Shared\Styles\Views\Home.min.css" />
+    <Content Include="Shared\Styles\Views\TechnicalPaperList.css" />
+    <Content Include="Shared\Styles\Views\TechnicalPaperList.min.css" />
+    <Content Include="Shared\Styles\Views\Video.css" />
+    <Content Include="Shared\Styles\Views\Video.min.css" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -1784,7 +1796,7 @@
     <Content Include="Views\FAQ\FAQ.cshtml" />
     <Content Include="Views\Glossary\Glossary.cshtml" />
     <Content Include="Views\Slideshow\Slideshow.cshtml" />
-    <Content Include="Views\TechnicalPaperIndex\TechnicalPaperIndex.cshtml" />
+    <Content Include="Views\TechnicalPaperList\TechnicalPaperList.cshtml" />
     <Content Include="Views\Video\Video.cshtml" />
     <None Include="Properties\PublishProfiles\GoldSimWebStaging.pubxml" />
     <Content Include="Views\Layout\Menu.cshtml" />
@@ -1942,6 +1954,11 @@
     <Content Include="Views\PageGroup\PageGroup.cshtml" />
     <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Shared\Styles\Views\ApplicationIndex.scss" />
+    <Content Include="Shared\Styles\Views\Accordion.scss" />
+    <Content Include="Shared\Styles\Views\ApplicationPage.scss" />
+    <Content Include="Shared\Styles\Views\TechnicalPaperList.scss" />
+    <Content Include="Shared\Styles\Views\Video.scss" />
+    <Content Include="Shared\Styles\Views\CaseStudy.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
