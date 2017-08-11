@@ -6172,14 +6172,10 @@ h1.title.short {
 
 article header h1.title.long {
   margin: 0;
-  padding: 4rem 6.875rem;
   color: #666666; }
 
 article header .category.title {
-  margin-bottom: 0;
-  padding: 4rem 6.875rem 0; }
-  article header .category.title ~ h1.title.long {
-    padding-top: 0; }
+  margin-bottom: 0; }
 
 .site.footer .navigation p.list.heading {
   margin-bottom: 0;
@@ -6230,6 +6226,9 @@ body {
 #MainContentArea {
   padding-bottom: 3rem;
   background-color: #f3f3f3; }
+  #MainContentArea article:first-of-type header {
+    margin: 3rem 0;
+    padding: 0 6.875rem; }
 
 #SiteFooter {
   position: absolute;

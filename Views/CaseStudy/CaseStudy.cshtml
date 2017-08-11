@@ -4,27 +4,34 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+@section LongTitleSection {
 
-<h2>Attributes (ApplicationPageBase)</h2>
-<ul>
-  <li><strong>Abstract:</strong> @Model.Topic.Attributes.Get("Abstract")</li>
-  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
-  <li><strong>Learn More (URL):</strong> @Model.Topic.Attributes.Get("LearnMoreUrl")</li>
-</ul>
+  <!-- Long Title (Subtitle) -->
+  <header class="grid-x grid-margin-x">
+    <div class="medium-12 cell"><h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
+    <div class="medium-8 cell">
+      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
+        <strong>Client: @Model.Topic.Attributes.Get("Customer")</strong><br/>
+      }
+      <strong>Applications: <a href="/Web/Applications/EnvironmentalSystems/WaterResources/">Water Resources</a>, <a href="/Web/Applications/EnvironmentalSystems/Ecological/">Ecological</a></strong>
+    </div>
+    <div class="medium-4 cell">
+      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
+        <a href="@Model.Topic.Attributes.Get("DownloadURL")" target="_blank" class="button large">Download as PDF <i class="fa fa-file-pdf-o"></i></a>
+      }
+    </div>
+  </header>
+  <!-- /Long Title (Subtitle) -->
 
-<h2>Attributes (CaseStudy)</h2>
-<ul>
-  <li><strong>Customer (Name):</strong> @Model.Topic.Attributes.Get("Customer")</li>
-  <li><strong>Customer (URL):</strong> @Model.Topic.Attributes.Get("CustomerUrl")</li>
-</ul>
+}
 
-<h2>Applications (Relationship)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic application in Model.Topic.Relationships["Applications"]) {
-    <li>@application.Title</li>
-  }
-</ul>
+@section PageBodySection {
+
+  <section class="panel body">
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+  </section>
+
+}
 
 <!--
   Content Type: Case Study
