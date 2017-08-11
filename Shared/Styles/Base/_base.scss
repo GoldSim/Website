@@ -294,6 +294,12 @@ ol {
   }
 }
 
+article {
+  &.page.body {
+    margin-bottom               : rem-calc(48);
+  }
+}
+
 //----------------------------------------------------------------------------------------------
 // QUOTES
 //----------------------------------------------------------------------------------------------
@@ -437,11 +443,15 @@ section.panel.body {
     margin-top                  : rem-calc(48);
   }
 }
+.panel.accordion.embedded {
+  margin-bottom                 : rem-calc(48);
+}
 ul.accordion {
   margin                        : 0;
   li {
     margin-bottom               : 0;
     border-bottom               : 1px solid $palette-grey-light;
+    padding-left                : 0;
     &:last-child {
       border-bottom             : 0 none transparent;
     }
@@ -452,73 +462,92 @@ ul.accordion {
         }
       }
     }
-  }
-}
-.accordion-title,
-.accordion-content {
-  border                        : 0 none transparent;
-  // FAQ-SPECIFIC
-  &.question,
-  &.answer {
-    position                    : relative;
-    .marker {
-      display                   : inline-block;
-      position                  : absolute;
-      left                      : rem-calc(68);
+
+    .accordion-title,
+    .accordion-content {
+      border                    : 0 none transparent;
+      // FAQ-SPECIFIC
+      &.question,
+      &.answer {
+        position                : relative;
+        .marker {
+          display               : inline-block;
+          position              : absolute;
+          left                  : rem-calc(68);
+          font-family           : $header-font-family;
+          font-size             : rem-calc(32);
+          line-height           : 0.9375;
+          font-weight           : 600;
+          color                 : $palette-yellow;
+        }
+      }
+      &.question {
+        .marker {
+          top                   : rem-calc(32);
+
+        }
+      }
+      &.answer {
+        .marker {
+          position              : relative;
+          top                   : 0;
+          left                  : rem-calc(-37);
+        }
+        p {
+          &:first-of-type {
+            margin-top          : rem-calc(-34);
+          }
+        }
+      }
+    }
+    .accordion-title {
+      padding                   : rem-calc(30 110 22 110);
       font-family               : $header-font-family;
       font-size                 : rem-calc(32);
-      line-height               : 0.9375;
-      font-weight               : 600;
-      color                     : $palette-yellow;
+      line-height               : 1.2;
+      font-weight               : 300;
+      color                     : $text-color;
+      &:before {
+        right                   : rem-calc(48);
+        content                 : '▼';
+        font-size               : rem-calc(20);
+        color                   : $palette-grey-light;
+      }
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited {
+        color                   : $text-color !important;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        background-color        : transparent;
+      }
     }
-  }
-  &.question {
-    .marker {
-      top                       : rem-calc(32);
+    .accordion-content {
+      padding                   : rem-calc(20 110 44 110);
+    }
 
-    }
   }
-  &.answer {
-    .marker {
-      position                  : relative;
-      top                       : 0;
-      left                      : rem-calc(-37);
-    }
-    p {
-      &:first-of-type {
-        margin-top              : rem-calc(-34);
+
+  &.embedded {
+    li {
+      background-color          : $palette-grey-lightest;
+      .accordion-title {
+        padding                 : rem-calc(18 90 18 18);
+        font-size               : rem-calc(20);
+        font-weight             : 600;
+      }
+      .accordion-content {
+        padding                 : rem-calc(6 90 16 18);
+        background-color        : $palette-grey-lightest;
       }
     }
   }
+
 }
-.accordion-title {
-  padding                       : rem-calc(30 110 22 110);
-  font-family                   : $header-font-family;
-  font-size                     : rem-calc(32);
-  line-height                   : 1.2;
-  font-weight                   : 300;
-  color                         : $text-color;
-  &:before {
-    right                       : rem-calc(48);
-    content                     : '▼';
-    font-size                   : rem-calc(20);
-    color                       : $palette-grey-light;
-  }
-  &:hover,
-  &:focus,
-  &:active,
-  &:visited {
-    color                       : $text-color !important;
-  }
-  &:hover,
-  &:focus,
-  &:active {
-    background-color            : transparent;
-  }
-}
-.accordion-content {
-  padding                       : rem-calc(20 110 44 110);
-}
+
 
 //----------------------------------------------------------------------------------------------
 // MAIN CONTENT AREA ELEMENTS

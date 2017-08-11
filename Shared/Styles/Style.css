@@ -5637,6 +5637,9 @@ p ~ h1,
 p ~ h2 {
   padding-top: 0.9375rem; }
 
+.author {
+  font-style: italic; }
+
 .hidden {
   display: none; }
 
@@ -5973,6 +5976,13 @@ ol {
     height: 3.25rem; }
     .card .icon.type.application {
       background-color: #eb5d62; }
+    .card .icon.type.case-study {
+      background-color: #66ae3d; }
+    .card .icon.type.module {
+      background-color: #00adef; }
+
+article.page.body {
+  margin-bottom: 3rem; }
 
 .quote {
   font-size: 1.875rem;
@@ -6077,65 +6087,75 @@ table {
 section.panel.body ~ section.panel.accordion {
   margin-top: 3rem; }
 
+.panel.accordion.embedded {
+  margin-bottom: 3rem; }
+
 ul.accordion {
   margin: 0; }
   ul.accordion li {
     margin-bottom: 0;
-    border-bottom: 1px solid #cccccc; }
+    border-bottom: 1px solid #cccccc;
+    padding-left: 0; }
     ul.accordion li:last-child {
       border-bottom: 0 none transparent; }
     ul.accordion li.is-active > .accordion-title:before {
       content: '▲'; }
-
-.accordion-title,
-.accordion-content {
-  border: 0 none transparent; }
-  .accordion-title.question, .accordion-title.answer,
-  .accordion-content.question,
-  .accordion-content.answer {
-    position: relative; }
-    .accordion-title.question .marker, .accordion-title.answer .marker,
-    .accordion-content.question .marker,
-    .accordion-content.answer .marker {
-      display: inline-block;
-      position: absolute;
-      left: 4.25rem;
+    ul.accordion li .accordion-title,
+    ul.accordion li .accordion-content {
+      border: 0 none transparent; }
+      ul.accordion li .accordion-title.question, ul.accordion li .accordion-title.answer,
+      ul.accordion li .accordion-content.question,
+      ul.accordion li .accordion-content.answer {
+        position: relative; }
+        ul.accordion li .accordion-title.question .marker, ul.accordion li .accordion-title.answer .marker,
+        ul.accordion li .accordion-content.question .marker,
+        ul.accordion li .accordion-content.answer .marker {
+          display: inline-block;
+          position: absolute;
+          left: 4.25rem;
+          font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+          font-size: 2rem;
+          line-height: 0.9375;
+          font-weight: 600;
+          color: #fec10d; }
+      ul.accordion li .accordion-title.question .marker,
+      ul.accordion li .accordion-content.question .marker {
+        top: 2rem; }
+      ul.accordion li .accordion-title.answer .marker,
+      ul.accordion li .accordion-content.answer .marker {
+        position: relative;
+        top: 0;
+        left: -2.3125rem; }
+      ul.accordion li .accordion-title.answer p:first-of-type,
+      ul.accordion li .accordion-content.answer p:first-of-type {
+        margin-top: -2.125rem; }
+    ul.accordion li .accordion-title {
+      padding: 1.875rem 6.875rem 1.375rem 6.875rem;
       font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 2rem;
-      line-height: 0.9375;
-      font-weight: 600;
-      color: #fec10d; }
-  .accordion-title.question .marker,
-  .accordion-content.question .marker {
-    top: 2rem; }
-  .accordion-title.answer .marker,
-  .accordion-content.answer .marker {
-    position: relative;
-    top: 0;
-    left: -2.3125rem; }
-  .accordion-title.answer p:first-of-type,
-  .accordion-content.answer p:first-of-type {
-    margin-top: -2.125rem; }
-
-.accordion-title {
-  padding: 1.875rem 6.875rem 1.375rem 6.875rem;
-  font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: 2rem;
-  line-height: 1.2;
-  font-weight: 300;
-  color: #202020; }
-  .accordion-title:before {
-    right: 3rem;
-    content: '▼';
-    font-size: 1.25rem;
-    color: #cccccc; }
-  .accordion-title:hover, .accordion-title:focus, .accordion-title:active, .accordion-title:visited {
-    color: #202020 !important; }
-  .accordion-title:hover, .accordion-title:focus, .accordion-title:active {
-    background-color: transparent; }
-
-.accordion-content {
-  padding: 1.25rem 6.875rem 2.75rem 6.875rem; }
+      line-height: 1.2;
+      font-weight: 300;
+      color: #202020; }
+      ul.accordion li .accordion-title:before {
+        right: 3rem;
+        content: '▼';
+        font-size: 1.25rem;
+        color: #cccccc; }
+      ul.accordion li .accordion-title:hover, ul.accordion li .accordion-title:focus, ul.accordion li .accordion-title:active, ul.accordion li .accordion-title:visited {
+        color: #202020 !important; }
+      ul.accordion li .accordion-title:hover, ul.accordion li .accordion-title:focus, ul.accordion li .accordion-title:active {
+        background-color: transparent; }
+    ul.accordion li .accordion-content {
+      padding: 1.25rem 6.875rem 2.75rem 6.875rem; }
+  ul.accordion.embedded li {
+    background-color: #f3f3f3; }
+    ul.accordion.embedded li .accordion-title {
+      padding: 1.125rem 5.625rem 1.125rem 1.125rem;
+      font-size: 1.25rem;
+      font-weight: 600; }
+    ul.accordion.embedded li .accordion-content {
+      padding: 0.375rem 5.625rem 1rem 1.125rem;
+      background-color: #f3f3f3; }
 
 main > section > header {
   background-color: #666666; }
