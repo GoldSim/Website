@@ -581,10 +581,19 @@ h1.title.short {
 article {
 
   // Long Title (Subtitle) Area
-  header h1.title.long {
-    margin                      : 0;
-    padding                     : rem-calc(64 110);
-    color                       : $palette-grey-dark;
+  header {
+    h1.title.long {
+      margin                    : 0;
+      padding                   : rem-calc(64 110);
+      color                     : $palette-grey-dark;
+    }
+    .category.title {
+      margin-bottom             : 0;
+      padding                   : rem-calc(64 110 0);
+      ~ h1.title.long {
+        padding-top             : 0;
+      }
+    }
   }
 
 }

@@ -2,33 +2,144 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
+
+  string uniqueCategory         = @Model.Topic.Attributes.Get("Category", "");
+  string category               = uniqueCategory;
+  if (category.IndexOf(":") >= 0)
+    category                    = category.Substring(category.LastIndexOf(":") + 1);
+
+
+  Ignia.Topics.Topic papers     = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:TechnicalPapers:ContentItems");
+
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+@section LongTitleSection {
 
-<h2>Attributes (ApplicationPageBase)</h2>
-<ul>
-  <li><strong>Abstract:</strong> @Model.Topic.Attributes.Get("Abstract")</li>
-  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
-  <li><strong>Learn More (URL):</strong> @Model.Topic.Attributes.Get("LearnMoreUrl")</li>
-</ul>
+  <!-- Long Title (Subtitle) -->
+  <header class="grid-x">
+    <h2 class="category title">@(!String.IsNullOrEmpty(category) ? category + " " : "")Applications</h2>
+    <h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1>
+  </header>
+  <!-- /Long Title (Subtitle) -->
 
-<h2>Attributes (ApplicationPage)</h2>
-<ul>
-  <li><strong>Thumbnail Image:</strong> @Model.Topic.Attributes.Get("ThumbnailImage")</li>
-  <li><strong>Category:</strong> @Model.Topic.Attributes.Get("Category")</li>
-  <li><strong>Compare To:</strong> @Model.Topic.Attributes.Get("CompareTo")</li>
-  <li><strong>Learn More (Label):</strong> @Model.Topic.Attributes.Get("LearnMoreLabel")</li>
-  <li><strong>Model Image:</strong> @Model.Topic.Attributes.Get("ModelImage")</li>
-  <li><strong>White Paper:</strong> @Model.Topic.Attributes.Get("WhitePaper")</li>
-</ul>
-
-<h2>Modules (Relationship)</h2>
-<ul>
-@foreach (Ignia.Topics.Topic module in Model.Topic.Relationships["Modules"]) {
-  <li>@module.Title</li>
 }
-</ul>
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Abstract", ""))) {
+      <!-- Abstract -->
+      <h1>Abstract</h1>
+      <!-- Thumbnail Image -->
+      <picture class="callout picture">
+        <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
+        <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
+      </picture>
+      <!-- Abstract Text -->
+      <p>@Model.Topic.Attributes.Get("Abstract", "")</p>
+      <!-- /Abstract -->
+    }
+
+    <!-- Body Content -->
+    <article class="page body">
+      @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+    </article>
+    <!-- /Body Content -->
+
+    <!-- Model Image -->
+    <figure class="illustration full">
+      <img src="@Model.Topic.Attributes.Get("ModelImage")" alt="model" />
+    </figure>
+    <!-- /Model Image -->
+
+    <!-- Related Case Studies -->
+    <h1>Case Studies</h1>
+    <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+      <div class="medium-6 cell">
+        <div class="card case-study" data-equalizer-watch>
+          <i class="type icon case-study" aria-hidden="true"></i>
+          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
+          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
+        </div>
+      </div>
+      <div class="medium-6 cell">
+        <div class="card case-study" data-equalizer-watch>
+          <i class="type icon case-study" aria-hidden="true"></i>
+          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
+          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
+        </div>
+      </div>
+    </div>
+    <!-- /Related Case Studies -->
+
+    <!-- Related Modules -->
+    <h1>Modules</h1>
+    <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+      <div class="medium-6 cell">
+        <div class="card module" data-equalizer-watch>
+          <i class="type icon module" aria-hidden="true"></i>
+          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
+          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
+        </div>
+      </div>
+      <div class="medium-6 cell">
+        <div class="card module" data-equalizer-watch>
+          <i class="type icon module" aria-hidden="true"></i>
+          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
+          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
+        </div>
+      </div>
+    </div>
+    <!-- /Related Modules -->
+
+    <!-- White Papers -->
+    <h1>White Papers</h1>
+    <ul>
+      <li><a href="/Downloads/Whitepapers/Reliability.pdf" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: Reliability');return false;" target="_blank">Reliability Engineering Using the GoldSim Reliability Module</a></li>
+      <li><a href="/Downloads/WhitePapers/IntegratedWaterResourcesManagement.pdf" target="_blank">Integrated Water Resources Management Applications Using GoldSim</a></li>
+      <li><a href="/Downloads/WhitePapers/Energy.pdf" target="_blank">Energy Applications Using GoldSim</a></li>
+    </ul>
+    <!-- /White Papers -->
+
+    <!-- Technical Papers -->
+    <h1>Technical Papers</h1>
+    <section class="panel accordion embedded">
+      <ul class="accordion embedded" data-accordion>
+      @foreach (Ignia.Topics.Topic paper in papers) {
+        if (@paper.Attributes.Get("Category") == "Water") {
+          <li class="accordion-item" data-accordion-item>
+            <a class="accordion-title" href="#">@paper.Title</a>
+            <div class="accordion-content" data-tab-content>
+              <p class="author">@Html.Raw(@paper.Attributes.Get("Authors"))</p>
+              @Html.Raw(@paper.Attributes.Get("Description"))
+              <p><a href="@paper.Attributes.Get("LearnMoreURL")" target="_blank"><strong>@Html.Raw(@paper.Attributes.Get("Publication"))</strong></a></p>
+            </div>
+          </li>
+        }
+      }
+      </ul>
+    </section>
+    <!-- /Technical Papers -->
+
+    <!-- Learn More -->
+    <h1>Learn More</h1>
+    <ul>
+      @if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Approaches")) {
+        <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
+      }
+      else if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Excel")) {
+        <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
+      }
+      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreUrl"))) {
+        <li><a href="@Model.Topic.Attributes.Get("LearnMoreUrl")">Learn more</a></li>
+      }
+    </ul>
+    <!-- Learn More -->
+
+  </section>
+
+}
 
 <!--
   Content Type: Application Page

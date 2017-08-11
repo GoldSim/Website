@@ -6175,6 +6175,12 @@ article header h1.title.long {
   padding: 4rem 6.875rem;
   color: #666666; }
 
+article header .category.title {
+  margin-bottom: 0;
+  padding: 4rem 6.875rem 0; }
+  article header .category.title ~ h1.title.long {
+    padding-top: 0; }
+
 .site.footer .navigation p.list.heading {
   margin-bottom: 0;
   font-size: 1.25rem;
