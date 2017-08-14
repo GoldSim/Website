@@ -83,6 +83,7 @@ a[href$=".xlsx"] {
   line-height                   : 1.3;
 }
 a ~ i {
+  padding-right                 : rem-calc(2);
   padding-left                  : rem-calc(5);
 }
 i {
@@ -245,6 +246,7 @@ ol {
     display                     : block;
     margin                      : 0;
     border                      : 0 none transparent;
+    background-color            : $palette-grey-lightest;
   }
   a.thumbnail {
     overflow                    : hidden;
@@ -347,7 +349,7 @@ figure {
   margin                        : rem-calc(40) auto rem-calc(36);
   @extend .centered;
   img {
-    border                      : 2px solid $palette-grey-light;
+    border                      : 2px solid rgb(234, 234, 234);
     padding                     : rem-calc(28 32);
     text-align                  : center;
   }
@@ -463,6 +465,12 @@ ul.accordion {
       }
     }
 
+    &:last-child:not(.is-active) {
+      > .accordion-title {
+        border-bottom           : 0 none transparent;
+      }
+    }
+
     .accordion-title,
     .accordion-content {
       border                    : 0 none transparent;
@@ -501,6 +509,7 @@ ul.accordion {
       }
     }
     .accordion-title {
+      border-bottom             : 0 none transparent;
       padding                   : rem-calc(30 110 22 110);
       font-family               : $header-font-family;
       font-size                 : rem-calc(32);
