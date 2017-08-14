@@ -508,6 +508,7 @@ ul.accordion {
       font-weight               : 300;
       color                     : $text-color;
       &:before {
+        top                     : rem-calc(46);
         right                   : rem-calc(48);
         content                 : '▼';
         font-size               : rem-calc(20);
@@ -538,6 +539,9 @@ ul.accordion {
         padding                 : rem-calc(18 90 18 18);
         font-size               : rem-calc(20);
         font-weight             : 600;
+        &:before {
+          top                   : rem-calc(28);
+        }
       }
       .accordion-content {
         padding                 : rem-calc(6 90 16 18);
