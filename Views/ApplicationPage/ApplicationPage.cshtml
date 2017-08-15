@@ -122,20 +122,24 @@
     </section>
     <!-- /Technical Papers -->
 
-    <!-- Learn More -->
-    <h1>Learn More</h1>
-    <ul>
-      @if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Approaches")) {
-        <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
-      }
-      else if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Excel")) {
-        <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
-      }
-      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreUrl"))) {
-        <li><a href="@Model.Topic.Attributes.Get("LearnMoreUrl")">Learn more</a></li>
-      }
-    </ul>
-    <!-- Learn More -->
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
+
+      <!-- Learn More -->
+      <h1>Learn More</h1>
+      <ul>
+        @if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Approaches")) {
+          <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
+        }
+        else if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Excel")) {
+          <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
+        }
+        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
+          <li><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+        }
+      </ul>
+      <!-- Learn More -->
+
+    }
 
   </section>
 
