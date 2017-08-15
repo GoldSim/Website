@@ -6190,6 +6190,10 @@ article header h1.title.long {
 article header .category.title {
   margin-bottom: 0; }
 
+article header ~ .embedded.body {
+  margin-bottom: 3rem;
+  padding: 0 6.875rem; }
+
 .site.footer .navigation p.list.heading {
   margin-bottom: 0;
   font-size: 1.25rem;
