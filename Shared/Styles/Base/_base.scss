@@ -134,6 +134,13 @@ ol {
   }
 }
 
+ul {
+  ul {
+    list-style-type             : circle;
+  }
+}
+
+
 //----------------------------------------------------------------------------------------------
 // BUTTONS
 //----------------------------------------------------------------------------------------------
@@ -249,10 +256,12 @@ ol {
     background-color            : $palette-grey-lightest;
   }
   a.thumbnail {
-    overflow                    : hidden;
     width                       : 100%;
-    height                      : 100%;
+    height                      : rem-calc(180);
     max-height                  : rem-calc(180);
+    background-position         : center center;
+    background-size             : cover;
+    background-color            : $palette-grey-dark;
   }
   .thumbnail img,
   img.thumbnail {

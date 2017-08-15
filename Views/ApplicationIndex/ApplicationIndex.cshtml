@@ -32,10 +32,10 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Environmental"))) {
             <div class="medium-6 cell">
-              <div class="card application" data-equalizer-watch>
+              <div class="card application">
                 <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
-                <a href="@application.WebPath" class="title">@application.Title</a>
+                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
               </div>
             </div>
             }
@@ -52,10 +52,10 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Engineered"))) {
             <div class="medium-6 cell">
-              <div class="card application" data-equalizer-watch>
+              <div class="card application">
                 <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
-                <a href="@application.WebPath" class="title">@application.Title</a>
+                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
               </div>
             </div>
             }
@@ -66,16 +66,16 @@
       <!-- /Engineered -->
       <!-- Business -->
       <li class="accordion-item" data-accordion-item>
-        <a class="accordion-title" href="#">Engineered</a>
+        <a class="accordion-title" href="#">Business</a>
         <!-- Business Applications -->
         <div class="accordion-content" data-tab-content>
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
             @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Business"))) {
             <div class="medium-6 cell">
-              <div class="card application" data-equalizer-watch>
+              <div class="card application">
                 <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail"><img src="@application.Attributes.Get("ThumbnailImage", "")" alt="@application.Title" /></a>
-                <a href="@application.WebPath" class="title">@application.Title</a>
+                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
               </div>
             </div>
             }
