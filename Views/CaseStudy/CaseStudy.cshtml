@@ -62,7 +62,9 @@
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
       <h1>Learn More</h1>
-      <p><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></p>
+      <ul>
+        <li><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+      </ul>
     }
 
   </section>
