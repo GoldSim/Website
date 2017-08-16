@@ -61,7 +61,7 @@
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Abstract", ""))) {
       <!-- Abstract -->
       <h1>Abstract</h1>
-      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
+      if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
         <!-- Thumbnail Image -->
         <picture class="callout picture">
           <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
