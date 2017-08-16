@@ -35,7 +35,9 @@
     <div class="medium-12 cell"><h1 class="page title long case-study">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
     <div class="medium-8 cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
-        <strong>Client: @(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CustomerURL")) ? "<a href=\"" + @Model.Topic.Attributes.Get("CustomerURL") + "\">" : "")@Model.Topic.Attributes.Get("Customer")@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CustomerURL")) ? "</a>" : "")</strong><br/>
+        <strong>Client:</strong>
+        @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
+        <br/>
       }
       @if(applications.Count > 0) {
         <strong>Applications:</strong>
@@ -83,6 +85,27 @@
     }
 
   </section>
+
+}
+
+@functions{
+
+  /*============================================================================================================================
+  | SET UP CUSTOMER STRUCTURE
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string customer(string customerName, string customerUrl){
+
+    string customer             = "";
+    if (!String.IsNullOrEmpty(customerUrl)) {
+      customer                 += "<a href=\"" + customerUrl + "\" target=\"blank\">";
+    }
+    customer                   += customerName;
+    if (!String.IsNullOrEmpty(customerUrl)) {
+      customer                 += "</a>";
+    }
+
+    return customer;
+  }
 
 }
 
