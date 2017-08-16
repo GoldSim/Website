@@ -5762,10 +5762,13 @@ label.required {
   color: #eb5d62;
   background-color: white; }
 
-a.comma.delimited {
+a.comma.delimited:after {
   content: ',';
   display: inline-block;
   margin-right: 0.125rem; }
+
+a.comma.delimited:last-of-type:after {
+  content: ''; }
 
 main a {
   border-bottom: 2px solid #fec10d;

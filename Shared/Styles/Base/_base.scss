@@ -19,7 +19,14 @@
 //----------------------------------------------------------------------------------------------
 a {
   &.comma.delimited {
-    @include comma-delimit;
+    &:after {
+      @include comma-delimit;
+    }
+    &:last-of-type {
+      &:after {
+        content                 : '';
+      }
+    }
   }
 }
 
