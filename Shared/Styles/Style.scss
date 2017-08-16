@@ -22,8 +22,9 @@
 //----------------------------------------------------------------------------------------------
 // IMPORT OTHER MANIFESTS
 //----------------------------------------------------------------------------------------------
-@import "Overrides/overrides";
+@import "Helpers/mixins";
 @import "Base/base";
 @import "Layout/layout";
 @import "Components/components";
 @import "Views/views";
+@import "Overrides/overrides";

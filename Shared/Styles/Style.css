@@ -5606,12 +5606,6 @@ a.thumbnail {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse; } }
 
-* {
-  outline-width: 0;
-  outline-color: transparent; }
-  [data-whatinput='mouse'] * {
-    outline: 0; }
-
 body {
   font-size: 1.125rem; }
 
@@ -5767,6 +5761,11 @@ label.required {
   font-weight: 600;
   color: #eb5d62;
   background-color: white; }
+
+a.comma.delimited {
+  content: ',';
+  display: inline-block;
+  margin-right: 0.125rem; }
 
 main a {
   border-bottom: 2px solid #fec10d;
@@ -6530,3 +6529,9 @@ form.gsc-search-box.gsc-search-box-tools {
   background-repeat: no-repeat;
   background-color: transparent;
   cursor: pointer; }
+
+* {
+  outline-width: 0;
+  outline-color: transparent; }
+  [data-whatinput='mouse'] * {
+    outline: 0; }
