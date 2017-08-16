@@ -6344,6 +6344,24 @@ nav.navigation.primary {
     nav.navigation.primary ul.menu:not(.submenu) > li > ul.nested {
       margin-bottom: 2rem; }
 
+nav.navigation.page {
+  -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+  background-color: white; }
+  nav.navigation.page ul.menu li {
+    margin-bottom: 0; }
+    nav.navigation.page ul.menu li a {
+      border-bottom: 2px solid transparent;
+      padding: 1.5rem 1.25rem 1.125rem;
+      font-weight: normal;
+      color: #666666;
+      text-decoration: none; }
+      nav.navigation.page ul.menu li a:hover, nav.navigation.page ul.menu li a:focus, nav.navigation.page ul.menu li a:active, nav.navigation.page ul.menu li a.selected {
+        border-color: #fec10d;
+        color: #202020; }
+      nav.navigation.page ul.menu li a.selected {
+        font-weight: 600; }
+
 @-webkit-keyframes fadeInBackground {
   0% {
     background-color: transparent; }

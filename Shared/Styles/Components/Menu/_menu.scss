@@ -47,100 +47,131 @@ button {
   }
 }
 
-// Menu
-nav.navigation.primary {
-  background-color              : $palette-black;
+nav.navigation {
 
-  // close button
-  button.close-button {
-    top                         : rem-calc(32);
-    right                       : auto;
-    left                        : rem-calc(32);
-    font-size                   : rem-calc(52);
-    color                       : $palette-white;
-  }
+  // Primary Navigation Menu
+  &.primary {
+    background-color            : $palette-black;
 
-  // nested menu toggle
-  button.submenu-toggle {
-    &:after {
-      border-top-color          : $palette-white;
+    // close button
+    button.close-button {
+      top                       : rem-calc(32);
+      right                     : auto;
+      left                      : rem-calc(32);
+      font-size                 : rem-calc(52);
+      color                     : $palette-white;
     }
-  }
 
-  // navigation items
-  ul.menu {
-    top                         : rem-calc(96);
-    padding-left                : rem-calc(32);
-    @include breakpoint(large) {
-      top                       : 0;
-      padding-top               : rem-calc(10);
-      padding-left              : 0;
-    }
-    li {
-      font-family               : $header-font-family;
-      font-size                 : rem-calc(30);
-      font-weight               : $header-font-weight;
-      a,
-      a:hover,
-      a:focus,
-      a:active {
-        padding                 : rem-calc(9 16);
-        color                   : $palette-white;
-      }
-      a.selected {
-        color                   : $palette-yellow;
+    // nested menu toggle
+    button.submenu-toggle {
+      &:after {
+        border-top-color        : $palette-white;
       }
     }
-    &.dropdown {
-      > li {
+
+    // navigation items
+    ul.menu {
+      top                       : rem-calc(96);
+      padding-left              : rem-calc(32);
+      @include breakpoint(large) {
+        top                     : 0;
+        padding-top             : rem-calc(10);
         padding-left            : 0;
-        height                  : rem-calc(48);
-        &.is-dropdown-submenu-parent {
-          padding-right         : rem-calc(96);
-          &:last-of-type {
-            padding-right       : 0;
-          }
-          > a {
-            &:after {
-              display           : none;
+      }
+      li {
+        font-family             : $header-font-family;
+        font-size               : rem-calc(30);
+        font-weight             : $header-font-weight;
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+          padding               : rem-calc(9 16);
+          color                 : $palette-white;
+        }
+        a.selected {
+          color                 : $palette-yellow;
+        }
+      }
+      &.dropdown {
+        > li {
+          padding-left          : 0;
+          height                : rem-calc(48);
+          &.is-dropdown-submenu-parent {
+            padding-right       : rem-calc(96);
+            &:last-of-type {
+              padding-right     : 0;
+            }
+            > a {
+              &:after {
+                display         : none;
+              }
             }
           }
         }
       }
-    }
-    &.nested {
-      top                       : rem-calc(6);
-      margin-left               : 0;
-      border                    : 0 none transparent;
-      padding-bottom            : rem-calc(32);
-      padding-left              : rem-calc(8);
-      @include breakpoint(large) {
-        top                     : rem-calc(64);
-        padding-left            : 0;
-        background-color        : rgba($palette-black, 0.85);
-      }
-      li {
-        margin-bottom           : 0;
-        font-size               : rem-calc(18);
-        font-weight             : 600;
-        a {
-          padding               : rem-calc(8 18);
-        }
-      }
-      ul.nested {
-        top                     : 0;
-        padding-left            : rem-calc(16);
+      &.nested {
+        top                     : rem-calc(6);
+        margin-left             : 0;
+        border                  : 0 none transparent;
+        padding-bottom          : rem-calc(32);
+        padding-left            : rem-calc(8);
         @include breakpoint(large) {
-          top                   : rem-calc(-10);
+          top                   : rem-calc(64);
           padding-left          : 0;
-          li {
-            font-weight         : normal;
+          background-color      : rgba($palette-black, 0.85);
+        }
+        li {
+          margin-bottom         : 0;
+          font-size             : rem-calc(18);
+          font-weight           : 600;
+          a {
+            padding             : rem-calc(8 18);
+          }
+        }
+        ul.nested {
+          top                   : 0;
+          padding-left          : rem-calc(16);
+          @include breakpoint(large) {
+            top                 : rem-calc(-10);
+            padding-left        : 0;
+            li {
+              font-weight       : normal;
+            }
           }
         }
       }
+      &:not(.submenu) > li > ul.nested {
+        margin-bottom           : rem-calc(32);
+      }
     }
-    &:not(.submenu) > li > ul.nested {
-      margin-bottom             : rem-calc(32);
+  }
+
+  // Page Level Navigation Menu
+  &.page {
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    background-color            : $palette-white;
+    ul.menu {
+      li {
+        margin-bottom           : 0;
+        a {
+          border-bottom         : 2px solid transparent;
+          padding               : rem-calc(24 20 18);
+          font-weight           : normal;
+          color                 : $palette-grey-dark;
+          text-decoration       : none;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            border-color        : $palette-yellow;
+            color               : $palette-black;
+          }
+          &.selected {
+            font-weight         : 600;
+          }
+        }
+      }
     }
   }
 

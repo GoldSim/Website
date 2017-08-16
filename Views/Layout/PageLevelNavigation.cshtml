@@ -1,8 +1,6 @@
 ﻿@model GoldSim.Web.Models.NavigationViewModel
 
 @if (Model.NavigationRootTopic != null) {
-  <!-- Page Navigation Area -->
-
   <!-- Page Title Area -->
   <header class="header">
     <div class="grid-container">
@@ -13,8 +11,9 @@
   </header>
   <!-- /Page Title Area -->
 
-  <nav id="PageNavigation" class="navigation" role="navigation">
-    <ul>
+  <!-- Page Navigation Area -->
+  <nav id="PageNavigation" class="navigation page" role="navigation">
+    <ul class="menu align-center">
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.OrderBy(t => t.SortOrder)) {
         if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
           <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
