@@ -49,6 +49,7 @@ button {
 
 // Menu
 nav.navigation.primary {
+  background-color              : $palette-black;
 
   // close button
   button.close-button {
@@ -68,12 +69,16 @@ nav.navigation.primary {
 
   // navigation items
   ul.menu {
-    position                    : relative;
-    top                         : rem-calc(100);
-    padding-left                : rem-calc(64);
+    top                         : rem-calc(96);
+    padding-left                : rem-calc(32);
+    @include breakpoint(large) {
+      top                       : 0;
+      padding-top               : rem-calc(10);
+      padding-left              : 0;
+    }
     li {
       font-family               : $header-font-family;
-      font-size                 : rem-calc(48);
+      font-size                 : rem-calc(30);
       font-weight               : $header-font-weight;
       a,
       a:hover,
@@ -86,18 +91,52 @@ nav.navigation.primary {
         color                   : $palette-yellow;
       }
     }
+    &.dropdown {
+      > li {
+        padding-left            : 0;
+        height                  : rem-calc(48);
+        &.is-dropdown-submenu-parent {
+          padding-right         : rem-calc(96);
+          &:last-of-type {
+            padding-right       : 0;
+          }
+          > a {
+            &:after {
+              display           : none;
+            }
+          }
+        }
+      }
+    }
     &.nested {
       top                       : rem-calc(6);
       margin-left               : 0;
-      padding-left              : rem-calc(40);
+      border                    : 0 none transparent;
+      padding-bottom            : rem-calc(32);
+      padding-left              : rem-calc(8);
+      @include breakpoint(large) {
+        top                     : rem-calc(64);
+        padding-left            : 0;
+        background-color        : rgba($palette-black, 0.85);
+      }
       li {
         margin-bottom           : 0;
         font-size               : rem-calc(18);
         font-weight             : 600;
+        a {
+          padding               : rem-calc(8 18);
+        }
       }
       ul.nested {
         top                     : 0;
-        padding-left            : rem-calc(48);
+        padding-left            : rem-calc(16);
+        @include breakpoint(large) {
+          top                   : rem-calc(-10);
+          padding-left          : 0;
+          li {
+            font-weight         : normal;
+          }
+        }
       }
     }
     &:not(.submenu) > li > ul.nested {

@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/xhtml" lang="en">
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -34,18 +34,16 @@
     else {
 
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
-      
+
         @if (IsSectionDefined("PrimaryNavigationSection")) {
           @RenderSection("PrimaryNavigationSection")
         }
         else {
-
-          <!-- Primary Navigation -->
+          <!-- (Small Screen) Navigation Toggle -->
           <div class="title-bar-left menu">
-            <button class="menu-icon" type="button" data-open="PrimaryNavigation"></button>
-            @Html.Action("Menu", "Layout")
+            <button class="menu-icon" type="button" data-open="PrimaryNavigationSmallScreen"></button>
           </div>
-          <!-- /Primary Navigation -->
+          <!-- /(Small Screen) Navigation Toggle -->
 
           <!-- Logo -->
           <div class="title-bar-middle logo centered">
@@ -61,12 +59,15 @@
                 #gsc-i-id1::-webkit-input-placeholder {
                   font-size: 1.875rem !important;
                 }
+
                 #gsc-i-id1::-moz-placeholder {
                   font-size: 1.875rem !important;
                 }
+
                 #gsc-i-id1:-ms-input-placeholder {
                   font-size: 1.875rem !important;
                 }
+
                 .gsc-input input.gsc-input {
                   background: none repeat scroll 0% 0% transparent !important;
                 }
@@ -78,9 +79,12 @@
             </div>
           </div>
           <!-- /Site Search -->
-
         }
       </header>
+
+      <!-- Navigation Menu -->
+      @Html.Action("Menu", "Layout")
+
     }
     <!-- /Site Header Area -->
 

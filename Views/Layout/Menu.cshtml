@@ -1,36 +1,47 @@
 ﻿@model GoldSim.Web.Models.NavigationViewModel
 
 @if (Model.NavigationRootTopic != null) {
-  <nav id="PrimaryNavigation" class="navigation primary off-canvas position-left" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
+  <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true" data-multi-open="false">
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.OrderBy(t => t.SortOrder)) {
-        @WriteMenu(topic, 1);
+        @WriteMenu(topic, 1, "mobile");
       }
     </ul>
   </nav>
+
+  <nav id="PrimaryNavigation" class="navigation primary grid-x show-for-large">
+    <div class="cell">
+      <ul class="menu dropdown align-center" data-dropdown-menu>
+        @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.OrderBy(t => t.SortOrder)) {
+          @WriteMenu(topic, 1, "desktop");
+        }
+      </ul>
+    </div>
+  </nav>
+
 }
 
-@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel) {
+@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel, string screenType = "desktop") {
 
-  @*=========================================================================================================================
+  @*============================================================================================================================
   | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
-  \------------------------------------------------------------------------------------------------------------------------*@
+  \---------------------------------------------------------------------------------------------------------------------------*@
   if (!IsValid(topic)) { return; }
 
-  @*=========================================================================================================================
+  @*============================================================================================================================
   | WRITE NODE
-  \------------------------------------------------------------------------------------------------------------------------*@
+  \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
     <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">@topic.Title</a>
 
-    @*=======================================================================================================================
+    @*==========================================================================================================================
     | OPEN NODE
-    \----------------------------------------------------------------------------------------------------------------------*@
+    \-------------------------------------------------------------------------------------------------------------------------*@
     @if (!topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2) {
-      <ul class="menu vertical nested">
+      <ul class="menu @(screenType == "desktop" ? "dropdown" : "vertical") nested"@(screenType == "desktop" ? " data-dropdown-menu" : "")>
         @foreach (Ignia.Topics.Topic childTopic in topic.OrderBy(t => t.SortOrder)) {
           @WriteMenu(childTopic, indentLevel + 1);
         }
@@ -42,9 +53,9 @@
 
 @functions{
 
-  /*=========================================================================================================================
+  /*============================================================================================================================
   | DETERMINE VALID
-  \------------------------------------------------------------------------------------------------------------------------*/
+  \---------------------------------------------------------------------------------------------------------------------------*/
   public bool IsValid(Ignia.Topics.Topic topic) {
     return
     topic.Attributes.Get("IsInactive") != "1" &&
@@ -52,9 +63,9 @@
     topic.Attributes.Get("IsHidden") != "1";
   }
 
-  /*=========================================================================================================================
+  /*============================================================================================================================
   | DETERMINE SELECTED
-  \------------------------------------------------------------------------------------------------------------------------*/
+  \---------------------------------------------------------------------------------------------------------------------------*/
   public bool IsSelected(Ignia.Topics.Topic topic, Ignia.Topics.Topic currentTopic) {
     while (currentTopic != null) {
       if (currentTopic == topic) return true;

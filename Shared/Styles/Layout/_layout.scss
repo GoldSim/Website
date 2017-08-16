@@ -38,7 +38,7 @@ body {
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
   padding                       : 0;
-  height                        : rem-calc(100);
+  min-height                    : rem-calc(100);
   color                         : $palette-black;
   background-color              : $palette-white;
 
@@ -52,16 +52,22 @@ body {
 //----------------------------------------------------------------------------------------------
 // NAVIGATION
 //----------------------------------------------------------------------------------------------
-#PrimaryNavigation {
+[id^=PrimaryNavigation] {
   min-width                     : rem-calc(300);
-  background-color              : $palette-black;
   @include breakpoint(large) {
-    min-width                   : rem-calc(500);
+    height                      : rem-calc(75);
+    max-height                  : rem-calc(75);
+  }
+
+  // Drawer
+  &.position-left {
+    min-width                   : rem-calc(320);
+    width                       : auto;
   }
 
   // Submenu Toggle
   .submenu-toggle {
-    top                         : rem-calc(20);
+    top                         : rem-calc(4);
     right                       : rem-calc(24);
   }
   .nested {
