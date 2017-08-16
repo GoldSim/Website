@@ -32,7 +32,7 @@
 
   <!-- Long Title (Subtitle) -->
   <header class="grid-x grid-margin-x">
-    <div class="medium-12 cell"><h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
+    <div class="medium-12 cell"><h1 class="page title long case-study">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
     <div class="medium-8 cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
         <strong>Client: @(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CustomerURL")) ? "<a href=\"" + @Model.Topic.Attributes.Get("CustomerURL") + "\">" : "")@Model.Topic.Attributes.Get("Customer")@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CustomerURL")) ? "</a>" : "")</strong><br/>

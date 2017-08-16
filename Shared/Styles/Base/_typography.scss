@@ -43,6 +43,9 @@ h2 {
     margin-bottom               : rem-calc(12);
     font-size                   : rem-calc(20);
   }
+  &.case-study {
+    padding-bottom              : rem-calc(16);
+  }
 }
 p {
   ~ h1,
