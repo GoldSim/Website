@@ -3,13 +3,46 @@
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  string uniqueCategory         = @Model.Topic.Attributes.Get("Category", "");
-  string category               = uniqueCategory;
-  if (category.IndexOf(":") >= 0)
-    category                    = category.Substring(category.LastIndexOf(":") + 1);
+  // Set up incoming relationships
+  List<Ignia.Topics.Topic> caseStudies          = new List<Ignia.Topics.Topic>();
+  List<Ignia.Topics.Topic> whitePapers          = new List<Ignia.Topics.Topic>();
+  List<Ignia.Topics.Topic> technicalPapers      = new List<Ignia.Topics.Topic>();
 
+  // Populate incoming relationships
+  if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
 
-  Ignia.Topics.Topic papers     = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:TechnicalPapers:ContentItems");
+    // Loop through incoming Applications relationships to populate topic lists
+    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"]) {
+
+      // Populate Case Studies
+      if (relatedTopic.UniqueKey.Contains("CaseStudies") && !caseStudies.Contains(relatedTopic)) {
+        caseStudies.Add(relatedTopic);
+      }
+      // Populate White Papers
+      else if (relatedTopic.UniqueKey.Contains("WhitePapers") && !whitePapers.Contains(relatedTopic)) {
+        whitePapers.Add(relatedTopic);
+      }
+      // Populate Technical Papers
+      else if (relatedTopic.UniqueKey.Contains("TechnicalPapers") && !technicalPapers.Contains(relatedTopic)) {
+        technicalPapers.Add(relatedTopic);
+      }
+
+    }
+
+  }
+
+  // Set up Modules
+  List<Ignia.Topics.Topic> modules              = new List<Ignia.Topics.Topic>();
+  if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains("Modules")) {
+    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.Relationships["Modules"]) {
+      if (!modules.Contains(relatedTopic)) {
+        modules.Add(relatedTopic);
+      }
+    }
+  }
+
+  // Set Application category
+  string category                               = @Model.Topic.Attributes.Get("Category", "");
 
 }
 
@@ -47,80 +80,79 @@
     </article>
     <!-- /Body Content -->
 
-    <!-- Model Image -->
-    <figure class="illustration full">
-      <img src="@Model.Topic.Attributes.Get("ModelImage")" alt="model" />
-    </figure>
-    <!-- /Model Image -->
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ModelImage"))) {
+      <!-- Model Image -->
+      <figure class="illustration full">
+        <img src="@Model.Topic.Attributes.Get("ModelImage")" alt="model" />
+      </figure>
+      <!-- /Model Image -->
+    }
 
-    <!-- Related Case Studies -->
-    <h1>Case Studies</h1>
-    <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-      <div class="medium-6 cell">
-        <div class="card case-study" data-equalizer-watch>
-          <i class="type icon case-study" aria-hidden="true"></i>
-          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
-          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
+    @if (caseStudies.Count > 0) {
+      <!-- Related Case Studies -->
+      <h1>Case Studies</h1>
+      <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+      @foreach (Ignia.Topics.Topic caseStudy in caseStudies) {
+        <div class="medium-6 cell">
+          <div class="card case-study" data-equalizer-watch>
+            <i class="type icon case-study" aria-hidden="true"></i>
+            <a href="@caseStudy.WebPath" class="thumbnail" style="background-image: url('@caseStudy.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+            <a href="@caseStudy.WebPath" class="title">@caseStudy.Title</a>
+          </div>
         </div>
+      }
       </div>
-      <div class="medium-6 cell">
-        <div class="card case-study" data-equalizer-watch>
-          <i class="type icon case-study" aria-hidden="true"></i>
-          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
-          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
-        </div>
-      </div>
-    </div>
-    <!-- /Related Case Studies -->
+      <!-- /Related Case Studies -->
+    }
 
-    <!-- Related Modules -->
-    <h1>Modules</h1>
-    <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-      <div class="medium-6 cell">
-        <div class="card module" data-equalizer-watch>
-          <i class="type icon module" aria-hidden="true"></i>
-          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
-          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
-        </div>
+    @if (modules.Count > 0) {
+      <!-- Related Modules -->
+      <h1>Modules</h1>
+      <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+        @foreach (Ignia.Topics.Topic module in modules) {
+          <div class="medium-6 cell">
+            <div class="card module" data-equalizer-watch>
+              <i class="type icon module" aria-hidden="true"></i>
+              <a href="@module.WebPath" class="thumbnail" style="background-image: url('@module.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+              <a href="@module.WebPath" class="title">@module.Title</a>
+            </div>
+          </div>
+        }
       </div>
-      <div class="medium-6 cell">
-        <div class="card module" data-equalizer-watch>
-          <i class="type icon module" aria-hidden="true"></i>
-          <a href="@Model.Topic.WebPath" class="thumbnail"><img src="@Model.Topic.Attributes.Get("ThumbnailImage", "")" alt="@Model.Topic.Title" /></a>
-          <a href="@Model.Topic.WebPath" class="title">@Model.Topic.Title</a>
-        </div>
-      </div>
-    </div>
-    <!-- /Related Modules -->
+      <!-- /Related Modules -->
+    }
 
-    <!-- White Papers -->
-    <h1>White Papers</h1>
-    <ul>
-      <li><a href="/Downloads/Whitepapers/Reliability.pdf" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: Reliability');return false;" target="_blank">Reliability Engineering Using the GoldSim Reliability Module</a></li>
-      <li><a href="/Downloads/WhitePapers/IntegratedWaterResourcesManagement.pdf" target="_blank">Integrated Water Resources Management Applications Using GoldSim</a></li>
-      <li><a href="/Downloads/WhitePapers/Energy.pdf" target="_blank">Energy Applications Using GoldSim</a></li>
-    </ul>
-    <!-- /White Papers -->
+    @if (whitePapers.Count > 0) {
+      <!-- Related White Papers -->
+      <h1>White Papers</h1>
+      <ul>
+        @foreach (Ignia.Topics.Topic paper in whitePapers) {
+          <li><a href="@paper.Attributes.Get("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+        }
+      </ul>
+      <!-- /Related White Papers -->
+    }
 
-    <!-- Technical Papers -->
-    <h1>Technical Papers</h1>
-    <section class="panel accordion embedded">
-      <ul class="accordion embedded" data-accordion>
-      @foreach (Ignia.Topics.Topic paper in papers) {
-        if (@paper.Attributes.Get("Category") == "Water") {
+    @if (technicalPapers.Count > 0) {
+      <!-- Related Technical Papers -->
+      <h1>Technical Papers</h1>
+      <section class="panel accordion embedded">
+        <ul class="accordion embedded" data-accordion>
+        @foreach (Ignia.Topics.Topic paper in technicalPapers) {
           <li class="accordion-item" data-accordion-item>
             <a class="accordion-title" href="#">@paper.Title</a>
             <div class="accordion-content" data-tab-content>
+              <p>@Html.Raw(@paper.Attributes.Get("Publication")) &ndash; @paper.Attributes.Get("PublicationDate")</p>
               <p class="author">@Html.Raw(@paper.Attributes.Get("Authors"))</p>
               @Html.Raw(@paper.Attributes.Get("Description"))
-              <p><a href="@paper.Attributes.Get("LearnMoreURL")" target="_blank"><strong>@Html.Raw(@paper.Attributes.Get("Publication"))</strong></a></p>
+              <p><a href="@paper.Attributes.Get("LearnMoreURL")" target="_blank">Download</a></p>
             </div>
           </li>
         }
-      }
-      </ul>
-    </section>
-    <!-- /Technical Papers -->
+        </ul>
+      </section>
+      <!-- /Related Technical Papers -->
+    }
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
 
@@ -142,6 +174,10 @@
     }
 
   </section>
+
+}
+
+@functions{
 
 }
 
