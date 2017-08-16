@@ -3583,11 +3583,11 @@ select {
   display: block;
   width: 0;
   height: 0;
-  border: inset 0.75rem;
+  border: inset 6px;
   content: '';
   border-right-width: 0;
   border-left-style: solid;
-  border-color: transparent transparent transparent #202020; }
+  border-color: transparent transparent transparent white; }
 
 .drilldown.align-right .is-drilldown-submenu-parent > a::after {
   right: auto;
@@ -3595,11 +3595,11 @@ select {
   display: block;
   width: 0;
   height: 0;
-  border: inset 0.75rem;
+  border: inset 6px;
   content: '';
   border-left-width: 0;
   border-right-style: solid;
-  border-color: transparent #202020 transparent transparent; }
+  border-color: transparent white transparent transparent; }
 
 .drilldown .js-drilldown-back > a::before {
   display: block;
@@ -3660,13 +3660,13 @@ select {
   display: block;
   width: 0;
   height: 0;
-  border: inset 0.75rem;
+  border: inset 6px;
   content: '';
   border-bottom-width: 0;
   border-top-style: solid;
-  border-color: #202020 transparent transparent;
+  border-color: white transparent transparent;
   right: 5px;
-  margin-top: -0.375rem; }
+  margin-top: -3px; }
 
 .dropdown.menu a {
   padding: 0.7rem 1rem; }
@@ -3705,21 +3705,21 @@ select {
   display: block;
   width: 0;
   height: 0;
-  border: inset 0.75rem;
+  border: inset 6px;
   content: '';
   border-left-width: 0;
   border-right-style: solid;
-  border-color: transparent #202020 transparent transparent; }
+  border-color: transparent white transparent transparent; }
 
 .dropdown.menu.vertical > li.opens-right > a::after {
   display: block;
   width: 0;
   height: 0;
-  border: inset 0.75rem;
+  border: inset 6px;
   content: '';
   border-right-width: 0;
   border-left-style: solid;
-  border-color: transparent transparent transparent #202020; }
+  border-color: transparent transparent transparent white; }
 
 @media print, screen and (min-width: 40em) {
   .dropdown.menu.medium-horizontal > li.opens-left > .is-dropdown-submenu {
@@ -3737,13 +3737,13 @@ select {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-bottom-width: 0;
     border-top-style: solid;
-    border-color: #202020 transparent transparent;
+    border-color: white transparent transparent;
     right: 5px;
-    margin-top: -0.375rem; }
+    margin-top: -3px; }
   .dropdown.menu.medium-vertical > li .is-dropdown-submenu {
     top: 0; }
   .dropdown.menu.medium-vertical > li.opens-left > .is-dropdown-submenu {
@@ -3761,20 +3761,20 @@ select {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-left-width: 0;
     border-right-style: solid;
-    border-color: transparent #202020 transparent transparent; }
+    border-color: transparent white transparent transparent; }
   .dropdown.menu.medium-vertical > li.opens-right > a::after {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-right-width: 0;
     border-left-style: solid;
-    border-color: transparent transparent transparent #202020; } }
+    border-color: transparent transparent transparent white; } }
 
 @media print, screen and (min-width: 64.0625em) {
   .dropdown.menu.large-horizontal > li.opens-left > .is-dropdown-submenu {
@@ -3792,13 +3792,13 @@ select {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-bottom-width: 0;
     border-top-style: solid;
-    border-color: #202020 transparent transparent;
+    border-color: white transparent transparent;
     right: 5px;
-    margin-top: -0.375rem; }
+    margin-top: -3px; }
   .dropdown.menu.large-vertical > li .is-dropdown-submenu {
     top: 0; }
   .dropdown.menu.large-vertical > li.opens-left > .is-dropdown-submenu {
@@ -3816,20 +3816,20 @@ select {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-left-width: 0;
     border-right-style: solid;
-    border-color: transparent #202020 transparent transparent; }
+    border-color: transparent white transparent transparent; }
   .dropdown.menu.large-vertical > li.opens-right > a::after {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-right-width: 0;
     border-left-style: solid;
-    border-color: transparent transparent transparent #202020; } }
+    border-color: transparent transparent transparent white; } }
 
 .dropdown.menu.align-right .is-dropdown-submenu.first-sub {
   top: 100%;
@@ -3847,7 +3847,7 @@ select {
     position: absolute;
     top: 50%;
     right: 5px;
-    margin-top: -0.75rem; }
+    margin-top: -6px; }
   .is-dropdown-submenu-parent.opens-inner > .is-dropdown-submenu {
     top: 100%;
     left: auto; }
@@ -3877,20 +3877,20 @@ select {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-left-width: 0;
     border-right-style: solid;
-    border-color: transparent #202020 transparent transparent; }
+    border-color: transparent white transparent transparent; }
   .is-dropdown-submenu .is-dropdown-submenu-parent.opens-right > a::after {
     display: block;
     width: 0;
     height: 0;
-    border: inset 0.75rem;
+    border: inset 6px;
     content: '';
     border-right-width: 0;
     border-left-style: solid;
-    border-color: transparent transparent transparent #202020; }
+    border-color: transparent transparent transparent white; }
   .is-dropdown-submenu .is-dropdown-submenu {
     margin-top: -1px; }
   .is-dropdown-submenu > li {
@@ -6328,6 +6328,10 @@ nav.navigation.primary {
           padding-right: 0; }
         nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent > a:after {
           display: none; }
+    nav.navigation.primary ul.menu.dropdown.vertical > li.opens-right > a:after, nav.navigation.primary ul.menu.dropdown.vertical > li.opens-left > a:after {
+      display: block;
+      top: 1rem;
+      right: 0; }
     nav.navigation.primary ul.menu.nested {
       top: 0.375rem;
       margin-left: 0;

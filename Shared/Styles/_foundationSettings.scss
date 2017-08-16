@@ -411,8 +411,8 @@ $dropdown-sizes                 : (
 //----------------------------------------------------------------------------------------------
 
 $dropdownmenu-arrows            : true;
-$dropdownmenu-arrow-color       : $anchor-color;
-$dropdownmenu-arrow-size        : rem-calc(12);                 // WAS 6px
+$dropdownmenu-arrow-color       : $palette-white;               // WAS $anchor-color
+$dropdownmenu-arrow-size        : 6px;
 $dropdownmenu-arrow-padding     : 1.5rem;
 $dropdownmenu-min-width         : 200px;
 $dropdownmenu-background        : $white;

@@ -109,6 +109,20 @@ nav.navigation {
             }
           }
         }
+        &.vertical {
+          > li {
+            &.opens-right,
+            &.opens-left {
+              > a {
+                &:after {
+                  display       : block;
+                  top           : rem-calc(16);
+                  right         : 0;
+                }
+              }
+            }
+          }
+        }
       }
       &.nested {
         top                     : rem-calc(6);
