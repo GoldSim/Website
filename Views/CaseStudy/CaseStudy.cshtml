@@ -54,11 +54,16 @@
         <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
       </picture>
       <!-- Abstract Text -->
-      <p>@Model.Topic.Attributes.Get("Abstract", "")</p>
+      <p>@Html.Raw(@Model.Topic.Attributes.Get("Abstract", ""))</p>
       <!-- /Abstract -->
     }
 
     @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
+      <h1>Learn More</h1>
+      <p><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></p>
+    }
 
   </section>
 
