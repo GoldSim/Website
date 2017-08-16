@@ -61,11 +61,13 @@
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Abstract", ""))) {
       <!-- Abstract -->
       <h1>Abstract</h1>
-      <!-- Thumbnail Image -->
-      <picture class="callout picture">
-        <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
-        <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
-      </picture>
+      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
+        <!-- Thumbnail Image -->
+        <picture class="callout picture">
+          <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
+          <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
+        </picture>
+      }
       <!-- Abstract Text -->
       <p>@Html.Raw(@Model.Topic.Attributes.Get("Abstract", ""))</p>
       <!-- /Abstract -->
