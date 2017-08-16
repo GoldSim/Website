@@ -496,8 +496,8 @@ ul.accordion {
           line-height           : 0.9375;
           font-weight           : 600;
           color                 : $palette-yellow;
-          > ul,
-          > ol {
+          + ul,
+          + ol {
             margin-top          : rem-calc(-34);
           }
         }
@@ -553,6 +553,12 @@ ul.accordion {
       ul,
       ol {
         margin                  : rem-calc(32 0 48 20);
+        li {
+          border-bottom         : 0 none transparent;
+        }
+      }
+      > ul {
+        list-style-type         : disc;
       }
     }
 
