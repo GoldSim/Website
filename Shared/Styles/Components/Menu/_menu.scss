@@ -82,15 +82,15 @@ nav.navigation {
         font-family             : $header-font-family;
         font-size               : rem-calc(30);
         font-weight             : $header-font-weight;
-        a,
-        a:hover,
-        a:focus,
-        a:active {
+        a {
           padding               : rem-calc(9 16);
           color                 : $palette-white;
-        }
-        a.selected {
-          color                 : $palette-yellow;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            color               : $palette-yellow;
+          }
         }
       }
       &.dropdown {

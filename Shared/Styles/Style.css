@@ -6298,14 +6298,11 @@ nav.navigation.primary {
       font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 1.875rem;
       font-weight: 300; }
-      nav.navigation.primary ul.menu li a,
-      nav.navigation.primary ul.menu li a:hover,
-      nav.navigation.primary ul.menu li a:focus,
-      nav.navigation.primary ul.menu li a:active {
+      nav.navigation.primary ul.menu li a {
         padding: 0.5625rem 1rem;
         color: white; }
-      nav.navigation.primary ul.menu li a.selected {
-        color: #fec10d; }
+        nav.navigation.primary ul.menu li a:hover, nav.navigation.primary ul.menu li a:focus, nav.navigation.primary ul.menu li a:active, nav.navigation.primary ul.menu li a.selected {
+          color: #fec10d; }
     nav.navigation.primary ul.menu.dropdown > li {
       padding-left: 0;
       height: 3rem; }
