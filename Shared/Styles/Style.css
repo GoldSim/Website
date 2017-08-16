@@ -6414,7 +6414,6 @@ form.gsc-search-box.gsc-search-box-tools {
           line-height: 2rem; }
 
 .search.title-bar-right {
-  position: relative;
   height: 100%; }
 
 .search.form {
@@ -6425,6 +6424,7 @@ form.gsc-search-box.gsc-search-box-tools {
   bottom: 0;
   width: auto;
   max-width: 26.25rem;
+  min-height: 6.25rem;
   height: 100%; }
   .search.form input {
     -webkit-box-shadow: none;
