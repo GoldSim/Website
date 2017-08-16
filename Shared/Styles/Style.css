@@ -6127,6 +6127,14 @@ ul.accordion {
           line-height: 0.9375;
           font-weight: 600;
           color: #fec10d; }
+          ul.accordion li .accordion-title.question .marker > ul,
+          ul.accordion li .accordion-title.question .marker > ol, ul.accordion li .accordion-title.answer .marker > ul,
+          ul.accordion li .accordion-title.answer .marker > ol,
+          ul.accordion li .accordion-content.question .marker > ul,
+          ul.accordion li .accordion-content.question .marker > ol,
+          ul.accordion li .accordion-content.answer .marker > ul,
+          ul.accordion li .accordion-content.answer .marker > ol {
+            margin-top: -2.125rem; }
       ul.accordion li .accordion-title.question .marker,
       ul.accordion li .accordion-content.question .marker {
         top: 2rem; }
@@ -6158,6 +6166,9 @@ ul.accordion {
         background-color: transparent; }
     ul.accordion li .accordion-content {
       padding: 1.25rem 6.875rem 2.75rem 6.875rem; }
+      ul.accordion li .accordion-content ul,
+      ul.accordion li .accordion-content ol {
+        margin: 2rem 0 3rem 1.25rem; }
   ul.accordion.embedded li {
     background-color: #f3f3f3; }
     ul.accordion.embedded li .accordion-title {

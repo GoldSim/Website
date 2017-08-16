@@ -496,6 +496,10 @@ ul.accordion {
           line-height           : 0.9375;
           font-weight           : 600;
           color                 : $palette-yellow;
+          > ul,
+          > ol {
+            margin-top          : rem-calc(-34);
+          }
         }
       }
       &.question {
@@ -546,6 +550,10 @@ ul.accordion {
     }
     .accordion-content {
       padding                   : rem-calc(20 110 44 110);
+      ul,
+      ol {
+        margin                  : rem-calc(32 0 48 20);
+      }
     }
 
   }
