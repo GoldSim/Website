@@ -32,7 +32,6 @@
       @RenderSection("HeaderSection")
     }
     else {
-
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
 
         @if (IsSectionDefined("PrimaryNavigationSection")) {
@@ -41,7 +40,7 @@
         else {
           <!-- (Small Screen) Navigation Toggle -->
           <div class="title-bar-left menu">
-            <button class="menu-icon" type="button" data-open="PrimaryNavigationSmallScreen"></button>
+            <button class="menu-icon hide-for-large" type="button" data-open="PrimaryNavigationSmallScreen"></button>
           </div>
           <!-- /(Small Screen) Navigation Toggle -->
 
