@@ -5929,7 +5929,8 @@ ul ul {
     -webkit-box-shadow: none;
             box-shadow: none;
     border: 0 none transparent;
-    padding: 0; }
+    padding: 0;
+    max-width: 17.5rem; }
     .callout.picture::before, .callout.picture::after {
       display: table;
       content: ' ';
