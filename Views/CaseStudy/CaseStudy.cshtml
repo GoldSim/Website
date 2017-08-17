@@ -48,7 +48,7 @@
     </div>
     <div class="medium-4 cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
-        <a href="@Model.Topic.Attributes.Get("DownloadURL")" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies', 'Download', 'Case Studies: @downloadName');return false;">Download <i class="fa fa-file-pdf-o"></i></a>
+        <a href="@Model.Topic.Attributes.Get("DownloadURL")" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies', 'Download', 'Case Studies: @downloadName');return false;">Download@(@Model.Topic.Attributes.Get("DownloadURL").ToLower().EndsWith("pdf") ? " <i class=\"fa fa-file-pdf-o\"></i>" : "")</a>
       }
     </div>
   </header>
