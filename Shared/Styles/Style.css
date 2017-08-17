@@ -5886,6 +5886,8 @@ ul ul {
     border-color: #fec10d;
     color: #fec10d;
     background-color: white; }
+  .button:visited {
+    color: #202020; }
   .button.huge {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;

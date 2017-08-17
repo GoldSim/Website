@@ -173,6 +173,9 @@ ul {
     color                       : $palette-yellow;
     background-color            : $palette-white;
   }
+  &:visited {
+    color                       : $palette-black;
+  }
   &.huge {
     padding-top                 : rem-calc(40);
     padding-bottom              : rem-calc(40);
