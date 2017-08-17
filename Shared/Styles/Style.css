@@ -5626,6 +5626,9 @@ h2 {
   h2.link {
     margin-bottom: 0.75rem;
     font-size: 1.25rem; }
+  h1.case-study,
+  h2.case-study {
+    padding-bottom: 1rem; }
 
 p ~ h1,
 p ~ h2 {
@@ -5830,7 +5833,8 @@ a[href$=".xls"],
 a[href$=".xlsx"] {
   line-height: 1.3; }
 
-a ~ i {
+a ~ i,
+a > i {
   padding-right: 0.125rem;
   padding-left: 0.3125rem; }
 

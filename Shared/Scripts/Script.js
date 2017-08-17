@@ -69,6 +69,7 @@
       }
 
       $('a[href $=".' + fileType + '"]').not('[class*="button"]').after('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
+      $('a[href $=".' + fileType + '"][class*="button"]').append('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
     });
 
     /**
