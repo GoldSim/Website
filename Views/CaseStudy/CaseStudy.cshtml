@@ -60,7 +60,7 @@
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Model.Topic.Attributes.Get("Abstract", "")</p>
+      <p>@Html.Raw(@Model.Topic.Attributes.Get("Abstract", ""))</p>
       <!-- /Abstract -->
     }
 
