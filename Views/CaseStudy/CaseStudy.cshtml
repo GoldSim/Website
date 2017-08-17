@@ -102,6 +102,7 @@
   string downloadButton(string downloadUrl) {
 
     string download             = "";
+    string label                = "Download";
 
     // Get download URL file name for click tracking
     string downloadName         = "";
@@ -116,10 +117,15 @@
       downloadName              = url;
     }
 
+    // Conditionally toggle label
+    if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
+      label = "Learn More";
+    }
+
     download                    = "<a href=\"" + downloadUrl + "\""
                                 + " target=\"_blank\" class=\"button large\""
                                 + " onclick=\"trackEvent(this, 'Case Studies', 'Download', 'Case Studies: " + downloadName + "');return false;\">"
-                                + "Download"
+                                + label
                                 + "</a>";
 
     return download;
