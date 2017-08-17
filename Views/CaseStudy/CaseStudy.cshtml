@@ -13,19 +13,6 @@
     }
   }
 
-  // Get download URL file name for click tracking
-  string downloadName                   = "";
-  if (!String.IsNullOrEmpty(Model.Topic.Attributes.Get("DownloadURL"))) {
-    string url                          = Model.Topic.Attributes.Get("DownloadURL");
-    if (url.IndexOf("/") >= 0) {
-      url                               = url.Substring(url.LastIndexOf("/") + 1);
-    }
-    if (url.ToLower().EndsWith(".pdf")) {
-      url                               = url.Substring(0, url.ToLower().IndexOf(".pdf"));
-    }
-    downloadName                        = url;
-  }
-
 }
 
 @section LongTitleSection {
@@ -48,7 +35,7 @@
     </div>
     <div class="medium-4 cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
-        <a href="@Model.Topic.Attributes.Get("DownloadURL")" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies', 'Download', 'Case Studies: @downloadName');return false;">Download@(@Model.Topic.Attributes.Get("DownloadURL").ToLower().EndsWith("pdf") ? " <i class=\"fa fa-file-pdf-o\"></i>" : "")</a>
+        @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
       }
     </div>
   </header>
@@ -93,7 +80,7 @@
   /*============================================================================================================================
   | SET UP CUSTOMER STRUCTURE
   \---------------------------------------------------------------------------------------------------------------------------*/
-  string customer(string customerName, string customerUrl){
+  string customer(string customerName, string customerUrl) {
 
     string customer             = "";
     if (!String.IsNullOrEmpty(customerUrl)) {
@@ -105,6 +92,37 @@
     }
 
     return customer;
+  }
+
+  /*============================================================================================================================
+  | SET UP DOWNLOAD BUTTON
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string downloadButton(string downloadUrl) {
+
+    string download             = "";
+
+    // Get download URL file name for click tracking
+    string downloadName         = "";
+    if (!String.IsNullOrEmpty(downloadUrl)) {
+      string url                = downloadUrl;
+      if (url.IndexOf("/") >= 0) {
+        url                     = url.Substring(url.LastIndexOf("/") + 1);
+      }
+      if (url.ToLower().EndsWith(".pdf")) {
+        url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
+      }
+      downloadName              = url;
+    }
+
+    download                    = "<a href=\"" + downloadUrl + "\""
+                                + " target=\"_blank\" class=\"button large\""
+                                + " onclick=\"trackEvent(this, 'Case Studies', 'Download', 'Case Studies: " + downloadName + "');return false;\">"
+                                + "Download"
+                                + (downloadUrl.ToLower().EndsWith("pdf") ? " <i class=\"fa fa-file-pdf-o\"></i>" : "")
+                                + "</a>";
+
+    return download;
+
   }
 
 }
