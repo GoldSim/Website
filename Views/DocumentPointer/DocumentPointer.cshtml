@@ -2,9 +2,18 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
+
+  // Redirect to URL
+  string redirectUrl            = Model.Topic.Attributes.Get("URL");
+  if (!String.IsNullOrEmpty(redirectUrl)) {
+    Response.Redirect(redirectUrl);
+  }
+
 }
 
 <h1>@Model.Topic.Title</h1>
+
+<!--
 <h2>@Model.Topic.Attributes.Get("Title")</h2>
 
 <p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
@@ -27,6 +36,7 @@
     <li>@application.Title</li>
   }
 </ul>
+-->
 
 <!--
   Content Type: Document Pointer
