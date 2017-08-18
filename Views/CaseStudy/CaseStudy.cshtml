@@ -20,7 +20,7 @@
   <!-- Long Title (Subtitle) -->
   <header class="grid-x grid-margin-x">
     <div class="medium-12 cell"><h1 class="page title long case-study">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
-    <div class="medium-8 cell align-middle">
+    <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
         <strong>Client:</strong>
         @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
@@ -33,11 +33,11 @@
         }
       }
     </div>
-    <div class="medium-4 cell align-middle">
-      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
+      <div class="medium-4 cell align-middle">
         @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
-      }
-    </div>
+      </div>
+    }
   </header>
   <!-- /Long Title (Subtitle) -->
 
