@@ -27,7 +27,7 @@
         <br/>
       }
       @if(applications.Count > 0) {
-        <strong>Applications:</strong>
+        <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
         foreach (Ignia.Topics.Topic application in applications) {
           <a href="@application.WebPath" class="comma delimited">@application.Title</a>
         }
