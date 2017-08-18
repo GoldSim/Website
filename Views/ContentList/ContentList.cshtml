@@ -4,21 +4,58 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+@section LongTitleSection {
 
-<h2>Categories (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-    <li>@category.Title</li>
-  }
-</ul>
+  <!-- Long Title (Subtitle) -->
+  <header class="grid-x tucked">
+    <h1 class="page title long cell">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1>
+  </header>
+  <!-- /Long Title (Subtitle) -->
 
-<h2>Content Items (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-    <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
-  }
-</ul>
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel">
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+        <h2>@category.Title</h2>
+        <section id="Group-@category.Key">
+          @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @WriteContentItem(contentItem)
+          }
+        </section>
+      }
+    }
+    else {
+      <section>
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+          @WriteContentItem(contentItem)
+        }
+      </section>
+    }
+
+  </section>
+
+}
+
+@helper WriteContentItem(Ignia.Topics.Topic contentItem) {
+  <article>
+    <a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank"><img alt="@contentItem.Title" src="@contentItem.Attributes.Get("ThumbnailImage")" /></a>
+    <a href="@contentItem.Attributes.Get("LearnMoreUrl")">
+      <h1>@contentItem.Title</h1>
+    </a>
+    <div>
+      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
+    </div>
+  </article>
+}
 
 <!--
   Content Type: Content List
