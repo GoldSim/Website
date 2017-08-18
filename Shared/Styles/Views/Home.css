@@ -48,6 +48,7 @@ main section[role="region"] {
     position: absolute;
     top: 0;
     right: 0;
+    bottom: auto;
     overflow: hidden;
     padding: 0 6.875rem;
     height: 100%;

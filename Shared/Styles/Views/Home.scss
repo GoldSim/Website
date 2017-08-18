@@ -95,7 +95,7 @@ main {
   &.customers {
     position                    : relative;
     padding-right               : rem-calc(540);
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 244% -1rem;
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 120% -1rem;
     > header {
       padding-right             : rem-calc(32);
     }
