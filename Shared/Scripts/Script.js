@@ -82,14 +82,18 @@
     /**
      * Capture search button trigger, set open/closed state
      */
-    $('.search.form .buttons button').click(function (event) {
-      var $searchBar            = $('div.search.form');
+    $('.search.form .buttons button').mousedown(function (event) {
+      var $searchBar = $('div.search.form');
       if ($searchBar.hasClass('closed')) {
-        $searchBar.addClass('open').removeClass('closed');
+        event.preventDefault();
+        $('input.gsc-input').focus();
       }
-      else {
-        $searchBar.addClass('closed').removeClass('open');
-      }
+    });
+    $('.search.form').on('focus', 'input.gsc-input', function (event) {
+      $('div.search.form').addClass('open').removeClass('closed');
+    });
+    $('.search.form').on('blur', 'input.gsc-input', function (event) {
+      $('div.search.form').addClass('closed').removeClass('open');
     });
 
     // ### HACK KLT 20170807: Temporary workaround for stylesheet prototype
