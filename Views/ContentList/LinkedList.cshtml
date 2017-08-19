@@ -4,23 +4,47 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<h2>Content List: Linked List</h2>
+@section PageBodySection {
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+  <section class="panel">
 
-<h2>Categories (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-    <li>@category.Title</li>
-  }
-</ul>
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
 
-<h2>Content Items (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-    <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
-  }
-</ul>
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+        <h1><a name="@category.Key"></a>@category.Title</h1>
+        <section id="Group-@category.Key">
+          @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @WriteContentItem(contentItem, "h2")
+          }
+        </section>
+      }
+    }
+    else {
+      <section>
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+          @WriteContentItem(contentItem)
+        }
+      </section>
+    }
+
+  </section>
+
+}
+
+@helper WriteContentItem(Ignia.Topics.Topic contentItem, string element = "h1") {
+  <article>
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+      <a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank"><img alt="@contentItem.Title" src="@contentItem.Attributes.Get("ThumbnailImage")" /></a>
+    }
+    <a href="@contentItem.Attributes.Get("LearnMoreUrl")" name="@contentItem.Key">
+      <@element>@contentItem.Title<@("/" + element)>
+    </a>
+    <div>
+      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
+    </div>
+  </article>
+}
 
 <!--
   Content Type: Content List
