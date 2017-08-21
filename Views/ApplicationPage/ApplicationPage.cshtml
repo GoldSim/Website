@@ -63,7 +63,7 @@
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
       <!-- Thumbnail Image -->
-      <picture class="callout picture">
+      <picture class="callout picture thumbnail">
         <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
         <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
       </picture>
