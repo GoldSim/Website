@@ -244,22 +244,26 @@ ul {
 }
 
 .callout {
+  @include clearfix;
   float                         : right;
+  margin                        : rem-calc(0 0 18 24);
+  &:before,
+  &:after {
+    display                     : table;
+    content                     : ' ';
+  }
+  &:after {
+    clear                       : both;
+  }
+  &.left {
+    float                       : left;
+    margin                      : rem-calc(0 24 18 0);
+  }
   &.picture {
-    @include clearfix;
-    margin                      : rem-calc(0 0 18 24);
     box-shadow                  : none;
     border                      : 0 none transparent;
     padding                     : 0;
     max-width                   : rem-calc(280);
-    &:before,
-    &:after {
-      display                   : table;
-      content                   : ' ';
-    }
-    &:after {
-      clear                     : both;
-    }
   }
 }
 
@@ -325,6 +329,16 @@ ul {
 article {
   &.page.body {
     margin-bottom               : rem-calc(48);
+  }
+  .list & {
+    margin-bottom               : rem-calc(32);
+    border-bottom               : 1px solid $palette-grey-light;
+    padding-bottom              : rem-calc(32);
+    &:last-of-type {
+      margin-bottom             : 0;
+      border-bottom             : 0 none transparent;
+      padding-bottom            : 0;
+    }
   }
 }
 
