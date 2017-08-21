@@ -5625,7 +5625,8 @@ h2 {
   h1.link,
   h2.link {
     margin-bottom: 0.75rem;
-    font-size: 1.25rem; }
+    font-size: 1.25rem;
+    font-weight: 600; }
   h1.case-study,
   h2.case-study {
     padding-bottom: 1rem; }
@@ -5929,29 +5930,32 @@ ul ul {
     padding: 0; }
 
 .callout {
-  float: right; }
+  float: right;
+  margin: 0 0 1.125rem 1.5rem; }
+  .callout::before, .callout::after {
+    display: table;
+    content: ' ';
+    -ms-flex-preferred-size: 0;
+        flex-basis: 0;
+    -webkit-box-ordinal-group: 2;
+        -ms-flex-order: 1;
+            order: 1; }
+  .callout::after {
+    clear: both; }
+  .callout:before, .callout:after {
+    display: table;
+    content: ' '; }
+  .callout:after {
+    clear: both; }
+  .callout.left {
+    float: left;
+    margin: 0 1.5rem 1.125rem 0; }
   .callout.picture {
-    margin: 0 0 1.125rem 1.5rem;
     -webkit-box-shadow: none;
             box-shadow: none;
     border: 0 none transparent;
     padding: 0;
     max-width: 17.5rem; }
-    .callout.picture::before, .callout.picture::after {
-      display: table;
-      content: ' ';
-      -ms-flex-preferred-size: 0;
-          flex-basis: 0;
-      -webkit-box-ordinal-group: 2;
-          -ms-flex-order: 1;
-              order: 1; }
-    .callout.picture::after {
-      clear: both; }
-    .callout.picture:before, .callout.picture:after {
-      display: table;
-      content: ' '; }
-    .callout.picture:after {
-      clear: both; }
 
 .card {
   position: relative; }
@@ -5999,6 +6003,18 @@ ul ul {
 
 article.page.body {
   margin-bottom: 3rem; }
+
+.list article {
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #cccccc;
+  padding-bottom: 2rem; }
+  .list article:first-of-type {
+    border-top: 1px solid #cccccc;
+    padding-top: 2rem; }
+  .list article:last-of-type {
+    margin-bottom: 0;
+    border-bottom: 0 none transparent;
+    padding-bottom: 0; }
 
 .quote {
   font-size: 1.875rem;

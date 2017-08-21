@@ -334,6 +334,10 @@ article {
     margin-bottom               : rem-calc(32);
     border-bottom               : 1px solid $palette-grey-light;
     padding-bottom              : rem-calc(32);
+    &:first-of-type {
+      border-top                : 1px solid $palette-grey-light;
+      padding-top               : rem-calc(32);
+    }
     &:last-of-type {
       margin-bottom             : 0;
       border-bottom             : 0 none transparent;
