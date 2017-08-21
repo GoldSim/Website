@@ -6,9 +6,13 @@
 
 @section PageBodySection {
 
-  <section class="panel">
+  <section class="panel body">
 
-    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+    <!-- Body Content -->
+    <article class="page body">
+      @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+    </article>
+    <!-- /Body Content -->
 
     @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
       foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
@@ -35,7 +39,12 @@
 @helper WriteContentItem(Ignia.Topics.Topic contentItem, string element = "h1") {
   <article>
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
-      <img alt="@contentItem.Title" src="@contentItem.Attributes.Get("ThumbnailImage")" />
+      <!-- Thumbnail Image -->
+      <picture class="callout picture left">
+        <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
+        <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
+      </picture>
+      <!-- /Thumbnail Image -->
     }
     <@element><a name="@contentItem.Key"></a>@contentItem.Title<@("/" + element)>
     <div>
@@ -43,7 +52,7 @@
       @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
         <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
       }
-</div>
+    </div>
   </article>
 }
 
