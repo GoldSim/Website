@@ -4,21 +4,63 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<p>@Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))</p>
+@section PageBodySection {
 
-<h2>Categories (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-    <li>@category.Title</li>
-  }
-</ul>
+  <section class="panel">
 
-<h2>Content Items (Nested Topics)</h2>
-<ul>
-  @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-    <li><strong>@contentItem.Title</strong>: @contentItem.Attributes.Get("Description")</li>
-  }
-</ul>
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+
+    <aside class="contents">
+      <h1>Contents</h1>
+      <ul>
+        @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+          foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+            <li><a href="#@category.Key">@category.Title</a></li>
+          }
+        }
+        else {
+          foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+            <li><a href="#@contentItem.Key">@contentItem.Title</a></li>
+          }
+        }
+      </ul>
+    </aside>
+
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+        <h2><a name="@category.Key"></a>@category.Title</h2>
+        <section id="Group-@category.Key">
+          @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @WriteContentItem(contentItem)
+          }
+        </section>
+      }
+    }
+    else {
+      <section>
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+          @WriteContentItem(contentItem)
+        }
+      </section>
+    }
+  </section>
+
+}
+
+@helper WriteContentItem(Ignia.Topics.Topic contentItem) {
+      <article>
+        @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+          <img alt="@contentItem.Title" src="@contentItem.Attributes.Get("ThumbnailImage")" />
+        }
+        <h1><a name="@contentItem.Key"></a>@contentItem.Title</h1>
+        <div>
+          @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
+          @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
+            <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
+          }
+        </div>
+      </article>
+}
 
 <!--
   Content Type: Content List

@@ -6,40 +6,44 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
-    <!-- Body Content -->
-    <article class="page body">
-      @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
-    </article>
-    <!-- /Body Content -->
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
 
-    <!--
-    <h2>Categories (Nested Topics)</h2>
-    <ul>
-      @foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
-        <li>@category.Title</li>
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+        <h1><a name="@category.Key"></a>@category.Title</h1>
+        <section id="Group-@category.Key">
+          @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @WriteContentItem(contentItem, "h2")
+          }
+        </section>
       }
-    </ul>
-    -->
-
-    <ul>
-    @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
-      <li>
-        @if (!String.IsNullOrEmpty(@contentItem.Attributes.Get("ThumbnailImage"))) {
-          <!-- Thumbnail Image -->
-          <picture class="callout picture left">
-            <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
-            <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
-          </picture>
-          <!-- /Thumbnail Image -->
-        }
-
-        <strong>@Html.Raw(@contentItem.Title)</strong>: @Html.Raw(@contentItem.Attributes.Get("Description"))
-      </li>
     }
-    </ul>
+    else {
+      <section>
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+          @WriteContentItem(contentItem)
+        }
+      </section>
+    }
 
+  </section>
+
+}
+
+@helper WriteContentItem(Ignia.Topics.Topic contentItem, string element = "h1") {
+  <article>
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+      <a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank"><img alt="@contentItem.Title" src="@contentItem.Attributes.Get("ThumbnailImage")" /></a>
+    }
+    <a href="@contentItem.Attributes.Get("LearnMoreUrl")" name="@contentItem.Key">
+      <@element>@contentItem.Title<@("/" + element)>
+    </a>
+    <div>
+      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
+    </div>
+  </article>
 }
 
 <!--
