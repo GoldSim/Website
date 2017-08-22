@@ -41,15 +41,15 @@
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
       <a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")" target="_blank">
         <!-- Thumbnail Image -->
-        <picture class="callout picture thumbnail">
+        <picture class="callout picture thumbnail small">
           <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
           <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
         </picture>
         <!-- /Thumbnail Image -->
       </a>
     }
-    <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
     <div>
+      <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
       @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
     </div>
   </article>

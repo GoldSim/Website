@@ -40,14 +40,14 @@
   <article>
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
       <!-- Thumbnail Image -->
-      <picture class="callout picture thumbnail">
+      <picture class="callout picture thumbnail small">
         <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
         <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
-    <@element id="@contentItem.Key">@contentItem.Title<@("/" + element)>
     <div>
+      <@element id="@contentItem.Key">@contentItem.Title<@("/" + element)>
       @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
       @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
         <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
