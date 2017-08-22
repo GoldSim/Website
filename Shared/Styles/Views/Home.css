@@ -57,6 +57,8 @@ main section[role="region"] {
     font-weight: 600;
     color: #fec10d;
     text-align: center; }
+    .panel.customers aside div {
+      position: relative; }
 
 .panel.cta-links {
   padding-right: 20rem;

@@ -95,7 +95,7 @@ main {
   &.customers {
     position                    : relative;
     padding-right               : rem-calc(540);
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 295% -1rem;
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 325% -1rem;
     background-size             : contain;
     > header {
       padding-right             : rem-calc(32);
@@ -112,6 +112,9 @@ main {
       font-weight               : 600;
       color                     : $palette-yellow;
       text-align                : center;
+      div {
+        position                : relative;
+      }
     }
   }
 
