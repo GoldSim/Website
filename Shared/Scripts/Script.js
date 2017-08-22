@@ -30,6 +30,16 @@
     });
 
     /**
+     * Works around need to double-click primary navigation parent links on touchscreen devices
+     */
+    $('.is-dropdown-submenu-parent > a').on('click touchend', function (e) {
+      var
+        $clickedLink            = $(this),
+        linkHref                = $clickedLink.attr('href');
+      window.location           = linkHref;
+    });
+
+    /**
      * Appends icon font elements to links
      */
     $(fileTypes).each(function (index, value) {
