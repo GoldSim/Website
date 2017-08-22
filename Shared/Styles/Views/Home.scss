@@ -95,7 +95,8 @@ main {
   &.customers {
     position                    : relative;
     padding-right               : rem-calc(540);
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 120% -1rem;
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 295% -1rem;
+    background-size             : contain;
     > header {
       padding-right             : rem-calc(32);
     }
@@ -143,6 +144,9 @@ main {
     .orbit-next {
       right                     : rem-calc(28);
     }
+  }
+  li {
+    padding-left                : 0;
   }
   h2 {
     font-family                 : $body-font-family;

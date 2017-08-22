@@ -41,7 +41,8 @@ main section[role="region"] {
 .panel.customers {
   position: relative;
   padding-right: 33.75rem;
-  background: white url("/Images/Home/Customers.Background.png") no-repeat 120% -1rem; }
+  background: white url("/Images/Home/Customers.Background.png") no-repeat 295% -1rem;
+  background-size: contain; }
   .panel.customers > header {
     padding-right: 2rem; }
   .panel.customers aside {
@@ -75,6 +76,9 @@ main section[role="region"] {
 
 .usage .orbit-controls .orbit-next {
   right: 1.75rem; }
+
+.usage li {
+  padding-left: 0; }
 
 .usage h2 {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
