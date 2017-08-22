@@ -86,7 +86,7 @@ body {
   background-color              : $palette-grey-lightest;
   article {
     &:first-of-type {
-      header {
+      > header {
         margin                  : rem-calc(48 0);
         padding                 : rem-calc(0 110);
       }
