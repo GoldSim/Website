@@ -6279,10 +6279,10 @@ body {
     min-width: 20rem;
     width: auto; }
   [id^=PrimaryNavigation] .submenu-toggle {
-    top: 0.25rem;
+    top: 0.875rem;
     right: 1.5rem; }
   [id^=PrimaryNavigation] .nested .submenu-toggle {
-    top: -0.1875rem; }
+    top: 0.25rem; }
 
 #MainContentArea {
   padding-bottom: 3rem;
@@ -6325,8 +6325,32 @@ nav.navigation.primary {
     left: 2rem;
     font-size: 3.25rem;
     color: white; }
-  nav.navigation.primary button.submenu-toggle:after {
-    border-top-color: white; }
+  nav.navigation.primary button.submenu-toggle {
+    width: 27px;
+    height: 27px;
+    background: transparent url("/Images/Icons/Plus.Circle.png") no-repeat center center;
+    background-size: contain; }
+    nav.navigation.primary button.submenu-toggle:after {
+      display: none; }
+    nav.navigation.primary button.submenu-toggle[aria-expanded="true"] {
+      background-image: url("/Images/Icons/Minus.Circle.png"); }
+  nav.navigation.primary .nested.submenu button.submenu-toggle {
+    background-image: none; }
+    nav.navigation.primary .nested.submenu button.submenu-toggle:after {
+      content: '+';
+      display: block;
+      position: relative;
+      top: -0.5625rem;
+      right: 0.3125rem;
+      border: 0 none transparent;
+      color: #fec10d;
+      font-weight: bold; }
+    nav.navigation.primary .nested.submenu button.submenu-toggle[aria-expanded="true"] {
+      background-image: none; }
+      nav.navigation.primary .nested.submenu button.submenu-toggle[aria-expanded="true"]:after {
+        content: '-';
+        top: 0.6875rem;
+        right: 0.125rem; }
   nav.navigation.primary ul.menu {
     top: 6rem;
     padding-left: 2rem; }
@@ -6357,6 +6381,8 @@ nav.navigation.primary {
       display: block;
       top: 1rem;
       right: 0; }
+    nav.navigation.primary ul.menu.dropdown.nested li {
+      height: auto; }
     nav.navigation.primary ul.menu.nested {
       top: 0.375rem;
       margin-left: 0;
@@ -6375,16 +6401,15 @@ nav.navigation.primary {
         nav.navigation.primary ul.menu.nested li a {
           padding: 0.5rem 1.125rem; }
       nav.navigation.primary ul.menu.nested ul.nested {
-        top: 0;
+        padding-bottom: 0.75rem;
         padding-left: 1rem; }
         @media print, screen and (min-width: 64.0625em) {
           nav.navigation.primary ul.menu.nested ul.nested {
             top: -0.625rem;
             padding-left: 0; }
             nav.navigation.primary ul.menu.nested ul.nested li {
+              height: auto;
               font-weight: normal; } }
-    nav.navigation.primary ul.menu:not(.submenu) > li > ul.nested {
-      margin-bottom: 2rem; }
 
 nav.navigation.page {
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);

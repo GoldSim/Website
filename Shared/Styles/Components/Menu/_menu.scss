@@ -1,7 +1,7 @@
 ﻿//==============================================================================================
 // MENU
 //----------------------------------------------------------------------------------------------
-// Defines styles associated with with the primary navigation (Foundation off-canvas) menu.
+// Defines styles associated with with the primary navigation menu(s).
 //----------------------------------------------------------------------------------------------
 // NOTE: If this component requires its own helpers, they should be defined in a separate
 // _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
@@ -64,8 +64,40 @@ nav.navigation {
 
     // nested menu toggle
     button.submenu-toggle {
+    //top                       : rem-calc(12.8);
+      width                     : 27px;
+      height                    : 27px;
+      background                : transparent url('/Images/Icons/Plus.Circle.png') no-repeat center center;
+      background-size           : contain;
       &:after {
-        border-top-color        : $palette-white;
+        display                 : none;
+      //border-top-color        : $palette-white;
+      }
+      &[aria-expanded="true"] {
+        background-image        : url('/Images/Icons/Minus.Circle.png');
+      }
+    }
+    .nested.submenu {
+      button.submenu-toggle {
+        background-image        : none;
+        &:after {
+          content               : '+';
+          display               : block;
+          position              : relative;
+          top                   : rem-calc(-9);
+          right                 : rem-calc(5);
+          border                : 0 none transparent;
+          color                 : $palette-yellow;
+          font-weight           : bold;
+        }
+        &[aria-expanded="true"] {
+          background-image      : none;
+          &:after {
+            content             : '-';
+            top                 : rem-calc(11);
+            right               : rem-calc(2);
+          }
+        }
       }
     }
 
@@ -123,6 +155,11 @@ nav.navigation {
             }
           }
         }
+        &.nested {
+          li {
+            height              : auto;
+          }
+        }
       }
       &.nested {
         top                     : rem-calc(6);
@@ -144,19 +181,20 @@ nav.navigation {
           }
         }
         ul.nested {
-          top                   : 0;
+          padding-bottom        : rem-calc(12);
           padding-left          : rem-calc(16);
           @include breakpoint(large) {
             top                 : rem-calc(-10);
             padding-left        : 0;
             li {
+              height            : auto;
               font-weight       : normal;
             }
           }
         }
       }
       &:not(.submenu) > li > ul.nested {
-        margin-bottom           : rem-calc(32);
+      //margin-bottom           : rem-calc(32);
       }
     }
   }

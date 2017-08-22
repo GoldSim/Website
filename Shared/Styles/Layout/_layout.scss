@@ -67,12 +67,12 @@ body {
 
   // Submenu Toggle
   .submenu-toggle {
-    top                         : rem-calc(4);
+    top                         : rem-calc(14);
     right                       : rem-calc(24);
   }
   .nested {
     .submenu-toggle {
-      top                       : rem-calc(-3);
+      top                       : rem-calc(4);
     }
   }
 
