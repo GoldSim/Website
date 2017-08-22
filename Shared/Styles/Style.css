@@ -5875,6 +5875,25 @@ ol {
 ul ul {
   list-style-type: circle; }
 
+ul.modules-list {
+  list-style-type: none;
+  margin-left: 0; }
+  ul.modules-list li.module {
+    padding-left: 4.125rem;
+    background-size: 3rem 3rem;
+    background-position: 0 0;
+    background-repeat: no-repeat; }
+    ul.modules-list li.module.contaminant-transport {
+      background-image: url(/Images/Content/Product/ContaminantTransport.Icon.png); }
+    ul.modules-list li.module.reliability {
+      background-image: url(/Images/Content/Product/Reliability.Icon.png); }
+    ul.modules-list li.module.financial {
+      background-image: url(/Images/Content/Product/Financial.Icon.png); }
+    ul.modules-list li.module.dashboard-authoring {
+      background-image: url(/Images/Content/Product/DashboardAuthoring.Icon.png); }
+    ul.modules-list li.module.distributed-processing {
+      background-image: url(/Images/Content/Product/DistributedProcessing.Icon.png); }
+
 .button {
   border-width: 2px;
   min-width: 13rem;
@@ -5958,6 +5977,8 @@ ul ul {
     border: 0 none transparent;
     padding: 0;
     max-width: 17.5rem; }
+    .callout.picture.small {
+      max-width: 11.25rem; }
 
 .card {
   position: relative; }
@@ -6018,6 +6039,28 @@ article.page.body {
     border-bottom: 0 none transparent;
     padding-bottom: 0; }
 
+.floated-layout::before, .floated-layout::after {
+  display: table;
+  content: ' ';
+  -ms-flex-preferred-size: 0;
+      flex-basis: 0;
+  -webkit-box-ordinal-group: 2;
+      -ms-flex-order: 1;
+          order: 1; }
+
+.floated-layout::after {
+  clear: both; }
+
+.floated-layout.left picture,
+.floated-layout.left picture + div {
+  float: left; }
+
+.floated-layout.left picture {
+  max-width: 25%; }
+
+.floated-layout.left picture + div {
+  max-width: 75%; }
+
 .quote {
   font-size: 1.875rem;
   line-height: 1.333; }
@@ -6050,11 +6093,9 @@ figure {
   margin: 2.5rem auto 2.25rem; }
   figure img {
     border: 2px solid #eaeaea;
-    padding: 1.75rem 2rem;
-    text-align: center; }
+    padding: 1.75rem 2rem; }
   figure figcaption {
     margin-top: 1rem;
-    text-align: left;
     font-style: italic;
     color: #999999; }
 

@@ -153,6 +153,31 @@ ul {
   }
 }
 
+ul.modules-list {
+  list-style-type               : none;
+  margin-left                   : 0;
+  li.module {
+    padding-left                : rem-calc(66);
+    background-size             : rem-calc(48 48);
+    background-position         : 0 0;
+    background-repeat           : no-repeat;
+    &.contaminant-transport {
+      background-image          : url(/Images/Content/Product/ContaminantTransport.Icon.png);
+    }
+    &.reliability {
+      background-image          : url(/Images/Content/Product/Reliability.Icon.png);
+    }
+    &.financial {
+      background-image          : url(/Images/Content/Product/Financial.Icon.png);
+    }
+    &.dashboard-authoring {
+      background-image          : url(/Images/Content/Product/DashboardAuthoring.Icon.png);
+    }
+    &.distributed-processing {
+      background-image          : url(/Images/Content/Product/DistributedProcessing.Icon.png);
+    }
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 // BUTTONS
@@ -267,6 +292,9 @@ ul {
     border                      : 0 none transparent;
     padding                     : 0;
     max-width                   : rem-calc(280);
+    &.small {
+      max-width                 : rem-calc(180);
+    }
   }
 }
 
@@ -349,6 +377,23 @@ article {
   }
 }
 
+// "Table" / Floated-Layout Blocks
+.floated-layout {
+  @include clearfix;
+  &.left {
+    picture,
+    picture + div {
+      float                     : left;
+    }
+    picture {
+      max-width                 : 25%;
+    }
+    picture + div {
+      max-width                 : 75%;
+    }
+  }
+}
+
 //----------------------------------------------------------------------------------------------
 // QUOTES
 //----------------------------------------------------------------------------------------------
@@ -398,11 +443,11 @@ figure {
   img {
     border                      : 2px solid rgb(234, 234, 234);
     padding                     : rem-calc(28 32);
-    text-align                  : center;
+  //text-align                  : center;
   }
   figcaption {
     margin-top                  : rem-calc(16);
-    text-align                  : left;
+  //text-align                  : left;
     font-style                  : italic;
     color                       : $palette-grey-medium;
   }
