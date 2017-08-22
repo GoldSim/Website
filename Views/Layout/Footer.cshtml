@@ -7,34 +7,60 @@
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="site footer" role="contentinfo">
   <div class="grid-container">
-    <div class="grid-x grid-padding-x">
 
-      <!-- Footer Navigation -->
-      <nav id="FooterNavigation" class="navigation" role="navigation">
+    <!-- Footer Navigation -->
+    <nav id="FooterNavigation" class="navigation grid-x grid-margin-x" role="navigation">
 
-        <!-- Company Information -->
-        <div class="cell small-12 medium-6 large-3">
-          <p class="list heading">@CompanyTopic.Title</p>
-          <ul>
-            @foreach (Ignia.Topics.Topic topic in CompanyTopic.OrderBy(t => t.SortOrder)) {
-              if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
-                <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
-              }
+      <!-- Company Information -->
+      <div class="company cell small-6 medium-4 large-3">
+        <p class="list link heading"><a href="/Topic/6/">@CompanyTopic.Title</a></p>
+        <ul>
+          @foreach (Ignia.Topics.Topic topic in CompanyTopic.OrderBy(t => t.SortOrder))
+          {
+            if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+            {
+              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Title</a></li>
             }
-          </ul>
-        </div>
-        <!-- /Company Information -->
+          }
+        </ul>
+      </div>
+      <!-- /Company Information -->
+      <!-- Terms / Privacy -->
+      <div class="terms cell small-6 medium-4 large-4">
+        <p class="link heading"><a href="/Topic/857/">Site Terms</a></p>
+        <p class="link heading"><a href="/Topic/4222/">Privacy Policy</a></p>
+      </div>
+      <!-- /Terms / Privacy -->
+      <!-- Contact Information -->
+      <div class="contact cell small-12 medium-4 large-5">
+        <dl class="phone grid-x grid-padding-x">
+          <dt class="small-4 medium-5 cell text-right">phone</dt>
+          <dd class="small-8 medium-7 cell"><a href="tel:1-425-295-7985">+1 (425) 295-6985</a></dd>
+          <dt class="small-4 medium-5 cell text-right">fax</dt>
+          <dd class="small-8 medium-7 cell">+1 (425) 642-8073</a></dd>
+        </dl>
+        <dl class="emails grid-x grid-padding-x">
+          <dt class="small-4 medium-5 cell text-right">sales</dt>
+          <dd class="small-8 medium-7 cell"><a href="mailto:software@goldsim.com">software@goldsim.com</a></dd>
+          <dt class="small-4 medium-5 cell text-right">support</dt>
+          <dd class="small-8 medium-7 cell"><a href="mailto:support@goldsim.com">support@goldsim.com</a></dd>
+          <dt class="small-4 medium-5 cell text-right">employment</dt>
+          <dd class="small-8 medium-7 cell"><a href="mailto:jobs@goldsim.com">jobs@goldsim.com</a></dd>
+        </dl>
+      </div>
+      <!-- /Contact Information -->
 
-      </nav>
-      <!-- /Footer Navigation -->
+    </nav>
+    <!-- /Footer Navigation -->
 
-      <!-- Copyright Information -->
+    <!-- Copyright Information -->
+    <div class="grid-x grid-margin-x">
       <div class="copyright cell small-12 centered">
         <small><span class="fa fa-copyright"></span> @DateTime.Now.Year GoldSim Technology Group</small>
       </div>
-      <!-- Copyright Information -->
-
     </div>
+    <!-- Copyright Information -->
+
   </div>
 </footer>
 <!-- /Site Footer Area -->

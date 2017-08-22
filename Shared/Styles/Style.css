@@ -6246,21 +6246,46 @@ article header ~ .embedded.body {
   .panel.ctas .button-group .button:last-of-type {
     margin-right: 0; }
 
-.site.footer .navigation p.list.heading {
-  margin-bottom: 0;
-  font-size: 1.25rem;
+.site.footer .navigation .heading,
+.site.footer .navigation dl dd {
+  font-size: 1.3125rem;
   color: #cccccc; }
+  .site.footer .navigation .heading a,
+  .site.footer .navigation .heading a:hover,
+  .site.footer .navigation .heading a:focus,
+  .site.footer .navigation .heading a:active,
+  .site.footer .navigation .heading a:visited,
+  .site.footer .navigation dl dd a,
+  .site.footer .navigation dl dd a:hover,
+  .site.footer .navigation dl dd a:focus,
+  .site.footer .navigation dl dd a:active,
+  .site.footer .navigation dl dd a:visited {
+    color: #cccccc; }
+
+.site.footer .navigation p.heading {
+  margin-bottom: 0; }
+  .site.footer .navigation p.heading + p.heading {
+    margin-top: 2.25rem; }
 
 .site.footer .navigation ul {
   margin: 0; }
   .site.footer .navigation ul li {
-    margin-top: 0.75rem;
-    margin-bottom: 0; }
+    margin-top: 0.1875rem;
+    margin-bottom: 0;
+    padding-left: 0;
+    line-height: 2rem; }
     .site.footer .navigation ul li a,
     .site.footer .navigation ul li a:hover,
     .site.footer .navigation ul li a:focus,
     .site.footer .navigation ul li a:active {
       color: #999999; }
+
+.site.footer .navigation dl dt {
+  position: relative;
+  top: 0.25rem;
+  margin-bottom: 0;
+  padding-right: 0;
+  font-weight: normal; }
 
 html {
   height: 100%; }
@@ -6268,7 +6293,7 @@ html {
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 25.5rem;
+  padding-bottom: 23.75rem;
   min-height: 100%;
   background-color: #f3f3f3; }
 
