@@ -5880,6 +5880,8 @@ ul ul {
   min-width: 13rem;
   font-size: 1rem;
   font-weight: 600; }
+  .button:visited {
+    color: #202020; }
   .button:hover {
     color: #fec10d;
     background-color: #202020; }
@@ -5887,8 +5889,6 @@ ul ul {
     border-color: #fec10d;
     color: #fec10d;
     background-color: white; }
-  .button:visited {
-    color: #202020; }
   .button.huge {
     padding-top: 2.5rem;
     padding-bottom: 2.5rem;
@@ -6298,7 +6298,7 @@ body {
 #MainContentArea {
   padding-bottom: 3rem;
   background-color: #f3f3f3; }
-  #MainContentArea article:first-of-type header {
+  #MainContentArea article:first-of-type > header {
     margin: 3rem 0;
     padding: 0 6.875rem; }
 
