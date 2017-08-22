@@ -5928,6 +5928,8 @@ ul ul {
   padding: 5rem 6.875rem; }
   .panel.accordion {
     padding: 0; }
+  .panel.ctas {
+    padding: 2rem 0; }
 
 .callout {
   float: right;
@@ -6234,6 +6236,15 @@ article header .category.title {
 article header ~ .embedded.body {
   margin-bottom: 3rem;
   padding: 0 6.875rem; }
+
+.panel.ctas h1,
+.panel.ctas .button-group {
+  margin-bottom: 0; }
+
+.panel.ctas .button-group .button {
+  margin-right: 2rem; }
+  .panel.ctas .button-group .button:last-of-type {
+    margin-right: 0; }
 
 .site.footer .navigation p.list.heading {
   margin-bottom: 0;
