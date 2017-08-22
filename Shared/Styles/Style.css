@@ -6321,12 +6321,16 @@ article header ~ .embedded.body {
     .site.footer .navigation ul li a:active {
       color: #999999; }
 
-.site.footer .navigation dl dt {
-  position: relative;
-  top: 0.25rem;
-  margin-bottom: 0;
-  padding-right: 0;
-  font-weight: normal; }
+.site.footer .navigation dl {
+  margin-bottom: 0; }
+  .site.footer .navigation dl.emails {
+    margin-top: 3rem; }
+  .site.footer .navigation dl dt {
+    position: relative;
+    top: 0.25rem;
+    margin-bottom: 0;
+    padding-right: 0;
+    font-weight: normal; }
 
 html {
   height: 100%; }

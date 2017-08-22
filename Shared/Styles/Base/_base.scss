@@ -776,6 +776,10 @@ article {
       }
     }
     dl {
+      margin-bottom             : 0;
+      &.emails {
+        margin-top              : rem-calc(48);
+      }
       dt {
         position                : relative;
         top                     : rem-calc(4);
