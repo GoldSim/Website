@@ -163,6 +163,9 @@ ul {
   min-width                     : rem-calc(208);
   font-size                     : 1rem;
   font-weight                   : 600;
+  &:visited {
+    color                       : $palette-black;
+  }
   &:hover {
     color                       : $palette-yellow;
     background-color            : $palette-black;
@@ -172,9 +175,6 @@ ul {
     border-color                : $palette-yellow;
     color                       : $palette-yellow;
     background-color            : $palette-white;
-  }
-  &:visited {
-    color                       : $palette-black;
   }
   &.huge {
     padding-top                 : rem-calc(40);
