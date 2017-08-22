@@ -1967,6 +1967,7 @@
     <Content Include="Shared\Styles\Views\Video.scss" />
     <Content Include="Shared\Styles\Views\CaseStudy.scss" />
     <Content Include="Shared\Styles\Helpers\_mixins.scss" />
+    <Content Include="Views\Layout\CTAs.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

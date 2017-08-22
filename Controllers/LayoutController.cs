@@ -125,9 +125,9 @@ namespace GoldSim.Web.Controllers {
       | should be skipped if the navigation root is null, as that suggests the current page is not a descendent of a group page.
       \-----------------------------------------------------------------------------------------------------------------------*/
       while (
-        navigationRootTopic != null && 
-        currentTopic != null && 
-        currentTopic != navigationRootTopic && 
+        navigationRootTopic != null &&
+        currentTopic != null &&
+        currentTopic != navigationRootTopic &&
         currentTopic?.Parent != navigationRootTopic
       ) {
         currentTopic            = currentTopic.Parent;
@@ -147,6 +147,45 @@ namespace GoldSim.Web.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | CTAS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the CTAs panel for the site layout.
+    /// </summary>
+    public PartialViewResult CTAs() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic currentTopic        = _currentTopic;
+      Topic navigationRootTopic = null;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Identify navigation root
+      >-------------------------------------------------------------------------------------------------------------------------
+      | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      navigationRootTopic       = currentTopic;
+      while (navigationRootTopic?.Parent?.Parent != null) {
+        navigationRootTopic     = navigationRootTopic.Parent;
+      }
+
+      if (navigationRootTopic == null) {
+        navigationRootTopic     = _topicRepository.Load("Web");
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish a navigation view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the corresponding view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return PartialView(navigationViewModel);
+
+    }
 
     /*==========================================================================================================================
     | FOOTER

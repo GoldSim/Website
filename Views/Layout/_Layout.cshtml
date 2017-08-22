@@ -150,6 +150,12 @@
       <!-- /Main Site Content Area -->
     }
 
+    @if (IsSectionDefined("CTAsSection")) {
+      @RenderSection("CTAsSection")
+    } else {
+      @Html.Action("CTAs", "Layout")
+    }
+
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
     } else {
