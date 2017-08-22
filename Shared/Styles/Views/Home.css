@@ -41,7 +41,7 @@ main section[role="region"] {
 .panel.customers {
   position: relative;
   padding-right: 33.75rem;
-  background: white url("/Images/Home/Customers.Background.png") no-repeat 295% -1rem;
+  background: white url("/Images/Home/Customers.Background.png") no-repeat 325% -1rem;
   background-size: contain; }
   .panel.customers > header {
     padding-right: 2rem; }
