@@ -1567,6 +1567,14 @@
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
     <Content Include="Images\Icons\CloseX.Icon.png" />
+    <Content Include="Images\Icons\Minus.Circle.png" />
+    <Content Include="Images\Icons\Minus.Circle.svg" />
+    <Content Include="Images\Icons\PartnerLogo\CertifiedSolutionProvider.128p.gif" />
+    <Content Include="Images\Icons\PartnerLogo\CertifiedSolutionProvider.256p.gif" />
+    <Content Include="Images\Icons\PartnerLogo\CertifiedTrainingProvider.128p.gif" />
+    <Content Include="Images\Icons\PartnerLogo\CertifiedTrainingProvider.256p.gif" />
+    <Content Include="Images\Icons\Plus.Circle.png" />
+    <Content Include="Images\Icons\Plus.Circle.svg" />
     <Content Include="Images\Icons\Search.Icon.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Account\Web.Config" />
