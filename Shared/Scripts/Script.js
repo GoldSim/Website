@@ -19,6 +19,7 @@
       $window                   = $(window),
       $siteHeader               = $('header.site.header'),
       $paneFullHeight           = ($window.height() - $siteHeader.height()),
+      sceneController           = new ScrollMagic.Controller(),
       fileTypes                 = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
     /**
@@ -27,6 +28,25 @@
     $('.js-full-height').each(function() {
       var $this                 = $(this);
       $this.innerHeight($paneFullHeight);
+    });
+
+    /**
+     * Sets up fixing/unfixing of CTAs panel
+     */
+    $(window).scroll(function () {
+      var
+        $footerPosition         = $('#SiteFooter').offset().top,
+        $footerHeight           = $('#SiteFooter').outerHeight(),
+        $windowHeight           = $(window).height(),
+        $windowScrollTop        = $(this).scrollTop();
+
+      if ($windowScrollTop > ($footerPosition - $windowHeight)) {
+        $('#CTAs').css('position', 'static');
+      }
+      else {
+        $('#CTAs').css('position', 'fixed');
+      }
+
     });
 
     /**
