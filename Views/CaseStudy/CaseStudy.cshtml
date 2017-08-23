@@ -19,7 +19,12 @@
 
   <!-- Long Title (Subtitle) -->
   <header class="grid-x grid-margin-x">
-    <div class="medium-12 cell"><h1 class="page title long case-study">@Model.Topic.Attributes.Get("Subtitle", @Model.Topic.Title)</h1></div>
+    <div class="medium-12 cell">
+      <h1 class="page title long case-study">@Model.Topic.Attributes.Get("LongTitle", @Model.Topic.Title)</h1>
+      @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
+        <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
+      }
+    </div>
     <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle">
       @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
         <strong>Client:</strong>

@@ -5638,6 +5638,13 @@ p ~ h1,
 p ~ h2 {
   padding-top: 0.9375rem; }
 
+header p.subtitle {
+  font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1.25rem; }
+  @media print, screen and (min-width: 40em) {
+    header p.subtitle {
+      font-size: 1.75rem; } }
+
 .author {
   font-style: italic; }
 
@@ -6296,10 +6303,12 @@ article header ~ .embedded.body {
 
 .panel.ctas h1 {
   padding-bottom: 0.75rem;
+  font-size: 1.5rem;
   text-align: center; }
   @media print, screen and (min-width: 40em) {
     .panel.ctas h1 {
       padding-bottom: 0;
+      font-size: 2rem;
       text-align: left; } }
 
 .panel.ctas .button-group .button {

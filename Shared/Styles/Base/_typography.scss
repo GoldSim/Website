@@ -56,6 +56,16 @@ p {
   ~ h2 {
     padding-top                 : rem-calc(15);
   }
+  header & {
+    &.subtitle {
+      font-family               : $header-font-family;
+      font-size                 : rem-calc(20);
+      @include breakpoint(medium) {
+        font-size               : rem-calc(28);
+      }
+    }
+
+  }
 }
 
 //----------------------------------------------------------------------------------------------
