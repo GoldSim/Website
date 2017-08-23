@@ -1563,6 +1563,15 @@
     <Content Include="Forms\Webinars.aspx" />
     <Content Include="Forms\Webinars1.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Favicons\android-chrome-192x192.png" />
+    <Content Include="Images\Favicons\android-chrome-256x256.png" />
+    <Content Include="Images\Favicons\apple-touch-icon.png" />
+    <Content Include="Images\Favicons\browserconfig.xml" />
+    <Content Include="Images\Favicons\favicon-16x16.png" />
+    <Content Include="Images\Favicons\favicon-32x32.png" />
+    <Content Include="Images\Favicons\favicon.ico" />
+    <Content Include="Images\Favicons\mstile-150x150.png" />
+    <Content Include="Images\Favicons\safari-pinned-tab.svg" />
     <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
@@ -1706,6 +1715,7 @@
     <Content Include="Forms\Web.Config" />
     <Content Include="Configuration\rewriteMaps.config" />
     <Content Include="Configuration\rewriteRules.config" />
+    <Content Include="Images\Favicons\manifest.json" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\Script.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\easing\EasePack.js" />
