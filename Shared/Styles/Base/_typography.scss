@@ -26,7 +26,10 @@ body {
 //----------------------------------------------------------------------------------------------
 h1 {
   &.title {
-    font-size                   : rem-calc(48);
+    font-size                   : rem-calc(32);
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(48);
+    }
   }
 }
 h2,

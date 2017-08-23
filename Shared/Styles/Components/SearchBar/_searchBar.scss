@@ -190,7 +190,10 @@ form.gsc-search-box.gsc-search-box-tools {
       padding-left              : rem-calc(40);
     }
     .buttons {
-      padding-right             : rem-calc(40);
+      padding-right             : rem-calc(32);
+      @include breakpoint(medium) {
+        padding-right           : rem-calc(40);
+      }
       width                     : rem-calc(88);
     }
   }

@@ -87,8 +87,12 @@ body {
   article {
     &:first-of-type {
       > header {
-        margin                  : rem-calc(48 0);
-        padding                 : rem-calc(0 110);
+        margin                  : rem-calc(32 0);
+        padding                 : rem-calc(0 32);
+        @include breakpoint(medium) {
+          margin                : rem-calc(48 0);
+          padding               : rem-calc(0 110);
+        }
       }
     }
   }

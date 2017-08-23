@@ -43,7 +43,10 @@ button {
 // Menu Toggle
 .title-bar {
   .menu-icon {
-    margin-left                 : rem-calc(40);
+    margin-left                 : rem-calc(32);
+    @include breakpoint(medium) {
+      margin-left               : rem-calc(40);
+    }
   }
 }
 

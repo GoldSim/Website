@@ -2050,7 +2050,7 @@ h6 {
     color: #cccccc; }
 
 h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -2062,7 +2062,7 @@ h2 {
   margin-bottom: 0.5rem; }
 
 h3 {
-  font-size: 1.1875rem;
+  font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -2074,7 +2074,7 @@ h4 {
   margin-bottom: 0.5rem; }
 
 h5 {
-  font-size: 1.0625rem;
+  font-size: 1.125rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -5610,7 +5610,10 @@ body {
   font-size: 1.125rem; }
 
 h1.title {
-  font-size: 3rem; }
+  font-size: 2rem; }
+  @media print, screen and (min-width: 40em) {
+    h1.title {
+      font-size: 3rem; } }
 
 h2,
 h3,
@@ -5944,11 +5947,20 @@ ul.modules-list {
           box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07); }
 
 .panel {
-  padding: 5rem 6.875rem; }
+  padding: 2rem 3rem; }
+  @media print, screen and (min-width: 40em) {
+    .panel {
+      padding: 2.5rem 5rem; } }
+  @media print, screen and (min-width: 64.0625em) {
+    .panel {
+      padding: 5rem 6.875rem; } }
   .panel.accordion {
     padding: 0; }
   .panel.ctas {
-    padding: 2rem 0; }
+    padding: 1rem; }
+    @media print, screen and (min-width: 40em) {
+      .panel.ctas {
+        padding: 2rem 0; } }
 
 .callout {
   float: right;
@@ -6282,8 +6294,20 @@ article header ~ .embedded.body {
 .panel.ctas .button-group {
   margin-bottom: 0; }
 
+.panel.ctas h1 {
+  padding-bottom: 0.75rem;
+  text-align: center; }
+  @media print, screen and (min-width: 40em) {
+    .panel.ctas h1 {
+      padding-bottom: 0;
+      text-align: left; } }
+
 .panel.ctas .button-group .button {
-  margin-right: 2rem; }
+  margin-bottom: 0.5rem; }
+  @media print, screen and (min-width: 40em) {
+    .panel.ctas .button-group .button {
+      margin-right: 2rem;
+      margin-bottom: 0; } }
   .panel.ctas .button-group .button:last-of-type {
     margin-right: 0; }
 
@@ -6369,8 +6393,12 @@ body {
   padding-bottom: 3rem;
   background-color: #f3f3f3; }
   #MainContentArea article:first-of-type > header {
-    margin: 3rem 0;
-    padding: 0 6.875rem; }
+    margin: 2rem 0;
+    padding: 0 2rem; }
+    @media print, screen and (min-width: 40em) {
+      #MainContentArea article:first-of-type > header {
+        margin: 3rem 0;
+        padding: 0 6.875rem; } }
 
 #CTAs {
   position: fixed;
@@ -6403,7 +6431,10 @@ button.close-button {
     outline: 0; }
 
 .title-bar .menu-icon {
-  margin-left: 2.5rem; }
+  margin-left: 2rem; }
+  @media print, screen and (min-width: 40em) {
+    .title-bar .menu-icon {
+      margin-left: 2.5rem; } }
 
 nav.navigation.primary {
   background-color: #202020; }
@@ -6656,8 +6687,11 @@ form.gsc-search-box.gsc-search-box-tools {
     margin-top: -0.3125rem;
     padding-left: 2.5rem; }
   .search.form .buttons {
-    padding-right: 2.5rem;
+    padding-right: 2rem;
     width: 5.5rem; }
+    @media print, screen and (min-width: 40em) {
+      .search.form .buttons {
+        padding-right: 2.5rem; } }
 
 .search .icon {
   min-width: 2rem;
