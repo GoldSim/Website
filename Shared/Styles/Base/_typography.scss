@@ -60,6 +60,7 @@ p {
     &.subtitle {
       font-family               : $header-font-family;
       font-size                 : rem-calc(20);
+      color                     : $palette-grey-medium;
       @include breakpoint(medium) {
         font-size               : rem-calc(28);
       }
