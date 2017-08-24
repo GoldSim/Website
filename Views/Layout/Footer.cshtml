@@ -13,7 +13,7 @@
 
       <!-- Company Information -->
       <div class="company cell small-6 medium-4 large-3">
-        <p class="list link heading"><a href="/Topic/6/">@CompanyTopic.Title</a></p>
+        <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("NavigationTitle", @CompanyTopic.Title)</a></p>
         <ul>
           @foreach (Ignia.Topics.Topic topic in CompanyTopic.OrderBy(t => t.SortOrder))
           {
