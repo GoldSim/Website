@@ -35,7 +35,9 @@
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
-    <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">@topic.Title</a>
+    <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
+      @topic.Attributes.Get("NavigationTitle", @topic.Title)
+    </a>
 
     @*==========================================================================================================================
     | OPEN NODE
