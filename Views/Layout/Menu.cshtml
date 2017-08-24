@@ -44,10 +44,12 @@
     \-------------------------------------------------------------------------------------------------------------------------*@
     @if (!topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2) {
       <ul class="menu @(screenType == "desktop" ? "dropdown" : "vertical") nested"@(screenType == "desktop" ? " data-dropdown-menu" : "")>
-        @foreach (Ignia.Topics.Topic childTopic in topic.OrderBy(t => t.SortOrder)) {
-          @WriteMenu(childTopic, indentLevel + 1);
-        }
-      </ul>
+        <li>
+          <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
+          @foreach (Ignia.Topics.Topic childTopic in topic.OrderBy(t => t.SortOrder)) {
+            @WriteMenu(childTopic, indentLevel + 1);
+          }
+</ul>
     }
   </li>
 
