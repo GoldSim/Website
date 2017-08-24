@@ -13,13 +13,13 @@
 
       <!-- Company Information -->
       <div class="company cell small-6 medium-4 large-3">
-        <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("NavigationTitle", @CompanyTopic.Title)</a></p>
+        <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("ShortTitle", @CompanyTopic.Title)</a></p>
         <ul>
           @foreach (Ignia.Topics.Topic topic in CompanyTopic.OrderBy(t => t.SortOrder))
           {
             if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
             {
-              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.Get("NavigationTitle", @topic.Title)</a></li>
+              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.Get("ShortTitle", @topic.Title)</a></li>
             }
           }
         </ul>

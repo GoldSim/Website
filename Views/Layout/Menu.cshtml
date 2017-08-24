@@ -36,7 +36,7 @@
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
     <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
-      @topic.Attributes.Get("NavigationTitle", @topic.Title)
+      @topic.Attributes.Get("ShortTitle", @topic.Title)
     </a>
 
     @*==========================================================================================================================
