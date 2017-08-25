@@ -18,8 +18,10 @@
     var
       $window                   = $(window),
       $siteHeader               = $('header.site.header'),
+      $screenSize               = $window.width(),
       $paneFullHeight           = ($window.height() - $siteHeader.height()),
       sceneController           = new ScrollMagic.Controller(),
+      lastScrollTop             = 0,
       fileTypes                 = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
     /**
@@ -31,21 +33,34 @@
     });
 
     /**
-     * Sets up fixing/unfixing of CTAs panel
+     * Sets up fixing/unfixing of CTAs panel as well as animation for primary (desktop) navigation
      */
     $(window).scroll(function () {
       var
+        $navigationTriggerHook  = ($('#PrimaryNavigation').offset().top + $('#PrimaryNavigation').outerHeight()),
         $footerPosition         = $('#SiteFooter').offset().top,
         $footerHeight           = $('#SiteFooter').outerHeight(),
-        $windowHeight           = $(window).height(),
+        $windowHeight           = $window.height(),
         $windowScrollTop        = $(this).scrollTop();
 
+      // Control stickiness of CTAs panel
       if ($windowScrollTop > ($footerPosition - $windowHeight)) {
         $('#CTAs').css('position', 'static');
       }
       else {
         $('#CTAs').css('position', 'fixed');
       }
+
+      // Control animation for primary (desktop) navigation
+      if ($screenSize > 1024) {
+        if ($windowScrollTop < lastScrollTop) {
+          console.log('scrolling up');
+          console.log('nav pos: ' + $navigationTriggerHook + ' - wST: ' + $windowScrollTop);
+        } else {
+          console.log('scrolling down');
+        }
+      }
+      lastScrollTop             = $windowScrollTop;
 
     });
 
