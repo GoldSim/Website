@@ -6117,6 +6117,8 @@ article.page.body {
 figure {
   margin: 2.5rem auto 2.25rem; }
   figure img {
+    -webkit-box-sizing: content-box;
+            box-sizing: content-box;
     border: 2px solid #eaeaea;
     padding: 1.75rem 2rem; }
   figure figcaption {
