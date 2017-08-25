@@ -5882,6 +5882,11 @@ ol {
     ul li:last-child,
     ol li:last-child {
       margin-bottom: 0; }
+  ul ul,
+  ul ol,
+  ol ul,
+  ol ol {
+    margin-top: 1rem; }
 
 ul ul {
   list-style-type: circle; }
