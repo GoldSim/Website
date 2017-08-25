@@ -31,11 +31,11 @@
 
   <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
     @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
-      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"]) {
+      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
         <h2>@category.Title</h2>
         <section id="Group-@category.Key">
           <ul class="accordion" data-accordion>
-            @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].SortedChildren.Where(t => t.Attributes.Get("Category", "").Equals(category))) {
               @WriteContentItem(contentItem, viewType)
             }
           </ul>
@@ -44,7 +44,7 @@
     }
     else {
       <ul class="accordion" data-accordion>
-        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"]) {
+        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
           @WriteContentItem(contentItem, viewType)
         }
       </ul>

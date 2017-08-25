@@ -15,7 +15,7 @@
       <div class="company cell small-6 medium-4 large-3">
         <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("ShortTitle", @CompanyTopic.Title)</a></p>
         <ul>
-          @foreach (Ignia.Topics.Topic topic in CompanyTopic.OrderBy(t => t.SortOrder))
+          @foreach (Ignia.Topics.Topic topic in CompanyTopic.SortedChildren)
           {
             if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
             {

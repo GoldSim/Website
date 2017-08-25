@@ -12,7 +12,7 @@
   if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
 
     // Loop through incoming Applications relationships to populate topic lists
-    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"]) {
+    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
 
       // Populate Case Studies
       if (relatedTopic.UniqueKey.Contains("CaseStudies") && !caseStudies.Contains(relatedTopic)) {
