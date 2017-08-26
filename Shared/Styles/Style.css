@@ -5620,6 +5620,7 @@ h3,
 h4,
 h5,
 h6 {
+  margin-bottom: 0;
   font-weight: 700; }
 
 h1,
@@ -5646,7 +5647,8 @@ header p.subtitle {
     header p.subtitle {
       font-size: 1.75rem; } }
 
-.author {
+.author,
+.footnote {
   font-style: italic; }
 
 .hidden {
