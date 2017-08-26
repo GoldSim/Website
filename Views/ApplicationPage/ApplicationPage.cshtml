@@ -98,34 +98,14 @@
     @if (caseStudies.Count > 0) {
       <!-- Related Case Studies -->
       <h1>Case Studies</h1>
-      <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-      @foreach (Ignia.Topics.Topic caseStudy in caseStudies) {
-        <div class="medium-6 cell">
-          <div class="card case-study" data-equalizer-watch>
-            <i class="type icon case-study" aria-hidden="true"></i>
-            <a href="@caseStudy.WebPath" class="thumbnail" style="background-image: url('@caseStudy.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-            <a href="@caseStudy.WebPath" class="title">@caseStudy.Title</a>
-          </div>
-        </div>
-      }
-      </div>
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(caseStudies, "case-study"))
       <!-- /Related Case Studies -->
     }
 
     @if (modules.Count > 0) {
       <!-- Related Modules -->
       <h1>Modules</h1>
-      <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-        @foreach (Ignia.Topics.Topic module in modules) {
-          <div class="medium-6 cell">
-            <div class="card module" data-equalizer-watch>
-              <i class="type icon module" aria-hidden="true"></i>
-              <a href="@module.WebPath" class="thumbnail" style="background-image: url('@module.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-              <a href="@module.WebPath" class="title">@module.Title</a>
-            </div>
-          </div>
-        }
-      </div>
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(modules, "modules"))
       <!-- /Related Modules -->
     }
 

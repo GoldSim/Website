@@ -1816,6 +1816,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
+    <Compile Include="Models\CardListViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -2003,6 +2004,7 @@
     <Content Include="Shared\Styles\Views\CaseStudy.scss" />
     <Content Include="Shared\Styles\Helpers\_mixins.scss" />
     <Content Include="Views\Layout\CTAs.cshtml" />
+    <Content Include="Views\Shared\_CardList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -23,19 +23,7 @@
 
         <!-- Environmental Applications -->
         <div class="accordion-content" data-tab-content>
-          <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-
-            @foreach (Ignia.Topics.Topic application in category) {
-              <div class="medium-6 cell">
-                <div class="card application">
-                  <i class="type icon application" aria-hidden="true"></i>
-                  <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-                  <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
-                </div>
-              </div>
-            }
-
-          </div>
+          @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(category.ToList(), "application"))
         </div>
         <!-- /@category Applications -->
 

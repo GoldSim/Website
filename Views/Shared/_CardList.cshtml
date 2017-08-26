@@ -1,0 +1,13 @@
+﻿@model GoldSim.Web.Models.CardListViewModel
+
+<div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+  @foreach (Ignia.Topics.Topic card in @Model.Cards) {
+    <div class="medium-6 cell">
+      <div class="card @Model.ClassName" data-equalizer-watch>
+        <i class="type icon @Model.ClassName" aria-hidden="true"></i>
+        <a href="@card.WebPath" class="thumbnail" style="background-image: url('@card.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+        <a href="@card.WebPath" class="title">@card.Title</a>
+      </div>
+    </div>
+  }
+</div>
