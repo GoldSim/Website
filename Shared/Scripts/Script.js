@@ -131,11 +131,12 @@
       var $searchBar = $('div.search.form');
       if ($searchBar.hasClass('closed')) {
         event.preventDefault();
+        $('div.search.form').addClass('open').removeClass('closed');
         $('input.gsc-input').focus();
       }
-    });
-    $('.search.form').on('focus', 'input.gsc-input', function (event) {
-      $('div.search.form').addClass('open').removeClass('closed');
+      else {
+        $('div.search.form').addClass('closed').removeClass('open');
+      }
     });
     $('.search.form').on('blur', 'input.gsc-input', function (event) {
       $('div.search.form').addClass('closed').removeClass('open');
