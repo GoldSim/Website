@@ -6185,6 +6185,10 @@ table {
     padding: 1.125rem 1.75rem; }
   table.download tr:last-child td {
     padding-bottom: 2.125rem; }
+  table.news td {
+    border-width: 1px;
+    min-width: 120px;
+    background-color: transparent; }
 
 section.panel.body ~ section.panel.accordion {
   margin-top: 3rem; }
