@@ -17,23 +17,7 @@
 
     @foreach (Ignia.Topics.Topic fieldCategory in fieldCategories) {
       <h1>@fieldCategory.Title</h1>
-      <section class="panel accordion embedded">
-        <ul class="accordion embedded" data-accordion>
-        @foreach (Ignia.Topics.Topic paper in papers) {
-          if (@fieldCategory.Key == @paper.Attributes.Get("Category")) {
-            <li class="accordion-item" data-accordion-item>
-              <a class="accordion-title" href="#">@Html.Raw(@paper.Title)</a>
-              <div class="accordion-content" data-tab-content>
-                <p>@Html.Raw(@paper.Attributes.Get("Publication")) &ndash; @paper.Attributes.Get("PublicationDate")</p>
-                <p class="author">@Html.Raw(@paper.Attributes.Get("Authors"))</p>
-                @Html.Raw(@paper.Attributes.Get("Description"))
-                <p><a href="@paper.Attributes.Get("LearnMoreURL")" target="_blank">@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadLabel")) ? @Model.Topic.Attributes.Get("DownloadLabel") : "Download")</a></p>
-              </div>
-            </li>
-          }
-        }
-        </ul>
-      </section>
+      @Html.Partial("_TechnicalPaperList", papers.Where(t => t.Attributes.Get("Category").Equals(fieldCategory.Key)).ToList())
     }
 
   </section>
