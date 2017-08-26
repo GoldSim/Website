@@ -6439,6 +6439,7 @@ body {
         padding: 0 6.875rem; } }
 
 #CTAs {
+  z-index: 20;
   position: fixed;
   right: 0;
   bottom: 0;
