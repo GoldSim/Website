@@ -52,6 +52,12 @@ h2 {
     padding-bottom              : rem-calc(16);
   }
 }
+h3,
+h4,
+h5,
+h6 {
+  font-family                   : $body-font-family;
+}
 p {
   ~ h1,
   ~ h2 {
