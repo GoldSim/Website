@@ -2005,6 +2005,7 @@
     <Content Include="Shared\Styles\Helpers\_mixins.scss" />
     <Content Include="Views\Layout\CTAs.cshtml" />
     <Content Include="Views\Shared\_CardList.cshtml" />
+    <Content Include="Views\Shared\_TechnicalPaperList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
