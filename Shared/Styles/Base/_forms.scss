@@ -136,13 +136,18 @@ label {
     background-color            : $palette-white;
   }
 }
-.alert.error-message {
-  box-shadow                    : none;
-  border                        : 0 none transparent;
-  border-left                   : 3px solid $palette-red;
-  padding                       : rem-calc(0 12);
-  line-height                   : 1.2;
-  font-weight                   : 600;
-  color                         : $palette-red;
-  background-color              : $palette-white;
+.alert {
+  &.callout {
+    float                       : none;
+  }
+  &.error-message {
+    box-shadow                  : none;
+    border                      : 0 none transparent;
+    border-left                 : 3px solid $palette-red;
+    padding                     : rem-calc(0 12);
+    line-height                 : 1.2;
+    font-weight                 : 600;
+    color                       : $palette-red;
+    background-color            : $palette-white;
+  }
 }

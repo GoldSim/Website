@@ -5645,6 +5645,7 @@ p ~ h2 {
   padding-top: 0.9375rem; }
 
 header p.subtitle {
+  margin-bottom: 0;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.25rem;
   color: #999999; }
@@ -5772,6 +5773,9 @@ label.required {
 
 .is-invalid-input:not(:focus) {
   background-color: white; }
+
+.alert.callout {
+  float: none; }
 
 .alert.error-message {
   -webkit-box-shadow: none;
