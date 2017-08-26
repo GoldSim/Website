@@ -64,6 +64,7 @@ p {
   }
   header & {
     &.subtitle {
+      margin-bottom             : 0;
       font-family               : $header-font-family;
       font-size                 : rem-calc(20);
       color                     : $palette-grey-medium;
