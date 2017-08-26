@@ -6191,9 +6191,7 @@ table {
     table.news tr,
     table.news td {
       -webkit-box-sizing: content-box;
-              box-sizing: content-box;
-      border-width: 1px;
-      background-color: transparent; }
+              box-sizing: content-box; }
     table.news tr td:first-child {
       width: 9.375rem;
       max-width: 9.375rem; }
