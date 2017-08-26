@@ -542,10 +542,19 @@ table {
     }
   }
   &.news {
+    tbody,
+    tr,
     td {
       border-width              : 1px;
-      min-width                 : 120px;
       background-color          : transparent;
+    }
+    tr {
+      td {
+        &:first-child {
+          width                 : rem-calc(150);
+          max-width             : rem-calc(150);
+        }
+      }
     }
   }
 }
