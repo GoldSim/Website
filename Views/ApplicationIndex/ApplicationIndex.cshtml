@@ -2,16 +2,6 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  List<Ignia.Topics.Topic> applicationPages = new List<Ignia.Topics.Topic>();
-  foreach (Ignia.Topics.Topic topic in @Model.Topic.SortedChildren) {
-    foreach (Ignia.Topics.Topic childTopic in topic.SortedChildren) {
-      if (childTopic.Attributes.Get("ContentType").Equals("ApplicationPage") && !applicationPages.Contains(childTopic)) {
-        applicationPages.Add(childTopic);
-      }
-    }
-  }
-
 }
 
 @section PageBodySection {
@@ -20,72 +10,66 @@
   <section class="panel body">
     @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
   </section>
-  -->
+  --> 
 
   <section class="panel accordion">
     <ul class="accordion applications" data-accordion>
-      <!-- Environmental -->
-      <li class="accordion-item is-active" data-accordion-item>
-        <a class="accordion-title" href="#">Environmental</a>
+
+      @foreach (var category in getApplications().GroupBy(t => t.Attributes.Get("Category")).ToList()) { 
+
+      <!-- @category.Key -->
+      <li class="accordion-item @(isFirst()? "is-active" : "")" data-accordion-item>
+        <a class="accordion-title" href="#">@category.Key</a>
+
         <!-- Environmental Applications -->
         <div class="accordion-content" data-tab-content>
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-            @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Environmental"))) {
-            <div class="medium-6 cell">
-              <div class="card application">
-                <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
+
+            @foreach (Ignia.Topics.Topic application in category) {
+              <div class="medium-6 cell">
+                <div class="card application">
+                  <i class="type icon application" aria-hidden="true"></i>
+                  <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
+                  <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
+                </div>
               </div>
-            </div>
             }
+
           </div>
         </div>
-        <!-- /Environmental Applications -->
+        <!-- /@category Applications -->
+
       </li>
-      <!-- /Environmental -->
-      <!-- Engineered -->
-      <li class="accordion-item" data-accordion-item>
-        <a class="accordion-title" href="#">Engineered</a>
-        <!-- Engineered Applications -->
-        <div class="accordion-content" data-tab-content>
-          <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-            @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Engineered"))) {
-            <div class="medium-6 cell">
-              <div class="card application">
-                <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
-              </div>
-            </div>
-            }
-          </div>
-        </div>
-        <!-- /Engineered Applications -->
-      </li>
-      <!-- /Engineered -->
-      <!-- Business -->
-      <li class="accordion-item" data-accordion-item>
-        <a class="accordion-title" href="#">Business</a>
-        <!-- Business Applications -->
-        <div class="accordion-content" data-tab-content>
-          <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
-            @foreach (Ignia.Topics.Topic application in applicationPages.Where(a => a.Attributes.Get("Category").Contains("Business"))) {
-            <div class="medium-6 cell">
-              <div class="card application">
-                <i class="type icon application" aria-hidden="true"></i>
-                <a href="@application.WebPath" class="thumbnail" style="background-image: url('@application.Attributes.Get("ThumbnailImage", "")')">&nbsp;</a>
-                <a href="@application.WebPath" class="title" data-equalizer-watch>@application.Title</a>
-              </div>
-            </div>
-            }
-          </div>
-        </div>
-        <!-- /Business Applications -->
-      </li>
-      <!-- /Business -->
+
+      }
+
     </ul>
   </section>
+
+}
+
+@functions {
+
+  List<Ignia.Topics.Topic> getApplications() {
+    List<Ignia.Topics.Topic> applicationPages = new List<Ignia.Topics.Topic>();
+    foreach (Ignia.Topics.Topic topic in @Model.Topic.SortedChildren) {
+      foreach (Ignia.Topics.Topic childTopic in topic.SortedChildren) {
+        if (childTopic.Attributes.Get("ContentType").Equals("ApplicationPage") && !applicationPages.Contains(childTopic)) {
+          applicationPages.Add(childTopic);
+        }
+      }
+    }
+    return applicationPages;
+  }
+
+  bool _isFirst = true;
+  bool isFirst() {
+    if (_isFirst) {
+      _isFirst = false;
+      return true;
+    }
+    return false;
+  }
 
 }
 
