@@ -3,8 +3,8 @@
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  Ignia.Topics.Topic fieldCategories    = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Configuration:Metadata:FieldCategories:LookupList");
-  Ignia.Topics.Topic papers             = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:TechnicalPapers:ContentItems");
+  Ignia.Topics.Topic fieldCategories    = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:FieldCategories:LookupList");
+  Ignia.Topics.Topic papers             = Model.TopicRepository.Load().GetTopic("Web:Applications:TechnicalPapers:ContentItems");
 }
 
 @section PageBodySection {
