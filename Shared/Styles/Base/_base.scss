@@ -542,9 +542,11 @@ table {
     }
   }
   &.news {
+    margin-top                  : rem-calc(-24);
     tbody,
     tr,
     td {
+      box-sizing                : content-box;
       border-width              : 1px;
       background-color          : transparent;
     }

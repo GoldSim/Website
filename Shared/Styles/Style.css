@@ -6185,14 +6185,18 @@ table {
     padding: 1.125rem 1.75rem; }
   table.download tr:last-child td {
     padding-bottom: 2.125rem; }
-  table.news tbody,
-  table.news tr,
-  table.news td {
-    border-width: 1px;
-    background-color: transparent; }
-  table.news tr td:first-child {
-    width: 9.375rem;
-    max-width: 9.375rem; }
+  table.news {
+    margin-top: -1.5rem; }
+    table.news tbody,
+    table.news tr,
+    table.news td {
+      -webkit-box-sizing: content-box;
+              box-sizing: content-box;
+      border-width: 1px;
+      background-color: transparent; }
+    table.news tr td:first-child {
+      width: 9.375rem;
+      max-width: 9.375rem; }
 
 section.panel.body ~ section.panel.accordion {
   margin-top: 3rem; }
