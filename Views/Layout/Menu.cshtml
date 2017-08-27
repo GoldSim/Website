@@ -48,7 +48,7 @@
     | OPEN NODE
     \-------------------------------------------------------------------------------------------------------------------------*@
     @if (hasChildren) {
-      <ul class="menu @(isDesktop? "dropdown" : "vertical") nested"@(isDesktop? " data-dropdown-menu" : "")>
+      <ul class="menu @(isDesktop? "dropdown" : "vertical") @(IsSelected(topic, Model.Topic)? "is-active" : "") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
           @if (!isDesktop) {
             <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
