@@ -3,44 +3,6 @@
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  // Set up incoming relationships
-  List<Ignia.Topics.Topic> caseStudies          = new List<Ignia.Topics.Topic>();
-  List<Ignia.Topics.Topic> whitePapers          = new List<Ignia.Topics.Topic>();
-  List<Ignia.Topics.Topic> technicalPapers      = new List<Ignia.Topics.Topic>();
-
-  // Populate incoming relationships
-  if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
-
-    // Loop through incoming Applications relationships to populate topic lists
-    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
-
-      // Populate Case Studies
-      if (relatedTopic.UniqueKey.Contains("CaseStudies") && !caseStudies.Contains(relatedTopic)) {
-        caseStudies.Add(relatedTopic);
-      }
-      // Populate White Papers
-      else if (relatedTopic.UniqueKey.Contains("WhitePapers") && !whitePapers.Contains(relatedTopic)) {
-        whitePapers.Add(relatedTopic);
-      }
-      // Populate Technical Papers
-      else if (relatedTopic.UniqueKey.Contains("TechnicalPapers") && !technicalPapers.Contains(relatedTopic)) {
-        technicalPapers.Add(relatedTopic);
-      }
-
-    }
-
-  }
-
-  // Set up Modules
-  List<Ignia.Topics.Topic> modules              = new List<Ignia.Topics.Topic>();
-  if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains("Modules")) {
-    foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.Relationships["Modules"]) {
-      if (!modules.Contains(relatedTopic)) {
-        modules.Add(relatedTopic);
-      }
-    }
-  }
-
   // Set Application category
   string category                               = @Model.Topic.Attributes.Get("Category", "");
 
@@ -95,34 +57,34 @@
       <!-- /Model Image -->
     }
 
-    @if (caseStudies.Count > 0) {
+    @if (getIncomingRelationships("CaseStudies").Count > 0) {
       <!-- Related Case Studies -->
       <h1>Case Studies</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(caseStudies, "case-study"))
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("CaseStudies"), "case-study"))
       <!-- /Related Case Studies -->
     }
 
-    @if (modules.Count > 0) {
+    @if (getRelationships("Modules").Count > 0) {
       <!-- Related Modules -->
       <h1>Modules</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(modules, "modules"))
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getRelationships("Modules"), "modules"))
       <!-- /Related Modules -->
     }
 
-    @if (whitePapers.Count > 0) {
+    @if (getIncomingRelationships("WhitePapers").Count > 0) {
       <!-- Related White Papers -->
       <h1>White Papers</h1>
       <ul>
-        @foreach (Ignia.Topics.Topic paper in whitePapers) {
+        @foreach (Ignia.Topics.Topic paper in getIncomingRelationships("WhitePapers")) {
           <li><a href="@paper.Attributes.Get("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
     }
 
-    @if (technicalPapers.Count > 0) {
+    @if (getIncomingRelationships("TechnicalPapers").Count > 0) {
       <h1>Technical Papers</h1>
-      @Html.Partial("_TechnicalPaperList", technicalPapers)
+      @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPapers"))
     }
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
@@ -149,6 +111,60 @@
 }
 
 @functions{
+
+  Dictionary<string, List<Ignia.Topics.Topic>> _relationships = new Dictionary<string, List<Ignia.Topics.Topic>>();
+
+  List<Ignia.Topics.Topic> getIncomingRelationships(string relationship) {
+
+    if (!_relationships.ContainsKey(relationship)) {
+
+      var incomingRelationships = new List<Ignia.Topics.Topic>();
+
+      if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
+
+        // Loop through incoming Applications relationships to populate topic lists
+        foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
+
+          // Populate Case Studies
+          if (relatedTopic.UniqueKey.Contains(relationship) && !incomingRelationships.Contains(relatedTopic)) {
+            incomingRelationships.Add(relatedTopic);
+          }
+
+        }
+
+      }
+
+      _relationships.Add(relationship, incomingRelationships);
+
+    }
+
+    return _relationships[relationship];
+
+  }
+
+  List<Ignia.Topics.Topic> getRelationships(string relationship) {
+
+    if (!_relationships.ContainsKey(relationship)) {
+
+      var relationships = new List<Ignia.Topics.Topic>();
+
+      if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains(relationship)) {
+
+        foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.Relationships["Modules"]) {
+          if (!relationships.Contains(relatedTopic)) {
+            relationships.Add(relatedTopic);
+          }
+        }
+
+      }
+
+      _relationships.Add(relationship, relationships);
+
+    }
+
+    return _relationships[relationship];
+
+  }
 
 }
 
