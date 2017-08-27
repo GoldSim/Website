@@ -114,8 +114,16 @@
 
 @functions{
 
+  /*============================================================================================================================
+  | DEFINE VARIABLES
+  \---------------------------------------------------------------------------------------------------------------------------*/
   Dictionary<string, List<Topic>> _relationships = new Dictionary<string, List<Topic>>();
 
+  /*============================================================================================================================
+  | GET INCOMING RELATIONSHIPS
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Given incoming relationships, finds topics pointing to the application that are of a particular content type.
+  \---------------------------------------------------------------------------------------------------------------------------*/
   List<Topic> getIncomingRelationships(string contentType) {
 
     if (!_relationships.ContainsKey(contentType)) {
@@ -144,6 +152,11 @@
 
   }
 
+  /*============================================================================================================================
+  | GET (OUTGOING) RELATIONSHIPS
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Given an (outgoing) relationship, returns all topics associated with the relationship.
+  \---------------------------------------------------------------------------------------------------------------------------*/
    List<Topic> getRelationships(string relationship) {
     if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains(relationship)) {
       return Model.Topic.Relationships[relationship].ToList();
