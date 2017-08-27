@@ -42,7 +42,7 @@
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
-    <a href="@(isDesktop? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
+    <a href="@(!hasChildren || isDesktop? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
       @topic.Attributes.Get("ShortTitle", @topic.Title)
     </a>
 
@@ -52,7 +52,9 @@
     @if (hasChildren) {
       <ul class="menu @(isDesktop? "dropdown" : "vertical") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
-          <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
+          @if (!isDesktop) {
+            <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
+          }
           @foreach (Topic childTopic in topic.SortedChildren) {
             @WriteMenu(childTopic, indentLevel + 1, isDesktop);
           }
