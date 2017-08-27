@@ -5,7 +5,7 @@
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
-    <ul class="vertical menu accordion-menu" data-accordion-menu data-submenu-toggle="true" data-multi-open="false">
+    <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.SortedChildren) {
         @WriteMenu(topic, 1, "mobile");
       }
@@ -35,7 +35,7 @@
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
-    <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
+    <a href="@(screenType == "desktop" ? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
       @topic.Attributes.Get("ShortTitle", @topic.Title)
     </a>
 
