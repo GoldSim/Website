@@ -74,60 +74,38 @@
 
 }
 
-@functions{
+@helper customer(string customerName, string customerUrl) {
+  if (!String.IsNullOrEmpty(customerUrl)) {
+    <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
+  }
+  else {
+    <strong>@customerName</strong>
+  }
+}
 
-  /*============================================================================================================================
-  | SET UP CUSTOMER STRUCTURE
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  string customer(string customerName, string customerUrl) {
+@helper downloadButton(string downloadUrl) {
 
-    string customer             = "";
-    if (!String.IsNullOrEmpty(customerUrl)) {
-      customer                 += "<a href=\"" + customerUrl + "\" target=\"blank\">";
+  string label                = "Download";
+  string downloadName         = "";
+
+  if (!String.IsNullOrEmpty(downloadUrl)) {
+    string url                = downloadUrl;
+    if (url.IndexOf("/") >= 0) {
+      url                     = url.Substring(url.LastIndexOf("/") + 1);
     }
-    customer                   += "<strong>" + customerName + "</strong>";
-    if (!String.IsNullOrEmpty(customerUrl)) {
-      customer                 += "</a>";
+    if (url.ToLower().EndsWith(".pdf")) {
+      url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
     }
-
-    return customer;
+    downloadName              = url;
   }
 
-  /*============================================================================================================================
-  | SET UP DOWNLOAD BUTTON
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  string downloadButton(string downloadUrl) {
-
-    string download             = "";
-    string label                = "Download";
-
-    // Get download URL file name for click tracking
-    string downloadName         = "";
-    if (!String.IsNullOrEmpty(downloadUrl)) {
-      string url                = downloadUrl;
-      if (url.IndexOf("/") >= 0) {
-        url                     = url.Substring(url.LastIndexOf("/") + 1);
-      }
-      if (url.ToLower().EndsWith(".pdf")) {
-        url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
-      }
-      downloadName              = url;
-    }
-
-    // Conditionally toggle label
-    if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
-      label = "Learn More";
-    }
-
-    download                    = "<a href=\"" + downloadUrl + "\""
-                                + " target=\"_blank\" class=\"button large\""
-                                + " onclick=\"trackEvent(this, 'Case Studies', 'Download', 'Case Studies: " + downloadName + "');return false;\">"
-                                + label
-                                + "</a>";
-
-    return download;
-
+  if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
+    label = "Learn More";
   }
+
+  <a href="@downloadUrl" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
+    @label
+  </a>
 
 }
 
