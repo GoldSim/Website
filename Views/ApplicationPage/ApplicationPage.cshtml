@@ -6,21 +6,7 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 
   // Set Application category
-  string category                               = @Model.Topic.Attributes.Get("Category", "");
-
-}
-
-@section LongTitleSection {
-
-  <!-- Long Title (Subtitle) -->
-  <header class="grid-x">
-    <h2 class="category title">@(!String.IsNullOrEmpty(category) ? category + " " : "")Applications</h2>
-    <h1 class="page title long cell">@Model.Topic.Attributes.Get("LongTitle", @Model.Topic.Title)</h1>
-    @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
-      <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
-    }
-  </header>
-  <!-- /Long Title (Subtitle) -->
+  ViewBag.Context = @Model.Topic.Attributes.Get("Category", "") + " Applications";
 
 }
 

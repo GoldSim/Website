@@ -135,6 +135,9 @@
           else {
             <!-- Long Title (Subtitle) -->
             <header class="grid-x">
+              @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
+                <h2 class="category title">@ViewBag.Context</h2>
+              }
               <h1 class="page title long cell">@Model.Topic.Attributes.Get("LongTitle", @Model.Topic.Title)</h1>
               @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
                 <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
