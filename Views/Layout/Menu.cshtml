@@ -1,12 +1,14 @@
 ﻿@model GoldSim.Web.Models.NavigationViewModel
 
+@using Ignia.Topics
+
 @if (Model.NavigationRootTopic != null) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
-      @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.SortedChildren) {
+      @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
         @WriteMenu(topic, 1, false);
       }
     </ul>
@@ -15,7 +17,7 @@
   <nav id="PrimaryNavigation" class="navigation primary grid-x show-for-large">
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
-        @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.SortedChildren) {
+        @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
           @WriteMenu(topic, 1, true);
         }
       </ul>
@@ -24,7 +26,7 @@
 
 }
 
-@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel, bool isDesktop = true) {
+@helper WriteMenu(Topic topic, int indentLevel, bool isDesktop = true) {
 
   @*============================================================================================================================
   | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
@@ -60,7 +62,7 @@
   /*============================================================================================================================
   | DETERMINE VALID
   \---------------------------------------------------------------------------------------------------------------------------*/
-  public bool IsValid(Ignia.Topics.Topic topic) {
+  public bool IsValid(Topic topic) {
     return
     topic.Attributes.Get("IsInactive") != "1" &&
     topic.Attributes.Get("IsDisabled") != "1" &&
@@ -70,7 +72,7 @@
   /*============================================================================================================================
   | DETERMINE SELECTED
   \---------------------------------------------------------------------------------------------------------------------------*/
-  public bool IsSelected(Ignia.Topics.Topic topic, Ignia.Topics.Topic currentTopic) {
+  public bool IsSelected(Topic topic, Topic currentTopic) {
     while (currentTopic != null) {
       if (currentTopic == topic) return true;
       currentTopic = currentTopic.Parent;
