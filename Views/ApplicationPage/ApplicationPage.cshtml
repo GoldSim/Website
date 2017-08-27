@@ -1,13 +1,8 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
-
-@using Ignia.Topics
+﻿@model TopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  // Set Application category
   ViewBag.Context = @Model.Topic.Attributes.Get("Category", "") + " Applications";
-
 }
 
 @section PageBodySection {

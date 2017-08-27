@@ -1,7 +1,7 @@
-﻿@model GoldSim.Web.Models.NavigationViewModel
+﻿@model NavigationViewModel
 
 @{
-  Ignia.Topics.Topic CompanyTopic       = @Model.NavigationRootTopic;
+  Topic CompanyTopic = @Model.NavigationRootTopic;
 }
 
 <!-- Site Footer Area -->
@@ -15,7 +15,7 @@
       <div class="company cell small-6 medium-4 large-3">
         <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("ShortTitle", @CompanyTopic.Title)</a></p>
         <ul>
-          @foreach (Ignia.Topics.Topic topic in CompanyTopic.SortedChildren)
+          @foreach (Topic topic in CompanyTopic.SortedChildren)
           {
             if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
             {

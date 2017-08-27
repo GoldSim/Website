@@ -1,4 +1,4 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+﻿@model TopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
@@ -22,11 +22,11 @@
 
   <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
     @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
-      foreach (Ignia.Topics.Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
+      foreach (Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
         <h2>@category.Title</h2>
         <section id="Group-@category.Key">
           <ul class="accordion" data-accordion>
-            @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].SortedChildren.Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+            @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren.Where(t => t.Attributes.Get("Category", "").Equals(category))) {
               @WriteContentItem(contentItem, viewType)
             }
           </ul>
@@ -35,7 +35,7 @@
     }
     else {
       <ul class="accordion" data-accordion>
-        @foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+        @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
           @WriteContentItem(contentItem, viewType)
         }
       </ul>
@@ -45,7 +45,7 @@
 
 }
 
-@helper WriteContentItem(Ignia.Topics.Topic contentItem, string viewType) {
+@helper WriteContentItem(Topic contentItem, string viewType) {
   <li class="accordion-item" data-accordion-item>
     <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#">
       @if (viewType.Equals("faq")) {

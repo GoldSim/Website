@@ -1,9 +1,9 @@
 ﻿@{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  Ignia.Topics.Topic    EnvironmentalSystems    = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:EnvironmentalSystems");
-  Ignia.Topics.Topic    EngineeredSystems       = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:EngineeredSystems");
-  Ignia.Topics.Topic    BusinessSystems         = Ignia.Topics.Web.TopicRepository.RootTopic.GetTopic("Web:Applications:BusinessSystems");
+  Topic    EnvironmentalSystems    = Model.TopicRepository.Load().GetTopic("Web:Applications:EnvironmentalSystems");
+  Topic    EngineeredSystems       = Model.TopicRepository.Load().GetTopic("Web:Applications:EngineeredSystems");
+  Topic    BusinessSystems         = Model.TopicRepository.Load().GetTopic("Web:Applications:BusinessSystems");
 
 }
 
@@ -139,7 +139,7 @@
                 <h2>Environmental<br/>Systems Modeling</h2>
                 @if (EnvironmentalSystems != null) {
                   <ul id="EnvironmentalApplications">
-                    @foreach (Ignia.Topics.Topic application in EnvironmentalSystems) {
+                    @foreach (Topic application in EnvironmentalSystems) {
                       <li><a href="@application.WebPath">@application.Title</a></li>
                     }
                   </ul>
@@ -155,7 +155,7 @@
                 <h2>Engineered<br/>Systems Modeling</h2>
                 @if (EngineeredSystems != null) {
                   <ul id="EngineeredApplications">
-                    @foreach (Ignia.Topics.Topic application in EngineeredSystems) {
+                    @foreach (Topic application in EngineeredSystems) {
                       <li><a href="@application.WebPath">@application.Title</a></li>
                     }
                   </ul>
@@ -171,7 +171,7 @@
                 <h2>Business<br/>Systems Modeling</h2>
                 @if (BusinessSystems != null) {
                   <ul id="BusinessApplications">
-                    @foreach (Ignia.Topics.Topic application in BusinessSystems) {
+                    @foreach (Topic application in BusinessSystems) {
                       <li><a href="@application.WebPath">@application.Title</a></li>
                     }
                   </ul>

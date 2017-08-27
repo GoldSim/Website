@@ -1,4 +1,4 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+﻿@model TopicViewModel
 
 @{
   ViewBag.Title = Model.Topic.Title;
@@ -17,7 +17,7 @@
 
 <h2>Slides (Nested Topics)</h2>
 <ul>
-  @foreach (Ignia.Topics.Topic slide in Model.Topic["ContentItems"]) {
+  @foreach (Topic slide in Model.Topic["ContentItems"]) {
     <li><strong>@slide.Title</strong>: @slide.Attributes.Get("Description")</li>
   }
 </ul>

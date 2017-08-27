@@ -1,10 +1,10 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+﻿@model TopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  Ignia.Topics.Topic fieldCategories    = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:FieldCategories:LookupList");
-  Ignia.Topics.Topic papers             = Model.TopicRepository.Load().GetTopic("Web:Applications:TechnicalPapers:ContentItems");
+  Topic fieldCategories    = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:FieldCategories:LookupList");
+  Topic papers             = Model.TopicRepository.Load().GetTopic("Web:Applications:TechnicalPapers:ContentItems");
 }
 
 @section PageBodySection {
@@ -15,7 +15,7 @@
       @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
     </article>
 
-    @foreach (Ignia.Topics.Topic fieldCategory in fieldCategories) {
+    @foreach (Topic fieldCategory in fieldCategories) {
       <h1>@fieldCategory.Title</h1>
       @Html.Partial("_TechnicalPaperList", papers.Where(t => t.Attributes.Get("Category").Equals(fieldCategory.Key)).ToList())
     }

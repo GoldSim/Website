@@ -1,6 +1,4 @@
-﻿@model GoldSim.Web.Models.NavigationViewModel
-
-@using Ignia.Topics
+﻿@model NavigationViewModel
 
 @if (Model.NavigationRootTopic != null) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
@@ -56,7 +54,7 @@
             <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
           }
           @foreach (Topic childTopic in topic.SortedChildren) {
-            @WriteMenu(childTopic, indentLevel + 1, isDesktop);
+            @WriteMenu(childTopic, isDesktop, indentLevel + 1);
           }
       </ul>
     }

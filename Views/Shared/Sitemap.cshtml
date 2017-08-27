@@ -2,7 +2,8 @@
   Layout = null;
   Response.Write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
 }
-@using Microsoft.Security.Application 
+
+@using Microsoft.Security.Application
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   @foreach (var topic in Model.RootTopic) {
@@ -10,7 +11,7 @@
   }
 </urlset>
 
-@helper AddNodeToOutput(Ignia.Topics.Topic topic, int indentLevel) {
+@helper AddNodeToOutput(Topic topic, int indentLevel) {
 
   @*=========================================================================================================================
   | DEFINE VARIABLES

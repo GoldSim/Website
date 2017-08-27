@@ -1,10 +1,10 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+﻿@model TopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
   // Redirect to URL
-  string redirectUrl            = Model.Topic.Attributes.Get("URL");
+  string redirectUrl = Model.Topic.Attributes.Get("URL");
   if (!String.IsNullOrEmpty(redirectUrl)) {
     Response.Redirect(redirectUrl);
   }
@@ -32,7 +32,7 @@
 
 <h2>Applications (Relationship)</h2>
 <ul>
-  @foreach (Ignia.Topics.Topic application in Model.Topic.Relationships["Applications"]) {
+  @foreach (Topic application in Model.Topic.Relationships["Applications"]) {
     <li>@application.Title</li>
   }
 </ul>

@@ -1,12 +1,12 @@
-﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
+﻿@model TopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
   // Populate related Applications
-  List<Ignia.Topics.Topic> applications = new List<Ignia.Topics.Topic>();
+  List<Topic> applications = new List<Topic>();
   if (Model.Topic.Relationships.Contains("Applications")) {
-    foreach (Ignia.Topics.Topic relatedApplication in Model.Topic.Relationships["Applications"]) {
+    foreach (Topic relatedApplication in Model.Topic.Relationships["Applications"]) {
       if (!applications.Contains(relatedApplication)) {
         applications.Add(relatedApplication);
       }
@@ -26,7 +26,7 @@
     }
     @if(applications.Count > 0) {
       <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
-      foreach (Ignia.Topics.Topic application in applications) {
+      foreach (Topic application in applications) {
         <a href="@application.WebPath" class="comma delimited">@application.Title</a>
       }
     }
