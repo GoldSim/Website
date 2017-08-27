@@ -49,25 +49,6 @@
   bool _isFirst = true;
 
   /*============================================================================================================================
-  | GET APPLICATIONS
-  >-----------------------------------------------------------------------------------------------------------------------------
-  | Retrieves a list of applications based on a specified content type. Assumes topics are broken up into subtopics.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  List<Topic> getApplications() {
-    if (_applicationPages == null) {
-      _applicationPages = new List<Topic>();
-      foreach (Topic topic in @Model.Topic.SortedChildren) {
-        foreach (Topic childTopic in topic.SortedChildren) {
-          if (childTopic.Attributes.Get("ContentType").Equals("ApplicationPage") && !_applicationPages.Contains(childTopic)) {
-            _applicationPages.Add(childTopic);
-          }
-        }
-      }
-    }
-    return _applicationPages;
-  }
-
-  /*============================================================================================================================
   | GET CATEGORIZED APPLICATIONS
   >-----------------------------------------------------------------------------------------------------------------------------
   | Returns a set of applications grouped by category.
@@ -77,8 +58,9 @@
     if (_categorizedApplications == null) {
 
       _categorizedApplications = new Dictionary<string, List<Topic>>();
+      var contentType = Model.Topic.Attributes.Get("FilteredDocumentType");
 
-      foreach (Topic applicationPage in getApplications()) {
+      foreach (Topic applicationPage in Model.Topic.FindAllByAttribute("ContentType", contentType)) {
         if (applicationPage.ContentType == "ApplicationPage") {
           var category = applicationPage.Attributes.Get("Category");
           addApplicationPage(category, applicationPage);
