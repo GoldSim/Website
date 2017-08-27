@@ -65,40 +65,52 @@ nav.navigation {
       color                     : $palette-white;
     }
 
-    // nested menu toggle
-    button.submenu-toggle {
-    //top                       : rem-calc(12.8);
-      width                     : 27px;
-      height                    : 27px;
-      background                : transparent url('/Images/Icons/Plus.Circle.png') no-repeat center center;
-      background-size           : contain;
-      &:after {
-        display                 : none;
-      //border-top-color        : $palette-white;
-      }
-      &[aria-expanded="true"] {
-        background-image        : url('/Images/Icons/Minus.Circle.png');
-      }
-    }
-    .nested.submenu {
-      button.submenu-toggle {
-        background-image        : none;
-        &:after {
-          content               : '+';
-          display               : block;
-          position              : relative;
-          top                   : rem-calc(-9);
-          right                 : rem-calc(5);
-          border                : 0 none transparent;
-          color                 : $palette-yellow;
-          font-weight           : bold;
+    li {
+      &.is-accordion-submenu-parent {
+        a {
+          &:after {
+            display                     : inline-block;
+            position                    : relative;
+            top                         : rem-calc(4);
+            right                       : rem-calc(-4);
+            border                      : 0 none transparent;
+            width                       : 27px;
+            height                      : 27px;
+            background                  : transparent url('/Images/Icons/Plus.Circle.png') no-repeat center center;
+            background-size             : contain;
+          }
         }
         &[aria-expanded="true"] {
-          background-image      : none;
-          &:after {
-            content             : '-';
-            top                 : rem-calc(11);
-            right               : rem-calc(2);
+          a {
+            &:after {
+              background-image          : url('/Images/Icons/Minus.Circle.png');
+            }
+          }
+        }
+        &.is-accordion-submenu-item {
+          > a {
+            &:after {
+              content                   : '+';
+              display                   : inline-block;
+              position                  : relative;
+              top                       : 0;
+              right                     : rem-calc(-8);
+              border                    : 0 none transparent;
+              width                     : auto;
+              height                    : auto;
+              color                     : $palette-yellow;
+              font-weight               : bold;
+              background-image          : none;
+            }
+          }
+          &[aria-expanded="true"] {
+            > a {
+              &:after {
+                content                 : '-';
+                top                     : rem-calc(4);
+                right                   : rem-calc(-11);
+              }
+            }
           }
         }
       }
@@ -183,15 +195,15 @@ nav.navigation {
             padding             : rem-calc(8 18);
           }
         }
-        ul.nested {
+        ul.menu.nested {
           padding-bottom        : rem-calc(12);
           padding-left          : rem-calc(16);
+          font-weight           : normal;
           @include breakpoint(large) {
             top                 : rem-calc(-10);
             padding-left        : 0;
             li {
               height            : auto;
-              font-weight       : normal;
             }
           }
         }
@@ -200,6 +212,23 @@ nav.navigation {
       //margin-bottom           : rem-calc(32);
       }
     }
+
+    // Mobile
+    &.off-canvas {
+      .nested {
+        .nested {
+          li {
+            font-weight         : normal;
+            a {
+              padding-left      : rem-calc(48);
+            }
+          }
+        }
+      }
+    }
+
+
+
   }
 
   // Page Level Navigation Menu

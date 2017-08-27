@@ -77,6 +77,12 @@ body {
   }
 
 }
+#PrimaryNavigationSmallScreen {
+  z-index                       : 30;
+  + .js-off-canvas-overlay {
+    z-index                     : 25;
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 // PRIMARY CONTENT AREA
