@@ -15,36 +15,28 @@
 
 }
 
-@section LongTitleSection {
+@section PostTitleSection {
 
-  <!-- Long Title (Subtitle) -->
-  <header class="grid-x grid-margin-x">
-    <div class="medium-12 cell">
-      <h1 class="page title long case-study">@Model.Topic.Attributes.Get("LongTitle", @Model.Topic.Title)</h1>
-      @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
-        <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
-      }
-    </div>
-    <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle">
-      @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
-        <strong>Client:</strong>
-        @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
-        <br/>
-      }
-      @if(applications.Count > 0) {
-        <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
-        foreach (Ignia.Topics.Topic application in applications) {
-          <a href="@application.WebPath" class="comma delimited">@application.Title</a>
-        }
-      }
-    </div>
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
-      <div class="medium-4 cell align-middle">
-        @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
-      </div>
+  <!-- Post Title -->
+  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle">
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
+      <strong>Client:</strong>
+      @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
+      <br/>
     }
-  </header>
-  <!-- /Long Title (Subtitle) -->
+    @if(applications.Count > 0) {
+      <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
+      foreach (Ignia.Topics.Topic application in applications) {
+        <a href="@application.WebPath" class="comma delimited">@application.Title</a>
+      }
+    }
+  </div>
+  @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
+    <div class="medium-4 cell align-middle">
+      @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
+    </div>
+  }
+  <!-- /Post Title -->
 
 }
 
