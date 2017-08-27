@@ -1,5 +1,7 @@
 ﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
 
+@using Ignia.Topics
+
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
@@ -57,10 +59,10 @@
       <!-- /Model Image -->
     }
 
-    @if (getIncomingRelationships("CaseStudies").Count > 0) {
+    @if (getIncomingRelationships("CaseStudy").Count > 0) {
       <!-- Related Case Studies -->
       <h1>Case Studies</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("CaseStudies"), "case-study"))
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("CaseStudy"), "case-study"))
       <!-- /Related Case Studies -->
     }
 
@@ -71,20 +73,20 @@
       <!-- /Related Modules -->
     }
 
-    @if (getIncomingRelationships("WhitePapers").Count > 0) {
+    @if (getIncomingRelationships("WhitePaper").Count > 0) {
       <!-- Related White Papers -->
       <h1>White Papers</h1>
       <ul>
-        @foreach (Ignia.Topics.Topic paper in getIncomingRelationships("WhitePapers")) {
+        @foreach (Topic paper in getIncomingRelationships("WhitePaper")) {
           <li><a href="@paper.Attributes.Get("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
     }
 
-    @if (getIncomingRelationships("TechnicalPapers").Count > 0) {
+    @if (getIncomingRelationships("TechnicalPaper").Count > 0) {
       <h1>Technical Papers</h1>
-      @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPapers"))
+      @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPaper"))
     }
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
@@ -112,58 +114,41 @@
 
 @functions{
 
-  Dictionary<string, List<Ignia.Topics.Topic>> _relationships = new Dictionary<string, List<Ignia.Topics.Topic>>();
+  Dictionary<string, List<Topic>> _relationships = new Dictionary<string, List<Topic>>();
 
-  List<Ignia.Topics.Topic> getIncomingRelationships(string relationship) {
+  List<Topic> getIncomingRelationships(string contentType) {
 
-    if (!_relationships.ContainsKey(relationship)) {
+    if (!_relationships.ContainsKey(contentType)) {
 
-      var incomingRelationships = new List<Ignia.Topics.Topic>();
+      var incomingRelationships = new List<Topic>();
 
       if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
 
         // Loop through incoming Applications relationships to populate topic lists
-        foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
-
-          // Populate Case Studies
-          if (relatedTopic.UniqueKey.Contains(relationship) && !incomingRelationships.Contains(relatedTopic)) {
+        foreach (Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
+          if (
+            relatedTopic.Attributes.Get("DocumentType", relatedTopic.ContentType).Equals(contentType) &&
+            !incomingRelationships.Contains(relatedTopic)
+          ) {
             incomingRelationships.Add(relatedTopic);
           }
-
         }
 
       }
 
-      _relationships.Add(relationship, incomingRelationships);
+      _relationships.Add(contentType, incomingRelationships);
 
     }
 
-    return _relationships[relationship];
+    return _relationships[contentType];
 
   }
 
-  List<Ignia.Topics.Topic> getRelationships(string relationship) {
-
-    if (!_relationships.ContainsKey(relationship)) {
-
-      var relationships = new List<Ignia.Topics.Topic>();
-
-      if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains(relationship)) {
-
-        foreach (Ignia.Topics.Topic relatedTopic in Model.Topic.Relationships["Modules"]) {
-          if (!relationships.Contains(relatedTopic)) {
-            relationships.Add(relatedTopic);
-          }
-        }
-
-      }
-
-      _relationships.Add(relationship, relationships);
-
+   List<Topic> getRelationships(string relationship) {
+    if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains(relationship)) {
+      return Model.Topic.Relationships[relationship].ToList();
     }
-
-    return _relationships[relationship];
-
+    return new List<Topic>();
   }
 
 }
