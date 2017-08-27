@@ -78,8 +78,8 @@
           var category = applicationPage.Attributes.Get("Category");
           addApplicationPage(category, applicationPage);
         }
-        else {
-          foreach (Topic application in applicationPage["Applications"]) {
+        else if (applicationPage.Relationships.Contains("Applications")) {
+          foreach (Topic application in applicationPage.Relationships["Applications"]) {
             var category = application.Attributes.Get("Category");
             addApplicationPage(category, applicationPage);
           }
