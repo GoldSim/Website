@@ -43,8 +43,8 @@
         @foreach (var attribute in topic.Attributes) {
           if (Array.IndexOf(excludeAttributes, attribute.Key) >= 0) { continue; }
           if (topic.Attributes[attribute.Key].Value.Length > 256) { continue; }
-            <Attribute name="@attribute.Key">@Encoder.XmlEncode((string)topic.Attributes[attribute.Key].Value)</Attribute>
-          }
+          <Attribute name="@attribute.Key">@Encoder.XmlEncode((string)topic.Attributes[attribute.Key].Value)</Attribute>
+        }
       </DataObject>
 
       @*=====================================================================================================================
