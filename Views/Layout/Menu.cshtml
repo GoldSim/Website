@@ -9,7 +9,7 @@
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
       @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-        @WriteMenu(topic, 1, false);
+        @WriteMenu(topic, false);
       }
     </ul>
   </nav>
@@ -18,7 +18,7 @@
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
         @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-          @WriteMenu(topic, 1, true);
+          @WriteMenu(topic, true);
         }
       </ul>
     </div>
@@ -26,7 +26,7 @@
 
 }
 
-@helper WriteMenu(Topic topic, int indentLevel, bool isDesktop = true) {
+@helper WriteMenu(Topic topic, bool isDesktop = true, int indentLevel = 1) {
 
   @*============================================================================================================================
   | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
