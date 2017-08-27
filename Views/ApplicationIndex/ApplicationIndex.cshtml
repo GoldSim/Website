@@ -60,6 +60,22 @@
       _categorizedApplications = new Dictionary<string, List<Topic>>();
       var contentType = Model.Topic.Attributes.Get("FilteredDocumentType");
 
+      //### BUG JJC082717: This is a workaround for a bug in the datamodel; FilteredDocumentType should map to ContentType keys.
+      switch (contentType.Substring(contentType.LastIndexOf(":")+1)) {
+        case "Applications":
+          contentType = "ApplicationPage";
+          break;
+        case "CaseStudies":
+          contentType = "CaseStudy";
+          break;
+        case "TechnicalPapers":
+          contentType = "TechnicalPaper";
+          break;
+        case "WhitePapers":
+          contentType = "DocumentPointer";
+          break;
+      }
+
       foreach (Topic applicationPage in Model.Topic.FindAllByAttribute("ContentType", contentType)) {
         if (applicationPage.ContentType == "ApplicationPage") {
           var category = applicationPage.Attributes.Get("Category");
