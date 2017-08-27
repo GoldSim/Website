@@ -14,6 +14,24 @@
     </article>
     <!-- /Body Content -->
 
+    @if ((ViewContext.View as RazorView).ViewPath.IndexOf("IndexedList") > 0) {
+      <aside class="contents">
+        <h1>Contents</h1>
+        <ul>
+          @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
+            foreach (Ignia.Topics.Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
+              <li><a href="#@category.Key">@category.Title</a></li>
+            }
+          }
+          else {
+            foreach (Ignia.Topics.Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+              <li><a href="#@contentItem.Key">@contentItem.Title</a></li>
+            }
+          }
+        </ul>
+      </aside>
+    }
+
     @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
       foreach (Ignia.Topics.Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
         <h1><a name="@category.Key"></a>@category.Title</h1>
