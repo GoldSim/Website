@@ -7,7 +7,7 @@
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
       @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-        @WriteMenu(topic, 1, "mobile");
+        @WriteMenu(topic, 1, false);
       }
     </ul>
   </nav>
@@ -16,7 +16,7 @@
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
         @foreach (Ignia.Topics.Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-          @WriteMenu(topic, 1, "desktop");
+          @WriteMenu(topic, 1, true);
         }
       </ul>
     </div>
@@ -24,7 +24,7 @@
 
 }
 
-@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel, string screenType = "desktop") {
+@helper WriteMenu(Ignia.Topics.Topic topic, int indentLevel, bool isDesktop = true) {
 
   @*============================================================================================================================
   | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
@@ -35,7 +35,7 @@
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
-    <a href="@(screenType == "desktop" ? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
+    <a href="@(isDesktop? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
       @topic.Attributes.Get("ShortTitle", @topic.Title)
     </a>
 
@@ -43,13 +43,13 @@
     | OPEN NODE
     \-------------------------------------------------------------------------------------------------------------------------*@
     @if (!topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2) {
-      <ul class="menu @(screenType == "desktop" ? "dropdown" : "vertical") nested"@(screenType == "desktop" ? " data-dropdown-menu" : "")>
+      <ul class="menu @(isDesktop? "dropdown" : "vertical") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
           <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
           @foreach (Ignia.Topics.Topic childTopic in topic.SortedChildren) {
             @WriteMenu(childTopic, indentLevel + 1);
           }
-</ul>
+      </ul>
     }
   </li>
 
