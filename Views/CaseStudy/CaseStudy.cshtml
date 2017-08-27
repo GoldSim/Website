@@ -18,7 +18,7 @@
 @section PostTitleSection {
 
   <!-- Post Title -->
-  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle">
+  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle metadata">
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
       <strong>Client:</strong>
       @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
@@ -32,7 +32,7 @@
     }
   </div>
   @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
-    <div class="medium-4 cell align-middle">
+    <div class="medium-4 cell align-middle metadata">
       @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
     </div>
   }

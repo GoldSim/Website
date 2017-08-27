@@ -143,13 +143,12 @@
                 @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
                   <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
                 }
+                @if (IsSectionDefined("PostTitleSection")) {
+                  @RenderSection("PostTitleSection")
+                }
               </div>
             </header>
             <!-- /Long Title (Subtitle) -->
-          }
-
-          @if (IsSectionDefined("PostTitleSection")) {
-            @RenderSection("PostTitleSection")
           }
 
           <!-- Main Page Content -->
