@@ -1,5 +1,8 @@
 ﻿@model Ignia.Topics.Web.Mvc.TopicViewModel
 
+@using Ignia.Topics
+@using GoldSim.Web.Models;
+
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
@@ -15,17 +18,17 @@
   <section class="panel accordion">
     <ul class="accordion applications" data-accordion>
 
-      @foreach (var category in getCategories()) {
+      @foreach (var category in getCategorizedApplications()) {
 
-      <!-- @category -->
+      <!-- @category.Key -->
       <li class="accordion-item @(isFirst()? "is-active" : "")" data-accordion-item>
-        <a class="accordion-title" href="#">@category</a>
+        <a class="accordion-title" href="#">@category.Key</a>
 
         <!-- @category Applications -->
         <div class="accordion-content" data-tab-content>
-          @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getApplications().Where(a => containsCategory(a, category)).ToList(), "application"))
+          @Html.Partial("_CardList", new CardListViewModel(category.Value, "application"))
         </div>
-        <!-- /@category Applications -->
+        <!-- /@category.Key Applications -->
 
       </li>
 
@@ -41,7 +44,8 @@
   /*============================================================================================================================
   | VARIABLES
   \---------------------------------------------------------------------------------------------------------------------------*/
-  List<Ignia.Topics.Topic> _applicationPages = null;
+  Dictionary<string, List<Topic>> _categorizedApplications = null;
+  List<Topic> _applicationPages = null;
   bool _isFirst = true;
 
   /*============================================================================================================================
@@ -49,11 +53,11 @@
   >-----------------------------------------------------------------------------------------------------------------------------
   | Retrieves a list of applications based on a specified content type. Assumes topics are broken up into subtopics.
   \---------------------------------------------------------------------------------------------------------------------------*/
-  List<Ignia.Topics.Topic> getApplications() {
+  List<Topic> getApplications() {
     if (_applicationPages == null) {
-      _applicationPages = new List<Ignia.Topics.Topic>();
-      foreach (Ignia.Topics.Topic topic in @Model.Topic.SortedChildren) {
-        foreach (Ignia.Topics.Topic childTopic in topic.SortedChildren) {
+      _applicationPages = new List<Topic>();
+      foreach (Topic topic in @Model.Topic.SortedChildren) {
+        foreach (Topic childTopic in topic.SortedChildren) {
           if (childTopic.Attributes.Get("ContentType").Equals("ApplicationPage") && !_applicationPages.Contains(childTopic)) {
             _applicationPages.Add(childTopic);
           }
@@ -64,46 +68,45 @@
   }
 
   /*============================================================================================================================
-  | GET CATEGORIES
+  | GET CATEGORIZED APPLICATIONS
   >-----------------------------------------------------------------------------------------------------------------------------
-  | Returns a distinct list of categories associated with the available topics.
+  | Returns a set of applications grouped by category.
   \---------------------------------------------------------------------------------------------------------------------------*/
-  List<string> getCategories() {
-    var categories = new List<String>();
-    foreach (Ignia.Topics.Topic applicationPage in getApplications()) {
-      if (applicationPage.ContentType == "ApplicationPage") {
-        var category = applicationPage.Attributes.Get("Category");
-        if (!categories.Contains(category)) {
-          categories.Add(category);
+  Dictionary<string, List<Topic>> getCategorizedApplications() {
+
+    if (_categorizedApplications == null) {
+
+      _categorizedApplications = new Dictionary<string, List<Topic>>();
+
+      foreach (Topic applicationPage in getApplications()) {
+        if (applicationPage.ContentType == "ApplicationPage") {
+          var category = applicationPage.Attributes.Get("Category");
+          addApplicationPage(category, applicationPage);
         }
-      }
-      else {
-        foreach (Ignia.Topics.Topic application in applicationPage["Applications"]) {
-          var category = application.Attributes.Get("Category");
-          if (!categories.Contains(category)) {
-            categories.Add(category);
+        else {
+          foreach (Topic application in applicationPage["Applications"]) {
+            var category = application.Attributes.Get("Category");
+            addApplicationPage(category, applicationPage);
           }
         }
       }
+
     }
-    return categories;
+    return _categorizedApplications;
   }
 
   /*============================================================================================================================
-  | CONTAINS CATEGORY?
+  | ADD APPLICATION PAGE
   >-----------------------------------------------------------------------------------------------------------------------------
-  | Returns a boolean determining if the current topic contains (an application reference) belonging to the specified category.
+  | Ensures that the appropriate category exists and then adds the application page to the category.
   \---------------------------------------------------------------------------------------------------------------------------*/
-  bool containsCategory(Ignia.Topics.Topic topic, string category) {
-    if (topic.ContentType == "ApplicationPage") {
-      return topic.Attributes.Get("Category").Equals(category);
+  void addApplicationPage(string category, Topic applicationPage) {
+    if (!_categorizedApplications.ContainsKey(category)) {
+      _categorizedApplications.Add(category, new List<Topic>());
     }
-    foreach (Ignia.Topics.Topic application in topic.Relationships["Applications"]) {
-      if (topic.Attributes.Get("Category").Equals(category)) {
-        return true;
-      }
+    if (!_categorizedApplications[category].Contains(applicationPage)) {
+      _categorizedApplications[category].Add(applicationPage);
     }
-    return false;
   }
 
   /*============================================================================================================================
