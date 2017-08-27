@@ -742,7 +742,9 @@ article {
       margin-bottom             : rem-calc(48);
       padding                   : rem-calc(0 110);
     }
-
+    .metadata {
+      padding-top               : rem-calc(16);
+    }
   }
 
 }
