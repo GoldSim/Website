@@ -34,6 +34,11 @@
   if (!IsValid(topic)) { return; }
 
   @*============================================================================================================================
+  | DEFINE VARIABLES
+  \---------------------------------------------------------------------------------------------------------------------------*@
+  var hasChildren = !topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2;
+
+  @*============================================================================================================================
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
@@ -44,12 +49,12 @@
     @*==========================================================================================================================
     | OPEN NODE
     \-------------------------------------------------------------------------------------------------------------------------*@
-    @if (!topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2) {
+    @if (hasChildren) {
       <ul class="menu @(isDesktop? "dropdown" : "vertical") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
           <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
-          @foreach (Ignia.Topics.Topic childTopic in topic.SortedChildren) {
-            @WriteMenu(childTopic, indentLevel + 1);
+          @foreach (Topic childTopic in topic.SortedChildren) {
+            @WriteMenu(childTopic, indentLevel + 1, isDesktop);
           }
       </ul>
     }
