@@ -6069,10 +6069,8 @@ article.page.body {
 
 .list article {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #cccccc;
   padding-bottom: 2rem; }
   .list article:first-of-type {
-    border-top: 1px solid #cccccc;
     padding-top: 2rem; }
   .list article:last-of-type {
     margin-bottom: 0;

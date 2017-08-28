@@ -380,10 +380,10 @@ article {
   }
   .list & {
     margin-bottom               : rem-calc(32);
-    border-bottom               : 1px solid $palette-grey-light;
+  //border-bottom               : 1px solid $palette-grey-light;
     padding-bottom              : rem-calc(32);
     &:first-of-type {
-      border-top                : 1px solid $palette-grey-light;
+    //border-top                : 1px solid $palette-grey-light;
       padding-top               : rem-calc(32);
     }
     &:last-of-type {
