@@ -145,7 +145,7 @@ nav.navigation {
           padding-left          : 0;
           height                : rem-calc(48);
           &.is-dropdown-submenu-parent {
-            padding-right       : rem-calc(96);
+            padding-right       : rem-calc(64);
             &:last-of-type {
               padding-right     : 0;
             }

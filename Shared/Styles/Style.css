@@ -5788,11 +5788,6 @@ label.required {
   color: #eb5d62;
   background-color: white; }
 
-a.comma.delimited:after {
-  content: ',';
-  display: inline-block;
-  margin-right: 0.125rem; }
-
 a.comma.delimited:last-of-type:after {
   content: ''; }
 
@@ -6554,7 +6549,7 @@ nav.navigation.primary {
       padding-left: 0;
       height: 3rem; }
       nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent {
-        padding-right: 6rem; }
+        padding-right: 4rem; }
         nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent:last-of-type {
           padding-right: 0; }
         nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent > a:after {
