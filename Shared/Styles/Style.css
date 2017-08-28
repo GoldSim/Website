@@ -6066,6 +6066,8 @@ ul.modules-list {
 
 article.page.body {
   margin-bottom: 3rem; }
+  article.page.body:empty, article.page.body:blank {
+    margin-bottom: 0; }
 
 .list article {
   margin-bottom: 2rem;

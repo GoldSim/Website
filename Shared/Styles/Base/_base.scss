@@ -377,6 +377,10 @@ ul.modules-list {
 article {
   &.page.body {
     margin-bottom               : rem-calc(48);
+    &:empty,
+    &:blank {
+      margin-bottom             : 0;
+    }
   }
   .list & {
     margin-bottom               : rem-calc(32);
