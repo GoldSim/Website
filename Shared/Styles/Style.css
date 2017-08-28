@@ -5967,6 +5967,14 @@ ul.modules-list {
   .button-group .button.large {
     font-size: 1.25rem; }
 
+body > header {
+  -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+          box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07); }
+  @media print, screen and (min-width: 64.0625em) {
+    body > header {
+      -webkit-box-shadow: none;
+              box-shadow: none; } }
+
 .panel,
 .callout,
 .card {
@@ -6684,9 +6692,11 @@ form.gsc-search-box.gsc-search-box-tools {
   right: 0;
   bottom: 0;
   width: auto;
-  max-width: 26.25rem;
   min-height: 6.25rem;
   height: 100%; }
+  @media print, screen and (min-width: 64.0625em) {
+    .search.form {
+      max-width: 26.25rem; } }
   .search.form input {
     -webkit-box-shadow: none;
             box-shadow: none;
@@ -6715,8 +6725,14 @@ form.gsc-search-box.gsc-search-box-tools {
       background-image: url("/Images/Icons/Search.Icon.png"); }
   .search.form.open {
     background-color: #fec10d;
-    -webkit-transition: background-color 0.25s linear 0s;
-    transition: background-color 0.25s linear 0s; }
+    -webkit-transition: width 0.25s linear 0s, background-color 0.25s linear 0s;
+    transition: width 0.25s linear 0s, background-color 0.25s linear 0s;
+    left: 0;
+    width: 100%; }
+    @media print, screen and (min-width: 64.0625em) {
+      .search.form.open {
+        left: auto;
+        width: auto; } }
     .search.form.open input::-webkit-input-placeholder {
       color: darkgray;
       -webkit-transition: color 0.1s linear 0.25s;
