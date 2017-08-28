@@ -5893,6 +5893,10 @@ ol {
     ul li:last-child,
     ol li:last-child {
       margin-bottom: 0; }
+    ul li picture,
+    ol li picture {
+      display: block;
+      margin: 2rem auto; }
   ul ul,
   ul ol,
   ol ul,

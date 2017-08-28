@@ -144,6 +144,10 @@ ol {
     &:last-child {
       margin-bottom             : 0;
     }
+    picture {
+      display                   : block;
+      margin                    : rem-calc(32) auto;
+    }
   }
   ul,
   ol {
