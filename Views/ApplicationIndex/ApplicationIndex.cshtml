@@ -8,7 +8,7 @@
 
   <!--
   <section class="panel body">
-    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
   </section>
   -->
 
@@ -34,6 +34,10 @@
     </ul>
   </section>
 
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
 }
 
 @functions {

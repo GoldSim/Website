@@ -45,6 +45,10 @@
 
 }
 
+@section Scripts {
+  <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
+}
+
 @helper WriteContentItem(Topic contentItem, string viewType) {
   <li class="accordion-item" data-accordion-item>
     <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
