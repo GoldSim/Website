@@ -15,7 +15,6 @@
     <!-- Page Navigation Area -->
     <nav id="PageNavigation" class="navigation page" role="navigation">
       <ul class="menu align-center">
-        <li>@Model.NavigationRootTopic.SortedChildren.Count()</li>
         <li><a href="@Model.NavigationRootTopic.WebPath" class="@((Model.Topic == null)? "selected" : "")">Overview</a></li>
         @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
           if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
