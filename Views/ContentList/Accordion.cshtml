@@ -25,7 +25,7 @@
       foreach (Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
         <h2>@category.Title</h2>
         <section id="Group-@category.Key">
-          <ul class="accordion" data-accordion>
+          <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
             @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren.Where(t => t.Attributes.Get("Category", "").Equals(category))) {
               @WriteContentItem(contentItem, viewType)
             }
@@ -34,7 +34,7 @@
       }
     }
     else {
-      <ul class="accordion" data-accordion>
+      <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
         @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
           @WriteContentItem(contentItem, viewType)
         }
@@ -47,13 +47,13 @@
 
 @helper WriteContentItem(Topic contentItem, string viewType) {
   <li class="accordion-item" data-accordion-item>
-    <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#">
+    <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
       @if (viewType.Equals("faq")) {
         <span class="marker">Q:</span>
       }
       @contentItem.Title
     </a>
-    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content>
+    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key">
       @if (viewType.Equals("faq")) {
         <span class="marker">A:</span>
       }
