@@ -326,6 +326,13 @@ body {
 
 .card {
   position                      : relative;
+  &:hover,
+  &:focus,
+  &:active {
+    .title {
+      background-color          : $palette-yellow;
+    }
+  }
   a.thumbnail,
   a.title {
     display                     : block;

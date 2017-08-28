@@ -6030,6 +6030,8 @@ body > header {
 
 .card {
   position: relative; }
+  .card:hover .title, .card:focus .title, .card:active .title {
+    background-color: #fec10d; }
   .card a.thumbnail,
   .card a.title {
     display: block;
