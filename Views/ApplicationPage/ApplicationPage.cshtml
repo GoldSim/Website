@@ -28,7 +28,7 @@
 
     <!-- Body Content -->
     <article class="page body">
-      @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+      @Html.Raw(@Model.Topic.Attributes.Get("Body"))
     </article>
     <!-- /Body Content -->
 

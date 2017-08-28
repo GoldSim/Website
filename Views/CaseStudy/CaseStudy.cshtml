@@ -61,7 +61,7 @@
       <!-- /Abstract -->
     }
 
-    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
       <h1>Learn More</h1>
