@@ -294,7 +294,7 @@ body {
   }
   &.ctas {
     padding                     : rem-calc(16);
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
       padding                   : rem-calc(32 0);
     }
   }
@@ -819,18 +819,32 @@ article {
     padding-bottom              : rem-calc(12);
     font-size                   : rem-calc(24);
     text-align                  : center;
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
       padding-bottom            : 0;
       font-size                 : rem-calc(32);
       text-align                : left;
     }
   }
   .button-group {
+    @include breakpoint(medium) {
+      -webkit-box-pack          : center;
+      -ms-flex-pack             : center;
+      justify-content           : center;
+    }
+    @include breakpoint(large) {
+      -webkit-box-pack          : start;
+      -ms-flex-pack             : start;
+      justify-content           : initial;
+    }
     .button {
       margin-bottom             : rem-calc(8);
       @include breakpoint(medium) {
+        max-width               : rem-calc(320);
+      }
+      @include breakpoint(large) {
         margin-right            : rem-calc(32);
         margin-bottom           : 0;
+        max-width               : auto;
       }
       &:last-of-type {
         margin-right            : 0;

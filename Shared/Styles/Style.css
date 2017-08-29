@@ -6380,18 +6380,34 @@ article header .metadata {
   padding-bottom: 0.75rem;
   font-size: 1.5rem;
   text-align: center; }
-  @media print, screen and (min-width: 40em) {
+  @media print, screen and (min-width: 64.0625em) {
     .panel.ctas h1 {
       padding-bottom: 0;
       font-size: 2rem;
       text-align: left; } }
 
+@media print, screen and (min-width: 40em) {
+  .panel.ctas .button-group {
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center; } }
+
+@media print, screen and (min-width: 64.0625em) {
+  .panel.ctas .button-group {
+    -webkit-box-pack: start;
+    -ms-flex-pack: start;
+    justify-content: initial; } }
+
 .panel.ctas .button-group .button {
   margin-bottom: 0.5rem; }
   @media print, screen and (min-width: 40em) {
     .panel.ctas .button-group .button {
+      max-width: 20rem; } }
+  @media print, screen and (min-width: 64.0625em) {
+    .panel.ctas .button-group .button {
       margin-right: 2rem;
-      margin-bottom: 0; } }
+      margin-bottom: 0;
+      max-width: auto; } }
   .panel.ctas .button-group .button:last-of-type {
     margin-right: 0; }
 
@@ -6500,6 +6516,9 @@ body {
     @media print, screen and (min-width: 40em) {
       #MainContentArea article:first-of-type > header {
         margin: 3rem 0;
+        padding: 0 5rem; } }
+    @media print, screen and (min-width: 64.0625em) {
+      #MainContentArea article:first-of-type > header {
         padding: 0 6.875rem; } }
 
 #CTAs {

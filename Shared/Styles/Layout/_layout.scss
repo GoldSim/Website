@@ -100,6 +100,9 @@ body {
         padding                 : rem-calc(0 32);
         @include breakpoint(medium) {
           margin                : rem-calc(48 0);
+          padding               : rem-calc(0 80);
+        }
+        @include breakpoint(large) {
           padding               : rem-calc(0 110);
         }
       }
