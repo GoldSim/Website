@@ -5880,7 +5880,11 @@ img.logo {
 
 ul,
 ol {
-  margin: 2rem 0 2.25rem 4rem; }
+  margin: 2rem 0 2rem 2rem; }
+  @media print, screen and (min-width: 40em) {
+    ul,
+    ol {
+      margin: 2rem 0 2.25rem 4rem; } }
   ul li,
   ol li {
     margin-bottom: 1rem;
@@ -5978,7 +5982,7 @@ body > header {
           box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07); }
 
 .panel {
-  padding: 2rem 3rem; }
+  padding: 2rem 2rem; }
   @media print, screen and (min-width: 40em) {
     .panel {
       padding: 2.5rem 5rem; } }
@@ -5994,8 +5998,9 @@ body > header {
         padding: 2rem 0; } }
 
 .callout {
-  float: right;
-  margin: 0 0 1.125rem 1.5rem; }
+  float: none;
+  margin: 0 auto 1.125rem;
+  text-align: center; }
   .callout::before, .callout::after {
     display: table;
     content: ' ';
@@ -6006,22 +6011,35 @@ body > header {
             order: 1; }
   .callout::after {
     clear: both; }
+  @media print, screen and (min-width: 40em) {
+    .callout {
+      float: right;
+      margin: 0 0 1.125rem 1.5rem;
+      text-align: initial; } }
   .callout:before, .callout:after {
     display: table;
     content: ' '; }
   .callout:after {
     clear: both; }
   .callout.left {
-    float: left;
-    margin: 0 1.5rem 1.125rem 0; }
+    float: none;
+    margin: 0 auto 1.125rem; }
+    @media print, screen and (min-width: 40em) {
+      .callout.left {
+        float: left;
+        margin: 0 1.5rem 1.125rem 0; } }
   .callout.picture {
     -webkit-box-shadow: none;
             box-shadow: none;
     border: 0 none transparent;
     padding: 0;
-    max-width: 17.5rem; }
-    .callout.picture.small {
-      max-width: 11.25rem; }
+    width: 100%; }
+    @media print, screen and (min-width: 40em) {
+      .callout.picture {
+        max-width: 17.5rem; } }
+    @media print, screen and (min-width: 40em) {
+      .callout.picture.small {
+        max-width: 11.25rem; } }
 
 .card {
   position: relative; }
@@ -6140,7 +6158,10 @@ figure {
     -webkit-box-sizing: content-box;
             box-sizing: content-box;
     border: 2px solid #eaeaea;
-    padding: 1.75rem 2rem; }
+    padding: 0.25rem; }
+    @media print, screen and (min-width: 40em) {
+      figure img {
+        padding: 1.75rem 2rem; } }
   figure figcaption {
     margin-top: 1rem;
     font-style: italic;
@@ -6273,24 +6294,33 @@ ul.accordion {
         margin-top: -2.125rem; }
     ul.accordion li .accordion-title {
       border-bottom: 0 none transparent;
-      padding: 1.875rem 6.875rem 1.375rem 6.875rem;
+      padding: 1.875rem 2rem 1.375rem 2rem;
       font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
       font-size: 2rem;
       line-height: 1.2;
       font-weight: 300;
       color: #202020; }
+      @media print, screen and (min-width: 64.0625em) {
+        ul.accordion li .accordion-title {
+          padding: 1.875rem 6.875rem 1.375rem 6.875rem; } }
       ul.accordion li .accordion-title:before {
         top: 2.875rem;
-        right: 3rem;
+        right: 2rem;
         content: '▼';
         font-size: 1.25rem;
         color: #cccccc; }
+        @media print, screen and (min-width: 64.0625em) {
+          ul.accordion li .accordion-title:before {
+            right: 3rem; } }
       ul.accordion li .accordion-title:hover, ul.accordion li .accordion-title:focus, ul.accordion li .accordion-title:active, ul.accordion li .accordion-title:visited {
         color: #202020 !important; }
       ul.accordion li .accordion-title:hover, ul.accordion li .accordion-title:focus, ul.accordion li .accordion-title:active {
         background-color: transparent; }
     ul.accordion li .accordion-content {
-      padding: 1.25rem 6.875rem 2.75rem 6.875rem; }
+      padding: 1.25rem 2rem 2.75rem 2rem; }
+      @media print, screen and (min-width: 64.0625em) {
+        ul.accordion li .accordion-content {
+          padding: 1.25rem 6.875rem 2.75rem 6.875rem; } }
       ul.accordion li .accordion-content ul,
       ul.accordion li .accordion-content ol {
         margin: 2rem 0 3rem 1.25rem; }
@@ -6320,9 +6350,13 @@ main > section > header {
 h1.title.short {
   position: absolute;
   bottom: 0;
+  left: 2rem;
   margin: 0;
   padding-bottom: 2rem;
   color: white; }
+  @media print, screen and (min-width: 40em) {
+    h1.title.short {
+      left: auto; } }
 
 article header h1.title.long {
   margin: 0;
@@ -6422,9 +6456,12 @@ html {
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 23.75rem;
+  padding-bottom: 42.75rem;
   min-height: 100%;
   background-color: #f3f3f3; }
+  @media print, screen and (min-width: 40em) {
+    body {
+      padding-bottom: 23.75rem; } }
 
 #SiteHeader {
   padding: 0;

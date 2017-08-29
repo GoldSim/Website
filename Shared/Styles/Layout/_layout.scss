@@ -28,9 +28,12 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
-  padding-bottom                : rem-calc(380);
+  padding-bottom                : rem-calc(684);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(380);
+  }
 }
 
 //----------------------------------------------------------------------------------------------

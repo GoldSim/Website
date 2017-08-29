@@ -137,7 +137,10 @@ img.logo {
 
 ul,
 ol {
-  margin                        : rem-calc(32 0 36 64);
+  margin                        : rem-calc(32 0 32 32);
+  @include breakpoint(medium) {
+    margin                      : rem-calc(32 0 36 64);
+  }
   li {
     margin-bottom               : rem-calc(16);
     padding-left                : rem-calc(18);
@@ -279,7 +282,7 @@ body {
 }
 
 .panel {
-  padding                       : rem-calc(32 48);
+  padding                       : rem-calc(32 32);
   @include breakpoint(medium) {
     padding                     : rem-calc(40 80);
   }
@@ -299,8 +302,14 @@ body {
 
 .callout {
   @include clearfix;
-  float                         : right;
-  margin                        : rem-calc(0 0 18 24);
+  float                         : none;
+  margin                        : 0 auto rem-calc(18);
+  text-align                    : center;
+  @include breakpoint(medium) {
+    float                       : right;
+    margin                      : rem-calc(0 0 18 24);
+    text-align                  : initial;
+  }
   &:before,
   &:after {
     display                     : table;
@@ -310,16 +319,25 @@ body {
     clear                       : both;
   }
   &.left {
-    float                       : left;
-    margin                      : rem-calc(0 24 18 0);
+    float                       : none;
+    margin                      : 0 auto rem-calc(18);
+    @include breakpoint(medium) {
+      float                     : left;
+      margin                    : rem-calc(0 24 18 0);
+    }
   }
   &.picture {
     box-shadow                  : none;
     border                      : 0 none transparent;
     padding                     : 0;
-    max-width                   : rem-calc(280);
+    width                       : 100%;
+    @include breakpoint(medium) {
+      max-width                 : rem-calc(280);
+    }
     &.small {
-      max-width                 : rem-calc(180);
+      @include breakpoint(medium) {
+        max-width               : rem-calc(180);
+      }
     }
   }
 }
@@ -480,7 +498,10 @@ figure {
   img {
     box-sizing                  : content-box;
     border                      : 2px solid rgb(234, 234, 234);
-    padding                     : rem-calc(28 32);
+    padding                     : rem-calc(4);
+    @include breakpoint(medium) {
+      padding                   : rem-calc(28 32);
+    }
   //text-align                  : center;
   }
   figcaption {
@@ -660,18 +681,24 @@ ul.accordion {
     }
     .accordion-title {
       border-bottom             : 0 none transparent;
-      padding                   : rem-calc(30 110 22 110);
+      padding                   : rem-calc(30 32 22 32);
       font-family               : $header-font-family;
       font-size                 : rem-calc(32);
       line-height               : 1.2;
       font-weight               : 300;
       color                     : $text-color;
+      @include breakpoint(large) {
+        padding                 : rem-calc(30 110 22 110);
+      }
       &:before {
         top                     : rem-calc(46);
-        right                   : rem-calc(48);
+        right                   : rem-calc(32);
         content                 : '▼';
         font-size               : rem-calc(20);
         color                   : $palette-grey-light;
+        @include breakpoint(large) {
+          right                 : rem-calc(48);
+        }
       }
       &:hover,
       &:focus,
@@ -686,7 +713,10 @@ ul.accordion {
       }
     }
     .accordion-content {
-      padding                   : rem-calc(20 110 44 110);
+      padding                   : rem-calc(20 32 44 32);
+      @include breakpoint(large) {
+        padding                 : rem-calc(20 110 44 110);
+      }
       ul,
       ol {
         margin                  : rem-calc(32 0 48 20);
@@ -745,9 +775,13 @@ main {
 h1.title.short {
   position                      : absolute;
   bottom                        : 0;
+  left                          : rem-calc(32);
   margin                        : 0;
   padding-bottom                : rem-calc(32);
   color                         : $palette-white;
+  @include breakpoint(medium) {
+    left                        : auto;
+  }
 }
 
 // Primary Page Content
