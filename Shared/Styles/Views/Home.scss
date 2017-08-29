@@ -59,6 +59,21 @@ main {
 
   // Applications
   &.applications {
+    .card {
+      padding-top               : rem-calc(198);
+      background-size           : contain;
+      background-position       : center top;
+      background-repeat         : no-repeat;
+      &.environmental {
+        background-image        : url('/Images/Content/Product/CT/CT_400px.png');
+      }
+      &.engineered {
+        background-image        : url('/Images/Content/Product/RL/RL_400px.png');
+      }
+      &.business {
+        background-image        : url('/Images/Content/Product/FN/FN_400px.png');
+      }
+    }
     h2 {
       margin                    : rem-calc(28) auto;
       font-size                 : rem-calc(24);

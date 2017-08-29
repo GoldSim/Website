@@ -18,6 +18,18 @@ main section[role="region"] {
 .pane header h1 {
   padding: 0 6.875rem; }
 
+.pane.applications .card {
+  padding-top: 12.375rem;
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat; }
+  .pane.applications .card.environmental {
+    background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
+  .pane.applications .card.engineered {
+    background-image: url("/Images/Content/Product/RL/RL_400px.png"); }
+  .pane.applications .card.business {
+    background-image: url("/Images/Content/Product/FN/FN_400px.png"); }
+
 .pane.applications h2 {
   margin: 1.75rem auto;
   font-size: 1.5rem;
