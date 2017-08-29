@@ -34,7 +34,7 @@
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ModelImage"))) {
       <!-- Model Image -->
-      <figure class="illustration full">
+      <figure class="illustration full" id="Screenshot">
         <img src="@Model.Topic.Attributes.Get("ModelImage")" alt="model" />
       </figure>
       <!-- /Model Image -->
@@ -42,21 +42,21 @@
 
     @if (getIncomingRelationships("CaseStudy").Count > 0) {
       <!-- Related Case Studies -->
-      <h1>Case Studies</h1>
+      <h1 id="CaseStudies">Case Studies</h1>
       @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("CaseStudy"), "case-study"))
       <!-- /Related Case Studies -->
     }
 
     @if (getRelationships("Modules").Count > 0) {
       <!-- Related Modules -->
-      <h1>Modules</h1>
+      <h1 id="Modules">Modules</h1>
       @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getRelationships("Modules"), "modules"))
       <!-- /Related Modules -->
     }
 
     @if (getIncomingRelationships("WhitePaper").Count > 0) {
       <!-- Related White Papers -->
-      <h1>White Papers</h1>
+      <h1 id="WhitePapers">White Papers</h1>
       <ul>
         @foreach (Topic paper in getIncomingRelationships("WhitePaper")) {
           <li><a href="@paper.Attributes.Get("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
@@ -66,14 +66,14 @@
     }
 
     @if (getIncomingRelationships("TechnicalPaper").Count > 0) {
-      <h1>Technical Papers</h1>
+      <h1 id="TechnicalPapers">Technical Papers</h1>
       @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPaper"))
     }
 
     @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
 
       <!-- Learn More -->
-      <h1>Learn More</h1>
+      <h1 id="LearnMore">Learn More</h1>
       <ul>
         @if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Approaches")) {
           <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
