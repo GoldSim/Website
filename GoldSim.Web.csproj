@@ -1747,6 +1747,16 @@
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.min.js" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\ajax-loader.gif" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.carousel.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.carousel.min.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.theme.default.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.theme.default.min.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.theme.green.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.theme.green.min.css" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\assets\owl.video.play.png" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\owl.carousel.js" />
+    <Content Include="Shared\Scripts\Vendor\OwlCarousel\owl.carousel.min.js" />
     <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.gsap.js" />
     <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.gsap.min.js" />
     <Content Include="Shared\Scripts\Vendor\ScrollMagic\plugins\animation.velocity.js" />
