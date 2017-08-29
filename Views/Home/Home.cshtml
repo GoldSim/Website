@@ -136,7 +136,7 @@
                 @if (EnvironmentalSystems != null) {
                   <ul id="EnvironmentalApplications">
                     @foreach (Topic application in EnvironmentalSystems) {
-                      <li><a href="@application.WebPath">@application.Title</a></li>
+                      <li><a href="@application.WebPath">@application.Title &raquo;</a></li>
                     }
                   </ul>
                 }
@@ -148,7 +148,7 @@
                 @if (EngineeredSystems != null) {
                   <ul id="EngineeredApplications">
                     @foreach (Topic application in EngineeredSystems) {
-                      <li><a href="@application.WebPath">@application.Title</a></li>
+                      <li><a href="@application.WebPath">@application.Title &raquo;</a></li>
                     }
                   </ul>
                 }
@@ -160,7 +160,7 @@
                 @if (BusinessSystems != null) {
                   <ul id="BusinessApplications">
                     @foreach (Topic application in BusinessSystems) {
-                      <li><a href="@application.WebPath">@application.Title</a></li>
+                      <li><a href="@application.WebPath">@application.Title &raquo;</a></li>
                     }
                   </ul>
                 }

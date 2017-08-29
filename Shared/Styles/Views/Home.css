@@ -18,20 +18,8 @@ main section[role="region"] {
 .pane header h1 {
   padding: 0 6.875rem; }
 
-.pane.applications .card {
-  padding-top: 12.375rem;
-  background-size: contain;
-  background-position: center top;
-  background-repeat: no-repeat; }
-  .pane.applications .card.environmental {
-    background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
-  .pane.applications .card.engineered {
-    background-image: url("/Images/Content/Product/RL/RL_400px.png"); }
-  .pane.applications .card.business {
-    background-image: url("/Images/Content/Product/FN/FN_400px.png"); }
-
 .pane.applications h2 {
-  margin: 1.75rem auto;
+  margin: 1.75rem auto 1.25rem;
   font-size: 1.5rem;
   font-weight: normal;
   text-align: center; }
@@ -109,7 +97,16 @@ main section[role="region"] {
 
 .applications .card {
   margin-bottom: 0;
-  padding: 0.0625rem 0.0625rem 3rem 0.0625rem; }
+  padding: 12.375rem 0.0625rem 2.5rem 0.0625rem;
+  background-size: contain;
+  background-position: center top;
+  background-repeat: no-repeat; }
+  .applications .card.environmental {
+    background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
+  .applications .card.engineered {
+    background-image: url("/Images/Content/Product/RL/RL_400px.png"); }
+  .applications .card.business {
+    background-image: url("/Images/Content/Product/FN/FN_400px.png"); }
   .applications .card picture {
     overflow: hidden;
     width: 100%;
@@ -118,15 +115,21 @@ main section[role="region"] {
     .applications .card picture img {
       width: 100%; }
   .applications .card ul {
-    margin: 0 3rem; }
+    list-style-type: none;
+    margin: 0; }
     .applications .card ul li {
       margin-bottom: 0.75rem;
+      padding: 0;
       line-height: 1.11;
       font-style: italic; }
       .applications .card ul li a {
+        display: block;
+        padding: 0.5rem 1.75rem;
         font-weight: normal;
-        border: 0 none transparent;
-        padding-bottom: 0; }
+        border: 0 none transparent; }
+        .applications .card ul li a:hover, .applications .card ul li a:focus, .applications .card ul li a:active {
+          color: #202020;
+          background-color: #fec10d; }
         .applications .card ul li a:visited {
           color: #202020; }
 

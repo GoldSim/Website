@@ -59,23 +59,8 @@ main {
 
   // Applications
   &.applications {
-    .card {
-      padding-top               : rem-calc(198);
-      background-size           : contain;
-      background-position       : center top;
-      background-repeat         : no-repeat;
-      &.environmental {
-        background-image        : url('/Images/Content/Product/CT/CT_400px.png');
-      }
-      &.engineered {
-        background-image        : url('/Images/Content/Product/RL/RL_400px.png');
-      }
-      &.business {
-        background-image        : url('/Images/Content/Product/FN/FN_400px.png');
-      }
-    }
     h2 {
-      margin                    : rem-calc(28) auto;
+      margin                    : rem-calc(28) auto rem-calc(20);
       font-size                 : rem-calc(24);
       font-weight               : normal;
       text-align                : center;
@@ -185,7 +170,19 @@ main {
 .applications {
   .card {
     margin-bottom               : 0;
-    padding                     : rem-calc(1 1 48 1);
+    padding                     : rem-calc(198 1 40 1);
+    background-size             : contain;
+    background-position         : center top;
+    background-repeat           : no-repeat;
+    &.environmental {
+      background-image          : url('/Images/Content/Product/CT/CT_400px.png');
+    }
+    &.engineered {
+      background-image          : url('/Images/Content/Product/RL/RL_400px.png');
+    }
+    &.business {
+      background-image          : url('/Images/Content/Product/FN/FN_400px.png');
+    }
     picture {
       overflow                  : hidden;
       width                     : 100%;
@@ -196,15 +193,24 @@ main {
       }
     }
     ul {
-      margin                    : rem-calc(0 48);
+      list-style-type           : none;
+      margin                    : rem-calc(0);
       li {
         margin-bottom           : rem-calc(12);
+        padding                 : 0;
         line-height             : 1.11;
         font-style              : italic;
         a {
+          display               : block;
+          padding               : rem-calc(8 28);
           font-weight           : normal;
           border                : 0 none transparent;
-          padding-bottom        : 0;
+          &:hover,
+          &:focus,
+          &:active {
+            color               : $body-font-color;
+            background-color    : $palette-yellow;
+          }
           &:visited {
             color               : $body-font-color;
           }
