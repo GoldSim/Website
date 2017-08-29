@@ -74,6 +74,17 @@
 
 }
 
+@section Scripts {
+  <script>
+    $(function () {
+      /**
+       * Add comma after metadata links
+       */
+      $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
+    });
+  </script>
+}
+
 @helper customer(string customerName, string customerUrl) {
   if (!String.IsNullOrEmpty(customerUrl)) {
     <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>

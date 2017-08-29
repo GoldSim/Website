@@ -20,7 +20,7 @@
 a {
   &.comma.delimited {
     &:after {
-      @include comma-delimit;
+    //@include comma-delimit;
     }
     &:last-of-type {
       &:after {
