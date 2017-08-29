@@ -6549,7 +6549,7 @@ nav.navigation.primary {
       padding-left: 0;
       height: 3rem; }
       nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent {
-        padding-right: 4rem; }
+        padding-right: 5.5rem; }
         nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent:last-of-type {
           padding-right: 0; }
         nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent > a:after {
