@@ -16,7 +16,7 @@
     </article>
 
     @foreach (Topic fieldCategory in fieldCategories) {
-      <h1>@fieldCategory.Title</h1>
+      <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
       @Html.Partial("_TechnicalPaperList", papers.Where(t => t.Attributes.Get("Category").Equals(fieldCategory.Key)).ToList())
     }
 
