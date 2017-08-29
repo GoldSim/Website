@@ -124,11 +124,17 @@ body {
   right                         : 0;
   bottom                        : 0;
   left                          : 0;
-  padding-top                   : rem-calc(54);
-  padding-bottom                : rem-calc(24);
-  max-height                    : rem-calc(408);
+  padding                       : rem-calc(54 36 24);
+  height                        : rem-calc(684);
   color                         : $palette-grey-medium;
   background-color              : $palette-grey-dark;
+  @include breakpoint(medium) {
+    height                      : rem-calc(380);
+  }
+  @include breakpoint(large) {
+    padding-right               : 0;
+    padding-left                : 0;
+  }
 
   // Navigation
   nav {

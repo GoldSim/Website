@@ -858,6 +858,16 @@ article {
         font-weight             : normal;
       }
     }
+    .contact {
+      margin-bottom             : rem-calc(48);
+      border-bottom             : 1px solid rgb(152, 152, 152);
+      padding-bottom            : rem-calc(48);
+      @include breakpoint(medium) {
+        margin-bottom           : 0;
+        border-bottom           : 0 none transparent;
+        padding-bottom          : 0;
+      }
+    }
   }
 }
 

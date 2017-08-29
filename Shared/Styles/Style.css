@@ -6406,6 +6406,16 @@ article header .metadata {
     padding-right: 0;
     font-weight: normal; }
 
+.site.footer .navigation .contact {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid #989898;
+  padding-bottom: 3rem; }
+  @media print, screen and (min-width: 40em) {
+    .site.footer .navigation .contact {
+      margin-bottom: 0;
+      border-bottom: 0 none transparent;
+      padding-bottom: 0; } }
+
 html {
   height: 100%; }
 
@@ -6468,11 +6478,17 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  padding-top: 3.375rem;
-  padding-bottom: 1.5rem;
-  max-height: 25.5rem;
+  padding: 3.375rem 2.25rem 1.5rem;
+  height: 42.75rem;
   color: #999999;
   background-color: #666666; }
+  @media print, screen and (min-width: 40em) {
+    #SiteFooter {
+      height: 23.75rem; } }
+  @media print, screen and (min-width: 64.0625em) {
+    #SiteFooter {
+      padding-right: 0;
+      padding-left: 0; } }
   #SiteFooter nav {
     padding-bottom: 2rem; }
 
