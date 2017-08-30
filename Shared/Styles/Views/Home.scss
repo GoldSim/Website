@@ -196,13 +196,13 @@ main {
       list-style-type           : none;
       margin                    : rem-calc(0);
       li {
-        margin-bottom           : rem-calc(12);
+        margin-bottom           : 0;
         padding                 : 0;
         line-height             : 1.11;
         font-style              : italic;
         a {
           display               : block;
-          padding               : rem-calc(8 28);
+          padding               : rem-calc(16 28);
           font-weight           : normal;
           border                : 0 none transparent;
           &:hover,
@@ -213,6 +213,16 @@ main {
           }
           &:visited {
             color               : $body-font-color;
+          }
+        }
+        &:first-child {
+          a {
+            margin-top          : rem-calc(-16);
+          }
+        }
+        &:last-child {
+          a {
+            margin-bottom       : rem-calc(-16);
           }
         }
       }

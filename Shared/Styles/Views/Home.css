@@ -118,13 +118,13 @@ main section[role="region"] {
     list-style-type: none;
     margin: 0; }
     .applications .card ul li {
-      margin-bottom: 0.75rem;
+      margin-bottom: 0;
       padding: 0;
       line-height: 1.11;
       font-style: italic; }
       .applications .card ul li a {
         display: block;
-        padding: 0.5rem 1.75rem;
+        padding: 1rem 1.75rem;
         font-weight: normal;
         border: 0 none transparent; }
         .applications .card ul li a:hover, .applications .card ul li a:focus, .applications .card ul li a:active {
@@ -132,6 +132,10 @@ main section[role="region"] {
           background-color: #fec10d; }
         .applications .card ul li a:visited {
           color: #202020; }
+      .applications .card ul li:first-child a {
+        margin-top: -1rem; }
+      .applications .card ul li:last-child a {
+        margin-bottom: -1rem; }
 
 .cta-links .button {
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
