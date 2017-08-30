@@ -5993,7 +5993,7 @@ body > header {
     padding: 0; }
   .panel.ctas {
     padding: 1rem; }
-    @media print, screen and (min-width: 40em) {
+    @media print, screen and (min-width: 64.0625em) {
       .panel.ctas {
         padding: 2rem 0; } }
 
@@ -6032,8 +6032,7 @@ body > header {
     -webkit-box-shadow: none;
             box-shadow: none;
     border: 0 none transparent;
-    padding: 0;
-    width: 100%; }
+    padding: 0; }
     @media print, screen and (min-width: 40em) {
       .callout.picture {
         max-width: 17.5rem; } }
