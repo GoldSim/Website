@@ -103,6 +103,8 @@ main section[role="region"] {
 
 .usage .owl-item {
   padding: 0 6.875rem; }
+  .usage .owl-item p:last-of-type {
+    margin-bottom: 0; }
 
 .usage li {
   padding-left: 0; }
