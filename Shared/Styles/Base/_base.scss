@@ -858,19 +858,20 @@ article {
 //----------------------------------------------------------------------------------------------
 
 .site.footer {
-  .navigation {
-    .heading,
-    dl dd {
-      font-size                 : rem-calc(21);
+  .heading,
+  dl dd,
+  i.fa {
+    font-size                   : rem-calc(21);
+    color                       : $palette-grey-light;
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
       color                     : $palette-grey-light;
-      a,
-      a:hover,
-      a:focus,
-      a:active,
-      a:visited {
-        color                   : $palette-grey-light;
-      }
     }
+  }
+  .navigation {
     p.heading {
       margin-bottom             : 0;
       + p.heading {
@@ -916,6 +917,9 @@ article {
         padding-bottom          : 0;
       }
     }
+  }
+  .social {
+    margin-bottom               : rem-calc(16);
   }
 }
 

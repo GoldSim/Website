@@ -28,11 +28,11 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
-  padding-bottom                : rem-calc(684);
+  padding-bottom                : rem-calc(732);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
   @include breakpoint(medium) {
-    padding-bottom              : rem-calc(380);
+    padding-bottom              : rem-calc(428);
   }
 }
 
@@ -131,11 +131,11 @@ body {
   bottom                        : 0;
   left                          : 0;
   padding                       : rem-calc(54 36 24);
-  height                        : rem-calc(684);
+  height                        : rem-calc(732);
   color                         : $palette-grey-medium;
   background-color              : $palette-grey-dark;
   @include breakpoint(medium) {
-    height                      : rem-calc(380);
+    height                      : rem-calc(428);
   }
   @include breakpoint(large) {
     padding-right               : 0;

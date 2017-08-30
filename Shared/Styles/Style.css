@@ -6410,20 +6410,26 @@ article header .metadata {
   .panel.ctas .button-group .button:last-of-type {
     margin-right: 0; }
 
-.site.footer .navigation .heading,
-.site.footer .navigation dl dd {
+.site.footer .heading,
+.site.footer dl dd,
+.site.footer i.fa {
   font-size: 1.3125rem;
   color: #cccccc; }
-  .site.footer .navigation .heading a,
-  .site.footer .navigation .heading a:hover,
-  .site.footer .navigation .heading a:focus,
-  .site.footer .navigation .heading a:active,
-  .site.footer .navigation .heading a:visited,
-  .site.footer .navigation dl dd a,
-  .site.footer .navigation dl dd a:hover,
-  .site.footer .navigation dl dd a:focus,
-  .site.footer .navigation dl dd a:active,
-  .site.footer .navigation dl dd a:visited {
+  .site.footer .heading a,
+  .site.footer .heading a:hover,
+  .site.footer .heading a:focus,
+  .site.footer .heading a:active,
+  .site.footer .heading a:visited,
+  .site.footer dl dd a,
+  .site.footer dl dd a:hover,
+  .site.footer dl dd a:focus,
+  .site.footer dl dd a:active,
+  .site.footer dl dd a:visited,
+  .site.footer i.fa a,
+  .site.footer i.fa a:hover,
+  .site.footer i.fa a:focus,
+  .site.footer i.fa a:active,
+  .site.footer i.fa a:visited {
     color: #cccccc; }
 
 .site.footer .navigation p.heading {
@@ -6465,18 +6471,21 @@ article header .metadata {
       border-bottom: 0 none transparent;
       padding-bottom: 0; } }
 
+.site.footer .social {
+  margin-bottom: 1rem; }
+
 html {
   height: 100%; }
 
 body {
   position: relative;
   margin: 0;
-  padding-bottom: 42.75rem;
+  padding-bottom: 45.75rem;
   min-height: 100%;
   background-color: #f3f3f3; }
   @media print, screen and (min-width: 40em) {
     body {
-      padding-bottom: 23.75rem; } }
+      padding-bottom: 26.75rem; } }
 
 #SiteHeader {
   padding: 0;
@@ -6534,12 +6543,12 @@ body {
   bottom: 0;
   left: 0;
   padding: 3.375rem 2.25rem 1.5rem;
-  height: 42.75rem;
+  height: 45.75rem;
   color: #999999;
   background-color: #666666; }
   @media print, screen and (min-width: 40em) {
     #SiteFooter {
-      height: 23.75rem; } }
+      height: 26.75rem; } }
   @media print, screen and (min-width: 64.0625em) {
     #SiteFooter {
       padding-right: 0;
