@@ -18,8 +18,10 @@
 @section PageBodySection {
   <section class="panel body content list owl-carousel">
     <div>@Html.Raw(@Model.Topic.Attributes.Get("Body"))</div>
-    @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
-      <div>@WriteContentItem(contentItem)</div>
+    @if (Model.Topic["ContentItems"] != null && Model.Topic["ContentItems"].Count > 0) {
+      foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+        <div>@WriteContentItem(contentItem)</div>
+      }
     }
   </section>
 }
