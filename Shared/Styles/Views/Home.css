@@ -64,21 +64,6 @@ main section[role="region"] {
   padding-right: 20rem;
   background: white url("/Images/Home/CTAs.Background.png") no-repeat 115% -8rem; }
 
-.usage .orbit-container {
-  margin: 0 6.875rem; }
-
-.usage .orbit-controls button {
-  color: #919191;
-  cursor: pointer; }
-  .usage .orbit-controls button:hover, .usage .orbit-controls button:focus, .usage .orbit-controls button:active {
-    background-color: transparent; }
-
-.usage .orbit-controls .orbit-previous {
-  left: 1.75rem; }
-
-.usage .orbit-controls .orbit-next {
-  right: 1.75rem; }
-
 .usage .carousel-wrapper {
   position: relative;
   max-width: 60rem; }

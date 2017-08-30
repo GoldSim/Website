@@ -128,26 +128,6 @@ main {
 
 // Usage
 .usage {
-  .orbit-container {
-    margin                      : rem-calc(0 110);
-  }
-  .orbit-controls {
-    button {
-      color                     : lighten($palette-black, 44.5%);       // #959595
-      cursor                    : pointer;
-      &:hover,
-      &:focus,
-      &:active {
-        background-color        : transparent;
-      }
-    }
-    .orbit-previous {
-      left                      : rem-calc(28);
-    }
-    .orbit-next {
-      right                     : rem-calc(28);
-    }
-  }
   .carousel-wrapper {
     position                    : relative;
     max-width                   : rem-calc(960);
