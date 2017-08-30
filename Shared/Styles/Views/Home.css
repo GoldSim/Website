@@ -97,7 +97,7 @@ main section[role="region"] {
 
 .applications .card {
   margin-bottom: 0;
-  padding: 12.375rem 0.0625rem 2.5rem 0.0625rem;
+  padding: 12.375rem 0.0625rem 0 0.0625rem;
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat; }
@@ -116,7 +116,8 @@ main section[role="region"] {
       width: 100%; }
   .applications .card ul {
     list-style-type: none;
-    margin: 0; }
+    margin: 0;
+    padding-bottom: 2rem; }
     .applications .card ul li {
       margin-bottom: 0;
       padding: 0;

@@ -170,7 +170,7 @@ main {
 .applications {
   .card {
     margin-bottom               : 0;
-    padding                     : rem-calc(198 1 40 1);
+    padding                     : rem-calc(198 1 0 1);
     background-size             : contain;
     background-position         : center top;
     background-repeat           : no-repeat;
@@ -195,6 +195,7 @@ main {
     ul {
       list-style-type           : none;
       margin                    : rem-calc(0);
+      padding-bottom            : rem-calc(32);
       li {
         margin-bottom           : 0;
         padding                 : 0;
