@@ -121,8 +121,7 @@ main section[role="region"] {
     .applications .card ul li {
       margin-bottom: 0;
       padding: 0;
-      line-height: 1.11;
-      font-style: italic; }
+      line-height: 1.11; }
       .applications .card ul li a {
         display: block;
         padding: 1rem 1.75rem;
