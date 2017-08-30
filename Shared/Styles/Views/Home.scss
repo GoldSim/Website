@@ -154,28 +154,42 @@ main {
   }
   .owl-nav {
     position                    : absolute;
-    top                         : 40%;
+    top                         : 0;
     right                       : 0;
+    bottom                      : 0;
     left                        : 0;
     .owl-prev,
     .owl-next {
+      z-index                   : 10;
       display                   : inline-block;
       position                  : absolute;
+      top                       : 0;
+      bottom                    : 0;
+      width                     : rem-calc(110);
+      background                : $palette-grey-lightest;
       &.disabled {
         i.fa {
           display               : none;
         }
       }
       i.fa {
+        position                : absolute;
+        top                     : 40%;
         font-size               : rem-calc(24);
         color                   : lighten($palette-black, 44.5%);       // #959595
       }
     }
     .owl-prev {
-      left                      : rem-calc(42);
+      left                      : 0;
+      i.fa {
+        left                    : rem-calc(42);
+      }
     }
     .owl-next {
-      right                     : rem-calc(42);
+      right                     : 0;
+      i.fa {
+        right                   : rem-calc(42);
+      }
     }
   }
   .owl-item {
