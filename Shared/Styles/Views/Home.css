@@ -79,6 +79,34 @@ main section[role="region"] {
 .usage .orbit-controls .orbit-next {
   right: 1.75rem; }
 
+.usage .carousel-wrapper {
+  position: relative;
+  max-width: 60rem; }
+
+.usage .owl-nav {
+  position: absolute;
+  top: 40%;
+  right: 0;
+  left: 0; }
+  .usage .owl-nav .owl-prev,
+  .usage .owl-nav .owl-next {
+    display: inline-block;
+    position: absolute; }
+    .usage .owl-nav .owl-prev.disabled i.fa,
+    .usage .owl-nav .owl-next.disabled i.fa {
+      display: none; }
+    .usage .owl-nav .owl-prev i.fa,
+    .usage .owl-nav .owl-next i.fa {
+      font-size: 1.5rem;
+      color: #919191; }
+  .usage .owl-nav .owl-prev {
+    left: 2.625rem; }
+  .usage .owl-nav .owl-next {
+    right: 2.625rem; }
+
+.usage .owl-item {
+  padding: 0 6.875rem; }
+
 .usage li {
   padding-left: 0; }
 
