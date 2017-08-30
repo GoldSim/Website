@@ -15,9 +15,9 @@
       @Html.Raw(@Model.Topic.Attributes.Get("Body"))
     </article>
 
-    @foreach (Topic fieldCategory in fieldCategories) {
+    @foreach (Topic fieldCategory in fieldCategories.SortedChildren) {
       <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
-      @Html.Partial("_TechnicalPaperList", papers.Where(t => t.Attributes.Get("Category").Equals(fieldCategory.Key)).ToList())
+      @Html.Partial("_TechnicalPaperList", papers.SortedChildren.Where(t => t.Attributes.Get("Category").Equals(fieldCategory.Key)).ToList())
     }
 
   </section>
