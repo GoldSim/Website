@@ -1847,7 +1847,6 @@
     <Content Include="Views\ContentList\ContentList.cshtml" />
     <Content Include="Views\ContentList\IndexedList.cshtml" />
     <Content Include="Views\ContentList\LinkedList.cshtml" />
-    <Content Include="Views\DocumentPointer\DocumentPointer.cshtml" />
     <Content Include="Views\FAQ\FAQ.cshtml" />
     <Content Include="Views\Glossary\Glossary.cshtml" />
     <Content Include="Views\Slideshow\Slideshow.cshtml" />
