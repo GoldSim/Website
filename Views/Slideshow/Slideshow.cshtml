@@ -61,11 +61,35 @@
       });
 
       /**
+       * Differentiate top and bottom nav
+       */
+      $('.owl-nav:not(.bottom)').addClass('top');
+
+      /**
        * Recalculate carousel stage height
        */
       adjustStageHeight($('.owl-item.active article.slide').outerHeight());
       $carousel.on('translated.owl.carousel', function (event) {
         adjustStageHeight($('.owl-item.active article.slide').outerHeight());
+      });
+
+      /**
+       * Reflect navigation disabled state
+       */
+      $('.owl-prev.custom').addClass('disabled');
+      $carousel.on('translated.owl.carousel', function (event) {
+        reflectDisabledState('.owl-prev');
+        reflectDisabledState('.owl-next');
+      });
+
+      /**
+       * Manually trigger bottom navigation
+       */
+      $('.owl-prev.custom').click(function () {
+        $carousel.trigger('prev.owl.carousel');
+      });
+      $('.owl-next.custom').click(function () {
+        $carousel.trigger('next.owl.carousel');
       });
 
       /**
@@ -78,10 +102,21 @@
     });
 
     /**
-     * Adjust carousel stage height based on height of active slide
+     * Adjusts carousel stage height based on height of active slide
      */
     function adjustStageHeight(activeSlideHeight) {
       $('div.owl-stage-outer').height(activeSlideHeight);
+    }
+
+    /**
+     * Reflects disabled state in bottom navigation
+     */
+    function reflectDisabledState(navButton) {
+      $('.owl-prev.custom, .owl-next.custom').removeClass('disabled');
+      if ($('.owl-nav.top ' + navButton).hasClass('disabled')) {
+        console.log('navButton: ' + navButton);
+        $(navButton + '.custom').addClass('disabled');
+      }
     }
 
   </script>
