@@ -513,6 +513,12 @@ figure {
     font-style                  : italic;
     color                       : $palette-grey-medium;
   }
+  &.bare {
+    img {
+      border                    : 0 none transparent;
+      padding                   : 0;
+    }
+  }
 }
 
 //----------------------------------------------------------------------------------------------

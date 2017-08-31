@@ -6168,6 +6168,9 @@ figure {
     margin-top: 1rem;
     font-style: italic;
     color: #999999; }
+  figure.bare img {
+    border: 0 none transparent;
+    padding: 0; }
 
 .table-wrapper.wide {
   margin-right: -6.5rem;
