@@ -498,6 +498,7 @@ figure {
   img {
     box-sizing                  : border-box;
     border                      : 2px solid rgb(234, 234, 234);
+    margin                      : 0 auto;
     padding                     : rem-calc(4);
     width                       : auto !important;
     height                      : auto !important;

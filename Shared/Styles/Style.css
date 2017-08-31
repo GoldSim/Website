@@ -6157,6 +6157,7 @@ figure {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     border: 2px solid #eaeaea;
+    margin: 0 auto;
     padding: 0.25rem;
     width: auto !important;
     height: auto !important; }
