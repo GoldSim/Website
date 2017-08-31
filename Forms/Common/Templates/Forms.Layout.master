@@ -60,6 +60,9 @@
             <!-- Long Title (Subtitle) -->
             <header class="grid-x">
               <h1 class="page title long cell"><%= Page.Title %></h1>
+              <asp:ContentPlaceHolder ID="Subtitle" runat="server">
+                <p class="subtitle"></p>
+              </asp:ContentPlaceHolder>
             </header>
             <!-- /Long Title (Subtitle) -->
             <!-- Main Page Content -->
