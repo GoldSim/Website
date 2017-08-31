@@ -1700,6 +1700,7 @@
     <Content Include="!Admin\Topics\Common\Styles\Vendor\Bootstrap\less\variables.less" />
     <Content Include="!Admin\Topics\Common\Styles\Vendor\Bootstrap\less\wells.less" />
     <Content Include="!Admin\Topics\Common\Templates\Page.Layout.master" />
+    <Content Include="App_Themes\Default\Controls.skin" />
     <None Include="compilerconfig.json" />
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
