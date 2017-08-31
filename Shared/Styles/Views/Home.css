@@ -114,13 +114,13 @@ main section[role="region"] {
   font-size: 1.125rem;
   font-weight: 600; }
 
-.usage .text {
-  padding-right: 2.5rem; }
-
 .usage .screenshot {
-  min-height: 320px;
+  padding-left: 2.5rem;
   height: 100%;
-  border: 2px solid #e3e3e3; }
+  text-align: right; }
+  .usage .screenshot img {
+    border: 1px solid #e3e3e3;
+    max-width: 20.5625rem; }
 
 .applications .card {
   margin-bottom: 0;

@@ -189,12 +189,16 @@ main {
     font-weight                 : 600;
   }
   .text {
-    padding-right               : rem-calc(40);
+  //padding-right               : rem-calc(40);
   }
   .screenshot {
-    min-height                  : 320px;
+    padding-left                : rem-calc(40);
     height                      : 100%;
-    border                      : 2px solid $palette-grey-lighter;
+    text-align                  : right;
+    img {
+      border                    : 1px solid $palette-grey-lighter;
+      max-width                 : rem-calc(329);
+    }
   }
 }
 
