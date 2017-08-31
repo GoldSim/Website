@@ -17,13 +17,13 @@
 }
 
 @section PageBodySection {
-  <section class="panel body content list">
-    <div>@Html.Raw(@Model.Topic.Attributes.Get("Body"))</div>
+  <section class="panel body">
+    <!-- <p>@Html.Raw(@Model.Topic.Attributes.Get("Body"))</p> -->
     <div class="carousel-wrapper">
       <div class="owl-carousel">
         @if (Model.Topic["ContentItems"] != null && Model.Topic["ContentItems"].Count > 0) {
           foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
-            <div>@WriteContentItem(contentItem)</div>
+            @WriteContentItem(contentItem)
           }
         }
       </div>
@@ -36,14 +36,32 @@
   <script>
     $(function () {
 
-      $(".owl-carousel").owlCarousel({
+      /**
+       * Instatiate carousel and define events
+       */
+      var $carousel             = $('.owl-carousel');
+      $carousel.owlCarousel({
         items: 1,
         margin: 0,
         nav: true,
         navText: [
-          "&laquo;",
-          "&raquo;"
+          '<button class="button large primary">Prev</button>',
+          '<button class="button large primary">Next</button>',
         ],
+        dots: true,
+        dotsEach: 1
+      });
+
+      /**
+       * Set disabled nav on button
+       */
+      $('.owl-prev, .owl-next').each(function() {
+        if ($(this).hasClass('disabled')) {
+        //$(this).find('button').addClass('disabled');
+        }
+        else {
+        //$(this).find('button').removeClass('disabled');
+        }
       });
 
     });
@@ -51,20 +69,20 @@
 }
 
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
-  if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+  <article class="slide">
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
     <!-- Thumbnail Image -->
     <picture class="callout picture thumbnail small">
       <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
       <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
     </picture>
     <!-- /Thumbnail Image -->
-  }
-  <div>
+    }
     @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
       <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
     }
-  </div>
+  </article>
 }
 <!--
   Content Type: Slideshow
