@@ -19,7 +19,7 @@
 //----------------------------------------------------------------------------------------------
 
 // Page Title Area
-.title.long {
+#MainContentArea article:first-of-type > header {
   padding-bottom                : rem-calc(64);
 }
 

@@ -1,4 +1,4 @@
-.title.long {
+#MainContentArea article:first-of-type > header {
   padding-bottom: 4rem; }
 
 .carousel-wrapper {
