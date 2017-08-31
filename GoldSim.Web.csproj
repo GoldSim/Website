@@ -2016,6 +2016,7 @@
     <Content Include="Views\Layout\CTAs.cshtml" />
     <Content Include="Views\Shared\_CardList.cshtml" />
     <Content Include="Views\Shared\_TechnicalPaperList.cshtml" />
+    <Content Include="Shared\Styles\Views\Slideshow.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
