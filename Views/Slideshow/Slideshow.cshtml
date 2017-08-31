@@ -8,6 +8,7 @@
 @section Head {
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.carousel.min.css" />
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.theme.default.min.css">
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Slideshow.css" />
 }
 
 @section PostTitleSection {
@@ -16,13 +17,17 @@
 }
 
 @section PageBodySection {
-  <section class="panel body content list owl-carousel">
+  <section class="panel body content list">
     <div>@Html.Raw(@Model.Topic.Attributes.Get("Body"))</div>
-    @if (Model.Topic["ContentItems"] != null && Model.Topic["ContentItems"].Count > 0) {
-      foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
-        <div>@WriteContentItem(contentItem)</div>
-      }
-    }
+    <div class="carousel-wrapper">
+      <div class="owl-carousel">
+        @if (Model.Topic["ContentItems"] != null && Model.Topic["ContentItems"].Count > 0) {
+          foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+            <div>@WriteContentItem(contentItem)</div>
+          }
+        }
+      </div>
+    </div>
   </section>
 }
 
@@ -33,7 +38,7 @@
 
       $(".owl-carousel").owlCarousel({
         items: 1,
-        autoHeight: false,
+        margin: 0,
         nav: true,
         navText: [
           "&laquo;",
@@ -46,22 +51,20 @@
 }
 
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
-  <article id="@contentItem.Key">
-    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
-      <!-- Thumbnail Image -->
-      <picture class="callout picture thumbnail small">
-        <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
-        <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
-      </picture>
-      <!-- /Thumbnail Image -->
+  if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+    <!-- Thumbnail Image -->
+    <picture class="callout picture thumbnail small">
+      <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
+      <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
+    </picture>
+    <!-- /Thumbnail Image -->
+  }
+  <div>
+    @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
+      <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
     }
-    <div>
-      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
-      @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
-        <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
-      }
-    </div>
-  </article>
+  </div>
 }
 <!--
   Content Type: Slideshow
