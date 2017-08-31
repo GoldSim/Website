@@ -63,10 +63,10 @@
 
     @Html.Raw(@Model.Topic.Attributes.Get("Body"))
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreURL"))) {
       <h1>Learn More</h1>
       <ul>
-        <li><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+        <li><a href="@Model.Topic.Attributes.Get("LearnMoreURL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
       </ul>
     }
 

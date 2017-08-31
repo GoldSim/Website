@@ -81,8 +81,8 @@
         else if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
-        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
-          <li><a href="@Model.Topic.Attributes.Get("URL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreURL"))) {
+          <li><a href="@Model.Topic.Attributes.Get("LearnMoreURL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
         }
       </ul>
       <!-- Learn More -->
