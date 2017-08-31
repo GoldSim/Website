@@ -1,2 +1,53 @@
 .title.long {
   padding-bottom: 4rem; }
+
+.carousel-wrapper {
+  position: relative;
+  max-width: 60rem; }
+
+.owl-nav {
+  position: absolute;
+  top: -10.25rem;
+  right: 0;
+  left: 0; }
+  .owl-nav .owl-prev,
+  .owl-nav .owl-next {
+    z-index: 10;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 4.375rem; }
+    .owl-nav .owl-prev .button,
+    .owl-nav .owl-next .button {
+      position: absolute;
+      min-width: auto;
+      width: 4.25rem; }
+  .owl-nav .owl-prev {
+    left: 0; }
+    .owl-nav .owl-prev .button {
+      left: 0; }
+  .owl-nav .owl-next {
+    right: 0; }
+    .owl-nav .owl-next .button {
+      right: 0; }
+
+.owl-dots {
+  position: absolute;
+  top: -9.5rem;
+  right: 5rem;
+  left: 5rem;
+  height: 1.25rem;
+  text-align: center; }
+  .owl-dots .owl-dot {
+    display: inline-block;
+    margin: 0 0.25rem;
+    border-radius: 50%;
+    width: 0.75rem;
+    height: 0.75rem;
+    background-color: #cccccc; }
+    .owl-dots .owl-dot.active {
+      background-color: #fec10d; }
+
+article:first-of-type, article.slide {
+  padding-top: 0; }

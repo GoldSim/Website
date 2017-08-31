@@ -22,3 +22,71 @@
 .title.long {
   padding-bottom                : rem-calc(64);
 }
+
+// Carousel
+.carousel-wrapper {
+  position                      : relative;
+  max-width                    : rem-calc(960);
+}
+.owl-nav {
+  position                      : absolute;
+  top                           : rem-calc(-164);
+  right                         : 0;
+  left                          : 0;
+  .owl-prev,
+  .owl-next {
+    z-index                     : 10;
+    display                     : inline-block;
+    position                    : absolute;
+    top                         : 0;
+    bottom                      : 0;
+    width                       : rem-calc(70);
+  //background                  : $palette-grey-lightest;
+    .button {
+      position                  : absolute;
+      min-width                 : auto;
+      width                     : rem-calc(68);
+    }
+    &.disabled {
+    }
+  }
+  .owl-prev {
+    left                        : 0;
+    .button {
+      left                      : 0;
+    }
+  }
+  .owl-next {
+    right                       : 0;
+    .button {
+      right                     : 0;
+    }
+  }
+}
+.owl-dots {
+  position                      : absolute;
+  top                           : rem-calc(-152);
+  right                         : rem-calc(80);
+  left                          : rem-calc(80);
+  height                        : rem-calc(20);
+  text-align                    : center;
+  .owl-dot {
+    display                     : inline-block;
+    margin                      : rem-calc(0 4);
+    border-radius               : 50%;
+    width                       : rem-calc(12);
+    height                      : rem-calc(12);
+    background-color            : $palette-grey-light;
+    &.active {
+      background-color          : $palette-yellow;
+    }
+  }
+}
+
+// Slide
+article {
+  &:first-of-type,
+  &.slide {
+    padding-top                 : 0;
+  }
+}
