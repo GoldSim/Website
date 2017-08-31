@@ -1823,7 +1823,6 @@
     <Compile Include="Controllers\SitemapController.cs" />
     <Content Include="Forms\Common\Templates\Forms.Layout.master.cs">
       <DependentUpon>Forms.Layout.master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Content>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
