@@ -20,25 +20,37 @@
 
 // Navigation / Pagination Allowances
 #MainContentArea article:first-of-type > header {
-  padding-bottom                : rem-calc(64);
+  padding-bottom                : rem-calc(112);
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(64);
+  }
 }
 .panel.body {
-  margin-bottom                 : rem-calc(88);
+  margin-bottom                 : rem-calc(80);
+  @include breakpoint(medium) {
+    margin-bottom               : rem-calc(88);
+  }
 }
 
 // Carousel
 .carousel-wrapper {
   position                      : relative;
-  max-width                    : rem-calc(960);
+  max-width                     : rem-calc(960);
 }
 .owl-nav {
   position                      : absolute;
-  top                           : rem-calc(-164);
+  top                           : rem-calc(-148);
   right                         : 0;
   left                          : 0;
+  @include breakpoint(large) {
+    top                         : rem-calc(-164);
+  }
   &.bottom {
     top                         : auto;
-    bottom                      : rem-calc(-116);
+    bottom                      : rem-calc(-64);
+    @include breakpoint(large) {
+      top                       : rem-calc(-116);
+    }
   }
   .owl-prev,
   .owl-next {
@@ -83,11 +95,14 @@
 }
 .owl-dots {
   position                      : absolute;
-  top                           : rem-calc(-152);
+  top                           : rem-calc(-136);
   right                         : rem-calc(80);
   left                          : rem-calc(80);
   height                        : rem-calc(20);
   text-align                    : center;
+  @include breakpoint(large) {
+    top                         : rem-calc(-152);
+  }
   .owl-dot {
     display                     : inline-block;
     margin                      : rem-calc(0 4);

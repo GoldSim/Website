@@ -1,8 +1,14 @@
 #MainContentArea article:first-of-type > header {
-  padding-bottom: 4rem; }
+  padding-bottom: 7rem; }
+  @media print, screen and (min-width: 40em) {
+    #MainContentArea article:first-of-type > header {
+      padding-bottom: 4rem; } }
 
 .panel.body {
-  margin-bottom: 5.5rem; }
+  margin-bottom: 5rem; }
+  @media print, screen and (min-width: 40em) {
+    .panel.body {
+      margin-bottom: 5.5rem; } }
 
 .carousel-wrapper {
   position: relative;
@@ -10,12 +16,18 @@
 
 .owl-nav {
   position: absolute;
-  top: -10.25rem;
+  top: -9.25rem;
   right: 0;
   left: 0; }
+  @media print, screen and (min-width: 64.0625em) {
+    .owl-nav {
+      top: -10.25rem; } }
   .owl-nav.bottom {
     top: auto;
-    bottom: -7.25rem; }
+    bottom: -4rem; }
+    @media print, screen and (min-width: 64.0625em) {
+      .owl-nav.bottom {
+        top: -7.25rem; } }
   .owl-nav .owl-prev,
   .owl-nav .owl-next {
     z-index: 10;
@@ -51,11 +63,14 @@
 
 .owl-dots {
   position: absolute;
-  top: -9.5rem;
+  top: -8.5rem;
   right: 5rem;
   left: 5rem;
   height: 1.25rem;
   text-align: center; }
+  @media print, screen and (min-width: 64.0625em) {
+    .owl-dots {
+      top: -9.5rem; } }
   .owl-dots .owl-dot {
     display: inline-block;
     margin: 0 0.25rem;
