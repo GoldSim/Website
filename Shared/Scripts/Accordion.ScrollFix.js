@@ -24,5 +24,11 @@
       offset = _previousHeight;
     }
     $('html,body').animate({ scrollTop: top - offset }, 'fast');
+    setTimeout(function () {
+      $('html,body').animate({ scrollTop: top - offset }, 'fast');
+      },
+      200
+    );
+
   });
 } (window.goldSimWeb = window.goldSimWeb || {}, jQuery));
