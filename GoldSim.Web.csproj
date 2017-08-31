@@ -1789,6 +1789,8 @@
     <Content Include="Shared\Styles\Views\CaseStudy.min.css" />
     <Content Include="Shared\Styles\Views\Home.css" />
     <Content Include="Shared\Styles\Views\Home.min.css" />
+    <Content Include="Shared\Styles\Views\Slideshow.css" />
+    <Content Include="Shared\Styles\Views\Slideshow.min.css" />
     <Content Include="Shared\Styles\Views\TechnicalPaperList.css" />
     <Content Include="Shared\Styles\Views\TechnicalPaperList.min.css" />
     <Content Include="Shared\Styles\Views\Video.css" />

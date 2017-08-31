@@ -48,6 +48,17 @@
       width                     : rem-calc(68);
     }
     &.disabled {
+      .button {
+        opacity                 : 0.25;
+        cursor                  : default;
+        &:hover,
+        &:focus,
+        &:active {
+          border-color          : $palette-yellow;
+          color                 : $palette-black;
+          background-color      : $palette-yellow;
+        }
+      }
     }
   }
   .owl-prev {

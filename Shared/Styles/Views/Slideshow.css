@@ -23,6 +23,17 @@
       position: absolute;
       min-width: auto;
       width: 4.25rem; }
+    .owl-nav .owl-prev.disabled .button,
+    .owl-nav .owl-next.disabled .button {
+      opacity: 0.25;
+      cursor: default; }
+      .owl-nav .owl-prev.disabled .button:hover, .owl-nav .owl-prev.disabled .button:focus, .owl-nav .owl-prev.disabled .button:active,
+      .owl-nav .owl-next.disabled .button:hover,
+      .owl-nav .owl-next.disabled .button:focus,
+      .owl-nav .owl-next.disabled .button:active {
+        border-color: #fec10d;
+        color: #202020;
+        background-color: #fec10d; }
   .owl-nav .owl-prev {
     left: 0; }
     .owl-nav .owl-prev .button {
