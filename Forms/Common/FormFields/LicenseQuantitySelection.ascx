@@ -1,4 +1,4 @@
-<%@ Control ClassName="LicenceQuanitySelection" %>
+<%@ Control Language="C#" ClassName="LicenceQuanitySelection" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 

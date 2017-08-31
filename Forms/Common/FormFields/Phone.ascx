@@ -1,4 +1,4 @@
-<%@ Control ClassName="PhoneField" %>
+<%@ Control Language="C#" ClassName="PhoneField" %>
 
 <Script RunAt="Server">
 /*===========================================================================================================================

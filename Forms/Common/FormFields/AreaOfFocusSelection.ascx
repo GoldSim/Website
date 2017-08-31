@@ -1,4 +1,4 @@
-<%@ Control ClassName="AreaOfFocusSelection" %>
+<%@ Control Language="C#" ClassName="AreaOfFocusSelection" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 
@@ -23,8 +23,8 @@
 >============================================================================================================================
 | Public fields will be exposed as properties to user control
 \--------------------------------------------------------------------------------------------------------------------------*/
-  public        String          LabelName               = "Field Label Name";
-  public        String          ValidationGroup         = "";
+  public        string          LabelName               = "Field Label Name";
+  public        string          ValidationGroup         = "";
 
 </Script>
 

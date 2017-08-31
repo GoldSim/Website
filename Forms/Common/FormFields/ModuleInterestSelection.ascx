@@ -1,4 +1,4 @@
-<%@ Control ClassName="ModuleInterestSelection" %>
+<%@ Control Language="C#" ClassName="ModuleInterestSelection" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 

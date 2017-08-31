@@ -1,4 +1,4 @@
-<%@ Control ClassName="ProductConfiguration" %>
+<%@ Control Language="C#" ClassName="ProductConfiguration" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="ajaxToolkit" %>
 

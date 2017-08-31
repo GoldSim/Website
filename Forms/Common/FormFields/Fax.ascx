@@ -1,4 +1,4 @@
-<%@ Control ClassName="FaxField" %>
+<%@ Control Language="C#" ClassName="FaxField" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 

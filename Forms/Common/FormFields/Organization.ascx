@@ -1,4 +1,4 @@
-<%@ Control ClassName="OrganizationField" %>
+<%@ Control Language="C#" ClassName="OrganizationField" %>
 
 <Script RunAt="Server">
 /*===========================================================================================================================

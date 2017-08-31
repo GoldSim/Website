@@ -1,4 +1,4 @@
-<%@ Control ClassName="EmailField" %>
+<%@ Control Language="C#" ClassName="EmailField" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 
@@ -26,21 +26,21 @@
   public        String          LabelName               = "Field Label Name";
   public        String          ValidationGroup         = "";
   public        bool            ShowEmailConfirm        = false;
-  
+
 /*===========================================================================================================================
 | DECLARE PRIVATE MEMBER VARIABLES
 \--------------------------------------------------------------------------------------------------------------------------*/
   private       string          _emailControlID         = "Email";
-  
+
 /*===========================================================================================================================
 | PAGE LOAD
 >============================================================================================================================
 | Provide handling for functions that must run prior to page load.  This includes dynamically constructed controls.
 \--------------------------------------------------------------------------------------------------------------------------*/
   void Page_Load(Object Src, EventArgs E) {
-    
+
   //_emailControlID     = ((IgniaFormField)Email.FindControl("Email")).ClientID;
-    
+
     }
 
 </Script>

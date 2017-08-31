@@ -1,4 +1,4 @@
-<%@ Control ClassName="CountrySelection" %>
+<%@ Control Language="C#" ClassName="CountrySelection" %>
 
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 
