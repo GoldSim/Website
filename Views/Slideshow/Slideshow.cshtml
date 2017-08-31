@@ -60,6 +60,13 @@
         adjustStageHeight($('.owl-item.active article.slide').outerHeight());
       });
 
+      /**
+       * Clear navigation button focus
+       */
+      $('.owl-prev, .owl-next').click(function () {
+        $(this).find('button').blur();
+      });
+
     });
 
     /**
