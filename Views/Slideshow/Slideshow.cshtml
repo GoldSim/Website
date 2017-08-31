@@ -37,7 +37,7 @@
     $(function () {
 
       /**
-       * Instatiate carousel and define events
+       * Instatiate carousel
        */
       var $carousel             = $('.owl-carousel');
       $carousel.owlCarousel({
@@ -53,18 +53,22 @@
       });
 
       /**
-       * Set disabled nav on button
+       * Recalculate carousel stage height
        */
-      $('.owl-prev, .owl-next').each(function() {
-        if ($(this).hasClass('disabled')) {
-        //$(this).find('button').addClass('disabled');
-        }
-        else {
-        //$(this).find('button').removeClass('disabled');
-        }
+      adjustStageHeight($('.owl-item.active article.slide').outerHeight());
+      $carousel.on('translated.owl.carousel', function (event) {
+        adjustStageHeight($('.owl-item.active article.slide').outerHeight());
       });
 
     });
+
+    /**
+     * Adjust carousel stage height based on height of active slide
+     */
+    function adjustStageHeight(activeSlideHeight) {
+      $('div.owl-stage-outer').height(activeSlideHeight);
+    }
+
   </script>
 }
 
