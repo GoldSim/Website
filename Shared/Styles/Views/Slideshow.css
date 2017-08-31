@@ -1,6 +1,9 @@
 #MainContentArea article:first-of-type > header {
   padding-bottom: 4rem; }
 
+.panel.body {
+  margin-bottom: 5.5rem; }
+
 .carousel-wrapper {
   position: relative;
   max-width: 60rem; }
@@ -10,6 +13,9 @@
   top: -10.25rem;
   right: 0;
   left: 0; }
+  .owl-nav.bottom {
+    top: auto;
+    bottom: -7.25rem; }
   .owl-nav .owl-prev,
   .owl-nav .owl-next {
     z-index: 10;

@@ -18,9 +18,12 @@
 // VIEW
 //----------------------------------------------------------------------------------------------
 
-// Page Title Area
+// Navigation / Pagination Allowances
 #MainContentArea article:first-of-type > header {
   padding-bottom                : rem-calc(64);
+}
+.panel.body {
+  margin-bottom                 : rem-calc(88);
 }
 
 // Carousel
@@ -33,6 +36,10 @@
   top                           : rem-calc(-164);
   right                         : 0;
   left                          : 0;
+  &.bottom {
+    top                         : auto;
+    bottom                      : rem-calc(-116);
+  }
   .owl-prev,
   .owl-next {
     z-index                     : 10;
