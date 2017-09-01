@@ -5,17 +5,30 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<h2>Video Content Type</h2>
+@section PageBodySection {
 
-<h1>@Model.Topic.Title</h1>
-<h2>@Model.Topic.Attributes.Get("Title")</h2>
+  <section class="panel body">
 
-<p>@Model.Topic.Attributes.Get("Body")</p>
+    <!-- Description -->
+    <article class="page body">
+      @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+    </article>
+    <!-- /Description -->
 
-<h2>Attributes</h2>
-<ul>
-  <li><strong>Video (URL):</strong> @Model.Topic.Attributes.Get("URL")</li>
-  <li><strong>Description:</strong> @Model.Topic.Attributes.Get("Description")</li>
-</ul>
+    <!-- Video Area -->
+    <div class="video-wrapper">
+      <video controls@(!String.IsNullOrEmpty(Model.Topic.Attributes.Get("PosterURL")) ? "poster=\"@Model.Topic.Attributes.Get("PosterURL")\" : "")>
+        <source src="@Model.Topic.Attributes.Get("VideoURL")" type="video/mp4" />
+        Your browser does not support the HTML5 video.
+      </video>
+    </div>
+    <!-- /Video Area -->
 
-<br>(~/Views/Video/Video.cshtml)
+  </section>
+
+}
+
+<!--
+  Content Type: Video
+  View Location: ~/Views/Video/Video.cshtml
+-->
