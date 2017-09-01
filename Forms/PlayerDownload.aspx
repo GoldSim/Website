@@ -38,7 +38,7 @@
   | SET MASTER PROPERTIES
   \------------------------------------------------------------------------------------------------------------------------*/
   //Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
-    Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(742);
+  //Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(742);
   //Submit button label
     Master.SubmitLabel          = "Request GoldSim Player";
   //Submission email subject

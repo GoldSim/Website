@@ -38,7 +38,7 @@
   | SET MASTER PROPERTIES
   \------------------------------------------------------------------------------------------------------------------------*/
   //Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
-    Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(739);
+  //Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(739);
   //ContentType for form Topic
     Master.SaveAsContentType    = "AcademicRequest";
   //Submit button label

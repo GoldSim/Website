@@ -39,7 +39,7 @@
   | SET MASTER PROPERTIES
   \------------------------------------------------------------------------------------------------------------------------*/
   //Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
-    Master.FormTopic    =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(757);
+  //Master.FormTopic    =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(757);
     Master.EmailSender = ((IgniaFormField)Email.FindControl("Email")).Value;
     Master.EmailRecipient       = "Software@GoldSim.com";
     Master.SuccessUrl           = "/Topic/5/";
