@@ -110,6 +110,7 @@ main section[role="region"] {
   padding-left: 0; }
 
 .usage h2 {
+  margin-bottom: 1rem;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.125rem;
   font-weight: 600; }

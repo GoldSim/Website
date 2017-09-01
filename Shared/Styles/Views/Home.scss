@@ -184,6 +184,7 @@ main {
     padding-left                : 0;
   }
   h2 {
+    margin-bottom               : rem-calc(16);
     font-family                 : $body-font-family;
     font-size                   : $body-text-size;
     font-weight                 : 600;
