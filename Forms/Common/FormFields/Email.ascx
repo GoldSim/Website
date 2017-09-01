@@ -49,6 +49,7 @@
 <Ignia:FormField ID     = "Email"
   LabelName             = "Email"
   AccessKey             = "E"
+  TextMode              = "Email"
   MaxLength             = "150"
   FieldSize             = "320"
   Required              = "True"
