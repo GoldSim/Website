@@ -6035,7 +6035,7 @@ body > header {
     padding: 0; }
     @media print, screen and (min-width: 40em) {
       .callout.picture {
-        max-width: 17.5rem; } }
+        max-width: 20.875rem; } }
     @media print, screen and (min-width: 40em) {
       .callout.picture.small {
         max-width: 11.25rem; } }

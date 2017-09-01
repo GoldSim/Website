@@ -332,7 +332,7 @@ body {
     padding                     : 0;
   //width                       : 100%;
     @include breakpoint(medium) {
-      max-width                 : rem-calc(280);
+      max-width                 : rem-calc(334);
     }
     &.small {
       @include breakpoint(medium) {
