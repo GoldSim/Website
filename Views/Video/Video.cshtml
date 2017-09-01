@@ -17,7 +17,7 @@
 
     <!-- Video Area -->
     <div class="video-wrapper">
-      <video controls @(!String.IsNullOrEmpty(Model.Topic.Attributes.Get("PosterURL")) ? "poster=\"" + @Model.Topic.Attributes.Get("PosterURL") + "\"" : "")>
+      <video controls @(!String.IsNullOrEmpty(Model.Topic.Attributes.Get("PosterURL")) ? "poster=" + @Model.Topic.Attributes.Get("PosterURL") : "")>
         <source src="@Model.Topic.Attributes.Get("VideoURL")" type="video/mp4" />
         Your browser does not support the HTML5 video.
       </video>
