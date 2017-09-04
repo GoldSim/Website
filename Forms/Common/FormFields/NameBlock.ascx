@@ -27,30 +27,36 @@
 
 </Script>
 
-<%-- FIRST NAME --%>
-<Ignia:FormField
-  ID                    = "FirstName"
-  LabelName             = "First Name"
-  AccessKey             = "F"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<!-- First Name -->
+<div class="medium-6 cell">
+  <Ignia:FormField
+    ID                    = "FirstName"
+    LabelName             = "*First Name"
+    AccessKey             = "F"
+    MaxLength             = "150"
+    FieldSize             = "320"
+    Required              = "True"
+    CssClass              = "TextField"
+    SkinId                = "BoxedPairs"
+    ValidationGroup       = <%# ValidationGroup %>
+    RunAt                 = "Server"
+    />
+</div>
+<!-- /First Name -->
 
-<%-- LAST NAME --%>
-<Ignia:FormField
-  ID                    = "LastName"
-  LabelName             = "Last Name"
-  AccessKey             = "L"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<!-- Last Name -->
+<div class="medium-6 cell">
+  <Ignia:FormField
+    ID                    = "LastName"
+    LabelName             = "*Last Name"
+    AccessKey             = "L"
+    MaxLength             = "150"
+    FieldSize             = "320"
+    Required              = "True"
+    CssClass              = "TextField"
+    SkinId                = "BoxedPairs"
+    ValidationGroup       = <%# ValidationGroup %>
+    RunAt                 = "Server"
+    />
+</div>
+<!-- /Last Name -->
