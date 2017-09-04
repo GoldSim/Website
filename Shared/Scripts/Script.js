@@ -28,8 +28,10 @@
      * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
      */
     $('.js-full-height').each(function() {
-      var $this                 = $(this);
-      $this.innerHeight($paneFullHeight);
+      var $this = $(this);
+      if ($window.width > 640) {
+        $this.innerHeight($paneFullHeight);
+      }
     });
 
     /**
