@@ -193,11 +193,13 @@ main section[role="region"] {
 .usage .screenshot {
   padding: 1rem 0 0;
   height: 100%;
-  text-align: right; }
+  text-align: center; }
   @media print, screen and (min-width: 40em) {
     .usage .screenshot {
-      padding: 0 0 0 2.5rem; } }
+      padding: 0 0 0 2.5rem;
+      text-align: right; } }
   .usage .screenshot img {
+    margin: 0 auto;
     border: 1px solid #e3e3e3;
     max-width: 20.5625rem; }
 
