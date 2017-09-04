@@ -29,7 +29,7 @@
      */
     $('.js-full-height').each(function() {
       var $this = $(this);
-      if ($window.width > 640) {
+      if ($window.width() > 640) {
         $this.innerHeight($paneFullHeight);
       }
     });
