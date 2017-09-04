@@ -1,13 +1,12 @@
 <%@ Register TagPrefix="Ignia" TagName="FormField"        Src="/Common/Global/Controls/FormField.ascx"        %>
 
 <Ignia:FormField
-  HtmlStart           = "<div class='FieldContainer'>"
+  HtmlStart           = ""
   HtmlLabelStart      = ""
   HtmlLabelEnd        = ""
   HtmlFieldStart      = ""
   HtmlFieldEnd        = ""
-  HtmlEnd             = "</div>"
+  HtmlEnd             = ""
   HtmlSeparator       = ""
-  SkinID              = "BoxedPairs"
   RunAt               = "Server"
   />
