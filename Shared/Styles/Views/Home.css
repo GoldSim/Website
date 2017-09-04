@@ -1,5 +1,14 @@
+main > article[itemprop="mainContentOfPage"] {
+  padding: 0 0 2rem; }
+  @media print, screen and (min-width: 40em) {
+    main > article[itemprop="mainContentOfPage"] {
+      padding: 5rem 0 2rem; } }
+
 main > section > header {
-  padding: 5rem 0; }
+  padding: 3rem 2.25rem; }
+  @media print, screen and (min-width: 64.0625em) {
+    main > section > header {
+      padding: 5rem 0; } }
   main > section > header .video {
     background-color: white; }
 
@@ -7,16 +16,34 @@ main > article {
   padding: 5rem 0 2rem; }
 
 main section[role="region"] {
-  margin-bottom: 5rem; }
+  margin-bottom: 2rem; }
+  @media print, screen and (min-width: 40em) {
+    main section[role="region"] {
+      margin-bottom: 5rem; } }
   main section[role="region"]:last-child {
     margin-bottom: 0; }
 
 .pane header h1,
 .panel header h1 {
-  margin-bottom: 2rem; }
+  margin-bottom: 2rem;
+  text-align: center; }
+  @media print, screen and (min-width: 40em) {
+    .pane header h1,
+    .panel header h1 {
+      text-align: left; } }
 
 .pane header h1 {
-  padding: 0 6.875rem; }
+  text-align: center; }
+  @media print, screen and (min-width: 40em) {
+    .pane header h1 {
+      padding: 0 6.875rem;
+      text-align: left; } }
+
+.pane p.text {
+  padding: 0 2.25rem; }
+  @media print, screen and (min-width: 40em) {
+    .pane p.text {
+      padding: 0 6.875rem; } }
 
 .pane.applications h2 {
   margin: 1.75rem auto 1.25rem;
@@ -25,24 +52,33 @@ main section[role="region"] {
   text-align: center; }
 
 .pane.applications p.text {
-  margin-bottom: 3rem;
-  padding: 0 6.875rem; }
+  margin-bottom: 3rem; }
 
-.pane.cta-links p.text {
-  padding: 0 6.875rem; }
-  .pane.cta-links p.text ~ p.text {
-    margin-bottom: 3rem; }
+.pane.cta-links p.text ~ p.text {
+  margin-bottom: 3rem; }
 
 .panel.introduction {
-  padding-right: 26.75rem;
-  background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right;
-  background-size: contain; }
+  padding: 5rem 2.25rem 13.875rem;
+  background: white url("/Images/Home/Introduction.SmallScreen.Background.png") no-repeat bottom right;
+  background-size: 90%; }
+  @media print, screen and (min-width: 40em) {
+    .panel.introduction {
+      padding: 2rem 26.75rem 2rem 2rem; } }
+  @media print, screen and (min-width: 64.0625em) {
+    .panel.introduction {
+      background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right;
+      background-size: contain; } }
 
 .panel.customers {
   position: relative;
-  padding-right: 33.75rem;
-  background: white url("/Images/Home/Customers.Background.png") no-repeat 325% -1rem;
+  padding-bottom: 9.875rem;
+  background: white url("/Images/Home/Customers.Background.png") no-repeat 100% 100%;
   background-size: contain; }
+  @media print, screen and (min-width: 40em) {
+    .panel.customers {
+      padding-right: 33.75rem;
+      padding-bottom: 0;
+      background-position: 325% -1rem; } }
   .panel.customers > header {
     padding-right: 2rem; }
   .panel.customers aside {
@@ -66,7 +102,7 @@ main section[role="region"] {
 
 .usage .carousel-wrapper {
   position: relative;
-  max-width: 60rem; }
+  max-width: 100vmin; }
 
 .usage .owl-nav {
   position: absolute;
@@ -81,28 +117,45 @@ main section[role="region"] {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 6.875rem;
+    width: 2.25rem;
     background: #f3f3f3; }
+    @media print, screen and (min-width: 40em) {
+      .usage .owl-nav .owl-prev,
+      .usage .owl-nav .owl-next {
+        width: 6.875rem; } }
     .usage .owl-nav .owl-prev.disabled i.fa,
     .usage .owl-nav .owl-next.disabled i.fa {
       display: none; }
     .usage .owl-nav .owl-prev i.fa,
     .usage .owl-nav .owl-next i.fa {
       position: absolute;
-      top: 40%;
+      top: 0;
       font-size: 2rem;
       color: #919191; }
+      @media print, screen and (min-width: 64.0625em) {
+        .usage .owl-nav .owl-prev i.fa,
+        .usage .owl-nav .owl-next i.fa {
+          top: 40%; } }
   .usage .owl-nav .owl-prev {
     left: 0; }
     .usage .owl-nav .owl-prev i.fa {
-      left: 2.625rem; }
+      left: 2.25rem; }
+      @media print, screen and (min-width: 40em) {
+        .usage .owl-nav .owl-prev i.fa {
+          left: 2.625rem; } }
   .usage .owl-nav .owl-next {
     right: 0; }
     .usage .owl-nav .owl-next i.fa {
-      right: 2.625rem; }
+      right: 2.25rem; }
+      @media print, screen and (min-width: 40em) {
+        .usage .owl-nav .owl-next i.fa {
+          right: 2.625rem; } }
 
 .usage .owl-item {
-  padding: 0 6.875rem; }
+  padding: 0 2.25rem; }
+  @media print, screen and (min-width: 40em) {
+    .usage .owl-item {
+      padding: 0 6.875rem; } }
   .usage .owl-item p:last-of-type {
     margin-bottom: 0; }
 
@@ -111,24 +164,37 @@ main section[role="region"] {
 
 .usage h2 {
   margin-bottom: 1rem;
+  padding: 0 2.25rem;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.125rem;
-  font-weight: 600; }
+  font-weight: 600;
+  text-align: center; }
+  @media print, screen and (min-width: 40em) {
+    .usage h2 {
+      padding: 0;
+      text-align: left; } }
 
 .usage .screenshot {
-  padding-left: 2.5rem;
+  padding: 1rem 0 0;
   height: 100%;
   text-align: right; }
+  @media print, screen and (min-width: 40em) {
+    .usage .screenshot {
+      padding: 0 0 0 2.5rem; } }
   .usage .screenshot img {
     border: 1px solid #e3e3e3;
     max-width: 20.5625rem; }
 
 .applications .card {
-  margin-bottom: 0;
-  padding: 12.375rem 0.0625rem 0 0.0625rem;
+  margin: 0 2.25rem 0.875rem;
+  padding: 13.375rem 0 0;
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat; }
+  @media print, screen and (min-width: 40em) {
+    .applications .card {
+      margin: 0;
+      padding: 12.375rem 0 0; } }
   .applications .card.environmental {
     background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
   .applications .card.engineered {
@@ -165,15 +231,36 @@ main section[role="region"] {
       .applications .card ul li:last-child a {
         margin-bottom: -1rem; }
 
+.cta-links .cell {
+  padding: 0 2.25rem; }
+  @media print, screen and (min-width: 40em) {
+    .cta-links .cell {
+      padding: 0; } }
+  .cta-links .cell:first-of-type .button {
+    margin-bottom: 1.125rem; }
+  @media print, screen and (min-width: 40em) {
+    .cta-links .cell:first-of-type .button {
+      margin-bottom: 0; } }
+
 .cta-links .button {
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
-          box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07); }
+          box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+  width: 100%; }
+  @media print, screen and (min-width: 40em) {
+    .cta-links .button {
+      width: auto; } }
 
 h1.title.short {
   position: static;
   padding-bottom: 0.5rem;
-  font-size: 1.875rem;
+  font-size: 1.125rem;
   color: #cccccc; }
+  @media print, screen and (min-width: 40em) {
+    h1.title.short {
+      font-size: 1.3125rem; } }
+  @media print, screen and (min-width: 64.0625em) {
+    h1.title.short {
+      font-size: 1.875rem; } }
 
 h1.title.long {
   margin-bottom: 2.75rem;

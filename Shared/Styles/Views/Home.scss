@@ -18,8 +18,17 @@
 // LAYOUT
 //----------------------------------------------------------------------------------------------
 main {
+  > article[itemprop="mainContentOfPage"] {
+    padding                     : rem-calc(0 0 32);
+    @include breakpoint(medium) {
+      padding                   : rem-calc(80 0 32);
+    }
+  }
   > section > header {
-    padding                     : rem-calc(80 0);
+    padding                     : rem-calc(48 36);
+    @include breakpoint(large) {
+      padding                   : rem-calc(80 0);
+    }
     .video {
     //max-width                 : 33.4375rem;                   // 535px
       background-color          : $palette-white;
@@ -29,7 +38,10 @@ main {
     padding                     : rem-calc(80 0 32);
   }
   section[role="region"] {
-    margin-bottom               : rem-calc(80);
+    margin-bottom               : rem-calc(32);
+    @include breakpoint(medium) {
+      margin-bottom             : rem-calc(80);
+    }
     &:last-child {
       margin-bottom             : 0;
     }
@@ -46,6 +58,10 @@ main {
   header {
     h1 {
       margin-bottom             : rem-calc(32);
+      text-align                : center;
+      @include breakpoint(medium) {
+        text-align              : left;
+      }
     }
   }
 }
@@ -53,6 +69,17 @@ main {
 
   header {
     h1 {
+      text-align                : center;
+      @include breakpoint(medium) {
+        padding                 : rem-calc(0 110);
+        text-align              : left;
+      }
+    }
+  }
+
+  p.text {
+    padding                     : rem-calc(0 36);
+    @include breakpoint(medium) {
       padding                   : rem-calc(0 110);
     }
   }
@@ -67,14 +94,12 @@ main {
     }
     p.text {
       margin-bottom             : rem-calc(48);
-      padding                   : rem-calc(0 110);
     }
   }
 
   // CTAs
   &.cta-links {
     p.text {
-      padding                   : rem-calc(0 110);
       ~ p.text {
         margin-bottom           : rem-calc(48);
       }
@@ -86,17 +111,29 @@ main {
 
   // Introduction
   &.introduction {
-    padding-right               : rem-calc(428);
-    background                  : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
-    background-size             : contain;
+    padding                     : rem-calc(80 36 222);
+    background                  : $palette-white url('/Images/Home/Introduction.SmallScreen.Background.png') no-repeat bottom right;
+    background-size             : 90%;
+    @include breakpoint(medium) {
+      padding                   : rem-calc(32 428 32 32);
+    }
+    @include breakpoint(large) {
+      background                : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
+      background-size           : contain;
+    }
   }
 
   // Customers
   &.customers {
     position                    : relative;
-    padding-right               : rem-calc(540);
-    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 325% -1rem;
+    padding-bottom              : rem-calc(158);
+    background                  : $palette-white url('/Images/Home/Customers.Background.png') no-repeat 100% 100%;
     background-size             : contain;
+    @include breakpoint(medium) {
+      padding-right             : rem-calc(540);
+      padding-bottom            : 0;
+      background-position       : 325% -1rem;
+    }
     > header {
       padding-right             : rem-calc(32);
     }
@@ -130,7 +167,7 @@ main {
 .usage {
   .carousel-wrapper {
     position                    : relative;
-    max-width                   : rem-calc(960);
+    max-width                   : 100vmin;
   }
   .owl-nav {
     position                    : absolute;
@@ -145,8 +182,11 @@ main {
       position                  : absolute;
       top                       : 0;
       bottom                    : 0;
-      width                     : rem-calc(110);
+      width                     : rem-calc(36);
       background                : $palette-grey-lightest;
+      @include breakpoint(medium) {
+        width                   : rem-calc(110);
+      }
       &.disabled {
         i.fa {
           display               : none;
@@ -154,26 +194,38 @@ main {
       }
       i.fa {
         position                : absolute;
-        top                     : 40%;
+        top                     : 0;
         font-size               : rem-calc(32);
         color                   : lighten($palette-black, 44.5%);       // #959595
+        @include breakpoint(large) {
+          top                   : 40%;
+        }
       }
     }
     .owl-prev {
       left                      : 0;
       i.fa {
-        left                    : rem-calc(42);
+        left                    : rem-calc(36);
+        @include breakpoint(medium) {
+          left                  : rem-calc(42);
+        }
       }
     }
     .owl-next {
       right                     : 0;
       i.fa {
-        right                   : rem-calc(42);
+        right                   : rem-calc(36);
+        @include breakpoint(medium) {
+          right                 : rem-calc(42);
+        }
       }
     }
   }
   .owl-item {
-    padding                     : rem-calc(0 110);
+    padding                     : rem-calc(0 36);
+    @include breakpoint(medium) {
+      padding                   : rem-calc(0 110);
+    }
     p {
       &:last-of-type {
         margin-bottom           : 0;
@@ -185,17 +237,26 @@ main {
   }
   h2 {
     margin-bottom               : rem-calc(16);
+    padding                     : rem-calc(0 36);
     font-family                 : $body-font-family;
     font-size                   : $body-text-size;
     font-weight                 : 600;
+    text-align                  : center;
+    @include breakpoint(medium) {
+      padding                   : 0;
+      text-align                : left;
+    }
   }
   .text {
   //padding-right               : rem-calc(40);
   }
   .screenshot {
-    padding-left                : rem-calc(40);
+    padding                     : rem-calc(16 0 0);
     height                      : 100%;
     text-align                  : right;
+    @include breakpoint(medium) {
+      padding                   : rem-calc(0 0 0 40);
+    }
     img {
       border                    : 1px solid $palette-grey-lighter;
       max-width                 : rem-calc(329);
@@ -206,11 +267,15 @@ main {
 // Applications Cards
 .applications {
   .card {
-    margin-bottom               : 0;
-    padding                     : rem-calc(198 1 0 1);
+    margin                      : rem-calc(0 36 14);
+    padding                     : rem-calc(214 0 0);
     background-size             : contain;
     background-position         : center top;
     background-repeat           : no-repeat;
+    @include breakpoint(medium) {
+      margin                    : 0;
+      padding                   : rem-calc(198 0 0);
+    }
     &.environmental {
       background-image          : url('/Images/Content/Product/CT/CT_400px.png');
     }
@@ -269,8 +334,28 @@ main {
 
 // CTAs
 .cta-links {
+  .cell {
+    padding                     : rem-calc(0 36);
+    @include breakpoint(medium) {
+      padding                   : 0;
+    }
+    &:first-of-type {
+      .button {
+        margin-bottom           : rem-calc(18);
+      }
+      @include breakpoint(medium) {
+        .button {
+          margin-bottom         : 0;
+        }
+      }
+    }
+  }
   .button {
-    box-shadow                    : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    width                       : 100%;
+    @include breakpoint(medium) {
+      width                     : auto;
+    }
   }
 }
 
@@ -283,8 +368,14 @@ h1.title {
   &.short {
     position                    : static;
     padding-bottom              : rem-calc(8);
-    font-size                   : rem-calc(30);
+    font-size                   : rem-calc(18);
     color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+    @include breakpoint(large) {
+      font-size                 : rem-calc(30);
+    }
   }
   &.long {
     margin-bottom               : rem-calc(44);

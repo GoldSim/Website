@@ -213,9 +213,14 @@ ul.modules-list {
     background-color            : $palette-white;
   }
   &.huge {
-    padding-top                 : rem-calc(40);
-    padding-bottom              : rem-calc(40);
-    min-width                   : rem-calc(460);
+    padding-top                 : rem-calc(24);
+    padding-bottom              : rem-calc(24);
+    min-width                   : rem-calc(288);
+    @include breakpoint(medium) {
+      padding-top               : rem-calc(40);
+      padding-bottom            : rem-calc(40);
+      min-width                 : rem-calc(460);
+    }
   }
   &.primary {
     &:hover {

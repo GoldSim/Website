@@ -5939,9 +5939,14 @@ ul.modules-list {
     color: #fec10d;
     background-color: white; }
   .button.huge {
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    min-width: 28.75rem; }
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    min-width: 18rem; }
+    @media print, screen and (min-width: 40em) {
+      .button.huge {
+        padding-top: 2.5rem;
+        padding-bottom: 2.5rem;
+        min-width: 28.75rem; } }
   .button.primary:hover {
     color: #fec10d;
     background-color: #202020; }
