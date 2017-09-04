@@ -6,7 +6,7 @@ main > article[itemprop="mainContentOfPage"] {
 
 main > section > header {
   padding: 3rem 2.25rem; }
-  @media print, screen and (min-width: 64.0625em) {
+  @media print, screen and (min-width: 64em) {
     main > section > header {
       padding: 5rem 0; } }
   main > section > header .video {
@@ -65,11 +65,14 @@ main section[role="region"] {
   background-size: 90%; }
   @media print, screen and (min-width: 40em) {
     .panel.introduction {
-      padding-right: 25.9375rem;
+      padding-right: 6.875rem;
+      padding-bottom: 24.5rem;
       padding-left: 6.875rem;
-      padding-bottom: 5rem; } }
-  @media print, screen and (min-width: 64.0625em) {
+      background-size: 85%; } }
+  @media print, screen and (min-width: 64em) {
     .panel.introduction {
+      padding-right: 25.9375rem;
+      padding-bottom: 5rem;
       background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right;
       background-size: contain; } }
 
@@ -81,6 +84,9 @@ main section[role="region"] {
   background-size: contain;
   background-repeat: no-repeat; }
   @media print, screen and (min-width: 40em) {
+    .panel.customers {
+      padding-bottom: 19.3125rem; } }
+  @media print, screen and (min-width: 64em) {
     .panel.customers {
       padding-right: 33.75rem;
       padding-bottom: 5rem;
@@ -110,6 +116,9 @@ main section[role="region"] {
 .usage .carousel-wrapper {
   position: relative;
   max-width: 100vmin; }
+  @media print, screen and (min-width: 64em) {
+    .usage .carousel-wrapper {
+      max-width: 60rem; } }
 
 .usage .owl-nav {
   position: absolute;
@@ -139,7 +148,7 @@ main section[role="region"] {
       top: 0;
       font-size: 2rem;
       color: #919191; }
-      @media print, screen and (min-width: 64.0625em) {
+      @media print, screen and (min-width: 64em) {
         .usage .owl-nav .owl-prev i.fa,
         .usage .owl-nav .owl-next i.fa {
           top: 40%; } }
@@ -201,6 +210,9 @@ main section[role="region"] {
   @media print, screen and (min-width: 40em) {
     .applications .card {
       margin: 0;
+      padding: 9.4375rem 0 0; } }
+  @media print, screen and (min-width: 64em) {
+    .applications .card {
       padding: 12.375rem 0 0; } }
   .applications .card.environmental {
     background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
@@ -239,17 +251,19 @@ main section[role="region"] {
         margin-bottom: -1rem; }
 
 .cta-links .cell {
-  padding: 0 2.25rem; }
+  padding: 0 2.25rem;
+  text-align: center; }
   @media print, screen and (min-width: 40em) {
     .cta-links .cell {
       padding: 0; } }
   .cta-links .cell:first-of-type .button {
     margin-bottom: 1.125rem; }
-  @media print, screen and (min-width: 40em) {
+  @media print, screen and (min-width: 64em) {
     .cta-links .cell:first-of-type .button {
       margin-bottom: 0; } }
 
 .cta-links .button {
+  margin-bottom: 0;
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
           box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
   width: 100%; }
@@ -265,7 +279,7 @@ h1.title.short {
   @media print, screen and (min-width: 40em) {
     h1.title.short {
       font-size: 1.3125rem; } }
-  @media print, screen and (min-width: 64.0625em) {
+  @media print, screen and (min-width: 64em) {
     h1.title.short {
       font-size: 1.875rem; } }
 

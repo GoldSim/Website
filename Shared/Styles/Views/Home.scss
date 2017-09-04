@@ -117,11 +117,14 @@ main {
     background                  : $palette-white url('/Images/Home/Introduction.SmallScreen.Background.png') no-repeat bottom right;
     background-size             : 90%;
     @include breakpoint(medium) {
-      padding-right             : rem-calc(415);
+      padding-right             : rem-calc(110);
+      padding-bottom            : rem-calc(392);
       padding-left              : rem-calc(110);
-      padding-bottom            : rem-calc(80);
+      background-size           : 85%;
     }
     @include breakpoint(large) {
+      padding-right             : rem-calc(415);
+      padding-bottom            : rem-calc(80);
       background                : $palette-white url('/Images/Home/Introduction.Background.png') no-repeat bottom right;
       background-size           : contain;
     }
@@ -136,6 +139,9 @@ main {
     background-size             : contain;
     background-repeat           : no-repeat;
     @include breakpoint(medium) {
+      padding-bottom            : rem-calc(309);
+    }
+    @include breakpoint(large) {
       padding-right             : rem-calc(540);
       padding-bottom            : rem-calc(80);
       background-position       : 125% 0;
@@ -175,6 +181,9 @@ main {
   .carousel-wrapper {
     position                    : relative;
     max-width                   : 100vmin;
+    @include breakpoint(large) {
+      max-width                 : rem-calc(960);
+    }
   }
   .owl-nav {
     position                    : absolute;
@@ -281,6 +290,9 @@ main {
     background-repeat           : no-repeat;
     @include breakpoint(medium) {
       margin                    : 0;
+      padding                   : rem-calc(151 0 0);
+    }
+    @include breakpoint(large) {
       padding                   : rem-calc(198 0 0);
     }
     &.environmental {
@@ -343,6 +355,7 @@ main {
 .cta-links {
   .cell {
     padding                     : rem-calc(0 36);
+    text-align                  : center;
     @include breakpoint(medium) {
       padding                   : 0;
     }
@@ -350,7 +363,7 @@ main {
       .button {
         margin-bottom           : rem-calc(18);
       }
-      @include breakpoint(medium) {
+      @include breakpoint(large) {
         .button {
           margin-bottom         : 0;
         }
@@ -358,6 +371,7 @@ main {
     }
   }
   .button {
+    margin-bottom               : 0;
     box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
     width                       : 100%;
     @include breakpoint(medium) {

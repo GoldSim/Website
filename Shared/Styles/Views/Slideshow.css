@@ -19,13 +19,13 @@
   top: -9.25rem;
   right: 0;
   left: 0; }
-  @media print, screen and (min-width: 64.0625em) {
+  @media print, screen and (min-width: 64em) {
     .owl-nav {
       top: -10.25rem; } }
   .owl-nav.bottom {
     top: auto;
     bottom: -4rem; }
-    @media print, screen and (min-width: 64.0625em) {
+    @media print, screen and (min-width: 64em) {
       .owl-nav.bottom {
         top: -7.25rem; } }
   .owl-nav .owl-prev,
@@ -68,7 +68,7 @@
   left: 5rem;
   height: 1.25rem;
   text-align: center; }
-  @media print, screen and (min-width: 64.0625em) {
+  @media print, screen and (min-width: 64em) {
     .owl-dots {
       top: -9.5rem; } }
   .owl-dots .owl-dot {
