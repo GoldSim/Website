@@ -1576,6 +1576,11 @@
     <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
+    <Content Include="Images\Home\Introduction.SmallScreen.Background.png" />
+    <Content Include="Images\Home\Slide01.png" />
+    <Content Include="Images\Home\Slide02.png" />
+    <Content Include="Images\Home\Slide03.png" />
+    <Content Include="Images\Home\Slide04.png" />
     <Content Include="Images\Icons\CloseX.Icon.png" />
     <Content Include="Images\Icons\Minus.Circle.png" />
     <Content Include="Images\Icons\Minus.Circle.svg" />
@@ -1817,7 +1822,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </None>
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
