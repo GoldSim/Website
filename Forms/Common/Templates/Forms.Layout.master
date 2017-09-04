@@ -96,7 +96,7 @@
                       ID                        = "Submit"
                       OnCommand                 = "OnProcessForm"
                       Text                      = "Submit"
-                      CssClass                  = "Submit Button"
+                      CssClass                  = "submit button large primary"
                       RunAt                     = "Server"
                     />
                   </asp:ContentPlaceHolder>

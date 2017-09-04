@@ -52,6 +52,10 @@ input {
   }
   &:hover {
   }
+  &.submit {
+    margin-top                  : rem-calc(32);
+    margin-bottom               : 0;
+  }
 }
 
 textarea {
