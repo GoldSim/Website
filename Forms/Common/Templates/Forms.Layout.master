@@ -64,7 +64,7 @@
       <!-- /Site Header Area -->
     </asp:ContentPlaceHolder>
 
-    <form RunAt="Server" enctype="multipart/form-data">
+    <form RunAt="Server" enctype="multipart/form-data" data-abide novalidate>
       <asp:ContentPlaceHolder ID="ContentContainer" RunAt="Server">
         <!-- Main Site Content Area -->
         <main id="MainContentArea" class="page content" role="main">
@@ -85,8 +85,8 @@
                     <p>Your request has been submitted to GoldSim. We process requests within five business days.</p>
                   </asp:Label>
 
-                  <div class="Validation Instructions">
-                    <Ignia:ClientValidation ID="ClientValidation" RunAt="Server" />
+                  <div class="validation-instructions">
+                    <Ignia:ClientValidation ID="ClientValidation" SummaryRequired="true" SummaryColor="rgb(235, 93, 98)" RunAt="Server" />
                   </div>
 
                   <asp:ContentPlaceHolder ID="Content" RunAt="Server"/>
