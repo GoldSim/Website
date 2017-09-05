@@ -6035,7 +6035,7 @@ body > header {
   @media print, screen and (min-width: 40em) {
     .callout {
       float: right;
-      margin: 0 0 1.125rem 1.5rem;
+      margin: 0 0 1.5rem 3.5rem;
       text-align: initial; } }
   .callout:before, .callout:after {
     display: table;
@@ -6113,10 +6113,7 @@ article.page.body {
     margin-bottom: 0; }
 
 .list article {
-  margin-bottom: 2rem;
   padding-bottom: 2rem; }
-  .list article:first-of-type {
-    padding-top: 2rem; }
   .list article:last-of-type {
     margin-bottom: 0;
     border-bottom: 0 none transparent;
