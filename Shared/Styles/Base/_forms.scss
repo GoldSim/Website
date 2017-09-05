@@ -10,6 +10,21 @@
 // IMPORTS
 //----------------------------------------------------------------------------------------------
 // @import "../Vendor/RedCastor/awesome-foundation6-checkbox";
+@import '../foundationSettings';
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
+// FIELDSET
+//----------------------------------------------------------------------------------------------
+fieldset {
+  legend {
+    margin-bottom               : rem-calc(34);
+    padding-top                 : rem-calc(15);
+    font-family                 : $header-font-family;
+    font-size                   : rem-calc(20);
+    font-weight                 : 600;
+  }
+}
 
 //----------------------------------------------------------------------------------------------
 // LABELS
@@ -146,6 +161,7 @@ label {
   }
   &.error-message {
     box-shadow                  : none;
+    margin-left                 : 0;
     border                      : 0 none transparent;
     border-left                 : 3px solid $palette-red;
     padding                     : rem-calc(0 12);
@@ -155,3 +171,12 @@ label {
     background-color            : $palette-white;
   }
 }
+
+//----------------------------------------------------------------------------------------------
+// SUPPORTING STYLES
+//----------------------------------------------------------------------------------------------
+.field-instructions {
+  font-style                    : italic;
+  color                         : $palette-grey-medium;
+}
+

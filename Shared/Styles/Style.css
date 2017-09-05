@@ -3924,14 +3924,14 @@ select {
 
 .label {
   display: inline-block;
-  padding: 0.33333rem 0.5rem;
+  padding: 0;
   border-radius: 0;
-  font-size: 0.8rem;
+  font-size: 100%;
   line-height: 1;
   white-space: nowrap;
   cursor: default;
-  background: #fec10d;
-  color: white; }
+  background: transparent;
+  color: #202020; }
   .label.primary {
     background: #fec10d;
     color: #202020; }
@@ -5672,6 +5672,13 @@ header p.subtitle {
 .no-transform {
   text-transform: none; }
 
+fieldset legend {
+  margin-bottom: 2.125rem;
+  padding-top: 0.9375rem;
+  font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+  font-size: 1.25rem;
+  font-weight: 600; }
+
 label, .label {
   font-size: 1.125rem; }
 
@@ -5732,6 +5739,10 @@ input:active, input:focus {
   -webkit-box-shadow: none;
           box-shadow: none; }
 
+input.submit {
+  margin-top: 2rem;
+  margin-bottom: 0; }
+
 textarea {
   min-height: 8rem; }
 
@@ -5780,6 +5791,7 @@ label.required {
 .alert.error-message {
   -webkit-box-shadow: none;
           box-shadow: none;
+  margin-left: 0;
   border: 0 none transparent;
   border-left: 3px solid #eb5d62;
   padding: 0 0.75rem;
@@ -5787,6 +5799,10 @@ label.required {
   font-weight: 600;
   color: #eb5d62;
   background-color: white; }
+
+.field-instructions {
+  font-style: italic;
+  color: #999999; }
 
 a.comma.delimited:last-of-type:after {
   content: ''; }

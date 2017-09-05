@@ -478,12 +478,12 @@ $form-button-radius             : $global-radius;
 // 21. Label
 //----------------------------------------------------------------------------------------------
 
-$label-background               : $primary-color;
-$label-color                    : $white;
+$label-background               : transparent;                  // WAS $primary-color
+$label-color                    : $black;                       // WAS $white
 $label-color-alt                : $black;
 $label-palette                  : $foundation-palette;
-$label-font-size                : 0.8rem;
-$label-padding                  : 0.33333rem 0.5rem;
+$label-font-size                : $global-font-size;            // WAS 0.8rem
+$label-padding                  : 0;                            // WAS 0.33333rem 0.5rem
 $label-radius                   : $global-radius;
 
 //----------------------------------------------------------------------------------------------
