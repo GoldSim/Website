@@ -29,10 +29,11 @@
 </Script>
 
 <%-- AREA OF FOCUS --%>
-<div class="FieldContainer">
-  <label for="AreaOfFocusList" accesskey="F" RunAt="Server"><strong>Area of Focus</strong></label>
+<div class="medium-6 cell">
+  <!-- Focus Area -->
+  <label for="AreaOfFocusList" accesskey="F" class="form-field label required" RunAt="Server">*Area of Focus</label>
   <asp:DropDownList ID="AreaOfFocusList" ValidationGroup=<%# ValidationGroup %> RunAt="Server">
-    <asp:ListItem>-Must Select-</asp:ListItem>
+    <asp:ListItem>Select one...</asp:ListItem>
     <asp:ListItem Value="Design, System Reliability and Throughput">Design, System Reliability and Throughput</asp:ListItem>
     <asp:ListItem Value="Ecological/Biological">Ecological/Biological</asp:ListItem>
     <asp:ListItem Value="Financial Engineering">Financial Engineering &amp; Treasury Risk</asp:ListItem>
@@ -47,7 +48,12 @@
     <asp:ListItem Value="Water Resources">Water Resources</asp:ListItem>
     <asp:ListItem Value="Other">Other (Please Specify)</asp:ListItem>
   </asp:DropDownList>
+  <asp:RequiredFieldValidator ControlToValidate="AreaOfFocusList" InitialValue="Select one..." RunAt="Server" />
+  <!-- /Focus Area -->
+</div>
+<div class="medium-6 cell">
   <%-- OTHER FOCUS SPECIFICATION --%>
+  <!-- Other Focus Area -->
   <Ignia:FormField
     ID                  = "FocusOther"
     LabelName           = "Other"
@@ -60,5 +66,5 @@
     ValidationGroup     = <%# ValidationGroup %>
     RunAt               = "Server"
     />
-  <asp:RequiredFieldValidator ControlToValidate="AreaOfFocusList" InitialValue="-Must Select-" RunAt="Server" />
+  <!-- Other Focus Area -->
 </div>
