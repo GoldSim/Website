@@ -5640,7 +5640,11 @@ h6 {
 
 h1,
 h2 {
-  margin-bottom: 2.125rem; }
+  margin-bottom: 1.75rem; }
+  @media print, screen and (min-width: 40em) {
+    h1,
+    h2 {
+      margin-bottom: 2.125rem; } }
   h1.link,
   h2.link {
     margin-bottom: 0.75rem;
