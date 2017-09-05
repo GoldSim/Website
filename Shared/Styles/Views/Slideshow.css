@@ -27,7 +27,7 @@
     bottom: -4rem; }
     @media print, screen and (min-width: 64em) {
       .owl-nav.bottom {
-        top: -7.25rem; } }
+        bottom: -7.25rem; } }
   .owl-nav .owl-prev,
   .owl-nav .owl-next {
     z-index: 10;
