@@ -6359,7 +6359,8 @@ ul.accordion {
     background-color: #f3f3f3; }
     ul.accordion.embedded li .accordion-title {
       padding: 1.125rem 5.625rem 1.125rem 1.125rem;
-      font-size: 1.25rem;
+      font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+      font-size: 1.125rem;
       font-weight: 600; }
       ul.accordion.embedded li .accordion-title:before {
         top: 1.75rem; }

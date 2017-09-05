@@ -750,7 +750,8 @@ ul.accordion {
       background-color          : $palette-grey-lightest;
       .accordion-title {
         padding                 : rem-calc(18 90 18 18);
-        font-size               : rem-calc(20);
+        font-family             : $body-font-family;
+        font-size               : rem-calc(18);
         font-weight             : 600;
         &:before {
           top                   : rem-calc(28);
