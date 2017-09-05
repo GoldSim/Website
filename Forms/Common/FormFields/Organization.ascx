@@ -21,7 +21,7 @@
 >============================================================================================================================
 | Public fields will be exposed as properties to user control
 \--------------------------------------------------------------------------------------------------------------------------*/
-  public        String          LabelName               = "Organization";
+  public        String          LabelName               = "*Organization";
   public        String          AccessKey               = "O";
   public        String          ValidationGroup         = "";
 
