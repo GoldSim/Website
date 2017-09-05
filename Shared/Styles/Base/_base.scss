@@ -312,7 +312,7 @@ body {
   text-align                    : center;
   @include breakpoint(medium) {
     float                       : right;
-    margin                      : rem-calc(0 0 18 24);
+    margin                      : rem-calc(0 0 24 56);
     text-align                  : initial;
   }
   &:before,
