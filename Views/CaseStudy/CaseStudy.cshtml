@@ -32,7 +32,7 @@
     }
   </div>
   @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
-    <div class="medium-4 cell align-middle metadata">
+    <div class="medium-4 cell align-middle text-right metadata">
       @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
     </div>
   }
