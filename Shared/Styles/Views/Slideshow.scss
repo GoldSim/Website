@@ -49,7 +49,7 @@
     top                         : auto;
     bottom                      : rem-calc(-64);
     @include breakpoint(large) {
-      bottom                    rem-calc(-116);
+      bottom:                   rem-calc(-116);
     }
   }
   .owl-prev,
