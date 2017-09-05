@@ -2050,7 +2050,7 @@ h6 {
     color: #cccccc; }
 
 h1 {
-  font-size: 2rem;
+  font-size: 1.75rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -2062,19 +2062,19 @@ h2 {
   margin-bottom: 0.5rem; }
 
 h3 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
 h4 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
 
 h5 {
-  font-size: 1.125rem;
+  font-size: 1rem;
   line-height: 1.4;
   margin-top: 0;
   margin-bottom: 0.5rem; }
@@ -5606,8 +5606,23 @@ a.thumbnail {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse; } }
 
-body {
-  font-size: 1.125rem; }
+html,
+body,
+p,
+td,
+ol,
+ul {
+  font-size: 1rem;
+  line-height: 1.4; }
+  @media print, screen and (min-width: 40em) {
+    html,
+    body,
+    p,
+    td,
+    ol,
+    ul {
+      font-size: 1.125rem;
+      line-height: 1.6; } }
 
 h1.title {
   font-size: 2rem; }
