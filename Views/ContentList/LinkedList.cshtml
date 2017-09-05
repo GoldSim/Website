@@ -38,6 +38,7 @@
 
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
   <article>
+    <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
       <a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")" target="_blank">
         <!-- Thumbnail Image -->
@@ -49,7 +50,6 @@
       </a>
     }
     <div>
-      <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.Get("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
       @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
     </div>
   </article>
