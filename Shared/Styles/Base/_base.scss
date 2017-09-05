@@ -886,6 +886,13 @@ article {
     }
   }
   .navigation {
+    a {
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom           : 1px solid $palette-grey-light;
+      }
+    }
     p.heading {
       margin-bottom             : 0;
       + p.heading {

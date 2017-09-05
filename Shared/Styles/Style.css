@@ -6459,6 +6459,9 @@ article header .metadata {
   .site.footer i.fa a:visited {
     color: #cccccc; }
 
+.site.footer .navigation a:hover, .site.footer .navigation a:focus, .site.footer .navigation a:active {
+  border-bottom: 1px solid #cccccc; }
+
 .site.footer .navigation p.heading {
   margin-bottom: 0; }
   .site.footer .navigation p.heading + p.heading {
