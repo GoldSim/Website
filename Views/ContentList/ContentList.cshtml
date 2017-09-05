@@ -8,11 +8,13 @@
 
   <section class="panel body">
 
-    <!-- Body Content -->
-    <article class="page body">
-      @Html.Raw(@Model.Topic.Attributes.Get("Body"))
-    </article>
-    <!-- /Body Content -->
+    @if (!String.IsNullOrEmpty(Model.Topic.Attributes.Get("Body"))) {
+      <!-- Body Content -->
+      <article class="page body">
+        @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+      </article>
+      <!-- /Body Content -->
+    }
 
     @if ((ViewContext.View as RazorView).ViewPath.IndexOf("IndexedList") > 0) {
       <aside class="contents">
