@@ -29,7 +29,7 @@
 <%-- PHONE --%>
 <Ignia:FormField
   ID                    = "Phone"
-  LabelName             = "Telephone"
+  LabelName             = "*Telephone"
   AccessKey             = "T"
   MaxLength             = "150"
   FieldSize             = "320"
