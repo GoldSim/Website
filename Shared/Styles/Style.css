@@ -6034,7 +6034,10 @@ body > header {
   .panel.accordion {
     padding: 0; }
   .panel.ctas {
-    padding: 1rem; }
+    padding: 0.5rem; }
+    @media print, screen and (min-width: 40em) {
+      .panel.ctas {
+        padding: 1rem 1rem 0.5rem; } }
     @media print, screen and (min-width: 64em) {
       .panel.ctas {
         padding: 2rem 0; } }
@@ -6454,7 +6457,11 @@ article header .metadata {
       margin-bottom: 0;
       max-width: auto; } }
   .panel.ctas .button-group .button:last-of-type {
-    margin-right: 0; }
+    margin-right: 0;
+    margin-bottom: 0; }
+    @media print, screen and (min-width: 40em) {
+      .panel.ctas .button-group .button:last-of-type {
+        margin-bottom: 0.5rem; } }
 
 .site.footer .heading,
 .site.footer dl dd,
