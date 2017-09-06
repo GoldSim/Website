@@ -880,6 +880,9 @@ article {
         @include breakpoint(medium) {
           margin-bottom         : rem-calc(8);
         }
+        @include breakpoint(large) {
+          margin-bottom         : 0;
+        }
       }
     }
   }

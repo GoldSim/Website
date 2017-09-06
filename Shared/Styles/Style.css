@@ -6469,6 +6469,9 @@ article header .metadata {
     @media print, screen and (min-width: 40em) {
       .panel.ctas .button-group .button:last-of-type {
         margin-bottom: 0.5rem; } }
+    @media print, screen and (min-width: 64em) {
+      .panel.ctas .button-group .button:last-of-type {
+        margin-bottom: 0; } }
 
 .site.footer .heading,
 .site.footer dl dd,
