@@ -6427,6 +6427,9 @@ article header ~ .embedded.body {
 article header .metadata {
   padding-top: 1rem; }
 
+video {
+  width: 100%; }
+
 .panel.ctas h1,
 .panel.ctas .button-group {
   margin-bottom: 0; }
