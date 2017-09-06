@@ -6394,7 +6394,9 @@ ul.accordion {
       background-color: #f3f3f3; }
 
 main > section > header {
-  background-color: #666666; }
+  background-color: #666666;
+  background-size: cover;
+  background-position: center center; }
   main > section > header .grid-container {
     position: relative;
     min-height: 200px;

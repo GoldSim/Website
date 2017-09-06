@@ -786,6 +786,8 @@ main {
   // Page Header Area
   > section > header {
     background-color            : $palette-grey-dark;
+    background-size             : cover;
+    background-position         : center center;
 
     .grid-container {
       position                  : relative;

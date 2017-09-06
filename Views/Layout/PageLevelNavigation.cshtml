@@ -2,7 +2,7 @@
 
 @if (Model.NavigationRootTopic != null) {
   <!-- Page Title Area -->
-  <header class="header">
+  <header class="header"@Html.Raw(!String.IsNullOrEmpty(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL")) ? " style=\"background-image: url('" + @Model.NavigationRootTopic.Attributes.Get("HeaderImageURL") + "');\"" : "")>
     <div class="grid-container">
       <div class="grid-x">
         <h1 class="title short cell">@Model.NavigationRootTopic.Title</h1>
