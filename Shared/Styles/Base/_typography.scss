@@ -37,9 +37,11 @@ ul
 //----------------------------------------------------------------------------------------------
 h1 {
   &.title {
-    font-size                   : rem-calc(32);
+    font-size                   : rem-calc(26);
+    line-height                 : 1.4;
     @include breakpoint(medium) {
       font-size                 : rem-calc(48);
+      line-height               : 1.6;
     }
   }
 }
@@ -80,7 +82,7 @@ p {
     &.subtitle {
       margin-bottom             : 0;
       font-family               : $header-font-family;
-      font-size                 : rem-calc(20);
+      font-size                 : rem-calc(18);
       color                     : $palette-grey-medium;
       @include breakpoint(medium) {
         font-size               : rem-calc(28);

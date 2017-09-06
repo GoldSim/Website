@@ -5625,10 +5625,12 @@ ul {
       line-height: 1.6; } }
 
 h1.title {
-  font-size: 2rem; }
+  font-size: 1.625rem;
+  line-height: 1.4; }
   @media print, screen and (min-width: 40em) {
     h1.title {
-      font-size: 3rem; } }
+      font-size: 3rem;
+      line-height: 1.6; } }
 
 h2,
 h3,
@@ -5666,7 +5668,7 @@ p ~ h2 {
 header p.subtitle {
   margin-bottom: 0;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: 1.25rem;
+  font-size: 1.125rem;
   color: #999999; }
   @media print, screen and (min-width: 40em) {
     header p.subtitle {
