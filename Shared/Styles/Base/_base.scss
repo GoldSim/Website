@@ -168,9 +168,9 @@ ul.modules-list {
   list-style-type               : none;
   margin-left                   : 0;
   li.module {
-    padding-left                : rem-calc(66);
+    padding-left                : rem-calc(82);
     background-size             : rem-calc(48 48);
-    background-position         : 0 0;
+    background-position         : rem-calc(0 5);
     background-repeat           : no-repeat;
     &.contaminant-transport {
       background-image          : url(/Images/Content/Product/ContaminantTransport.Icon.png);
@@ -455,6 +455,7 @@ article {
       float                     : left;
     }
     picture {
+      margin-top                : rem-calc(5);
       max-width                 : 25%;
     }
     picture + div {

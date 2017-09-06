@@ -5946,9 +5946,9 @@ ul.modules-list {
   list-style-type: none;
   margin-left: 0; }
   ul.modules-list li.module {
-    padding-left: 4.125rem;
+    padding-left: 5.125rem;
     background-size: 3rem 3rem;
-    background-position: 0 0;
+    background-position: 0 0.3125rem;
     background-repeat: no-repeat; }
     ul.modules-list li.module.contaminant-transport {
       background-image: url(/Images/Content/Product/ContaminantTransport.Icon.png); }
@@ -6163,6 +6163,7 @@ article.page.body {
   float: left; }
 
 .floated-layout.left picture {
+  margin-top: 0.3125rem;
   max-width: 25%; }
 
 .floated-layout.left picture + div {
