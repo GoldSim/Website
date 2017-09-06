@@ -6879,7 +6879,7 @@ form.gsc-search-box.gsc-search-box-tools {
       -webkit-transition: color 0.1s linear 0.25s;
       transition: color 0.1s linear 0.25s; }
     .search.form.open input.gsc-input {
-      width: 18.125rem !important;
+      width: 14rem !important;
       -webkit-transition: width 0.4s linear;
       transition: width 0.4s linear; }
     .search.form.open .icon {
