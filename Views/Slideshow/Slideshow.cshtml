@@ -49,15 +49,16 @@
        */
       var $carousel             = $('.owl-carousel');
       $carousel.owlCarousel({
-        items: 1,
-        margin: 0,
-        nav: true,
-        navText: [
+        items                   : 1,
+        URLhashListener         : true,
+        margin                  : 10,
+        nav                     : true,
+        navText                 : [
           '<button class="button large primary">Prev</button>',
           '<button class="button large primary">Next</button>',
         ],
-        dots: true,
-        dotsEach: 1
+        dots                    : true,
+        dotsEach                : 1
       });
 
       /**
@@ -123,7 +124,7 @@
 }
 
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
-  <article class="slide">
+  <article data-hash="@contentItem.Key" class="slide">
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
     <!-- Thumbnail Image -->
     <picture class="callout picture thumbnail small">
