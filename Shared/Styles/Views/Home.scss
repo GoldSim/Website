@@ -88,9 +88,12 @@ main {
   &.applications {
     h2 {
       margin                    : rem-calc(28) auto rem-calc(20);
-      font-size                 : rem-calc(24);
+      font-size                 : rem-calc(20);
       font-weight               : normal;
       text-align                : center;
+      @include breakpoint(large) {
+        font-size               : rem-calc(24);
+      }
     }
     p.text {
       margin-bottom             : rem-calc(48);
@@ -295,19 +298,35 @@ main {
     background-repeat           : no-repeat;
     @include breakpoint(medium) {
       margin                    : 0;
-      padding                   : rem-calc(151 0 0);
+      padding                   : rem-calc(135 0 0);
     }
     @include breakpoint(large) {
       padding                   : rem-calc(198 0 0);
     }
     &.environmental {
       background-image          : url('/Images/Content/Product/CT/CT_400px.png');
+      @include breakpoint(medium) {
+        margin-right            : rem-calc(-16);
+        margin-left             : rem-calc(16);
+      }
+      @include breakpoint(large) {
+        margin-right            : auto;
+        margin-left             : auto;
+      }
     }
     &.engineered {
       background-image          : url('/Images/Content/Product/RL/RL_400px.png');
     }
     &.business {
       background-image          : url('/Images/Content/Product/FN/FN_400px.png');
+      @include breakpoint(medium) {
+        margin-right            : rem-calc(16);
+        margin-left             : rem-calc(-16);
+      }
+      @include breakpoint(large) {
+        margin-right            : auto;
+        margin-left             : auto;
+      }
     }
     picture {
       overflow                  : hidden;

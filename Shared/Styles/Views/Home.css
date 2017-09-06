@@ -47,9 +47,12 @@ main section[role="region"] {
 
 .pane.applications h2 {
   margin: 1.75rem auto 1.25rem;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   font-weight: normal;
   text-align: center; }
+  @media print, screen and (min-width: 64em) {
+    .pane.applications h2 {
+      font-size: 1.5rem; } }
 
 .pane.applications p.text {
   margin-bottom: 3rem; }
@@ -214,16 +217,32 @@ main section[role="region"] {
   @media print, screen and (min-width: 40em) {
     .applications .card {
       margin: 0;
-      padding: 9.4375rem 0 0; } }
+      padding: 8.4375rem 0 0; } }
   @media print, screen and (min-width: 64em) {
     .applications .card {
       padding: 12.375rem 0 0; } }
   .applications .card.environmental {
     background-image: url("/Images/Content/Product/CT/CT_400px.png"); }
+    @media print, screen and (min-width: 40em) {
+      .applications .card.environmental {
+        margin-right: -1rem;
+        margin-left: 1rem; } }
+    @media print, screen and (min-width: 64em) {
+      .applications .card.environmental {
+        margin-right: auto;
+        margin-left: auto; } }
   .applications .card.engineered {
     background-image: url("/Images/Content/Product/RL/RL_400px.png"); }
   .applications .card.business {
     background-image: url("/Images/Content/Product/FN/FN_400px.png"); }
+    @media print, screen and (min-width: 40em) {
+      .applications .card.business {
+        margin-right: 1rem;
+        margin-left: -1rem; } }
+    @media print, screen and (min-width: 64em) {
+      .applications .card.business {
+        margin-right: auto;
+        margin-left: auto; } }
   .applications .card picture {
     overflow: hidden;
     width: 100%;
