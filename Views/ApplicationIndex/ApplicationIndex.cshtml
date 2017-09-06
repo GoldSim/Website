@@ -23,7 +23,7 @@
 
         <!-- @category Applications -->
         <div class="accordion-content" data-tab-content id="@category.Key">
-          @Html.Partial("_CardList", new CardListViewModel(category.Value, "application"))
+          @Html.Partial("_CardList", new CardListViewModel(category.Value, _className))
         </div>
         <!-- /@category.Key Applications -->
 
@@ -48,6 +48,7 @@
   Dictionary<string, List<Topic>> _categorizedApplications = null;
   List<Topic> _applicationPages = null;
   bool _isFirst = true;
+  string _className = "application";
 
   /*============================================================================================================================
   | GET CATEGORIZED APPLICATIONS
@@ -68,6 +69,7 @@
           break;
         case "CaseStudies":
           contentType = "CaseStudy";
+          _className = "case-study";
           break;
         case "TechnicalPapers":
           contentType = "TechnicalPaper";
