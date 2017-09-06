@@ -91,7 +91,10 @@ body {
 // PRIMARY CONTENT AREA
 //----------------------------------------------------------------------------------------------
 #MainContentArea {
-  padding-bottom                : rem-calc(48);
+  padding-bottom                : rem-calc(16);
+  @include breakpoint(large) {
+    padding-bottom              : rem-calc(48);
+  }
   background-color              : $palette-grey-lightest;
   article {
     &:first-of-type {
