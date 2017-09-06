@@ -37,6 +37,13 @@
   position                      : relative;
   max-width                     : rem-calc(960);
 }
+.owl-carousel {
+  .owl-item {
+    img {
+      width                     : auto;
+    }
+  }
+}
 .owl-nav {
   position                      : absolute;
   top                           : rem-calc(-148);
