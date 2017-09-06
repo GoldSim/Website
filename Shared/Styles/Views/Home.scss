@@ -142,13 +142,17 @@ main {
       padding-bottom            : rem-calc(309);
     }
     @include breakpoint(large) {
-      padding-right             : rem-calc(540);
-      padding-bottom            : rem-calc(80);
-      background-position       : 125% 0;
-      background-size           : 75%;
+      padding-top               : rem-calc(64);
+      padding-right             : rem-calc(492);
+      padding-bottom            : rem-calc(64);
+      background-position       : rem-calc(136 -4);
+      background-size           : 93% 105%;
     }
     > header {
       padding-right             : rem-calc(32);
+      @include breakpoint(large) {
+        padding-right           : rem-calc(64);
+      }
     }
     aside {
       position                  : absolute;
@@ -186,7 +190,7 @@ main {
     }
   }
   .owl-nav {
-    position                    : absolute;
+  //position                    : absolute;
     top                         : 0;
     right                       : 0;
     bottom                      : 0;
@@ -276,7 +280,7 @@ main {
     }
     img {
       margin                    : 0 auto;
-      border                    : 1px solid $palette-grey-lighter;
+      border                    : 1px solid $palette-grey-light;
       max-width                 : rem-calc(329);
     }
   }

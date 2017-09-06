@@ -88,12 +88,16 @@ main section[role="region"] {
       padding-bottom: 19.3125rem; } }
   @media print, screen and (min-width: 64em) {
     .panel.customers {
-      padding-right: 33.75rem;
-      padding-bottom: 5rem;
-      background-position: 125% 0;
-      background-size: 75%; } }
+      padding-top: 4rem;
+      padding-right: 30.75rem;
+      padding-bottom: 4rem;
+      background-position: 8.5rem -0.25rem;
+      background-size: 93% 105%; } }
   .panel.customers > header {
     padding-right: 2rem; }
+    @media print, screen and (min-width: 64em) {
+      .panel.customers > header {
+        padding-right: 4rem; } }
   .panel.customers aside {
     position: absolute;
     top: 0;
@@ -121,7 +125,6 @@ main section[role="region"] {
       max-width: 60rem; } }
 
 .usage .owl-nav {
-  position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
@@ -200,7 +203,7 @@ main section[role="region"] {
       text-align: right; } }
   .usage .screenshot img {
     margin: 0 auto;
-    border: 1px solid #e3e3e3;
+    border: 1px solid #cccccc;
     max-width: 20.5625rem; }
 
 .applications .card {
