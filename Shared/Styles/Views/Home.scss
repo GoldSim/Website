@@ -20,7 +20,7 @@
 main {
   > article[itemprop="mainContentOfPage"] {
     padding                     : rem-calc(0 0 32);
-    @include breakpoint(medium) {
+    @include breakpoint(large) {
       padding                   : rem-calc(80 0 32);
     }
   }
@@ -113,14 +113,13 @@ main {
   &.introduction {
     padding-right               : rem-calc(36);
     padding-left                : rem-calc(36);
-    padding-bottom              : rem-calc(222);
+    padding-bottom              : rem-calc(142);
     background                  : $palette-white url('/Images/Home/Introduction.SmallScreen.Background.png') no-repeat bottom right;
-    background-size             : 90%;
+    background-size             : 75%;
     @include breakpoint(medium) {
       padding-right             : rem-calc(110);
-      padding-bottom            : rem-calc(392);
+      padding-bottom            : rem-calc(280);
       padding-left              : rem-calc(110);
-      background-size           : 85%;
     }
     @include breakpoint(large) {
       padding-right             : rem-calc(415);
