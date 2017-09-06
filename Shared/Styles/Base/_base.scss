@@ -278,7 +278,6 @@ body {
   }
 }
 
-
 .panel,
 .callout,
 .card {
@@ -417,6 +416,13 @@ body {
 }
 
 article {
+  &[itemprop="mainContentOfPage"] {
+    section.embedded {
+      &.pane.body {
+        margin-top              : rem-calc(24);
+      }
+    }
+  }
   &.page.body {
     margin-bottom               : rem-calc(48);
     &:empty,

@@ -6131,6 +6131,9 @@ body > header {
     .card .icon.type.module {
       background-color: #00adef; }
 
+article[itemprop="mainContentOfPage"] section.embedded.pane.body {
+  margin-top: 1.5rem; }
+
 article.page.body {
   margin-bottom: 3rem; }
   article.page.body:empty, article.page.body:blank {
