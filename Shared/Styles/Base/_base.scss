@@ -803,7 +803,7 @@ h1.title.short {
   bottom                        : 0;
   left                          : rem-calc(32);
   margin                        : 0;
-  padding-bottom                : rem-calc(32);
+  padding-bottom                : rem-calc(20);
   color                         : $palette-white;
   @include breakpoint(medium) {
     left                        : auto;

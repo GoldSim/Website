@@ -6405,7 +6405,7 @@ h1.title.short {
   bottom: 0;
   left: 2rem;
   margin: 0;
-  padding-bottom: 2rem;
+  padding-bottom: 1.25rem;
   color: white; }
   @media print, screen and (min-width: 40em) {
     h1.title.short {
