@@ -77,6 +77,14 @@
     });
 
     /**
+     * Handles page-level navigation changes for small screens
+     */
+    $('#PageNavigationSmallScreen select').change(function() {
+      var $newUrl               = $(this).val();
+      window.location.href      = $newUrl;
+    });
+
+    /**
      * Appends icon font elements to links
      */
     $(fileTypes).each(function (index, value) {

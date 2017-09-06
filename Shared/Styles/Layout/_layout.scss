@@ -87,6 +87,17 @@ body {
   }
 }
 
+// Page-Level Navigation
+#PageNavigationSmallScreen {
+  position                      : absolute;
+  right                         : rem-calc(32);
+  bottom                        : rem-calc(28);
+  left                          : rem-calc(32);
+  select {
+    margin-bottom               : 0;
+  }
+}
+
 //----------------------------------------------------------------------------------------------
 // PRIMARY CONTENT AREA
 //----------------------------------------------------------------------------------------------
