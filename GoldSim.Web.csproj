@@ -1710,6 +1710,12 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Images\PageGroups\PageGroup.Banner.ContaminantTransport.jpg" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.DashboardAuthoring.jpg" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.DistributedProcessing.jpg" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.Financial.jpg" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.GoldSim.jpg" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.Reliability.jpg" />
     <Content Include="Search\Default.aspx" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.eot" />
