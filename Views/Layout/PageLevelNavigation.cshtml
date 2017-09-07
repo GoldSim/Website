@@ -2,7 +2,7 @@
 
 @if (Model.NavigationRootTopic != null) {
   <!-- Page Title Area -->
-  <header class="header"@Html.Raw(!String.IsNullOrEmpty(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL")) ? " style=\"background-image: url('" + @Model.NavigationRootTopic.Attributes.Get("HeaderImageURL") + "');\"" : "")>
+  <header class="header" style="@getBannerStyles(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL"))">
     <div class="grid-container">
       <div class="grid-x">
         <h1 class="title short cell">@Model.NavigationRootTopic.Title</h1>
@@ -39,4 +39,33 @@
     </nav>
     <!-- /Page Navigation Area -->
   }
+}
+
+@functions {
+
+  /*============================================================================================================================
+  | GET BANNER STYLES
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Combines the HeaderImageURL Attribute with gradient CSS definitions
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string getBannerStyles(string bannerUrl) {
+
+    // Define variables
+    string bannerStyles         = "";
+    string appendedBannerImage  = (!String.IsNullOrEmpty(bannerUrl) ? ", url('" + bannerUrl + "')" : "");
+
+    // Combine gradients with image
+    bannerStyles               += "background-image: -ms-linear-gradient(bottom, rgba(32,32,32,0.75) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
+                                + "background-image: -moz-linear-gradient(bottom, rgba(32,32,32,0.75) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
+                                + "background-image: -o-linear-gradient(bottom, rgba(32,32,32,0.75) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
+                                + "background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.75)), color-stop(100, rgba(32,32,32,0)))" + appendedBannerImage + ";"
+                                + "background-image: -webkit-linear-gradient(bottom, rgba(32,32,32,0.75) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
+                                + "background-image: linear-gradient(to top, rgba(32,32,32,0.75) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";";
+
+    // Return full background styles string
+    return bannerStyles;
+
+
+  }
+
 }
