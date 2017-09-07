@@ -120,7 +120,7 @@ nav.navigation {
     ul.menu {
       top                       : rem-calc(96);
       padding-left              : 0;
-      @include breakpoint(large) {
+      @include breakpoint(medium) {
         padding-left            : rem-calc(32);
       }
       @include breakpoint(large) {

@@ -6703,7 +6703,7 @@ nav.navigation.primary {
   nav.navigation.primary ul.menu {
     top: 6rem;
     padding-left: 0; }
-    @media print, screen and (min-width: 64em) {
+    @media print, screen and (min-width: 40em) {
       nav.navigation.primary ul.menu {
         padding-left: 2rem; } }
     @media print, screen and (min-width: 64em) {
