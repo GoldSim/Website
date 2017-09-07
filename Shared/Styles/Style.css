@@ -6416,8 +6416,11 @@ h1.title.short {
   color: white; }
   @media print, screen and (min-width: 40em) {
     h1.title.short {
-      left: auto;
+      left: 2.5rem;
       padding-bottom: 1.25rem; } }
+  @media print, screen and (min-width: 64em) {
+    h1.title.short {
+      left: auto; } }
 
 article header h1.title.long {
   margin: 0;
