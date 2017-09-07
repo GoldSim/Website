@@ -129,10 +129,10 @@ a[href $=".gsm"] {
 
 img.logo {
   @include breakpoint(medium) {
-    max-width                   : rem-calc(121);
+    max-width                   : 152px;
   }
   @include breakpoint(large) {
-    max-width                   : rem-calc(243);
+    max-width                   : 182px;
   }
 }
 
