@@ -6405,6 +6405,7 @@ ul.accordion {
 
 main > section > header {
   background-color: #666666;
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat; }
   main > section > header .grid-container {
