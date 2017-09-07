@@ -146,6 +146,9 @@ nav.navigation {
           height                : rem-calc(48);
           &.is-dropdown-submenu-parent {
             padding-right       : rem-calc(88);
+            &.is-dropdown-submenu-item {
+              padding-right     : 0;
+            }
             &:last-of-type {
               padding-right     : 0;
             }
@@ -154,6 +157,9 @@ nav.navigation {
                 display         : none;
               }
             }
+          }
+          &.is-submenu-item {
+            min-width           : rem-calc(226);
           }
         }
         &.vertical {
