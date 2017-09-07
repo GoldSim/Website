@@ -42,7 +42,7 @@
     .owl-nav .owl-prev .button,
     .owl-nav .owl-next .button {
       position: absolute;
-      min-width: auto;
+      min-width: initial;
       width: 4.25rem; }
     .owl-nav .owl-prev.disabled .button,
     .owl-nav .owl-next.disabled .button {
