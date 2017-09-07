@@ -179,7 +179,7 @@ form.gsc-search-box.gsc-search-box-tools {
           transition            : color 0.1s linear 0.25s;
         }
         &.gsc-input {
-          width                 : rem-calc(224) !important;
+          width                 : rem-calc(216) !important;
           transition            : width 0.4s linear;
         }
       }
@@ -194,10 +194,11 @@ form.gsc-search-box.gsc-search-box-tools {
       height                    : 100%;
     }
     .gsc-control-searchbox-only {
-      margin-top                : rem-calc(-5);
+      margin-top                : rem-calc(1);
       padding-left              : rem-calc(40);
     }
     .buttons {
+      padding-top               : rem-calc(8);
       padding-right             : rem-calc(32);
       @include breakpoint(medium) {
         padding-right           : rem-calc(40);
