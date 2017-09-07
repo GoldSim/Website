@@ -226,6 +226,9 @@ main section[role="region"] {
   background-size: contain;
   background-position: center top;
   background-repeat: no-repeat; }
+  @media screen and (min-width: 400px) and (max-width: 599px) {
+    .applications .card {
+      padding: 14rem 0 0; } }
   @media print, screen and (min-width: 40em) {
     .applications .card {
       margin: 0;

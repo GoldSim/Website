@@ -300,6 +300,9 @@ main {
     background-size             : contain;
     background-position         : center top;
     background-repeat           : no-repeat;
+    @media screen and (min-width: 400px) and (max-width: 599px) {
+      padding                   : rem-calc(224 0 0);
+    }
     @include breakpoint(medium) {
       margin                    : 0;
       padding                   : rem-calc(135 0 0);
