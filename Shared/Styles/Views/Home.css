@@ -9,8 +9,20 @@ main > section > header {
   @media print, screen and (min-width: 64em) {
     main > section > header {
       padding: 5rem 0; } }
+  main > section > header .grid-container {
+    max-height: initial; }
   main > section > header .video {
     background-color: white; }
+    main > section > header .video::before, main > section > header .video::after {
+      display: table;
+      content: ' ';
+      -ms-flex-preferred-size: 0;
+          flex-basis: 0;
+      -webkit-box-ordinal-group: 2;
+          -ms-flex-order: 1;
+              order: 1; }
+    main > section > header .video::after {
+      clear: both; }
 
 main > article {
   padding: 5rem 0 2rem; }

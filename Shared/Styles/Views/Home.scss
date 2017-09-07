@@ -29,7 +29,11 @@ main {
     @include breakpoint(large) {
       padding                   : rem-calc(80 0);
     }
+    .grid-container {
+      max-height                : initial;
+    }
     .video {
+      @include clearfix;
     //max-width                 : 33.4375rem;                   // 535px
       background-color          : $palette-white;
     }
