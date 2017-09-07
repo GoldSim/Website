@@ -119,7 +119,10 @@ nav.navigation {
     // navigation items
     ul.menu {
       top                       : rem-calc(96);
-      padding-left              : rem-calc(32);
+      padding-left              : 0;
+      @include breakpoint(large) {
+        padding-left            : rem-calc(32);
+      }
       @include breakpoint(large) {
         top                     : 0;
         padding-top             : rem-calc(10);
@@ -187,7 +190,7 @@ nav.navigation {
         margin-left             : 0;
         border                  : 0 none transparent;
         padding-bottom          : rem-calc(32);
-        padding-left            : rem-calc(8);
+        padding-left            : rem-calc(4);
         @include breakpoint(large) {
           top                   : rem-calc(64);
           padding-left          : 0;
@@ -203,7 +206,7 @@ nav.navigation {
         }
         ul.menu.nested {
           padding-bottom        : rem-calc(12);
-          padding-left          : rem-calc(16);
+          padding-left          : rem-calc(4);
           font-weight           : normal;
           @include breakpoint(large) {
             top                 : rem-calc(-10);

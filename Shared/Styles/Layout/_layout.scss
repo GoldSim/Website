@@ -66,6 +66,9 @@ body {
   &.position-left {
     min-width                   : rem-calc(320);
     width                       : auto;
+    @include breakpoint(medium) {
+      min-width                 : rem-calc(430);
+    }
   }
 
   // Submenu Toggle

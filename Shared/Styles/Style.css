@@ -6582,6 +6582,9 @@ body {
   [id^=PrimaryNavigation].position-left {
     min-width: 20rem;
     width: auto; }
+    @media print, screen and (min-width: 40em) {
+      [id^=PrimaryNavigation].position-left {
+        min-width: 26.875rem; } }
   [id^=PrimaryNavigation] .submenu-toggle {
     top: 0.875rem;
     right: 1.5rem; }
@@ -6699,7 +6702,10 @@ nav.navigation.primary {
     right: -0.6875rem; }
   nav.navigation.primary ul.menu {
     top: 6rem;
-    padding-left: 2rem; }
+    padding-left: 0; }
+    @media print, screen and (min-width: 64em) {
+      nav.navigation.primary ul.menu {
+        padding-left: 2rem; } }
     @media print, screen and (min-width: 64em) {
       nav.navigation.primary ul.menu {
         top: 0;
@@ -6738,7 +6744,7 @@ nav.navigation.primary {
       margin-left: 0;
       border: 0 none transparent;
       padding-bottom: 2rem;
-      padding-left: 0.5rem; }
+      padding-left: 0.25rem; }
       @media print, screen and (min-width: 64em) {
         nav.navigation.primary ul.menu.nested {
           top: 4rem;
@@ -6752,7 +6758,7 @@ nav.navigation.primary {
           padding: 0.5rem 1.125rem; }
       nav.navigation.primary ul.menu.nested ul.menu.nested {
         padding-bottom: 0.75rem;
-        padding-left: 1rem;
+        padding-left: 0.25rem;
         font-weight: normal; }
         @media print, screen and (min-width: 64em) {
           nav.navigation.primary ul.menu.nested ul.menu.nested {
