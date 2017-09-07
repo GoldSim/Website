@@ -6316,7 +6316,7 @@ ul.accordion {
         ul.accordion li .accordion-title.question .marker, ul.accordion li .accordion-title.answer .marker,
         ul.accordion li .accordion-content.question .marker,
         ul.accordion li .accordion-content.answer .marker {
-          display: inline-block;
+          display: none;
           position: absolute;
           left: 4.25rem;
           font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
@@ -6324,6 +6324,11 @@ ul.accordion {
           line-height: 0.9375;
           font-weight: 600;
           color: #fec10d; }
+          @media print, screen and (min-width: 64em) {
+            ul.accordion li .accordion-title.question .marker, ul.accordion li .accordion-title.answer .marker,
+            ul.accordion li .accordion-content.question .marker,
+            ul.accordion li .accordion-content.answer .marker {
+              display: inline-block; } }
           ul.accordion li .accordion-title.question .marker + ul,
           ul.accordion li .accordion-title.question .marker + ol, ul.accordion li .accordion-title.answer .marker + ul,
           ul.accordion li .accordion-title.answer .marker + ol,

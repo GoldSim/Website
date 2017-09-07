@@ -670,7 +670,7 @@ ul.accordion {
       &.answer {
         position                : relative;
         .marker {
-          display               : inline-block;
+          display               : none;
           position              : absolute;
           left                  : rem-calc(68);
           font-family           : $header-font-family;
@@ -678,6 +678,9 @@ ul.accordion {
           line-height           : 0.9375;
           font-weight           : 600;
           color                 : $palette-yellow;
+          @include breakpoint(large) {
+            display             : inline-block;
+          }
           + ul,
           + ol {
             margin-top          : rem-calc(-34);
