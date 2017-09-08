@@ -71,9 +71,9 @@
 
 <%-- LICENSE QUANITY SELECTION --%>
 <ajaxToolkit:ToolkitScriptManager EnablePartialRendering="true" LoadScriptsBeforeUI="false" ScriptMode="Release" ID="ToolkitScriptManagerControl" CombineScripts="false" runat="server" />
-<div class="cell Product Spinner">
-  <label for="LicenseQuantityBox">License Quantity</label>
-  <asp:TextBox id="LicenseQuantityBox" type="number" value="1" onchange="RecalculateTotal()" runat="server" />
+<div class="medium-6 cell Product Spinner">
+  <label for="LicenseQuantityBox" class="required">*License Quantity</label>
+  <asp:TextBox id="LicenseQuantityBox" type="number" value="1" Required="true" onchange="RecalculateTotal()" runat="server" />
   <%--
   <input type="button" id="ProductDownButton" class="Down Button"  />
   <input type="button" id="ProductUpButton" class="Up Button"  />
@@ -89,7 +89,7 @@
 </div>
 
 <%-- ADDITIONAL COMPONENTS SELECTION --%>
-<div class="cell Checkboxes">
+<div class="medium-6 cell Checkboxes">
   <label>Add-on Modules:</label>
   <div class="checkbox">
     <asp:CheckBox ID="ReliabilityAddOnCheck" ClientIDMode="Static" value="Reliability" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
