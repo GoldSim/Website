@@ -98,179 +98,230 @@
   </script>
 </asp:Content>
 
+<asp:Content ContentPlaceHolderID="Subtitle" runat="server">
+  <p class="subtitle">GoldSim Purchase Request Form</p>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
-  <h2 class="Subtitle">GoldSim Purchase Request Form</h2>
   <p>In order to purchase GoldSim, please fill out this form. After we receive the form we will contact you to complete the transaction.</p>
-  <em class="Instructions">For information regarding how we use your email address and other contact information, you can refer to our <a href="../Topic/613/">privacy policy</a>.</em>
+  <p><em>For information regarding how we use your email address and other contact information, you can refer to our <a href="/Topic/613/">privacy policy</a>.</em></p>
 
   <fieldset>
     <legend>Product Selection</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- SHOW DISCOUNT INFORMATION ON GOLDSIM RESEARCH MULTIPLE LICENSE SELECTION --%>
-    <p>Multiple license purchases may be subject to volume discounts. Upon receipt of your purchase request, GoldSim will contact you with a final price quote.</p>
+      <%-- SHOW DISCOUNT INFORMATION ON GOLDSIM RESEARCH MULTIPLE LICENSE SELECTION --%>
+      <div class="cell"><p>Multiple license purchases may be subject to volume discounts. Upon receipt of your purchase request, GoldSim will contact you with a final price quote.</p></div>
 
-    <%-- PRODUCT/COMPONENTS SELECTION/CONFIGURATION --%>
-    <GoldSimForm:ProductConfiguration ID="ProductConfiguration" RunAt="Server" />
+      <%-- PRODUCT/COMPONENTS SELECTION/CONFIGURATION --%>
+      <GoldSimForm:ProductConfiguration ID="ProductConfiguration" RunAt="Server" />
 
+    </div>
   </fieldset>
 
   <fieldset>
     <legend>Buyer Contact Information</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- NAME BLOCK: FNAME, LNAME --%>
-    <GoldSimForm:NameBlock ID="BuyerNameBlock" RunAt="Server" />
+      <%-- NAME BLOCK: FNAME, LNAME --%>
+      <GoldSimForm:NameBlock ID="BuyerNameBlock" RunAt="Server" />
 
-    <%-- ORGANIZATION --%>
-    <GoldSimForm:Organization ID="BuyerOrganization" RunAt="Server" />
+      <%-- ORGANIZATION --%>
+      <div class="cell">
+        <GoldSimForm:Organization ID="BuyerOrganization" RunAt="Server" />
+      </div>
 
-    <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
-    <GoldSimForm:AddressBlock ID="BuyerAddressBlock" RunAt="Server" />
+      <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
+      <GoldSimForm:AddressBlock ID="BuyerAddressBlock" RunAt="Server" />
 
-    <%-- COUNTRY SELECTION --%>
-    <GoldSimForm:CountrySelection ID="BuyerCountrySelection" RunAt="Server" />
+      <%-- COUNTRY SELECTION --%>
+      <div class="cell">
+        <GoldSimForm:CountrySelection ID="BuyerCountrySelection" RunAt="Server" />
+      </div>
 
-    <%-- EMAIL/CONFIRM EMAIL --%>
-    <GoldSimForm:Email ID="BuyerEmail" ShowEmailConfirm="true" RunAt="Server" />
+      <%-- EMAIL/CONFIRM EMAIL --%>
+      <GoldSimForm:Email ID="BuyerEmail" ShowEmailConfirm="true" RunAt="Server" />
 
-    <%-- PHONE --%>
-    <GoldSimForm:Phone ID="BuyerPhone" RunAt="Server" />
+      <%-- PHONE --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Phone ID="BuyerPhone" RunAt="Server" />
+      </div>
 
-    <%-- FAX --%>
-    <GoldSimForm:Fax ID="BuyerFax" RunAt="Server" />
+      <%-- FAX --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Fax ID="BuyerFax" RunAt="Server" />
+      </div>
 
+    </div>
   </fieldset>
 
   <fieldset>
     <legend>Licensee Information</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- LICENSEE TYPE --%>
-    <asp:RadioButtonList ID="LicenseeTypeSelection" RepeatLayout="Flow" RepeatDirection="Vertical" RunAt="Server">
-      <asp:ListItem Value="Self">I am the primary technical contact for this license purchase.</asp:ListItem>
-      <asp:ListItem Value="Third_Party">I am acting as a third party (purchasing agent or distributor) for this purchase.</asp:ListItem>
-    </asp:RadioButtonList>
-    <asp:RequiredFieldValidator ControlToValidate="LicenseeTypeSelection" RunAt="Server" />
+      <%-- LICENSEE TYPE --%>
+      <div class="cell">
+        <asp:RadioButtonList ID="LicenseeTypeSelection" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
+          <asp:ListItem Value="Self">I am the primary technical contact for this license purchase.</asp:ListItem>
+          <asp:ListItem Value="Third_Party">I am acting as a third party (purchasing agent or distributor) for this purchase.</asp:ListItem>
+        </asp:RadioButtonList>
+        <asp:RequiredFieldValidator ControlToValidate="LicenseeTypeSelection" RunAt="Server" />
+        <asp:CustomValidator
+          ControlToValidate     = "LicenseeTypeSelection"
+          OnServerValidate      = "LicenseeValidator"
+          ErrorMessage          = "If you are a third party purchasing agent or distributor, then the contact information for the licensee is required."
+          Display               = "Dynamic"
+          RunAt                 = "Server"
+          />
+      </div>
 
-    <asp:CustomValidator
-      ControlToValidate         = "LicenseeTypeSelection"
-      OnServerValidate          = "LicenseeValidator"
-      ErrorMessage              = "If you are a third party purchasing agent or distributor, then the contact informaiton for the licensee is required."
-      Display                   = "Dynamic"
-      RunAt                     = "Server"
-      />
+    </div>
+  </fieldset>
 
-    <fieldset ID="UserContactInfo">
-      <legend>Intended User Contact Information</legend>
+  <fieldset ID="UserContactInfo">
+    <legend>Intended User Contact Information</legend>
+    <div class="grid-x grid-margin-x">
 
       <%-- NAME BLOCK: FNAME, LNAME --%>
       <GoldSimForm:NameBlock ID="UserNameBlock" ValidationGroup="Licensee" RunAt="Server" />
 
       <%-- ORGANIZATION --%>
-      <GoldSimForm:Organization ID="UserOrganization" ValidationGroup="Licensee" RunAt="Server" />
+      <div class="cell">
+        <GoldSimForm:Organization ID="UserOrganization" ValidationGroup="Licensee" RunAt="Server" />
+      </div>
 
       <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
       <GoldSimForm:AddressBlock ID="UserAddressBlock" ValidationGroup="Licensee" RunAt="Server" />
 
       <%-- COUNTRY SELECTION --%>
-      <GoldSimForm:CountrySelection ID="UserCountrySelection" ValidationGroup="Licensee" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:CountrySelection ID="UserCountrySelection" ValidationGroup="Licensee" RunAt="Server" />
+      </div>
 
       <%-- EMAIL --%>
-      <GoldSimForm:Email ID="UserEmail" ValidationGroup="Licensee" RunAt="Server" />
+      <GoldSimForm:Email ID="UserEmail" ValidationGroup="Licensee" SplitLayout="true" RunAt="Server" />
 
       <%-- PHONE --%>
-      <GoldSimForm:Phone ID="UserPhone" ValidationGroup="Licensee" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:Phone ID="UserPhone" ValidationGroup="Licensee" RunAt="Server" />
+      </div>
 
       <%-- FAX --%>
-      <GoldSimForm:Fax ID="UserFax" ValidationGroup="Licensee" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:Fax ID="UserFax" ValidationGroup="Licensee" RunAt="Server" />
+      </div>
 
-    </fieldset>
-
+    </div>
   </fieldset>
+
 
   <fieldset>
     <legend>Payment Information</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- PAYMENT TYPE --%>
-    <asp:Label ID="PaymentInstructions" CssClass="Payment Instructions" style="display: none;" RunAt="Server" />
-    <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" RunAt="Server">
-      <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
-      <asp:ListItem Value="Invoice_Self" onclick="ShowPaymentInstructions('I_S')">Invoice Me</asp:ListItem>
-      <asp:ListItem Value="Invoice_AP" onclick="ShowPaymentInstructions('I_AP')">Invoice Accounts Payable</asp:ListItem>
-    </asp:RadioButtonList>
-
-    <fieldset ID="POInfo">
-      <legend>Purchase Order Information</legend>
-
-      <%-- TAX ID --%>
-      <Ignia:FormField
-        ID                      = "TaxID"
-        LabelName               = "Purchaser Tax ID"
-        AccessKey               = "T"
-        MaxLength               = "150"
-        FieldSize               = "320"
-        CssClass                = "TextField"
-        SkinId                  = "BoxedPairs"
-        RunAt                   = "Server"
-        />
-
-      <%-- PO NUMBER --%>
-      <Ignia:FormField
-        ID                      = "PONumber"
-        LabelName               = "Purchase Order Number"
-        AccessKey               = "P"
-        MaxLength               = "150"
-        FieldSize               = "320"
-        CssClass                = "TextField"
-        SkinId                  = "BoxedPairs"
-        RunAt                   = "Server"
-        />
-
-      <%-- PO NOTES --%>
-      <Ignia:FormField
-        ID                      = "PurchaseNotes"
-        LabelName               = "Other Purchase Notes"
-        AccessKey               = "N"
-        MaxLength               = "150"
-        FieldSize               = "320"
-        CssClass                = "TextField"
-        SkinId                  = "BoxedPairs"
-        RunAt                   = "Server"
-        />
-
-      <%-- PAPER COPY CHECK --%>
-      <div ID="PaperCopyField" class="FieldContainer">
-        <em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.
-        <label for="PaperCopyCheck" RunAt="Server">Mark the following box if you would prefer a paper invoice or receipt.</label>
-        <asp:CheckBox ID="PaperCopyCheck" RunAt="Server" />
+      <%-- PAYMENT TYPE --%>
+      <div class="cell">
+        <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
+          <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
+          <asp:ListItem Value="Invoice_Self" onclick="ShowPaymentInstructions('I_S')">Invoice Me</asp:ListItem>
+          <asp:ListItem Value="Invoice_AP" onclick="ShowPaymentInstructions('I_AP')">Invoice Accounts Payable</asp:ListItem>
+        </asp:RadioButtonList>
+        <asp:Label ID="PaymentInstructions" CssClass="Payment instructions" style="display: none;" RunAt="Server" />
       </div>
 
-    </fieldset>
+    </div>
+  </fieldset>
 
-    <fieldset ID="APContactInfo">
-      <legend>Accounts Payable Contact Information</legend>
+  <fieldset ID="POInfo">
+    <legend>Purchase Order Information</legend>
+    <div class="grid-x grid-margin-x">
+
+      <%-- TAX ID --%>
+      <div class="medium-6 cell">
+        <Ignia:FormField
+          ID                    = "TaxID"
+          LabelName             = "Purchaser Tax ID"
+          AccessKey             = "T"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+
+      <%-- PO NUMBER --%>
+      <div class="medium-6 cell">
+        <Ignia:FormField
+          ID                    = "PONumber"
+          LabelName             = "Purchase Order Number"
+          AccessKey             = "P"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+
+      <%-- PO NOTES --%>
+      <div class="cell">
+        <Ignia:FormField
+          ID                    = "PurchaseNotes"
+          LabelName             = "Other Purchase Notes"
+          AccessKey             = "N"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+
+      <%-- PAPER COPY CHECK --%>
+      <div ID="PaperCopyField" class="cell">
+        <p class="instructions"><em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.</p>
+        <div class="checkbox">
+          <asp:CheckBox ID="PaperCopyCheck" ClientIDMode="Static" RunAt="Server" />
+          <label for="PaperCopyCheck" RunAt="Server">I would prefer a paper invoice or receipt.</label>
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+
+  <fieldset ID="APContactInfo">
+    <legend>Accounts Payable Contact Information</legend>
+    <div class="grid-x grid-margin-x">
 
       <%-- NAME BLOCK: FNAME, LNAME --%>
       <GoldSimForm:NameBlock ID="APContactNameBlock" ValidationGroup="AccountsPayable" RunAt="Server" />
-
-      <asp:CustomValidator
-        ControlToValidate       = "PaymentTypeSelection"
-        OnServerValidate        = "AccountsPayableValidator"
-        ErrorMessage            = "If 'Invoice Accounts Payable' is selected then the Accounts Payable contact information must be completed."
-        Display                 = "Dynamic"
-        RunAt                   = "Server"
-        />
+      <div class="cell">
+        <asp:CustomValidator
+          ControlToValidate     = "PaymentTypeSelection"
+          OnServerValidate      = "AccountsPayableValidator"
+          ErrorMessage          = "If 'Invoice Accounts Payable' is selected then the Accounts Payable contact information must be completed."
+          Display               = "Dynamic"
+          RunAt                 = "Server"
+          />
+      </div>
 
       <%-- ORGANIZATION --%>
-      <GoldSimForm:Organization ID="APContactOrganization" ValidationGroup="AccountsPayable" RunAt="Server" />
+      <div class="cell">
+        <GoldSimForm:Organization ID="APContactOrganization" ValidationGroup="AccountsPayable" RunAt="Server" />
+      </div>
 
       <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
       <GoldSimForm:AddressBlock ID="APContactAddressBlock" ValidationGroup="AccountsPayable" RunAt="Server" />
 
       <%-- COUNTRY SELECTION --%>
-      <GoldSimForm:CountrySelection ID="APContactCountrySelection" ValidationGroup="AccountsPayable" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:CountrySelection ID="APContactCountrySelection" ValidationGroup="AccountsPayable" RunAt="Server" />
+      </div>
 
       <%-- EMAIL --%>
-      <GoldSimForm:Email ID="APContactEmail" ValidationGroup="AccountsPayable" RunAt="Server" />
+      <GoldSimForm:Email ID="APContactEmail" ValidationGroup="AccountsPayable" SplitLayout="true" RunAt="Server" />
 
       <%-- PHONE --%>
       <GoldSimForm:Phone ID="APContactPhone" ValidationGroup="AccountsPayable" RunAt="Server" />
@@ -278,9 +329,6 @@
       <%-- FAX --%>
       <GoldSimForm:Fax ID="APContactFax" ValidationGroup="AccountsPayable" RunAt="Server" />
 
-    </fieldset>
-
   </fieldset>
-
 
 </asp:Content>
