@@ -55,16 +55,44 @@
     <asp:ContentPlaceHolder ID="HeaderContainer" RunAt="Server">
       <!-- Site Header Area -->
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
-        <div class="title-bar-left"></div>
+        <div class="title-bar-left menu">
+          <button class="menu-icon hide-for-large" type="button" data-open="PrimaryNavigationSmallScreen"></button>
+        </div>
         <!-- Logo -->
         <div class="title-bar-middle logo centered">
           <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
         </div>
         <!-- /Logo -->
-        <div class="title-bar-right">
+        <div class="title-bar-right search">
+          <div class="search form closed">
+            <!-- Search Input -->
+            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Web/Search/" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+            <style type="text/css">
+              #gsc-i-id1::-webkit-input-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              #gsc-i-id1::-moz-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              #gsc-i-id1:-ms-input-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              .gsc-input input.gsc-input {
+                background: none repeat scroll 0% 0% transparent !important;
+              }
+            </style>
+            <!-- Search Open / Close Button -->
+            <div class="buttons">
+              <button type="button" class="icon"></button>
+            </div>
+          </div>
         </div>
       </header>
       <!-- /Site Header Area -->
+      <% WebFormMVCUtility.RenderAction("Layout", "Menu", new { }); %>
     </asp:ContentPlaceHolder>
 
     <form RunAt="Server" enctype="multipart/form-data" data-abide novalidate>
@@ -113,74 +141,7 @@
       </asp:ContentPlaceHolder>
     </form>
 
-    <% WebFormMVCUtility.RenderAction("LayoutController", "Footer", new { }); %>
-    <footer id="SiteFooter" class="site footer" role="contentinfo">
-      <div class="grid-container">
-
-        <!-- Footer Navigation -->
-        <nav id="FooterNavigation" class="navigation grid-x grid-padding-x" role="navigation">
-
-          <!-- Company Information -->
-          <div class="company cell small-6 small-order-2 medium-3 medium-order-1 large-3">
-            <p class="list link heading"><a href="/Web/Company/">Company</a></p>
-            <ul>
-              <li><a href="/Web/Company/History/" class="">Our History</a></li>
-              <li><a href="/Web/Company/News/" class="">News</a></li>
-              <li><a href="/Web/Company/Newsletters/" class="">Newsletters</a></li>
-              <li><a href="/Web/Company/Partners/" class="">Partners</a></li>
-              <li><a href="/Web/Company/Employment/" class="">Employment</a></li>
-              <li><a href="/Web/Company/VisitUs/" class="">Visit Us</a></li>
-            </ul>
-          </div>
-          <!-- /Company Information -->
-          <!-- Terms / Privacy -->
-          <div class="terms cell small-6 small-order-3 medium-3 medium-order-2 large-4">
-            <p class="link heading"><a href="/Topic/857/">Site Terms</a></p>
-            <p class="link heading"><a href="/Topic/4222/">Privacy Policy</a></p>
-          </div>
-          <!-- /Terms / Privacy -->
-          <!-- Contact Information -->
-          <div class="contact cell small-12 small-order-1 medium-6 medium-order-3 large-5">
-            <dl class="phone grid-x grid-padding-x">
-              <dt class="small-4 medium-4 large-5 cell text-right">phone</dt>
-              <dd class="small-8 medium-8 large-7 cell"><a href="tel:1-425-295-7985">+1 (425) 295-6985</a></dd>
-              <dt class="small-4 medium-4 large-5 cell text-right">fax</dt>
-              <dd class="small-8 medium-8 large-7 cell">+1 (425) 642-8073</dd>
-            </dl>
-            <dl class="emails grid-x grid-padding-x">
-              <dt class="small-4 medium-4 large-5 cell text-right">sales</dt>
-              <dd class="small-8 medium-8 large-7 cell"><a href="mailto:software@goldsim.com">software@goldsim.com</a></dd>
-              <dt class="small-4 medium-4 large-5 cell text-right">support</dt>
-              <dd class="small-8 medium-8 large-7 cell"><a href="mailto:support@goldsim.com">support@goldsim.com</a></dd>
-              <dt class="small-4 medium-4 large-5 cell text-right">employment</dt>
-              <dd class="small-8 medium-8 large-7 cell"><a href="mailto:jobs@goldsim.com">jobs@goldsim.com</a></dd>
-            </dl>
-          </div>
-          <!-- /Contact Information -->
-
-        </nav>
-        <!-- /Footer Navigation -->
-
-        <!-- Social Information -->
-        <div class="grid-x grid-margin-x">
-          <div class="social cell small-12 centered">
-            <a href="http://blog.goldsim.com/" target="_blank"><i class="fa fa-rss"></i></a>
-            <a href="https://twitter.com/goldsimsoftware" target="_blank"><i class="fa fa-twitter"></i></a>
-            <a href="https://www.linkedin.com/company/goldsim-technology-group-llc" target="_blank"><i class="fa fa-linkedin"></i></a>
-          </div>
-        </div>
-        <!-- /Social Information -->
-
-        <!-- Copyright Information -->
-        <div class="grid-x grid-margin-x">
-          <div class="copyright cell small-12 centered">
-            <small><span class="fa fa-copyright"></span> 2017 GoldSim Technology Group</small>
-          </div>
-        </div>
-        <!-- Copyright Information -->
-
-      </div>
-    </footer>
+    <% WebFormMVCUtility.RenderAction("Layout", "Footer", new { }); %>
 
     <!-- jQuery -->
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
