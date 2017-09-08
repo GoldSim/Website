@@ -51,72 +51,75 @@
     }
 </Script>
 
+<asp:Content ContentPlaceHolderID="Subtitle" runat="server">
+  <p class="subtitle">GoldSim Software Quote Request Form</p>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
-  <h2 class="Subtitle">GoldSim Software Quote Request Form</h2>
   <p>Please complete the form below so we may better understand your GoldSim software needs. Upon receipt of your request, GoldSim will assemble and contact you with a quote based on your selected product and licensing options.</p>
 
   <fieldset>
     <legend>Product Selection</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- SHOW DISCOUNT INFORMATION ON GOLDSIM PRO RESEARCH MULTIPLE LICENSE SELECTION --%>
-    <p>Multiple license purchases may be subject to volume discounts.</p>
+      <%-- SHOW DISCOUNT INFORMATION ON GOLDSIM PRO RESEARCH MULTIPLE LICENSE SELECTION --%>
+      <p>Multiple license purchases may be subject to volume discounts.</p>
 
-    <%-- PRODUCT/COMPONENTS SELECTION/CONFIGURATION --%>
-    <GoldSimForm:ProductConfiguration ID="ProductConfiguration" ShowQuickStartAddOn="true" RunAt="Server" />
-    <div class="FieldContainer Checkboxes" style="margin-top: -5px;">
-      <asp:CheckBoxList ID="QuickStartAddOnSelection" RepeatLayout="Flow" RunAt="server">
-        <asp:ListItem value="QuickStart" id="QuickStartAddOnCheck" name="QuickStartAddOn">GoldSim Quick Start Package</asp:ListItem>
-      </asp:CheckBoxList>
+      <%-- PRODUCT/COMPONENTS SELECTION/CONFIGURATION --%>
+      <GoldSimForm:ProductConfiguration ID="ProductConfiguration" ShowQuickStartAddOn="true" RunAt="Server" />
+
+      <%-- ADDITIONAL QUOTE INSTRUCTIONS --%>
+      <div class="cell">
+        <Ignia:FormField   ID   = "QuoteInstructions"
+          LabelName             = "Additional Quote Instructions"
+          AccessKey             = "I"
+          MaxLength             = "150"
+          FieldSize             = "468"
+          TextMode              = "MultiLine"
+          CssClass              = "BlockLabel TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+
     </div>
-
-
-    <%-- ADDITIONAL QUOTE INSTRUCTIONS --%>
-    <Ignia:FormField   ID = "QuoteInstructions"
-      LabelName           = "Additional Quote Instructions"
-      AccessKey           = "I"
-      MaxLength           = "150"
-      FieldSize           = "468"
-      TextMode            = "MultiLine"
-      CssClass            = "BlockLabel TextField"
-      SkinId              = "BoxedPairs"
-      RunAt               = "Server"
-      />
-
   </fieldset>
 
   <fieldset>
     <legend>Contact Information</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- NAME BLOCK: FNAME, LNAME --%>
-    <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
+      <%-- NAME BLOCK: FNAME, LNAME --%>
+      <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
 
-    <%-- ORGANIZATION --%>
-    <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      <%-- ORGANIZATION --%>
+      <div class="cell">
+        <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      </div>
 
-    <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
-    <GoldSimForm:AddressBlock ID="AddressBlock" RunAt="Server" />
+      <%-- ADDRESS BLOCK: ADDRESS1, ADDRESS2, CITY, STATE/PROVINCE, ZIP/POSTAL --%>
+      <GoldSimForm:AddressBlock ID="AddressBlock" RunAt="Server" />
 
-    <%-- COUNTRY SELECTION --%>
-    <GoldSimForm:CountrySelection ID="CountrySelection" RunAt="Server" />
+      <%-- COUNTRY SELECTION --%>
+      <div class="cell">
+        <GoldSimForm:CountrySelection ID="CountrySelection" RunAt="Server" />
+      </div>
 
-    <%-- EMAIL/CONFIRM EMAIL --%>
-    <GoldSimForm:Email ID="Email" ShowEmailConfirm="true" RunAt="Server" />
+      <%-- EMAIL/CONFIRM EMAIL --%>
+      <GoldSimForm:Email ID="Email" ShowEmailConfirm="true" RunAt="Server" />
 
-    <%-- PHONE --%>
-    <GoldSimForm:Phone ID="Phone" RunAt="Server" />
+      <%-- PHONE --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Phone ID="Phone" RunAt="Server" />
+      </div>
 
-    <%-- FAX --%>
-    <GoldSimForm:Fax ID="Fax" RunAt="Server" />
+      <%-- FAX --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Fax ID="Fax" RunAt="Server" />
+      </div>
 
-    <%-- PAPER COPY CHECK
-    <div ID="PaperCopyField" class="FieldContainer">
-      <em>NOTE</em>: GoldSim's standard method of providing pricing quotes is via email.
-      <label for="PaperCopyCheck" RunAt="Server">Mark the following box if you would prefer a paper invoice or receipt.</label>
-      <asp:CheckBox ID="PaperCopyCheck" RunAt="Server" />
     </div>
-    --%>
-
   </fieldset>
 
 </asp:Content>
