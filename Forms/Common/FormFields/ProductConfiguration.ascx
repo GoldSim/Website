@@ -107,6 +107,10 @@
     <asp:CheckBox ID="DPPlusAddOnCheck" ClientIDMode="Static" value="DP-Plus" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
     <label for="DPPlusAddOnCheck" RunAt="Server">Distributed Processing (DP-Plus) Module</label>
   </div>
+  <div class="checkbox">
+    <asp:CheckBox ID="QuickStartAddOn" ClientIDMode="Static" value="QuickStart" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> runat="server" />
+    <label for="QuickStartAddOn">GoldSim Quick Start Package</label>
+  </div>
 </div>
 
 <div class="cell Total" style="display: <%= SelectionTotalDisplay %>">
