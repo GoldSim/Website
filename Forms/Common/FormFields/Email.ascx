@@ -63,7 +63,7 @@
     />
 </div>
 <%-- CONFIRM EMAIL --%>
-<div class="<%= ((ShowEmailConfirm || SplitLayout) ? "medium-6 " : "") %>cell">
+<div class="<%= ((ShowEmailConfirm || SplitLayout) ? "medium-6 " : "") %>cell"<%= (!ShowEmailConfirm ? " style=\"display: none;\"" : "") %>
   <Ignia:FormField  ID  = "EmailConfirm"
     Visible             = <%# ShowEmailConfirm %>
     LabelName           = "*Confirm Email"
