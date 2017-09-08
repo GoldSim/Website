@@ -250,7 +250,7 @@
       <div class="cell">
         <div class="checkbox">
           <asp:CheckBox ID="GoldSimContactCheck" RunAt="Server" />
-          <label for="GoldSimContactCheck" RunAt="Server">I would like to discuss my application with GoldSim</label>
+          <label for="GoldSimContactCheck" ClientIDMode="Static" RunAt="Server">I would like to discuss my application with GoldSim</label>
         </div>
       </div>
       <!-- Contact Me -->
