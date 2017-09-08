@@ -1827,6 +1827,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </None>
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
@@ -1834,12 +1835,15 @@
     <Content Include="Forms\Common\Templates\Forms.Layout.master.cs">
       <DependentUpon>Forms.Layout.master</DependentUpon>
     </Content>
+    <Compile Include="Controllers\WebFormController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
+    <Compile Include="Helpers\WebFormMVCUtility.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
+    <Compile Include="Models\RenderActionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -2028,6 +2032,7 @@
     <Content Include="Views\Shared\_CardList.cshtml" />
     <Content Include="Views\Shared\_TechnicalPaperList.cshtml" />
     <Content Include="Shared\Styles\Views\Slideshow.scss" />
+    <Content Include="Views\Shared\PartialRender.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -2047,6 +2052,7 @@
     <Folder Include="!Admin\Topics\Common\Scripts\Vendor\ExtJS\resources\images\vista\tree\" />
     <Folder Include="App_Data\" />
     <Folder Include="Images\Content\" />
+    <Folder Include="Views\WebForm\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
