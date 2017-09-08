@@ -5692,8 +5692,8 @@ header p.subtitle {
   text-transform: none; }
 
 fieldset legend {
-  margin-bottom: 2.125rem;
-  padding-top: 1.125rem;
+  margin-bottom: 1.125rem;
+  padding-top: 2.125rem;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 600; }
