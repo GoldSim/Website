@@ -118,6 +118,13 @@ textarea {
   }
 }
 .checkbox {
+  padding-bottom                : rem-calc(20);
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(10);
+  }
+  @include breakpoint(large) {
+    padding-bottom              : 0;
+  }
   label {
     &:after {
       line-height               : 1.8 !important;
