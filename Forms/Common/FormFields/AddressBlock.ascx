@@ -59,7 +59,7 @@
     />
 </div>
 <%-- CITY --%>
-<div class="medium-4 cell">
+<div class="medium-6 cell">
   <Ignia:FormField
     ID                  = "City"
     LabelName           = "*City"
@@ -74,7 +74,7 @@
     />
 </div>
 <%-- STATE/PROVINCE --%>
-<div class="medium-4 cell">
+<div class="small-6 medium-3 cell">
   <Ignia:FormField
     ID                  = "State"
     LabelName           = "*State/Province"
@@ -89,7 +89,7 @@
     />
 </div>
 <%-- ZIP/POSTAL --%>
-<div class="medium-4 cell">
+<div class="small-6 medium-3 cell">
   <Ignia:FormField
     ID                  = "Postal"
     LabelName           = "*ZIP/Postal Code"
