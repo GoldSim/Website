@@ -46,8 +46,8 @@
 </Script>
 
 <%-- PRODUCT VERSION --%>
-<div class="FieldContainer">
-  <label for="ProductVersionSelection">Product</label>
+<div class="medium-6 cell">
+  <label for="ProductVersionSelection" class="required">*Product</label>
   <asp:DropDownList ID="ProductVersionSelection" onchange="RecalculateTotal()" runat="server">
     <asp:ListItem Value="Pro" Selected="True" onclick="RecalculateTotal()">GoldSim</asp:ListItem>
     <asp:ListItem Value="Research" onclick="RecalculateTotal()">GoldSim Research</asp:ListItem>
@@ -55,8 +55,8 @@
 </div>
 
 <%-- LICENSE TYPE --%>
-<div class="FieldContainer">
-  <label for="LicenseTypeSelection">License Type</label>
+<div class="medium-6 cell">
+  <label for="LicenseTypeSelection" class="required">*License Type</label>
   <asp:DropDownList ID="LicenseTypeSelection" runat="server">
     <%--
     <asp:ListItem Value="Standalone" Selected="True" onclick="RecalculateTotal()">Standalone</asp:ListItem>
@@ -71,9 +71,10 @@
 
 <%-- LICENSE QUANITY SELECTION --%>
 <ajaxToolkit:ToolkitScriptManager EnablePartialRendering="true" LoadScriptsBeforeUI="false" ScriptMode="Release" ID="ToolkitScriptManagerControl" CombineScripts="false" runat="server" />
-<div class="FieldContainer Product Spinner">
+<div class="cell Product Spinner">
   <label for="LicenseQuantityBox">License Quantity</label>
-  <asp:TextBox id="LicenseQuantityBox" onchange="RecalculateTotal()" runat="server" />
+  <asp:TextBox id="LicenseQuantityBox" type="number" value="1" onchange="RecalculateTotal()" runat="server" />
+  <%--
   <input type="button" id="ProductDownButton" class="Down Button"  />
   <input type="button" id="ProductUpButton" class="Up Button"  />
   <ajaxToolkit:NumericUpDownExtender ID="LicenseQuanityUpDown1" runat="server"
@@ -84,20 +85,31 @@
     TargetButtonUpID="ProductUpButton"
     TargetButtonDownID="ProductDownButton"
     />
+  --%>
 </div>
 
 <%-- ADDITIONAL COMPONENTS SELECTION --%>
-<div class="FieldContainer Checkboxes">
+<div class="cell Checkboxes">
   <label>Add-on Modules:</label>
-  <asp:CheckBoxList ID="AddOnsSelectionList" RepeatLayout="Flow" ValidationGroup=<%# ValidationGroup %> RunAt="server">
-    <asp:ListItem value="Reliability" id="ReliabilityAddOnCheck" name="ReliabilityAddOn" onclick="RecalculateTotal()">Reliability Module</asp:ListItem>
-    <asp:ListItem value="CT" id="CTAddOnCheck" name="CTAddOn" onclick="RecalculateTotal()">Contaminant Transport (CT) Module</asp:ListItem>
-    <asp:ListItem value="RT" id="RTAddOnCheck" name="RTAddOn" onclick="RecalculateTotal()">Radionuclide Transport (RT) Module</asp:ListItem>
-    <asp:ListItem value="DP-Plus" id="DPPlusAddOnCheck" name="DPPlusAddOn" onclick="RecalculateTotal()">Distributed Processing (DP-Plus) Module</asp:ListItem>
-  </asp:CheckBoxList>
+  <div class="checkbox">
+    <asp:CheckBox ID="ReliabilityAddOnCheck" ClientIDMode="Static" value="Reliability" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="ReliabilityAddOnCheck" RunAt="Server">Reliability Module</label>
+  </div>
+  <div class="checkbox">
+    <asp:CheckBox ID="CTAddOnCheck" ClientIDMode="Static" value="CT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="CTAddOnCheck" RunAt="Server">Radionuclide Transport (RT) Module</label>
+  </div>
+  <div class="checkbox">
+    <asp:CheckBox ID="RTAddOnCheck" ClientIDMode="Static" value="RT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="RTAddOnCheck" RunAt="Server">Contaminant Transport (CT) Module</label>
+  </div>
+  <div class="checkbox">
+    <asp:CheckBox ID="DPPlusAddOnCheck" ClientIDMode="Static" value="DP-Plus" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="DPPlusAddOnCheck" RunAt="Server">Distributed Processing (DP-Plus) Module</label>
+  </div>
 </div>
 
-<div class="FieldContainer Total" style="display: <%= SelectionTotalDisplay %>">
+<div class="cell Total" style="display: <%= SelectionTotalDisplay %>">
   <%-- <label for="">Current Total:</label> --%><%-- = ProductConfigTotal.ClientID --%>
   <%-- asp:TextBox id="ProductConfigTotal" runat="server" / --%>
 </div>
@@ -130,19 +142,19 @@
     var addonDPPlusCost         = 0;
 
   //Reliability Module Add-on
-    if (document.getElementById("<%= AddOnsSelectionList.ClientID + "_0" %>").checked == true) {
+    if (document.getElementById("<%= ReliabilityAddOnCheck.ClientID %>").checked == true) {
       addonReliabilityCost      = licenseQuantity * 2000;
       }
   //CT Module Add-on
-    if (document.getElementById("<%= AddOnsSelectionList.ClientID + "_1" %>").checked == true) {
+    if (document.getElementById("<%= CTAddOnCheck.ClientID %>").checked == true) {
       addonCTCost               = licenseQuantity * 2000;
       }
   //RT Module Add-on
-    if (document.getElementById("<%= AddOnsSelectionList.ClientID + "_2" %>").checked == true) {
+    if (document.getElementById("<%= RTAddOnCheck.ClientID %>").checked == true) {
       addonRTCost               = licenseQuantity * 9000;
       }
   //DP-Plus Module Add-on
-    if (document.getElementById("<%= AddOnsSelectionList.ClientID + "_3" %>").checked == true) {
+    if (document.getElementById("<%= DPPlusAddOnCheck.ClientID %>").checked == true) {
       addonDPPlusCost           = licenseQuantity * 2000;
       }
     var addonsTotalCost         = addonReliabilityCost + addonCTCost + addonRTCost + addonDPPlusCost;
