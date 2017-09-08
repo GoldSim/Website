@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Title="GoldSim eNewsletter" MasterPageFile="/Forms/Common/Templates/Forms.Layout.Master" %>
+<%@ Page Language="C#" Title="GoldSim Newsletter" MasterPageFile="/Forms/Common/Templates/Forms.Layout.Master" %>
 
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
@@ -68,30 +68,42 @@
 
 </script>
 
+<asp:Content ContentPlaceHolderID="Subtitle" runat="server">
+  <p class="subtitle">Announcements for New or Upcoming Features, Interesting GoldSim Applications, and Application Tips</p>
+</asp:Content>
+
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
-  <h2 class="Subtitle">Announcements for new or upcoming features, application tips, and new and interesting GoldSim applications.</h2>
   <p>Join the thousands of others that enjoy reading about GoldSim!</p>
-  <p>The eNewsletter is sent from the software@goldsim.com email address. To ensure that you receive the eNewsletter, it is recommended that you add this address to your Safe Senders List.</p>
+  <p>The newsletter is sent from the software@goldsim.com email address. To ensure that you receive the newsletter, it is recommended that you add this address to your Safe Senders List.</p>
 
   <fieldset>
-
     <legend>Contact Information</legend>
+    <div class="grid-x grid-margin-x">
 
-    <%-- NAME BLOCK: FNAME, LNAME --%>
-    <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
+      <%-- NAME BLOCK: FNAME, LNAME --%>
+      <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
 
-    <%-- ORGANIZATION --%>
-    <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      <%-- ORGANIZATION --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      </div>
 
-    <%-- EMAIL --%>
-    <GoldSimForm:Email ID="Email" RunAt="Server" />
+      <%-- EMAIL --%>
+      <GoldSimForm:Email ID="Email" SplitLayout="true" RunAt="Server" />
 
+    </div>
   </fieldset>
 
 </asp:Content>
 
 <asp:Content ContentPlaceHolderID="ButtonArea" RunAt="Server">
-  <asp:Button ID="SubscribeButton" Text="Subscribe" OnCommand="SubscribeRequest" CommandName="Subscribe" RunAt="Server" />
-  <asp:Button ID="RemoveButton" Text="Unsubscribe" OnCommand="RemovalRequest" CommandName="Remove" RunAt="Server" />
+  <div class="grid-x grid-margin-x" style="margin-top: 1rem;">
+    <div class="medium-6 cell">
+      <asp:Button ID="SubscribeButton" Text="Subscribe" OnCommand="SubscribeRequest" CommandName="Subscribe" CssClass="button large primary" style="min-width: 234px;" RunAt="Server" />
+    </div>
+    <div class="medium-6 cell text-right">
+      <asp:Button ID="RemoveButton" Text="Unsubscribe" OnCommand="RemovalRequest" CommandName="Remove" CssClass="button large secondary" style="min-width: 234px;" RunAt="Server" />
+    </div>
+  </div>
 </asp:Content>
