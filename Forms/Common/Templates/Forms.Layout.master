@@ -113,7 +113,7 @@
       </asp:ContentPlaceHolder>
     </form>
 
-    <% WebFormMvcUtility.RenderAction("LayoutController", "Footer", new { }); %>
+    <% WebFormMVCUtility.RenderAction("LayoutController", "Footer", new { }); %>
     <footer id="SiteFooter" class="site footer" role="contentinfo">
       <div class="grid-container">
 
