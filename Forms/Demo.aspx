@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Title="Request Demo or Trial" %>
+<%@ Page Language="C#" Title="GoldSim Demo" %>
 
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
