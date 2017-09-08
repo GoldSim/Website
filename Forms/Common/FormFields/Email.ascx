@@ -26,6 +26,7 @@
   public        String          LabelName               = "Field Label Name";
   public        String          ValidationGroup         = "";
   public        bool            ShowEmailConfirm        = false;
+  public        bool            SplitLayout             = false;
 
 /*===========================================================================================================================
 | DECLARE PRIVATE MEMBER VARIABLES
@@ -46,7 +47,7 @@
 </Script>
 
 <%-- EMAIL --%>
-<div class="<%= (ShowEmailConfirm ? "medium-6 " : "") %>cell">
+<div class="<%= ((ShowEmailConfirm || SplitLayout) ? "medium-6 " : "") %>cell">
   <Ignia:FormField ID   = "Email"
     LabelName           = "*Email"
     AccessKey           = "E"
@@ -62,7 +63,7 @@
     />
 </div>
 <%-- CONFIRM EMAIL --%>
-<div class="<%= (ShowEmailConfirm ? "medium-6 " : "") %>cell">
+<div class="<%= ((ShowEmailConfirm || SplitLayout) ? "medium-6 " : "") %>cell">
   <Ignia:FormField  ID  = "EmailConfirm"
     Visible             = <%# ShowEmailConfirm %>
     LabelName           = "*Confirm Email"
