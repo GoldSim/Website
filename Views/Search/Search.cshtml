@@ -1,0 +1,20 @@
+﻿@{
+  ViewBag.Title = "Search";
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" href="/Common/Styles/Search.css" type="text/css" media="all" />
+}
+
+@section PageBodySection {
+  <section class="panel body">
+
+    <!-- Body Content -->
+    <article class="page body">
+      <div class="Search Results"><gcse:search queryParameterName="SearchText" enableAutoComplete="true"></gcse:search></div>
+    </article>
+    <!-- /Body Content -->
+
+  </section>
+}

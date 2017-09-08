@@ -2033,6 +2033,8 @@
     <Content Include="Views\Shared\_TechnicalPaperList.cshtml" />
     <Content Include="Shared\Styles\Views\Slideshow.scss" />
     <Content Include="Views\Shared\PartialRender.cshtml" />
+    <Content Include="Views\Search\Search.cshtml" />
+    <Content Include="Shared\Styles\Views\Search.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
