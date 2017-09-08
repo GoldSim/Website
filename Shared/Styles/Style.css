@@ -5693,7 +5693,7 @@ header p.subtitle {
 
 fieldset legend {
   margin-bottom: 2.125rem;
-  padding-top: 0.9375rem;
+  padding-top: 1.125rem;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.25rem;
   font-weight: 600; }
@@ -5826,10 +5826,12 @@ label.required {
   color: #eb5d62;
   background-color: white; }
 
-.field-instructions {
+.instructions {
   font-size: 1rem;
   font-style: italic;
   color: #999999; }
+  .instructions.error {
+    color: #eb5d62; }
 
 a.comma.delimited:last-of-type:after {
   content: ''; }

@@ -19,7 +19,7 @@
 fieldset {
   legend {
     margin-bottom               : rem-calc(34);
-    padding-top                 : rem-calc(15);
+    padding-top                 : rem-calc(18);
     font-family                 : $header-font-family;
     font-size                   : rem-calc(20);
     font-weight                 : 600;
@@ -182,9 +182,12 @@ label {
 //----------------------------------------------------------------------------------------------
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
-.field-instructions {
+.instructions {
   font-size                     : rem-calc(16);
   font-style                    : italic;
   color                         : $palette-grey-medium;
+  &.error {
+    color                       : $palette-red;
+  }
 }
 
