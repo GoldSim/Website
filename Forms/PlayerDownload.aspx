@@ -1,4 +1,4 @@
-<%@ Page Language="C#" Title="Download Player" MasterPageFile="/Forms/Common/Templates/Forms.Layout.Master" %>
+<%@ Page Language="C#" Title="Download GoldSim Player" MasterPageFile="/Forms/Common/Templates/Forms.Layout.Master" %>
 
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 
@@ -51,35 +51,42 @@
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
-  <h2 class="Subtitle">Download GoldSim Player</h2>
   <p>With GoldSim Player you can view, navigate and run GoldSim models (you need GoldSim Pro to create new models and edit existing models). Fill out this form and we will send you an email with all the information you need to download your free copy of the GoldSim Player. The information you provide below will be used to keep you up to date on GoldSim developments and notify you when new versions of the GoldSim Player have been released. Under no circumstances will this information be released to third parties.</p>
   <p><em><strong>NOTE</strong>: GoldSim uses the file extension .gsm. This file extension is also used by other programs to represent a raw audio stream file. The GoldSim Player only reads GoldSim Player files and cannot read audio files.</em></p>
 
   <fieldset>
+    <div class="grid-x grid-margin-x">
 
-    <%-- NAME BLOCK: FNAME, LNAME --%>
-    <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
+      <%-- NAME BLOCK: FNAME, LNAME --%>
+      <GoldSimForm:NameBlock ID="NameBlock" RunAt="Server" />
 
-    <%-- ORGANIZATION --%>
-    <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      <%-- ORGANIZATION --%>
+      <div class="medium-6 cell">
+        <GoldSimForm:Organization ID="Organization" RunAt="Server" />
+      </div>
 
-    <%-- EMAIL --%>
-    <GoldSimForm:Email ID="Email" RunAt="Server" />
-    <em class="Instructions">Please provide an institutional (i.e., organization, company, academic) email address. Requests from generic domains (e.g., hotmail, yahoo, gmail) will not be accepted. If you are concerned with providing this information, please read our Privacy Policy.</em>
+      <%-- EMAIL --%>
+      <GoldSimForm:Email ID="Email" SplitLayout="true" RunAt="Server" />
+      <div class="cell">
+        <p class="instructions">Please provide an institutional (i.e., organization, company, academic) email address. Requests from generic domains (e.g., hotmail, yahoo, gmail) will not be accepted. If you are concerned with providing this information, please read our Privacy Policy.</p>
+      </div>
 
-    <%-- PLAYER INTEREST DESCRIPTION --%>
-    <Ignia:FormField   ID = "PlayerInterestDescription"
-      LabelName           = "Why are you interested in the GoldSim Player?"
-      AccessKey           = "i"
-      MaxLength           = "150"
-      FieldSize           = "468"
-      Required            = "True"
-      TextMode            = "MultiLine"
-      CssClass            = "BlockLabel TextField"
-      SkinId              = "BoxedPairs"
-      RunAt               = "Server"
-      />
+      <%-- PLAYER INTEREST DESCRIPTION --%>
+      <div class="cell">
+        <Ignia:FormField     ID = "PlayerInterestDescription"
+          LabelName             = "*Why are you interested in the GoldSim Player?"
+          AccessKey             = "i"
+          MaxLength             = "150"
+          FieldSize             = "468"
+          Required              = "True"
+          TextMode              = "MultiLine"
+          CssClass              = "BlockLabel TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
 
+    </div>
   </fieldset>
 
 </asp:Content>
