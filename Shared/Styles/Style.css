@@ -5606,7 +5606,6 @@ a.thumbnail {
         -ms-flex-direction: column-reverse;
             flex-direction: column-reverse; } }
 
-html,
 body,
 p,
 td,
@@ -5615,7 +5614,6 @@ ul {
   font-size: 1rem;
   line-height: 1.4; }
   @media print, screen and (min-width: 40em) {
-    html,
     body,
     p,
     td,
