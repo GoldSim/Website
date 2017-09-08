@@ -178,6 +178,9 @@ label {
     background-color            : $palette-white;
   }
 }
+span[id*="Validator"][style*="visibility:hidden"] {
+  display                       : none;
+}
 
 //----------------------------------------------------------------------------------------------
 // SUPPORTING STYLES

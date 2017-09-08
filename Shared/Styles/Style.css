@@ -5826,6 +5826,9 @@ label.required {
   color: #eb5d62;
   background-color: white; }
 
+span[id*="Validator"][style*="visibility:hidden"] {
+  display: none; }
+
 .instructions {
   font-size: 1rem;
   font-style: italic;
