@@ -46,40 +46,42 @@
 </Script>
 
 <%-- EMAIL --%>
-<Ignia:FormField ID     = "Email"
-  LabelName             = "*Email"
-  AccessKey             = "E"
-  TextMode              = "Email"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  ValidateEmail         = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
-
-
+<div class="<%= (ShowEmailConfirm ? "medium-6 " : "") %>cell">
+  <Ignia:FormField ID   = "Email"
+    LabelName           = "*Email"
+    AccessKey           = "E"
+    TextMode            = "Email"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    ValidateEmail       = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
 <%-- CONFIRM EMAIL --%>
-<Ignia:FormField  ID    = "EmailConfirm"
-  Visible               = <%# ShowEmailConfirm %>
-  LabelName             = "Confirm Email"
-  AccessKey             = "C"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  ValidateEmail         = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
-<asp:CompareValidator ID= "EmailCompareValidator"
-  Visible               = <%# ShowEmailConfirm %>
-  ControlToCompare      = "Email:Field"
-  ControlToValidate     = "EmailConfirm:Field"
-  ErrorMessage          = "The email addresses you entered do not match."
-  CssClass              = "Error"
-  RunAt                 = "Server"
-  />
+<div class="<%= (ShowEmailConfirm ? "medium-6 " : "") %>cell">
+  <Ignia:FormField  ID  = "EmailConfirm"
+    Visible             = <%# ShowEmailConfirm %>
+    LabelName           = "*Confirm Email"
+    AccessKey           = "C"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    ValidateEmail       = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+  <asp:CompareValidator ID= "EmailCompareValidator"
+    Visible             = <%# ShowEmailConfirm %>
+    ControlToCompare    = "Email:Field"
+    ControlToValidate   = "EmailConfirm:Field"
+    ErrorMessage        = "The email addresses you entered do not match."
+    CssClass            = "error instructions"
+    RunAt               = "Server"
+    />
+</div>
