@@ -13,6 +13,9 @@ using System.Web.UI.WebControls;
 using Ignia.Topics;
 using Ignia.Topics.Web;
 using Ignia.Web.Tools;
+using GoldSim.Web.Controllers;
+using GoldSim.Web.Helpers;
+using GoldSim.Web.Models;
 
 namespace GoldSim.Forms.Common.Templates {
 

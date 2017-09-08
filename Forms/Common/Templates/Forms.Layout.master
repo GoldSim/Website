@@ -3,6 +3,9 @@
 <%@ Import Namespace="Ignia.Topics.Web" %>
 <%@ Import Namespace="System.Web.Mvc" %>
 <%@ Import Namespace="System.Web.Mvc.Html" %>
+<%@ Import Namespace="GoldSim.Web.Controllers" %>
+<%@ Import Namespace="GoldSim.Web.Helpers" %>
+<%@ Import Namespace="GoldSim.Web.Models" %>
 <%@ Register TagPrefix="Ignia" TagName="ClientValidation" Src="/Common/Global/Controls/ClientValidation.ascx" %>
 
 <!DOCTYPE html>
@@ -110,6 +113,7 @@
       </asp:ContentPlaceHolder>
     </form>
 
+    <% WebFormMvcUtility.RenderAction("LayoutController", "Footer", new { }); %>
     <footer id="SiteFooter" class="site footer" role="contentinfo">
       <div class="grid-container">
 
@@ -177,6 +181,7 @@
 
       </div>
     </footer>
+
     <!-- jQuery -->
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
     <!-- Foundation -->
