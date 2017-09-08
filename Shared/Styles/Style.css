@@ -5820,6 +5820,7 @@ label.required {
   background-color: white; }
 
 .field-instructions {
+  font-size: 1rem;
   font-style: italic;
   color: #999999; }
 

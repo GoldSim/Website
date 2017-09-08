@@ -176,6 +176,7 @@ label {
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
 .field-instructions {
+  font-size                     : rem-calc(16);
   font-style                    : italic;
   color                         : $palette-grey-medium;
 }
