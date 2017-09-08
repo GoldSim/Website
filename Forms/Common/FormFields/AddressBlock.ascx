@@ -28,67 +28,78 @@
 
 </Script>
 
+
 <%-- ADDRESS1 --%>
-<Ignia:FormField
-  ID                    = "Address1"
-  LabelName             = "Address Line 1"
-  AccessKey             = "A"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<div class="cell">
+  <Ignia:FormField
+    ID                  = "Address1"
+    LabelName           = "*Address Line 1"
+    AccessKey           = "A"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
 <%-- ADDRESS2 --%>
-<Ignia:FormField
-  ID                    = "Address2"
-  LabelName             = "Address Line 2"
-  AccessKey             = "2"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<div class="cell">
+  <Ignia:FormField
+    ID                  = "Address2"
+    LabelName           = "Address Line 2"
+    AccessKey           = "2"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
 <%-- CITY --%>
-<Ignia:FormField
-  ID                    = "City"
-  LabelName             = "City"
-  AccessKey             = "C"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<div class="medium-4 cell">
+  <Ignia:FormField
+    ID                  = "City"
+    LabelName           = "*City"
+    AccessKey           = "C"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
 <%-- STATE/PROVINCE --%>
-<Ignia:FormField
-  ID                    = "State"
-  LabelName             = "State/Province"
-  AccessKey             = "S"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<div class="medium-4 cell">
+  <Ignia:FormField
+    ID                  = "State"
+    LabelName           = "*State/Province"
+    AccessKey           = "S"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
 <%-- ZIP/POSTAL --%>
-<Ignia:FormField
-  ID                    = "Postal"
-  LabelName             = "Postal Code"
-  AccessKey             = "P"
-  MaxLength             = "150"
-  FieldSize             = "320"
-  Required              = "True"
-  CssClass              = "TextField"
-  SkinId                = "BoxedPairs"
-  ValidationGroup       = <%# ValidationGroup %>
-  RunAt                 = "Server"
-  />
+<div class="medium-4 cell">
+  <Ignia:FormField
+    ID                  = "Postal"
+    LabelName           = "*ZIP/Postal Code"
+    AccessKey           = "P"
+    MaxLength           = "150"
+    FieldSize           = "320"
+    Required            = "True"
+    CssClass            = "TextField"
+    SkinId              = "BoxedPairs"
+    ValidationGroup     = <%# ValidationGroup %>
+    RunAt               = "Server"
+    />
+</div>
