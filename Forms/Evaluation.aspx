@@ -157,7 +157,7 @@
         <GoldSimForm:Email ID="Email" RunAt="Server" />
       </div>
       <div class="cell">
-        <p class="field-instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our privacy policy regarding how we use your email address.</p>
+        <p class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our privacy policy regarding how we use your email address.</p>
       </div>
       <!-- /Email -->
 
@@ -242,7 +242,7 @@
           />
       </div>
       <div class="cell">
-        <p class="field-instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
+        <p class="field instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
       </div>
 
       <%-- GOLDSIM CONTACT CHECK --%>
