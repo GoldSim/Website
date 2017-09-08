@@ -33,11 +33,11 @@
 <div class="cell" style="margin-bottom: 1rem;">
   <label For="ModuleInterestList" RunAt="Server">I am also interested in:</label>
   <div class="checkbox">
-    <asp:CheckBox ID="CT" Value="Ignore" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <asp:CheckBox ID="CT" ClientIDMode="Static" Value="Ignore" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
     <label for="CT">Contaminant Transport Module</label>
   </div>
   <div class="checkbox">
-    <asp:CheckBox ID="RL" Value="Ignore" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <asp:CheckBox ID="RL" ClientIDMode="Static" Value="Ignore" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
     <label for="RL">Reliability Module</label>
   </div>
 
