@@ -6280,6 +6280,9 @@ table {
   table.download th,
   table.download td {
     padding: 1.125rem 1.75rem; }
+    table.download th .button,
+    table.download td .button {
+      margin: 0.625rem 0; }
   table.download tr:last-child td {
     padding-bottom: 2.125rem; }
   table.news {

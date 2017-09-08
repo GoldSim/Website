@@ -608,6 +608,9 @@ table {
     th,
     td {
       padding                   : rem-calc(18 28);
+      .button {
+        margin                  : rem-calc(10 0);
+      }
     }
     tr:last-child {
       td {
