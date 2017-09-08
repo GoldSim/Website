@@ -117,6 +117,9 @@ textarea {
     }
   }
 }
+span.radio {
+  display                       : block;
+}
 .checkbox {
   padding-bottom                : rem-calc(20);
   @include breakpoint(medium) {

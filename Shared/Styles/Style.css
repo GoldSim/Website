@@ -5788,6 +5788,9 @@ textarea {
 .radio input[type="radio"]:checked + label:after {
   background-color: #fec10d; }
 
+span.radio {
+  display: block; }
+
 .checkbox {
   padding-bottom: 1.25rem; }
   @media print, screen and (min-width: 40em) {
