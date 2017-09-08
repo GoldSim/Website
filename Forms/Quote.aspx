@@ -64,7 +64,9 @@
     <div class="grid-x grid-margin-x">
 
       <%-- SHOW DISCOUNT INFORMATION ON GOLDSIM PRO RESEARCH MULTIPLE LICENSE SELECTION --%>
-      <p>Multiple license purchases may be subject to volume discounts.</p>
+      <div class="cell">
+        <p>Multiple license purchases may be subject to volume discounts.</p>
+      </div>
 
       <%-- PRODUCT/COMPONENTS SELECTION/CONFIGURATION --%>
       <GoldSimForm:ProductConfiguration ID="ProductConfiguration" ShowQuickStartAddOn="true" RunAt="Server" />
