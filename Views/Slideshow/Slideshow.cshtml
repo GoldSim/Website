@@ -89,9 +89,17 @@
        */
       $('.owl-prev.custom').click(function () {
         $carousel.trigger('prev.owl.carousel');
+        // Scroll back to top of content
+        $('html, body').animate({
+          scrollTop: $('article[itemprop="mainContentOfPage"]').offset().top
+        }, 'slow');
       });
       $('.owl-next.custom').click(function () {
         $carousel.trigger('next.owl.carousel');
+        // Scroll back to top of content
+        $('html, body').animate({
+          scrollTop: $('article[itemprop="mainContentOfPage"]').offset().top
+        }, 'slow');
       });
 
       /**
