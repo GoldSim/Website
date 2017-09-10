@@ -6882,6 +6882,9 @@ form.gsc-search-box.gsc-search-box-tools {
           font-size: 1.875rem;
           line-height: 2rem; }
 
+table.gsc-completion-container td {
+  background-color: white; }
+
 .search.title-bar-right {
   height: 100%; }
 
