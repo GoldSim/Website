@@ -4,17 +4,37 @@
 }
 
 @section Head {
-  <link rel="stylesheet" href="/Common/Styles/Search.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" />
 }
 
 @section PageBodySection {
   <section class="panel body">
 
     <!-- Body Content -->
-    <article class="page body">
-      <div class="Search Results"><gcse:search queryParameterName="SearchText" enableAutoComplete="true"></gcse:search></div>
+    <article class="page body search results">
+      <gcse:search queryParameterName="SearchText" enableAutoComplete="true"></gcse:search>
     </article>
     <!-- /Body Content -->
 
   </section>
+}
+
+@section Scripts {
+  <script>
+    $(function () {
+
+      var resetSearchButtonSrc  = setInterval(function(){
+        console.log($('input.gsc-search-button').attr('title'));
+        if ($('.gsc-search-button input[type="image"]').attr('src').indexOf('search_box_icon') > -1) {
+          $('.gsc-search-button input[type="image"]').attr('src', '/Images/Icons/Search.Icon.png');
+          stopSrcReset();
+        }
+      }, 750);
+
+      function stopSrcReset() {
+        clearInterval(resetSearchButtonSrc);
+      }
+
+    });
+  </script>
 }
