@@ -28,11 +28,15 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
+  padding-top                   : rem-calc(100);
   padding-bottom                : rem-calc(732);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
   @include breakpoint(medium) {
     padding-bottom              : rem-calc(428);
+  }
+  @include breakpoint(large) {
+    padding-top                 : rem-calc(175);
   }
 }
 
@@ -40,10 +44,17 @@ body {
 // HEADER
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
+  position                      : absolute;
+  top                           : 0;
+  right                         : 0;
+  left                          : 0;
   padding                       : 0;
   min-height                    : rem-calc(100);
   color                         : $palette-black;
   background-color              : $palette-white;
+  &.static-primary-nav {
+    position                    : relative;
+  }
 
   // (Foundation) Title Bar "Cells"
   div[class^="title-bar-"] {
@@ -91,20 +102,27 @@ body {
 }
 #SiteHeader,
 #PrimaryNavigation {
-  position                      : relative;
-  top                           : 0;
-  transition                    : position 0.75s ease-in-out, top 0.75s ease-in-out;
   &.fixed-primary-nav {
     z-index                     : 20;
     position                    : fixed;
     top                         : 0;
     right                       : 0;
     left                        : 0;
-    transition                  : position 0.75s ease-in-out, top 0.75s ease-in-out;
+    transition                  : top 0.5s linear;
   }
   &.static-primary-nav {
-    position                    : relative;
-    transition                  : position 0.75s ease-in-out, top 0.75s ease-in-out;
+    position                    : absolute;
+    transition                  : top 0.5s linear;
+  }
+}
+#PrimaryNavigation {
+  position                      : absolute;
+  top                           : rem-calc(100);
+  right                         : 0;
+  left                          : 0;
+  &.static-primary-nav {
+    top                         : rem-calc(-75);
+    transition                  : top 0.5s linear;
   }
 }
 

@@ -165,7 +165,7 @@
     lastScrollTop               = 0,
     delta                       = 5,
     $screenSize                 = $(window).width(),
-    $navbarHeight               = ($('#SiteHeader').outerHeight()), // + $('#PrimaryNavigation').outerHeight()
+    $navbarHeight               = ($('#SiteHeader').outerHeight() + $('#PrimaryNavigation').outerHeight()),
     $fixedElement               = $('#PrimaryNavigation');
     if ($screenSize < 1024) {
       $navbarHeight             = $('#SiteHeader').outerHeight();
@@ -181,15 +181,10 @@
       hasScrolled();
       didScroll                 = false;
     }
-  }, 250);
+  }, 100);
 
   function hasScrolled() {
     var $scrollTop              = $(window).scrollTop();
-
-    console.log('$scrollTop: ' + $scrollTop);
-    console.log('lastScrollTop: ' + lastScrollTop);
-    console.log('$navbarHeight: ' + $navbarHeight);
-    console.log('$scrollTop > lastScrollTop && $scrollTop > $navbarHeight: ' + ($scrollTop > lastScrollTop && $scrollTop > $navbarHeight));
 
     // Do nothing unless the scroll is more than the delta
     if (Math.abs(lastScrollTop - $scrollTop) <= delta) return;
@@ -204,6 +199,9 @@
       // Scrolling up
       if ($scrollTop >= $navbarHeight) {
         $($fixedElement).removeClass('static-primary-nav').addClass('fixed-primary-nav');
+      }
+      else {
+        $($fixedElement).removeClass('fixed-primary-nav').removeClass('static-primary-nav');
       }
     }
 

@@ -6581,18 +6581,28 @@ html {
 body {
   position: relative;
   margin: 0;
+  padding-top: 6.25rem;
   padding-bottom: 45.75rem;
   min-height: 100%;
   background-color: #f3f3f3; }
   @media print, screen and (min-width: 40em) {
     body {
       padding-bottom: 26.75rem; } }
+  @media print, screen and (min-width: 64em) {
+    body {
+      padding-top: 10.9375rem; } }
 
 #SiteHeader {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
   padding: 0;
   min-height: 6.25rem;
   color: #202020;
   background-color: white; }
+  #SiteHeader.static-primary-nav {
+    position: relative; }
   #SiteHeader div[class^="title-bar-"] {
     width: 33%; }
 
@@ -6619,26 +6629,31 @@ body {
   #PrimaryNavigationSmallScreen + .js-off-canvas-overlay {
     z-index: 25; }
 
-#SiteHeader,
-#PrimaryNavigation {
-  position: relative;
+#SiteHeader.fixed-primary-nav,
+#PrimaryNavigation.fixed-primary-nav {
+  z-index: 20;
+  position: fixed;
   top: 0;
-  -webkit-transition: position 0.75s ease-in-out, top 0.75s ease-in-out;
-  transition: position 0.75s ease-in-out, top 0.75s ease-in-out; }
-  #SiteHeader.fixed-primary-nav,
-  #PrimaryNavigation.fixed-primary-nav {
-    z-index: 20;
-    position: fixed;
-    top: 0;
-    right: 0;
-    left: 0;
-    -webkit-transition: position 0.75s ease-in-out, top 0.75s ease-in-out;
-    transition: position 0.75s ease-in-out, top 0.75s ease-in-out; }
-  #SiteHeader.static-primary-nav,
+  right: 0;
+  left: 0;
+  -webkit-transition: top 0.5s linear;
+  transition: top 0.5s linear; }
+
+#SiteHeader.static-primary-nav,
+#PrimaryNavigation.static-primary-nav {
+  position: absolute;
+  -webkit-transition: top 0.5s linear;
+  transition: top 0.5s linear; }
+
+#PrimaryNavigation {
+  position: absolute;
+  top: 6.25rem;
+  right: 0;
+  left: 0; }
   #PrimaryNavigation.static-primary-nav {
-    position: relative;
-    -webkit-transition: position 0.75s ease-in-out, top 0.75s ease-in-out;
-    transition: position 0.75s ease-in-out, top 0.75s ease-in-out; }
+    top: -4.6875rem;
+    -webkit-transition: top 0.5s linear;
+    transition: top 0.5s linear; }
 
 #PageNavigationSmallScreen {
   position: absolute;
