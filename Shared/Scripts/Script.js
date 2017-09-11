@@ -56,10 +56,10 @@
       // Control animation for primary (desktop) navigation
       if ($screenSize > 1024) {
         if ($windowScrollTop < lastScrollTop) {
-          console.log('scrolling up');
-          console.log('nav pos: ' + $navigationTriggerHook + ' - wST: ' + $windowScrollTop);
+        //console.log('scrolling up');
+        //console.log('nav pos: ' + $navigationTriggerHook + ' - wST: ' + $windowScrollTop);
         } else {
-          console.log('scrolling down');
+        //console.log('scrolling down');
         }
       }
       lastScrollTop             = $windowScrollTop;
@@ -156,5 +156,58 @@
     $('</section>').prependTo($('.panel.body section.panel.accordion'));
 
   });
+
+  /**
+   * Handles animation for #PrimaryNavigation and/or #SiteHeader (depending on screen size)
+   */
+  var
+    didScroll,
+    lastScrollTop               = 0,
+    delta                       = 5,
+    $screenSize                 = $(window).width(),
+    $navbarHeight               = ($('#SiteHeader').outerHeight()), // + $('#PrimaryNavigation').outerHeight()
+    $fixedElement               = $('#PrimaryNavigation');
+    if ($screenSize < 1024) {
+      $navbarHeight             = $('#SiteHeader').outerHeight();
+      $fixedElement             = $('#SiteHeader');
+    }
+
+  $(window).scroll(function (event) {
+    didScroll                   = true;
+  });
+
+  setInterval(function () {
+    if (didScroll) {
+      hasScrolled();
+      didScroll                 = false;
+    }
+  }, 250);
+
+  function hasScrolled() {
+    var $scrollTop              = $(window).scrollTop();
+
+    console.log('$scrollTop: ' + $scrollTop);
+    console.log('lastScrollTop: ' + lastScrollTop);
+    console.log('$navbarHeight: ' + $navbarHeight);
+    console.log('$scrollTop > lastScrollTop && $scrollTop > $navbarHeight: ' + ($scrollTop > lastScrollTop && $scrollTop > $navbarHeight));
+
+    // Do nothing unless the scroll is more than the delta
+    if (Math.abs(lastScrollTop - $scrollTop) <= delta) return;
+
+    // If they scrolled down and are past the navbar, set class .static-primary-nav; otherwise, set class fixed-primary-nav
+    if ($scrollTop > lastScrollTop && $scrollTop > $navbarHeight) {
+      // Scrolling down
+      $($fixedElement).removeClass('fixed-primary-nav').addClass('static-primary-nav');
+    }
+    else {
+      // if ($scrollTop + $(window).height() < $(document).height()) {
+      // Scrolling up
+      if ($scrollTop >= $navbarHeight) {
+        $($fixedElement).removeClass('static-primary-nav').addClass('fixed-primary-nav');
+      }
+    }
+
+    lastScrollTop               = $scrollTop;
+  }
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));

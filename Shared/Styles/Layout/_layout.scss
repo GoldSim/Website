@@ -89,6 +89,24 @@ body {
     z-index                     : 25;
   }
 }
+#SiteHeader,
+#PrimaryNavigation {
+  position                      : relative;
+  top                           : 0;
+  transition                    : position 0.75s ease-in-out, top 0.75s ease-in-out;
+  &.fixed-primary-nav {
+    z-index                     : 20;
+    position                    : fixed;
+    top                         : 0;
+    right                       : 0;
+    left                        : 0;
+    transition                  : position 0.75s ease-in-out, top 0.75s ease-in-out;
+  }
+  &.static-primary-nav {
+    position                    : relative;
+    transition                  : position 0.75s ease-in-out, top 0.75s ease-in-out;
+  }
+}
 
 // Page-Level Navigation
 #PageNavigationSmallScreen {
