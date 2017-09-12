@@ -82,7 +82,8 @@ main section[role="region"] {
     .panel.introduction {
       padding-right: 6.875rem;
       padding-bottom: 17.5rem;
-      padding-left: 6.875rem; } }
+      padding-left: 6.875rem;
+      background-size: 62%; } }
   @media print, screen and (min-width: 64em) {
     .panel.introduction {
       padding-right: 25.9375rem;

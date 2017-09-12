@@ -127,6 +127,7 @@ main {
       padding-right             : rem-calc(110);
       padding-bottom            : rem-calc(280);
       padding-left              : rem-calc(110);
+      background-size           : 62%;
     }
     @include breakpoint(large) {
       padding-right             : rem-calc(415);
