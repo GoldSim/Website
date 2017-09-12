@@ -100,12 +100,130 @@ body {
     z-index                     : 25;
   }
 }
+
+.animated {
+  animation-duration: 600ms;
+  will-change: transform, opacity
+}
+@-webkit-keyframes slideDown {
+  0% {
+  //-webkit-transform: translateY(-100%);
+    position: fixed;
+    top: -75px;
+  }
+
+  100% {
+  //-webkit-transform: translateY(0);
+    top: 0;
+  }
+}
+
+@-moz-keyframes slideDown {
+  0% {
+  //-moz-transform: translateY(-100%);
+    position: fixed;
+    top: -75px;
+  }
+
+  100% {
+  //-moz-transform: translateY(0);
+    top: 0;
+  }
+}
+
+@-o-keyframes slideDown {
+  0% {
+  //-o-transform: translateY(-100%);
+    position: fixed;
+    top: -75px;
+  }
+
+  100% {
+  //-o-transform: translateY(0);
+    top: 0;
+  }
+}
+
+@keyframes slideDown {
+  0% {
+  //transform: translateY(-100%);
+    position: fixed;
+    top: -75px;
+  }
+
+  100% {
+  //transform: translateY(0);
+    top: 0;
+  }
+}
+
+.animated.slideDown {
+  -webkit-animation-name: slideDown;
+  -moz-animation-name: slideDown;
+  -o-animation-name: slideDown;
+  animation-name: slideDown;
+}
+
+@-webkit-keyframes slideUp {
+  0% {
+  //-webkit-transform: translateY(0);
+    top: 0;
+  }
+
+  100% {
+  //-webkit-transform: translateY(-100%);
+    top: -75px;
+  }
+}
+@-moz-keyframes slideUp {
+  0% {
+  //-moz-transform: translateY(0);
+    top: 0;
+  }
+
+  100% {
+  //-moz-transform: translateY(-100%);
+    top: -75px;
+  }
+}
+@-o-keyframes slideUp {
+  0% {
+  //-o-transform: translateY(0);
+    top: 0;
+  }
+
+  100% {
+  //-o-transform: translateY(-100%);
+    top: -75px;
+  }
+}
+@keyframes slideUp {
+  0% {
+  //transform: translateY(0);
+    top: 0;
+  }
+
+  100% {
+  //transform: translateY(-100%);
+    top: -75px;
+  }
+}
+
+.animated.slideUp {
+  -webkit-animation-name: slideUp;
+  -moz-animation-name: slideUp;
+  -o-animation-name: slideUp;
+  animation-name: slideUp;
+}
+
 #SiteHeader,
 #PrimaryNavigation {
+  &.animated,
   &.headroom {
     will-change                 : transform, top, position, z-index;
-    transition                  : position 400ms linear, transform 400ms linear;
+    transition                  : position 600ms linear, top 600ms linear, transform 600ms linear;
   }
+  &.slideDown,
   &.headroom--pinned {
     z-index                     : 20;
     transform                   : translateY(0);
@@ -116,20 +234,10 @@ body {
     //top                       : rem-calc(100);
     }
   }
+  &.slideUp,
   &.headroom--unpinned {
   //transform                   : translateY(-75px);
     position                    : static;
-  }
-  &.fixed-primary-nav {
-    position                    : fixed;
-    top                         : 0;
-    right                       : 0;
-    left                        : 0;
-    transition                  : top 0.25s linear;
-  }
-  &.static-primary-nav {
-    position                    : absolute;
-    transition                  : top 0.25s linear;
   }
 }
 #PrimaryNavigation {
@@ -137,10 +245,6 @@ body {
 //top                           : rem-calc(100);
   right                         : 0;
   left                          : 0;
-  &.static-primary-nav {
-    top                         : rem-calc(-75);
-    transition                  : top 0.1s linear;
-  }
 }
 
 // Page-Level Navigation

@@ -29,7 +29,7 @@
      */
     $('.js-full-height').each(function() {
       var $this = $(this);
-      if ($window.width() > 640) {
+      if ($window.width() > 768) {
         $this.innerHeight($paneFullHeight);
       }
     });
@@ -141,12 +141,16 @@
     headroomElement             = document.getElementById('SiteHeader');
     $offset                     = 0;
   }
-  console.log('headroomElement: ' + headroomElement.id);
   var headroom = new Headroom(headroomElement, {
     'offset'                    : $offset,
     'tolerance'                 : {
       up                        : 5,
       down                      : 0
+    },
+    'classes': {
+      'initial'                 : 'animated',
+      'pinned'                  : 'slideDown',
+      'unpinned'                : 'slideUp'
     }
   });
   headroom.init();
