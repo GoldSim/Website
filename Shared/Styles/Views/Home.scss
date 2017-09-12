@@ -41,6 +41,11 @@ main {
   > article {
     padding                     : rem-calc(80 0 32);
   }
+  .header {
+    .js-full-height {
+      min-height                : rem-calc(790);
+    }
+  }
   section[role="region"] {
     margin-bottom               : rem-calc(32);
     @include breakpoint(medium) {
