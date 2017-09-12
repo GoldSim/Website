@@ -245,16 +245,6 @@
         <p class="field instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
       </div>
 
-      <%-- GOLDSIM CONTACT CHECK --%>
-      <!-- Contact Me -->
-      <div class="cell">
-        <div class="checkbox">
-          <asp:CheckBox ID="GoldSimContactCheck" ClientIDMode="Static" RunAt="Server" />
-          <label for="GoldSimContactCheck" RunAt="Server">I would like to discuss my application with GoldSim</label>
-        </div>
-      </div>
-      <!-- Contact Me -->
-
     </div>
 
   </fieldset>

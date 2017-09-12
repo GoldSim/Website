@@ -212,9 +212,7 @@
       </div>
       <!-- /Existing Tools Description -->
 
-      <%-- MODULE INTEREST CHECKBOXES --%>
-      <GoldSimForm:ModuleInterestSelection ID="ModuleInterest" RunAt="Server" />
-
+      <!-- Referral Information -->
       <div class="medium-6 cell referral select">
         <label for="ReferralSelectionList">How did you learn about GoldSim?</label>
         <asp:DropDownList ID="ReferralSelectionList" runat="server">
@@ -244,16 +242,7 @@
       <div class="cell">
         <p class="field instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
       </div>
-
-      <%-- GOLDSIM CONTACT CHECK --%>
-      <!-- Contact Me -->
-      <div class="cell">
-        <div class="checkbox">
-          <asp:CheckBox ID="GoldSimContactCheck" ClientIDMode="Static" RunAt="Server" />
-          <label for="GoldSimContactCheck" ClientIDMode="Static" RunAt="Server">I would like to discuss my application with GoldSim</label>
-        </div>
-      </div>
-      <!-- Contact Me -->
+      <!-- /Referral Information -->
 
     </div>
 
