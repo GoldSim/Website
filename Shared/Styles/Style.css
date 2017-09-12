@@ -6625,11 +6625,11 @@ body {
 
 #SiteHeader.headroom,
 #PrimaryNavigation.headroom {
-  will-change: transform, top, position;
-  -webkit-transition: top 400ms linear, -webkit-transform 400ms linear;
-  transition: top 400ms linear, -webkit-transform 400ms linear;
-  transition: top 400ms linear, transform 400ms linear;
-  transition: top 400ms linear, transform 400ms linear, -webkit-transform 400ms linear; }
+  will-change: transform, top, position, z-index;
+  -webkit-transition: position 400ms linear, -webkit-transform 400ms linear;
+  transition: position 400ms linear, -webkit-transform 400ms linear;
+  transition: position 400ms linear, transform 400ms linear;
+  transition: position 400ms linear, transform 400ms linear, -webkit-transform 400ms linear; }
 
 #SiteHeader.headroom--pinned,
 #PrimaryNavigation.headroom--pinned {

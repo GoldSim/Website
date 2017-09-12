@@ -103,8 +103,8 @@ body {
 #SiteHeader,
 #PrimaryNavigation {
   &.headroom {
-    will-change                 : transform, top, position;
-    transition                  : top 400ms linear, transform 400ms linear;
+    will-change                 : transform, top, position, z-index;
+    transition                  : position 400ms linear, transform 400ms linear;
   }
   &.headroom--pinned {
     z-index                     : 20;
