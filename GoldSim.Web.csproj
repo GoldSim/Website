@@ -1755,6 +1755,13 @@
     <Content Include="Shared\Scripts\Vendor\GreenSock\TweenMax.min.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\utils\Draggable.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\utils\Draggable.min.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\angular.headroom.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\Debouncer.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\features.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\Headroom.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\headroom.min.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\include\wrapper.js" />
+    <Content Include="Shared\Scripts\Vendor\Headroom\jQuery.headroom.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.min.js" />
     <Content Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0.slim.js" />

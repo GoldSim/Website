@@ -28,7 +28,7 @@ html {
 body {
   position                      : relative;
   margin                        : 0;
-  padding-top                   : rem-calc(100);
+//padding-top                   : rem-calc(100);
   padding-bottom                : rem-calc(732);
   min-height                    : 100%;
   background-color              : $palette-grey-lightest;
@@ -36,7 +36,7 @@ body {
     padding-bottom              : rem-calc(428);
   }
   @include breakpoint(large) {
-    padding-top                 : rem-calc(175);
+  //padding-top                 : rem-calc(175);
   }
 }
 
@@ -44,8 +44,8 @@ body {
 // HEADER
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
-  position                      : absolute;
-  top                           : 0;
+//position                      : absolute;
+//top                           : 0;
   right                         : 0;
   left                          : 0;
   padding                       : 0;
@@ -102,27 +102,44 @@ body {
 }
 #SiteHeader,
 #PrimaryNavigation {
-  &.fixed-primary-nav {
+  &.headroom {
+    will-change                 : transform, top, position;
+    transition                  : top 400ms linear, transform 400ms linear;
+  }
+  &.headroom--pinned {
     z-index                     : 20;
+    transform                   : translateY(0);
+    position                    : fixed;
+    top                         : 0;
+    &.headroom--top {
+      position                  : static;
+    //top                       : rem-calc(100);
+    }
+  }
+  &.headroom--unpinned {
+  //transform                   : translateY(-75px);
+    position                    : static;
+  }
+  &.fixed-primary-nav {
     position                    : fixed;
     top                         : 0;
     right                       : 0;
     left                        : 0;
-    transition                  : top 0.5s linear;
+    transition                  : top 0.25s linear;
   }
   &.static-primary-nav {
     position                    : absolute;
-    transition                  : top 0.5s linear;
+    transition                  : top 0.25s linear;
   }
 }
 #PrimaryNavigation {
-  position                      : absolute;
-  top                           : rem-calc(100);
+  position                      : static;
+//top                           : rem-calc(100);
   right                         : 0;
   left                          : 0;
   &.static-primary-nav {
     top                         : rem-calc(-75);
-    transition                  : top 0.5s linear;
+    transition                  : top 0.1s linear;
   }
 }
 
