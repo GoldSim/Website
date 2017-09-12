@@ -5664,9 +5664,11 @@ p ~ h2 {
   padding-top: 0.9375rem; }
 
 header p.subtitle {
+  margin-top: 0.75rem;
   margin-bottom: 0;
   font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.125rem;
+  line-height: 108.5%;
   color: #999999; }
   @media print, screen and (min-width: 40em) {
     header p.subtitle {
@@ -6447,6 +6449,7 @@ h1.title.short {
 
 article header h1.title.long {
   margin: 0;
+  line-height: 108.5%;
   color: #666666; }
 
 article header .category.title {
