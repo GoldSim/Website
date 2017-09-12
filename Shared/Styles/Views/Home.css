@@ -27,7 +27,7 @@ main > section > header {
 main > article {
   padding: 5rem 0 2rem; }
 
-main .header .js-full-height {
+main .header.js-full-height {
   min-height: 49.375rem; }
 
 main section[role="region"] {

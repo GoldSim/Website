@@ -42,7 +42,7 @@ main {
     padding                     : rem-calc(80 0 32);
   }
   .header {
-    .js-full-height {
+    &.js-full-height {
       min-height                : rem-calc(790);
     }
   }
