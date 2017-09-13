@@ -149,8 +149,8 @@
     },
     'classes': {
       'initial'                 : 'animated',
-      'pinned'                  : 'slideDown',
-      'unpinned'                : 'slideUp'
+      'pinned'                  : 'animated-pinned',
+      'unpinned'                : 'animated-unpinned'
     }
   });
   headroom.init();
