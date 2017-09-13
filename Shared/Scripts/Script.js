@@ -45,6 +45,16 @@
     });
 
     /**
+     * Handles initial scroll CTAs trigger
+     */
+    $(window).on('scroll.ctas', function () {
+      if ($(this).scrollTop() > 25) {
+        $('#CTAs').removeClass('off-screen').addClass('on-screen');
+        $(window).off('scroll.ctas');
+      }
+    });
+
+    /**
      * Handles page-level navigation changes for small screens
      */
     $('#PageNavigationSmallScreen select').change(function() {

@@ -170,14 +170,6 @@ body {
     top                         : -75px;
   }
 }
-.animated {
-  &.animated-pinned {
-    animation-name              : slideDown;
-  }
-  &.animated-unpinned {
-    animation-name              : slideUp;
-  }
-}
 
 // Header / Navigation Animation Supporting Styles
 #SiteHeader,
@@ -189,6 +181,7 @@ body {
     animation-duration          : 600ms;
   }
   &.animated-pinned {
+    animation-name              : slideDown;
     z-index                     : 99;
     transform                   : translateY(0);
     position                    : fixed;
@@ -198,6 +191,7 @@ body {
     }
   }
   &.animated-unpinned {
+    animation-name              : slideUp;
     position                    : relative;
   }
 }
@@ -248,12 +242,55 @@ body {
 //----------------------------------------------------------------------------------------------
 // CTAS
 //----------------------------------------------------------------------------------------------
+
+// CTAs Slide-In Animation
+@-webkit-keyframes slideIn {
+  0% {
+    transform                   :translateY(100%);
+  }
+  100% {
+    transform                   :translateY(0);
+  }
+}
+@-moz-keyframes slideIn {
+  0% {
+    transform                   :translateY(100%);
+  }
+  100% {
+    transform                   :translateY(0);
+  }
+}
+@-o-keyframes slideIn {
+  0% {
+    transform                   :translateY(100%);
+  }
+  100% {
+    transform                   :translateY(0);
+  }
+}
+@keyframes slideIn {
+  0% {
+    transform                   :translateY(100%);
+  }
+  100% {
+    transform                   :translateY(0);
+  }
+}
+
 #CTAs {
+  will-change                   : transform;
   z-index                       : 20;
   right                         : 0;
   bottom                        : 0;
   left                          : 0;
   width                         : 100%;
+  &.off-screen {
+    transform                   : translateY(100%);
+  }
+  &.on-screen {
+    animation                   : slideIn 600ms;
+    transform                   : translateY(0);
+  }
 }
 
 //----------------------------------------------------------------------------------------------

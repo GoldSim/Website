@@ -6652,14 +6652,6 @@ body {
   100% {
     top: -75px; } }
 
-.animated.animated-pinned {
-  -webkit-animation-name: slideDown;
-          animation-name: slideDown; }
-
-.animated.animated-unpinned {
-  -webkit-animation-name: slideUp;
-          animation-name: slideUp; }
-
 #SiteHeader.animated, #SiteHeader.headroom,
 #PrimaryNavigation.animated,
 #PrimaryNavigation.headroom {
@@ -6673,6 +6665,8 @@ body {
 
 #SiteHeader.animated-pinned,
 #PrimaryNavigation.animated-pinned {
+  -webkit-animation-name: slideDown;
+          animation-name: slideDown;
   z-index: 99;
   -webkit-transform: translateY(0);
       -ms-transform: translateY(0);
@@ -6685,6 +6679,8 @@ body {
 
 #SiteHeader.animated-unpinned,
 #PrimaryNavigation.animated-unpinned {
+  -webkit-animation-name: slideUp;
+          animation-name: slideUp;
   position: relative; }
 
 #PrimaryNavigation {
@@ -6718,12 +6714,39 @@ body {
       #MainContentArea article:first-of-type > header {
         padding: 0 6.875rem; } }
 
+@-webkit-keyframes slideIn {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%); }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
+@keyframes slideIn {
+  0% {
+    -webkit-transform: translateY(100%);
+            transform: translateY(100%); }
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0); } }
+
 #CTAs {
+  will-change: transform;
   z-index: 20;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100%; }
+  #CTAs.off-screen {
+    -webkit-transform: translateY(100%);
+        -ms-transform: translateY(100%);
+            transform: translateY(100%); }
+  #CTAs.on-screen {
+    -webkit-animation: slideIn 600ms;
+            animation: slideIn 600ms;
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0); }
 
 #SiteFooter {
   position: absolute;
