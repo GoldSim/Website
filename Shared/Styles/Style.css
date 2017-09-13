@@ -6675,7 +6675,8 @@ body {
   top: 0; }
   #SiteHeader.animated-pinned.headroom--top,
   #PrimaryNavigation.animated-pinned.headroom--top {
-    position: relative; }
+    position: relative;
+    top: 1px; }
 
 #SiteHeader.animated-unpinned,
 #PrimaryNavigation.animated-unpinned {

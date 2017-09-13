@@ -188,6 +188,7 @@ body {
     top                         : 0;
     &.headroom--top {
       position                  : relative;
+      top                       : 1px;
     }
   }
   &.animated-unpinned {
