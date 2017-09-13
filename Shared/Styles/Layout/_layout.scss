@@ -225,24 +225,24 @@ body {
   }
   &.slideDown,
   &.headroom--pinned {
-    z-index                     : 20;
+    z-index                     : 99;
     transform                   : translateY(0);
     position                    : fixed;
     top                         : 0;
     &.headroom--top {
-      position                  : static;
+      position                  : relative;
     //top                       : rem-calc(100);
     }
   }
   &.slideUp,
   &.headroom--unpinned {
   //transform                   : translateY(-75px);
-    position                    : static;
+    position                    : relative;
   }
 }
 #PrimaryNavigation {
-  position                      : static;
-//top                           : rem-calc(100);
+  z-index                       : 99;
+  position                      : relative;
   right                         : 0;
   left                          : 0;
 }

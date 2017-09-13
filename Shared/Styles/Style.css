@@ -6677,7 +6677,7 @@ body {
 #SiteHeader.slideDown, #SiteHeader.headroom--pinned,
 #PrimaryNavigation.slideDown,
 #PrimaryNavigation.headroom--pinned {
-  z-index: 20;
+  z-index: 99;
   -webkit-transform: translateY(0);
       -ms-transform: translateY(0);
           transform: translateY(0);
@@ -6686,15 +6686,16 @@ body {
   #SiteHeader.slideDown.headroom--top, #SiteHeader.headroom--pinned.headroom--top,
   #PrimaryNavigation.slideDown.headroom--top,
   #PrimaryNavigation.headroom--pinned.headroom--top {
-    position: static; }
+    position: relative; }
 
 #SiteHeader.slideUp, #SiteHeader.headroom--unpinned,
 #PrimaryNavigation.slideUp,
 #PrimaryNavigation.headroom--unpinned {
-  position: static; }
+  position: relative; }
 
 #PrimaryNavigation {
-  position: static;
+  z-index: 99;
+  position: relative;
   right: 0;
   left: 0; }
 
