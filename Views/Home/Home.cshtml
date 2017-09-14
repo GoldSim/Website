@@ -133,13 +133,6 @@
           </header>
           <p>GoldSim is used by over 600 commercial and government organizations in nearly 60 countries worldwide.</p>
           <p><a href="/Topic/19/">View a partial list of organizations</a> &raquo;</p>
-          <!--
-          <aside id="CountryList" role="complementary">
-            <div id="Countries">
-              Congo<br />Côte d'Ivoire<br />Croatia<br />Czech Republic<br />Egypt<br />Ethiopia<br />Finland<br />France<br />Germany<br />Ghana<br />Guatemala<br />Hungary<br />India<br />Indonesia<br />Italy<br />Japan<br />Kuwait<br />Laos<br />Lithuania<br />Luxembourg<br />Macedonia<br />Madagascar<br />Malaysia<br />Mauritania<br />Mexico<br />Mongolia<br />Netherlands<br />New Zealand<br />Pakistan<br />Peru<br />Poland<br />Portugal<br />Romania<br />Russia<br />Singapore<br />Slovakia<br />South Africa<br />South Korea<br />Spain<br />Sweden<br />Switzerland<br />Taiwan<br />Tanzania<br />Turkey<br />Ukraine<br />United Arab Emirates<br />United Kingdom<br />United States<br />Vietnam<br />Zambia
-            </div>
-          </aside>
-          -->
         </section>
         <!-- /Customers Pane -->
 
@@ -236,26 +229,6 @@
         ],
         loop: false
       });
-
-      /**
-       * Configures animation for countries list
-      var
-        $countries              = $('#Countries'),
-        $endPositionY           = ($('#Countries').innerHeight() - $('#CountryList').innerHeight()),
-        countriesAnimation      = TweenMax.fromTo($countries, 1, { top: '0' }, { top: '-' + $endPositionY + 'px' }),
-        $animationDuration      = ($('article[itemprop="mainContentOfPage"]').innerHeight()*0.4),
-        sceneController         = new ScrollMagic.Controller(),
-        scene                   = new ScrollMagic.Scene({
-          triggerElement        : '#Customers',
-          duration              : $animationDuration,
-          triggerHook           : 1,
-          offset                : ($('#Customers').height()*0.5),
-          reverse               : true
-        })
-        .setTween(countriesAnimation)
-      //.addIndicators()
-        .addTo(sceneController);
-       */
 
     });
   </script>
