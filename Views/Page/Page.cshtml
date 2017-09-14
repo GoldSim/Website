@@ -6,11 +6,16 @@
 
 @section Head {
   <link rel="stylesheet" type="text/css" href="~/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Page.css" />
 }
 
-<section class="panel body">
-  @Html.Raw(@Model.Topic.Attributes.Get("Body"))
-</section>
+<div class="wrapper decorated">
+  <img src="/Images/Baubles/Bauble.Outset.Placeholder.png" alt="*" class="bauble" />
+  <section class="panel body decorated">
+    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+    <img src="/Images/Baubles/Bauble.Inset.Placeholder.png" alt="*" class="bauble" />
+  </section>
+</div>
 
 <!--
   Content Type: Page

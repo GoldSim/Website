@@ -1,0 +1,49 @@
+﻿//==============================================================================================
+// PAGE
+//----------------------------------------------------------------------------------------------
+// Represents styles specific to pages of Content Type "Page".
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// NOTE: It is expected that this page will co-exist with the centralized stylesheet and,
+// therefore, it is not necessary that it reimport shared styles. It may, however, need to
+// import variables and helpers.
+//----------------------------------------------------------------------------------------------
+@import "../variables";
+@import "../foundationSettings";
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+
+.wrapper {
+  &.decorated {
+    position                    : relative;
+    > img.bauble {
+      z-index                   : 0;
+      position                  : absolute;
+      top                       : rem-calc(-231);
+      right                     : rem-calc(-84);
+      width                     : rem-calc(202);
+    }
+  }
+}
+
+.body {
+  &.decorated {
+    z-index                     : 2;
+    overflow                    : hidden;
+    position                    : relative;
+    padding-bottom              : rem-calc(176);
+  //background                  : $palette-white url('/Images/Baubles/Bauble.Inset.Placeholder.png') no-repeat -5% 105%;
+  //background-size             : 223px;
+    > img.bauble {
+      position                  : absolute;
+      bottom                    : rem-calc(-55);
+      left                      : rem-calc(-35);
+      width                     : rem-calc(223);
+    }
+  }
+}
