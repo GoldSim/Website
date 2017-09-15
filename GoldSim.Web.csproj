@@ -1855,7 +1855,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
-    <Compile Include="Helpers\WebFormMVCUtility.cs" />
+    <Compile Include="Helpers\WebFormMvcBridge.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
     <Compile Include="Models\RenderActionViewModel.cs" />
