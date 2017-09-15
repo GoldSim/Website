@@ -1576,7 +1576,6 @@
     <Content Include="Images\Favicons\favicon.ico" />
     <Content Include="Images\Favicons\mstile-150x150.png" />
     <Content Include="Images\Favicons\safari-pinned-tab.svg" />
-    <Content Include="Images\Home\CTAs.Background.png" />
     <Content Include="Images\Home\Customers.Background.png" />
     <Content Include="Images\Home\Introduction.Background.png" />
     <Content Include="Images\Home\Introduction.SmallScreen.Background.png" />
