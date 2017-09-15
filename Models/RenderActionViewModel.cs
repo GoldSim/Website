@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models {
   | CLASS: RENDER ACTION VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Storage class for properties/parameters passed through the WebFormMVCUtility.RenderAction() method.
+  ///   Storage class for properties/parameters passed through the WebFormMvcBridge.RenderAction() method.
   /// </summary>
   /// <remarks>
   ///   Adapted from solution described at https://stackoverflow.com/questions/702746/how-to-include-a-partial-view-inside-a-webform#answer-24867151

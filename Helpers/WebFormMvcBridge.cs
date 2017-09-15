@@ -14,7 +14,7 @@ using GoldSim.Web.Models;
 namespace GoldSim.Web.Helpers {
 
   /*============================================================================================================================
-  | CLASS: WEB FORM MVC UTILITY
+  | CLASS: WEB FORM MVC BRIDGE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Utility methods for enabling rendering of MVC partials in Web Forms (ASPX) pages.
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Helpers {
   /// <remarks>
   ///   Adapted from solution described at https://stackoverflow.com/questions/702746/how-to-include-a-partial-view-inside-a-webform#answer-24867151
   /// </remarks>
-  public class WebFormMVCUtility {
+  public class WebFormMvcUtility {
 
     /*==========================================================================================================================
     | RENDER PARTIAL
