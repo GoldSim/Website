@@ -7022,7 +7022,7 @@ table.gsc-completion-container td {
       -webkit-transition: width 0.4s linear;
       transition: width 0.4s linear; }
     .search.form.closed .icon {
-      background-image: url("/Images/Icons/Search.Icon.png"); }
+      background-image: url("/Images/Icons/Search.png"); }
   .search.form.open {
     background-color: #fec10d;
     -webkit-transition: width 0.25s linear 0s, background-color 0.25s linear 0s;
@@ -7050,7 +7050,7 @@ table.gsc-completion-container td {
       -webkit-transition: width 0.4s linear;
       transition: width 0.4s linear; }
     .search.form.open .icon {
-      background-image: url("/Images/Icons/CloseX.Icon.png"); }
+      background-image: url("/Images/Icons/Close.png"); }
   .search.form div#___gcse_0,
   .search.form .buttons {
     display: table-cell;
