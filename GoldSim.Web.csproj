@@ -1583,16 +1583,14 @@
     <Content Include="Images\Home\Slides\Slide02.png" />
     <Content Include="Images\Home\Slides\Slide03.png" />
     <Content Include="Images\Home\Slides\Slide04.png" />
-    <Content Include="Images\Icons\CloseX.Icon.png" />
+    <Content Include="Images\Icons\Close.png" />
     <Content Include="Images\Icons\Minus.Circle.png" />
-    <Content Include="Images\Icons\Minus.Circle.svg" />
     <Content Include="Images\Icons\PartnerLogo\CertifiedSolutionProvider.128p.gif" />
     <Content Include="Images\Icons\PartnerLogo\CertifiedSolutionProvider.256p.gif" />
     <Content Include="Images\Icons\PartnerLogo\CertifiedTrainingProvider.128p.gif" />
     <Content Include="Images\Icons\PartnerLogo\CertifiedTrainingProvider.256p.gif" />
     <Content Include="Images\Icons\Plus.Circle.png" />
-    <Content Include="Images\Icons\Plus.Circle.svg" />
-    <Content Include="Images\Icons\Search.Icon.png" />
+    <Content Include="Images\Icons\Search.png" />
     <Content Include="Images\Logo.png" />
     <Content Include="Account\Web.Config" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\README.md" />
@@ -1719,7 +1717,6 @@
     <Content Include="Images\PageGroups\PageGroup.Banner.Financial.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.GoldSim.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.Reliability.png" />
-    <Content Include="Search\Default.aspx" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.eot" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.ttf" />
@@ -1867,7 +1864,6 @@
     <Content Include="packages.config" />
     <Content Include="Configuration\smtp.config" />
     <Content Include="Views\Page\Page.cshtml" />
-    <Content Include="Views\ContentType\ContentType.cshtml" />
     <Content Include="Views\ApplicationIndex\ApplicationIndex.cshtml" />
     <Content Include="Views\ApplicationPage\ApplicationPage.cshtml" />
     <Content Include="Views\CaseStudy\CaseStudy.cshtml" />
