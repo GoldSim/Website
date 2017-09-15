@@ -79,7 +79,7 @@ main section[role="region"] {
   padding-right: 2.25rem;
   padding-left: 2.25rem;
   padding-bottom: 8.875rem;
-  background: white url("/Images/Home/Introduction.SmallScreen.Background.png") no-repeat bottom right;
+  background: white url("/Images/Home/Introduction.Background.Default.png") no-repeat bottom right;
   background-size: 75%; }
   @media print, screen and (min-width: 40em) {
     .panel.introduction {
@@ -91,7 +91,7 @@ main section[role="region"] {
     .panel.introduction {
       padding-right: 25.9375rem;
       padding-bottom: 5rem;
-      background: white url("/Images/Home/Introduction.Background.png") no-repeat bottom right;
+      background: white url("/Images/Home/Introduction.Background.Large.png") no-repeat bottom right;
       background-size: contain; } }
 
 .panel.customers {
