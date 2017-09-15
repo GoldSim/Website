@@ -15,10 +15,8 @@
       <div class="company cell small-6 small-order-2 medium-3 medium-order-1 large-3">
         <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.Get("ShortTitle", @CompanyTopic.Title)</a></p>
         <ul>
-          @foreach (Topic topic in CompanyTopic.SortedChildren)
-          {
-            if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
-            {
+          @foreach (Topic topic in CompanyTopic.SortedChildren) {
+            if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
               <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.Get("ShortTitle", @topic.Title)</a></li>
             }
           }
