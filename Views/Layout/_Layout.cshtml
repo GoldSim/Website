@@ -42,8 +42,8 @@
     else {
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
 
-        @if (IsSectionDefined("PrimaryNavigationSection")) {
-          @RenderSection("PrimaryNavigationSection")
+        @if (IsSectionDefined("TitleBarSection")) {
+          @RenderSection("TitleBarSection")
         }
         else {
           <!-- (Small Screen) Navigation Toggle -->
