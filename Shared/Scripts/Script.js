@@ -20,7 +20,6 @@
       $siteHeader               = $('header.site.header'),
       $screenSize               = $window.width(),
       $paneFullHeight           = ($window.height() - $siteHeader.height()),
-      sceneController           = new ScrollMagic.Controller(),
       lastScrollTop             = 0,
       fileTypes                 = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
 
