@@ -1711,6 +1711,7 @@
     <None Include="compilerconfig.json.defaults">
       <DependentUpon>compilerconfig.json</DependentUpon>
     </None>
+    <Content Include="Images\Logo.svg" />
     <Content Include="Images\PageGroups\PageGroup.Banner.ContaminantTransport.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.DashboardAuthoring.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.DistributedProcessing.png" />
@@ -2038,7 +2039,7 @@
     <Content Include="Shared\Styles\Views\Video.scss" />
     <Content Include="Shared\Styles\Views\CaseStudy.scss" />
     <Content Include="Shared\Styles\Helpers\_mixins.scss" />
-    <Content Include="Views\Layout\CTAs.cshtml" />
+    <Content Include="Views\Layout\CallsToAction.cshtml" />
     <Content Include="Views\Shared\_CardList.cshtml" />
     <Content Include="Views\Shared\_TechnicalPaperList.cshtml" />
     <Content Include="Shared\Styles\Views\Slideshow.scss" />

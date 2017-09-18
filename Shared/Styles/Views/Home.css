@@ -72,7 +72,7 @@ main section[role="region"] {
 .pane.applications p.text {
   margin-bottom: 3rem; }
 
-.pane.cta-links p.text ~ p.text {
+.pane.calls-to-action.links p.text ~ p.text {
   margin-bottom: 3rem; }
 
 .panel.introduction {
@@ -131,7 +131,7 @@ main section[role="region"] {
     .panel.customers aside div {
       position: relative; }
 
-.panel.cta-links {
+.panel.calls-to-action.links {
   padding-right: 20rem;
   background: white url("/Images/Home/CTAs.Background.png") no-repeat 115% -8rem; }
 
@@ -292,25 +292,25 @@ main section[role="region"] {
       .applications .card ul li:last-child a {
         margin-bottom: -1rem; }
 
-.cta-links .cell {
+.calls-to-action.links .cell {
   padding: 0 2.25rem;
   text-align: center; }
   @media print, screen and (min-width: 40em) {
-    .cta-links .cell {
+    .calls-to-action.links .cell {
       padding: 0; } }
-  .cta-links .cell:first-of-type .button {
+  .calls-to-action.links .cell:first-of-type .button {
     margin-bottom: 1.125rem; }
   @media print, screen and (min-width: 64em) {
-    .cta-links .cell:first-of-type .button {
+    .calls-to-action.links .cell:first-of-type .button {
       margin-bottom: 0; } }
 
-.cta-links .button {
+.calls-to-action.links .button {
   margin-bottom: 0;
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
           box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
   width: 100%; }
   @media print, screen and (min-width: 40em) {
-    .cta-links .button {
+    .calls-to-action.links .button {
       width: auto; } }
 
 h1.title.short {

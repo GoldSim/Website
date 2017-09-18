@@ -148,12 +148,12 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | CTAS
+    | CALLS TO ACTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the CTAs panel for the site layout.
+    ///   Provides the Calls To Action panel for the site layout.
     /// </summary>
-    public PartialViewResult CTAs() {
+    public PartialViewResult CallsToAction() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

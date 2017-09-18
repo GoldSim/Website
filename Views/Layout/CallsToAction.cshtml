@@ -1,0 +1,47 @@
+﻿@model NavigationViewModel
+
+<!-- CTAs Area -->
+<aside id="CallsToAction" class="calls-to-action panel off-screen" data-sticky data-stick-to="bottom" data-btm-anchor="SiteFooter" data-margin-bottom="0">
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+
+      @callsToActionContents()
+
+    </div>
+  </div>
+</aside>
+<!-- /CTAs Area -->
+
+@helper callsToActionContents() {
+
+  string currentPath            = Model.Topic.WebPath.ToLower();
+  string callToActionType       = "general";
+  if (currentPath.Contains("purchase")) {
+    callToActionType            = "purchase";
+  }
+  if (currentPath.Contains("customers")) {
+    callToActionType            = "customers";
+  }
+
+  <div class="show-for-large large-4 cell">
+    <h1>@(callToActionType.Equals("customers") ? "Need Support?" : (callToActionType.Equals("purchase") ? "Ready to Buy?" : "See it in action"))</h1>
+  </div>
+
+  <div class="medium-12 large-8 cell">
+    <div class="stacked-for-small button-group">
+      @if (callToActionType.Equals("customers")) {
+        <a href="https://support.goldsim.com/hc/en-us/requests/new" class="button large call-to-action support">Submit a Request &raquo;</a>
+        <a href="https://support.goldsim.com/hc/en-us/community/topics" class="button large call-to-action forums">Visit Forums &raquo;</a>
+      }
+      else if (callToActionType.Equals("purchase")) {
+        <a href="/Forms/BuyGoldSim.aspx" class="button large call-to-action buy">Purchase GoldSim &raquo;</a>
+        <a href="/Forms/Quote.aspx" class="button large call-to-action quote">Request a Quote &raquo;</a>
+      }
+      else {
+        <a href="/Forms/Demo.aspx" class="button large call-to-action demo">Request a Web Demo &raquo;</a>
+        <a href="/Forms/Evaluation.aspx" class="button large call-to-action eval">Request a Trial Version &raquo;</a>
+      }
+    </div>
+  </div>
+
+}

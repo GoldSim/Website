@@ -110,7 +110,7 @@ main {
   }
 
   // CTAs
-  &.cta-links {
+  &.calls-to-action.links {
     p.text {
       ~ p.text {
         margin-bottom           : rem-calc(48);
@@ -185,7 +185,7 @@ main {
   }
 
   // CTAs
-  &.cta-links {
+  &.calls-to-action.links {
     padding-right               : rem-calc(320);
     background                  : $palette-white url('/Images/Home/CTAs.Background.png') no-repeat 115% -8rem;
   }
@@ -389,7 +389,7 @@ main {
 }
 
 // CTAs
-.cta-links {
+.calls-to-action.links {
   .cell {
     padding                     : rem-calc(0 36);
     text-align                  : center;

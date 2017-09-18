@@ -169,10 +169,10 @@
       <!-- /Main Site Content Area -->
     }
 
-    @if (IsSectionDefined("CTAsSection")) {
-      @RenderSection("CTAsSection")
+    @if (IsSectionDefined("CallsToActionSection")) {
+      @RenderSection("CallsToActionSection")
     } else {
-      @Html.Action("CTAs", "Layout")
+      @Html.Action("CallsToAction", "Layout")
     }
 
     @if (IsSectionDefined("FooterSection")) {

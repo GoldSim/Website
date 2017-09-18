@@ -46,10 +46,10 @@
     /**
      * Handles initial scroll CTAs trigger
      */
-    $(window).on('scroll.ctas', function () {
+    $(window).on('scroll.callsToAction', function () {
       if ($(this).scrollTop() > 25) {
-        $('#CTAs').removeClass('off-screen').addClass('on-screen');
-        $(window).off('scroll.ctas');
+        $('#CallsToAction').removeClass('off-screen').addClass('on-screen');
+        $(window).off('scroll.callsToAction');
       }
     });
 

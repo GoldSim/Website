@@ -6054,13 +6054,13 @@ body > header {
       padding: 5rem 6.875rem; } }
   .panel.accordion {
     padding: 0; }
-  .panel.ctas {
+  .panel.calls-to-action {
     padding: 0.5rem; }
     @media print, screen and (min-width: 40em) {
-      .panel.ctas {
+      .panel.calls-to-action {
         padding: 1rem 1rem 0.5rem; } }
     @media print, screen and (min-width: 64em) {
-      .panel.ctas {
+      .panel.calls-to-action {
         padding: 2rem 0; } }
 
 .callout {
@@ -6465,50 +6465,50 @@ article header .metadata {
 video {
   width: 100%; }
 
-.panel.ctas h1,
-.panel.ctas .button-group {
+.panel.calls-to-action h1,
+.panel.calls-to-action .button-group {
   margin-bottom: 0; }
 
-.panel.ctas h1 {
+.panel.calls-to-action h1 {
   padding-bottom: 0.75rem;
   font-size: 1.5rem;
   text-align: center; }
   @media print, screen and (min-width: 64em) {
-    .panel.ctas h1 {
+    .panel.calls-to-action h1 {
       padding-bottom: 0;
       font-size: 2rem;
       text-align: left; } }
 
 @media print, screen and (min-width: 40em) {
-  .panel.ctas .button-group {
+  .panel.calls-to-action .button-group {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center; } }
 
 @media print, screen and (min-width: 64em) {
-  .panel.ctas .button-group {
+  .panel.calls-to-action .button-group {
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: initial; } }
 
-.panel.ctas .button-group .button {
+.panel.calls-to-action .button-group .button {
   margin-bottom: 0.5rem; }
   @media print, screen and (min-width: 40em) {
-    .panel.ctas .button-group .button {
+    .panel.calls-to-action .button-group .button {
       max-width: 20rem; } }
   @media print, screen and (min-width: 64em) {
-    .panel.ctas .button-group .button {
+    .panel.calls-to-action .button-group .button {
       margin-right: 2rem;
       margin-bottom: 0;
       max-width: auto; } }
-  .panel.ctas .button-group .button:last-of-type {
+  .panel.calls-to-action .button-group .button:last-of-type {
     margin-right: 0;
     margin-bottom: 0; }
     @media print, screen and (min-width: 40em) {
-      .panel.ctas .button-group .button:last-of-type {
+      .panel.calls-to-action .button-group .button:last-of-type {
         margin-bottom: 0.5rem; } }
     @media print, screen and (min-width: 64em) {
-      .panel.ctas .button-group .button:last-of-type {
+      .panel.calls-to-action .button-group .button:last-of-type {
         margin-bottom: 0; } }
 
 .site.footer .heading,
@@ -6731,18 +6731,18 @@ body {
     -webkit-transform: translateY(0);
             transform: translateY(0); } }
 
-#CTAs {
+#CallsToAction {
   will-change: transform;
   z-index: 20;
   right: 0;
   bottom: 0;
   left: 0;
   width: 100%; }
-  #CTAs.off-screen {
+  #CallsToAction.off-screen {
     -webkit-transform: translateY(100%);
         -ms-transform: translateY(100%);
             transform: translateY(100%); }
-  #CTAs.on-screen {
+  #CallsToAction.on-screen {
     -webkit-animation: slideIn 600ms;
             animation: slideIn 600ms;
     -webkit-transform: translateY(0);
