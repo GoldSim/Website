@@ -1,0 +1,174 @@
+﻿//==============================================================================================
+// CONTENT BOXES
+//----------------------------------------------------------------------------------------------
+// Defines styles for boxed elements (e.g., panels, callouts, and cards).
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+.panel,
+.callout,
+.card {
+  background-color              : $palette-white;
+  box-shadow                    : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+}
+
+//----------------------------------------------------------------------------------------------
+// PANELS
+//----------------------------------------------------------------------------------------------
+.panel {
+  padding                       : rem-calc(32 32);
+  @include breakpoint(medium) {
+    padding                     : rem-calc(40 80);
+  }
+  @include breakpoint(large) {
+    padding                     : rem-calc(80 110);
+  }
+  &.accordion {
+    padding                     : 0;
+  }
+  &.calls-to-action {
+    padding                     : rem-calc(8);
+    @include breakpoint(medium) {
+      padding                   : rem-calc(16 16 8);
+    }
+    @include breakpoint(large) {
+      padding                   : rem-calc(32 0);
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// CALLOUTS
+//----------------------------------------------------------------------------------------------
+.callout {
+  @include clearfix;
+  float                         : none;
+  margin                        : 0 auto rem-calc(18);
+  text-align                    : center;
+  @include breakpoint(medium) {
+    float                       : right;
+    margin                      : rem-calc(0 0 24 56);
+    text-align                  : initial;
+  }
+  &:before,
+  &:after {
+    display                     : table;
+    content                     : ' ';
+  }
+  &:after {
+    clear                       : both;
+  }
+  &.left {
+    float                       : none;
+    margin                      : 0 auto rem-calc(18);
+    @include breakpoint(medium) {
+      float                     : left;
+      margin                    : rem-calc(0 24 18 0);
+    }
+  }
+  &.picture {
+    box-shadow                  : none;
+    border                      : 0 none transparent;
+    padding                     : 0;
+  //width                       : 100%;
+    @include breakpoint(medium) {
+      max-width                 : rem-calc(334);
+    }
+    &.small {
+      @include breakpoint(medium) {
+        max-width               : rem-calc(180);
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// CARDS
+//----------------------------------------------------------------------------------------------
+.card {
+  position                      : relative;
+  &:hover,
+  &:focus,
+  &:active {
+    .title {
+      background-color          : $palette-yellow;
+    }
+  }
+  a.thumbnail,
+  a.title {
+    display                     : block;
+    margin                      : 0;
+    border                      : 0 none transparent;
+    background-color            : $palette-grey-lightest;
+  }
+  a.thumbnail {
+    width                       : 100%;
+    height                      : rem-calc(180);
+    max-height                  : rem-calc(180);
+    background-position         : center center;
+    background-size             : cover;
+    background-color            : $palette-grey-dark;
+  }
+  .thumbnail img,
+  img.thumbnail {
+    margin                      : 0;
+    border                      : 0 none transparent;
+    width                       : 100%;
+  }
+  a.title {
+    padding                     : rem-calc(18);
+    min-height                  : rem-calc(94);
+    &:hover,
+    &:focus,
+    &:active {
+      color                     : $text-color;
+      background-color          : $palette-yellow;
+    }
+    &:visited {
+      color                     : $text-color;
+    }
+  }
+  .icon {
+    &.type {
+      z-index                   : 9;
+      display                   : block;
+      position                  : absolute;
+      top                       : rem-calc(18);
+      right                     : rem-calc(18);
+      border-radius             : 50%;
+      width                     : rem-calc(52);
+      height                    : rem-calc(52);
+      &.application {
+        background-color        : $palette-red;
+      }
+      &.case-study {
+        background-color        : $palette-green;
+      }
+      &.module {
+        background-color        : $palette-blue;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// FLOATED ELEMENTS
+//----------------------------------------------------------------------------------------------
+.floated-layout {
+  @include clearfix;
+  &.left {
+    picture,
+    picture + div {
+      float                     : left;
+    }
+    picture {
+      margin-top                : rem-calc(5);
+      max-width                 : 25%;
+    }
+    picture + div {
+      max-width                 : 75%;
+    }
+  }
+}

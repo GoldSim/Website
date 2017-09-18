@@ -44,14 +44,16 @@ body {
 // HEADER
 //----------------------------------------------------------------------------------------------
 #SiteHeader {
-//position                      : absolute;
-//top                           : 0;
   right                         : 0;
   left                          : 0;
+  box-shadow                    : 0 0 9px 2px rgba(0, 0, 0, 0.07);
   padding                       : 0;
   min-height                    : rem-calc(100);
   color                         : $palette-black;
   background-color              : $palette-white;
+  @include breakpoint(large) {
+    box-shadow                  : none;
+  }
   &.static-primary-nav {
     position                    : relative;
   }
@@ -197,7 +199,8 @@ body {
   }
   background-color              : $palette-grey-lightest;
   article {
-    &:first-of-type {
+    &:first-of-type,
+    &[itemprop="mainContentOfPage"] {
       > header {
         margin                  : rem-calc(32 0);
         padding                 : rem-calc(0 32);
@@ -208,6 +211,26 @@ body {
         @include breakpoint(large) {
           padding               : rem-calc(0 110);
         }
+      }
+      section.embedded {
+        &.pane.body {
+          margin-top            : rem-calc(24);
+        }
+      }
+    }
+    &.page.body {
+      margin-bottom             : rem-calc(48);
+      &:empty,
+      &:blank {
+        margin-bottom           : 0;
+      }
+    }
+    .list & {
+      padding-bottom            : rem-calc(32);
+      &:last-of-type {
+        margin-bottom           : 0;
+        border-bottom           : 0 none transparent;
+        padding-bottom          : 0;
       }
     }
   }
