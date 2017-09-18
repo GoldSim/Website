@@ -22,7 +22,7 @@ namespace GoldSim.Web.Helpers {
   /// <remarks>
   ///   Adapted from solution described at https://stackoverflow.com/questions/702746/how-to-include-a-partial-view-inside-a-webform#answer-24867151
   /// </remarks>
-  public class WebFormMvcUtility {
+  public class WebFormMvcBridge {
 
     /*==========================================================================================================================
     | RENDER PARTIAL

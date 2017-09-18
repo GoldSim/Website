@@ -92,7 +92,7 @@
         </div>
       </header>
       <!-- /Site Header Area -->
-      <% WebFormMVCUtility.RenderAction("Layout", "Menu", new { }); %>
+      <% WebFormMvcBridge.RenderAction("Layout", "Menu", new { }); %>
     </asp:ContentPlaceHolder>
 
     <form RunAt="Server" enctype="multipart/form-data" data-abide novalidate>
@@ -141,7 +141,7 @@
       </asp:ContentPlaceHolder>
     </form>
 
-    <% WebFormMVCUtility.RenderAction("Layout", "Footer", new { }); %>
+    <% WebFormMvcBridge.RenderAction("Layout", "Footer", new { }); %>
 
     <!-- jQuery -->
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
