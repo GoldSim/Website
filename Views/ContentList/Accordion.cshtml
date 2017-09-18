@@ -50,14 +50,17 @@
 }
 
 @helper WriteContentItem(Topic contentItem, string viewType) {
-  <li class="accordion-item" data-accordion-item>
+  <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
     <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
       @if (viewType.Equals("faq")) {
         <span class="marker">Q:</span>
+        <span itemprop="name">@contentItem.Title</span>
       }
-      @contentItem.Title
+      else {
+        @contentItem.Title
+      }
     </a>
-    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key">
+    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key" @(viewType.Equals("faq") ? " itemprop=acceptedAnswer itemscope itemtype=http://schema.org/Answer" : "")>
       @if (viewType.Equals("faq")) {
         <span class="marker">A:</span>
       }
