@@ -102,73 +102,46 @@ body {
 }
 
 // Header / Navigation Animation Settings
-@-webkit-keyframes slideDown {
+@mixin slide-down-animation ($position: fixed, $top0: -75px, $top100: 0) {
   0% {
-    position                    : fixed;
-    top                         : -75px;
+    position                    : $position;
+    top                         : $top0;
   }
   100% {
-    top                         : 0;
+    top                         : $top100;
   }
+}
+@-webkit-keyframes slideDown {
+  @include slide-down-animation;
 }
 @-moz-keyframes slideDown {
-  0% {
-    position                    : fixed;
-    top                         : -75px;
-  }
-  100% {
-    top                         : 0;
-  }
+  @include slide-down-animation;
 }
 @-o-keyframes slideDown {
-  0% {
-    position                    : fixed;
-    top                         : -75px;
-  }
-  100% {
-    top                         : 0;
-  }
+  @include slide-down-animation;
 }
 @keyframes slideDown {
+  @include slide-down-animation;
+}
+@mixin slide-up-animation ($top0: 0, $top100: -75px) {
   0% {
-    position                    : fixed;
-    top                         : -75px;
+    top                         : $top0;
   }
   100% {
-    top                         : 0;
+    top                         : $top100;
   }
 }
 @-webkit-keyframes slideUp {
-  0% {
-    top                         : 0;
-  }
-  100% {
-    top                         : -75px;
-  }
+  @include slide-up-animation;
 }
 @-moz-keyframes slideUp {
-  0% {
-    top                         : 0;
-  }
-  100% {
-    top                         : -75px;
-  }
+  @include slide-up-animation;
 }
 @-o-keyframes slideUp {
-  0% {
-    top                         : 0;
-  }
-  100% {
-    top                         : -75px;
-  }
+  @include slide-up-animation;
 }
 @keyframes slideUp {
-  0% {
-    top                         : 0;
-  }
-  100% {
-    top                         : -75px;
-  }
+  @include slide-up-animation;
 }
 
 // Header / Navigation Animation Supporting Styles
@@ -245,37 +218,25 @@ body {
 //----------------------------------------------------------------------------------------------
 
 // CTAs Slide-In Animation
-@-webkit-keyframes slideIn {
+@mixin slide-in-animation () {
   0% {
     transform                   :translateY(100%);
   }
   100% {
     transform                   :translateY(0);
   }
+}
+@-webkit-keyframes slideIn {
+  @include slide-in-animation;
 }
 @-moz-keyframes slideIn {
-  0% {
-    transform                   :translateY(100%);
-  }
-  100% {
-    transform                   :translateY(0);
-  }
+  @include slide-in-animation;
 }
 @-o-keyframes slideIn {
-  0% {
-    transform                   :translateY(100%);
-  }
-  100% {
-    transform                   :translateY(0);
-  }
+  @include slide-in-animation;
 }
 @keyframes slideIn {
-  0% {
-    transform                   :translateY(100%);
-  }
-  100% {
-    transform                   :translateY(0);
-  }
+  @include slide-in-animation;
 }
 
 #CallsToAction {
