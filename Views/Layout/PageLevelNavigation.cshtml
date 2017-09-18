@@ -67,7 +67,10 @@
   string GetBannerImage() {
 
     // Define variables
-    string bannerImageStyle     = (!String.IsNullOrEmpty(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL")) ? ", url(" + Model.NavigationRootTopic.Attributes.Get("HeaderImageURL") + ")" : "");
+    string bannerImageStyle     = "";
+    if (Model.NavigationRootTopic != null && !String.IsNullOrEmpty(@Model.NavigationRootTopic.Attributes.Get("HeaderImageURL", ""))) {
+      bannerImageStyle          = ", url(" + @Model.NavigationRootTopic.Attributes.Get("HeaderImageURL", "") + ")";
+    }
 
     // Return background banner image style
     return bannerImageStyle;
