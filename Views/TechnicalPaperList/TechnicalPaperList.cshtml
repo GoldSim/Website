@@ -13,6 +13,13 @@
 
     <article class="page body">
       @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+      @if (fieldCategories.Count > 0) {
+        <ul>
+          @foreach (Topic fieldCategory in fieldCategories.SortedChildren) {
+            <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
+          }
+        </ul>
+      }
     </article>
 
     @foreach (Topic fieldCategory in fieldCategories.SortedChildren) {
