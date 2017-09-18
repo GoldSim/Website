@@ -1,20 +1,34 @@
 ﻿@model NavigationViewModel
 
+<style>
+  .page-banner {
+    background-image:   -ms-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -moz-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -o-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.9)), color-stop(100, rgba(32,32,32,0)))@GetBannerImage();
+    background-image:   -webkit-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   linear-gradient(to top, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+  }
+</style>
+
 @if (Model.NavigationRootTopic != null) {
   <!-- Page Title Area -->
-  <header class="header" style="@getBannerStyles(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL"))">
+  <header class="header page-banner">
     <div class="grid-container">
       <div class="grid-x">
         <h1 class="title short cell">@Model.NavigationRootTopic.Title</h1>
       </div>
-      @if (@Model.NavigationRootTopic.SortedChildren.Count() > 0) {
+      @if (@Model.NavigationRootTopic.SortedChildren.Count() > 0)
+      {
         <!-- Mobile Page Navigation Area -->
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
-            <option value="@Model.NavigationRootTopic.WebPath"@((Model.Topic == null)? " selected" : "")>Overview</option>
-            @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-              if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
-                <option value="@topic.WebPath"@((Model.Topic == topic)? " selected" : "")>@topic.Attributes.Get("ShortTitle", @topic.Title)</option>
+            <option value="@Model.NavigationRootTopic.WebPath" @((Model.Topic == null) ? " selected" : "")>Overview</option>
+            @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
+            {
+              if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+              {
+                <option value="@topic.WebPath" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.Get("ShortTitle", @topic.Title)</option>
               }
             }
           </select>
@@ -30,8 +44,10 @@
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
         <li><a href="@Model.NavigationRootTopic.WebPath" class="@((Model.Topic == null)? "selected" : "")">Overview</a></li>
-        @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
-          if (topic.Attributes.Get("IsHidden", "0").Equals("0")) {
+        @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
+        {
+          if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+          {
             <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.Get("ShortTitle", @topic.Title)</a></li>
           }
         }
@@ -44,27 +60,17 @@
 @functions {
 
   /*============================================================================================================================
-  | GET BANNER STYLES
+  | GET BANNER IMAGE
   >-----------------------------------------------------------------------------------------------------------------------------
-  | Combines the HeaderImageURL Attribute with gradient CSS definitions
+  | Gets the HeaderImageURL Attribute to combine with gradient CSS definitions
   \---------------------------------------------------------------------------------------------------------------------------*/
-  string getBannerStyles(string bannerUrl) {
+  string GetBannerImage() {
 
     // Define variables
-    string bannerStyles         = "";
-    string appendedBannerImage  = (!String.IsNullOrEmpty(bannerUrl) ? ", url('" + bannerUrl + "')" : "");
+    string bannerImageStyle     = (!String.IsNullOrEmpty(Model.NavigationRootTopic.Attributes.Get("HeaderImageURL")) ? ", url(" + Model.NavigationRootTopic.Attributes.Get("HeaderImageURL") + ")" : "");
 
-    // Combine gradients with image
-    bannerStyles               += "background-image: -ms-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
-                                + "background-image: -moz-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
-                                + "background-image: -o-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
-                                + "background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.9)), color-stop(100, rgba(32,32,32,0)))" + appendedBannerImage + ";"
-                                + "background-image: -webkit-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";"
-                                + "background-image: linear-gradient(to top, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)" + appendedBannerImage + ";";
-
-    // Return full background styles string
-    return bannerStyles;
-
+    // Return background banner image style
+    return bannerImageStyle;
 
   }
 
