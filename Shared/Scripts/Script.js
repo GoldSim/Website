@@ -20,8 +20,18 @@
       $siteHeader               = $('header.site.header'),
       $screenSize               = $window.width(),
       $paneFullHeight           = ($window.height() - $siteHeader.height()),
-      lastScrollTop             = 0,
-      fileTypes                 = ['pdf', 'exe', 'zip', 'doc', 'docx', 'ppt', 'pptx', 'xls', 'xlsx'];
+      lastScrollTop = 0,
+      fileTypes = {
+        'pdf'                   : 'file-pdf-o',
+        'exe'                   : 'download',
+        'zip'                   : 'file-archive-o',
+        'doc'                   : 'file-word-o',
+        'docx'                  : 'file-word-o',
+        'ppt'                   : 'file-powerpoint-o',
+        'pptx'                  : 'file-powerpoint-o',
+        'xls'                   : 'file-excel-o',
+        'xlsx'                  : 'file-excel-o'
+      };
 
     /**
      * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
@@ -64,44 +74,9 @@
     /**
      * Appends icon font elements to links
      */
-    $(fileTypes).each(function (index, value) {
-      var
-        fileType                = value,
-        $iconClass              = "file-pdf-o";
-
-      switch (fileType) {
-        case    'pdf'           :
-          break;
-        case    'exe'           :
-          $iconClass            = 'download';
-          break;
-        case    'zip'           :
-          $iconClass            = 'file-archive-o';
-          break;
-        case    'doc'           :
-          $iconClass            = 'file-word-o';
-          break;
-        case    'docx'          :
-          $iconClass            = 'file-word-o';
-          break;
-        case 'ppt'              :
-          $iconClass            = 'file-powerpoint-o';
-          break;
-        case 'pptx'             :
-          $iconClass            = 'file-powerpoint-o';
-          break;
-        case 'xls'              :
-          $iconClass            = 'file-excel-o';
-          break;
-        case 'xlsx'             :
-          $iconClass            = 'file-excel-o';
-          break;
-        default:
-          break;
-      }
-
-      $('a[href $=".' + fileType + '"]').not('[class*="button"]').after('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
-      $('a[href $=".' + fileType + '"][class*="button"]').append('<i class="fa fa-' + $iconClass + '" aria-hidden="true"></i>');
+    $.each(fileTypes, function (key, value) {
+      $('a[href $=".' + key + '"]').not('[class*="button"]').after('<i class="fa fa-' + value + '" aria-hidden="true"></i>');
+      $('a[href $=".' + key + '"][class*="button"]').append('<i class="fa fa-' + value + '" aria-hidden="true"></i>');
     });
 
     /**
