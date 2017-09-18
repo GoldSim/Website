@@ -2048,6 +2048,16 @@
     <Content Include="Shared\Styles\Views\Search.scss" />
     <Content Include="Shared\Styles\Views\Page.scss" />
     <Content Include="Views\Shared\_SearchBar.cshtml" />
+    <Content Include="Shared\Styles\Base\_links.scss" />
+    <Content Include="Shared\Styles\Base\_icons.scss" />
+    <Content Include="Shared\Styles\Base\_images.scss" />
+    <Content Include="Shared\Styles\Base\_lists.scss" />
+    <Content Include="Shared\Styles\Base\_buttons.scss" />
+    <Content Include="Shared\Styles\Base\_contentBoxes.scss" />
+    <Content Include="Shared\Styles\Base\_quotes.scss" />
+    <Content Include="Shared\Styles\Base\_tables.scss" />
+    <Content Include="Shared\Styles\Components\Accordion\_accordion.scss" />
+    <Content Include="Shared\Styles\Components\CallsToAction\_callsToAction.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
