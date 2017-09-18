@@ -59,31 +59,7 @@
 
           <!-- Site Search -->
           <div class="title-bar-right search">
-            <div class="search form closed">
-              <!-- Search Input -->
-              <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Web/Search/" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
-              <style type="text/css">
-                #gsc-i-id1::-webkit-input-placeholder {
-                  font-size: 1.875rem !important;
-                }
-
-                #gsc-i-id1::-moz-placeholder {
-                  font-size: 1.875rem !important;
-                }
-
-                #gsc-i-id1:-ms-input-placeholder {
-                  font-size: 1.875rem !important;
-                }
-
-                .gsc-input input.gsc-input {
-                  background: none repeat scroll 0% 0% transparent !important;
-                }
-              </style>
-              <!-- Search Open / Close Button -->
-              <div class="buttons">
-                <button type="button" class="icon"></button>
-              </div>
-            </div>
+            @Html.Partial("_SearchBar")
           </div>
           <!-- /Site Search -->
         }

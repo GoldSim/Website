@@ -2047,6 +2047,7 @@
     <Content Include="Views\Search\Search.cshtml" />
     <Content Include="Shared\Styles\Views\Search.scss" />
     <Content Include="Shared\Styles\Views\Page.scss" />
+    <Content Include="Views\Shared\_SearchBar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
