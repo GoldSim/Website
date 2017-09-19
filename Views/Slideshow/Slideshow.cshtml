@@ -70,9 +70,9 @@
       /**
        * Recalculate carousel stage height
        */
-      adjustStageHeight($('.owl-item.active article.slide').outerHeight());
+      adjustStageHeight('.owl-item.active article.slide');
       $carousel.on('translated.owl.carousel', function (event) {
-        adjustStageHeight($('.owl-item.active article.slide').outerHeight());
+        adjustStageHeight('.owl-item.active article.slide');
       });
 
       /**
@@ -114,8 +114,12 @@
     /**
      * Adjusts carousel stage height based on height of active slide
      */
-    function adjustStageHeight(activeSlideHeight) {
-      $('div.owl-stage-outer').height(activeSlideHeight);
+    function adjustStageHeight(activeSlide) {
+      var totalHeight           = 0;
+      $(activeSlide).children().each(function () {
+        totalHeight            += $(this).outerHeight(true);
+      });
+      $('div.owl-stage-outer').height(totalHeight);
     }
 
     /**
