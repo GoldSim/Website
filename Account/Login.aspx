@@ -115,7 +115,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Admin Login - GoldSim</title>
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css" />
     <style type="text/css">
       .logo {
         margin: 0 auto;
@@ -124,7 +125,33 @@
         padding: 3rem 0;
       }
       .HtmlSeparator {
+        padding: 0;
+        height: 0;
         background-color: rgb(255, 255, 255);
+      }
+      #SiteHeader {
+        -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+        margin-bottom: 15px;
+      }
+      table.login.form {
+        width: 65%;
+      }
+      tbody,
+      tbody tr,
+      table td {
+        background-color: transparent;
+      }
+      table td {
+        vertical-align: middle;
+      }
+      table td input {
+        margin-bottom: 0;
+      }
+      td.form-field.label {
+        padding-top: 14px;
+        width: 100%;
+        text-align: right;
       }
     </style>
   </head>
@@ -144,66 +171,75 @@
       <main id="MainContentArea" class="page content" role="main">
         <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
 
-          <!-- Instructions -->
-          <div class="callout secondary"><asp:Label ID="lblInstructions" RunAt="Server"></asp:Label></div>
+          <div class="grid-x grid-margin-x">
 
-          <section class="panel body">
+            <!-- Instructions -->
+            <div class="cell text-center">
+              <div class="callout primary" style="float: none; margin-left: 0;"><asp:Label ID="lblInstructions" RunAt="Server"></asp:Label></div>
+            </div>
 
-            <!-- Client Validation -->
-            <Ignia:ClientValidation  ID = "objClientValidation"
-              SummaryIntro              = "The following errors have been found:<br>"
-              SummaryExit               = "<br />"
-              SummaryColor              = "Red"
-              SummaryClassName          = "Validation"
-              RunAt                     = "Server"
-            />
+            <div class="cell">
+              <section class="panel body">
 
-            <table CellPadding="0" CellSpacing="0" Border="0" style="font-size:11px;">
-              <Ignia:FormField       ID = "Username"
-                LabelName               = "Username:"
-                AccessKey               = ""
-                MaxLength               = "50"
-                FieldSize               = "214"
-                Required                = "True"
-                RunAt                   = "Server"
-              />
-              <Ignia:FormField       ID = "Password"
-                LabelName               = "Password:"
-                AccessKey               = ""
-                MaxLength               = "50"
-                FieldSize               = "214"
-                Required                = "True"
-                TextMode                = "Password"
-                RunAt                   = "Server"
-              />
-            </table>
+                <!-- Client Validation -->
+                <Ignia:ClientValidation  ID = "objClientValidation"
+                  SummaryIntro              = "The following errors have been found:<br>"
+                  SummaryExit               = "<br />"
+                  SummaryColor              = "Red"
+                  SummaryClassName          = "Validation"
+                  RunAt                     = "Server"
+                />
 
-            <asp:Checkbox            ID = "RememberPassword"
-              Text                      = "Remember password on this machine."
-              AccessKey                 = "R"
-              CssClass                  = "Checkbox"
-              Checked                   = "False"
-              TextAlign                 = "Right"
-              RunAt                     = "Server"
-            />
+                <table class="login form">
+                  <Ignia:FormField       ID = "Username"
+                    LabelName               = "Username:"
+                    AccessKey               = ""
+                    MaxLength               = "50"
+                    FieldSize               = "214"
+                    Required                = "True"
+                    RunAt                   = "Server"
+                  />
+                  <Ignia:FormField       ID = "Password"
+                    LabelName               = "Password:"
+                    AccessKey               = ""
+                    MaxLength               = "50"
+                    FieldSize               = "214"
+                    Required                = "True"
+                    TextMode                = "Password"
+                    RunAt                   = "Server"
+                  />
+                </table>
 
-            <asp:CustomValidator
-              ErrorMessage              = "The password you typed was incorrect."
-              ControlToValidate         = "Password:Field"
-              OnServerValidate          = "AuthenticateUser"
-              RunAt                     = "Server"
-            >
-            </asp:CustomValidator>
+                <asp:Checkbox            ID = "RememberPassword"
+                  Text                      = "Remember password on this machine."
+                  AccessKey                 = "R"
+                  CssClass                  = "checkbox"
+                  Checked                   = "False"
+                  TextAlign                 = "Right"
+                  RunAt                     = "Server"
+                />
 
-            <br /><br />
-            <asp:Button              ID = "SubmitButton"
-              Text                      = "Login"
-              CssClass                  = "button"
-              CausesValidation          = "true"
-              RunAt                     = "Server"
-            />
+                <asp:CustomValidator
+                  ErrorMessage              = "The password you typed was incorrect."
+                  ControlToValidate         = "Password:Field"
+                  OnServerValidate          = "AuthenticateUser"
+                  RunAt                     = "Server"
+                >
+                </asp:CustomValidator>
 
-          </section>
+                <br /><br />
+                <asp:Button              ID = "SubmitButton"
+                  Text                      = "Login"
+                  CssClass                  = "button"
+                  CausesValidation          = "true"
+                  RunAt                     = "Server"
+                />
+
+              </section>
+
+            </div>
+
+          </div>
 
         </article>
       </main>
