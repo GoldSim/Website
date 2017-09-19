@@ -57,7 +57,7 @@
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
-  <p>Please complete the form below so we may better understand your GoldSim software needs. Upon receipt of your request, GoldSim will assemble and contact you with a quote based on your selected product and licensing options.</p>
+  <p><a href="/Web/Purchase/Pricing/">GoldSim's product prices</a> are publicly available. If you require a formal price quote, however, please fill out the form below. Note that purchase of multiple licenses may entitle you to a volume discount.</p>
 
   <fieldset>
     <legend>Product Selection</legend>
