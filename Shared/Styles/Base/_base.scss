@@ -95,8 +95,11 @@ video {
   .heading,
   dl dd,
   i.fa {
-    font-size                   : rem-calc(21);
+    font-size                   : rem-calc(20);
     color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
     a,
     a:hover,
     a:focus,

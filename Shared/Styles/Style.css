@@ -6331,8 +6331,13 @@ video {
 .site.footer .heading,
 .site.footer dl dd,
 .site.footer i.fa {
-  font-size: 1.3125rem;
+  font-size: 1.25rem;
   color: #cccccc; }
+  @media print, screen and (min-width: 40em) {
+    .site.footer .heading,
+    .site.footer dl dd,
+    .site.footer i.fa {
+      font-size: 1.3125rem; } }
   .site.footer .heading a,
   .site.footer .heading a:hover,
   .site.footer .heading a:focus,
