@@ -43,7 +43,9 @@ main {
   }
   .header {
     &.js-full-height {
-      min-height                : rem-calc(790);
+      @include breakpoint(large) {
+        min-height              : rem-calc(790);
+      }
     }
   }
   section[role="region"] {
