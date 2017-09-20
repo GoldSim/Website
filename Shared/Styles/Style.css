@@ -6378,10 +6378,18 @@ video {
     margin-top: 2.5rem; }
   .site.footer .navigation dl dt {
     position: relative;
-    top: 0.25rem;
+    top: 0;
     margin-bottom: 0;
     padding-right: 0;
     font-weight: normal; }
+    @media print, screen and (min-width: 40em) {
+      .site.footer .navigation dl dt {
+        top: 0.25rem; } }
+  .site.footer .navigation dl dd {
+    font-size: 1rem; }
+    @media print, screen and (min-width: 40em) {
+      .site.footer .navigation dl dd {
+        font-size: 1.3125rem; } }
 
 .site.footer .navigation .contact {
   margin-bottom: 3rem;

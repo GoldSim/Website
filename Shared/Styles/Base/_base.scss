@@ -144,10 +144,19 @@ video {
       }
       dt {
         position                : relative;
-        top                     : rem-calc(4);
+        top                     : 0;
         margin-bottom           : 0;
         padding-right           : 0;
         font-weight             : normal;
+        @include breakpoint(medium) {
+          top                   : rem-calc(4);
+        }
+      }
+      dd {
+        font-size               : rem-calc(16);
+        @include breakpoint(medium) {
+          font-size             : rem-calc(21);
+        }
       }
     }
     .contact {
