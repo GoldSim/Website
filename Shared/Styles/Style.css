@@ -6032,9 +6032,10 @@ ul.modules-list {
     ul.modules-list li.module.distributed-processing {
       background-image: url(/Images/Content/Product/DistributedProcessing.Icon.png); }
 
-.table-wrapper.wide {
-  margin-right: -6.5rem;
-  margin-left: -6.5rem; }
+@media print, screen and (min-width: 40em) {
+  .table-wrapper.wide {
+    margin-right: -6.5rem;
+    margin-left: -6.5rem; } }
 
 table {
   border: 0 none transparent; }
@@ -6105,6 +6106,33 @@ table {
       width: 9.375rem;
       max-width: 9.375rem; }
 
+/*
+.fixed-column {
+  overflow-x                    : scroll;
+  overflow-y                    : hidden;
+  @include breakpoint(small only) {
+    width                       : 100%;
+  }
+  ::-webkit-scrollbar & {
+    width                       : auto;
+    height                      : rem-calc(8);
+    background-color            : $palette-grey-light;
+  }
+  ::-webkit-scrollbar-thumb & {
+    background-color            : $palette-grey-medium;
+  }
+  > table {
+    @include breakpoint(small only) {
+      width                     : auto !important;
+    }
+  }
+  > .cloned {
+    z-index                     : 30;
+    position                    : absolute;
+    display                     : inline-block;
+  }
+}
+*/
 .quote {
   font-size: 1.875rem;
   line-height: 1.333; }

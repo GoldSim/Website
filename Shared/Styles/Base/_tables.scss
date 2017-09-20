@@ -9,8 +9,10 @@
 //----------------------------------------------------------------------------------------------
 .table-wrapper {
   &.wide {
-    margin-right                : rem-calc(-104);
-    margin-left                 : rem-calc(-104);
+    @include breakpoint(medium) {
+      margin-right              : rem-calc(-104);
+      margin-left               : rem-calc(-104);
+    }
   }
 }
 table {
@@ -98,3 +100,34 @@ table {
     }
   }
 }
+
+//----------------------------------------------------------------------------------------------
+// FIXED COLUMN
+//----------------------------------------------------------------------------------------------
+/*
+.fixed-column {
+  overflow-x                    : scroll;
+  overflow-y                    : hidden;
+  @include breakpoint(small only) {
+    width                       : 100%;
+  }
+  ::-webkit-scrollbar & {
+    width                       : auto;
+    height                      : rem-calc(8);
+    background-color            : $palette-grey-light;
+  }
+  ::-webkit-scrollbar-thumb & {
+    background-color            : $palette-grey-medium;
+  }
+  > table {
+    @include breakpoint(small only) {
+      width                     : auto !important;
+    }
+  }
+  > .cloned {
+    z-index                     : 30;
+    position                    : absolute;
+    display                     : inline-block;
+  }
+}
+*/

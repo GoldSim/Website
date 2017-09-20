@@ -23,6 +23,7 @@
       firstColumnWidth          = ($(window).width() * 0.5);
 
     // Only perform the column fixing for small screens
+    /*
     if ($(window).width() < 768 && ($(window).width() < $(window).height())) {
 
       $(fixedColumnTable).each(function (index, element) {
@@ -32,7 +33,7 @@
 
         // Update the width of the first column if there are only two columns in the table
         if ($(originalTable).find('thead td').length <= 2) {
-          firstColumnWidth = ($(window).width() * 0.5);
+          firstColumnWidth      = ($(window).width() * 0.5);
         }
 
         // Remove everything in the table clone except for first column
@@ -51,6 +52,7 @@
       });
 
     }
+    */
 
   }
 
