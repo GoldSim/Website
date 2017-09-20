@@ -6299,17 +6299,15 @@ main > section > header {
 h1.title.short {
   position: absolute;
   bottom: 0;
-  left: 2rem;
   margin: 0;
-  padding-bottom: 5.5rem;
+  padding: 0 2rem 5.5rem;
   color: white; }
   @media print, screen and (min-width: 40em) {
     h1.title.short {
-      left: 2.5rem;
-      padding-bottom: 1.25rem; } }
+      padding: 0 2.5rem 1.25rem; } }
   @media print, screen and (min-width: 64em) {
     h1.title.short {
-      left: auto; } }
+      padding: 0 0 1.25rem; } }
 
 article header h1.title.long {
   margin: 0;

@@ -48,16 +48,14 @@ main {
 h1.title.short {
   position                      : absolute;
   bottom                        : 0;
-  left                          : rem-calc(32);
   margin                        : 0;
-  padding-bottom                : rem-calc(88);
+  padding                       : rem-calc(0 32 88);
   color                         : $palette-white;
   @include breakpoint(medium) {
-    left                        : rem-calc(40);
-    padding-bottom              : rem-calc(20);
+    padding                     : rem-calc(0 40 20);
   }
   @include breakpoint(large) {
-    left                        : auto;
+    padding                     : rem-calc(0 0 20);
   }
 }
 
