@@ -3,11 +3,11 @@
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 
 <Script Language="C#" RunAt="Server">
-/*==============================================================================================================================
-| Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
-\=============================================================================================================================*/
+  /*==============================================================================================================================
+  | Author        Ignia, LLC
+  | Client        GoldSim
+  | Project       Website
+  \=============================================================================================================================*/
 
   /*============================================================================================================================
   | PAGE LOAD
@@ -25,6 +25,9 @@
     | ### TODO JJC120308: Update to use default button method instead of Page_Load intercept.
     \-------------------------------------------------------------------------------------------------------------------------*/
     if (!IsPostBack) {
+      if (Request.Cookies["MembershipAuthentication"] != null && Request.QueryString["ReturnUrl"] != null) {
+        Response.Redirect(Request.QueryString["ReturnUrl"]);
+      }
       lblInstructions.Text      = "The resource you have requested requires authentication. Please login.";
     }
 
