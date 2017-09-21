@@ -1732,6 +1732,7 @@
     <Content Include="Images\Favicons\manifest.json" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\FileIcons.js" />
+    <Content Include="Shared\Scripts\Images.Zoom.js" />
     <Content Include="Shared\Scripts\Layout.Animations.js" />
     <Content Include="Shared\Scripts\Layout.js" />
     <Content Include="Shared\Scripts\Menu.js" />
