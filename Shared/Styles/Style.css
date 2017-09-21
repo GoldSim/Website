@@ -5957,6 +5957,15 @@ a[href$=".gsm"] {
   .button-group .button.large {
     font-size: 1.25rem; }
 
+button.js-zoom {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #999999;
+  cursor: pointer; }
+  button.js-zoom i.fa {
+    margin-left: 0.3125rem; }
+
 @media print, screen and (min-width: 40em) {
   img.logo {
     max-width: 152px; } }
@@ -6218,6 +6227,13 @@ table {
       .callout.left {
         float: left;
         margin: 0 1.5rem 1.125rem 0; } }
+  .callout.wrapper {
+    position: relative;
+    margin: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border: 0 none transparent;
+    padding: 0; }
   .callout.picture {
     display: block;
     -webkit-box-shadow: none;

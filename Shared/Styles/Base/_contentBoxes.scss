@@ -68,6 +68,13 @@
       margin                    : rem-calc(0 24 18 0);
     }
   }
+  &.wrapper {
+    position                    : relative;
+    margin                      : 0;
+    box-shadow                  : none;
+    border                      : 0 none transparent;
+    padding                     : 0;
+  }
   &.picture {
     display                     : block;
     box-shadow                  : none;
