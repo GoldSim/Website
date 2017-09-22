@@ -3242,12 +3242,12 @@ select {
 
 .close-button {
   position: absolute;
-  color: #666666;
+  color: white;
   cursor: pointer; }
   [data-whatinput='mouse'] .close-button {
     outline: 0; }
   .close-button:hover, .close-button:focus {
-    color: #202020; }
+    color: #fec10d; }
   .close-button.small {
     right: 0.66rem;
     top: 0.33em;
@@ -4668,7 +4668,7 @@ html.is-reveal-open body {
   left: 0;
   z-index: 1005;
   display: none;
-  background-color: rgba(32, 32, 32, 0.45);
+  background-color: rgba(240, 173, 32, 0.85);
   overflow-y: scroll; }
 
 .reveal {
@@ -4676,10 +4676,10 @@ html.is-reveal-open body {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   display: none;
-  padding: 1rem;
-  border: 1px solid #cccccc;
+  padding: 3rem 0;
+  border: 1px solid #202020;
   border-radius: 0;
-  background-color: white;
+  background-color: #202020;
   position: relative;
   top: 100px;
   margin-right: auto;
@@ -4696,7 +4696,7 @@ html.is-reveal-open body {
     margin-bottom: 0; }
   @media print, screen and (min-width: 40em) {
     .reveal {
-      width: 600px;
+      width: auto;
       max-width: 60rem; } }
   .reveal.collapse {
     padding: 0; }

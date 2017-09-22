@@ -373,8 +373,8 @@ $closebutton-size               : (
   medium        : 2em,
 );
 $closebutton-lineheight         : 1;
-$closebutton-color              : $dark-gray;
-$closebutton-color-hover        : $black;
+$closebutton-color              : $white;                       // WAS $dark-gray
+$closebutton-color-hover        : $palette-yellow;              // WAS $black
 
 //----------------------------------------------------------------------------------------------
 // 16. Drilldown
@@ -777,14 +777,14 @@ $responsive-embed-ratios                : (
 // 47. Reveal
 //----------------------------------------------------------------------------------------------
 
-$reveal-background                      : $white;
-$reveal-width                           : 600px;
+$reveal-background                      : $black;               // WAS $white
+$reveal-width                           : auto;                 // WAS 600px
 $reveal-max-width                       : $global-width;
-$reveal-padding                         : $global-padding;
-$reveal-border                          : 1px solid $medium-gray;
+$reveal-padding                         : rem-calc(48 0);       // WAS $global-padding
+$reveal-border                          : 1px solid $black;     // WAS 1px solid $medium-gray
 $reveal-radius                          : $global-radius;
 $reveal-zindex                          : 1005;
-$reveal-overlay-background              : rgba($black, 0.45);
+$reveal-overlay-background              : rgba(240, 173, 32, 0.85);   // WAS rgba($black, 0.45)
 
 //----------------------------------------------------------------------------------------------
 // 48. Slider
