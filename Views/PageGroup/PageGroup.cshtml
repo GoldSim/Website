@@ -1,1 +1,11 @@
-﻿@Html.Partial("~/Views/Page/Page.cshtml")
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+
+  Topic overviewTopic = Model.Topic.SortedChildren.FirstOrDefault();
+  if (overviewTopic != null) {
+    Response.Redirect(overviewTopic.WebPath);
+  }
+
+}

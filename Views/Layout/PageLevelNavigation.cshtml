@@ -23,7 +23,6 @@
         <!-- Mobile Page Navigation Area -->
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
-            <option value="@Model.NavigationRootTopic.WebPath" @((Model.Topic == null) ? " selected" : "")>Overview</option>
             @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
             {
               if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
@@ -43,7 +42,6 @@
     <!-- Page Navigation Area -->
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
-        <li><a href="@Model.NavigationRootTopic.WebPath" class="@((Model.Topic == null)? "selected" : "")">Overview</a></li>
         @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
         {
           if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
