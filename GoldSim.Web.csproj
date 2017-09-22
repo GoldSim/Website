@@ -2067,6 +2067,7 @@
     <Content Include="Shared\Styles\Base\_tables.scss" />
     <Content Include="Shared\Styles\Components\Accordion\_accordion.scss" />
     <Content Include="Shared\Styles\Components\CallsToAction\_callsToAction.scss" />
+    <Content Include="Shared\Styles\Base\_modals.scss" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
