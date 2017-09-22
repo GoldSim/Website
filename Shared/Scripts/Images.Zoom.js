@@ -9,8 +9,7 @@
   $(document).ready(function() {
 
     /**
-     * Loop through all zoomable items on the page in order to: wrap and append zoom link; add modal element for full-size
-     * image.
+     * Loop through all zoomable items on the page in order to: wrap and append zoom link; add modal element for zoomed image.
      */
     $('.zoomable').each(function() {
 
@@ -28,21 +27,21 @@
       }
 
       // Add wrapper and button to zoomable item
-      $(zoomableItem).wrap(wrapper).after('<button class="js-zoom" data-open="' + imageName + '" data-toggle="' + imageName + '">Zoom In <i class="fa fa-search-plus"></i></button>');
+      $(zoomableItem).wrap(wrapper).after('<button class="js-zoom" data-open="' + imageName + '">Zoom In <i class="fa fa-search-plus"></i></button>');
 
       // Add modal based on zoomable item's image
       $('body').append(imageModal);
 
+      // Re-initialize Foundation for dynamically created modals
+      $('#' + imageName).foundation();
+
     });
 
     /**
-     * Open Foundation Reveal on modal button click
+     * Re-initialize Foundation for zoom buttons
      */
-    $('button.js-zoom').click(function () {
-      var
-        modalToOpen             = $(this).data('open');
-        revealModal             = new Foundation.Reveal($('#' + modalToOpen));
-        revealModal.open();
+    $('button.js-zoom').each(function() {
+      $(this).foundation();
     });
 
   });
