@@ -118,6 +118,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>Admin Login - GoldSim</title>
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css" />
     <style type="text/css">
