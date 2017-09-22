@@ -37,6 +37,7 @@
     "gulp-connect": "^5.0.0",
     "gulp-if": "^2.0.2",
     "gulp-imagemin": "^3.1.1",
+    "gulp-jshint": "^2.0.4",
     "gulp-jsonminify": "^1.0.0",
     "gulp-livereload": "^3.8.1",
     "gulp-minify-html": "^1.0.6",
@@ -47,6 +48,7 @@
     "gulp-uglify": "^3.0.0",
     "gulp-util": "^3.0.8",
     "imagemin-pngcrush": "^5.0.0",
+    "jshint": "^2.9.5",
     "jsonminify": "^0.4.1"
   }
 }
