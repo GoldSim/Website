@@ -2,10 +2,4 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  Topic overviewTopic = Model.Topic.SortedChildren.FirstOrDefault();
-  if (overviewTopic != null) {
-    Response.Redirect(overviewTopic.WebPath);
-  }
-
 }
