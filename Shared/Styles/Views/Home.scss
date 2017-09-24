@@ -216,7 +216,7 @@ main {
       position                  : absolute;
       top                       : 0;
       bottom                    : 0;
-      width                     : rem-calc(36);
+      width                     : rem-calc(20);
       background                : $palette-grey-lightest;
       @include breakpoint(medium) {
         width                   : rem-calc(110);
@@ -228,18 +228,15 @@ main {
       }
       i.fa {
         position                : absolute;
-        top                     : 0;
+        top                     : 40%;
         font-size               : rem-calc(32);
         color                   : lighten($palette-black, 44.5%);       // #959595
-        @include breakpoint(large) {
-          top                   : 40%;
-        }
       }
     }
     .owl-prev {
       left                      : 0;
       i.fa {
-        left                    : rem-calc(36);
+        left                    : rem-calc(4);
         @include breakpoint(medium) {
           left                  : rem-calc(42);
         }
@@ -248,7 +245,7 @@ main {
     .owl-next {
       right                     : 0;
       i.fa {
-        right                   : rem-calc(36);
+        right                   : rem-calc(4);
         @include breakpoint(medium) {
           right                 : rem-calc(42);
         }
@@ -257,6 +254,10 @@ main {
   }
   .owl-item {
     padding                     : rem-calc(0 36);
+    @include breakpoint(small only) {
+      min-height                : rem-calc(512);
+      background-color          : $palette-white;
+    }
     @include breakpoint(medium) {
       padding                   : rem-calc(0 110);
     }
@@ -265,26 +266,40 @@ main {
         margin-bottom           : 0;
       }
     }
+    .description {
+      @include breakpoint(small only) {
+        padding                 : rem-calc(12 0);
+      }
+    }
+    a.toggler {
+      display                   : block;
+      position                  : absolute;
+      right                     : 0;
+      bottom                    : 0;
+      left                      : 0;
+      border-bottom             : 0 none transparent;
+      padding                   : rem-calc(32 0);
+      text-align                : center;
+      color                     : $palette-white;
+      background-color          : $palette-black;
+    }
   }
   li {
     padding-left                : 0;
   }
   h2 {
     margin-bottom               : rem-calc(16);
-    padding                     : rem-calc(0 36);
+    padding                     : 0;
     font-family                 : $body-font-family;
     font-size                   : $body-text-size;
     font-weight                 : 600;
     text-align                  : center;
     @include breakpoint(medium) {
-      padding                   : 0;
       text-align                : left;
     }
   }
-  .text {
-  //padding-right               : rem-calc(40);
-  }
   .screenshot {
+    display                     : block;
     padding                     : rem-calc(16 0 0);
     height                      : 100%;
     text-align                  : center;
@@ -295,7 +310,9 @@ main {
     img {
       margin                    : 0 auto;
       border                    : 1px solid $palette-grey-light;
-      max-width                 : rem-calc(329);
+      @include breakpoint(medium) {
+        max-width               : rem-calc(329);
+      }
     }
   }
 }

@@ -70,10 +70,10 @@
           <header>
             <h1>What can you do with GoldSim?</h1>
           </header>
-          <div class="carousel-wrapper">
-            <div class="owl-carousel" aria-label="What can you do with GoldSim?">
+          <div class="carousel-wrapper hide-for-small-only">
+            <div class="owl-carousel large" aria-label="What can you do with GoldSim?">
               <div class="grid-x">
-                <div class="medium-6 cell text">
+                <div class="medium-6 cell description">
                   <h2>Evaluate Alternatives Using Dynamic Simulation</h2>
                   <p>GoldSim is a powerful and flexible software platform for visualizing and dynamically simulating the future behavior of nearly any kind of physical, financial or organizational system. You build a model in an intuitive manner by literally drawing a picture (an influence diagram) of your system. You can use these models to gain a diagnostic understanding of the system, ask "what if" questions about it, and evaluate alternative designs, policies, and plans.</p>
                 </div>
@@ -85,7 +85,7 @@
                 </div>
               </div>
               <div class="grid-x">
-                <div class="medium-6 cell text">
+                <div class="medium-6 cell description">
                   <h2>Represent Uncertainty Using Monte Carlo Simulation</h2>
                   <p>Because the real world is inherently uncertain, GoldSim has powerful features to allow you to quantitatively represent the random variability and uncertainty that is present in all systems. GoldSim uses Monte Carlo simulation to produce quantitative probabilistic predictions of future performance (e.g., "there is a 25% chance of an adverse outcome") in order to better support the decision-making process.</p>
                 </div>
@@ -97,7 +97,7 @@
                 </div>
               </div>
               <div class="grid-x">
-                <div class="medium-6 cell text">
+                <div class="medium-6 cell description">
                   <h2>Represent Complex Dynamics and Build Realistic Models that Can Still be Easily Understood</h2>
                   <p>GoldSim is a hybrid simulator, allowing you to superimpose the occurrence and consequences of discrete events (e.g., financial transactions, accidents, failures) onto continuously varying systems (i.e., material and information flows). This ability, coupled with features to support the construction of hierarchical, top-down models, facilitates the simulation of large, complex systems while keeping the models easy to understand, navigate and explain to others.</p>
                 </div>
@@ -109,7 +109,7 @@
                 </div>
               </div>
               <div class="grid-x">
-                <div class="medium-6 cell text">
+                <div class="medium-6 cell description">
                   <h2>Tackle Problems that Cannot be Addressed Using Simpler Approaches</h2>
                   <p>The product of over 25 years of development, GoldSim's powerful and flexible featues, ability to create custom interfaces, and specialized extension modules (e.g., for financial modeling, reliability analysis, and mass transport modeling) allow you to address problems that can't be adequately represented using simple simulation approaches.</p>
                   <p>You can learn more about GoldSim by taking the <a href="/Topic/641/">Quick Tour</a>.</p>
@@ -120,6 +120,55 @@
                     <img src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
                   </picture>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-wrapper hide-for-medium">
+            <div class="owl-carousel small" aria-label="What can you do with GoldSim?">
+              <div>
+                <div class="description">
+                  <h2>Evaluate Alternatives Using Dynamic Simulation</h2>
+                  <p>GoldSim is a powerful and flexible software platform for visualizing and dynamically simulating the future behavior of nearly any kind of physical, financial or organizational system. You build a model in an intuitive manner by literally drawing a picture (an influence diagram) of your system. You can use these models to gain a diagnostic understanding of the system, ask "what if" questions about it, and evaluate alternative designs, policies, and plans.</p>
+                </div>
+                <picture id="Slide1Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide01.png" />
+                  <img src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Represent Uncertainty Using Monte Carlo Simulation</h2>
+                  <p>Because the real world is inherently uncertain, GoldSim has powerful features to allow you to quantitatively represent the random variability and uncertainty that is present in all systems. GoldSim uses Monte Carlo simulation to produce quantitative probabilistic predictions of future performance (e.g., "there is a 25% chance of an adverse outcome") in order to better support the decision-making process.</p>
+                </div>
+                <picture id="Slide2Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide02.png" />
+                  <img src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Represent Complex Dynamics and Build Realistic Models that Can Still be Easily Understood</h2>
+                  <p>GoldSim is a hybrid simulator, allowing you to superimpose the occurrence and consequences of discrete events (e.g., financial transactions, accidents, failures) onto continuously varying systems (i.e., material and information flows). This ability, coupled with features to support the construction of hierarchical, top-down models, facilitates the simulation of large, complex systems while keeping the models easy to understand, navigate and explain to others.</p>
+                </div>
+                <picture id="Slide3Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide03.png" />
+                  <img src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Tackle Problems that Cannot be Addressed Using Simpler Approaches</h2>
+                  <p>The product of over 25 years of development, GoldSim's powerful and flexible featues, ability to create custom interfaces, and specialized extension modules (e.g., for financial modeling, reliability analysis, and mass transport modeling) allow you to address problems that can't be adequately represented using simple simulation approaches.</p>
+                  <p>You can learn more about GoldSim by taking the <a href="/Topic/641/">Quick Tour</a>.</p>
+                </div>
+                <picture id="Slide4Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide04.png" />
+                  <img src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
               </div>
             </div>
           </div>
@@ -218,7 +267,10 @@
   <script>
     $(function () {
 
-      $('.owl-carousel').owlCarousel({
+      /**
+       * Instantiate carousel for large and small screens
+       */
+      $('.owl-carousel.large').owlCarousel({
         items: 1,
         margin: 0,
         autoHeight: true,
@@ -228,6 +280,34 @@
           '<i class="fa fa-caret-right"></i>'
         ],
         loop: false
+      });
+      $('.owl-carousel.small').owlCarousel({
+        items: 1,
+        margin: 0,
+        autoHeight: false,
+        nav: true,
+        navText: [
+          '<i class="fa fa-caret-left"></i>',
+          '<i class="fa fa-caret-right"></i>'
+        ],
+        loop: false
+      });
+
+      /**
+       * Handle toggling of carousel slide text / screenshot
+       */
+      $.fn.toggleText = function (textOriginal, textToggled) {
+        if (this.text() == textOriginal) {
+          this.text(textToggled);
+        }
+        else {
+          this.text(textOriginal);
+        }
+        return this;
+      };
+      $('a.js-toggle-slide').click(function () {
+        $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
+        $(this).toggleText('View Screenshot', 'View Description');
       });
 
     });

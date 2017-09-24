@@ -155,7 +155,7 @@ main section[role="region"] {
     position: absolute;
     top: 0;
     bottom: 0;
-    width: 2.25rem;
+    width: 1.25rem;
     background: #f3f3f3; }
     @media print, screen and (min-width: 40em) {
       .usage .owl-nav .owl-prev,
@@ -167,52 +167,66 @@ main section[role="region"] {
     .usage .owl-nav .owl-prev i.fa,
     .usage .owl-nav .owl-next i.fa {
       position: absolute;
-      top: 0;
+      top: 40%;
       font-size: 2rem;
       color: #919191; }
-      @media print, screen and (min-width: 64em) {
-        .usage .owl-nav .owl-prev i.fa,
-        .usage .owl-nav .owl-next i.fa {
-          top: 40%; } }
   .usage .owl-nav .owl-prev {
     left: 0; }
     .usage .owl-nav .owl-prev i.fa {
-      left: 2.25rem; }
+      left: 0.25rem; }
       @media print, screen and (min-width: 40em) {
         .usage .owl-nav .owl-prev i.fa {
           left: 2.625rem; } }
   .usage .owl-nav .owl-next {
     right: 0; }
     .usage .owl-nav .owl-next i.fa {
-      right: 2.25rem; }
+      right: 0.25rem; }
       @media print, screen and (min-width: 40em) {
         .usage .owl-nav .owl-next i.fa {
           right: 2.625rem; } }
 
 .usage .owl-item {
   padding: 0 2.25rem; }
+  @media screen and (max-width: 39.9375em) {
+    .usage .owl-item {
+      min-height: 32rem;
+      background-color: white; } }
   @media print, screen and (min-width: 40em) {
     .usage .owl-item {
       padding: 0 6.875rem; } }
   .usage .owl-item p:last-of-type {
     margin-bottom: 0; }
+  @media screen and (max-width: 39.9375em) {
+    .usage .owl-item .description {
+      padding: 0.75rem 0; } }
+  .usage .owl-item a.toggler {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-bottom: 0 none transparent;
+    padding: 2rem 0;
+    text-align: center;
+    color: white;
+    background-color: #202020; }
 
 .usage li {
   padding-left: 0; }
 
 .usage h2 {
   margin-bottom: 1rem;
-  padding: 0 2.25rem;
+  padding: 0;
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.125rem;
   font-weight: 600;
   text-align: center; }
   @media print, screen and (min-width: 40em) {
     .usage h2 {
-      padding: 0;
       text-align: left; } }
 
 .usage .screenshot {
+  display: block;
   padding: 1rem 0 0;
   height: 100%;
   text-align: center; }
@@ -222,8 +236,10 @@ main section[role="region"] {
       text-align: right; } }
   .usage .screenshot img {
     margin: 0 auto;
-    border: 1px solid #cccccc;
-    max-width: 20.5625rem; }
+    border: 1px solid #cccccc; }
+    @media print, screen and (min-width: 40em) {
+      .usage .screenshot img {
+        max-width: 20.5625rem; } }
 
 .applications .card {
   margin: 0 2.25rem 0.875rem;
