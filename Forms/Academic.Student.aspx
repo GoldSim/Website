@@ -44,7 +44,7 @@
   //Submit button label
     Master.SubmitLabel          = "Send Request";
   //Submission email subject
-    Master.EmailSubject         = "Academic Product Version Application";
+    Master.EmailSubject         = "Academic Product Version Application: Student";
     Master.EmailSender          = "website@goldsim.com";
     Master.SuccessUrl           = "/Topic/755/";
 
