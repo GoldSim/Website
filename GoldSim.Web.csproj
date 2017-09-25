@@ -1566,8 +1566,8 @@
     <Content Include="Forms\Webinars.aspx" />
     <Content Include="Forms\Webinars1.aspx" />
     <Content Include="Global.asax" />
-    <Content Include="Images\Baubles\Bauble.Inset.Placeholder.png" />
-    <Content Include="Images\Baubles\Bauble.Outset.Placeholder.png" />
+    <Content Include="Images\Icons\Baubles\Bauble.Inset.Placeholder.png" />
+    <Content Include="Images\Icons\Baubles\Bauble.Outset.Placeholder.png" />
     <Content Include="Images\Favicons\android-chrome-192x192.png" />
     <Content Include="Images\Favicons\android-chrome-256x256.png" />
     <Content Include="Images\Favicons\apple-touch-icon.png" />
@@ -1584,6 +1584,11 @@
     <Content Include="Images\Home\Slides\Slide02.png" />
     <Content Include="Images\Home\Slides\Slide03.png" />
     <Content Include="Images\Home\Slides\Slide04.png" />
+    <Content Include="Images\Icons\Baubles\BaubleA.svg" />
+    <Content Include="Images\Icons\Baubles\BaubleB.svg" />
+    <Content Include="Images\Icons\Baubles\BaubleC.svg" />
+    <Content Include="Images\Icons\Baubles\BaubleD.svg" />
+    <Content Include="Images\Icons\Baubles\BaubleE.svg" />
     <Content Include="Images\Icons\Close.png" />
     <Content Include="Images\Icons\Minus.Circle.png" />
     <Content Include="Images\Icons\PartnerLogo\CertifiedSolutionProvider.128p.gif" />
