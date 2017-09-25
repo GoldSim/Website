@@ -2,10 +2,15 @@
   position: relative; }
   .wrapper.decorated > img.bauble {
     z-index: 0;
-    position: absolute;
-    top: -14.4375rem;
-    right: -5.25rem;
-    width: 12.625rem; }
+    position: absolute; }
+    .wrapper.decorated > img.bauble.bauble-0 {
+      top: -13.875rem;
+      right: -3.125rem;
+      width: 6.375rem; }
+    .wrapper.decorated > img.bauble.bauble-1 {
+      top: -6.5rem;
+      right: -4.125rem;
+      width: 12.625rem; }
 
 .body.decorated {
   z-index: 2;
@@ -14,6 +19,6 @@
   padding-bottom: 11rem; }
   .body.decorated > img.bauble {
     position: absolute;
-    bottom: -3.4375rem;
-    left: -2.1875rem;
-    width: 13.9375rem; }
+    bottom: -5.6875rem;
+    left: -1.8125rem;
+    width: 14.25rem; }

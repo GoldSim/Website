@@ -6,14 +6,15 @@
 
 @section Head {
   <link rel="stylesheet" type="text/css" href="~/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Page.css" />
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Page.min.css" />
 }
 
-<div class="wrapper decorated">
-  <img src="/Images/Baubles/Bauble.Outset.Placeholder.png" alt="*" class="bauble" />
-  <section class="panel body decorated">
+<div class="wrapper@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("BaubleMap")) ? " decorated" : "")">
+  <!-- @writeBauble(0) -->
+  @writeBauble(1)
+  <section class="panel body@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("BaubleMap")) ? " decorated" : "")">
     @Html.Raw(@Model.Topic.Attributes.Get("Body"))
-    <img src="/Images/Baubles/Bauble.Inset.Placeholder.png" alt="*" class="bauble" />
+    @writeBauble(2)
   </section>
 </div>
 
@@ -21,3 +22,10 @@
   Content Type: Page
   View Location: ~/Views/Page/Page.cshtml
 -->
+
+@helper writeBauble(int position) {
+  string baubleMap = Model.Topic.Attributes.Get("BaubleMap");
+  if (!String.IsNullOrWhiteSpace(baubleMap) && baubleMap.Length >= position) {
+    <img src="/Images/Icons/Baubles/Bauble@(baubleMap[position]).svg" alt="*" class="bauble bauble-@(position)">
+  }
+}

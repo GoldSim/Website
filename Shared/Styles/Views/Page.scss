@@ -24,9 +24,16 @@
     > img.bauble {
       z-index                   : 0;
       position                  : absolute;
-      top                       : rem-calc(-231);
-      right                     : rem-calc(-84);
-      width                     : rem-calc(202);
+      &.bauble-0 {
+        top                     : rem-calc(-222);
+        right                   : rem-calc(-50);
+        width                   : rem-calc(102);
+      }
+      &.bauble-1 {
+        top                     : rem-calc(-104);
+        right                   : rem-calc(-66);
+        width                   : rem-calc(202);
+      }
     }
   }
 }
@@ -37,13 +44,11 @@
     overflow                    : hidden;
     position                    : relative;
     padding-bottom              : rem-calc(176);
-  //background                  : $palette-white url('/Images/Baubles/Bauble.Inset.Placeholder.png') no-repeat -5% 105%;
-  //background-size             : 223px;
     > img.bauble {
       position                  : absolute;
-      bottom                    : rem-calc(-55);
-      left                      : rem-calc(-35);
-      width                     : rem-calc(223);
+      bottom                    : rem-calc(-91);
+      left                      : rem-calc(-29);
+      width                     : rem-calc(228);
     }
   }
 }
