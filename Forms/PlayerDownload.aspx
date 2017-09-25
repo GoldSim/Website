@@ -68,7 +68,7 @@
       <%-- EMAIL --%>
       <GoldSimForm:Email ID="Email" SplitLayout="true" RunAt="Server" />
       <div class="cell">
-        <p class="instructions">Please provide an institutional (i.e., organization, company, academic) email address. Requests from generic domains (e.g., hotmail, yahoo, gmail) will not be accepted. If you are concerned with providing this information, please read our Privacy Policy.</p>
+        <p class="instructions">Please provide an institutional (i.e., organization, company, academic) email address. Requests from generic domains (e.g., hotmail, yahoo, gmail) will not be accepted. If you are concerned with providing this information, please read our <a href="/Topic/4222">privacy policy</a>.</p>
       </div>
 
       <%-- PLAYER INTEREST DESCRIPTION --%>
