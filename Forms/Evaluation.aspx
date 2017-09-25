@@ -115,7 +115,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
-  <p>Trial versions are fully functional expiring 30 days after registration. GoldSim is easy to install, register (and uninstall), and, of course, there is no obligation to buy and your privacy is respected. Free technical support is provided throughout your trial. Trial users also have full access to the GoldSim Knowledge Base and Model Library.</p>
+  <p>Trial versions are fully functional expiring 30 days after registration. GoldSim is easy to install, register (and uninstall), and, of course, there is no obligation to buy and your privacy is respected. Free technical support is provided throughout your trial.</p>
 
   <fieldset style="display: none;">
     <legend>Evaluation Method</legend>
