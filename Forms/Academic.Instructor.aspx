@@ -166,7 +166,7 @@
       </div>
 
       <div class="medium-6 cell Referral Select">
-        <label for="ReferralSelectionList">How did you learn about GoldSim?</label>
+        <label for="ReferralSelectionList" class="required">*How did you learn about GoldSim?</label>
         <asp:DropDownList ID="ReferralSelectionList" runat="server">
           <asp:ListItem Value=""></asp:ListItem>
           <asp:ListItem Value="Google">Google</asp:ListItem>
