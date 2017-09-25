@@ -75,7 +75,7 @@
     <div class="grid-x grid-margin-x">
 
       <div class="cell">
-        <p><em>For information regarding how we use your email address and other contact information, you can refer to our <a href="/Topic/613/">privacy policy</a>.</em></p>
+        <p><em>For information regarding how we use your email address and other contact information, you can refer to our <a href="/Topic/4222/">privacy policy</a>.</em></p>
       </div>
 
       <%-- NAME BLOCK: FNAME, LNAME --%>

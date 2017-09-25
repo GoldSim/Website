@@ -157,7 +157,7 @@
         <GoldSimForm:Email ID="Email" RunAt="Server" />
       </div>
       <div class="cell">
-        <p class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our privacy policy regarding how we use your email address.</p>
+        <p class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
       </div>
       <!-- /Email -->
 

@@ -105,7 +105,7 @@
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
 
   <p>In order to purchase GoldSim, please fill out this form. After we receive the form we will contact you to complete the transaction.</p>
-  <p><em>For information regarding how we use your email address and other contact information, you can refer to our <a href="/Topic/613/">privacy policy</a>.</em></p>
+  <p><em>For information regarding how we use your email address and other contact information, you can refer to our <a href="/Topic/4222/">privacy policy</a>.</em></p>
 
   <fieldset>
     <legend>Product Selection</legend>
