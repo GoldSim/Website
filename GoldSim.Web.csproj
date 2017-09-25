@@ -1535,7 +1535,8 @@
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
     <Content Include="Common\Global\Headers\Form.Headers.inc.aspx" />
-    <Content Include="Forms\Academic.aspx" />
+    <Content Include="Forms\Academic.Student.aspx" />
+    <Content Include="Forms\Academic.Instructor.aspx" />
     <Content Include="Forms\BuyGoldSim.aspx" />
     <Content Include="Forms\Common\FormFields\AddressBlock.ascx" />
     <Content Include="Forms\Common\FormFields\AreaOfFocusSelection.ascx" />

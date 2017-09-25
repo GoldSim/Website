@@ -45,25 +45,11 @@
     Master.SubmitLabel          = "Send Request";
   //Submission email subject
     Master.EmailSubject         = "Academic Product Version Application";
-    Master.EmailSender          = "website@goldsim.com"; // ((IgniaFormField)Email.FindControl("Email")).Value;
+    Master.EmailSender          = "website@goldsim.com";
   //Redirect URL
     Master.SuccessUrl           = "/Topic/755/";
 
 
-    }
-
-/*===========================================================================================================================
-| VALIDATOR: STUDENT SPONSOR
->============================================================================================================================
-| Ensures that the student sponsor contact section is only required if the user selected "Student" affliation.
-\--------------------------------------------------------------------------------------------------------------------------*/
-  void StudentSponsorValidator(object source, ServerValidateEventArgs args) {
-    if (AffiliationSelection.Items.FindByValue("Student").Selected) {
-      Page.Validate("SponsorInformation");
-      }
-    else {
-      args.IsValid = true;
-      }
     }
 
 /*===========================================================================================================================
@@ -129,109 +115,22 @@
       <GoldSimForm:AddressBlock ID="Address" RunAt="Server" />
 
       <%-- COUNTRY SELECTION --%>
-      <div class="medium-6 cell">
+      <div class="cell">
         <GoldSimForm:CountrySelection ID="Country" RunAt="Server" />
-      </div>
-
-      <%-- AFFILIATION --%>
-      <div class="medium-6 cell">
-        <label for="AffiliationSelection" accesskey="A" class="required">*Affiliation</label>
-        <asp:DropDownList ID="AffiliationSelection" runat="server">
-          <asp:ListItem Value="Professor">Professor</asp:ListItem>
-          <asp:ListItem Value="Teacher">Teacher</asp:ListItem>
-          <asp:ListItem Value="Researcher">Researcher</asp:ListItem>
-          <asp:ListItem Value="Student">Student</asp:ListItem>
-        </asp:DropDownList>
-        <asp:RequiredFieldValidator ControlToValidate="AffiliationSelection" RunAt="Server" />
-        <asp:CustomValidator
-          ControlToValidate     = "AffiliationSelection"
-          OnServerValidate      = "StudentSponsorValidator"
-          ErrorMessage          = "Students: please enter your sponsorship contact information."
-          Display               = "None"
-          RunAt                 = "Server"
-          />
       </div>
 
       <%-- AREA OF FOCUS SELECTION --%>
       <GoldSimForm:AreaOfFocusSelection ID="ContactFocus" RunAt="Server" />
 
-    </div>
-  </fieldset>
-
-  <%-- AFFILIATION: STUDENT SPONSOR --%>
-  <fieldset id="SponsorInformation">
-    <legend>Students</legend>
-    <div class="grid-x grid-margin-x">
-
+      <%-- FACULTY URL --%>
       <div class="cell">
-        <p>Please identify a professor or teacher who will act as your sponsor.</p>
+        <Ignia:FormField     ID = "FacultyUrl"
+          LabelName             = "Faculty Web Page"
+          CssClass              = "TextField"
+          RunAt                 = "Server"
+          />
       </div>
 
-      <%-- SPONSOR FIRST NAME --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField     ID = "SponsorFirstName"
-          LabelName             = "Sponsor First Name"
-          AccessKey             = "F"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          ValidationGroup       = "SponsorInformation"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-      <%-- SPONSOR LAST NAME --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField     ID = "SponsorLastName"
-          LabelName             = "Sponsor Last Name"
-          AccessKey             = "L"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          ValidationGroup       = "SponsorInformation"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-      <%-- SPONSOR DEPARTMENT --%>
-      <div class="cell">
-        <Ignia:FormField     ID = "SponsorDepartment"
-          LabelName             = "Sponsor Department"
-          AccessKey             = "D"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          ValidationGroup       = "SponsorInformation"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-      <%-- SPONSOR EMAIL --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField     ID = "SponsorEmail"
-          LabelName             = "Sponsor Email"
-          AccessKey             = "E"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          ValidationGroup       = "SponsorInformation"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-      <%-- SPONSOR PHONE --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField     ID = "SponsorPhone"
-          LabelName             = "Sponsor Telephone"
-          AccessKey             = "T"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          ValidationGroup       = "SponsorInformation"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
     </div>
   </fieldset>
 
@@ -245,7 +144,7 @@
       <%-- SIMULATION PROBLEM DESCRIPTION --%>
       <div class="cell">
         <Ignia:FormField     ID = "ProblemDescription"
-          LabelName             = "What problem are you trying to solve?"
+          LabelName             = "*What problem are you trying to solve?"
           AccessKey             = "p"
           MaxLength             = "150"
           FieldSize             = "468"
