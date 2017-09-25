@@ -119,6 +119,15 @@
         <GoldSimForm:CountrySelection ID="Country" RunAt="Server" />
       </div>
 
+      <%-- AFFILIATION --%>
+      <div class="medium-6 cell is-hidden">
+        <label for="AffiliationSelection" accesskey="A" class="required">*Affiliation</label>
+        <asp:DropDownList ID="AffiliationSelection" runat="server">
+          <asp:ListItem Value="Instructor" Selected="True">Instructor</asp:ListItem>
+          <asp:ListItem Value="Student">Student</asp:ListItem>
+        </asp:DropDownList>
+      </div>
+
       <%-- AREA OF FOCUS SELECTION --%>
       <GoldSimForm:AreaOfFocusSelection ID="ContactFocus" RunAt="Server" />
 
