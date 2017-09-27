@@ -2,7 +2,7 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-  ViewBag.Context = @Model.Topic.Attributes.Get("Category", "") + " Applications";
+  ViewBag.Context = @getCategoryTitle(@Model.Topic.Attributes.Get("Category", "")) + " Applications";
 }
 
 @section PageBodySection {
@@ -147,6 +147,24 @@
       return Model.Topic.Relationships[relationship].ToList();
     }
     return new List<Topic>();
+  }
+
+  /*============================================================================================================================
+  | GET CATEGORY TITLE
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Returns the Category Topic's Title property.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string getCategoryTitle(string categoryKey) {
+    string categoryTitle        = categoryKey;
+    Topic applicationCategories = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:ApplicationCategories:LookupList");
+
+    foreach(Topic applicationCategory in applicationCategories) {
+      if (applicationCategory.Key.Equals(categoryKey)) {
+        categoryTitle           = applicationCategory.Title;
+      }
+    }
+
+    return categoryTitle;
   }
 
 }
