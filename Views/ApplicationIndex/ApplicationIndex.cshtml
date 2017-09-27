@@ -4,13 +4,17 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-@section PageBodySection {
+@section PostTitleSection {
 
-  <!--
-  <section class="panel body">
-    @Html.Raw(HttpUtility.HtmlDecode(@Model.Topic.Attributes.Get("Body")))
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
   </section>
-  -->
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
 
   <section class="panel accordion">
     <ul class="accordion applications" data-accordion data-allow-all-closed="true" data-deep-link="true">
@@ -18,7 +22,7 @@
       @foreach (var category in getCategorizedApplications()) {
 
         <!-- @category.Key -->
-        <li class="accordion-item @(isFirst()? "is-active" : "")" data-accordion-item>
+        <li class="accordion-item" data-accordion-item><!--  @(isFirst()? "is-active" : "") -->
           <a class="accordion-title" href="#@category.Key">@category.Key</a>
 
           <!-- @category Applications -->
