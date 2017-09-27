@@ -1722,6 +1722,7 @@
     <Content Include="Images\PageGroups\PageGroup.Banner.ContaminantTransport.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.DashboardAuthoring.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.DistributedProcessing.png" />
+    <Content Include="Images\PageGroups\PageGroup.Banner.Education.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.Financial.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.GoldSim.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.Reliability.png" />
