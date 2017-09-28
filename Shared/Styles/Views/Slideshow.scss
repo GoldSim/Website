@@ -130,4 +130,9 @@ article {
   &.slide {
     padding-top                 : 0;
   }
+  &.slide {
+    figure:only-child {
+      margin-top                : 0;
+    }
+  }
 }

@@ -88,3 +88,6 @@
 
 article:first-of-type, article.slide {
   padding-top: 0; }
+
+article.slide figure:only-child {
+  margin-top: 0; }
