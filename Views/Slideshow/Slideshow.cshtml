@@ -128,7 +128,6 @@
     function reflectDisabledState(navButton) {
       $('.owl-prev.custom, .owl-next.custom').removeClass('disabled');
       if ($('.owl-nav.top ' + navButton).hasClass('disabled')) {
-        console.log('navButton: ' + navButton);
         $(navButton + '.custom').addClass('disabled');
       }
     }
