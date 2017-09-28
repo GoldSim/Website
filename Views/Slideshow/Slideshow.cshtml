@@ -52,6 +52,7 @@
         items                   : 1,
         URLhashListener         : true,
         margin                  : 10,
+        autoHeight              : false,
         startPosition           : 'URLHash',
         nav                     : true,
         navText                 : [
@@ -70,9 +71,11 @@
       /**
        * Recalculate carousel stage height
        */
-      adjustStageHeight('.owl-item.active article.slide');
+      setTimeout(function() {
+        adjustStageHeight('.owl-item.active');
+      }, 500);
       $carousel.on('translated.owl.carousel', function (event) {
-        adjustStageHeight('.owl-item.active article.slide');
+        adjustStageHeight('.owl-item.active');
       });
 
       /**
