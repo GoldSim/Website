@@ -27,6 +27,7 @@
     </NuGetPackageImportStamp>
     <TargetFrameworkProfile />
     <TypeScriptToolsVersion>1.8</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -2076,6 +2077,7 @@
     <Content Include="Shared\Styles\Components\CallsToAction\_callsToAction.scss" />
     <Content Include="Shared\Styles\Base\_modals.scss" />
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
+    <Content Include="Views\ExampleApplication\ExampleApplication.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
