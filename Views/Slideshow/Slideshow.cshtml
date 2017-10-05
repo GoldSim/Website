@@ -40,7 +40,7 @@
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.js"></script>
+  <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
   <script>
     $(function () {
 
@@ -50,6 +50,7 @@
       var $carousel             = $('.owl-carousel');
       $carousel.owlCarousel({
         items                   : 1,
+        lazyLoad                : true,
         URLhashListener         : true,
         margin                  : 10,
         autoHeight              : false,
