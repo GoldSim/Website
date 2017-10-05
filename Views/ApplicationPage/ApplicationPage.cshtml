@@ -40,10 +40,10 @@
       <!-- /Model Image -->
     }
 
-    @if (getIncomingRelationships("CaseStudy").Count > 0) {
+    @if (getIncomingRelationships("ExampleApplication").Count > 0) {
       <!-- Related Case Studies -->
-      <h1 id="CaseStudies">Case Studies</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("CaseStudy"), "case-study"))
+      <h1 id="Examples">Examples</h1>
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("ExampleApplication"), "case-study"))
       <!-- /Related Case Studies -->
     }
 
