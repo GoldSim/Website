@@ -1738,6 +1738,7 @@
     <Content Include="Configuration\rewriteMaps.config" />
     <Content Include="Configuration\rewriteRules.config" />
     <Content Include="Images\Favicons\manifest.json" />
+    <Content Include="Configuration\appSettings.config" />
     <None Include="Shared\Scripts\Vendor\jQuery\jquery-3.0.0-vsdoc.js" />
     <Content Include="Shared\Scripts\FileIcons.js" />
     <Content Include="Shared\Scripts\Images.Zoom.js" />
