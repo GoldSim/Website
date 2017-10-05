@@ -353,6 +353,7 @@ typings/
 # Application settings
 **/connectionStrings.*
 **/smtp.config
+**/appSettings.config
 
 # Gulp build process files
 /node_modules
