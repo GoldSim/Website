@@ -1,10 +1,11 @@
-﻿@{
+﻿@using System.Configuration;
+@{
   ViewBag.Title = "Search";
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
 @section Head {
-  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.min.css" type="text/css" media="all" />
 }
 
 @section PageBodySection {
@@ -12,7 +13,11 @@
 
     <!-- Body Content -->
     <article class="page body search results">
-      <gcse:search queryParameterName="SearchText" enableAutoComplete="true"></gcse:search>
+      <form id="SearchResultSearchForm">
+        <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
+      </form>
+      <div id="SearchResults"></div>
+      <div id="Pagination" class="pagination"></div>
     </article>
     <!-- /Body Content -->
 
@@ -23,18 +28,90 @@
   <script>
     $(function () {
 
-      var resetSearchButtonSrc  = setInterval(function(){
-        console.log($('input.gsc-search-button').attr('title'));
-        if ($('.gsc-search-button input[type="image"]').attr('src').indexOf('search_box_icon') > -1) {
-          $('.gsc-search-button input[type="image"]').attr('src', '/Images/Icons/Search.png');
-          stopSrcReset();
-        }
-      }, 750);
+      /**
+       * Pre-populate results page search input value
+       */
+      $('#SearchResultsSearchQuery').val(getQuerystringValue('SearchText'));
 
-      function stopSrcReset() {
-        clearInterval(resetSearchButtonSrc);
-      }
+      /**
+       * Build initial results set and pagination
+       */
+      getSearchResults();
+      getSearchResultsPagination();
+
+      /**
+       * Handle pagination interaction
+       */
+      $(document).on('click', '#Pagination a', function (e) {
+        e.preventDefault();
+        var offset              = $(this).data('offset');
+        $('#SearchResults').html('');
+        getSearchResults(offset);
+      });
 
     });
+
+    /**
+     * Establish Bing Search API variables
+     */
+    var
+      apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
+      customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
+      searchQuery               = getQuerystringValue('SearchText'),
+      baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v5.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off';
+
+    /**
+      * Build a set of search results based on the offset/page requested
+      */
+    function getSearchResults(offset) {
+      offset                    = offset ? offset : 0;
+      $.ajax({
+        url                     : baseApiUrl + '&count=15&offset=' + offset + '&textDecorations=true&textFormat=HTML',
+        headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
+        success                 : function (result, status, xhr) {
+          var searchResults     = result.webPages.value;
+          for (var i = 0; i < searchResults.length; i++) {
+            var
+              title             = searchResults[i].name,
+              url               = searchResults[i].url,
+              displayUrl        = searchResults[i].displayUrl,
+              snippet           = searchResults[i].snippet,
+              searchResult      = '<div class="result"><a href="' + url + '" class="title">' + title + '</a><br/><small>' + displayUrl + '</small><p>' + snippet + '</p></div>';
+            $('#SearchResults').append(searchResult);
+          }
+        }
+      });
+    };
+
+    /**
+      * Build search results pagination links based on the total number of results
+      */
+    function getSearchResultsPagination() {
+      $.ajax({
+        url                     : baseApiUrl,
+        headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
+        success                 : function (result, status, xhr) {
+          var
+            totalResults        = result.webPages.totalEstimatedMatches,
+            pageSize            = 15,
+            totalPages          = Math.ceil(totalResults/pageSize);
+          for (var i = 0; i < totalPages; i++) {
+            $('#Pagination').append('<a href="#" data-offset="' + (i*pageSize) + '">' + (i+1) + '</a>');
+          }
+        }
+      });
+    };
+
+    /**
+     * Determine and return the value for the requested querystring parameter
+     */
+    function getQuerystringValue(parameter) {
+      parameter = parameter.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var
+        regex = new RegExp('[\\?&]' + parameter + '=([^&#]*)'),
+        results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
   </script>
 }
