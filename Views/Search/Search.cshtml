@@ -42,7 +42,7 @@
       /**
        * Handle pagination interaction
        */
-      $(document).on('click', '#Pagination a', function (e) {
+      $(document).on('click', '#Pagination button', function (e) {
         e.preventDefault();
         var offset              = $(this).data('offset');
         $('#SearchResults').html('');
@@ -96,7 +96,7 @@
             pageSize            = 15,
             totalPages          = Math.ceil(totalResults/pageSize);
           for (var i = 0; i < totalPages; i++) {
-            $('#Pagination').append('<a href="#" data-offset="' + (i*pageSize) + '">' + (i+1) + '</a>');
+            $('#Pagination').append('<button type="button" data-offset="' + (i*pageSize) + '">' + (i+1) + '</button>');
           }
         }
       });
