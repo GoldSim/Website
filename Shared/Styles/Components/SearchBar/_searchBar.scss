@@ -127,8 +127,14 @@ table.gsc-completion-container {
     @include breakpoint(large) {
       max-width                 : rem-calc(420);
     }
+    form {
+      display                   : table-row;
+    }
     input {
+      border                    : 0 none transparent;
+      margin-bottom             : 0;
       box-shadow                : none;
+      font-size                 : rem-calc(30);
       background-color          : transparent !important;
       &::-webkit-input-placeholder {
         color                   : transparent;
@@ -150,7 +156,8 @@ table.gsc-completion-container {
     &.closed {
       background-color          : transparent;
       transition                : background-color 0.2s linear 0.3s;
-      input.gsc-input {
+      input.gsc-input,
+      input[type="search"] {
         width                   : 0 !important;
         transition              : width 0.4s linear;
       }
@@ -184,7 +191,8 @@ table.gsc-completion-container {
           color                 : rgb(169, 169, 169);
           transition            : color 0.1s linear 0.25s;
         }
-        &.gsc-input {
+        &.gsc-input,
+        &[type="search"] {
           width                 : rem-calc(216) !important;
           transition            : width 0.4s linear;
         }
@@ -194,12 +202,14 @@ table.gsc-completion-container {
       }
     }
     div#___gcse_0,
+    div.input,
     .buttons {
       display                   : table-cell;
       vertical-align            : middle;
       height                    : 100%;
     }
-    .gsc-control-searchbox-only {
+    .gsc-control-searchbox-only,
+    div.input {
       margin-top                : rem-calc(1);
       padding-left              : rem-calc(40);
     }

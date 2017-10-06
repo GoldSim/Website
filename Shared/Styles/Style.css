@@ -6889,9 +6889,14 @@ table.gsc-completion-container td {
   @media print, screen and (min-width: 64em) {
     .search.form {
       max-width: 26.25rem; } }
+  .search.form form {
+    display: table-row; }
   .search.form input {
+    border: 0 none transparent;
+    margin-bottom: 0;
     -webkit-box-shadow: none;
             box-shadow: none;
+    font-size: 1.875rem;
     background-color: transparent !important; }
     .search.form input::-webkit-input-placeholder {
       color: transparent;
@@ -6909,7 +6914,8 @@ table.gsc-completion-container td {
     background-color: transparent;
     -webkit-transition: background-color 0.2s linear 0.3s;
     transition: background-color 0.2s linear 0.3s; }
-    .search.form.closed input.gsc-input {
+    .search.form.closed input.gsc-input,
+    .search.form.closed input[type="search"] {
       width: 0 !important;
       -webkit-transition: width 0.4s linear;
       transition: width 0.4s linear; }
@@ -6937,18 +6943,20 @@ table.gsc-completion-container td {
       color: darkgray;
       -webkit-transition: color 0.1s linear 0.25s;
       transition: color 0.1s linear 0.25s; }
-    .search.form.open input.gsc-input {
+    .search.form.open input.gsc-input, .search.form.open input[type="search"] {
       width: 13.5rem !important;
       -webkit-transition: width 0.4s linear;
       transition: width 0.4s linear; }
     .search.form.open .icon {
       background-image: url("/Images/Icons/Close.png"); }
   .search.form div#___gcse_0,
+  .search.form div.input,
   .search.form .buttons {
     display: table-cell;
     vertical-align: middle;
     height: 100%; }
-  .search.form .gsc-control-searchbox-only {
+  .search.form .gsc-control-searchbox-only,
+  .search.form div.input {
     margin-top: 0.0625rem;
     padding-left: 2.5rem; }
   .search.form .buttons {
