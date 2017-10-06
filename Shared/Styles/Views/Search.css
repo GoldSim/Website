@@ -1,3 +1,50 @@
+.results input {
+  margin-bottom: 2rem;
+  padding: 0.75rem 0.5rem;
+  min-height: 3rem;
+  font-size: 1.875rem;
+  background: transparent url("/Images/Icons/Search.png") no-repeat right 10px center;
+  background-size: 36px; }
+
+.results .result {
+  padding-bottom: 1rem; }
+  .results .result .title {
+    font-size: 1.25rem; }
+    .results .result .title b,
+    .results .result .title strong {
+      font-weight: 600; }
+  .results .result small {
+    display: inline-block;
+    position: relative;
+    top: -0.3125rem;
+    color: #999999; }
+    .results .result small b,
+    .results .result small strong {
+      font-weight: normal; }
+
+.results .pagination {
+  margin-top: 2rem; }
+  .results .pagination button {
+    display: inline-block;
+    margin: 0 0.5rem;
+    padding-top: 0.125rem;
+    min-width: 2.25rem;
+    min-height: 2.25rem;
+    text-align: center;
+    font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 1.125rem;
+    color: #202020;
+    cursor: pointer; }
+    .results .pagination button:first-of-type {
+      margin-left: 0; }
+    .results .pagination button:hover, .results .pagination button:focus, .results .pagination button:active, .results .pagination button.selected {
+      font-weight: bold; }
+    .results .pagination button:hover, .results .pagination button.selected {
+      background-color: #fec10d; }
+    .results .pagination button:focus, .results .pagination button:active {
+      color: #fec10d;
+      background-color: #202020; }
+
 .gsc-results-wrapper-nooverlay table td {
   background-color: white; }
 
