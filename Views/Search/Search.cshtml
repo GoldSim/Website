@@ -42,11 +42,26 @@
       /**
        * Handle pagination interaction
        */
-      $(document).on('click', '#Pagination button', function (e) {
-        e.preventDefault();
+      $(document).on('click', '#Pagination button', function() {
         var offset              = $(this).data('offset');
+
+        // Clear current results
         $('#SearchResults').html('');
+
+        // Get results for selected page
         getSearchResults(offset);
+
+        // Update selected pagination button
+        $('#Pagination button').each(function () {
+          $(this).removeClass('selected');
+        });
+        $(this).addClass('selected').blur();
+
+        // Scroll back to top of content
+        $('html, body').animate({
+          scrollTop: $('article[itemprop="mainContentOfPage"]').offset().top
+        }, 'slow');
+
       });
 
     });
