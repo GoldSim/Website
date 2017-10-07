@@ -17,7 +17,7 @@
         <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
       </form>
       <div id="SearchResults"></div>
-      <div id="Pagination" class="pagination"></div>
+      <div id="Pagination" class="pagination text-center"></div>
     </article>
     <!-- /Body Content -->
 
@@ -25,6 +25,7 @@
 }
 
 @section Scripts {
+  <script src="~/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
   <script>
     $(function () {
 
@@ -110,9 +111,24 @@
             totalResults        = result.webPages.totalEstimatedMatches,
             pageSize            = 15,
             totalPages          = Math.ceil(totalResults/pageSize);
-          for (var i = 0; i < totalPages; i++) {
-            $('#Pagination').append('<button type="button" data-offset="' + (i*pageSize) + '">' + (i+1) + '</button>');
-          }
+
+          $('#Pagination').pagination({
+            items               : totalResults,
+            itemsOnPage         : pageSize,
+            hrefTextPrefix      : '#Page',
+            onPageClick         : function (pageNumber, event) {
+              getSearchResults(((pageNumber-1)*pageSize));
+            },
+            onInit              : function() {
+              var
+                urlHash         = window.location.hash.substr(1),
+                pageNumber      = 1;
+              if (urlHash.indexOf('Page') > -1) {
+                pageNumber      = urlHash.substr(4);
+                getSearchResults(((pageNumber-1)*pageSize));
+              }
+            }
+          });
         }
       });
     };
