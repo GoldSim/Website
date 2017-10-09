@@ -1,10 +1,11 @@
 .results input {
-  margin-bottom: 2rem;
-  padding: 0.75rem 0.5rem;
-  min-height: 3rem;
-  font-size: 1.875rem;
-  background: transparent url("/Images/Icons/Search.png") no-repeat right 10px center;
-  background-size: 36px; }
+  padding: 0.75rem 0.5rem; }
+  .results input[type="search"] {
+    margin-bottom: 2rem;
+    min-height: 3rem;
+    font-size: 1.875rem;
+    background: transparent url("/Images/Icons/Search.png") no-repeat right 10px center;
+    background-size: 36px; }
 
 .results .result {
   padding-bottom: 1rem; }
@@ -24,6 +25,42 @@
 
 .results .pagination {
   margin-top: 2rem; }
+  .results .pagination ul {
+    margin-left: 0; }
+    .results .pagination ul li {
+      padding-left: 0.5rem;
+      font-size: 1.125rem;
+      line-height: 100%; }
+      .results .pagination ul li a,
+      .results .pagination ul li span.current {
+        border: 2px solid transparent;
+        border-radius: 3px;
+        padding: 0.5rem 0.75rem;
+        font-weight: 600;
+        color: #202020; }
+      .results .pagination ul li a {
+        color: #202020; }
+        .results .pagination ul li a:focus, .results .pagination ul li a:active, .results .pagination ul li a.page-link.prev, .results .pagination ul li a.page-link.next {
+          border-color: #fec10d; }
+        .results .pagination ul li a:focus, .results .pagination ul li a:active {
+          color: #fec10d; }
+        .results .pagination ul li a:hover {
+          border-color: #202020;
+          color: #fec10d;
+          background-color: #202020; }
+        .results .pagination ul li a.page-link.prev, .results .pagination ul li a.page-link.next {
+          background-color: #fec10d; }
+          .results .pagination ul li a.page-link.prev:hover, .results .pagination ul li a.page-link.next:hover {
+            border-color: #202020;
+            background-color: #202020; }
+          .results .pagination ul li a.page-link.prev:focus, .results .pagination ul li a.page-link.prev:active, .results .pagination ul li a.page-link.next:focus, .results .pagination ul li a.page-link.next:active {
+            border-color: #fec10d;
+            background-color: white; }
+      .results .pagination ul li span.current {
+        display: block;
+        border-color: #fec10d; }
+      .results .pagination ul li.disabled {
+        opacity: 0.25; }
   .results .pagination button {
     display: inline-block;
     margin: 0 0.5rem;
@@ -44,6 +81,8 @@
     .results .pagination button:focus, .results .pagination button:active {
       color: #fec10d;
       background-color: #202020; }
+  .results .pagination .ellipse.clickable {
+    cursor: pointer; }
 
 .gsc-results-wrapper-nooverlay table td {
   background-color: white; }
