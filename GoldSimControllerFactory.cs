@@ -37,9 +37,11 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
+      #pragma warning disable CS0618
       var topicRepository       = TopicRepository.DataProvider;
       var rootTopic             = TopicRepository.RootTopic;
       var topicRoutingService   = new TopicRoutingService(topicRepository, requestContext);
+      #pragma warning restore CS0618
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
