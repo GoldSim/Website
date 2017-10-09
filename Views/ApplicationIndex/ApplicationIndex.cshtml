@@ -8,7 +8,7 @@
 
   <!-- Body Content -->
   <section class="embedded pane body">
-    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
   </section>
   <!-- Body Content -->
 
@@ -64,7 +64,7 @@
     if (_categorizedApplications == null) {
 
       _categorizedApplications = new Dictionary<string, List<Topic>>();
-      var contentType = Model.Topic.Attributes.Get("FilteredDocumentType");
+      var contentType = Model.Topic.Attributes.GetValue("FilteredDocumentType");
 
       //### BUG JJC082717: This is a workaround for a bug in the datamodel; FilteredDocumentType should map to ContentType keys.
       switch (contentType.Substring(contentType.LastIndexOf(":")+1)) {
@@ -79,12 +79,12 @@
 
       foreach (Topic applicationPage in Model.Topic.FindAllByAttribute("ContentType", contentType)) {
         if (applicationPage.ContentType == "ApplicationPage") {
-          var category = applicationPage.Attributes.Get("Category");
+          var category = applicationPage.Attributes.GetValue("Category");
           addApplicationPage(category, applicationPage);
         }
         else if (applicationPage.Relationships.Contains("Applications")) {
           foreach (Topic application in applicationPage.Relationships["Applications"]) {
-            var category = application.Attributes.Get("Category");
+            var category = application.Attributes.GetValue("Category");
             addApplicationPage(category, applicationPage);
           }
         }
@@ -103,7 +103,7 @@
     string categoryTitle        = categoryKey;
     Topic applicationCategories = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:ApplicationCategories:LookupList");
 
-    foreach(Topic applicationCategory in applicationCategories) {
+    foreach(Topic applicationCategory in applicationCategories.Children) {
       if (applicationCategory.Key.Equals(categoryKey)) {
         categoryTitle           = applicationCategory.Title;
       }

@@ -6,7 +6,7 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
-      @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
+      @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted) {
         @WriteMenu(topic, false);
       }
     </ul>
@@ -15,7 +15,7 @@
   <nav id="PrimaryNavigation" class="navigation primary grid-x show-for-large">
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
-        @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren) {
+        @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted) {
           @WriteMenu(topic, true);
         }
       </ul>
@@ -34,14 +34,14 @@
   @*============================================================================================================================
   | DEFINE VARIABLES
   \---------------------------------------------------------------------------------------------------------------------------*@
-  var hasChildren = !topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Count(IsValid) > 2;
+  var hasChildren = !topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Children.Count(IsValid) > 2;
 
   @*============================================================================================================================
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
     <a href="@(!hasChildren || isDesktop? @topic.WebPath : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")">
-      @topic.Attributes.Get("ShortTitle", @topic.Title)
+      @topic.Attributes.GetValue("ShortTitle", @topic.Title)
     </a>
 
     @*==========================================================================================================================
@@ -53,7 +53,7 @@
           @if (!isDesktop) {
             <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")">Overview</a>
           }
-          @foreach (Topic childTopic in topic.SortedChildren) {
+          @foreach (Topic childTopic in topic.Children.Sorted) {
             @WriteMenu(childTopic, isDesktop, indentLevel + 1);
           }
       </ul>
@@ -69,9 +69,9 @@
   \---------------------------------------------------------------------------------------------------------------------------*/
   public bool IsValid(Topic topic) {
     return
-    topic.Attributes.Get("IsInactive") != "1" &&
-    topic.Attributes.Get("IsDisabled") != "1" &&
-    topic.Attributes.Get("IsHidden") != "1";
+    topic.Attributes.GetValue("IsInactive") != "1" &&
+    topic.Attributes.GetValue("IsDisabled") != "1" &&
+    topic.Attributes.GetValue("IsHidden") != "1";
   }
 
   /*============================================================================================================================

@@ -9,11 +9,11 @@
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Page.min.css" />
 }
 
-<div class="wrapper@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("BaubleMap")) ? " decorated" : "")">
+<div class="wrapper@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.GetValue("BaubleMap")) ? " decorated" : "")">
   <!-- @writeBauble(0) -->
   @writeBauble(1)
-  <section class="panel body@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("BaubleMap")) ? " decorated" : "")">
-    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+  <section class="panel body@(!String.IsNullOrWhiteSpace(Model.Topic.Attributes.GetValue("BaubleMap")) ? " decorated" : "")">
+    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
     @writeBauble(2)
   </section>
 </div>
@@ -24,7 +24,7 @@
 -->
 
 @helper writeBauble(int position) {
-  string baubleMap = Model.Topic.Attributes.Get("BaubleMap");
+  string baubleMap = Model.Topic.Attributes.GetValue("BaubleMap");
   if (!String.IsNullOrWhiteSpace(baubleMap) && baubleMap.Length >= position) {
     <img src="/Images/Icons/Baubles/Bauble@(baubleMap[position]).svg" alt="*" class="bauble bauble-@(position)">
   }

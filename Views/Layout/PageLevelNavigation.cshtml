@@ -18,16 +18,16 @@
       <div class="grid-x">
         <h1 class="title short cell">@Model.NavigationRootTopic.Title</h1>
       </div>
-      @if (@Model.NavigationRootTopic.SortedChildren.Count() > 0)
+      @if (@Model.NavigationRootTopic.Children.Sorted.Count() > 0)
       {
         <!-- Mobile Page Navigation Area -->
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
-            @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
+            @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted)
             {
-              if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+              if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
               {
-                <option value="@topic.WebPath" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.Get("ShortTitle", @topic.Title)</option>
+                <option value="@topic.WebPath" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.GetValue("ShortTitle", @topic.Title)</option>
               }
             }
           </select>
@@ -38,15 +38,15 @@
   </header>
   <!-- /Page Title Area -->
 
-  if (@Model.NavigationRootTopic.SortedChildren.Count() > 0) {
+  if (@Model.NavigationRootTopic.Children.Sorted.Count() > 0) {
     <!-- Page Navigation Area -->
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
-        @foreach (Topic topic in @Model.NavigationRootTopic.SortedChildren)
+        @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted)
         {
-          if (topic.Attributes.Get("IsHidden", "0").Equals("0"))
+          if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
           {
-            <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.Get("ShortTitle", @topic.Title)</a></li>
+            <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.GetValue("ShortTitle", @topic.Title)</a></li>
           }
         }
       </ul>
@@ -66,8 +66,8 @@
 
     // Define variables
     string bannerImageStyle     = "";
-    if (Model.NavigationRootTopic != null && !String.IsNullOrEmpty(@Model.NavigationRootTopic.Attributes.Get("HeaderImageURL", ""))) {
-      bannerImageStyle          = ", url(" + @Model.NavigationRootTopic.Attributes.Get("HeaderImageURL", "") + ")";
+    if (Model.NavigationRootTopic != null && !String.IsNullOrEmpty(@Model.NavigationRootTopic.Attributes.GetValue("HeaderImageURL", ""))) {
+      bannerImageStyle          = ", url(" + @Model.NavigationRootTopic.Attributes.GetValue("HeaderImageURL", "") + ")";
     }
 
     // Return background banner image style

@@ -2,40 +2,40 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-  ViewBag.Context = @getCategoryTitle(@Model.Topic.Attributes.Get("Category", "")) + " Applications";
+  ViewBag.Context = @getCategoryTitle(@Model.Topic.Attributes.GetValue("Category", "")) + " Applications";
 }
 
 @section PageBodySection {
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ThumbnailImage"))) {
       <!-- Thumbnail Image -->
       <picture class="callout picture thumbnail">
-        <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
-        <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
+        <source srcset="@Model.Topic.Attributes.GetValue("ThumbnailImage")" />
+        <img src="@Model.Topic.Attributes.GetValue("ThumbnailImage")" alt="@Model.Topic.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Abstract", ""))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Abstract", ""))) {
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Html.Raw(@Model.Topic.Attributes.Get("Abstract", ""))</p>
+      <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Abstract", ""))</p>
       <!-- /Abstract -->
     }
 
     <!-- Body Content -->
     <article class="page body">
-      @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
     </article>
     <!-- /Body Content -->
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ModelImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ModelImage"))) {
       <!-- Model Image -->
       <figure class="illustration full" id="Screenshot">
-        <img src="@Model.Topic.Attributes.Get("ModelImage")" alt="model" />
+        <img src="@Model.Topic.Attributes.GetValue("ModelImage")" alt="model" />
       </figure>
       <!-- /Model Image -->
     }
@@ -59,7 +59,7 @@
       <h1 id="WhitePapers">White Papers</h1>
       <ul>
         @foreach (Topic paper in getIncomingRelationships("WhitePaper")) {
-          <li><a href="@paper.Attributes.Get("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+          <li><a href="@paper.Attributes.GetValue("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
@@ -70,19 +70,19 @@
       @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPaper"))
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.Get("URL"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("URL"))) {
 
       <!-- Learn More -->
       <h1 id="LearnMore">Learn More</h1>
       <ul>
-        @if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Approaches")) {
+        @if (@Model.Topic.Attributes.GetValue("CompareTo", "None").EndsWith("Approaches")) {
           <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
         }
-        else if (@Model.Topic.Attributes.Get("CompareTo", "None").EndsWith("Excel")) {
+        else if (@Model.Topic.Attributes.GetValue("CompareTo", "None").EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
-        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreURL"))) {
-          <li><a href="@Model.Topic.Attributes.Get("LearnMoreURL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("LearnMoreURL"))) {
+          <li><a href="@Model.Topic.Attributes.GetValue("LearnMoreURL")">@Model.Topic.Attributes.GetValue("LearnMoreLabel", "Learn more")</a></li>
         }
       </ul>
       <!-- Learn More -->
@@ -118,9 +118,9 @@
       if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
 
         // Loop through incoming Applications relationships to populate topic lists
-        foreach (Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].SortedChildren) {
+        foreach (Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].Sorted) {
           if (
-            relatedTopic.Attributes.Get("DocumentType", relatedTopic.ContentType).Equals(contentType) &&
+            relatedTopic.Attributes.GetValue("DocumentType", relatedTopic.ContentType).Equals(contentType) &&
             !incomingRelationships.Contains(relatedTopic)
           ) {
             incomingRelationships.Add(relatedTopic);

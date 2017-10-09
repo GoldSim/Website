@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@Model.Topic.Attributes.Get("MetaTitle", Model.Topic.Title) - GoldSim</title>
-    <meta name="keywords" content="@Model.Topic.Attributes.Get("MetaKeywords")" />
-    <meta name="description" content="@Model.Topic.Attributes.Get("MetaDescription", Model.Topic.Attributes.Get("Description", Model.Topic.Attributes.Get("Abstract", "")))" />
+    <title>@Model.Topic.Attributes.GetValue("MetaTitle", Model.Topic.Title) - GoldSim</title>
+    <meta name="keywords" content="@Model.Topic.Attributes.GetValue("MetaKeywords")" />
+    <meta name="description" content="@Model.Topic.Attributes.GetValue("MetaDescription", Model.Topic.Attributes.GetValue("Description", Model.Topic.Attributes.GetValue("Abstract", "")))" />
     <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
     <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
     <link rel="canonical" href="https://www.goldsim.com/@Request.Path.ToLower().TrimStart('/')" />
@@ -117,8 +117,8 @@
               <h1 class="page title long cell">
                 @(Model.Topic.ContentType.Equals("PageGroup")? "Overview" : @Model.Topic.Title)
               </h1>
-              @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.Get("Subtitle"))) {
-                <p class="subtitle">@Model.Topic.Attributes.Get("Subtitle")</p>
+              @if (!String.IsNullOrWhiteSpace(Model.Topic.Attributes.GetValue("Subtitle"))) {
+                <p class="subtitle">@Model.Topic.Attributes.GetValue("Subtitle")</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
                 @RenderSection("PostTitleSection")

@@ -18,10 +18,10 @@
 @section PostTitleSection {
 
   <!-- Post Title -->
-  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))? "8" : "12") cell align-middle metadata">
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Customer"))) {
+  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))? "8" : "12") cell align-middle metadata">
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Customer"))) {
       <strong>Client:</strong>
-      @Html.Raw(@customer(@Model.Topic.Attributes.Get("Customer"), @Model.Topic.Attributes.Get("CustomerURL")))
+      @Html.Raw(@customer(@Model.Topic.Attributes.GetValue("Customer"), @Model.Topic.Attributes.GetValue("CustomerURL")))
       <br/>
     }
     @if(applications.Count > 0) {
@@ -31,9 +31,9 @@
       }
     }
   </div>
-  @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("DownloadURL"))) {
+  @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))) {
     <div class="medium-4 cell align-middle text-right metadata">
-      @Html.Raw(downloadButton(@Model.Topic.Attributes.Get("DownloadURL")))
+      @Html.Raw(downloadButton(@Model.Topic.Attributes.GetValue("DownloadURL")))
     </div>
   }
   <!-- /Post Title -->
@@ -44,29 +44,29 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("ThumbnailImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ThumbnailImage"))) {
       <!-- Thumbnail Image -->
       <picture class="callout picture">
-        <source srcset="@Model.Topic.Attributes.Get("ThumbnailImage")" />
-        <img src="@Model.Topic.Attributes.Get("ThumbnailImage")" alt="@Model.Topic.Title">
+        <source srcset="@Model.Topic.Attributes.GetValue("ThumbnailImage")" />
+        <img src="@Model.Topic.Attributes.GetValue("ThumbnailImage")" alt="@Model.Topic.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("Abstract", ""))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Abstract", ""))) {
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Html.Raw(@Model.Topic.Attributes.Get("Abstract", ""))</p>
+      <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Abstract", ""))</p>
       <!-- /Abstract -->
     }
 
-    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.Get("LearnMoreURL"))) {
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("LearnMoreURL"))) {
       <h1>Learn More</h1>
       <ul>
-        <li><a href="@Model.Topic.Attributes.Get("LearnMoreURL")">@Model.Topic.Attributes.Get("LearnMoreLabel", "Learn more")</a></li>
+        <li><a href="@Model.Topic.Attributes.GetValue("LearnMoreURL")">@Model.Topic.Attributes.GetValue("LearnMoreLabel", "Learn more")</a></li>
       </ul>
     }
 

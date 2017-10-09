@@ -31,7 +31,7 @@
               <h1 class="page title short">@Model.Topic.Title</h1>
 
               <!-- Long Title (Subtitle) -->
-              <h1 class="page title long">@Model.Topic.Attributes.Get("Subtitle")</h1>
+              <h1 class="page title long">@Model.Topic.Attributes.GetValue("Subtitle")</h1>
 
               <!-- Video -->
               <div class="responsive-embed widescreen video">
@@ -61,7 +61,7 @@
           <header>
             <h1>What is GoldSim?</h1>
           </header>
-          @Html.Raw(@Model.Topic.Attributes.Get("Introduction"))
+          @Html.Raw(@Model.Topic.Attributes.GetValue("Introduction"))
         </section>
         <!-- /Introduction Pane -->
 
@@ -197,8 +197,8 @@
                 <h2>Environmental<br/>Systems Modeling</h2>
                 @if (EnvironmentalSystems != null) {
                   <ul id="EnvironmentalApplications">
-                    @foreach (Topic application in EnvironmentalSystems) {
-                      <li><a href="@application.WebPath">@application.Attributes.Get("ShortTitle", @application.Title) &raquo;</a></li>
+                    @foreach (Topic application in EnvironmentalSystems.Children) {
+                      <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                     }
                   </ul>
                 }
@@ -209,8 +209,8 @@
                 <h2>Engineered<br/>Systems Modeling</h2>
                 @if (EngineeredSystems != null) {
                   <ul id="EngineeredApplications">
-                    @foreach (Topic application in EngineeredSystems) {
-                      <li><a href="@application.WebPath">@application.Attributes.Get("ShortTitle", @application.Title) &raquo;</a></li>
+                    @foreach (Topic application in EngineeredSystems.Children) {
+                      <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                     }
                   </ul>
                 }
@@ -221,8 +221,8 @@
                 <h2>Business<br/>Systems Modeling</h2>
                 @if (BusinessSystems != null) {
                   <ul id="BusinessApplications">
-                    @foreach (Topic application in BusinessSystems) {
-                      <li><a href="@application.WebPath">@application.Attributes.Get("ShortTitle", @application.Title) &raquo;</a></li>
+                    @foreach (Topic application in BusinessSystems.Children) {
+                      <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                     }
                   </ul>
                 }

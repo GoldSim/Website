@@ -8,21 +8,21 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(Model.Topic.Attributes.Get("Body"))) {
+    @if (!String.IsNullOrEmpty(Model.Topic.Attributes.GetValue("Body"))) {
       <!-- Body Content -->
       <article class="page body">
-        @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+        @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
       </article>
       <!-- /Body Content -->
     }
 
     @Html.Partial("_TableOfContents")
 
-    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
-      foreach (Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic.Children["Categories"] != null && Model.Topic.Children["Categories"].Children.Count > 0) {
+      foreach (Topic category in Model.Topic.Children["Categories"].Children.OrderBy(c => c)) {
         <section id="@category.Key" class="content list">
           <h1>@category.Title</h1>
-          @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren.Where(t => t.Attributes.Get("Category", "").Equals(category))) {
+          @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted.Where(t => t.Attributes.GetValue("Category", "").Equals(category))) {
             @WriteContentItem(contentItem, "h2")
           }
         </section>
@@ -30,7 +30,7 @@
     }
     else {
       <section class="content list">
-        @foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+        @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
           @WriteContentItem(contentItem)
         }
       </section>
@@ -43,18 +43,18 @@
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
   <article id="@contentItem.Key">
     <@element>@contentItem.Title<@("/" + element)>
-    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("ThumbnailImage"))) {
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("ThumbnailImage"))) {
       <!-- Thumbnail Image -->
       <picture class="callout picture thumbnail small">
-        <source srcset="@contentItem.Attributes.Get("ThumbnailImage")" />
-        <img src="@contentItem.Attributes.Get("ThumbnailImage")" alt="@contentItem.Title">
+        <source srcset="@contentItem.Attributes.GetValue("ThumbnailImage")" />
+        <img src="@contentItem.Attributes.GetValue("ThumbnailImage")" alt="@contentItem.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
     <div>
-      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.Get("Description")))
-      @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.Get("LearnMoreUrl"))) {
-        <p><a href="@contentItem.Attributes.Get("LearnMoreUrl")" target="_blank">Learn More</a></p>
+      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.GetValue("Description")))
+      @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("LearnMoreUrl"))) {
+        <p><a href="@contentItem.Attributes.GetValue("LearnMoreUrl")" target="_blank">Learn More</a></p>
       }
     </div>
 </article>

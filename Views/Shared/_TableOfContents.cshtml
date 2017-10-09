@@ -4,13 +4,13 @@
   <aside class="contents">
     <h1>Contents</h1>
     <ul>
-      @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic["Categories"] != null && Model.Topic["Categories"].Count > 0) {
-        foreach (Topic category in Model.Topic["Categories"].OrderBy(c => c)) {
+      @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic.Children["Categories"] != null && Model.Topic.Children["Categories"].Children.Count > 0) {
+        foreach (Topic category in Model.Topic.Children["Categories"].OrderBy(c => c)) {
           <li><a href="#@category.Key">@category.Title</a></li>
         }
       }
       else {
-        foreach (Topic contentItem in Model.Topic["ContentItems"].SortedChildren) {
+        foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
           <li><a href="#@contentItem.Key">@contentItem.Title</a></li>
         }
       }
