@@ -13,7 +13,7 @@
 
     <!-- Body Content -->
     <article class="page body search results">
-      <form id="SearchResultSearchForm">
+      <form id="SearchResultSearchForm" action="/Web/Search/">
         <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
       </form>
       <div id="SearchResults"></div>
@@ -82,9 +82,13 @@
     function getSearchResults(offset) {
       offset                    = offset ? offset : 0;
       $.ajax({
-        url                     : baseApiUrl + '&count=15&offset=' + offset + '&textDecorations=true&textFormat=HTML',
+        url                     : baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
         headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
         success                 : function (result, status, xhr) {
+
+          // Clear current results
+          $('#SearchResults').html('');
+
           var searchResults     = result.webPages.value;
           for (var i = 0; i < searchResults.length; i++) {
             var
@@ -109,12 +113,14 @@
         success                 : function (result, status, xhr) {
           var
             totalResults        = result.webPages.totalEstimatedMatches,
-            pageSize            = 15,
+            pageSize            = 10,
             totalPages          = Math.ceil(totalResults/pageSize);
 
           $('#Pagination').pagination({
             items               : totalResults,
             itemsOnPage         : pageSize,
+            displayedPages      : 3,
+            edges               : 1,
             hrefTextPrefix      : '#Page',
             onPageClick         : function (pageNumber, event) {
               getSearchResults(((pageNumber-1)*pageSize));
