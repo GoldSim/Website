@@ -48,7 +48,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = _topicRepository.Load().GetTopic(topicId);
+      var topic = _topicRepository.Load().GetTopic(topicId);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Provide error handling
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = this.FindTopicWithAttribute(_topicRepository.Load(), "PageID", pageId.ToString());
+      var topic = FindTopicWithAttribute(_topicRepository.Load(), "PageID", pageId.ToString());
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Provide error handling

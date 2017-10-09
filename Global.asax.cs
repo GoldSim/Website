@@ -49,7 +49,9 @@ namespace GoldSim.Web {
       //Preload data to ensure it's available to subsequent applications
       cachedTopicRepository.Load();
 
+      #pragma warning disable CS0618
       TopicRepository.DataProvider      = cachedTopicRepository;
+      #pragma warning restore CS0618
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register controller factory
@@ -107,7 +109,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Handles errors that are not otherwise handled by the page_error object or inline error handling code.
     /// </summary>
-    void xApplication_Error(Object sender, EventArgs e) {
+    void xApplication_Error(object sender, EventArgs e) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle HTTP exceptions (namely, 404s)
@@ -122,7 +124,6 @@ namespace GoldSim.Web {
               + "&QueryString=" + Server.UrlEncode(Context.Request.QueryString.ToString())
             );
             return;
-            break;
           default:
             break;
         }
