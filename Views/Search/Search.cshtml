@@ -119,8 +119,8 @@
           $('#Pagination').pagination({
             items               : totalResults,
             itemsOnPage         : pageSize,
-            displayedPages      : 3,
-            edges               : 1,
+            displayedPages      : 5,
+            edges               : 0,
             hrefTextPrefix      : '#Page',
             onPageClick         : function (pageNumber, event) {
               getSearchResults(((pageNumber-1)*pageSize));
