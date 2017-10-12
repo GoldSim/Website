@@ -4676,7 +4676,7 @@ html.is-reveal-open body {
   -webkit-backface-visibility: hidden;
           backface-visibility: hidden;
   display: none;
-  padding: 3rem 0;
+  padding: 3rem 0 2rem;
   border: 1px solid #202020;
   border-radius: 0;
   background-color: #202020;

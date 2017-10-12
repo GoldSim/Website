@@ -780,7 +780,7 @@ $responsive-embed-ratios                : (
 $reveal-background                      : $black;               // WAS $white
 $reveal-width                           : auto;                 // WAS 600px
 $reveal-max-width                       : $global-width;
-$reveal-padding                         : rem-calc(48 0);       // WAS $global-padding
+$reveal-padding                         : rem-calc(48 0 32);    // WAS $global-padding
 $reveal-border                          : 1px solid $black;     // WAS 1px solid $medium-gray
 $reveal-radius                          : $global-radius;
 $reveal-zindex                          : 1005;
