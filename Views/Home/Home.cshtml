@@ -34,11 +34,17 @@
               <h1 class="page title long">@Model.Topic.Attributes.Get("Subtitle")</h1>
 
               <!-- Video -->
-              <div class="responsive-embed widescreen video">
-                <video controls="">
-                  <source src="http://3fdaec166a0b35abfa2a-3991774b1862aed7fa3658c502b53d27.r19.cf1.rackcdn.com/GoldSim%20in%20Nutshell.mp4" type="video/mp4">
-                  Your browser does not support the HTML5 video.
-                </video>
+              <div class="video preview" data-open="VideoModal"><i class="fa fa-play-circle-o"></i></div>
+              <div class="large reveal" id="VideoModal" data-reveal>
+                <div class="responsive-embed widescreen video">
+                  <video id="IntroductionVideo" controls autoplay>
+                    <source src="https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSim_Overview_090817.mp4" type="video/mp4">
+                    Your browser does not support the HTML5 video.
+                  </video>
+                </div>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
               <!-- /Video -->
 
@@ -308,6 +314,16 @@
       $('a.js-toggle-slide').click(function () {
         $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
         $(this).toggleText('View Screenshot', 'View Description');
+      });
+
+      /**
+       * Handle video playback based on Foundation Reveal events
+       */
+      $(document).on('open.zf.reveal', '[data-reveal]', function() {
+        $('#IntroductionVideo')[0].play();
+      });
+      $(document).on('closed.zf.reveal', '[data-reveal]', function () {
+        $('#IntroductionVideo')[0].pause();
       });
 
     });
