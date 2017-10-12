@@ -1568,6 +1568,7 @@
     <Content Include="Forms\Webinars.aspx" />
     <Content Include="Forms\Webinars1.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Home\Video.png" />
     <Content Include="Images\Icons\Baubles\Bauble.Inset.Placeholder.png" />
     <Content Include="Images\Icons\Baubles\Bauble.Outset.Placeholder.png" />
     <Content Include="Images\Favicons\android-chrome-192x192.png" />
