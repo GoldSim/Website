@@ -6600,9 +6600,9 @@ body {
     margin-bottom: 3rem; }
     #MainContentArea article.page.body:empty, #MainContentArea article.page.body:blank {
       margin-bottom: 0; }
-  .list #MainContentArea article {
+  #MainContentArea .list article {
     padding-bottom: 2rem; }
-    .list #MainContentArea article:last-of-type {
+    #MainContentArea .list article:last-of-type {
       margin-bottom: 0;
       border-bottom: 0 none transparent;
       padding-bottom: 0; }

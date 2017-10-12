@@ -225,7 +225,9 @@ body {
         margin-bottom           : 0;
       }
     }
-    .list & {
+  }
+  .list {
+    article {
       padding-bottom            : rem-calc(32);
       &:last-of-type {
         margin-bottom           : 0;
