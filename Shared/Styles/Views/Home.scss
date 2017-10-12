@@ -33,9 +33,25 @@ main {
       max-height                : initial;
     }
     .video {
-      @include clearfix;
-    //max-width                 : 33.4375rem;                   // 535px
-      background-color          : $palette-white;
+      &.preview {
+        @include clearfix;
+        display                 : table-cell;
+        width                   : rem-calc(553);
+        height                  : rem-calc(311);
+        text-align              : center;
+        vertical-align          : middle;
+        background              : transparent url('/Images/Home/Video.png') no-repeat center center;
+        background-size         : contain;
+        cursor                  : pointer;
+        i,
+        img {
+          display               : inline-block;
+        }
+        i {
+          font-size             : 89px;
+          color                 : $palette-white;
+        }
+      }
     }
   }
   > article {

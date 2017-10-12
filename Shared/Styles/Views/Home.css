@@ -11,9 +11,15 @@ main > section > header {
       padding: 5rem 0; } }
   main > section > header .grid-container {
     max-height: initial; }
-  main > section > header .video {
-    background-color: white; }
-    main > section > header .video::before, main > section > header .video::after {
+  main > section > header .video.preview {
+    display: table-cell;
+    width: 34.5625rem;
+    height: 19.4375rem;
+    text-align: center;
+    vertical-align: middle;
+    background: transparent url("/Images/Home/Video.png") no-repeat center center;
+    background-size: contain; }
+    main > section > header .video.preview::before, main > section > header .video.preview::after {
       display: table;
       content: ' ';
       -ms-flex-preferred-size: 0;
@@ -21,8 +27,14 @@ main > section > header {
       -webkit-box-ordinal-group: 2;
           -ms-flex-order: 1;
               order: 1; }
-    main > section > header .video::after {
+    main > section > header .video.preview::after {
       clear: both; }
+    main > section > header .video.preview i,
+    main > section > header .video.preview img {
+      display: inline-block; }
+    main > section > header .video.preview i {
+      font-size: 89px;
+      color: white; }
 
 main > article {
   padding: 5rem 0 2rem; }
