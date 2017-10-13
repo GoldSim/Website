@@ -51,7 +51,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, topicRoutingService.Topic);
+        return new LayoutController(topicRepository, topicRoutingService);
       }
 
       if (controllerType == typeof(SitemapController)) {
@@ -59,7 +59,7 @@ namespace GoldSim.Web {
       }
 
       if (topicRoutingService.Topic != null) {
-        return new TopicController<Topic>(topicRepository, topicRoutingService.Topic);
+        return new TopicController<Topic>(topicRepository, topicRoutingService);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);

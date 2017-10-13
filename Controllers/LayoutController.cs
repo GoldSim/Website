@@ -24,21 +24,13 @@ namespace GoldSim.Web.Controllers {
   public class LayoutController : TopicController<Topic> {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private     ITopicRepository        _topicRepository        = null;
-    private     Topic                   _currentTopic           = null;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base(topicRepository, currentTopic) {
-      _topicRepository          = topicRepository;
-      _currentTopic             = currentTopic;
+    public LayoutController(ITopicRepository topicRepository, ITopicRoutingService routingService) : base(topicRepository, routingService) {
     }
 
     /*==========================================================================================================================
@@ -52,7 +44,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic currentTopic        = _currentTopic;
+      var currentTopic          = CurrentTopic;
       Topic navigationRootTopic = null;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -74,13 +66,13 @@ namespace GoldSim.Web.Controllers {
       }
 
       if (navigationRootTopic == null) {
-        navigationRootTopic     = _topicRepository.Load("Web");
+        navigationRootTopic     = TopicRepository.Load("Web");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -102,7 +94,7 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic navigationRootTopic = null;
-      Topic currentTopic        = _currentTopic;
+      var currentTopic          = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
@@ -138,7 +130,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -158,7 +150,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic currentTopic        = _currentTopic;
+      var currentTopic          = CurrentTopic;
       Topic navigationRootTopic = null;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -172,13 +164,13 @@ namespace GoldSim.Web.Controllers {
       }
 
       if (navigationRootTopic == null) {
-        navigationRootTopic     = _topicRepository.Load("Web");
+        navigationRootTopic     = TopicRepository.Load("Web");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -198,8 +190,8 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic navigationRootTopic = _topicRepository.Load("Web:Company");
-      Topic currentTopic        = _currentTopic;
+      var navigationRootTopic   = TopicRepository.Load("Web:Company");
+      var currentTopic          = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify current topic
@@ -216,7 +208,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish a navigation view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(_topicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
