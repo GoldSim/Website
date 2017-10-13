@@ -28,9 +28,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides the pass-through partial view.
     /// </summary>
-    public ActionResult PartialRender() {
-      return PartialView();
-    }
+    public ActionResult PartialRender() => PartialView();
 
   } // Class
 
