@@ -294,14 +294,14 @@ namespace GoldSim.Forms.Common.Templates {
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
       topic.Parent              = TopicRepository.RootTopic.GetTopic(SaveToTopicPath);
-      topic.Attributes.Set("ParentID", parentId);
+      topic.Attributes.SetValue("ParentID", parentId);
       topic.LastModified        = DateTime.Now;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic Attributes based on form input values
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (string fieldName in FormValues.Keys) {
-        topic.Attributes.Set(fieldName, FormValues[fieldName]);
+        topic.Attributes.SetValue(fieldName, FormValues[fieldName]);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
