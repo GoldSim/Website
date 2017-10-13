@@ -1,0 +1,29 @@
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+  var exampleApplications = Model.Topic.FindAllByAttribute("ContentType", "ExampleApplication").ToList<Topic>();
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(@Model.Topic.Attributes.Get("Body"))
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+    @Html.Partial("_CardList", new CardListViewModel(exampleApplications, "case-study"))
+  </section>
+
+}
+
+<!--
+  Content Type: Application List
+  View Location: ~/Views/ApplicationIndex/ApplicationIndex.cshtml
+-->
