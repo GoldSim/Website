@@ -2082,6 +2082,7 @@
     <Content Include="Shared\Styles\Base\_modals.scss" />
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
     <Content Include="Views\ExampleApplication\ExampleApplication.cshtml" />
+    <Content Include="Views\ExampleIndex\ExampleIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
