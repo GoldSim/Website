@@ -2079,6 +2079,7 @@
     <Content Include="Views\ContentTypes\Slideshow.cshtml" />
     <Content Include="Views\ContentTypes\TechnicalPaperList.cshtml" />
     <Content Include="Views\ContentTypes\Video.cshtml" />
+    <Content Include="Views\ContentTypes\ExampleIndex.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
