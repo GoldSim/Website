@@ -12,6 +12,7 @@ using Ignia.Topics;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Web;
+using Ignia.Topics.Web.Mvc;
 using Ignia.Web.Tools;
 
 namespace GoldSim.Web {
@@ -59,6 +60,11 @@ namespace GoldSim.Web {
       ControllerBuilder.Current.SetControllerFactory(
         new GoldSimControllerFactory()
       );
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Register view engine
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      ViewEngines.Engines.Insert(0, new TopicViewEngine());
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register routes
