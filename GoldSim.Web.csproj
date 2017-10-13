@@ -1882,19 +1882,10 @@
     <Content Include="Configuration\connectionStrings.config" />
     <Content Include="packages.config" />
     <Content Include="Configuration\smtp.config" />
-    <Content Include="Views\Page\Page.cshtml" />
-    <Content Include="Views\ApplicationIndex\ApplicationIndex.cshtml" />
-    <Content Include="Views\ApplicationPage\ApplicationPage.cshtml" />
-    <Content Include="Views\CaseStudy\CaseStudy.cshtml" />
     <Content Include="Views\ContentList\Accordion.cshtml" />
     <Content Include="Views\ContentList\ContentList.cshtml" />
     <Content Include="Views\ContentList\IndexedList.cshtml" />
     <Content Include="Views\ContentList\LinkedList.cshtml" />
-    <Content Include="Views\FAQ\FAQ.cshtml" />
-    <Content Include="Views\Glossary\Glossary.cshtml" />
-    <Content Include="Views\Slideshow\Slideshow.cshtml" />
-    <Content Include="Views\TechnicalPaperList\TechnicalPaperList.cshtml" />
-    <Content Include="Views\Video\Video.cshtml" />
     <None Include="Properties\PublishProfiles\GoldSimWebStaging.pubxml" />
     <Content Include="Views\Layout\Menu.cshtml" />
     <Content Include="Views\Layout\Footer.cshtml" />
@@ -2048,7 +2039,6 @@
     <Content Include="Shared\Styles\Views\Home.scss" />
     <Content Include="Shared\Styles\Overrides\_overrides.scss" />
     <Content Include="Shared\Styles\Base\_forms.scss" />
-    <Content Include="Views\PageGroup\PageGroup.cshtml" />
     <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Shared\Styles\Views\ApplicationIndex.scss" />
     <Content Include="Shared\Styles\Views\Accordion.scss" />
@@ -2078,7 +2068,17 @@
     <Content Include="Shared\Styles\Components\CallsToAction\_callsToAction.scss" />
     <Content Include="Shared\Styles\Base\_modals.scss" />
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
-    <Content Include="Views\ExampleApplication\ExampleApplication.cshtml" />
+    <Content Include="Views\ContentTypes\ApplicationIndex.cshtml" />
+    <Content Include="Views\ContentTypes\ApplicationPage.cshtml" />
+    <Content Include="Views\ContentTypes\CaseStudy.cshtml" />
+    <Content Include="Views\ContentTypes\ExampleApplication.cshtml" />
+    <Content Include="Views\ContentTypes\FAQ.cshtml" />
+    <Content Include="Views\ContentTypes\Glossary.cshtml" />
+    <Content Include="Views\ContentTypes\Page.cshtml" />
+    <Content Include="Views\ContentTypes\PageGroup.cshtml" />
+    <Content Include="Views\ContentTypes\Slideshow.cshtml" />
+    <Content Include="Views\ContentTypes\TechnicalPaperList.cshtml" />
+    <Content Include="Views\ContentTypes\Video.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
