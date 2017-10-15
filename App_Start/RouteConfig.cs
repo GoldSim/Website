@@ -61,7 +61,7 @@ namespace GoldSim.Web {
       routes.MapRoute(
         name: "WebTopics",
         url: "Web/{*path}",
-        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional }
+        defaults: new { controller = "Topic", action = "Index", id = UrlParameter.Optional, rootTopic = "Web" }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
