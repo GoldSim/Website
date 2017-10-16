@@ -97,7 +97,7 @@
   /*-------------------------------------------------------------------------------------------------------------------------
   | SEND EMAIL RECEIPT
   \------------------------------------------------------------------------------------------------------------------------*/
-    Utility.SendWebPage("http://" + Request.Url.Host + "/Forms/Evaluation.Receipt.html", "GoldSim Evaluation Request", "Software@GoldSim.com", email);
+  //Utility.SendWebPage("http://" + Request.Url.Host + "/Forms/Evaluation.Receipt.html", "GoldSim Evaluation Request", "Software@GoldSim.com", email);
 
   /*-------------------------------------------------------------------------------------------------------------------------
   | REDIRECT USER
