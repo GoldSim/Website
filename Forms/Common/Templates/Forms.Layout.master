@@ -154,7 +154,7 @@
        */
       $(document).foundation();
     </script>
-    <script src="/Shared/Scripts/Script.js"></script>
+    <script src="/Shared/Scripts/Scripts.js"></script>
 
     <script>
       /**
