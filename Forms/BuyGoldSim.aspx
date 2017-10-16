@@ -242,10 +242,11 @@
       <div class="medium-6 cell">
         <Ignia:FormField
           ID                    = "TaxID"
-          LabelName             = "Purchaser Tax ID"
+          LabelName             = "*Purchaser Tax ID"
           AccessKey             = "T"
           MaxLength             = "150"
           FieldSize             = "320"
+          Required              = "True"
           CssClass              = "TextField"
           SkinId                = "BoxedPairs"
           RunAt                 = "Server"
@@ -256,10 +257,11 @@
       <div class="medium-6 cell">
         <Ignia:FormField
           ID                    = "PONumber"
-          LabelName             = "Purchase Order Number"
+          LabelName             = "*Purchase Order Number"
           AccessKey             = "P"
           MaxLength             = "150"
           FieldSize             = "320"
+          Required              = "True"
           CssClass              = "TextField"
           SkinId                = "BoxedPairs"
           RunAt                 = "Server"
