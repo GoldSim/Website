@@ -37,7 +37,7 @@
   //Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(460);
 
   //ContentType for the form Topic
-    Master.SaveAsContentType    = "EvaluationRequest";
+  //Master.SaveAsContentType    = "EvaluationRequest";
 
   //Submit button label
     Master.SubmitLabel          = "Request Web Demo";
