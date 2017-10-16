@@ -46,6 +46,7 @@
     // Master.EmailSender       = ((IgniaFormField)BuyerEmail.FindControl("Email")).Value;
   //Redirect URL
     Master.SuccessUrl           = "/Topic/755/";
+    Master.EmailRecipient       = "katherine.trunkey@ignia.com";
   //Wireup form processor
   //Master.ProcessForm          = ProcessForm;
 
@@ -162,7 +163,7 @@
 
       <%-- LICENSEE TYPE --%>
       <div class="cell">
-        <asp:RadioButtonList ID="LicenseeTypeSelection" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
+        <asp:RadioButtonList ID="LicenseeTypeSelection" RepeatLayout="Flow" RepeatDirection="Vertical" ClientIDMode="Static" CssClass="radio" RunAt="Server">
           <asp:ListItem Value="Self">I am the primary technical contact for this license purchase.</asp:ListItem>
           <asp:ListItem Value="Third_Party">I am acting as a third party (purchasing agent or distributor) for this purchase.</asp:ListItem>
         </asp:RadioButtonList>
@@ -179,7 +180,7 @@
     </div>
   </fieldset>
 
-  <fieldset ID="UserContactInfo">
+  <fieldset id="UserContactInfo">
     <legend>Intended User Contact Information</legend>
     <div class="grid-x grid-margin-x">
 
@@ -222,7 +223,7 @@
 
       <%-- PAYMENT TYPE --%>
       <div class="cell">
-        <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
+        <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" ClientIDMode="Static" CssClass="radio" RunAt="Server">
           <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
           <asp:ListItem Value="Invoice_Self" onclick="ShowPaymentInstructions('I_S')">Invoice Me</asp:ListItem>
           <asp:ListItem Value="Invoice_AP" onclick="ShowPaymentInstructions('I_AP')">Invoice Accounts Payable</asp:ListItem>
@@ -324,11 +325,65 @@
       <GoldSimForm:Email ID="APContactEmail" ValidationGroup="AccountsPayable" SplitLayout="true" RunAt="Server" />
 
       <%-- PHONE --%>
-      <GoldSimForm:Phone ID="APContactPhone" ValidationGroup="AccountsPayable" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:Phone ID="APContactPhone" ValidationGroup="AccountsPayable" RunAt="Server" />
+      </div>
 
       <%-- FAX --%>
-      <GoldSimForm:Fax ID="APContactFax" ValidationGroup="AccountsPayable" RunAt="Server" />
+      <div class="medium-6 cell">
+        <GoldSimForm:Fax ID="APContactFax" ValidationGroup="AccountsPayable" RunAt="Server" />
+      </div>
 
   </fieldset>
 
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <script>
+    $(function() {
+
+      /**
+       * Sets conditionally required fields to disabled by default
+       */
+      toggleDisabled('#UserContactInfo input, #UserContactInfo select', true);
+      toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
+
+      /**
+       * Conditionally enables Intended User Contact Information fields if third-party purchaser is selected
+       */
+      $('[id^="LicenseeTypeSelection"]').change(function() {
+        if ($(this).attr('id') === 'LicenseeTypeSelection_1' && $(this).is(':checked')) {
+          setTimeout(function() {
+            toggleDisabled('#UserContactInfo input, #UserContactInfo select', false);
+          }, 250);
+        }
+        else {
+          toggleDisabled('#UserContactInfo input, #UserContactInfo select', true);
+        }
+      });
+
+      /**
+       * Conditionally enables PO and AP fields if invoice payment choice is selected
+       */
+      $('[id^="PaymentTypeSelection"]').change(function () {
+        if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+          toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
+        }
+        else if ($(this).is(':checked')) {
+          setTimeout(function() {
+            toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', false);
+          }, 250);
+        }
+      });
+
+    });
+
+    /**
+      * Sets disabled state on provided fields (selectors) and provided true/false state
+      */
+    function toggleDisabled(fields, disabled) {
+      $(fields).prop('disabled', disabled);
+    };
+
+  </script>
 </asp:Content>
