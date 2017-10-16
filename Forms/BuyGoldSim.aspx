@@ -46,7 +46,6 @@
     // Master.EmailSender       = ((IgniaFormField)BuyerEmail.FindControl("Email")).Value;
   //Redirect URL
     Master.SuccessUrl           = "/Topic/755/";
-    Master.EmailRecipient       = "katherine.trunkey@ignia.com";
   //Wireup form processor
   //Master.ProcessForm          = ProcessForm;
 
