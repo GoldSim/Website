@@ -42,7 +42,7 @@ namespace GoldSim.Web {
       var rootTopic             = TopicRepository.RootTopic;
       var topicRoutingService   = new TopicRoutingService(
         topicRepository,
-        requestContext.HttpContext.Request.Url.AbsoluteUri,
+        requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
       #pragma warning restore CS0618
