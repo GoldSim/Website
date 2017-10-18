@@ -40,7 +40,11 @@ namespace GoldSim.Web {
       #pragma warning disable CS0618
       var topicRepository       = TopicRepository.DataProvider;
       var rootTopic             = TopicRepository.RootTopic;
-      var topicRoutingService   = new TopicRoutingService(topicRepository, requestContext);
+      var topicRoutingService   = new TopicRoutingService(
+        topicRepository,
+        requestContext.HttpContext.Request.Url.AbsoluteUri,
+        requestContext.RouteData
+      );
       #pragma warning restore CS0618
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -59,16 +63,16 @@ namespace GoldSim.Web {
         return new RedirectController(topicRepository);
       }
 
-      if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, topicRoutingService);
-      }
-
       if (controllerType == typeof(SitemapController)) {
         return new SitemapController(topicRepository, null);
       }
 
+      if (controllerType == typeof(LayoutController)) {
+        return new LayoutController(topicRepository, topicRoutingService.Topic);
+      }
+
       if (topicRoutingService.Topic != null) {
-        return new TopicController<Topic>(topicRepository, topicRoutingService);
+        return new TopicController<Topic>(topicRepository, topicRoutingService.Topic);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);
