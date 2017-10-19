@@ -158,7 +158,7 @@
     string categoryTitle        = categoryKey;
     Topic applicationCategories = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:ApplicationCategories:LookupList");
 
-    foreach(Topic applicationCategory in applicationCategories) {
+    foreach(Topic applicationCategory in applicationCategories.Children) {
       if (applicationCategory.Key.Equals(categoryKey)) {
         categoryTitle           = applicationCategory.Title;
       }
