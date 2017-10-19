@@ -38,7 +38,7 @@
               <div class="large reveal" id="VideoModal" data-reveal>
                 <div class="responsive-embed widescreen video">
                   <video id="IntroductionVideo" controls autoplay>
-                    <source src="https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSim_Overview_090817.mp4" type="video/mp4">
+                    <source data-src="https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSim_Overview_090817.mp4" type="video/mp4" />
                     Your browser does not support the HTML5 video.
                   </video>
                 </div>
@@ -274,29 +274,34 @@
     $(function () {
 
       /**
+       * Establish variables
+       */
+      var isVideoLoaded         = false;
+
+      /**
        * Instantiate carousel for large and small screens
        */
       $('.owl-carousel.large').owlCarousel({
-        items: 1,
-        margin: 0,
-        autoHeight: true,
-        nav: true,
-        navText: [
+        items                   : 1,
+        margin                  : 0,
+        autoHeight              : true,
+        nav                     : true,
+        navText                 : [
           '<i class="fa fa-caret-left"></i>',
           '<i class="fa fa-caret-right"></i>'
         ],
-        loop: false
+        loop                    : false
       });
       $('.owl-carousel.small').owlCarousel({
-        items: 1,
-        margin: 0,
-        autoHeight: false,
-        nav: true,
-        navText: [
+        items                   : 1,
+        margin                  : 0,
+        autoHeight              : false,
+        nav                     : true,
+        navText                 : [
           '<i class="fa fa-caret-left"></i>',
           '<i class="fa fa-caret-right"></i>'
         ],
-        loop: false
+        loop                    : false
       });
 
       /**
@@ -319,7 +324,15 @@
       /**
        * Handle video playback based on Foundation Reveal events
        */
-      $(document).on('open.zf.reveal', '[data-reveal]', function() {
+      $(document).on('open.zf.reveal', '[data-reveal]', function () {
+        if (isVideoLoaded === false) {
+          var
+            videoSource         = $('#IntroductionVideo source'),
+            sourceFile          = $(videoSource).data('src');
+          $(videoSource).attr('src', sourceFile);
+          $('#IntroductionVideo')[0].load();
+          isVideoLoaded         = true;
+        }
         $('#IntroductionVideo')[0].play();
       });
       $(document).on('closed.zf.reveal', '[data-reveal]', function () {
