@@ -13,7 +13,7 @@
 
     <article class="page body">
       @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
-      @if (fieldCategories.Count > 0) {
+      @if (fieldCategories.Children.Count > 0) {
         <h1>Categories</h1>
         <ul>
           @foreach (Topic fieldCategory in fieldCategories.Children.Sorted) {
