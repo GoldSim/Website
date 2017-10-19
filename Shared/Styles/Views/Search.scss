@@ -50,12 +50,22 @@
   }
   .pagination {
     margin-top                  : rem-calc(32);
+    margin-bottom               : 0;
     ul {
-      margin-left               : 0;
+      position                  : relative;
+      left                      : rem-calc(-8);
+      margin                    : 0;
       li {
+        position                : absolute;
         padding-left            : rem-calc(8);
         font-size               : rem-calc(18);
         line-height             : 100%;
+        &:first-child {
+          left                  : 0;
+        }
+        &:last-child {
+          right                 : rem-calc(-8);
+        }
         a,
         span.current {
           border                : 2px solid transparent;
@@ -102,6 +112,9 @@
           border-color          : $palette-yellow;
         }
         &.disabled {
+          margin-bottom         : 0;
+          padding-top           : 0;
+          padding-bottom        : 0;
           opacity               : 0.25;
         }
       }

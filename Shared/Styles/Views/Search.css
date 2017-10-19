@@ -24,13 +24,21 @@
       font-weight: normal; }
 
 .results .pagination {
-  margin-top: 2rem; }
+  margin-top: 2rem;
+  margin-bottom: 0; }
   .results .pagination ul {
-    margin-left: 0; }
+    position: relative;
+    left: -0.5rem;
+    margin: 0; }
     .results .pagination ul li {
+      position: absolute;
       padding-left: 0.5rem;
       font-size: 1.125rem;
       line-height: 100%; }
+      .results .pagination ul li:first-child {
+        left: 0; }
+      .results .pagination ul li:last-child {
+        right: -0.5rem; }
       .results .pagination ul li a,
       .results .pagination ul li span.current {
         border: 2px solid transparent;
@@ -60,6 +68,9 @@
         display: block;
         border-color: #fec10d; }
       .results .pagination ul li.disabled {
+        margin-bottom: 0;
+        padding-top: 0;
+        padding-bottom: 0;
         opacity: 0.25; }
   .results .pagination button {
     display: inline-block;
