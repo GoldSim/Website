@@ -2083,6 +2083,18 @@
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
     <Content Include="Views\ExampleApplication\ExampleApplication.cshtml" />
     <Content Include="Views\ExampleIndex\ExampleIndex.cshtml" />
+    <Content Include="Views\ContentTypes\ApplicationIndex.cshtml" />
+    <Content Include="Views\ContentTypes\ApplicationPage.cshtml" />
+    <Content Include="Views\ContentTypes\CaseStudy.cshtml" />
+    <Content Include="Views\ContentTypes\ExampleApplication.cshtml" />
+    <Content Include="Views\ContentTypes\ExampleIndex.cshtml" />
+    <Content Include="Views\ContentTypes\FAQ.cshtml" />
+    <Content Include="Views\ContentTypes\Glossary.cshtml" />
+    <Content Include="Views\ContentTypes\Page.cshtml" />
+    <Content Include="Views\ContentTypes\PageGroup.cshtml" />
+    <Content Include="Views\ContentTypes\Slideshow.cshtml" />
+    <Content Include="Views\ContentTypes\TechnicalPaperList.cshtml" />
+    <Content Include="Views\ContentTypes\Video.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
