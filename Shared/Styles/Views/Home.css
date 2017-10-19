@@ -5,7 +5,12 @@ main > article[itemprop="mainContentOfPage"] {
       padding: 5rem 0 2rem; } }
 
 main > section > header {
-  padding: 3rem 2.25rem; }
+  position: relative;
+  padding: 3rem 2.25rem;
+  -webkit-box-shadow: inset 0 0 9px 2px rgba(32, 32, 32, 0.75);
+          box-shadow: inset 0 0 9px 2px rgba(32, 32, 32, 0.75);
+  background: #202020 url("/Images/Home/Splash.Background.jpg") no-repeat center center;
+  background-size: cover; }
   @media print, screen and (min-width: 64em) {
     main > section > header {
       padding: 5rem 0; } }
@@ -30,12 +35,10 @@ main > section > header {
               order: 1; }
     main > section > header .video.preview::after {
       clear: both; }
-    main > section > header .video.preview i,
     main > section > header .video.preview img {
-      display: inline-block; }
-    main > section > header .video.preview i {
-      font-size: 89px;
-      color: white; }
+      display: inline-block;
+      width: 88px;
+      height: 88px; }
 
 main > article {
   padding: 5rem 0 2rem; }

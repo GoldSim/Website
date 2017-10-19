@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 314.7 314.7" style="enable-background:new 0 0 314.7 314.7;" xml:space="preserve">
+<style type="text/css">
+	.st0{opacity:0.85;}
+	.st1{opacity:0.85;fill:#F3F3F3;}
+	.st2{fill:none;stroke:#CCCCCC;stroke-width:10;stroke-miterlimit:10;opacity:0.85;}
+	.st3{fill:#FFFFFF;}
+	.st4{fill:none;stroke:#FFFFFF;stroke-width:2;stroke-linejoin:round;stroke-miterlimit:10;}
+</style>
+<g id="Layer_3">
+</g>
+<g id="Circle">
+	<g class="st0">
+		<circle class="st1" cx="157.3" cy="157.3" r="150.4"/>
+		<circle class="st2" cx="157.3" cy="157.3" r="150.4"/>
+		<circle class="st2" cx="157.3" cy="157.3" r="150.4"/>
+	</g>
+</g>
+<g id="Triangle">
+	<g>
+
+			<image style="overflow:visible;opacity:0.95;" width="162" height="184" xlink:href="FF8CD009.png"  transform="matrix(1 0 0 1 97.3448 65.3448)">
+		</image>
+		<g>
+			<polygon class="st3" points="108,76.1 248.7,157.3 108,238.6 			"/>
+			<polygon class="st4" points="108,76.1 248.7,157.3 108,238.6 			"/>
+		</g>
+	</g>
+</g>
+</svg>
