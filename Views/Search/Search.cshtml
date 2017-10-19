@@ -25,8 +25,9 @@
 }
 
 @section Scripts {
+  <script src="/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
   <script>
-    $(function () {
+    $(function() {
 
       /**
        * Pre-populate results page search input value
@@ -70,8 +71,8 @@
      * Establish Bing Search API variables
      */
     var
-      apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
-      customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
+      apiKey                    = '2811c00d8809469193b750dfe45f4a41',
+      customConfig              = '3345363414',
       searchQuery               = getQuerystringValue('SearchText'),
       baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v5.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off';
 
@@ -81,9 +82,13 @@
     function getSearchResults(offset) {
       offset                    = offset ? offset : 0;
       $.ajax({
-        url                     : baseApiUrl + '&count=15&offset=' + offset + '&textDecorations=true&textFormat=HTML',
+        url                     : baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
         headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
         success                 : function (result, status, xhr) {
+
+          // Clear current results
+          $('#SearchResults').html('');
+
           var searchResults     = result.webPages.value;
           for (var i = 0; i < searchResults.length; i++) {
             var
@@ -105,14 +110,31 @@
       $.ajax({
         url                     : baseApiUrl,
         headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
-        success                 : function (result, status, xhr) {
+        success: function (result, status, xhr) {
           var
             totalResults        = result.webPages.totalEstimatedMatches,
-            pageSize            = 15,
-            totalPages          = Math.ceil(totalResults/pageSize);
-          for (var i = 0; i < totalPages; i++) {
-            $('#Pagination').append('<button type="button" data-offset="' + (i*pageSize) + '">' + (i+1) + '</button>');
-          }
+            pageSize            = 10,
+            totalPages          = Math.ceil(totalResults / pageSize);
+
+          $('#Pagination').pagination({
+            items               : totalResults,
+            itemsOnPage         : pageSize,
+            displayedPages      : 3,
+            edges               : 1,
+            hrefTextPrefix      : '#Page',
+            onPageClick: function (pageNumber, event) {
+              getSearchResults(((pageNumber - 1) * pageSize));
+            },
+            onInit: function () {
+              var
+                urlHash         = window.location.hash.substr(1),
+                pageNumber      = 1;
+              if (urlHash.indexOf('Page') > -1) {
+                pageNumber      = urlHash.substr(4);
+                getSearchResults(((pageNumber - 1) * pageSize));
+              }
+            }
+          });
         }
       });
     };
@@ -127,6 +149,6 @@
         results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
-
+
   </script>
 }

@@ -1749,6 +1749,7 @@
     <Content Include="Shared\Scripts\Scripts.js" />
     <Content Include="Shared\Scripts\SearchBar.js" />
     <Content Include="Shared\Scripts\Tables.FixedColumn.js" />
+    <Content Include="Shared\Scripts\Vendor\FlaviusMatis\jquery.simplePagination.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\easing\EasePack.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\easing\EasePack.min.js" />
     <Content Include="Shared\Scripts\Vendor\GreenSock\jquery.gsap.js" />
