@@ -48,15 +48,6 @@ namespace GoldSim.Web {
       #pragma warning restore CS0618
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Register routes
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      //Add the content type to the route dictionary to enable finding views based on routing data
-      if (requestContext.RouteData.Values.ContainsKey("contenttype")) {
-        requestContext.RouteData.Values.Remove("contenttype");
-      }
-      requestContext.RouteData.Values.Add("contenttype", topicRoutingService.ContentType);
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (controllerType == typeof(RedirectController)) {
