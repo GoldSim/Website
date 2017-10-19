@@ -19,12 +19,14 @@
 //----------------------------------------------------------------------------------------------
 .results {
   input {
-    margin-bottom               : rem-calc(32);
     padding                     : rem-calc(12 8);
-    min-height                  : rem-calc(48);
-    font-size                   : rem-calc(30);
-    background                  : transparent url('/Images/Icons/Search.png') no-repeat right 10px center;
-    background-size             : 36px;
+    &[type="search"] {
+      margin-bottom             : rem-calc(32);
+      min-height                : rem-calc(48);
+      font-size                 : rem-calc(30);
+      background                : transparent url('/Images/Icons/Search.png') no-repeat right 10px center;
+      background-size           : 36px;
+    }
   }
   .result {
     padding-bottom              : rem-calc(16);
@@ -48,6 +50,62 @@
   }
   .pagination {
     margin-top                  : rem-calc(32);
+    ul {
+      margin-left               : 0;
+      li {
+        padding-left            : rem-calc(8);
+        font-size               : rem-calc(18);
+        line-height             : 100%;
+        a,
+        span.current {
+          border                : 2px solid transparent;
+          border-radius         : 3px;
+          padding               : rem-calc(8 12);
+          font-weight           : 600;
+          color                 : $palette-black;
+        }
+        a {
+          color                 : $palette-black;
+          &:focus,
+          &:active,
+          &.page-link.prev,
+          &.page-link.next {
+            border-color        : $palette-yellow;
+          }
+          &:focus,
+          &:active {
+            color               : $palette-yellow;
+          }
+          &:hover {
+            border-color        : $palette-black;
+            color               : $palette-yellow;
+            background-color    : $palette-black;
+          }
+          &.page-link {
+            &.prev,
+            &.next {
+              background-color  : $palette-yellow;
+              &:hover {
+                border-color    : $palette-black;
+                background-color: $palette-black;
+              }
+              &:focus,
+              &:active {
+                border-color    : $palette-yellow;
+                background-color: $palette-white;
+              }
+            }
+          }
+        }
+        span.current {
+          display               : block;
+          border-color          : $palette-yellow;
+        }
+        &.disabled {
+          opacity               : 0.25;
+        }
+      }
+    }
     button {
       display                   : inline-block;
       margin                    : rem-calc(0 8);
@@ -77,6 +135,9 @@
         color                   : $palette-yellow;
         background-color        : $palette-black;
       }
+    }
+    .ellipse.clickable {
+      cursor                    : pointer;
     }
   }
 }

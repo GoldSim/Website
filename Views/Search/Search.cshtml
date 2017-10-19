@@ -13,11 +13,11 @@
 
     <!-- Body Content -->
     <article class="page body search results">
-      <form id="SearchResultSearchForm">
+      <form id="SearchResultSearchForm" action="/Web/Search/">
         <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
       </form>
       <div id="SearchResults"></div>
-      <div id="Pagination" class="pagination"></div>
+      <div id="Pagination" class="pagination text-center"></div>
     </article>
     <!-- /Body Content -->
 
@@ -25,9 +25,9 @@
 }
 
 @section Scripts {
-  <script src="/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
+  <script src="~/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
   <script>
-    $(function() {
+    $(function () {
 
       /**
        * Pre-populate results page search input value
@@ -71,8 +71,8 @@
      * Establish Bing Search API variables
      */
     var
-      apiKey                    = '2811c00d8809469193b750dfe45f4a41',
-      customConfig              = '3345363414',
+      apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
+      customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
       searchQuery               = getQuerystringValue('SearchText'),
       baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v5.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off';
 
@@ -110,28 +110,28 @@
       $.ajax({
         url                     : baseApiUrl,
         headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
-        success: function (result, status, xhr) {
+        success                 : function (result, status, xhr) {
           var
             totalResults        = result.webPages.totalEstimatedMatches,
             pageSize            = 10,
-            totalPages          = Math.ceil(totalResults / pageSize);
+            totalPages          = Math.ceil(totalResults/pageSize);
 
           $('#Pagination').pagination({
             items               : totalResults,
             itemsOnPage         : pageSize,
-            displayedPages      : 3,
-            edges               : 1,
+            displayedPages      : 5,
+            edges               : 0,
             hrefTextPrefix      : '#Page',
-            onPageClick: function (pageNumber, event) {
-              getSearchResults(((pageNumber - 1) * pageSize));
+            onPageClick         : function (pageNumber, event) {
+              getSearchResults(((pageNumber-1)*pageSize));
             },
-            onInit: function () {
+            onInit              : function() {
               var
                 urlHash         = window.location.hash.substr(1),
                 pageNumber      = 1;
               if (urlHash.indexOf('Page') > -1) {
                 pageNumber      = urlHash.substr(4);
-                getSearchResults(((pageNumber - 1) * pageSize));
+                getSearchResults(((pageNumber-1)*pageSize));
               }
             }
           });
@@ -149,6 +149,6 @@
         results = regex.exec(location.search);
       return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
     };
-
+
   </script>
 }

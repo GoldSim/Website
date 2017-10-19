@@ -34,7 +34,7 @@ figure {
     width                       : auto !important;
     height                      : auto !important;
     @include breakpoint(medium) {
-      padding                   : rem-calc(28 32);
+      padding                   : rem-calc(28 30);
     }
   }
   figcaption {
