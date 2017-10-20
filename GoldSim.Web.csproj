@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -80,6 +81,11 @@
     <Reference Include="Ignia.Topics.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\Ignia\Repositories\Topics-Library\Ignia.Topics.Web.Mvc\bin\Release\Ignia.Topics.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Web.Infrastructure">
@@ -1881,19 +1887,10 @@
     <Content Include="Configuration\connectionStrings.config" />
     <Content Include="packages.config" />
     <Content Include="Configuration\smtp.config" />
-    <Content Include="Views\Page\Page.cshtml" />
-    <Content Include="Views\ApplicationIndex\ApplicationIndex.cshtml" />
-    <Content Include="Views\ApplicationPage\ApplicationPage.cshtml" />
-    <Content Include="Views\CaseStudy\CaseStudy.cshtml" />
     <Content Include="Views\ContentList\Accordion.cshtml" />
     <Content Include="Views\ContentList\ContentList.cshtml" />
     <Content Include="Views\ContentList\IndexedList.cshtml" />
     <Content Include="Views\ContentList\LinkedList.cshtml" />
-    <Content Include="Views\FAQ\FAQ.cshtml" />
-    <Content Include="Views\Glossary\Glossary.cshtml" />
-    <Content Include="Views\Slideshow\Slideshow.cshtml" />
-    <Content Include="Views\TechnicalPaperList\TechnicalPaperList.cshtml" />
-    <Content Include="Views\Video\Video.cshtml" />
     <None Include="Properties\PublishProfiles\GoldSimWebStaging.pubxml" />
     <Content Include="Views\Layout\Menu.cshtml" />
     <Content Include="Views\Layout\Footer.cshtml" />
@@ -2047,7 +2044,6 @@
     <Content Include="Shared\Styles\Views\Home.scss" />
     <Content Include="Shared\Styles\Overrides\_overrides.scss" />
     <Content Include="Shared\Styles\Base\_forms.scss" />
-    <Content Include="Views\PageGroup\PageGroup.cshtml" />
     <Content Include="Views\Layout\_Layout.cshtml" />
     <Content Include="Shared\Styles\Views\ApplicationIndex.scss" />
     <Content Include="Shared\Styles\Views\Accordion.scss" />
@@ -2077,8 +2073,6 @@
     <Content Include="Shared\Styles\Components\CallsToAction\_callsToAction.scss" />
     <Content Include="Shared\Styles\Base\_modals.scss" />
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
-    <Content Include="Views\ExampleApplication\ExampleApplication.cshtml" />
-    <Content Include="Views\ExampleIndex\ExampleIndex.cshtml" />
     <Content Include="Views\ContentTypes\ApplicationIndex.cshtml" />
     <Content Include="Views\ContentTypes\ApplicationPage.cshtml" />
     <Content Include="Views\ContentTypes\CaseStudy.cshtml" />
@@ -2150,6 +2144,7 @@
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
