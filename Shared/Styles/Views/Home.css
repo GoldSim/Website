@@ -250,14 +250,14 @@ main section[role="region"] {
   text-align: center; }
   @media print, screen and (min-width: 40em) {
     .usage .screenshot {
-      padding: 0 0 0 2.5rem;
+      padding: 0 0 0 2.375rem;
       text-align: right; } }
   .usage .screenshot img {
     margin: 0 auto;
     border: 1px solid #cccccc; }
     @media print, screen and (min-width: 40em) {
       .usage .screenshot img {
-        max-width: 20.5625rem; } }
+        max-width: 20.6875rem; } }
 
 .applications .card {
   margin: 0 2.25rem 0.875rem;

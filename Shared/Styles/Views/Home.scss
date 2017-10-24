@@ -323,14 +323,14 @@ main {
     height                      : 100%;
     text-align                  : center;
     @include breakpoint(medium) {
-      padding                   : rem-calc(0 0 0 40);
+      padding                   : rem-calc(0 0 0 38);
       text-align                : right;
     }
     img {
       margin                    : 0 auto;
       border                    : 1px solid $palette-grey-light;
       @include breakpoint(medium) {
-        max-width               : rem-calc(329);
+        max-width               : rem-calc(331);
       }
     }
   }
