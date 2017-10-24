@@ -40,6 +40,8 @@ main {
       &.preview {
         @include clearfix;
         display                 : table-cell;
+        position                : relative;
+        left                    : 8%;
         width                   : rem-calc(553);
         height                  : rem-calc(311);
         text-align              : center;

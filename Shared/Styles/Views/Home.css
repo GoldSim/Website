@@ -18,6 +18,8 @@ main > section > header {
     max-height: initial; }
   main > section > header .video.preview {
     display: table-cell;
+    position: relative;
+    left: 8%;
     width: 34.5625rem;
     height: 19.4375rem;
     text-align: center;
