@@ -363,3 +363,6 @@ h1.title.short {
 h1.title.long {
   margin-bottom: 2.75rem;
   color: white; }
+
+.reveal-overlay {
+  background-color: rgba(32, 32, 32, 0.85); }
