@@ -57,9 +57,7 @@ main {
       }
     }
     .arrow.scroll {
-      position                  : absolute;
-      right                     : rem-calc(40);
-      bottom                    : rem-calc(110);
+      margin-top                : rem-calc(48);
       cursor                    : pointer;
     }
   }
