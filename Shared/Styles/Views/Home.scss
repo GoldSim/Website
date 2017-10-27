@@ -56,6 +56,12 @@ main {
         }
       }
     }
+    .arrow.scroll {
+      position                  : absolute;
+      right                     : rem-calc(40);
+      bottom                    : rem-calc(110);
+      cursor                    : pointer;
+    }
   }
   > article {
     padding                     : rem-calc(80 0 32);

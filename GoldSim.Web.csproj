@@ -1568,6 +1568,8 @@
     <Content Include="Forms\Webinars.aspx" />
     <Content Include="Forms\Webinars1.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\Email\EvaluationReceipt.Banner.png" />
+    <Content Include="Images\Home\Arrow.Down.svg" />
     <Content Include="Images\Home\Play.svg" />
     <Content Include="Images\Home\Splash.Background.jpg" />
     <Content Include="Images\Home\Video.png" />

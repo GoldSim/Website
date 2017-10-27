@@ -51,6 +51,10 @@
             </div>
           </div>
         </div>
+
+        <!-- Scroll Indicator -->
+        <img src="~/Images/Home/Arrow.Down.svg" alt="Scroll for More" class="arrow scroll" />
+
       </header>
       <!-- /Page Title Area -->
 
@@ -276,7 +280,18 @@
       /**
        * Establish variables
        */
-      var isVideoLoaded         = false;
+      var
+        isVideoLoaded = false,
+        introductionPanelPosition = ($('#Introduction').offset().top - 24);
+
+      /**
+       * Handle splash screen arrow scroll click
+       */
+      $('img.arrow.scroll').click(function() {
+        $('html,body').animate({
+          scrollTop: introductionPanelPosition
+        }, 1000);
+      });
 
       /**
        * Instantiate carousel for large and small screens
