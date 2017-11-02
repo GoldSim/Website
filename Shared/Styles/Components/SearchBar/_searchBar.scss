@@ -127,6 +127,9 @@ table.gsc-completion-container {
     @include breakpoint(large) {
       max-width                 : rem-calc(420);
     }
+    @include media-screen-wide-short {
+      min-height                : rem-calc(80);
+    }
     form {
       display                   : table-row;
     }
