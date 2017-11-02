@@ -54,6 +54,9 @@ body {
   @include breakpoint(large) {
     box-shadow                  : none;
   }
+  @include media-screen-wide-short() {
+    min-height                  : rem-calc(80);
+  }
   &.static-primary-nav {
     position                    : relative;
   }
@@ -73,6 +76,10 @@ body {
   @include breakpoint(large) {
     height                      : rem-calc(75);
     max-height                  : rem-calc(75);
+  }
+  @include media-screen-wide-short() {
+    height                      : rem-calc(60);
+    max-height                  : rem-calc(60);
   }
 
   // Drawer
