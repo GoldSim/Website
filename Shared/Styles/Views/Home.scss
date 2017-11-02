@@ -77,6 +77,9 @@ main {
     @include breakpoint(medium) {
       margin-bottom             : rem-calc(80);
     }
+    @include media-screen-wide-short() {
+      margin-bottom             : rem-calc(64);
+    }
     &:last-child {
       margin-bottom             : 0;
     }
