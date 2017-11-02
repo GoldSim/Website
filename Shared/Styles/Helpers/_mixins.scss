@@ -19,7 +19,7 @@
     }
 
     // Otherwise use set defaults
-    @media (mmin-width: 1024px) and (max-height: 864px) {
+    @media (min-width: 1024px) and (max-height: 864px) {
       @content;
     }
 
