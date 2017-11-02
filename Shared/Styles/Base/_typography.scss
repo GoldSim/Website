@@ -34,6 +34,20 @@ ul
 //----------------------------------------------------------------------------------------------
 // HEADINGS
 //----------------------------------------------------------------------------------------------
+h1,
+h2 {
+  margin-bottom                 : rem-calc(18);
+  @include breakpoint(medium) {
+    margin-bottom               : rem-calc(34);
+  }
+  &.link {
+    margin-bottom               : rem-calc(12);
+    font-weight                 : 600;
+  }
+  &.case-study {
+    padding-bottom              : rem-calc(16);
+  }
+}
 h1 {
   &.title {
     font-size                   : rem-calc(26);
@@ -51,20 +65,6 @@ h5,
 h6 {
   margin-bottom                 : 0;
   font-weight                   : 700;
-}
-h1,
-h2 {
-  margin-bottom                 : rem-calc(18);
-  @include breakpoint(medium) {
-    margin-bottom               : rem-calc(34);
-  }
-  &.link {
-    margin-bottom               : rem-calc(12);
-    font-weight                 : 600;
-  }
-  &.case-study {
-    padding-bottom              : rem-calc(16);
-  }
 }
 h3,
 h4,
