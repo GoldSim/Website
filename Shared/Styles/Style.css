@@ -7652,6 +7652,11 @@ ul.modules-list {
     margin-right: -6.5rem;
     margin-left: -6.5rem; } }
 
+@media screen and (min-width: 1024px) and (max-height: 864px) {
+  .table-wrapper.wide {
+    margin-right: -4.5rem;
+    margin-left: -4.5rem; } }
+
 table {
   border: 0 none transparent; }
   table th,
@@ -8525,6 +8530,9 @@ table.gsc-completion-container td {
   @media print, screen and (min-width: 64em) {
     .search.form {
       max-width: 26.25rem; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    .search.form {
+      min-height: 5rem; } }
   .search.form form {
     display: table-row; }
   .search.form input {
