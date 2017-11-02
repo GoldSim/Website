@@ -34,17 +34,43 @@ main {
     @include breakpoint(large) {
       padding                   : rem-calc(80 0);
     }
+    @include media-screen-wide-short() {
+      padding                   : rem-calc(48 0);
+    }
     .grid-container {
       max-height                : initial;
     }
+    @include media-screen-wide-short() {
+      h1.title.long {
+        font-size               : rem-calc(44);
+      }
+    }
     .video {
+      &.wrapper,
+      &.preview {
+        width                   : rem-calc(240);
+        height                  : rem-calc(135);
+        @include breakpoint(medium) {
+          width                 : rem-calc(464);
+          height                : rem-calc(261);
+        }
+        @include breakpoint(large) {
+          width                 : rem-calc(553);
+          height                : rem-calc(311);
+        }
+        @include media-screen-wide-short() {
+          width                 : rem-calc(464);
+          height                : rem-calc(261);
+        }
+      }
+      &.wrapper {
+        margin                  : 0 auto;
+        text-align              : center;
+      }
       &.preview {
         @include clearfix;
         display                 : table-cell;
         position                : relative;
-        left                    : 8%;
-        width                   : rem-calc(553);
-        height                  : rem-calc(311);
         text-align              : center;
         vertical-align          : middle;
         background              : transparent url('/Images/Home/Video.png') no-repeat center center;
@@ -52,14 +78,32 @@ main {
         cursor                  : pointer;
         img {
           display               : inline-block;
-          width                 : 88px;
-          height                : 88px;
+          width                 : rem-calc(44);
+          height                : rem-calc(44);
+          @include breakpoint(medium) {
+            width               : rem-calc(66);
+            height              : rem-calc(66);
+          }
+          @include breakpoint(large) {
+            width               : rem-calc(88);
+            height              : rem-calc(88);
+          }
         }
       }
     }
     .arrow.scroll {
       margin-top                : rem-calc(48);
+      width                     : rem-calc(35);
       cursor                    : pointer;
+      @include breakpoint(medium) {
+        width                   : rem-calc(51);
+      }
+      @include breakpoint(large) {
+        width                   : rem-calc(69);
+      }
+      @include media-screen-wide-short() {
+        width                   : rem-calc(51);
+      }
     }
   }
   > article {
