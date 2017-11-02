@@ -13,6 +13,10 @@
       margin-right              : rem-calc(-104);
       margin-left               : rem-calc(-104);
     }
+    @include media-screen-wide-short {
+      margin-right              : rem-calc(-72);
+      margin-left               : rem-calc(-72);
+    }
   }
 }
 table {
