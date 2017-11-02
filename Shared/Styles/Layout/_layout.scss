@@ -218,6 +218,10 @@ body {
         @include breakpoint(large) {
           padding               : rem-calc(0 110);
         }
+        @include media-screen-wide-short() {
+          margin                : rem-calc(32 0);
+          padding               : rem-calc(0 80);
+        }
       }
       section.embedded {
         &.pane.body {
