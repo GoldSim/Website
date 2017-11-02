@@ -40,6 +40,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Help</ExcludeFoldersFromDeployment>
+    <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -1571,7 +1572,7 @@
     <Content Include="Images\Email\EvaluationReceipt.Banner.png" />
     <Content Include="Images\Home\Arrow.Down.svg" />
     <Content Include="Images\Home\Play.svg" />
-    <Content Include="Images\Home\Splash.Background.jpg" />
+    <Content Include="Images\Home\Splash.Background.png" />
     <Content Include="Images\Home\Video.png" />
     <Content Include="Images\Icons\Baubles\Bauble.Inset.Placeholder.png" />
     <Content Include="Images\Icons\Baubles\Bauble.Outset.Placeholder.png" />
