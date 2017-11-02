@@ -34,7 +34,9 @@
               <h1 class="page title long">@Model.Topic.Attributes.GetValue("Subtitle")</h1>
 
               <!-- Video -->
-              <div class="video preview" data-open="VideoModal"><img src="~/Images/Home/Play.svg" alt="Play Video" /></div>
+              <div class="video wrapper">
+                <div class="video preview" data-open="VideoModal"><img src="~/Images/Home/Play.svg" alt="Play Video" /></div>
+              </div>
               <div class="large reveal" id="VideoModal" data-reveal>
                 <div class="responsive-embed widescreen video">
                   <video id="IntroductionVideo" controls autoplay>
