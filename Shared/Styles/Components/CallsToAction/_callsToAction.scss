@@ -29,6 +29,10 @@
       font-size                 : rem-calc(32);
       text-align                : left;
     }
+    @include media-screen-wide-short() {
+      padding-top               : rem-calc(3);
+      font-size                 : rem-calc(24);
+    }
   }
   .button-group {
     @include breakpoint(medium) {

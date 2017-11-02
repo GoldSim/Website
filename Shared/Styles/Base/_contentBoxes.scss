@@ -25,6 +25,9 @@
   @include breakpoint(large) {
     padding                     : rem-calc(80 110);
   }
+  @include media-screen-wide-short() {
+    padding                     : rem-calc(64 80);
+  }
   &.accordion {
     padding                     : 0;
   }
@@ -35,6 +38,9 @@
     }
     @include breakpoint(large) {
       padding                   : rem-calc(32 0);
+    }
+    @include media-screen-wide-short() {
+      padding                   : rem-calc(16 0);
     }
   }
 }

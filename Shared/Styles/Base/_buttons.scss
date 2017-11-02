@@ -78,6 +78,9 @@
     margin-right                : rem-calc(10);
     &.large {
       font-size                 : rem-calc(20);
+      @include media-screen-wide-short() {
+        font-size               : rem-calc(18);
+      }
     }
   }
 }
