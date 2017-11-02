@@ -6,6 +6,28 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
+// SPECIAL SCREEN SIZES / BREAKPOINTS
+//----------------------------------------------------------------------------------------------
+
+@mixin media-screen-wide-short($min-width: null, $max-height: null) {
+
+  @if ($min-width and $max-height) {
+
+    // Use provided variables, if available
+    @media (min-width: #{$min-width}) and (max-height: #{$max-height}) {
+      @content;
+    }
+
+    // Otherwise use set defaults
+    @media (mmin-width: 1024px) and (max-height: 864px) {
+      @content;
+    }
+
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------
 // PSEUDO-SELECTORS
 //----------------------------------------------------------------------------------------------
 
