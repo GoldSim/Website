@@ -14,14 +14,35 @@ main > section > header {
   @media print, screen and (min-width: 64em) {
     main > section > header {
       padding: 5rem 0; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    main > section > header {
+      padding: 3rem 0; } }
   main > section > header .grid-container {
     max-height: initial; }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    main > section > header h1.title.long {
+      font-size: 2.75rem; } }
+  main > section > header .video.wrapper, main > section > header .video.preview {
+    width: 15rem;
+    height: 8.4375rem; }
+    @media print, screen and (min-width: 40em) {
+      main > section > header .video.wrapper, main > section > header .video.preview {
+        width: 29rem;
+        height: 16.3125rem; } }
+    @media print, screen and (min-width: 64em) {
+      main > section > header .video.wrapper, main > section > header .video.preview {
+        width: 34.5625rem;
+        height: 19.4375rem; } }
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      main > section > header .video.wrapper, main > section > header .video.preview {
+        width: 29rem;
+        height: 16.3125rem; } }
+  main > section > header .video.wrapper {
+    margin: 0 auto;
+    text-align: center; }
   main > section > header .video.preview {
     display: table-cell;
     position: relative;
-    left: 8%;
-    width: 34.5625rem;
-    height: 19.4375rem;
     text-align: center;
     vertical-align: middle;
     background: transparent url("/Images/Home/Video.png") no-repeat center center;
@@ -39,11 +60,29 @@ main > section > header {
       clear: both; }
     main > section > header .video.preview img {
       display: inline-block;
-      width: 88px;
-      height: 88px; }
+      width: 2.75rem;
+      height: 2.75rem; }
+      @media print, screen and (min-width: 40em) {
+        main > section > header .video.preview img {
+          width: 4.125rem;
+          height: 4.125rem; } }
+      @media print, screen and (min-width: 64em) {
+        main > section > header .video.preview img {
+          width: 5.5rem;
+          height: 5.5rem; } }
   main > section > header .arrow.scroll {
     margin-top: 3rem;
+    width: 2.1875rem;
     cursor: pointer; }
+    @media print, screen and (min-width: 40em) {
+      main > section > header .arrow.scroll {
+        width: 3.1875rem; } }
+    @media print, screen and (min-width: 64em) {
+      main > section > header .arrow.scroll {
+        width: 4.3125rem; } }
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      main > section > header .arrow.scroll {
+        width: 3.1875rem; } }
 
 main > article {
   padding: 5rem 0 2rem; }
