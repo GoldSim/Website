@@ -15,7 +15,8 @@
       $window                   = $(window),
       $siteHeader               = $('header.site.header'),
       $screenSize               = $window.width(),
-      $paneFullHeight           = ($window.height() - $siteHeader.height());
+      $primaryNavHeight         = ($('#PrimaryNavigation').length ? $('#PrimaryNavigation').height() : 0),
+      $paneFullHeight           = ($window.height() - $siteHeader.height() - $primaryNavHeight);
 
     /**
      * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
@@ -23,7 +24,7 @@
     $('.js-full-height').each(function () {
       var $this = $(this);
       if ($window.width() > 768) {
-        $this.innerHeight($paneFullHeight);
+        $this.outerHeight($paneFullHeight);
       }
     });
 
