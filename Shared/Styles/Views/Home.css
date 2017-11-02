@@ -75,12 +75,18 @@ main section[role="region"] {
     .pane header h1 {
       padding: 0 6.875rem;
       text-align: left; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    .pane header h1 {
+      padding: 0 5rem; } }
 
 .pane p.text {
   padding: 0 2.25rem; }
   @media print, screen and (min-width: 40em) {
     .pane p.text {
       padding: 0 6.875rem; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    .pane p.text {
+      padding: 0 5rem; } }
 
 .pane.applications h2 {
   margin: 1.75rem auto 1.25rem;
@@ -115,6 +121,9 @@ main section[role="region"] {
       padding-bottom: 5rem;
       background: white url("/Images/Home/Introduction.Background.Large.png") no-repeat bottom right;
       background-size: contain; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    .panel.introduction {
+      padding-left: 5rem; } }
 
 .panel.customers {
   position: relative;
@@ -182,6 +191,10 @@ main section[role="region"] {
       .usage .owl-nav .owl-prev,
       .usage .owl-nav .owl-next {
         width: 6.875rem; } }
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      .usage .owl-nav .owl-prev,
+      .usage .owl-nav .owl-next {
+        width: 5rem; } }
     .usage .owl-nav .owl-prev.disabled i.fa,
     .usage .owl-nav .owl-next.disabled i.fa {
       display: none; }
@@ -215,6 +228,9 @@ main section[role="region"] {
   @media print, screen and (min-width: 40em) {
     .usage .owl-item {
       padding: 0 6.875rem; } }
+  @media screen and (min-width: 1024px) and (max-height: 864px) {
+    .usage .owl-item {
+      padding: 0 5rem; } }
   .usage .owl-item p:last-of-type {
     margin-bottom: 0; }
   @media screen and (max-width: 39.9375em) {

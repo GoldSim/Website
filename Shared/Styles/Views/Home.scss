@@ -13,6 +13,7 @@
 //----------------------------------------------------------------------------------------------
   @import "../variables";
   @import "../foundationSettings";
+  @import "../Helpers/mixins";
 
 //----------------------------------------------------------------------------------------------
 // LAYOUT
@@ -108,6 +109,9 @@ main {
         padding                 : rem-calc(0 110);
         text-align              : left;
       }
+      @include media-screen-wide-short {
+        padding                 : rem-calc(0 80);
+      }
     }
   }
 
@@ -115,6 +119,9 @@ main {
     padding                     : rem-calc(0 36);
     @include breakpoint(medium) {
       padding                   : rem-calc(0 110);
+    }
+    @include media-screen-wide-short() {
+      padding                   : rem-calc(0 80);
     }
   }
 
@@ -164,6 +171,9 @@ main {
       padding-bottom            : rem-calc(80);
       background                : $palette-white url('/Images/Home/Introduction.Background.Large.png') no-repeat bottom right;
       background-size           : contain;
+    }
+    @include media-screen-wide-short {
+      padding-left              : rem-calc(80);
     }
   }
 
@@ -244,6 +254,9 @@ main {
       @include breakpoint(medium) {
         width                   : rem-calc(110);
       }
+      @include media-screen-wide-short() {
+        width                   : rem-calc(80);
+      }
       &.disabled {
         i.fa {
           display               : none;
@@ -283,6 +296,9 @@ main {
     }
     @include breakpoint(medium) {
       padding                   : rem-calc(0 110);
+    }
+    @include media-screen-wide-short {
+      padding                   : rem-calc(0 80);
     }
     p {
       &:last-of-type {
