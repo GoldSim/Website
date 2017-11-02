@@ -32,10 +32,10 @@ main {
     background                  : $palette-black url('/Images/Home/Splash.Background.png') no-repeat center center;
     background-size             : cover;
     @include breakpoint(large) {
-      padding                   : rem-calc(80 0);
+      padding                   : rem-calc(80 0 0);
     }
     @include media-screen-wide-short() {
-      padding                   : rem-calc(48 0);
+      padding                   : rem-calc(48 0 0);
     }
     .grid-container {
       max-height                : initial;
@@ -64,8 +64,11 @@ main {
         }
       }
       &.wrapper {
-        margin                  : 0 auto;
+        margin                  : 0 auto 32px;
         text-align              : center;
+        @include breakpoint(large) {
+          margin-bottom         : 0;
+        }
       }
       &.preview {
         @include clearfix;
@@ -91,6 +94,13 @@ main {
         }
       }
     }
+    .scroll.wrapper {
+      position                  : absolute;
+      right                     : 0;
+      bottom                    : rem-calc(32);
+      left                      : 0;
+      text-align                : center;
+    }
     .arrow.scroll {
       margin-top                : rem-calc(48);
       width                     : rem-calc(35);
@@ -112,7 +122,7 @@ main {
   .header {
     &.js-full-height {
       @include breakpoint(large) {
-        min-height              : rem-calc(790);
+      //min-height              : rem-calc(790);
       }
     }
   }
