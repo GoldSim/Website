@@ -38,6 +38,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <ExcludeFoldersFromDeployment>Images\Courses</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Help</ExcludeFoldersFromDeployment>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
@@ -51,6 +52,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
+    <ExcludeFoldersFromDeployment>Images\Courses</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Help</ExcludeFoldersFromDeployment>
     <ExcludeGeneratedDebugSymbol>true</ExcludeGeneratedDebugSymbol>
