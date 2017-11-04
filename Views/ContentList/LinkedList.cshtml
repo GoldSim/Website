@@ -1,0 +1,64 @@
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    @if (!String.IsNullOrEmpty(Model.Topic.Attributes.GetValue("Body"))) {
+      <!-- Body Content -->
+      <article class="page body">
+        @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+      </article>
+      <!-- /Body Content -->
+    }
+
+    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic.Children["Categories"] != null && Model.Topic.Children["Categories"].Children.Count > 0) {
+      foreach (Topic category in Model.Topic.Children["Categories"].Children.OrderBy(c => c)) {
+        <h1 id="@category.Key">@category.Title</h1>
+        <section id="Group-@category.Key" class="content list">
+          @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted.Where(t => t.Attributes.GetValue("Category", "").Equals(category))) {
+            @WriteContentItem(contentItem, "h2")
+          }
+        </section>
+      }
+    }
+    else {
+      <section class="content list">
+        @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
+          @WriteContentItem(contentItem)
+        }
+      </section>
+    }
+
+  </section>
+
+}
+
+@helper WriteContentItem(Topic contentItem, string element = "h1") {
+  <article>
+    <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.GetValue("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("ThumbnailImage"))) {
+      <a href="@contentItem.Attributes.GetValue("LearnMoreUrl", "#")" target="_blank">
+        <!-- Thumbnail Image -->
+        <picture class="callout picture thumbnail small">
+          <source srcset="@contentItem.Attributes.GetValue("ThumbnailImage")" />
+          <img src="@contentItem.Attributes.GetValue("ThumbnailImage")" alt="@contentItem.Title">
+        </picture>
+        <!-- /Thumbnail Image -->
+      </a>
+    }
+    <div>
+      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.GetValue("Description")))
+    </div>
+  </article>
+}
+
+<!--
+  Content Type: Content List
+  View Type: Linked List
+  View Location: ~/Views/ContentList/LinkedList.cshtml
+-->

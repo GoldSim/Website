@@ -1,0 +1,177 @@
+<%@ Master ClassName="FormsLayout" Inherits="GoldSim.Forms.Common.Templates.FormsLayoutMaster" CodeFile="Forms.Layout.Master.cs" %>
+<%@ Import Namespace="Ignia.Topics" %>
+<%@ Import Namespace="Ignia.Topics.Web" %>
+<%@ Import Namespace="System.Web.Mvc" %>
+<%@ Import Namespace="System.Web.Mvc.Html" %>
+<%@ Import Namespace="GoldSim.Web.Controllers" %>
+<%@ Import Namespace="GoldSim.Web.Helpers" %>
+<%@ Import Namespace="GoldSim.Web.Models" %>
+<%@ Register TagPrefix="Ignia" TagName="ClientValidation" Src="/Common/Global/Controls/ClientValidation.ascx" %>
+
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
+  <head runat="server">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title><%= Page.Title %> - GoldSim</title>
+    <meta name="keywords" content="simulation software, business simulation software, decision analysis software, discrete event, Monte Carlo, Monte Carlo simulation, modeling, modelling, decision analysis, process modeling, process simulation software, simulation technology, supply chain software, uncertainty analysis, stochastic, uncertainty, probabilistic" />
+    <meta name="description" content="GoldSim is a powerful and flexible platform for visualizing and dynamically simulating nearly any kind of physical, financial or organizational system. This page summarizes the available GoldSim software products." />
+    <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
+    <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
+    <link rel="canonical" href="https://www.goldsim.com<%= Request.Url.AbsolutePath.ToString().ToLower() %>" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/Images/Favicons/manifest.json" />
+    <link rel="mask-icon" href="/Images/Favicons/safari-pinned-tab.svg" color="#000000" />
+    <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
+    <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css?20170823041639" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
+    <style type="text/css">
+      header.site.header {
+        -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+        box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+      }
+    </style>
+    <asp:ContentPlaceHolder ID="PageHead" RunAt="Server" />
+    <script>
+      /**
+       * Initialize Google Analytics
+       */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2082450-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body itemscope itemtype="https://schema.org/WebPage">
+
+    <asp:ContentPlaceHolder ID="HeaderContainer" RunAt="Server">
+      <!-- Site Header Area -->
+      <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
+        <div class="title-bar-left menu">
+          <button class="menu-icon hide-for-large" type="button" data-open="PrimaryNavigationSmallScreen"></button>
+        </div>
+        <!-- Logo -->
+        <div class="title-bar-middle logo centered">
+          <a href="/"><img src="/Images/Logo.png" alt="GoldSim Technology Group" class="logo" /></a>
+        </div>
+        <!-- /Logo -->
+        <div class="title-bar-right search">
+          <div class="search form closed">
+            <!-- Search Input -->
+            <gcse:searchbox-only enableHistory="true" enableAutoComplete="true" resultsUrl="/Web/Search/" queryParameterName="SearchText" placeholder="Search GoldSim.com"></gcse:searchbox-only>
+            <style type="text/css">
+              #gsc-i-id1::-webkit-input-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              #gsc-i-id1::-moz-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              #gsc-i-id1:-ms-input-placeholder {
+                font-size: 1.875rem !important;
+              }
+
+              .gsc-input input.gsc-input {
+                background: none repeat scroll 0% 0% transparent !important;
+              }
+            </style>
+            <!-- Search Open / Close Button -->
+            <div class="buttons">
+              <button type="button" class="icon"></button>
+            </div>
+          </div>
+        </div>
+      </header>
+      <!-- /Site Header Area -->
+      <% WebFormMvcBridge.RenderAction("Layout", "Menu", new { }); %>
+    </asp:ContentPlaceHolder>
+
+    <form RunAt="Server" enctype="multipart/form-data" data-abide novalidate>
+      <asp:ContentPlaceHolder ID="ContentContainer" RunAt="Server">
+        <!-- Main Site Content Area -->
+        <main id="MainContentArea" class="page content" role="main">
+          <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
+            <!-- Long Title (Subtitle) -->
+            <header class="grid-x">
+              <h1 class="page title long cell"><%= Page.Title %></h1>
+              <asp:ContentPlaceHolder ID="Subtitle" runat="server">
+                <p class="subtitle"></p>
+              </asp:ContentPlaceHolder>
+            </header>
+            <!-- /Long Title (Subtitle) -->
+            <!-- Main Page Content -->
+            <div class="grid-container">
+              <div class="grid-x">
+                <section class="panel body">
+                  <asp:Label ID="Notification" CssClass="Notification" Visible="False" RunAt="Server">
+                    <p>Your request has been submitted to GoldSim. We process requests within five business days.</p>
+                  </asp:Label>
+
+                  <div class="validation-instructions">
+                    <Ignia:ClientValidation ID="ClientValidation" SummaryRequired="true" SummaryColor="rgb(235, 93, 98)" RunAt="Server" />
+                  </div>
+
+                  <asp:ContentPlaceHolder ID="Content" RunAt="Server"/>
+
+                  <asp:ContentPlaceHolder ID="ButtonArea" RunAt="Server">
+                    <asp:Button
+                      ID                        = "Submit"
+                      OnCommand                 = "OnProcessForm"
+                      Text                      = "Submit"
+                      CssClass                  = "submit button large primary"
+                      RunAt                     = "Server"
+                    />
+                  </asp:ContentPlaceHolder>
+                </section>
+              </div>
+            </div>
+            <!-- /Main Page Content -->
+          </article>
+        </main>
+        <!-- /Main Site Content Area -->
+      </asp:ContentPlaceHolder>
+    </form>
+
+    <% WebFormMvcBridge.RenderAction("Layout", "Footer", new { }); %>
+
+    <!-- jQuery -->
+    <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
+    <!-- Foundation -->
+    <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
+
+    <script>
+      /**
+       * Initialize Foundation
+       */
+      $(document).foundation();
+    </script>
+    <script src="/Shared/Scripts/Scripts.js"></script>
+
+    <script>
+      /**
+       * Google Custom Search script bootstrapping
+       */
+      (function() {
+        var
+          cx            = '001116227355942586376:hfih0l8kboc',
+          gcse          = document.createElement('script');
+        gcse.type       = 'text/javascript';
+        gcse.async      = true;
+        gcse.src        = (document.location.protocol == 'https' ? 'https:' : 'http:') + '//www.google.com/cse/cse.js?cx=' + cx;
+        var s           = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(gcse, s);
+      })();
+    </script>
+
+    <asp:ContentPlaceHolder ID="PageScripts" runat="server" />
+
+  </body>
+</html>

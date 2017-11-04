@@ -1,0 +1,285 @@
+﻿//==============================================================================================
+// MENU
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the primary navigation menu(s).
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+
+// Toggles (open and close)
+button {
+  &.menu-icon {
+    width                       : 2rem;
+    height                      : 1.5rem;
+    color                       : $palette-black;
+  }
+  &.close-button {
+    @include disable-mouse-outline;
+    outline-width               : 0;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+
+// Menu Toggle
+.title-bar {
+  .menu-icon {
+    margin-top                  : rem-calc(8);
+    margin-left                 : rem-calc(32);
+    @include breakpoint(medium) {
+      margin-left               : rem-calc(40);
+    }
+  }
+}
+
+nav.navigation {
+
+  // Primary Navigation Menu
+  &.primary {
+    background-color            : $palette-black;
+
+    // close button
+    button.close-button {
+      top                       : rem-calc(32);
+      right                     : auto;
+      left                      : rem-calc(32);
+      font-size                 : rem-calc(52);
+      color                     : $palette-white;
+    }
+
+    li {
+      &.is-accordion-submenu-parent {
+        a {
+          &:after {
+            display                     : inline-block;
+            position                    : relative;
+            top                         : rem-calc(4);
+            right                       : rem-calc(-4);
+            border                      : 0 none transparent;
+            width                       : 27px;
+            height                      : 27px;
+            background                  : transparent url('/Images/Icons/Plus.Circle.png') no-repeat center center;
+            background-size             : contain;
+          }
+        }
+        &[aria-expanded="true"] {
+          a {
+            &:after {
+              background-image          : url('/Images/Icons/Minus.Circle.png');
+            }
+          }
+        }
+        &.is-accordion-submenu-item {
+          > a {
+            &:after {
+              content                   : '+';
+              display                   : inline-block;
+              position                  : relative;
+              top                       : 0;
+              right                     : rem-calc(-8);
+              border                    : 0 none transparent;
+              width                     : auto;
+              height                    : auto;
+              color                     : $palette-yellow;
+              font-weight               : bold;
+              background-image          : none;
+            }
+          }
+          &[aria-expanded="true"] {
+            > a {
+              &:after {
+                content                 : '-';
+                top                     : rem-calc(4);
+                right                   : rem-calc(-11);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // navigation items
+    ul.menu {
+      top                       : rem-calc(96);
+      padding-left              : 0;
+      @include breakpoint(medium) {
+        padding-left            : rem-calc(32);
+      }
+      @include breakpoint(large) {
+        top                     : 0;
+        padding-top             : rem-calc(10);
+        padding-left            : 0;
+      }
+      @include media-screen-wide-short() {
+        padding-top             : rem-calc(6);
+      }
+      li {
+        font-family             : $header-font-family;
+        font-size               : rem-calc(30);
+        font-weight             : $header-font-weight;
+        @include media-screen-wide-short() {
+          margin-bottom         : 0;
+          font-size             : rem-calc(28);
+        }
+        a {
+          padding               : rem-calc(9 16);
+          color                 : $palette-white;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            color               : $palette-yellow;
+          }
+        }
+      }
+      &.dropdown {
+        > li {
+          padding-left          : 0;
+          height                : rem-calc(48);
+          &.is-dropdown-submenu-parent {
+            padding-right       : rem-calc(88);
+            @include media-screen-wide-short() {
+              padding-right     : rem-calc(92);
+            }
+            &.is-dropdown-submenu-item {
+              padding-right     : 0;
+            }
+            &:last-of-type {
+              padding-right     : 0;
+            }
+            > a {
+              &:after {
+                display         : none;
+              }
+            }
+          }
+          &.is-submenu-item {
+            min-width           : rem-calc(226);
+          }
+        }
+        &.vertical {
+          > li {
+            &.opens-right,
+            &.opens-left {
+              > a {
+                &:after {
+                  display       : block;
+                  top           : rem-calc(16);
+                  right         : 0;
+                }
+              }
+            }
+          }
+        }
+        &.nested {
+          li {
+            height              : auto;
+          }
+        }
+      }
+      &.nested {
+        top                     : rem-calc(6);
+        margin-left             : 0;
+        border                  : 0 none transparent;
+        padding-bottom          : rem-calc(32);
+        padding-left            : rem-calc(4);
+        @include breakpoint(large) {
+          top                   : rem-calc(64);
+          padding-left          : 0;
+          background-color      : rgba($palette-black, 0.85);
+        }
+        @include media-screen-wide-short() {
+          top                   : rem-calc(54);
+        }
+        li {
+          margin-bottom         : 0;
+          font-size             : rem-calc(18);
+          font-weight           : 600;
+          a {
+            padding             : rem-calc(8 18);
+          }
+        }
+        ul.menu.nested {
+          padding-bottom        : rem-calc(12);
+          padding-left          : rem-calc(4);
+          font-weight           : normal;
+          @include breakpoint(large) {
+            top                 : rem-calc(-10);
+            padding-left        : 0;
+            li {
+              height            : auto;
+            }
+          }
+        }
+      }
+      &:not(.submenu) > li > ul.nested {
+      //margin-bottom           : rem-calc(32);
+      }
+    }
+
+    // Mobile
+    &.off-canvas {
+      .nested {
+        .nested {
+          li {
+            font-weight         : normal;
+            a {
+              padding-left      : rem-calc(24);
+            }
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+  // Page Level Navigation Menu
+  &.page {
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    background-color            : $palette-white;
+    ul.menu {
+      li {
+        margin-bottom           : 0;
+        a {
+          border-bottom         : 2px solid transparent;
+          padding               : rem-calc(24 20 18);
+          font-weight           : normal;
+          color                 : $palette-grey-dark;
+          text-decoration       : none;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            border-color        : $palette-yellow;
+            color               : $palette-black;
+          }
+          &.selected {
+            font-weight         : 600;
+          }
+        }
+      }
+    }
+  }
+
+}

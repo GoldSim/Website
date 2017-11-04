@@ -1,0 +1,137 @@
+﻿@using System.Configuration;
+@{
+  ViewBag.Title = "Search";
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.min.css" type="text/css" media="all" />
+}
+
+@section PageBodySection {
+  <section class="panel body">
+
+    <!-- Body Content -->
+    <article class="page body search results">
+      <form id="SearchResultSearchForm" action="/Web/Search/">
+        <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
+      </form>
+      <div id="SearchResults"></div>
+      <div id="Pagination" class="pagination text-center"></div>
+    </article>
+    <!-- /Body Content -->
+
+  </section>
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
+  <script>
+    $(function () {
+
+      /**
+       * Pre-populate results page search input value
+       */
+      $('#SearchResultsSearchQuery').val(getQuerystringValue('SearchText'));
+
+      /**
+       * Build initial results set and pagination
+       */
+      getSearchResults();
+
+    });
+
+    /**
+     * Establish Bing Search API variables
+     */
+    var
+      apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
+      customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
+      searchQuery               = getQuerystringValue('SearchText'),
+      baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v5.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
+      totalResults              = 0;
+
+    /**
+      * Build a set of search results based on the offset/page requested
+      */
+    function getSearchResults(offset) {
+      offset                    = offset ? offset : 0;
+      $.ajax({
+        url                     : baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
+        headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
+        success                 : function (result, status, xhr) {
+          var searchResults     = result.webPages.value;
+
+          // Clear current results
+          $('#SearchResults').html('');
+
+          // Render search results
+          for (var i = 0; i < searchResults.length; i++) {
+            var
+              title             = searchResults[i].name,
+              url               = searchResults[i].url,
+              displayUrl        = searchResults[i].displayUrl,
+              snippet           = searchResults[i].snippet,
+              searchResult      = '<div class="result"><a href="' + url + '" class="title">' + title + '</a><br/><small>' + displayUrl + '</small><p>' + snippet + '</p></div>';
+            $('#SearchResults').append(searchResult);
+          }
+
+          // Make updated estimated matches available to pagination
+          updateTotalResults(result.webPages.totalEstimatedMatches);
+
+        }
+      });
+
+      // Render pagination
+      setTimeout(function () {
+        getSearchResultsPagination(totalResults);
+      }, 1500);
+
+    };
+
+    /**
+      * Update the total (search) results variable as the estimate changes
+      */
+    function updateTotalResults(estimatedMatches) {
+      totalResults              = estimatedMatches;
+    }
+
+    /**
+      * Build search results pagination links based on the total number of results
+      */
+    function getSearchResultsPagination(totalResults) {
+
+      var
+        pageSize                = 10,
+        totalPages              = Math.ceil(totalResults / pageSize),
+        currentPageNumber       = (window.location.hash.length ? window.location.hash.substr(5) : 1);
+
+      $('#Pagination').pagination('destroy');
+      $('#Pagination').pagination({
+        items                   : totalResults,
+        itemsOnPage             : pageSize,
+        currentPage             : currentPageNumber,
+        displayedPages          : 0,
+        edges                   : 0,
+        hrefTextPrefix          : '#Page',
+        onPageClick: function (pageNumber, event) {
+          getSearchResults(((pageNumber-1)*pageSize));
+        },
+        onInit: function() {}
+      });
+
+    };
+
+    /**
+     * Determine and return the value for the requested querystring parameter
+     */
+    function getQuerystringValue(parameter) {
+      parameter = parameter.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+      var
+        regex = new RegExp('[\\?&]' + parameter + '=([^&#]*)'),
+        results = regex.exec(location.search);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+  </script>
+}

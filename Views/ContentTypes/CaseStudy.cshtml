@@ -1,0 +1,126 @@
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+
+  // Populate related Applications
+  List<Topic> applications = new List<Topic>();
+  if (Model.Topic.Relationships.Contains("Applications")) {
+    foreach (Topic relatedApplication in Model.Topic.Relationships["Applications"]) {
+      if (!applications.Contains(relatedApplication)) {
+        applications.Add(relatedApplication);
+      }
+    }
+  }
+
+}
+
+@section PostTitleSection {
+
+  <!-- Post Title -->
+  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))? "8" : "12") cell align-middle metadata">
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Customer"))) {
+      <strong>Client:</strong>
+      @Html.Raw(@customer(@Model.Topic.Attributes.GetValue("Customer"), @Model.Topic.Attributes.GetValue("CustomerURL")))
+      <br/>
+    }
+    @if(applications.Count > 0) {
+      <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
+      foreach (Topic application in applications) {
+        <a href="@application.WebPath" class="comma delimited">@application.Title</a>
+      }
+    }
+  </div>
+  @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))) {
+    <div class="medium-4 cell align-middle text-right metadata">
+      @Html.Raw(downloadButton(@Model.Topic.Attributes.GetValue("DownloadURL")))
+    </div>
+  }
+  <!-- /Post Title -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ThumbnailImage"))) {
+      <!-- Thumbnail Image -->
+      <picture class="callout picture">
+        <source srcset="@Model.Topic.Attributes.GetValue("ThumbnailImage")" />
+        <img src="@Model.Topic.Attributes.GetValue("ThumbnailImage")" alt="@Model.Topic.Title">
+      </picture>
+      <!-- /Thumbnail Image -->
+    }
+
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Abstract", ""))) {
+      <!-- Abstract -->
+      <!-- <h1>Abstract</h1> -->
+      <!-- Abstract Text -->
+      <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Abstract", ""))</p>
+      <!-- /Abstract -->
+    }
+
+    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+
+    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("LearnMoreURL"))) {
+      <h1>Learn More</h1>
+      <ul>
+        <li><a href="@Model.Topic.Attributes.GetValue("LearnMoreURL")">@Model.Topic.Attributes.GetValue("LearnMoreLabel", "Learn more")</a></li>
+      </ul>
+    }
+
+  </section>
+
+}
+
+@section Scripts {
+  <script>
+    $(function () {
+      /**
+       * Add comma after metadata links
+       */
+      $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
+    });
+  </script>
+}
+
+@helper customer(string customerName, string customerUrl) {
+  if (!String.IsNullOrEmpty(customerUrl)) {
+    <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
+  }
+  else {
+    <strong>@customerName</strong>
+  }
+}
+
+@helper downloadButton(string downloadUrl) {
+
+  string label                = "Download";
+  string downloadName         = "";
+
+  if (!String.IsNullOrEmpty(downloadUrl)) {
+    string url                = downloadUrl;
+    if (url.IndexOf("/") >= 0) {
+      url                     = url.Substring(url.LastIndexOf("/") + 1);
+    }
+    if (url.ToLower().EndsWith(".pdf")) {
+      url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
+    }
+    downloadName              = url;
+  }
+
+  if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
+    label = "Learn More";
+  }
+
+  <a href="@downloadUrl" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
+    @label
+  </a>
+
+}
+
+<!--
+  Content Type: Case Study
+  View Location: ~/Views/CaseStudy/CaseStudy.cshtml
+-->

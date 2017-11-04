@@ -1,0 +1,138 @@
+﻿//==============================================================================================
+// SLIDESHOW
+//----------------------------------------------------------------------------------------------
+// Represents styles specific to pages of Content Type "Slideshow".
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// NOTE: It is expected that this page will co-exist with the centralized stylesheet and,
+// therefore, it is not necessary that it reimport shared styles. It may, however, need to
+// import variables and helpers.
+//----------------------------------------------------------------------------------------------
+@import "../variables";
+@import "../foundationSettings";
+
+//----------------------------------------------------------------------------------------------
+// VIEW
+//----------------------------------------------------------------------------------------------
+
+// Navigation / Pagination Allowances
+#MainContentArea article:first-of-type > header {
+  padding-bottom                : rem-calc(80);
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(64);
+  }
+}
+.panel.body {
+  margin-bottom                 : rem-calc(80);
+  @include breakpoint(medium) {
+    margin-bottom               : rem-calc(88);
+  }
+}
+
+// Carousel
+.carousel-wrapper {
+  position                      : relative;
+  max-width                     : rem-calc(960);
+}
+.owl-carousel {
+  .owl-item {
+    img {
+      width                     : auto;
+    }
+  }
+}
+.owl-nav {
+  position                      : absolute;
+  top                           : rem-calc(-116);
+  right                         : 0;
+  left                          : 0;
+  @include breakpoint(large) {
+    top                         : rem-calc(-164);
+  }
+  &.bottom {
+    top                         : auto;
+    bottom                      : rem-calc(-64);
+    @include breakpoint(large) {
+      bottom:                   rem-calc(-116);
+    }
+  }
+  .owl-prev,
+  .owl-next {
+    z-index                     : 10;
+    display                     : inline-block;
+    position                    : absolute;
+    top                         : 0;
+    bottom                      : 0;
+    width                       : rem-calc(70);
+    .button {
+      position                  : absolute;
+      min-width                 : initial;
+      width                     : rem-calc(68);
+    }
+    &.disabled {
+      .button {
+        opacity                 : 0.25;
+        cursor                  : default;
+        &:hover,
+        &:focus,
+        &:active {
+          border-color          : $palette-yellow;
+          color                 : $palette-black;
+          background-color      : $palette-yellow;
+        }
+      }
+    }
+  }
+  .owl-prev {
+    left                        : 0;
+    .button {
+      left                      : 0;
+    }
+  }
+  .owl-next {
+    right                       : 0;
+    .button {
+      right                     : 0;
+    }
+  }
+}
+.owl-dots {
+  display                       : none;
+  position                      : absolute;
+  top                           : rem-calc(-136);
+  right                         : rem-calc(80);
+  left                          : rem-calc(80);
+  height                        : rem-calc(20);
+  text-align                    : center;
+  @include breakpoint(large) {
+    display                     : block;
+    top                         : rem-calc(-152);
+  }
+  .owl-dot {
+    display                     : inline-block;
+    margin                      : rem-calc(0 4);
+    border-radius               : 50%;
+    width                       : rem-calc(12);
+    height                      : rem-calc(12);
+    background-color            : $palette-grey-light;
+    &.active {
+      background-color          : $palette-yellow;
+    }
+  }
+}
+
+// Slide
+article {
+  &:first-of-type,
+  &.slide {
+    padding-top                 : 0;
+  }
+  &.slide {
+    figure:only-child {
+      margin-top                : 0;
+    }
+  }
+}

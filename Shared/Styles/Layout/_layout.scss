@@ -1,0 +1,319 @@
+﻿//==============================================================================================
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+// Provides structural definitions for the site's layout, such grids, dimensions, positioning,
+// z-indexes, margins, and padding.
+//----------------------------------------------------------------------------------------------
+// IMPORTANT: Skinning attributes such as font size, color, backgrounds, and gradients should
+// not be defined in layout; these should be handled elsewhere (e.g., /Base) to maintain
+// separation of concerns.
+//----------------------------------------------------------------------------------------------
+// NOTE: Since layout sections often map to exclusive parts of a page, it is acceptable to
+// use #ID selectors here (and ONLY here).
+//----------------------------------------------------------------------------------------------
+// NOTE: Layouts in this file should be migrated to individual files under /Layout and imported
+// if they get too long (say, over 10 selectors).
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// DOCUMENT
+//----------------------------------------------------------------------------------------------
+html {
+  height                        : 100%;
+}
+body {
+  position                      : relative;
+  margin                        : 0;
+//padding-top                   : rem-calc(100);
+  padding-bottom                : rem-calc(732);
+  min-height                    : 100%;
+  background-color              : $palette-grey-lightest;
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(428);
+  }
+  @include breakpoint(large) {
+  //padding-top                 : rem-calc(175);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// HEADER
+//----------------------------------------------------------------------------------------------
+#SiteHeader {
+  right                         : 0;
+  left                          : 0;
+  box-shadow                    : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+  padding                       : 0;
+  min-height                    : rem-calc(100);
+  color                         : $palette-black;
+  background-color              : $palette-white;
+  @include breakpoint(large) {
+    box-shadow                  : none;
+  }
+  @include media-screen-wide-short() {
+    min-height                  : rem-calc(80);
+  }
+  &.static-primary-nav {
+    position                    : relative;
+  }
+
+  // (Foundation) Title Bar "Cells"
+  div[class^="title-bar-"] {
+    width                       : 33%;
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------
+// NAVIGATION
+//----------------------------------------------------------------------------------------------
+[id^=PrimaryNavigation] {
+  min-width                     : rem-calc(300);
+  @include breakpoint(large) {
+    height                      : rem-calc(75);
+    max-height                  : rem-calc(75);
+  }
+  @include media-screen-wide-short() {
+    height                      : rem-calc(60);
+    max-height                  : rem-calc(60);
+  }
+
+  // Drawer
+  &.position-left {
+    min-width                   : rem-calc(320);
+    width                       : auto;
+    @include breakpoint(medium) {
+      min-width                 : rem-calc(430);
+    }
+  }
+
+  // Submenu Toggle
+  .submenu-toggle {
+    top                         : rem-calc(14);
+    right                       : rem-calc(24);
+  }
+  .nested {
+    .submenu-toggle {
+      top                       : rem-calc(4);
+    }
+  }
+
+}
+#PrimaryNavigationSmallScreen {
+  z-index                       : 30;
+  + .js-off-canvas-overlay {
+    z-index                     : 25;
+  }
+}
+
+// Header / Navigation Animation Settings
+@mixin slide-down-animation ($position: fixed, $top0: -75px, $top100: 0) {
+  0% {
+    position                    : $position;
+    top                         : $top0;
+  }
+  100% {
+    top                         : $top100;
+  }
+}
+@-webkit-keyframes slideDown {
+  @include slide-down-animation;
+}
+@-moz-keyframes slideDown {
+  @include slide-down-animation;
+}
+@-o-keyframes slideDown {
+  @include slide-down-animation;
+}
+@keyframes slideDown {
+  @include slide-down-animation;
+}
+@mixin slide-up-animation ($top0: 0, $top100: -75px) {
+  0% {
+    top                         : $top0;
+  }
+  100% {
+    top                         : $top100;
+  }
+}
+@-webkit-keyframes slideUp {
+  @include slide-up-animation;
+}
+@-moz-keyframes slideUp {
+  @include slide-up-animation;
+}
+@-o-keyframes slideUp {
+  @include slide-up-animation;
+}
+@keyframes slideUp {
+  @include slide-up-animation;
+}
+
+// Header / Navigation Animation Supporting Styles
+#SiteHeader,
+#PrimaryNavigation {
+  &.animated,
+  &.headroom {
+    will-change                 : transform, top, position;
+    transition                  : position 600ms linear, top 600ms linear, transform 600ms linear;
+    animation-duration          : 600ms;
+  }
+  &.animated-pinned {
+    animation-name              : slideDown;
+    z-index                     : 99;
+    transform                   : translateY(0);
+    position                    : fixed;
+    top                         : 0;
+    &.headroom--top {
+      position                  : relative;
+      top                       : 1px;
+    }
+  }
+  &.animated-unpinned {
+    animation-name              : slideUp;
+    position                    : relative;
+  }
+}
+#PrimaryNavigation {
+  z-index                       : 99;
+  position                      : relative;
+  right                         : 0;
+  left                          : 0;
+}
+
+// Page-Level Navigation
+#PageNavigationSmallScreen {
+  position                      : absolute;
+  right                         : rem-calc(32);
+  bottom                        : rem-calc(28);
+  left                          : rem-calc(32);
+  select {
+    margin-bottom               : 0;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// PRIMARY CONTENT AREA
+//----------------------------------------------------------------------------------------------
+#MainContentArea {
+  padding-bottom                : rem-calc(16);
+  @include breakpoint(large) {
+    padding-bottom              : rem-calc(48);
+  }
+  background-color              : $palette-grey-lightest;
+  article {
+    &:first-of-type,
+    &[itemprop="mainContentOfPage"] {
+      > header {
+        margin                  : rem-calc(32 0);
+        padding                 : rem-calc(0 32);
+        @include breakpoint(medium) {
+          margin                : rem-calc(48 0);
+          padding               : rem-calc(0 80);
+        }
+        @include breakpoint(large) {
+          padding               : rem-calc(0 110);
+        }
+        @include media-screen-wide-short() {
+          margin                : rem-calc(32 0);
+          padding               : rem-calc(0 80);
+        }
+      }
+      section.embedded {
+        &.pane.body {
+          margin-top            : rem-calc(24);
+        }
+      }
+    }
+    &.page.body {
+      margin-bottom             : rem-calc(48);
+      &:empty,
+      &:blank {
+        margin-bottom           : 0;
+      }
+    }
+  }
+  .list {
+    article {
+      padding-bottom            : rem-calc(32);
+      &:last-of-type {
+        margin-bottom           : 0;
+        border-bottom           : 0 none transparent;
+        padding-bottom          : 0;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// CTAS
+//----------------------------------------------------------------------------------------------
+
+// CTAs Slide-In Animation
+@mixin slide-in-animation () {
+  0% {
+    transform                   :translateY(100%);
+  }
+  100% {
+    transform                   :translateY(0);
+  }
+}
+@-webkit-keyframes slideIn {
+  @include slide-in-animation;
+}
+@-moz-keyframes slideIn {
+  @include slide-in-animation;
+}
+@-o-keyframes slideIn {
+  @include slide-in-animation;
+}
+@keyframes slideIn {
+  @include slide-in-animation;
+}
+
+#CallsToAction {
+  will-change                   : transform;
+  z-index                       : 20;
+  right                         : 0;
+  bottom                        : 0;
+  left                          : 0;
+  width                         : 100%;
+  &.off-screen {
+    transform                   : translateY(100%);
+  }
+  &.on-screen {
+    animation                   : slideIn 600ms;
+    transform                   : translateY(0);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// FOOTER
+//----------------------------------------------------------------------------------------------
+#SiteFooter {
+  position                      : absolute;
+  right                         : 0;
+  bottom                        : 0;
+  left                          : 0;
+  padding                       : rem-calc(54 36 24);
+  height                        : rem-calc(732);
+  color                         : $palette-grey-medium;
+  background-color              : $palette-grey-dark;
+  @include breakpoint(medium) {
+    height                      : rem-calc(428);
+  }
+  @include breakpoint(large) {
+    padding-right               : 0;
+    padding-left                : 0;
+  }
+
+  // Navigation
+  nav {
+    padding-bottom              : rem-calc(32);
+  }
+
+}

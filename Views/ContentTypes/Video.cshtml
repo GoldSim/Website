@@ -1,0 +1,34 @@
+﻿@model TopicViewModel
+
+@{
+  ViewBag.Title = Model.Topic.Title;
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    <!-- Description -->
+    <article class="page body">
+      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+    </article>
+    <!-- /Description -->
+
+    <!-- Video Area -->
+    <div class="video-wrapper">
+      <video controls @(!String.IsNullOrEmpty(Model.Topic.Attributes.GetValue("PosterURL")) ? "poster=" + @Model.Topic.Attributes.GetValue("PosterURL") : "")>
+        <source src="@Model.Topic.Attributes.GetValue("VideoURL")" type="video/mp4" />
+        Your browser does not support the HTML5 video.
+      </video>
+    </div>
+    <!-- /Video Area -->
+
+  </section>
+
+}
+
+<!--
+  Content Type: Video
+  View Location: ~/Views/Video/Video.cshtml
+-->

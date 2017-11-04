@@ -1,0 +1,66 @@
+﻿//==============================================================================================
+// LISTS
+//----------------------------------------------------------------------------------------------
+// Defines styles for list elements.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL
+//----------------------------------------------------------------------------------------------
+ul,
+ol {
+  margin                        : rem-calc(32 0 32 32);
+  @include breakpoint(medium) {
+    margin                      : rem-calc(32 0 36 64);
+  }
+  li {
+    margin-bottom               : rem-calc(16);
+    padding-left                : rem-calc(18);
+    &:last-child {
+      margin-bottom             : 0;
+    }
+    picture {
+      display                   : block;
+      margin                    : rem-calc(32) auto;
+    }
+  }
+  ul,
+  ol {
+    margin-top                  : rem-calc(16);
+  }
+}
+
+ul {
+  ul {
+    list-style-type             : circle;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// MODULES
+//----------------------------------------------------------------------------------------------
+ul.modules-list {
+  list-style-type               : none;
+  margin-left                   : 0;
+  li.module {
+    padding-left                : rem-calc(82);
+    background-size             : rem-calc(48 48);
+    background-position         : rem-calc(0 5);
+    background-repeat           : no-repeat;
+    &.contaminant-transport {
+      background-image          : url(/Images/Content/Product/ContaminantTransport.Icon.png);
+    }
+    &.reliability {
+      background-image          : url(/Images/Content/Product/Reliability.Icon.png);
+    }
+    &.financial {
+      background-image          : url(/Images/Content/Product/Financial.Icon.png);
+    }
+    &.dashboard-authoring {
+      background-image          : url(/Images/Content/Product/DashboardAuthoring.Icon.png);
+    }
+    &.distributed-processing {
+      background-image          : url(/Images/Content/Product/DistributedProcessing.Icon.png);
+    }
+  }
+}

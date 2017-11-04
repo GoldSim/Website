@@ -1,0 +1,42 @@
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+
+  Topic fieldCategories    = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:FieldCategories:LookupList");
+  Topic papers             = Model.TopicRepository.Load().GetTopic("Web:Applications:TechnicalPapers:ContentItems");
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    <article class="page body">
+      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+      @if (fieldCategories.Children.Count > 0) {
+        <h1>Categories</h1>
+        <ul>
+          @foreach (Topic fieldCategory in fieldCategories.Children.Sorted) {
+            <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
+          }
+        </ul>
+      }
+    </article>
+
+    @foreach (Topic fieldCategory in fieldCategories.Children.Sorted) {
+      <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
+      @Html.Partial("_TechnicalPaperList", papers.Children.Sorted.Where(t => t.Attributes.GetValue("Category").Equals(fieldCategory.Key)).ToList())
+    }
+
+  </section>
+
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
+}
+
+<!--
+  Content Type: Technical Paper List
+  View Location: ~/Views/TechnicalPaperList/TechnicalPaperList.cshtml
+-->

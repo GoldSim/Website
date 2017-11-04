@@ -1,0 +1,153 @@
+﻿@model TopicViewModel
+
+@{
+  ViewBag.Title = Model.Topic.Title;
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.theme.default.min.css">
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Slideshow.css" />
+}
+
+@section PostTitleSection {
+  <!-- Controls -->
+  <!-- @Model.Topic.Attributes.GetValue("TransitionEffect") -->
+}
+
+@section PageBodySection {
+  <section class="panel body">
+    <!-- <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Body"))</p> -->
+    <div class="carousel-wrapper">
+      <div class="owl-carousel">
+        @if (Model.Topic.Children["ContentItems"] != null && Model.Topic.Children["ContentItems"].Children.Count > 0) {
+          foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
+            @WriteContentItem(contentItem)
+          }
+        }
+      </div>
+      <div class="owl-nav bottom">
+        <div class="owl-prev custom">
+          <button class="button large primary">Prev</button>
+        </div>
+        <div class="owl-next custom">
+          <button class="button large primary">Next</button>
+        </div>
+      </div>
+    </div>
+  </section>
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
+  <script>
+    $(function () {
+
+      /**
+       * Instatiate carousel
+       */
+      var $carousel             = $('.owl-carousel');
+      $carousel.owlCarousel({
+        items                   : 1,
+        lazyLoad                : true,
+        URLhashListener         : true,
+        margin                  : 10,
+        autoHeight              : false,
+        startPosition           : 'URLHash',
+        nav                     : true,
+        navText                 : [
+          '<button class="button large primary">Prev</button>',
+          '<button class="button large primary">Next</button>',
+        ],
+        dots                    : true,
+        dotsEach                : 1
+      });
+
+      /**
+       * Differentiate top and bottom nav
+       */
+      $('.owl-nav:not(.bottom)').addClass('top');
+
+      /**
+       * Recalculate carousel stage height
+       */
+      setTimeout(function() {
+        adjustStageHeight('.owl-item.active');
+      }, 1000);
+      $carousel.on('translated.owl.carousel', function (event) {
+        adjustStageHeight('.owl-item.active');
+      });
+
+      /**
+       * Reflect navigation disabled state
+       */
+      $('.owl-prev.custom').addClass('disabled');
+      $carousel.on('translated.owl.carousel', function (event) {
+        reflectDisabledState('.owl-prev');
+        reflectDisabledState('.owl-next');
+      });
+
+      /**
+       * Manually trigger bottom navigation
+       */
+      $('.owl-prev.custom').click(function () {
+        $carousel.trigger('prev.owl.carousel');
+        // Scroll back to top of content
+        $('html, body').animate({
+          scrollTop: $('article[itemprop="mainContentOfPage"]').offset().top
+        }, 'slow');
+      });
+      $('.owl-next.custom').click(function () {
+        $carousel.trigger('next.owl.carousel');
+        // Scroll back to top of content
+        $('html, body').animate({
+          scrollTop: $('article[itemprop="mainContentOfPage"]').offset().top
+        }, 'slow');
+      });
+
+      /**
+       * Clear navigation button focus
+       */
+      $('.owl-prev, .owl-next').click(function () {
+        $(this).find('button').blur();
+      });
+
+    });
+
+    /**
+     * Adjusts carousel stage height based on height of active slide
+     */
+    function adjustStageHeight(activeSlide) {
+      var totalHeight           = 0;
+      $(activeSlide).children().each(function () {
+        totalHeight            += $(this).outerHeight(true);
+      });
+      $('div.owl-stage-outer').height(totalHeight);
+    }
+
+    /**
+     * Reflects disabled state in bottom navigation
+     */
+    function reflectDisabledState(navButton) {
+      $('.owl-prev.custom, .owl-next.custom').removeClass('disabled');
+      if ($('.owl-nav.top ' + navButton).hasClass('disabled')) {
+        $(navButton + '.custom').addClass('disabled');
+      }
+    }
+
+  </script>
+}
+
+@helper WriteContentItem(Topic contentItem) {
+  <article data-hash="@contentItem.Key" class="slide">
+    @Html.Raw(HttpUtility.HtmlDecode(contentItem.Attributes.GetValue("Description")))
+    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("LearnMoreUrl"))) {
+      <p><a href="@contentItem.Attributes.GetValue("LearnMoreUrl")" target="_blank">Learn More</a></p>
+    }
+  </article>
+}
+<!--
+  Content Type: Slideshow
+  View Location: ~/Views/Slideshow/Slideshow.cshtml
+-->

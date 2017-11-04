@@ -1,0 +1,147 @@
+﻿@model TopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel accordion">
+    <ul class="accordion applications" data-accordion data-allow-all-closed="true" data-deep-link="true">
+
+      @foreach (var category in getCategorizedApplications()) {
+
+        <!-- @category.Key -->
+        <li class="accordion-item" data-accordion-item><!--  @(isFirst()? "is-active" : "") -->
+          <a class="accordion-title" href="#@category.Key">@getCategoryTitle(category.Key)</a>
+
+          <!-- @category Applications -->
+          <div class="accordion-content" data-tab-content id="@category.Key">
+            @Html.Partial("_CardList", new CardListViewModel(category.Value, _className))
+          </div>
+          <!-- /@category.Key Applications -->
+
+        </li>
+
+      }
+
+    </ul>
+  </section>
+
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
+}
+
+@functions {
+
+  /*============================================================================================================================
+  | VARIABLES
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  Dictionary<string, List<Topic>> _categorizedApplications = null;
+  List<Topic> _applicationPages = null;
+  bool _isFirst = true;
+  string _className = "application";
+
+  /*============================================================================================================================
+  | GET CATEGORIZED APPLICATIONS
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Returns a set of applications grouped by category.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  Dictionary<string, List<Topic>> getCategorizedApplications() {
+
+    if (_categorizedApplications == null) {
+
+      _categorizedApplications = new Dictionary<string, List<Topic>>();
+      var contentType = Model.Topic.Attributes.GetValue("FilteredDocumentType");
+
+      //### BUG JJC082717: This is a workaround for a bug in the datamodel; FilteredDocumentType should map to ContentType keys.
+      switch (contentType.Substring(contentType.LastIndexOf(":")+1)) {
+        case "Applications":
+          contentType = "ApplicationPage";
+          break;
+        case "ExampleApplications":
+          contentType = "ExampleApplication";
+          _className = "case-study";
+          break;
+      }
+
+      foreach (Topic applicationPage in Model.Topic.FindAllByAttribute("ContentType", contentType)) {
+        if (applicationPage.ContentType == "ApplicationPage") {
+          var category = applicationPage.Attributes.GetValue("Category");
+          addApplicationPage(category, applicationPage);
+        }
+        else if (applicationPage.Relationships.Contains("Applications")) {
+          foreach (Topic application in applicationPage.Relationships["Applications"]) {
+            var category = application.Attributes.GetValue("Category");
+            addApplicationPage(category, applicationPage);
+          }
+        }
+      }
+
+    }
+    return _categorizedApplications;
+  }
+
+  /*============================================================================================================================
+  | GET CATEGORY TITLE
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Returns the Category Topic's Title property.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string getCategoryTitle(string categoryKey) {
+    string categoryTitle        = categoryKey;
+    Topic applicationCategories = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:ApplicationCategories:LookupList");
+
+    foreach(Topic applicationCategory in applicationCategories.Children) {
+      if (applicationCategory.Key.Equals(categoryKey)) {
+        categoryTitle           = applicationCategory.Title;
+      }
+    }
+
+    return categoryTitle;
+  }
+
+  /*============================================================================================================================
+  | ADD APPLICATION PAGE
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Ensures that the appropriate category exists and then adds the application page to the category.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  void addApplicationPage(string category, Topic applicationPage) {
+    if (!_categorizedApplications.ContainsKey(category)) {
+      _categorizedApplications.Add(category, new List<Topic>());
+    }
+    if (!_categorizedApplications[category].Contains(applicationPage)) {
+      _categorizedApplications[category].Add(applicationPage);
+    }
+  }
+
+  /*============================================================================================================================
+  | IS FIRST?
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Returns true if the item is the first item in the list. Automatically toggles to false after the first time it is called.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  bool isFirst() {
+    if (_isFirst) {
+      _isFirst = false;
+      return true;
+    }
+    return false;
+  }
+
+}
+
+<!--
+  Content Type: Application List
+  View Location: ~/Views/ApplicationIndex/ApplicationIndex.cshtml
+-->

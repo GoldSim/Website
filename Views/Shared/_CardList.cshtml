@@ -1,0 +1,13 @@
+﻿@model CardListViewModel
+
+<div class="grid-x grid-margin-x" data-equalizer data-equalize-on="small">
+  @foreach (Topic card in @Model.Cards) {
+    <div class="medium-6 cell">
+      <div class="card @Model.ClassName">
+        <!-- <i class="type icon @Model.ClassName" aria-hidden="true"></i> -->
+        <a href="@card.WebPath" class="thumbnail" style="background-image: url('@card.Attributes.GetValue("ThumbnailImage", "")')">&nbsp;</a>
+        <a href="@card.WebPath" class="title" data-equalizer-watch>@card.Title</a>
+      </div>
+    </div>
+  }
+</div>

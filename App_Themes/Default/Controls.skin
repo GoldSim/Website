@@ -1,0 +1,12 @@
+<%@ Register TagPrefix="Ignia" TagName="FormField"        Src="/Common/Global/Controls/FormField.ascx"        %>
+
+<Ignia:FormField
+  HtmlStart           = ""
+  HtmlLabelStart      = ""
+  HtmlLabelEnd        = ""
+  HtmlFieldStart      = ""
+  HtmlFieldEnd        = ""
+  HtmlEnd             = ""
+  HtmlSeparator       = ""
+  RunAt               = "Server"
+  />

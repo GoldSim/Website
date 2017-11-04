@@ -1,0 +1,78 @@
+﻿@model NavigationViewModel
+
+<style>
+  .page-banner {
+    background-image:   -ms-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -moz-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -o-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.9)), color-stop(100, rgba(32,32,32,0)))@GetBannerImage();
+    background-image:   -webkit-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    background-image:   linear-gradient(to top, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+  }
+</style>
+
+@if (Model.NavigationRootTopic != null) {
+  <!-- Page Title Area -->
+  <header class="header page-banner">
+    <div class="grid-container">
+      <div class="grid-x">
+        <h1 class="title short cell">@Model.NavigationRootTopic.Title</h1>
+      </div>
+      @if (@Model.NavigationRootTopic.Children.Sorted.Count() > 0)
+      {
+        <!-- Mobile Page Navigation Area -->
+        <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
+          <select>
+            @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted)
+            {
+              if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
+              {
+                <option value="@topic.WebPath" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.GetValue("ShortTitle", @topic.Title)</option>
+              }
+            }
+          </select>
+        </nav>
+        <!-- /Mobile Page Navigation Area -->
+      }
+    </div>
+  </header>
+  <!-- /Page Title Area -->
+
+  if (@Model.NavigationRootTopic.Children.Sorted.Count() > 0) {
+    <!-- Page Navigation Area -->
+    <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
+      <ul class="menu align-center">
+        @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted)
+        {
+          if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
+          {
+            <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.GetValue("ShortTitle", @topic.Title)</a></li>
+          }
+        }
+      </ul>
+    </nav>
+    <!-- /Page Navigation Area -->
+  }
+}
+
+@functions {
+
+  /*============================================================================================================================
+  | GET BANNER IMAGE
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Gets the HeaderImageURL Attribute to combine with gradient CSS definitions
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  string GetBannerImage() {
+
+    // Define variables
+    string bannerImageStyle     = "";
+    if (Model.NavigationRootTopic != null && !String.IsNullOrEmpty(@Model.NavigationRootTopic.Attributes.GetValue("HeaderImageURL", ""))) {
+      bannerImageStyle          = ", url(" + @Model.NavigationRootTopic.Attributes.GetValue("HeaderImageURL", "") + ")";
+    }
+
+    // Return background banner image style
+    return bannerImageStyle;
+
+  }
+
+}

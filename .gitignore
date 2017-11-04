@@ -294,7 +294,7 @@ yarn-error.log*
 ._*
 .Spotlight-V100
 .Trashes
-Icon?
+# Icon?
 ehthumbs.db
 Thumbs.db
 
@@ -350,12 +350,27 @@ typings/
 # dotenv environment variables file
 .env
 
-# Custom
-*.sass-cache*
+# Application settings
+**/connectionStrings.*
+**/smtp.config
+**/appSettings.config
+
+# Gulp build process files
 /node_modules
+/bower_components
+**/*/.sass-cache
+*.sass-cache*
+gulpFile.js
+gulpSecrets.js
+
+# Custom
 grunt-config.json
 config.yml
-gulpSecrets.js
 /_site
 assets/logo.png
-appSecrets.config
+compilerconfig.json
+compilerconfig.json.defaults
+Common/Global/
+\!Admin/
+Images/Content/
+Help/

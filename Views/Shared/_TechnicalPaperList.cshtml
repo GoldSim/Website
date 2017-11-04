@@ -1,0 +1,19 @@
+﻿@model List<Topic>
+
+<!-- Related Technical Papers -->
+<section class="panel accordion embedded">
+  <ul class="accordion embedded" data-accordion data-allow-all-closed="true" data-deep-link="true">
+    @foreach (Topic paper in @Model) {
+      <li class="accordion-item" data-accordion-item>
+        <a class="accordion-title" href="#@paper.Key">@Html.Raw(@paper.Title)</a>
+        <div class="accordion-content" data-tab-content id="@paper.Key">
+          <p>@Html.Raw(@paper.Attributes.GetValue("Publication")) &ndash; @paper.Attributes.GetValue("PublicationDate")</p>
+          <p class="author">@Html.Raw(@paper.Attributes.GetValue("Authors"))</p>
+          @Html.Raw(@paper.Attributes.GetValue("Description"))
+          <p><a href="@paper.Attributes.GetValue("LearnMoreURL")" target="_blank">@(!String.IsNullOrEmpty(paper.Attributes.GetValue("DownloadLabel")) ? paper.Attributes.GetValue("DownloadLabel") : "Download")</a></p>
+        </div>
+      </li>
+    }
+  </ul>
+</section>
+<!-- /Related Technical Papers -->

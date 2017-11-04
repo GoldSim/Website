@@ -1,0 +1,54 @@
+﻿//==============================================================================================
+// PAGE
+//----------------------------------------------------------------------------------------------
+// Represents styles specific to pages of Content Type "Page".
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// NOTE: It is expected that this page will co-exist with the centralized stylesheet and,
+// therefore, it is not necessary that it reimport shared styles. It may, however, need to
+// import variables and helpers.
+//----------------------------------------------------------------------------------------------
+@import "../variables";
+@import "../foundationSettings";
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+
+.wrapper {
+  &.decorated {
+    position                    : relative;
+    > img.bauble {
+      z-index                   : 0;
+      position                  : absolute;
+      &.bauble-0 {
+        top                     : rem-calc(-222);
+        right                   : rem-calc(-50);
+        width                   : rem-calc(102);
+      }
+      &.bauble-1 {
+        top                     : rem-calc(-104);
+        right                   : rem-calc(-66);
+        width                   : rem-calc(202);
+      }
+    }
+  }
+}
+
+.body {
+  &.decorated {
+    z-index                     : 2;
+    overflow                    : hidden;
+    position                    : relative;
+    padding-bottom              : rem-calc(176);
+    > img.bauble {
+      position                  : absolute;
+      bottom                    : rem-calc(-91);
+      left                      : rem-calc(-29);
+      width                     : rem-calc(228);
+    }
+  }
+}

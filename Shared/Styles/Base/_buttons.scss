@@ -1,0 +1,100 @@
+﻿//==============================================================================================
+// BUTTONS
+//----------------------------------------------------------------------------------------------
+// Extends (Foundation) styles for button elements and links.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL
+//----------------------------------------------------------------------------------------------
+.button {
+  border-width                  : 2px;
+  min-width                     : rem-calc(208);
+  font-size                     : 1rem;
+  font-weight                   : 600;
+  &:visited {
+    color                       : $palette-black;
+  }
+  &:hover {
+    color                       : $palette-yellow;
+    background-color            : $palette-black;
+  }
+  &:focus,
+  &:active {
+    border-color                : $palette-yellow;
+    color                       : $palette-yellow;
+    background-color            : $palette-white;
+  }
+  &.huge {
+    padding-top                 : rem-calc(24);
+    padding-bottom              : rem-calc(24);
+    min-width                   : rem-calc(288);
+    @include breakpoint(medium) {
+      padding-top               : rem-calc(40);
+      padding-bottom            : rem-calc(40);
+      min-width                 : rem-calc(460);
+    }
+  }
+  &.primary {
+    &:hover {
+      color                     : $palette-yellow;
+      background-color          : $palette-black;
+    }
+    &:focus,
+    &:active {
+      border-color              : $palette-yellow;
+      color                     : $palette-yellow;
+      background-color          : $palette-white;
+    }
+  }
+  &.secondary {
+    &:hover {
+      background-color          : $palette-grey-medium;
+    }
+    &:focus,
+    &:active {
+      border-color              : $palette-grey-medium;
+      color                     : $palette-grey-medium;
+      background-color          : $palette-white;
+    }
+  }
+  &.white {
+    &:hover {
+      background-color          : $palette-yellow;
+    }
+    &:focus,
+    &:active {
+      border-color              : $palette-yellow;
+      background-color          : $palette-yellow;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// GROUPED
+//----------------------------------------------------------------------------------------------
+.button-group {
+  .button {
+    margin-right                : rem-calc(10);
+    &.large {
+      font-size                 : rem-calc(20);
+      @include media-screen-wide-short() {
+        font-size               : rem-calc(18);
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// ZOOM
+//----------------------------------------------------------------------------------------------
+button.js-zoom {
+  position                      : absolute;
+  right                         : 0;
+  bottom                        : 0;
+  color                         : $palette-grey-medium;
+  cursor                        : pointer;
+  i.fa {
+    margin-left                 : rem-calc(5);
+  }
+}
