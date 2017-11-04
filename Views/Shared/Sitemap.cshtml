@@ -6,7 +6,7 @@
 @using Microsoft.Security.Application
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  @foreach (var topic in Model.RootTopic) {
+  @foreach (var topic in Model.RootTopic.Children) {
     @AddNodeToOutput(topic, 1)
   }
 </urlset>
@@ -51,8 +51,8 @@
       | LOOP THROUGH RELATIONSHIPS
       \--------------------------------------------------------------------------------------------------------------------*@
       @foreach (var relationship in topic.Relationships) {
-        <DataObject type="@relationship.Key">
-          @foreach (var relatedTopic in topic.Relationships[relationship.Key]) {
+        <DataObject type="@relationship.Name">
+          @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
             <Attribute name="TopicKey">@relatedTopic.UniqueKey.Replace("Root:", "")</Attribute>
           }
         </DataObject>
@@ -63,7 +63,7 @@
   @*=========================================================================================================================
   | LOOP THROUGH CHILDREN
   \------------------------------------------------------------------------------------------------------------------------*@
-  foreach (var childNode in topic) {
+  foreach (var childNode in topic.Children) {
     @AddNodeToOutput(childNode, indentLevel + 1);
   }
 
