@@ -1734,6 +1734,7 @@
     <Content Include="Images\PageGroups\PageGroup.Banner.Financial.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.GoldSim.png" />
     <Content Include="Images\PageGroups\PageGroup.Banner.Reliability.png" />
+    <Content Include="robots.txt" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.svg" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.eot" />
     <Content Include="Shared\Fonts\FontAwesome\fontawesome-webfont.ttf" />
