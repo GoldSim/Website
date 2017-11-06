@@ -47,6 +47,11 @@ namespace GoldSim.Web {
       );
       #pragma warning restore CS0618
 
+      //Set default controller
+      if (controllerType == null) {
+        controllerType = typeof(FallbackController);
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
