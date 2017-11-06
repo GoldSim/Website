@@ -14,7 +14,7 @@ namespace GoldSim.Web {
   /// <summary>
   ///   Provides default routing configuration for MVC.
   /// </summary>
-  public class RouteConfig {
+  public static class RouteConfig {
 
     /*==========================================================================================================================
     | METHOD: REGISTER ROUTES
@@ -70,7 +70,7 @@ namespace GoldSim.Web {
       routes.MapRoute(
         name: "Default",
         url: "{controller}/{action}/{id}",
-        defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+        defaults: new { controller = "Fallback", action = "Index", id = UrlParameter.Optional }
       );
 
     }
