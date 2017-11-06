@@ -49,14 +49,14 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = Topic.Create("Error", "Page");
+      var topic = Topic.Create("Error", "Page");
       topic.Title = "General Error";
       topic.Description = "Friendly error page.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -82,14 +82,14 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = Topic.Create("NotFound", "Page");
+      var topic = Topic.Create("NotFound", "Page");
       topic.Title = "Page Not Found";
       topic.Description = "Friendly 404 error page.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -115,14 +115,14 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = Topic.Create("InternalServer", "Page");
+      var topic = Topic.Create("InternalServer", "Page");
       topic.Title = "Internal Server Error";
       topic.Description = "Friendly 500 error page.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
