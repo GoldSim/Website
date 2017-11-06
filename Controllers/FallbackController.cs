@@ -38,7 +38,7 @@ namespace GoldSim.Web.Controllers {
     ///   Provides the default page for the site.
     /// </summary>
     /// <returns>The site's default view.</returns>
-    public ActionResult Index() => throw new HttpException(404, "No controller available to handle this request.");
+    public ActionResult Index() => HttpNotFound("No controller available to handle this request.");
 
   } //Class
 
