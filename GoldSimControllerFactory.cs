@@ -59,7 +59,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(ErrorController)) {
-        return new ErrorController(topicRepository, null);
+        return new ErrorController(topicRepository);
       }
 
       if (controllerType == typeof(LayoutController)) {

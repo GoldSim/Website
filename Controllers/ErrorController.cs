@@ -32,9 +32,8 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public ErrorController(ITopicRepository topicRepository, Topic currentTopic) {
+    public ErrorController(ITopicRepository topicRepository) {
       _topicRepository = topicRepository;
-      _currentTopic = currentTopic;
     }
 
     /*==========================================================================================================================
