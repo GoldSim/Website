@@ -55,7 +55,13 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <returns>The site's 404 (not found) error view.</returns>
     public ActionResult NotFound() {
-      return View("NotFound");
+
+      // Return the proper status code
+      Response.StatusCode = 404;
+
+      // Return the view
+      return View();
+
     }
 
     /*==========================================================================================================================
