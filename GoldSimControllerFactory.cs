@@ -58,6 +58,10 @@ namespace GoldSim.Web {
         return new SitemapController(topicRepository, null);
       }
 
+      if (controllerType == typeof(ErrorController)) {
+        return new ErrorController(topicRepository, null);
+      }
+
       if (controllerType == typeof(LayoutController)) {
         return new LayoutController(topicRepository, topicRoutingService.Topic);
       }
