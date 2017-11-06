@@ -32,8 +32,9 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public ErrorController(ITopicRepository topicRepository) {
+    public ErrorController(ITopicRepository topicRepository, Topic currentTopic) {
       _topicRepository = topicRepository;
+      _currentTopic = currentTopic;
     }
 
     /*==========================================================================================================================
@@ -44,7 +45,24 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <returns>The site's default error view.</returns>
     public ActionResult Index() {
-      return View("Error");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish faux error Topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic topic = Topic.Create("Error", "Page");
+      topic.Title = "General Error";
+      topic.Description = "Friendly error page.";
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Instantiate model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View("Error", topicViewModel);
+
     }
 
     /*==========================================================================================================================
@@ -56,11 +74,27 @@ namespace GoldSim.Web.Controllers {
     /// <returns>The site's 404 (not found) error view.</returns>
     public ActionResult NotFound() {
 
-      // Return the proper status code
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the proper status code
+      \-----------------------------------------------------------------------------------------------------------------------*/
       Response.StatusCode = 404;
 
-      // Return the view
-      return View();
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish faux error Topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic topic = Topic.Create("NotFound", "Page");
+      topic.Title = "Page Not Found";
+      topic.Description = "Friendly 404 error page.";
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Instantiate model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View("NotFound", topicViewModel);
 
     }
 
@@ -72,7 +106,29 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <returns>The site's 500 (internal server) error view.</returns>
     public ActionResult InternalServer() {
-      return View("NotFound");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the proper status code
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Response.StatusCode = 500;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish faux error Topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic topic = Topic.Create("InternalServer", "Page");
+      topic.Title = "Internal Server Error";
+      topic.Description = "Friendly 500 error page.";
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Instantiate model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, topic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View("InternalServer", topicViewModel);
+
     }
 
   }
