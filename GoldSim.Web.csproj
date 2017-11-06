@@ -323,6 +323,7 @@
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\bt_table\dialogs\table.js" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\bt_table\LICENSE" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\bt_table\README.md" />
+    <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\ckawesome\css\font-awesome.min.css" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\ckawesome\dialogs\ckawesome.css" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\ckawesome\dialogs\ckawesome.js" />
     <Content Include="!Admin\Topics\Common\Scripts\ckeditor\plugins\ckawesome\resources\select2\select2.full.min.css" />
