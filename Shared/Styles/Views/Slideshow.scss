@@ -13,6 +13,7 @@
 //----------------------------------------------------------------------------------------------
 @import "../variables";
 @import "../foundationSettings";
+@import "../Helpers/mixins";
 
 //----------------------------------------------------------------------------------------------
 // VIEW
@@ -52,11 +53,17 @@
   @include breakpoint(large) {
     top                         : rem-calc(-164);
   }
+  @include media-screen-wide-short() {
+    top                         : rem-calc(-136);
+  }
   &.bottom {
     top                         : auto;
     bottom                      : rem-calc(-64);
     @include breakpoint(large) {
-      bottom:                   rem-calc(-116);
+      bottom                    : rem-calc(-116);
+    }
+    @include media-screen-wide-short() {
+      bottom                    : rem-calc(-100);
     }
   }
   .owl-prev,
@@ -110,6 +117,9 @@
   @include breakpoint(large) {
     display                     : block;
     top                         : rem-calc(-152);
+  }
+  @include media-screen-wide-short() {
+    top                         : rem-calc(-124);
   }
   .owl-dot {
     display                     : inline-block;
