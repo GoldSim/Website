@@ -66,8 +66,8 @@ namespace GoldSim.Web {
         return new LayoutController(topicRepository, topicRoutingService.Topic);
       }
 
-      if (topicRoutingService.Topic != null) {
-        return new TopicController<Topic>(topicRepository, topicRoutingService.Topic);
+      if (controllerType == typeof(TopicController)) {
+        return new TopicController(topicRepository, topicRoutingService.Topic);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);

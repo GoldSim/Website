@@ -21,7 +21,7 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  public class LayoutController : TopicController<Topic> {
+  public class LayoutController : TopicController {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
