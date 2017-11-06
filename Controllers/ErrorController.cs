@@ -38,14 +38,36 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | GET: /
+    | GET: /Error
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides the default custom error page for the site.
     /// </summary>
     /// <returns>The site's default error view.</returns>
     public ActionResult Index() {
-      return View();
+      return View("Error");
+    }
+
+    /*==========================================================================================================================
+    | GET: /Error/NotFound
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the custom 404 error page for the site.
+    /// </summary>
+    /// <returns>The site's 404 (not found) error view.</returns>
+    public ActionResult NotFound() {
+      return View("NotFound");
+    }
+
+    /*==========================================================================================================================
+    | GET: /Error/InternalServer
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the custom 500 error page for the site.
+    /// </summary>
+    /// <returns>The site's 500 (internal server) error view.</returns>
+    public ActionResult InternalServer() {
+      return View("NotFound");
     }
 
   }
