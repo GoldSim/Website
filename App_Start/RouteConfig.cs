@@ -14,7 +14,7 @@ namespace GoldSim.Web {
   /// <summary>
   ///   Provides default routing configuration for MVC.
   /// </summary>
-  public class RouteConfig {
+  public static class RouteConfig {
 
     /*==========================================================================================================================
     | METHOD: REGISTER ROUTES
