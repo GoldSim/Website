@@ -1540,6 +1540,7 @@
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
     <Content Include="Common\Global\Headers\Form.Headers.inc.aspx" />
+    <Content Include="ErrorTest.html" />
     <Content Include="Forms\Academic.Student.aspx" />
     <Content Include="Forms\Academic.Instructor.aspx" />
     <Content Include="Forms\BuyGoldSim.aspx" />
@@ -1870,6 +1871,7 @@
       <DependentUpon>FormField.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
@@ -2092,6 +2094,9 @@
     <Content Include="Views\ContentTypes\TechnicalPaperList.cshtml" />
     <Content Include="Views\ContentTypes\Video.cshtml" />
     <Content Include="Shared\Styles\Helpers\_helpers.scss" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\InternalServer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
