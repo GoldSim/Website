@@ -49,6 +49,6 @@
       'unpinned'                : 'animated-unpinned'
     }
   });
-  headroom.init();
+  // headroom.init();
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
