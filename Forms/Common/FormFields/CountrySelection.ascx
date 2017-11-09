@@ -25,7 +25,7 @@
 \--------------------------------------------------------------------------------------------------------------------------*/
   public        String          LabelName               = "Field Label Name";
   public        String          ValidationGroup         = "";
-  public        string          SelectedValue           = "USA";
+  public        string          SelectedValue           = "United States of America";
   public        bool            IsRequired              = false;
 
 /*===========================================================================================================================
@@ -289,7 +289,7 @@
   <asp:ListItem Value="Ukraine">Ukraine</asp:ListItem>
   <asp:ListItem Value="United Arab Erimates">United Arab Emirates</asp:ListItem>
   <asp:ListItem Value="United Kingdom">United Kingdom</asp:ListItem>
-  <asp:ListItem Value="USA">United States of America</asp:ListItem>
+  <asp:ListItem Value="United States of America">United States of America</asp:ListItem>
   <asp:ListItem Value="Uraguay">Uruguay</asp:ListItem>
   <asp:ListItem Value="Uzbekistan">Uzbekistan</asp:ListItem>
   <asp:ListItem Value="Vanuatu">Vanuatu</asp:ListItem>
