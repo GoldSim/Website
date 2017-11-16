@@ -8376,17 +8376,12 @@ nav.navigation.primary {
     nav.navigation.primary ul.menu.dropdown > li {
       padding-left: 0;
       height: 3rem; }
-      nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent {
-        padding-right: 5.5rem; }
-        @media screen and (min-width: 1024px) and (max-height: 864px) {
-          nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent {
-            padding-right: 5.75rem; } }
-        nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent.is-dropdown-submenu-item {
-          padding-right: 0; }
-        nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent:last-of-type {
-          padding-right: 0; }
-        nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent > a:after {
-          display: none; }
+      nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent.is-dropdown-submenu-item {
+        padding-right: 0; }
+      nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent:last-of-type {
+        padding-right: 0; }
+      nav.navigation.primary ul.menu.dropdown > li.is-dropdown-submenu-parent > a:after {
+        display: none; }
       nav.navigation.primary ul.menu.dropdown > li.is-submenu-item {
         min-width: 14.125rem; }
     nav.navigation.primary ul.menu.dropdown.vertical > li.opens-right > a:after, nav.navigation.primary ul.menu.dropdown.vertical > li.opens-left > a:after {

@@ -167,10 +167,6 @@ nav.navigation {
           padding-left          : 0;
           height                : rem-calc(48);
           &.is-dropdown-submenu-parent {
-            padding-right       : rem-calc(88);
-            @include media-screen-wide-short() {
-              padding-right     : rem-calc(92);
-            }
             &.is-dropdown-submenu-item {
               padding-right     : 0;
             }
