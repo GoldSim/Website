@@ -118,6 +118,17 @@ nav.navigation {
     }
 
     // navigation items
+    > .cell {
+      > ul.menu {
+        > li[role="menuitem"] {
+          padding-right         : rem-calc(88);
+          @include media-screen-wide-short() {
+            padding-right       : rem-calc(92);
+          }
+        }
+      }
+    }
+
     ul.menu {
       top                       : rem-calc(96);
       padding-left              : 0;

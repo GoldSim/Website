@@ -8341,6 +8341,11 @@ nav.navigation.primary {
     content: '-';
     top: 0.25rem;
     right: -0.6875rem; }
+  nav.navigation.primary > .cell > ul.menu > li[role="menuitem"] {
+    padding-right: 5.5rem; }
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      nav.navigation.primary > .cell > ul.menu > li[role="menuitem"] {
+        padding-right: 5.75rem; } }
   nav.navigation.primary ul.menu {
     top: 6rem;
     padding-left: 0; }
