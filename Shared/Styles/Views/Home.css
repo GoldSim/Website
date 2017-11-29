@@ -42,7 +42,7 @@ main > section > header {
     text-align: center; }
     @media print, screen and (min-width: 64em) {
       main > section > header .video.wrapper {
-        margin-bottom: 0; } }
+        margin-bottom: 5rem; } }
   main > section > header .video.preview {
     display: table-cell;
     position: relative;
