@@ -45,6 +45,9 @@ main {
         font-size               : rem-calc(44);
       }
     }
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      min-height                : rem-calc(770);
+    }
     .video {
       &.wrapper,
       &.preview {
