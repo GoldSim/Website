@@ -18,7 +18,6 @@
     <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css" />
     @RenderSection("Head", false)
     <script>
@@ -163,6 +162,24 @@
     <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
     <!-- Headroom -->
     <script src="/Shared/Scripts/Vendor/Headroom/headroom.min.js"></script>
+
+    <noscript id="DeferredStyles">
+      <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
+      @RenderSection("DeferredStyles", false)
+    </noscript>
+    <script>
+      var loadDeferredStyles = function () {
+        var addStylesNode = document.getElementById("DeferredStyles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
 
     <script>
       /**
