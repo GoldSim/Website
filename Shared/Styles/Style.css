@@ -8083,6 +8083,7 @@ body {
       padding-bottom: 26.75rem; } }
 
 #SiteHeader {
+  position: relative;
   right: 0;
   left: 0;
   -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
