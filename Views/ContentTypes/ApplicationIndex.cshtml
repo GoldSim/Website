@@ -4,6 +4,26 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
+@section Head {
+  <script type="application/ld+json">
+    {
+      "@@context":"http://schema.org",
+      "@@type":"ItemList",
+      "itemListElement":[
+        @for (var i = 0; i < getApplications().Count; i++) {
+          <text>
+            {
+              "@@type": "ListItem",
+              "position": @i,
+              "url": "https://www.goldsim.com@(getApplications()[i].WebPath)"
+            } @(getApplications().Count.Equals(i+1)? "" : ",")
+          </text>
+        }
+      ]
+    }
+  </script>
+}
+
 @section PostTitleSection {
 
   <!-- Body Content -->
@@ -55,19 +75,19 @@
   string _className = "application";
 
   /*============================================================================================================================
-  | GET CATEGORIZED APPLICATIONS
+  | GET APPLICATIONS
   >-----------------------------------------------------------------------------------------------------------------------------
-  | Returns a set of applications grouped by category.
+  | Returns a set of applications.
   \---------------------------------------------------------------------------------------------------------------------------*/
-  Dictionary<string, List<Topic>> getCategorizedApplications() {
+  List<Topic> getApplications() {
 
-    if (_categorizedApplications == null) {
+    if (_applicationPages == null) {
 
-      _categorizedApplications = new Dictionary<string, List<Topic>>();
+      _applicationPages = new List<Topic>();
       var contentType = Model.Topic.Attributes.GetValue("FilteredDocumentType");
 
       //### BUG JJC082717: This is a workaround for a bug in the datamodel; FilteredDocumentType should map to ContentType keys.
-      switch (contentType.Substring(contentType.LastIndexOf(":")+1)) {
+      switch (contentType.Substring(contentType.LastIndexOf(":") + 1)) {
         case "Applications":
           contentType = "ApplicationPage";
           break;
@@ -78,6 +98,26 @@
       }
 
       foreach (Topic applicationPage in Model.Topic.FindAllByAttribute("ContentType", contentType)) {
+        _applicationPages.Add(applicationPage);
+      }
+
+    }
+    return _applicationPages;
+  }
+
+
+  /*============================================================================================================================
+  | GET CATEGORIZED APPLICATIONS
+  >-----------------------------------------------------------------------------------------------------------------------------
+  | Returns a set of applications grouped by category.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  Dictionary<string, List<Topic>> getCategorizedApplications() {
+
+    if (_categorizedApplications == null) {
+
+      _categorizedApplications = new Dictionary<string, List<Topic>>();
+
+      foreach (Topic applicationPage in getApplications()) {
         if (applicationPage.ContentType == "ApplicationPage") {
           var category = applicationPage.Attributes.GetValue("Category");
           addApplicationPage(category, applicationPage);
