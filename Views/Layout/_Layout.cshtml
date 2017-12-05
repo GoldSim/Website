@@ -31,6 +31,10 @@
       ga('create', 'UA-2082450-1', 'auto');
       ga('send', 'pageview');
     </script>
+    <noscript id="DeferredStyles">
+      <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
+      @RenderSection("DeferredStyles", false)
+    </noscript>
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
@@ -163,10 +167,6 @@
     <!-- Headroom -->
     <script src="/Shared/Scripts/Vendor/Headroom/headroom.min.js" async defer></script>
 
-    <noscript id="DeferredStyles">
-      <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
-      @RenderSection("DeferredStyles", false)
-    </noscript>
     <script>
       var loadDeferredStyles = function () {
         var addStylesNode = document.getElementById("DeferredStyles");
