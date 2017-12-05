@@ -26,7 +26,7 @@
       },
       "headline": "@Model.Topic.Title",
       "image": [
-        "https://www.GoldSim.com/@Model.Topic.Attributes.GetValue("ThumbnailImage")"
+        "https://www.GoldSim.com@(Model.Topic.Attributes.GetValue("ThumbnailImage"))"
       ],
       "datePublished": "@Model.Topic.VersionHistory.First().ToString("s")",
       "dateModified": "@Model.Topic.VersionHistory.Last().ToString("s"),
