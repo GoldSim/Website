@@ -98,7 +98,7 @@
                 <div class="medium-6 cell screenshot">
                   <picture>
                     <source srcset="/Images/Home/Slides/Slide01.png" />
-                    <img src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
                   </picture>
                 </div>
               </div>
@@ -110,7 +110,7 @@
                 <div class="medium-6 cell screenshot">
                   <picture>
                     <source srcset="/Images/Home/Slides/Slide02.png" />
-                    <img src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
                   </picture>
                 </div>
               </div>
@@ -122,7 +122,7 @@
                 <div class="medium-6 cell screenshot">
                   <picture>
                     <source srcset="/Images/Home/Slides/Slide03.png" />
-                    <img src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
                   </picture>
                 </div>
               </div>
@@ -135,7 +135,7 @@
                 <div class="medium-6 cell screenshot">
                   <picture>
                     <source srcset="/Images/Home/Slides/Slide04.png" />
-                    <img src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
                   </picture>
                 </div>
               </div>
@@ -150,7 +150,7 @@
                 </div>
                 <picture id="Slide1Screenshot" class="screenshot is-hidden">
                   <source srcset="/Images/Home/Slides/Slide01.png" />
-                  <img src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
                 </picture>
                 <a class="toggler js-toggle-slide">View Screenshot</a>
               </div>
@@ -161,7 +161,7 @@
                 </div>
                 <picture id="Slide2Screenshot" class="screenshot is-hidden">
                   <source srcset="/Images/Home/Slides/Slide02.png" />
-                  <img src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
                 </picture>
                 <a class="toggler js-toggle-slide">View Screenshot</a>
               </div>
@@ -172,7 +172,7 @@
                 </div>
                 <picture id="Slide3Screenshot" class="screenshot is-hidden">
                   <source srcset="/Images/Home/Slides/Slide03.png" />
-                  <img src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
                 </picture>
                 <a class="toggler js-toggle-slide">View Screenshot</a>
               </div>
@@ -184,7 +184,7 @@
                 </div>
                 <picture id="Slide4Screenshot" class="screenshot is-hidden">
                   <source srcset="/Images/Home/Slides/Slide04.png" />
-                  <img src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
                 </picture>
                 <a class="toggler js-toggle-slide">View Screenshot</a>
               </div>
@@ -282,6 +282,17 @@
 
 @section Scripts {
   <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js" async defer></script>
+  <script>
+    function init() {
+      var deferredImages = document.getElementsByTagName('img');
+      for (var i = 0; i < deferredImages.length; i++) {
+        if (deferredImages[i].getAttribute('data-src')) {
+          deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
+        }
+      }
+    }
+    window.onload = init;
+  </script>
   <script>
     $(function () {
 
