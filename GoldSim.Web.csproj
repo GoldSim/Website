@@ -1843,6 +1843,7 @@
     <Content Include="Shared\Fonts\SourceSansPro\SourceSansPro-Regular.svg" />
     <Content Include="Shared\Fonts\SourceSansPro\SourceSansPro-SemiBold.svg" />
     <Content Include="Shared\Fonts\SourceSansPro\SourceSansPro-SemiBoldItalic.svg" />
+    <Content Include="Shared\Scripts\Analytics.EventTracking.js" />
     <Content Include="Shared\Scripts\FileIcons.js" />
     <Content Include="Shared\Scripts\Images.Zoom.js" />
     <Content Include="Shared\Scripts\Layout.Animations.js" />
@@ -2177,7 +2178,6 @@
     <Content Include="Views\Shared\_TableOfContents.cshtml" />
     <Content Include="Views\ContentTypes\ApplicationIndex.cshtml" />
     <Content Include="Views\ContentTypes\ApplicationPage.cshtml" />
-    <Content Include="Views\ContentTypes\CaseStudy.cshtml" />
     <Content Include="Views\ContentTypes\ExampleApplication.cshtml" />
     <Content Include="Views\ContentTypes\ExampleIndex.cshtml" />
     <Content Include="Views\ContentTypes\FAQ.cshtml" />

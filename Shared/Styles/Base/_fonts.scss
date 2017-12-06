@@ -9,12 +9,44 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
-@import url('https://fonts.googleapis.com/css?family=Oxygen:300,400');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700,700i');
+// @import url('https://fonts.googleapis.com/css?family=Oxygen:300,400');
+// @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700,700i');
 
 //----------------------------------------------------------------------------------------------
 // OXYGEN
 //----------------------------------------------------------------------------------------------
+/* latin-ext */
+@font-face {
+  font-family                   : 'Oxygen';
+  font-style                    : normal;
+  font-weight                   : 300;
+  src                           : local('Oxygen Light'), local('Oxygen-Light'), url(https://fonts.gstatic.com/s/oxygen/v7/-1odZCVpKpOs9pNLq607fhJtnKITppOI_IvcXXDNrsc.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Oxygen';
+  font-style                    : normal;
+  font-weight                   : 300;
+  src                           : local('Oxygen Light'), local('Oxygen-Light'), url(https://fonts.gstatic.com/s/oxygen/v7/AwBqWF2kjhlybWamaKMPcVtXRa8TVwTICgirnJhmVJw.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Oxygen';
+  font-style                    : normal;
+  font-weight                   : 400;
+  src                           : local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v7/IIPDrwV5KNJo5-LaFlLy2fesZW2xOQ-xsNqO47m55DA.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Oxygen';
+  font-style                    : normal;
+  font-weight                   : 400;
+  src                           : local('Oxygen Regular'), local('Oxygen-Regular'), url(https://fonts.gstatic.com/s/oxygen/v7/78wGxsHfFBzG7bRkpfRnCQ.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
 /*
 @font-face {
   font-family                   : 'Oxygen';
@@ -59,6 +91,166 @@
 //----------------------------------------------------------------------------------------------
 // SOURCE SANS PRO
 //----------------------------------------------------------------------------------------------
+/* greek-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/M2Jd71oPJhLKp0zdtTvoM7Y_mfr7j0PatIrZBoJCV9E.woff2) format('woff2');
+  unicode-range                 : U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/M2Jd71oPJhLKp0zdtTvoM2qPyaMejTZ925Ro5CnyJwc.woff2) format('woff2');
+  unicode-range                 : U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/M2Jd71oPJhLKp0zdtTvoM40tgx99jmYGv_xzYuwd1rU.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Italic'), local('SourceSansPro-Italic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/M2Jd71oPJhLKp0zdtTvoMxgy2Fsj5sj3EzlXpqVXRKo.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* greek-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/fpTVHK8qsXbIeTHTrnQH6B697u9NcGP3e5023qcgQ9Y.woff2) format('woff2');
+  unicode-range                 : U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/fpTVHK8qsXbIeTHTrnQH6C68B3wi5NSSuXaI5ma6QYk.woff2) format('woff2');
+  unicode-range                 : U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/fpTVHK8qsXbIeTHTrnQH6Kr3NmSntz3GE6rIpxOPZGY.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :italic;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold Italic'), local('SourceSansPro-BoldItalic'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/fpTVHK8qsXbIeTHTrnQH6Nnl6YROR5rHLkdLoHwoOWA.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* greek-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlMODs9238LZG2v64UiBIjng.woff2) format('woff2');
+  unicode-range                 : U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlFjqPhnWKseBf12Mt9_m7kc.woff2) format('woff2');
+  unicode-range                 : U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlC2Q8seG17bfDXYR_jUsrzg.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 400;
+  src                           : local('Source Sans Pro Regular'), local('SourceSansPro-Regular'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/ODelI1aHBYDBqgeIAH2zlNV_2ngZ8dMf8fLgjYEouxg.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* greek-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 600;
+  src                           : local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGCJjduVyTEemf0kCvaihHEU.woff2) format('woff2');
+  unicode-range                 : U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 600;
+  src                           : local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGFnEzh12mEKZN5amaOp7-V4.woff2) format('woff2');
+  unicode-range                 : U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 600;
+  src                           : local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGFKFh1TDTPrUZWzVp6FtpG8.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 600;
+  src                           : local('Source Sans Pro SemiBold'), local('SourceSansPro-SemiBold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGCOFnW3Jk0f09zW_Yln67Ac.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+/* greek-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGHvBSgOUtlSCpvi6_8Wv308.woff2) format('woff2');
+  unicode-range                 : U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGO4f2SQTi4oYi3kh3bYmG2Y.woff2) format('woff2');
+  unicode-range                 : U+0370-03FF;
+}
+/* latin-ext */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGFxe-GPfKKFmiXaJ_Q0GFr8.woff2) format('woff2');
+  unicode-range                 : U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family                   : 'Source Sans Pro';
+  font-style                    :normal;
+  font-weight                   : 700;
+  src                           : local('Source Sans Pro Bold'), local('SourceSansPro-Bold'), url(https://fonts.gstatic.com/s/sourcesanspro/v11/toadOcfmlt9b38dHJxOBGEo0As1BFRXtCDhS66znb_k.woff2) format('woff2');
+  unicode-range                 : U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
 /*
 @font-face {
   font-family                   : 'Source Sans Pro';
