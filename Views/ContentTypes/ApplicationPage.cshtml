@@ -91,7 +91,7 @@
       <h1 id="WhitePapers">White Papers</h1>
       <ul>
         @foreach (Topic paper in getIncomingRelationships("WhitePaper")) {
-          <li><a href="@paper.Attributes.GetValue("URL")" onclick="trackEvent(this, 'WhitePaper', 'Download', 'White Paper: @paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+          <li><a href="@paper.Attributes.GetValue("URL")" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
