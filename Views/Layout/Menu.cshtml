@@ -51,7 +51,7 @@
       <ul class="menu @(isDesktop? "dropdown" : "vertical") @(IsSelected(topic, Model.Topic)? "is-active" : "") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
           @if (!isDesktop) {
-            <a href="@topic.WebPath" class="@((topic.Equals(Model.Topic)) ? "selected" : "")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')">Overview</a>
+            <a href="@topic.WebPath" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')">Overview</a>
           }
           @foreach (Topic childTopic in topic.Children.Sorted) {
             @WriteMenu(childTopic, isDesktop, indentLevel + 1);
