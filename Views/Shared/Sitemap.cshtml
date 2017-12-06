@@ -33,6 +33,9 @@
   <url>
     <loc>@Html.Encode("https://www.goldsim.com" + topic.WebPath)</loc>
     <changefreq>monthly</changefreq>
+    @if (topic.LastModified > DateTime.MinValue) {
+      <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
+    }
     <priority>@(1.0/indentLevel)</priority>
     <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
 
