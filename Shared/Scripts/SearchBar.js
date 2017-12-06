@@ -9,6 +9,15 @@
   $(document).ready(function () {
 
     /**
+     * Track site search queries
+     */
+    var isSearchTracked = false;
+    if (isSearchTracked === false) {
+      var query = getQuerystringValue('SearchText');
+      ga('send', 'event', 'Site Search', 'Search', query);
+    }
+
+    /**
      * Capture search button trigger, set open/closed state
      */
     $('.search.form .buttons button').mousedown(function (event) {
@@ -27,5 +36,16 @@
     });
 
   });
+
+  /**
+   * Determine and return the value for the requested querystring parameter
+   */
+  function getQuerystringValue(parameter) {
+    parameter = parameter.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+    var
+      regex = new RegExp('[\\?&]' + parameter + '=([^&#]*)'),
+      results = regex.exec(location.search);
+    return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+  };
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
