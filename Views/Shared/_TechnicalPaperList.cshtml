@@ -10,7 +10,7 @@
           <p>@Html.Raw(@paper.Attributes.GetValue("Publication")) &ndash; @paper.Attributes.GetValue("PublicationDate")</p>
           <p class="author">@Html.Raw(@paper.Attributes.GetValue("Authors"))</p>
           @Html.Raw(@paper.Attributes.GetValue("Description"))
-          <p><a href="@paper.Attributes.GetValue("LearnMoreURL")" target="_blank">@(!String.IsNullOrEmpty(paper.Attributes.GetValue("DownloadLabel")) ? paper.Attributes.GetValue("DownloadLabel") : "Download")</a></p>
+          <p><a href="@paper.Attributes.GetValue("LearnMoreURL")" target="_blank" onclick="trackEvent(this, 'Technical Paper', 'Download', '@paper.Key')">@(!String.IsNullOrEmpty(paper.Attributes.GetValue("DownloadLabel")) ? paper.Attributes.GetValue("DownloadLabel") : "Download")</a></p>
         </div>
       </li>
     }
