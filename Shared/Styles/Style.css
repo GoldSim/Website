@@ -8965,21 +8965,24 @@ table.gsc-completion-container td {
   background-color: transparent;
   cursor: pointer; }
 
-.panel.calls-to-action h1,
+.panel.calls-to-action .headline,
 .panel.calls-to-action .button-group {
   margin-bottom: 0; }
 
-.panel.calls-to-action h1 {
+.panel.calls-to-action .headline {
+  display: inline-block;
   padding-bottom: 0.75rem;
+  font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
   font-size: 1.5rem;
+  font-weight: 300;
   text-align: center; }
   @media print, screen and (min-width: 64em) {
-    .panel.calls-to-action h1 {
+    .panel.calls-to-action .headline {
       padding-bottom: 0;
       font-size: 2rem;
       text-align: left; } }
   @media screen and (min-width: 1024px) and (max-height: 864px) {
-    .panel.calls-to-action h1 {
+    .panel.calls-to-action .headline {
       padding-top: 0.1875rem;
       font-size: 1.5rem; } }
 

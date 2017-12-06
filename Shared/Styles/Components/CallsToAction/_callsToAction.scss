@@ -11,18 +11,22 @@
 // IMPORTS
 //----------------------------------------------------------------------------------------------
 @import "../../variables";
+@import "../../foundationSettings";
 
 //----------------------------------------------------------------------------------------------
 // CORE
 //----------------------------------------------------------------------------------------------
 .panel.calls-to-action {
-  h1,
+  .headline,
   .button-group {
     margin-bottom               : 0;
   }
-  h1 {
+  .headline {
+    display                     : inline-block;
     padding-bottom              : rem-calc(12);
+    font-family                 : $header-font-family;
     font-size                   : rem-calc(24);
+    font-weight                 : 300;
     text-align                  : center;
     @include breakpoint(large) {
       padding-bottom            : 0;
