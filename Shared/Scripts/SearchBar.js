@@ -9,13 +9,6 @@
   $(document).ready(function () {
 
     /**
-     * Add placeholder text to GCSE input
-     */
-    setTimeout(function () {
-      $('#gsc-i-id1').attr('placeholder', 'Search');
-    }, 2000);
-
-    /**
      * Capture search button trigger, set open/closed state
      */
     $('.search.form .buttons button').mousedown(function (event) {
