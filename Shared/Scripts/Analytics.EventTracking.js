@@ -29,4 +29,4 @@ function trackEvent(link, category, action, label) {
       window.location.href = link.href;
     }
   }, 200);
-};
+};
