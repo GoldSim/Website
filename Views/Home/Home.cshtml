@@ -366,6 +366,8 @@
           $(videoSource).attr('src', sourceFile);
           $('#IntroductionVideo')[0].load();
           isVideoLoaded         = true;
+          // Track video play event
+          ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
         }
         $('#IntroductionVideo')[0].play();
       });
