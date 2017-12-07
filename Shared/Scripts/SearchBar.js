@@ -11,10 +11,12 @@
     /**
      * Track site search queries
      */
-    var isSearchTracked = false;
-    if (isSearchTracked === false) {
-      var query = getQuerystringValue('SearchText');
+    var
+      isSearchTracked           = false,
+      query                     = getQuerystringValue('SearchText');
+    if (isSearchTracked === false && query.length) {
       ga('send', 'event', 'Site Search', 'Search', query);
+      isSearchTracked = true;
     }
 
     /**
