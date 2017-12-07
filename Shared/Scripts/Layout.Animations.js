@@ -37,6 +37,7 @@
   }
 
   // Instantiate Headroom
+  /*
   var headroom = new Headroom(headroomElement, {
     'offset'                    : $offset,
     'tolerance'                 : {
@@ -49,6 +50,7 @@
       'unpinned'                : 'animated-unpinned'
     }
   });
+  */
   // headroom.init();
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
