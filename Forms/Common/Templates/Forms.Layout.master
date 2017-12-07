@@ -29,7 +29,7 @@
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css?20170823041639" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
     <style type="text/css">
       header.site.header {
