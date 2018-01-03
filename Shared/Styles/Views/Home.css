@@ -51,7 +51,7 @@ main > section > header {
     position: relative;
     text-align: center;
     vertical-align: middle;
-    background: transparent url("/Images/Home/Video.png") no-repeat center center;
+    background: transparent url("/Images/Home/Video/Video.png") no-repeat center center;
     background-size: contain;
     cursor: pointer; }
     main > section > header .video.preview::before, main > section > header .video.preview::after {
