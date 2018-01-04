@@ -25,20 +25,26 @@
     string breadcrumbsJsonLd                    = "";
     string uniqueKey                            = "Root";
     int position                                = 1;
-    var urlPathParts                            = Model.Topic.WebPath.Split('/').ToList();
+    List<string> urlPathParts                   = new List<string>();
+    if (Model.Topic != null) {
+      urlPathParts              = Model.Topic.WebPath.Split('/').ToList();
+    }
 
-    foreach (string urlPathPart in urlPathParts) {
+    if (urlPathParts.Count > 0) {
+      foreach (string urlPathPart in urlPathParts) {
 
-      // Add to the uniqueKey string to ensure the current Topic is retrieved appropriately
-      if (!String.IsNullOrEmpty(urlPathPart)) {
-        uniqueKey              += ":" + urlPathPart;
-      }
+        // Add to the uniqueKey string to ensure the current Topic is retrieved appropriately
+        if (!String.IsNullOrEmpty(urlPathPart)) {
+          uniqueKey            += ":" + urlPathPart;
+        }
 
-      // Build the JSON-LD string for the current breadcrumb item
-      if (!String.IsNullOrEmpty(urlPathPart) && urlPathPart != "Web") {
-        Topic breadcrumbTopic   = Model.TopicRepository.Load().GetTopic(uniqueKey);
+        // Build the JSON-LD string for the current breadcrumb item
+        if (!String.IsNullOrEmpty(urlPathPart) && urlPathPart != "Web") {
+          Topic breadcrumbTopic = Model.TopicRepository.Load().GetTopic(uniqueKey);
+          string breadcrumbItem = "";
 
-        string breadcrumbItem   = "{ "
+          if (breadcrumbTopic != null) {
+            breadcrumbItem      = "{ "
                                 + "  \"@type\": \"ListItem\", "
                                 + "  \"position\": " + position + ", "
                                 + "  \"item\": { "
@@ -46,12 +52,14 @@
                                 + "    \"name\": \"" + breadcrumbTopic.Title + "\" "
                                 + "  } "
                                 + "},";
+          }
 
+          breadcrumbsStringBuilder.Append(breadcrumbItem);
 
-        breadcrumbsStringBuilder.Append(breadcrumbItem);
-
-        position++;
+          position++;
+        }
       }
+
     }
 
     // Return the completed set of BreadcrumbList ListItem strings
