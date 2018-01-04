@@ -48,7 +48,7 @@
       apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
       customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
       searchQuery               = getQuerystringValue('SearchText'),
-      baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v5.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
+      baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
       totalResults              = 0;
 
     /**
