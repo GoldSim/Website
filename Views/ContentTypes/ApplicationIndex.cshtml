@@ -14,7 +14,7 @@
           <text>
             {
               "@@type": "ListItem",
-              "position": @i,
+              "position": @(i + 1),
               "url": "https://www.goldsim.com@(getApplications()[i].WebPath)"
             } @(getApplications().Count.Equals(i+1)? "" : ",")
           </text>
