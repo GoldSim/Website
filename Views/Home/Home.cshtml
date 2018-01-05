@@ -8,7 +8,19 @@
 }
 
 @section Head {
-
+  <meta name="google" content="nositelinkssearchbox" />
+  <script type="application/ld+json">
+	  {
+	    "@@context": "http://schema.org",
+	    "@@type": "WebSite",
+	    "url": "https://www.goldsim.com/",
+	    "potentialAction": {
+	      "@@type": "SearchAction",
+	      "target": "https://www.goldsim.com/Web/Search/?SearchText={search_term_string}",
+	      "query-input": "required name=search_term_string"
+	    }
+	  }
+  </script>
   <script type="application/ld+json">
     {
       "@@context": "http://schema.org",
