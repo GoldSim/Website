@@ -1,25 +1,25 @@
 ﻿@{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  Topic    EnvironmentalSystems    = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EnvironmentalSystems");
-  Topic    EngineeredSystems       = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EngineeredSystems");
-  Topic    BusinessSystems         = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:BusinessSystems");
+  Topic EnvironmentalSystems    = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EnvironmentalSystems");
+  Topic EngineeredSystems       = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EngineeredSystems");
+  Topic BusinessSystems         = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:BusinessSystems");
 
 }
 
 @section Head {
   <meta name="google" content="nositelinkssearchbox" />
   <script type="application/ld+json">
-	  {
-	    "@@context": "http://schema.org",
-	    "@@type": "WebSite",
-	    "url": "https://www.goldsim.com/",
-	    "potentialAction": {
-	      "@@type": "SearchAction",
-	      "target": "https://www.goldsim.com/Web/Search/?SearchText={search_term_string}",
-	      "query-input": "required name=search_term_string"
-	    }
-	  }
+    {
+      "@@context": "http://schema.org",
+      "@@type": "WebSite",
+      "url": "https://www.goldsim.com/",
+      "potentialAction": {
+        "@@type": "SearchAction",
+        "target": "https://www.goldsim.com/Web/Search/?SearchText={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
   </script>
   <script type="application/ld+json">
     {
@@ -31,7 +31,7 @@
         "https://www.goldsim.com/Images/Home/Video/Video.1x1.png",
         "https://www.goldsim.com/Images/Home/Video/Video.4x3.png",
         "https://www.goldsim.com/Images/Home/Video/Video.16x9.png"
-       ],
+      ],
       "uploadDate": "2017-10-25T08:00:00+08:00",
       "duration": "PT2M16S",
       "publisher": {
@@ -80,9 +80,9 @@
               </div>
               <div class="large reveal" id="VideoModal" data-reveal>
                 <div class="responsive-embed widescreen video">
-                  <video id="IntroductionVideo" controls autoplay>
-                    <source data-src="https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_102517.mp4" type="video/mp4" />
-                    Your browser does not support the HTML5 video.
+                  <video id="IntroductionVideo" controls>
+                    <source type="video/mp4" />
+                    Your browser does not support HTML5 video.
                   </video>
                 </div>
                 <button class="close-button" data-close aria-label="Close modal" type="button">
@@ -250,7 +250,7 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
             <div class="medium-4 cell">
               <div class="card environmental" data-equalizer-watch>
-                <h2>Environmental<br/>Systems Modeling</h2>
+                <h2>Environmental<br />Systems Modeling</h2>
                 @if (EnvironmentalSystems != null) {
                   <ul id="EnvironmentalApplications">
                     @foreach (Topic application in EnvironmentalSystems.Children) {
@@ -262,7 +262,7 @@
             </div>
             <div class="medium-4 cell">
               <div class="card engineered" data-equalizer-watch>
-                <h2>Engineered<br/>Systems Modeling</h2>
+                <h2>Engineered<br />Systems Modeling</h2>
                 @if (EngineeredSystems != null) {
                   <ul id="EngineeredApplications">
                     @foreach (Topic application in EngineeredSystems.Children) {
@@ -274,7 +274,7 @@
             </div>
             <div class="medium-4 cell">
               <div class="card business" data-equalizer-watch>
-                <h2>Business<br/>Systems Modeling</h2>
+                <h2>Business<br />Systems Modeling</h2>
                 @if (BusinessSystems != null) {
                   <ul id="BusinessApplications">
                     @foreach (Topic application in BusinessSystems.Children) {
@@ -320,6 +320,7 @@
 
 @section Scripts {
   <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
+  <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js">
   <script>
     function init() {
       var deferredImages = document.getElementsByTagName('img');
@@ -338,13 +339,16 @@
        * Establish variables
        */
       var
-        isVideoLoaded = false,
-        introductionPanelPosition = ($('#Introduction').offset().top - 24);
+        isVideoLoaded           = false,
+        introductionPanelPosition = ($('#Introduction').offset().top - 24),
+        isSafari                = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
+        isIos                   = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+        isIe11                  = !!navigator.userAgent.match(/Trident\/7\./);
 
       /**
        * Handle splash screen arrow scroll click
        */
-      $('img.arrow.scroll').click(function() {
+      $('img.arrow.scroll').click(function () {
         $('html,body').animate({
           scrollTop: introductionPanelPosition
         }, 1000);
@@ -354,26 +358,26 @@
        * Instantiate carousel for large and small screens
        */
       $('.owl-carousel.large').owlCarousel({
-        items                   : 1,
-        margin                  : 0,
-        autoHeight              : true,
-        nav                     : true,
-        navText                 : [
+        items: 1,
+        margin: 0,
+        autoHeight: true,
+        nav: true,
+        navText: [
           '<i class="fa fa-caret-left"></i>',
           '<i class="fa fa-caret-right"></i>'
         ],
-        loop                    : false
+        loop: false
       });
       $('.owl-carousel.small').owlCarousel({
-        items                   : 1,
-        margin                  : 0,
-        autoHeight              : false,
-        nav                     : true,
-        navText                 : [
+        items: 1,
+        margin: 0,
+        autoHeight: false,
+        nav: true,
+        navText: [
           '<i class="fa fa-caret-left"></i>',
           '<i class="fa fa-caret-right"></i>'
         ],
-        loop                    : false
+        loop: false
       });
 
       /**
@@ -399,15 +403,29 @@
       $(document).on('open.zf.reveal', '[data-reveal]', function () {
         if (isVideoLoaded === false) {
           var
-            videoSource         = $('#IntroductionVideo source'),
-            sourceFile          = $(videoSource).data('src');
-          $(videoSource).attr('src', sourceFile);
-          $('#IntroductionVideo')[0].load();
-          isVideoLoaded         = true;
+            manifestUrl         = '/Media/Home/GoldSim_Overview_dash.mpd',
+            fallbackUrl         = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_102517.mp4',
+            dashPlayer          = dashjs.MediaPlayer().create();
+
+          // Only initialize DASH for supported browsers
+          if (!(isIos && isSafari) && !isIe11) {
+            dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
+          }
+          // Otherwise, use fallback / original video
+          else {
+            $('#IntroductionVideo source').attr('src', fallbackUrl);
+            $('#IntroductionVideo')[0].play();
+          }
+
+          // Toggle video loaded
+          isVideoLoaded = true;
+
           // Track video play event
           ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
         }
-        $('#IntroductionVideo')[0].play();
+        else {
+          $('#IntroductionVideo')[0].play();
+        }
       });
       $(document).on('closed.zf.reveal', '[data-reveal]', function () {
         $('#IntroductionVideo')[0].pause();
