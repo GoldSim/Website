@@ -96,12 +96,12 @@
     <label for="ReliabilityAddOnCheck" RunAt="Server">Reliability Module</label>
   </div>
   <div class="checkbox">
-    <asp:CheckBox ID="CTAddOnCheck" ClientIDMode="Static" value="CT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
-    <label for="CTAddOnCheck" RunAt="Server">Radionuclide Transport (RT) Module</label>
+    <asp:CheckBox ID="RTAddOnCheck" ClientIDMode="Static" value="CT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="RTAddOnCheck" RunAt="Server">Radionuclide Transport (RT) Module</label>
   </div>
   <div class="checkbox">
-    <asp:CheckBox ID="RTAddOnCheck" ClientIDMode="Static" value="RT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
-    <label for="RTAddOnCheck" RunAt="Server">Contaminant Transport (CT) Module</label>
+    <asp:CheckBox ID="CTAddOnCheck" ClientIDMode="Static" value="RT" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
+    <label for="CTAddOnCheck" RunAt="Server">Contaminant Transport (CT) Module</label>
   </div>
   <div class="checkbox">
     <asp:CheckBox ID="DPPlusAddOnCheck" ClientIDMode="Static" value="DP-Plus" onclick="RecalculateTotal()" ValidationGroup=<%# ValidationGroup %> RunAt="Server" />
