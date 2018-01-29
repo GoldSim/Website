@@ -215,35 +215,8 @@
       <%-- MODULE INTEREST CHECKBOXES --%>
       <GoldSimForm:ModuleInterestSelection ID="ModuleInterest" RunAt="Server" />
 
-      <div class="medium-6 cell referral select">
-        <label for="ReferralSelectionList">How did you learn about GoldSim?</label>
-        <asp:DropDownList ID="ReferralSelectionList" runat="server">
-          <asp:ListItem Value="" Selected="True">Select one...</asp:ListItem>
-          <asp:ListItem Value="Google">Google</asp:ListItem>
-          <asp:ListItem Value="Other Search Engine">Other Search Engine</asp:ListItem>
-          <asp:ListItem Value="Wikipedia">Wikipedia</asp:ListItem>
-          <asp:ListItem Value="Word of Mouth">Word Of Mouth</asp:ListItem>
-          <asp:ListItem Value="From a Colleague">From a Colleague</asp:ListItem>
-          <asp:ListItem Value="Trade Show">Trade Show</asp:ListItem>
-          <asp:ListItem Value="Journal or Advertisement">Journal or Advertisement</asp:ListItem>
-          <asp:ListItem Value="Link from another website">Link from another website</asp:ListItem>
-          <asp:ListItem Value="Other">Other</asp:ListItem>
-        </asp:DropDownList>
-      </div>
-      <div class="medium-6 cell">
-        <Ignia:FormField   ID = "ReferralDetails"
-          LabelName           = "Referral Details"
-          AccessKey           = "D"
-          MaxLength           = "150"
-          FieldSize           = "320"
-          CssClass            = "TextField"
-          SkinId              = "BoxedPairs"
-          RunAt               = "Server"
-          />
-      </div>
-      <div class="cell">
-        <p class="field instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
-      </div>
+      <%-- REFERRAL SOURCE SELECTION --%>
+      <GoldSimForm:ReferralSourceSelection ID="ReferralSource" RunAt="Server" />
 
     </div>
 

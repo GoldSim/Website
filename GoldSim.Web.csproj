@@ -1588,6 +1588,7 @@
     <Content Include="Forms\Common\FormFields\Organization.ascx" />
     <Content Include="Forms\Common\FormFields\Phone.ascx" />
     <Content Include="Forms\Common\FormFields\ProductConfiguration.ascx" />
+    <Content Include="Forms\Common\FormFields\ReferralSourceSelection.ascx" />
     <Content Include="Forms\DenverTraining.aspx" />
     <Content Include="Forms\Demo.aspx" />
     <Content Include="Forms\Evaluation.aspx" />
