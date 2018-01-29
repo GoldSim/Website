@@ -3,7 +3,7 @@
 <!-- #Include Virtual="/Common/Global/Headers/Form.Headers.inc.aspx" -->
 
 <Script RunAt="Server">
-/*===========================================================================================================================
+/*==============================================================================================================================
 | COMMON FIELDS TEMPLATE: FOCUS AREA
 |
 | Author:    Katherine Trunkey, Ignia LLC (katie@ignia.com)
@@ -12,27 +12,42 @@
 |
 | Purpose :  Template control wrapper for commonly grouped address fields
 |
->============================================================================================================================
+>===============================================================================================================================
 | Revisions     Date            Author                  Comments
-| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - 
 |               07.28.10        Katherine Trunkey       Initial version template.
-\--------------------------------------------------------------------------------------------------------------------------*/
+\-----------------------------------------------------------------------------------------------------------------------------*/
 
-/*===========================================================================================================================
+/*==============================================================================================================================
 | DECLARE PUBLIC FIELDS
->============================================================================================================================
+>===============================================================================================================================
 | Public fields will be exposed as properties to user control
-\--------------------------------------------------------------------------------------------------------------------------*/
-  public        string          LabelName               = "Field Label Name";
-  public        string          ValidationGroup         = "";
+\-----------------------------------------------------------------------------------------------------------------------------*/
+public          string          LabelName               = "Field Label Name";
+public          string          ValidationGroup         = "";
+public          bool            IsSelectionValid        = true;
+
+/*==============================================================================================================================
+| VALIDATOR: AREA OF FOCUS
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/// <summary>
+///   Ensures that the area of focus selection, if available, is valid (not set to "Select one...")
+/// </summary>
+void AreaOfFocusValidator(object source, ServerValidateEventArgs args) {
+  args.IsValid = (AreaOfFocusList.SelectedIndex > 0);
+  if (!args.IsValid) {
+    IsSelectionValid            = false;
+    AreaOfFocusList.CssClass    = "form-field required is-invalid-input";
+  }
+}
 
 </Script>
 
 <%-- AREA OF FOCUS --%>
 <div class="medium-6 cell">
   <!-- Focus Area -->
-  <label for="AreaOfFocusList" accesskey="F" class="form-field label required" RunAt="Server">*Area of Focus</label>
-  <asp:DropDownList ID="AreaOfFocusList" ValidationGroup=<%# ValidationGroup %> RunAt="Server">
+  <label id="AreaOfFocusLabel" for="AreaOfFocusList" accesskey="F" class="form-field label required<%= (!IsSelectionValid? " is-invalid-label" : "") %>">*Area of Focus</label>
+  <asp:DropDownList ID="AreaOfFocusList" ValidationGroup=<%# ValidationGroup %> CssClass="form-field required" RunAt="Server">
     <asp:ListItem>Select one...</asp:ListItem>
     <asp:ListItem Value="Design, System Reliability and Throughput">Design, System Reliability and Throughput</asp:ListItem>
     <asp:ListItem Value="Ecological/Biological">Ecological/Biological</asp:ListItem>
@@ -49,6 +64,12 @@
     <asp:ListItem Value="Other">Other (Please Specify)</asp:ListItem>
   </asp:DropDownList>
   <asp:RequiredFieldValidator ControlToValidate="AreaOfFocusList" InitialValue="Select one..." RunAt="Server" />
+  <asp:CustomValidator
+    OnServerValidate    = "AreaOfFocusValidator"
+    ErrorMessage        = "Please indicate your area of focus."
+    Display             = "None"
+    RunAt               = "Server"
+  />
   <!-- /Focus Area -->
 </div>
 <div class="medium-6 cell">
