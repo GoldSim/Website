@@ -48,8 +48,35 @@
     Master.EmailSender          = "website@goldsim.com";
     Master.SuccessUrl           = "/Topic/755/";
 
+        DropDownList focusSelection = (DropDownList)this.Master.FindControl("ContentContainer").FindControl("Content").FindControl("ContactFocus").FindControl("AreaOfFocusList");
+        if (focusSelection != null) {
+          Response.Write(focusSelection.SelectedValue + "<br/>");
+          Response.Write(focusSelection.SelectedIndex + "<br/>");
+        }
+        else {
+          Response.Write("AreaOfFocusList is null<br/>");
+        }
+
 
     }
+
+/*===========================================================================================================================
+| VALIDATOR: AREA OF FOCUS
+>============================================================================================================================
+| Ensures that the area of focus selection is valid (not set to "Select one...")
+\--------------------------------------------------------------------------------------------------------------------------*/
+  void AreaOfFocusValidator(object source, ServerValidateEventArgs args) {
+  //args.IsValid = (ContactFocus.SelectedIndex > 0);
+  }
+
+/*===========================================================================================================================
+| VALIDATOR: REFERRAL SOURCE
+>============================================================================================================================
+| Ensures that the referral source selection is valid (not set to "Select one...")
+\--------------------------------------------------------------------------------------------------------------------------*/
+  void ReferralSourceValidator(object source, ServerValidateEventArgs args) {
+  //args.IsValid = (ReferralSelectionList.SelectedIndex > 0);
+  }
 
 /*===========================================================================================================================
 | VALIDATOR: TERMS OF USE CHECK
@@ -129,6 +156,12 @@
 
       <%-- AREA OF FOCUS SELECTION --%>
       <GoldSimForm:AreaOfFocusSelection ID="ContactFocus" RunAt="Server" />
+      <asp:CustomValidator
+        OnServerValidate        = "AreaOfFocusValidator"
+        ErrorMessage            = "Please indicate your area of focus."
+        Display                 = "None"
+        RunAt                   = "Server"
+      />
 
     </div>
   </fieldset>
@@ -254,6 +287,12 @@
         <asp:RequiredFieldValidator
           ControlToValidate     = "ReferralSelectionList"
           RunAt                 = "Server"
+        />
+        <asp:CustomValidator
+          OnServerValidate        = "ReferralSourceValidator"
+          ErrorMessage            = "Please indicate how you learned about GoldSim."
+          Display                 = "None"
+          RunAt                   = "Server"
         />
       </div>
       <div class="medium-6 cell">
