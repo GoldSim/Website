@@ -116,7 +116,7 @@
 
       <%-- COUNTRY SELECTION --%>
       <div class="cell">
-        <GoldSimForm:CountrySelection ID="Country" RunAt="Server" />
+        <GoldSimForm:CountrySelection ID="Country" IsRequired="true" RunAt="Server" />
       </div>
 
       <%-- AFFILIATION --%>

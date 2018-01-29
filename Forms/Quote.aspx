@@ -105,7 +105,7 @@
 
       <%-- COUNTRY SELECTION --%>
       <div class="cell">
-        <GoldSimForm:CountrySelection ID="CountrySelection" RunAt="Server" />
+        <GoldSimForm:CountrySelection ID="CountrySelection" IsRequired="true" RunAt="Server" />
       </div>
 
       <%-- EMAIL/CONFIRM EMAIL --%>

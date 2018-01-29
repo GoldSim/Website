@@ -137,7 +137,7 @@
 
       <%-- COUNTRY SELECTION --%>
       <div class="cell">
-        <GoldSimForm:CountrySelection ID="BuyerCountrySelection" RunAt="Server" />
+        <GoldSimForm:CountrySelection ID="BuyerCountrySelection" IsRequired="true" RunAt="Server" />
       </div>
 
       <%-- EMAIL/CONFIRM EMAIL --%>
@@ -196,7 +196,7 @@
 
       <%-- COUNTRY SELECTION --%>
       <div class="medium-6 cell">
-        <GoldSimForm:CountrySelection ID="UserCountrySelection" ValidationGroup="Licensee" RunAt="Server" />
+        <GoldSimForm:CountrySelection ID="UserCountrySelection" IsRequired="true" ValidationGroup="Licensee" RunAt="Server" />
       </div>
 
       <%-- EMAIL --%>
@@ -319,7 +319,7 @@
 
       <%-- COUNTRY SELECTION --%>
       <div class="medium-6 cell">
-        <GoldSimForm:CountrySelection ID="APContactCountrySelection" ValidationGroup="AccountsPayable" RunAt="Server" />
+        <GoldSimForm:CountrySelection ID="APContactCountrySelection" IsRequired="true" ValidationGroup="AccountsPayable" RunAt="Server" />
       </div>
 
       <%-- EMAIL --%>
