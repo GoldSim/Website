@@ -40,7 +40,7 @@
 
 @helper WriteContentItem(Topic contentItem, string element = "h1") {
   <article>
-    <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.GetValue("LearnMoreUrl", "#")">@contentItem.Title</a><@("/" + element)>
+    <@element id="@contentItem.Key" class="link"><a href="@contentItem.Attributes.GetValue("LearnMoreUrl", "#")" target="_blank">@contentItem.Title</a><@("/" + element)>
     @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("ThumbnailImage"))) {
       <a href="@contentItem.Attributes.GetValue("LearnMoreUrl", "#")" target="_blank">
         <!-- Thumbnail Image -->
