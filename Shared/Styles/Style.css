@@ -6929,10 +6929,16 @@ span.radio {
 label.required {
   font-weight: 600; }
 
-.is-invalid-label {
-  font-weight: 600; }
+.is-invalid-label,
+label.Error {
+  font-weight: 600;
+  color: #eb5d62; }
 
-.is-invalid-input:not(:focus) {
+.is-invalid-input:not(:focus),
+input.Error:not(:focus),
+select.Error:not(:focus),
+textarea.Error:not(:focus) {
+  border-color: #eb5d62;
   background-color: white; }
 
 .alert.callout {

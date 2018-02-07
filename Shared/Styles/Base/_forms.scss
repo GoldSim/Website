@@ -157,11 +157,17 @@ label {
     font-weight                 : 600;
   }
 }
-.is-invalid-label {
+.is-invalid-label,
+label.Error {
   font-weight                   : 600;
+  color                         : $palette-red;
 }
-.is-invalid-input {
+.is-invalid-input,
+input.Error,
+select.Error,
+textarea.Error {
   &:not(:focus) {
+    border-color                : $palette-red;
     background-color            : $palette-white;
   }
 }
