@@ -245,7 +245,6 @@
           AccessKey             = "T"
           MaxLength             = "150"
           FieldSize             = "320"
-          Required              = "True"
           CssClass              = "TextField"
           SkinId                = "BoxedPairs"
           RunAt                 = "Server"
@@ -260,7 +259,6 @@
           AccessKey             = "P"
           MaxLength             = "150"
           FieldSize             = "320"
-          Required              = "True"
           CssClass              = "TextField"
           SkinId                = "BoxedPairs"
           RunAt                 = "Server"
@@ -344,22 +342,46 @@
     $(function() {
 
       /**
-       * Sets conditionally required fields to disabled by default
+       * Establish conditionally required fields variables
        */
-      toggleDisabled('#UserContactInfo input, #UserContactInfo select', true);
-      toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
+      var purchaseOrderRequiredFields           = 'input[id$="TaxID_Field"], input[id$="PONumber_Field"]';
+      var userContactInfoRequiredFields         =
+        'input[id$="UserNameBlock_FirstName_Field"], input[id$="UserNameBlock_FirstName_Field"], ' +
+        'input[id$="UserOrganization_Organization_Field"], input[id$="UserAddressBlock_Address1_Field"], ' +
+        'input[id$="UserAddressBlock_City_Field"], input[id$="UserAddressBlock_State_Field"], input[id$="UserAddressBlock_Postal_Field"]' +
+        'input[id$="UserCountrySelection_CountryList"], input[id$="UserEmail_Email_Field"], input[id$="UserPhone_Phone_Field"]';
+      var apContactInfoRequiredFields           =
+        'input[id$="APContactNameBlock_FirstName_Field"], input[id$="APContactNameBlock_FirstName_Field"], ' +
+        'input[id$="APContactOrganization_Organization_Field"], input[id$="APContactAddressBlock_Address1_Field"], ' +
+        'input[id$="APContactAddressBlock_City_Field"], input[id$="APContactAddressBlock_State_Field"], input[id$="APContactAddressBlock_Postal_Field"]' +
+        'input[id$="APContactCountrySelection_CountryList"], input[id$="APContactEmail_Email_Field"], input[id$="APContactPhone_Phone_Field"]';
+
+      /**
+       * Sets label class on conditionally required fields
+       */
+      $('label[id$="TaxID_Label"], label[id$="PONumber_Label"]').addClass('required');
+
+      /**
+       * Sets conditionally required fields to disabled and not required by default
+       */
+      toggleDisabled('#UserContactInfo input, #UserContactInfo select, #POInfo input, #APContactInfo input, #APContactInfo select', true);
+      toggleRequired(userContactInfoRequiredFields, false);
+      toggleRequired(purchaseOrderRequiredFields, false);
+      toggleRequired(apContactInfoRequiredFields, false);
 
       /**
        * Conditionally enables Intended User Contact Information fields if third-party purchaser is selected
        */
       $('[id^="LicenseeTypeSelection"]').change(function() {
         if ($(this).attr('id') === 'LicenseeTypeSelection_1' && $(this).is(':checked')) {
-          setTimeout(function() {
+          setTimeout(function () {
+            toggleRequired(userContactInfoRequiredFields, true);
             toggleDisabled('#UserContactInfo input, #UserContactInfo select', false);
           }, 250);
         }
         else {
           toggleDisabled('#UserContactInfo input, #UserContactInfo select', true);
+          toggleRequired(userContactInfoRequiredFields, false);
         }
       });
 
@@ -368,16 +390,27 @@
        */
       $('[id^="PaymentTypeSelection"]').change(function () {
         if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+          toggleRequired(purchaseOrderRequiredFields, false);
+          toggleRequired(apContactInfoRequiredFields, false);
           toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
         }
         else if ($(this).is(':checked')) {
           setTimeout(function() {
+            toggleRequired(purchaseOrderRequiredFields, true);
+            toggleRequired(apContactInfoRequiredFields, true);
             toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', false);
           }, 250);
         }
       });
 
     });
+
+    /**
+      * Removes or adds required attribute on fields depending on field selection
+      */
+    function toggleRequired(fields, required) {
+      $(fields).prop('required', required);
+    };
 
     /**
       * Sets disabled state on provided fields (selectors) and provided true/false state
