@@ -8167,6 +8167,23 @@ table.gsc-completion-container td {
   background-color: transparent;
   cursor: pointer; }
 
+.alert-box.announcement {
+  float: none;
+  margin: 0;
+  border: 0 none transparent;
+  padding-right: 2.5rem;
+  padding-left: 2.5rem;
+  text-align: left;
+  background-color: #fec10d; }
+  .alert-box.announcement a {
+    font-weight: 600;
+    text-decoration: underline; }
+  .alert-box.announcement button.close-button {
+    top: 0;
+    right: 2.25rem;
+    font-size: 3.5rem;
+    color: #202020; }
+
 .panel.calls-to-action .headline,
 .panel.calls-to-action .button-group {
   margin-bottom: 0; }
