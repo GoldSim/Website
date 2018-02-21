@@ -54,6 +54,17 @@
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.theme.default.min.css">
 }
 
+@section Announcement {
+
+  <div data-closable class="alert-box announcement callout warning">
+    The GoldSim User Conference 2018 is coming! <a href="/Topic/2274">Register early</a>.
+    <button class="close-button" aria-label="Dismiss alert" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+}
+
 @section MainContentSection {
 
   <!-- Main Site Content Area -->
@@ -320,7 +331,7 @@
 
 @section Scripts {
   <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
-  <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js">
+  <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js"></script>
   <script>
     function init() {
       var deferredImages = document.getElementsByTagName('img');
@@ -333,7 +344,7 @@
     window.onload = init;
   </script>
   <script>
-    $(function () {
+    $(function() {
 
       /**
        * Establish variables
@@ -348,7 +359,7 @@
       /**
        * Handle splash screen arrow scroll click
        */
-      $('img.arrow.scroll').click(function () {
+      $('img.arrow.scroll').click(function() {
         $('html,body').animate({
           scrollTop: introductionPanelPosition
         }, 1000);
