@@ -39,6 +39,8 @@
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
+    @RenderSection("Announcement", false)
+
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
