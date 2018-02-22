@@ -22,11 +22,23 @@
     border                      : 0 none transparent;
     padding-right               : rem-calc(40);
     padding-left                : rem-calc(40);
-    text-align                  : left;
+    text-align                  : center;
     background-color            : $palette-yellow;
     a {
       font-weight               : 600;
       text-decoration           : underline;
+    }
+    i.fa {
+      position                  : relative;
+      top                       : 3px;
+      margin-right              : 6px;
+      font-size                 : 24px;
+      @include breakpoint(767px down) {
+        display                 : block;
+        top                     : 0;
+        margin-right            : 0;
+        margin-bottom           : 6px;
+      }
     }
     button {
       &.close-button {
