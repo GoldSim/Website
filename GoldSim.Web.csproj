@@ -2428,6 +2428,7 @@
     <Content Include="Views\Error\InternalServer.cshtml" />
     <Content Include="Views\Shared\_Breadcrumbs.cshtml" />
     <Content Include="Shared\Styles\Components\Announcement\_announcement.scss" />
+    <Content Include="Views\Shared\_Announcement.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
