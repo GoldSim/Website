@@ -39,8 +39,6 @@
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
-    @RenderSection("Announcement", false)
-
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
@@ -155,6 +153,12 @@
       @RenderSection("CallsToActionSection")
     } else {
       @Html.Action("CallsToAction", "Layout")
+    }
+
+    @if (IsSectionDefined("AnnouncementSection")) {
+      @RenderSection("AnnouncementSection")
+    } else {
+      @Html.Partial("_Announcement", null, new ViewDataDictionary { { "AnnouncementArea", "Footer" }, { "LinkLabel", "User Conference Overview" } })
     }
 
     @if (IsSectionDefined("FooterSection")) {
