@@ -33,7 +33,7 @@ void Page_Load(Object Src, EventArgs E) {
   Master.SubmitLabel            = "Submit Registration";
   Master.EmailSubject           = "User Conference Registration Request";
   Master.EmailSender            = ((IgniaFormField)Email.FindControl("Email")).Value;
-  Master.EmailRecipient         = "software@goldsim.com";
+  Master.EmailRecipient         = "conference@goldsim.com";
   Master.SuccessUrl             = "/Topic/755/";
 
 }
@@ -49,7 +49,7 @@ void Page_Load(Object Src, EventArgs E) {
         paymentInstructionsBox.innerHTML        = 'If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.';
       }
       else {
-        paymentInstructionsBox.innerHTML        = 'If paying by invoice, Purchase Order information must be filled out below.';
+        paymentInstructionsBox.innerHTML        = ''; //'If paying by invoice, Purchase Order information must be filled out below.';
       }
       paymentInstructionsBox.style.display      = 'block';
     }
@@ -264,7 +264,7 @@ void Page_Load(Object Src, EventArgs E) {
       <div class="cell" style="margin-top: 1rem;">
         <Ignia:FormField
           ID                    = "PONumber"
-          LabelName             = "*Purchase Order Number"
+          LabelName             = "Purchase Order Number"
           AccessKey             = "P"
           MaxLength             = "150"
           FieldSize             = "320"
@@ -313,41 +313,17 @@ void Page_Load(Object Src, EventArgs E) {
     $(function () {
 
       /**
-       * Establish conditionally required fields variables
-       */
-      var purchaseOrderRequiredFields           = 'input[id$="TaxID_Field"], input[id$="PONumber_Field"]';
-      var apContactInfoRequiredFields           =
-        'input[id$="APContactNameBlock_FirstName_Field"], input[id$="APContactNameBlock_FirstName_Field"], ' +
-        'input[id$="APContactOrganization_Organization_Field"], input[id$="APContactAddressBlock_Address1_Field"], ' +
-        'input[id$="APContactAddressBlock_City_Field"], input[id$="APContactAddressBlock_State_Field"], input[id$="APContactAddressBlock_Postal_Field"]' +
-        'input[id$="APContactCountrySelection_CountryList"], input[id$="APContactEmail_Email_Field"], input[id$="APContactPhone_Phone_Field"]';
-
-      /**
-       * Sets label class on conditionally required fields
-       */
-      $('label[id$="TaxID_Label"], label[id$="PONumber_Label"]').addClass('required');
-
-      /**
        * Sets conditionally required fields to disabled and not required by default
        */
-      toggleDisabled('input[id$="PONumber_Field"], #APContactInfo input, #APContactInfo select', true);
-      toggleRequired(purchaseOrderRequiredFields, false);
-      toggleRequired(apContactInfoRequiredFields, false);
+      toggleDisabled('input[id$="PONumber_Field"]', true);
 
       /**
        * Conditionally enables PO and AP fields if invoice payment choice is selected
        */
       $('[id^="PaymentTypeSelection"]').change(function () {
-        if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
-          toggleRequired(purchaseOrderRequiredFields, false);
-          toggleRequired(apContactInfoRequiredFields, false);
-          toggleDisabled('input[id$="PONumber_Field"], #APContactInfo input, #APContactInfo select', true);
-        }
-        else if ($(this).is(':checked')) {
-          setTimeout(function () {
-            toggleRequired(purchaseOrderRequiredFields, true);
-            toggleRequired(apContactInfoRequiredFields, true);
-            toggleDisabled('input[id$="PONumber_Field"], #APContactInfo input, #APContactInfo select', false);
+        if ($(this).attr('id') === 'PaymentTypeSelection_1' && $(this).is(':checked')) {
+          setTimeout(function() {
+            toggleDisabled('input[id$="PONumber_Field"]', false);
           }, 250);
         }
       });
