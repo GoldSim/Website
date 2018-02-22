@@ -38,20 +38,6 @@ void Page_Load(Object Src, EventArgs E) {
 
 }
 
-/*===========================================================================================================================
-| VALIDATOR: ACCOUNTS PAYABLE
->============================================================================================================================
-| Ensures that the accounts payable section is only required if the user selected "Invoice Accounts Payable".
-\--------------------------------------------------------------------------------------------------------------------------*/
-void AccountsPayableValidator(object source, ServerValidateEventArgs args) {
-  if (PaymentTypeSelection.Items.FindByValue("Invoice_AP").Selected) {
-    Page.Validate("AccountsPayable");
-  }
-  else {
-    args.IsValid = true;
-  }
-}
-
 </Script>
 
 <asp:Content ContentPlaceHolderId="PageHead" RunAt="Server">
@@ -63,7 +49,7 @@ void AccountsPayableValidator(object source, ServerValidateEventArgs args) {
         paymentInstructionsBox.innerHTML        = 'If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.';
       }
       else {
-        paymentInstructionsBox.innerHTML        = 'If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.';
+        paymentInstructionsBox.innerHTML        = 'If paying by invoice, Purchase Order information must be filled out below.';
       }
       paymentInstructionsBox.style.display      = 'block';
     }
