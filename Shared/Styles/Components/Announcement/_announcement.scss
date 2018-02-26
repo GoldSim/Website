@@ -27,6 +27,13 @@
     a {
       font-weight               : 600;
       text-decoration           : underline;
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited {
+        color                   : $palette-black;
+        text-decoration         : underline;
+      }
     }
     i.fa {
       position                  : relative;
