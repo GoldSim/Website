@@ -13,33 +13,6 @@
 \=============================================================================================================================*/
 
   /*============================================================================================================================
-  | PRIVATE VARIABLES
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  private Topic _genericEmailDomainsLookup      = TopicRepository.RootTopic.GetTopic("Configuration:Metadata:GenericEmailDomains:LookupList");
-  private List<string> _genericEmailDomains     = null;
-
-  /*============================================================================================================================
-  | GENERIC EMAIL DOMAINS
-  >=============================================================================================================================
-  | Gets the list of generic email domains, based on the Title properties, from the GenericEmailDomains lookup list's children.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  public string[] GenericEmailDomains {
-    get {
-      if (_genericEmailDomains == null) {
-        _genericEmailDomains = new List<string>();
-
-        foreach(Topic genericEmailDomain in _genericEmailDomainsLookup.Children) {
-          if (!_genericEmailDomains.Contains(genericEmailDomain.Title)) {
-            _genericEmailDomains.Add(genericEmailDomain.Title);
-          }
-        }
-
-      }
-      return _genericEmailDomains.ToArray();
-    }
-  }
-
-  /*============================================================================================================================
   | PAGE LOAD
   \---------------------------------------------------------------------------------------------------------------------------*/
   void Page_Load(Object Src, EventArgs E) {
@@ -205,7 +178,7 @@
       /**
        * Establish variables
        */
-      var genericEmailDomains   = <%= JsonConvert.SerializeObject(GenericEmailDomains) %>;
+      var genericEmailDomains   = <%= JsonConvert.SerializeObject(Master.GenericEmailDomains) %>;
 
       /**
        * Validate user's email domain on blur

@@ -36,6 +36,8 @@ namespace GoldSim.Forms.Common.Templates {
     private     string                          _saveToTopicPath        = null;
     private     string                          _saveAsContentType      = "";
     private     Dictionary<string, string>      _formValues             = null;
+    private     Topic                           _genericEmailDomainsLookup      = TopicRepository.RootTopic.GetTopic("Configuration:Metadata:GenericEmailDomains:LookupList");
+    private     List<string>                    _genericEmailDomains    = null;
 
     /*==========================================================================================================================
     | PUBLIC MEMBERS
@@ -133,6 +135,29 @@ namespace GoldSim.Forms.Common.Templates {
       }
       set {
         Submit.Text = value;
+      }
+    }
+
+    /*==========================================================================================================================
+    | PROPERTY: GENERIC EMAIL DOMAINS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the list of generic email domains, based on the Title properties, from the GenericEmailDomains lookup list's
+    ///   children.
+    /// </summary>
+    public string[] GenericEmailDomains {
+      get {
+        if (_genericEmailDomains == null) {
+          _genericEmailDomains = new List<string>();
+
+          foreach(Topic genericEmailDomain in _genericEmailDomainsLookup.Children) {
+            if (!_genericEmailDomains.Contains(genericEmailDomain.Title)) {
+              _genericEmailDomains.Add(genericEmailDomain.Title);
+            }
+          }
+
+        }
+        return _genericEmailDomains.ToArray();
       }
     }
 
