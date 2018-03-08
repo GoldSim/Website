@@ -1,5 +1,7 @@
 <%@ Page Language="C#" Title="GoldSim Demo" %>
 
+<%@ Import Namespace="Newtonsoft.Json" %>
+
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
 
@@ -27,15 +29,6 @@
     // Custom processing event
     Master.ProcessForm         += ProcessForm;
 
-  }
-
-  /*============================================================================================================================
-  | VALIDATOR: EVALUATION METHOD
-  >=============================================================================================================================
-  | Ensures that at least one of the evaluation methods is selected.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  void EvaluationMethodValidator(object source, ServerValidateEventArgs args) {
-    args.IsValid = !String.IsNullOrEmpty(EvaluationTypeList.SelectedValue);
   }
 
   /*============================================================================================================================
@@ -74,27 +67,6 @@
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
   <p>Qualified prospects can request a live web-based demo. Note that you will be speaking to a technical expert, and not a sales person. During the demonstration, a GoldSim specialist shares his or her desktop with you (using GoToMeeting), explaining the software's key features and benefits, demonstrating GoldSim models, and answering your questions.</p>
 
-  <fieldset style="display: none;">
-    <legend>Evaluation Method</legend>
-
-    <%-- EVALUATION METHOD CHECKBOXES --%>
-    <div class="FieldContainer Checkboxes">
-      <label For="EvaluationTypeList" RunAt="Server">How would you like to evaluate GoldSim?</label>
-      (Please select at least one option.)
-      <asp:CheckBoxList ID="EvaluationTypeList" RepeatLayout="Flow" RunAt="server">
-        <asp:ListItem Value="Trial">GoldSim Trial Version</asp:ListItem>
-        <asp:ListItem Value="Demo" Selected="true">Live Demonstration</asp:ListItem>
-      </asp:CheckBoxList>
-      <asp:CustomValidator
-        ControlToValidate       = "Email:Email:Field"
-        OnServerValidate        = "EvaluationMethodValidator"
-        ErrorMessage            = "You must select at least one evaluation method."
-        RunAt                   = "Server"
-        />
-    </div>
-
-  </fieldset>
-
   <fieldset>
     <div class="grid-x grid-margin-x">
 
@@ -114,7 +86,8 @@
         <GoldSimForm:Email ID="Email" RunAt="Server" />
       </div>
       <div class="cell">
-        <p class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
+        <p id="EmailInstructions" class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
+        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;">While we would like to grant your evaluation request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
       </div>
       <!-- /Email -->
 
@@ -176,4 +149,41 @@
 
   </fieldset>
 
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <script>
+    $(function() {
+
+      /**
+       * Establish variables
+       */
+      var genericEmailDomains   = <%= JsonConvert.SerializeObject(Master.GenericEmailDomains) %>;
+
+      /**
+       * Validate user's email domain on blur
+       */
+      $('#ContentContainer_Content_Email_Email_Field').blur(function () {
+        console.log('email field recorded');
+        console.log($(this).val());
+        var emailValue          = $(this).val().toLowerCase();
+        for (var i = 0; i < genericEmailDomains.length; i++) {
+          if (emailValue.indexOf(genericEmailDomains[i].toLowerCase()) >= 0) {
+            $(this).addClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').addClass('Error');
+            $('#EmailInstructions').hide();
+            $('#EmailErrorInstructions').show();
+            break;
+          }
+          else {
+            $(this).removeClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').removeClass('Error');
+            $('#EmailInstructions').show();
+            $('#EmailErrorInstructions').hide();
+          }
+        }
+      });
+
+    });
+  </script>
 </asp:Content>
