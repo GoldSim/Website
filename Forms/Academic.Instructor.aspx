@@ -3,64 +3,48 @@
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 
 <Script RunAt="Server">
-/*===========================================================================================================================
-| FORM: ACADEMIC APPLICATION
-|
-| Author        Katherine Trunkey, Ignia LLC (Katie@ignia.com)
+/*==============================================================================================================================
+| Author        Ignia, LLC
 | Client        GoldSim
-| Project       Site Relaunch
-|
-| Purpose       Provides form template for GoldSim Academic Version application.
-|
->============================================================================================================================
-| Revisions     Date        Author                      Comments
-| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-|               11.24.08    Jeremy Caney                Initial version template.
-|               07.27.10    Katherine Trunkey           Adapted for form template.
-|               08.02.10    Jeremy Caney                Wired up event-handler for processing conditional email.
-|               MM.DD.YY    FName LName                 Description
-\--------------------------------------------------------------------------------------------------------------------------*/
+| Project       Website
+\=============================================================================================================================*/
 
-/*=========================================================================================================================
-| DECLARE PUBLIC PROPERTIES
->==========================================================================================================================
-| Declare any public/global variables prior to page initiation; these will be treated as properties in the control
-\------------------------------------------------------------------------------------------------------------------------*/
-
-/*===========================================================================================================================
-| PAGE LOAD
->============================================================================================================================
-| Provide handling for functions that must run prior to page load.  This includes dynamically constructed controls.
-\--------------------------------------------------------------------------------------------------------------------------*/
+  /*============================================================================================================================
+  | PAGE LOAD
+  \---------------------------------------------------------------------------------------------------------------------------*/
   void Page_Load(Object Src, EventArgs E) {
 
-  /*-------------------------------------------------------------------------------------------------------------------------
-  | SET MASTER PROPERTIES
-  \------------------------------------------------------------------------------------------------------------------------*/
-  //Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
-  //Master.FormTopic            =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(739);
-  //ContentType for form Topic
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | Set master properties
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    // Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
+    // Master.FormTopic         =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(739);
+
+    // ContentType for form Topic
     Master.SaveAsContentType    = "AcademicRequest";
-  //Submit button label
+
+    // Submit button label
     Master.SubmitLabel          = "Send Request";
-  //Submission email subject
+
+    // Submission email subject
     Master.EmailSubject         = "Academic Product Version Application: Instructor";
     Master.EmailSender          = "website@goldsim.com";
-  //Redirect URL
+
+    // Redirect URL
     Master.SuccessUrl           = "/Topic/755/";
 
-    }
+  }
 
-/*===========================================================================================================================
-| VALIDATOR: TERMS OF USE CHECK
->============================================================================================================================
-| Ensures that the terms of use agreement checkbox is checked.
-\--------------------------------------------------------------------------------------------------------------------------*/
+  /*============================================================================================================================
+  | VALIDATOR: TERMS OF USE CHECK
+  >=============================================================================================================================
+  | Ensures that the terms of use agreement checkbox is checked.
+  \---------------------------------------------------------------------------------------------------------------------------*/
   void TermsCheckValidator(object source, ServerValidateEventArgs args) {
     if (!TOUCheck.Checked) {
       args.IsValid = false;
-      }
     }
+  }
 
 </Script>
 
