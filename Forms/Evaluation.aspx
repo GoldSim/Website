@@ -1,5 +1,7 @@
 <%@ Page Language="C#" Title="GoldSim Trial" %>
 
+<%@ Import Namespace="Newtonsoft.Json" %>
+
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
 
@@ -140,7 +142,8 @@
         <GoldSimForm:Email ID="Email" RunAt="Server" />
       </div>
       <div class="cell">
-        <p class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
+        <p id="EmailInstructions" class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
+        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;">While we would like to grant your evaluation request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
       </div>
       <!-- /Email -->
 
@@ -210,6 +213,36 @@
 <asp:Content ContentPlaceHolderID="PageScripts" runat="server">
   <script>
     $(function() {
+
+      /**
+       * Establish variables
+       */
+      var genericEmailDomains   = <%= JsonConvert.SerializeObject(GenericEmailDomains) %>;
+
+      /**
+       * Validate user's email domain on blur
+       */
+      $('#ContentContainer_Content_Email_Email_Field').blur(function () {
+        console.log('email field recorded');
+        console.log($(this).val());
+        var emailValue          = $(this).val().toLowerCase();
+        for (var i = 0; i < genericEmailDomains.length; i++) {
+          if (emailValue.indexOf(genericEmailDomains[i].toLowerCase()) >= 0) {
+            $(this).addClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').addClass('Error');
+            $('#EmailInstructions').hide();
+            $('#EmailErrorInstructions').show();
+            break;
+          }
+          else {
+            $(this).removeClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').removeClass('Error');
+            $('#EmailInstructions').show();
+            $('#EmailErrorInstructions').hide();
+          }
+        }
+      });
+
     });
   </script>
 </asp:Content>
