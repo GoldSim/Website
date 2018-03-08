@@ -4,31 +4,58 @@
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
 
 <Script RunAt="Server">
-/*==============================================================================================================================
-| FORM: EVALUATION REQUEST
-|
-| Author        Katherine Trunkey, Ignia LLC (Katie@ignia.com)
-| Client        GoldSim
-| Project       Site Relaunch
-|
-| Purpose       Provides form template for GoldSim software evaluation request.
-|
->===============================================================================================================================
-| Revisions     Date        Author                      Comments
-| - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-|               11.24.08    Jeremy Caney                Initial version template.
-|               07.27.10    Katherine Trunkey           Adapted for form template.
-|               08.02.10    Jeremy Caney                Wired up event-handler for processing conditional email.
-|               MM.DD.YY    FName LName                 Description
-\-----------------------------------------------------------------------------------------------------------------------------*/
+  /*==============================================================================================================================
+  | FORM: EVALUATION REQUEST
+  |
+  | Author        Katherine Trunkey, Ignia LLC (Katie@ignia.com)
+  | Client        GoldSim
+  | Project       Site Relaunch
+  |
+  | Purpose       Provides form template for GoldSim software evaluation request.
+  |
+  >===============================================================================================================================
+  | Revisions     Date        Author                      Comments
+  | - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  |               11.24.08    Jeremy Caney                Initial version template.
+  |               07.27.10    Katherine Trunkey           Adapted for form template.
+  |               08.02.10    Jeremy Caney                Wired up event-handler for processing conditional email.
+  |               MM.DD.YY    FName LName                 Description
+  \-----------------------------------------------------------------------------------------------------------------------------*/
 
   /*============================================================================================================================
-  | PAGE LOAD
+  | PRIVATE VARIABLES
   \---------------------------------------------------------------------------------------------------------------------------*/
+  private Topic _genericEmailDomainsLookup      = TopicRepository.RootTopic.GetTopic("Configuration:Metadata:GenericEmailDomains:LookupList");
+  private List<string> _genericEmailDomains     = null;
+
+  /*============================================================================================================================
+  | GENERIC EMAIL DOMAINS
+  >=============================================================================================================================
+  | Gets the list of generic email domains, based on the Title properties, from the GenericEmailDomains lookup list's children.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  public string[] GenericEmailDomains {
+    get {
+      if (_genericEmailDomains == null) {
+        _genericEmailDomains = new List<string>();
+
+        foreach(Topic genericEmailDomain in _genericEmailDomainsLookup.Children) {
+          if (!_genericEmailDomains.Contains(genericEmailDomain.Title)) {
+            _genericEmailDomains.Add(genericEmailDomain.Title);
+          }
+        }
+
+      }
+      return _genericEmailDomains.ToArray();
+    }
+  }
+
+  /*============================================================================================================================
+| PAGE LOAD
+\---------------------------------------------------------------------------------------------------------------------------*/
   void Page_Load(Object Src, EventArgs E) {
 
     /*--------------------------------------------------------------------------------------------------------------------------
-    | SET MASTER PROPERTIES
+    | Set master template properties
     \-------------------------------------------------------------------------------------------------------------------------*/
     // Associated topic for navigation -- sends to Forms.Layout.Master and then on to Page.Layout.master
     // Master.FormTopic         =  Ignia.Topics.TopicRepository.RootTopic.GetTopic(460);
@@ -178,4 +205,11 @@
 
   </fieldset>
 
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <script>
+    $(function() {
+    });
+  </script>
 </asp:Content>
