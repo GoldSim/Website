@@ -45,15 +45,6 @@
   }
 
   /*============================================================================================================================
-  | VALIDATOR: EVALUATION METHOD
-  >=============================================================================================================================
-  | Ensures that at least one of the evaluation methods is selected.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  void EvaluationMethodValidator(object source, ServerValidateEventArgs args) {
-    args.IsValid = !String.IsNullOrEmpty(EvaluationTypeList.SelectedValue);
-  }
-
-  /*============================================================================================================================
   | PROCESS FORM
   >=============================================================================================================================
   | Override default form processing to provide conditional email support.  Includes a manual redirect to prevent default
@@ -64,30 +55,17 @@
     /*--------------------------------------------------------------------------------------------------------------------------
     | Local variables
     \-------------------------------------------------------------------------------------------------------------------------*/
-    bool        isTrial         = EvaluationTypeList.Items.FindByValue("Trial").Selected;
-    bool        isDemo          = EvaluationTypeList.Items.FindByValue("Demo").Selected;
     string      email           = ((IgniaFormField)Email.FindControl("Email")).Value;
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Send trial request email
     \-------------------------------------------------------------------------------------------------------------------------*/
-    if (isTrial) {
-      Master.EmailForm("Evaluation Download Request", "Software@GoldSim.com", "website@goldsim.com");
-    }
+    Master.EmailForm("Evaluation Download Request", "Software@GoldSim.com", "website@goldsim.com");
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Save form as Topic
     \-------------------------------------------------------------------------------------------------------------------------*/
     Master.SaveFormAsTopic();
-
-    /*--------------------------------------------------------------------------------------------------------------------------
-    | Send demo email
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    if (isDemo) {
-      // Customize the subject line based on whether a trial was also selected
-      string demoSubject = "Demo request WITH" + (isTrial? "" : "OUT") + " Evaluation Request";
-      Master.EmailForm(demoSubject, "Software@GoldSim.com", "website@goldsim.com");
-    }
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Send email receipt (to user)
@@ -115,27 +93,6 @@
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
   <p>Trial versions are fully functional expiring 30 days after registration. GoldSim is easy to install, register (and uninstall), and, of course, there is no obligation to buy and your privacy is respected. Free technical support is provided throughout your trial.</p>
-
-  <fieldset style="display: none;">
-    <legend>Evaluation Method</legend>
-
-    <%-- EVALUATION METHOD CHECKBOXES --%>
-    <div class="FieldContainer Checkboxes">
-      <label For="EvaluationTypeList" RunAt="Server">How would you like to evaluate GoldSim?</label>
-      (Please select at least one option.)
-      <asp:CheckBoxList ID="EvaluationTypeList" RepeatLayout="Flow" RunAt="server">
-        <asp:ListItem Value="Trial" Selected="true">GoldSim Trial Version</asp:ListItem>
-        <asp:ListItem Value="Demo">Live Demonstration</asp:ListItem>
-      </asp:CheckBoxList>
-      <asp:CustomValidator
-        ControlToValidate       = "Email:Email:Field"
-        OnServerValidate        = "EvaluationMethodValidator"
-        ErrorMessage            = "You must select at least one evaluation method."
-        RunAt                   = "Server"
-        />
-    </div>
-
-  </fieldset>
 
   <fieldset>
     <div class="grid-x grid-margin-x">
