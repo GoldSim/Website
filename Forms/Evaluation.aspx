@@ -1,16 +1,17 @@
 <%@ Page Language="C#" Title="GoldSim Trial" %>
 
+<%@ Import Namespace="System.Linq" %>
 <%@ Import Namespace="Newtonsoft.Json" %>
 
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
 
 <Script RunAt="Server">
-/*==============================================================================================================================
-| Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
-\=============================================================================================================================*/
+  /*==============================================================================================================================
+  | Author        Ignia, LLC
+  | Client        GoldSim
+  | Project       Website
+  \=============================================================================================================================*/
 
   /*============================================================================================================================
   | PAGE LOAD
@@ -75,6 +76,25 @@
 
   }
 
+  /*============================================================================================================================
+  | VALIDATOR: EMAIL DOMAIN
+  >=============================================================================================================================
+  | Ensures that the email address entered is not from a generic / free email domain.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  void EmailDomainValidator(object source, ServerValidateEventArgs args) {
+    string      email           = ((IgniaFormField)Email.FindControl("Email")).Value;
+
+    foreach (string emailDomain in Master.GenericEmailDomains) {
+      if (email.IndexOf(emailDomain, StringComparison.InvariantCultureIgnoreCase) >= 0) {
+        EmailInstructions.Style.Add("display", "none");
+        EmailErrorInstructions.Style.Add("display", "block");
+        args.IsValid            = false;
+        break;
+      }
+    }
+
+  }
+
 </Script>
 
 <asp:Content ContentPlaceHolderID="Subtitle" runat="server">
@@ -101,10 +121,18 @@
       <!-- Email -->
       <div class="medium-6 cell">
         <GoldSimForm:Email ID="Email" RunAt="Server" />
+        <div class="hidden">
+          <asp:CustomValidator
+            ControlToValidate   = "Email:Email:Field"
+            OnServerValidate    = "EmailDomainValidator"
+            ErrorMessage        = "Please use an email address with an institutional domain."
+            RunAt               = "Server"
+          />
+        </div>
       </div>
       <div class="cell">
-        <p id="EmailInstructions" class="field instructions">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
-        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;">While we would like to grant your evaluation request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
+        <p id="EmailInstructions" class="field instructions" ClientIDMode="Static" runat="server">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
+        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;" ClientIDMode="Static" runat="server">While we would like to grant your evaluation request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
       </div>
       <!-- /Email -->
 

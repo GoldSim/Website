@@ -48,6 +48,25 @@
     }
   }
 
+  /*============================================================================================================================
+  | VALIDATOR: EMAIL DOMAIN
+  >=============================================================================================================================
+  | Ensures that the email address entered is not from a generic / free email domain.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  void EmailDomainValidator(object source, ServerValidateEventArgs args) {
+    string      email           = ((IgniaFormField)Email.FindControl("Email")).Value;
+
+    foreach (string emailDomain in Master.GenericEmailDomains) {
+      if (email.IndexOf(emailDomain, StringComparison.InvariantCultureIgnoreCase) >= 0) {
+        EmailInstructions.Style.Add("display", "none");
+        EmailErrorInstructions.Style.Add("display", "block");
+        args.IsValid            = false;
+        break;
+      }
+    }
+
+  }
+
 </Script>
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
@@ -73,9 +92,17 @@
 
       <%-- EMAIL --%>
       <GoldSimForm:Email ID="Email" SplitLayout="true" RunAt="Server" />
+      <div class="hidden">
+        <asp:CustomValidator
+          ControlToValidate     = "Email:Email:Field"
+          OnServerValidate      = "EmailDomainValidator"
+          ErrorMessage          = "Please use an email address with an institutional domain."
+          RunAt                 = "Server"
+        />
+      </div>
       <div class="cell text-right">
-        <p id="EmailInstructions" class="field instructions">Email must be associated with an academic institution</p>
-        <p id="EmailErrorInstructions" class="field error instructions" style="display: none;">Unfortunately, we can't issue free academic licenses to generic email addresses like hotmail, gmail and yahoo. If possible, please use an email address that is associated with your university. If you don't have a university email address, please have your faculty sponsor send an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a> confirming you are a student. We will then forward the license details to him or her.</p>
+        <p id="EmailInstructions" class="field instructions" ClientIDMode="Static" runat="server">Email must be associated with an academic institution</p>
+        <p id="EmailErrorInstructions" class="field error instructions" style="display: none;" ClientIDMode="Static" runat="server">Unfortunately, we can't issue free academic licenses to generic email addresses like hotmail, gmail and yahoo. If possible, please use an email address that is associated with your university. If you don't have a university email address, please have your faculty sponsor send an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a> confirming you are a student. We will then forward the license details to him or her.</p>
       </div>
 
       <%-- DEPARTMENT --%>
