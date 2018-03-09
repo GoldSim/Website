@@ -1,5 +1,7 @@
 <%@ Page Language="C#" Title="GoldSim Academic Application Form" MasterPageFile="/Forms/Common/Templates/Forms.Layout.Master" %>
 
+<%@ Import Namespace="Newtonsoft.Json" %>
+
 <%@ MasterType  VirtualPath="/Forms/Common/Templates/Forms.Layout.Master" %>
 
 <Script RunAt="Server">
@@ -72,7 +74,8 @@
       <%-- EMAIL --%>
       <GoldSimForm:Email ID="Email" SplitLayout="true" RunAt="Server" />
       <div class="cell text-right">
-        <p class="instructions">Email must be associated with an academic institution</p>
+        <p id="EmailInstructions" class="field instructions">Email must be associated with an academic institution</p>
+        <p id="EmailErrorInstructions" class="field error instructions" style="display: none;">Unfortunately, we can't issue free academic licenses to generic email addresses like hotmail, gmail and yahoo. If possible, please use an email address that is associated with your university. If you don't have a university email address, please send an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a> with a reference to your credentials to help us verify your status.</p>
       </div>
 
       <%-- DEPARTMENT --%>
@@ -185,4 +188,43 @@
     </div>
   </fieldset>
 
+</asp:Content>
+
+<asp:Content ContentPlaceHolderID="PageScripts" runat="server">
+  <script>
+    $(function() {
+
+      /**
+       * Establish variables
+       */
+      var genericEmailDomains   = <%= JsonConvert.SerializeObject(Master.GenericEmailDomains) %>;
+
+      /**
+       * Validate user's email domain on blur
+       */
+      $('#ContentContainer_Content_Email_Email_Field').blur(function () {
+        console.log('email field recorded');
+        console.log($(this).val());
+        var emailValue          = $(this).val().toLowerCase();
+        for (var i = 0; i < genericEmailDomains.length; i++) {
+          if (emailValue.indexOf(genericEmailDomains[i].toLowerCase()) >= 0) {
+            $(this).addClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').addClass('Error');
+            $('#EmailInstructions').hide();
+            $('#EmailInstructions').parent().removeClass('text-right');
+            $('#EmailErrorInstructions').show();
+            break;
+          }
+          else {
+            $(this).removeClass('Error');
+            $('#ContentContainer_Content_Email_Email_Label').removeClass('Error');
+            $('#EmailInstructions').show();
+            $('#EmailInstructions').parent().addClass('text-right');
+            $('#EmailErrorInstructions').hide();
+          }
+        }
+      });
+
+    });
+  </script>
 </asp:Content>
