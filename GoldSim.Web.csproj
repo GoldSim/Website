@@ -64,6 +64,9 @@
       <HintPath>packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EPPlus, Version=4.1.1.0, Culture=neutral, PublicKeyToken=ea159fdaa78159a1, processorArchitecture=MSIL">
+      <HintPath>packages\EPPlus.4.1.1\lib\net40\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="HtmlSanitizationLibrary">
       <HintPath>packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
       <Private>True</Private>
@@ -124,6 +127,9 @@
       <HintPath>packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.4.0\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
@@ -161,6 +167,8 @@
       <HintPath>packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Web.Services" />
@@ -1512,8 +1520,15 @@
     <Content Include="!Admin\Topics\Migration\ContentCleanup.aspx" />
     <Content Include="!Admin\Topics\Migration\GoldSim.NewContentTypes.Setup.aspx" />
     <Content Include="!Admin\Topics\Migration\Migration.Functions.inc.aspx" />
+    <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Ascending.png" />
+    <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Both.png" />
+    <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Descending.png" />
+    <Content Include="!Admin\Topics\ReviewRequests\LicenseRequests.Export.aspx" />
+    <Content Include="!Admin\Topics\ReviewRequests\LicenseRequests.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="bin\AntiXssLibrary.dll" />
+    <Content Include="bin\EPPlus.dll" />
+    <Content Include="bin\EPPlus.xml" />
     <Content Include="bin\HtmlSanitizationLibrary.dll" />
     <Content Include="bin\Ignia.Toolbox.dll" />
     <Content Include="bin\Ignia.Topics.Data.Caching.dll" />
@@ -1534,6 +1549,8 @@
     <Content Include="bin\System.Web.Webpages.Deployment.dll" />
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\System.Windows.dll" />
+    <Content Include="bin\System.Windows.Forms.dll" />
     <Content Include="Common\Global\Client.Scripts\Activate.MSIE.js" />
     <Content Include="Common\Global\Client.Scripts\ClientValidation.js" />
     <Content Include="Common\Global\Client.Scripts\dhtmlHistory.FlashInit.js" />
@@ -2446,6 +2463,7 @@
   <ItemGroup>
     <Folder Include="!Admin\Topics\Common\Scripts\Vendor\ExtJS\resources\images\vista\dd\" />
     <Folder Include="!Admin\Topics\Common\Scripts\Vendor\ExtJS\resources\images\vista\tree\" />
+    <Folder Include="!Admin\Topics\ReviewRequests\Exports\" />
     <Folder Include="App_Data\" />
     <Folder Include="Images\Content\" />
     <Folder Include="Views\Default\" />
