@@ -1555,8 +1555,6 @@
     <Content Include="bin\System.Web.Webpages.Deployment.dll" />
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
-    <Content Include="bin\System.Windows.dll" />
-    <Content Include="bin\System.Windows.Forms.dll" />
     <Content Include="Common\Global\Client.Scripts\Activate.MSIE.js" />
     <Content Include="Common\Global\Client.Scripts\ClientValidation.js" />
     <Content Include="Common\Global\Client.Scripts\dhtmlHistory.FlashInit.js" />
