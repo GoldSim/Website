@@ -131,6 +131,7 @@
       <HintPath>packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.2.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -2160,7 +2161,8 @@
       <DependentUpon>ContentCleanup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
-    <Compile Include="App_Code\ExcelReporting.cs" />
+    <Compile Include="App_Code\ExcelReportingService.cs" />
+    <Compile Include="App_Code\IReportingService.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
