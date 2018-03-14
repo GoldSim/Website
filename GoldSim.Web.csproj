@@ -1518,8 +1518,8 @@
     <Content Include="!Admin\Topics\Images\Vendor\jQueryUI\ui-icons_ff0000_256x240.png" />
     <Content Include="!Admin\Topics\Images\Vendor\jQueryUI\ui-icons_ffffff_256x240.png" />
     <Content Include="!Admin\Topics\Migration\ContentCleanup.aspx" />
-    <Content Include="!Admin\Topics\Migration\GoldSim.NewContentTypes.Setup.aspx" />
-    <Content Include="!Admin\Topics\Migration\Migration.Functions.inc.aspx" />
+    <None Include="!Admin\Topics\Migration\GoldSim.NewContentTypes.Setup.aspx" />
+    <None Include="!Admin\Topics\Migration\Migration.Functions.inc.aspx" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Ascending.png" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Both.png" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Descending.png" />
@@ -1587,7 +1587,7 @@
     <Content Include="Common\Global\CS.Functions\ImportFromQuerystring.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
-    <Content Include="Common\Global\Headers\Form.Headers.inc.aspx" />
+    <None Include="Common\Global\Headers\Form.Headers.inc.aspx" />
     <Content Include="ErrorTest.html" />
     <Content Include="Forms\Academic.Student.aspx" />
     <Content Include="Forms\Academic.Instructor.aspx" />
@@ -2153,6 +2153,7 @@
       <DependentUpon>ContentCleanup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
+    <Compile Include="App_Code\ExcelReporting.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
@@ -2162,6 +2163,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
+    <Compile Include="Controllers\ReportingController.cs" />
     <Compile Include="Controllers\SitemapController.cs" />
     <Content Include="Forms\Common\Templates\Forms.Layout.master.cs">
       <DependentUpon>Forms.Layout.master</DependentUpon>
@@ -2409,6 +2411,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Images\Content\" />
     <Folder Include="Views\Default\" />
+    <Folder Include="Views\Reporting\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
