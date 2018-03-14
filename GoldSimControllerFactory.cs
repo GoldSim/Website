@@ -8,10 +8,6 @@ using Ignia.Topics;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -68,7 +64,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(ReportingController)) {
-        return new ReportingController(topicRepository, null);
+        return new ReportingController(topicRepository, new ExcelReportingService());
       }
 
       if (controllerType == typeof(LayoutController)) {
