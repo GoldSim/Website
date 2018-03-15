@@ -147,16 +147,65 @@ namespace GoldSim.Web {
       foreach (Topic licenseRequest in licenseRequests) {
 
         // Set variable values
-        string requestType = (licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Evaluation" : "Academic");
-        string productOption = "Config_1";
-        if (licenseRequest.Attributes.GetValue("RL") == "True" && licenseRequest.Attributes.GetValue("CT") == "True") {
-          productOption = "Config_9";
+        string requestType              = (licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Evaluation" : "Academic");
+        int productOptionConfiguration  = 1;
+
+        // Determine Product Option configuration
+        if (
+          licenseRequest.Attributes.GetValue("DP") == "True" &&
+          licenseRequest.Attributes.GetValue("RL") == "True" &&
+          licenseRequest.Attributes.GetValue("RT") == "True"
+        ) {
+          productOptionConfiguration    = 12;
         }
-        else if (licenseRequest.Attributes.GetValue("RL") == "True") {
-          productOption = "Config_3";
+        else if (
+          licenseRequest.Attributes.GetValue("DP") == "True" &&
+          licenseRequest.Attributes.GetValue("RL") == "True" &&
+          licenseRequest.Attributes.GetValue("CT") == "True"
+        ) {
+          productOptionConfiguration    = 11;
+        }
+        else if (
+          licenseRequest.Attributes.GetValue("RL") == "True" &&
+          licenseRequest.Attributes.GetValue("RT") == "True"
+        ) {
+          productOptionConfiguration    = 10;
+        }
+        else if (
+          licenseRequest.Attributes.GetValue("RL") == "True" &&
+          licenseRequest.Attributes.GetValue("CT") == "True"
+        ) {
+          productOptionConfiguration    = 9;
+        }
+        else if (
+          licenseRequest.Attributes.GetValue("DP") == "True" &&
+          licenseRequest.Attributes.GetValue("RT") == "True"
+        ) {
+          productOptionConfiguration    = 8;
+        }
+        else if (
+          licenseRequest.Attributes.GetValue("DP") == "True" &&
+          licenseRequest.Attributes.GetValue("CT") == "True"
+        ) {
+          productOptionConfiguration    = 7;
+        }
+        else if (
+          licenseRequest.Attributes.GetValue("DP") == "True" &&
+          licenseRequest.Attributes.GetValue("RL") == "True"
+        ) {
+          productOptionConfiguration    = 6;
+        }
+        else if (licenseRequest.Attributes.GetValue("RT") == "True") {
+          productOptionConfiguration    = 5;
         }
         else if (licenseRequest.Attributes.GetValue("CT") == "True") {
-          productOption = "Config_4";
+          productOptionConfiguration    = 4;
+        }
+        else if (licenseRequest.Attributes.GetValue("RL") == "True") {
+          productOptionConfiguration    = 3;
+        }
+        else if (licenseRequest.Attributes.GetValue("DP") == "True") {
+          productOptionConfiguration    = 2;
         }
 
         // Add data row for each request
@@ -166,7 +215,7 @@ namespace GoldSim.Web {
           licenseRequest.Attributes.GetValue("LastName", ""),
           licenseRequest.Attributes.GetValue("Organization", ""),
           requestType,
-          productOption,
+          "Config_" + productOptionConfiguration.ToString(),
           "TRUE",
           licenseRequest.Attributes.GetValue("Department", ""),
           (licenseRequest.Attributes.GetValue("Address1", "") + (!String.IsNullOrEmpty(licenseRequest.Attributes.GetValue("Address2", "")) ? ", " + licenseRequest.Attributes.GetValue("Address2", "") : "")),
