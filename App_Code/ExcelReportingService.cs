@@ -76,18 +76,30 @@ namespace GoldSim.Web {
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
+        Color headerRowBackgroundColor          = ColorTranslator.FromHtml("#262626");
         using (var cellRange = worksheet.Cells[1, 1, 1, 24]) {
-          cellRange.Style.Font.Bold = true;
-          cellRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
-          cellRange.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
-          cellRange.Style.WrapText = true;
+          cellRange.Style.Font.Color.SetColor(Color.White);
+          cellRange.Style.Fill.PatternType      = ExcelFillStyle.Solid;
+          cellRange.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
+          cellRange.Style.WrapText              = true;
         }
         worksheet.View.FreezePanes(2, 1);
+
+        /*----------------------------------------------------------------------------------------------------------------------
+        | Set the font for the worksheet
+        \---------------------------------------------------------------------------------------------------------------------*/
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name    = "Tahoma";
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size    = 10;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Auto-fit data rows to their contents
         \---------------------------------------------------------------------------------------------------------------------*/
         worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+
+        /*----------------------------------------------------------------------------------------------------------------------
+        | Set column filters
+        \---------------------------------------------------------------------------------------------------------------------*/
+        worksheet.Cells["E1:F1"].AutoFilter     = true;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Apply the spreadsheet to the stream
