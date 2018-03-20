@@ -218,16 +218,23 @@ void Page_Load(Object Src, EventArgs E) {
 
    <legend>Conference Options (Early Bird Pricing*)</legend>
 
+    <!-- Academic Discount -->
+    <div class="checkbox" style="margin-bottom: 1rem;">
+      <asp:CheckBox ID="AcademicDiscountCheck" ClientIDMode="Static" RunAt="Server" />
+      <label for="AcademicDiscountCheck" RunAt="Server">Apply student discount</label>
+    </div>
+    <!-- /Academic Discount -->
+
     <%-- SESSION TYPE --%>
     <asp:Label ID="SessionSelect" CssClass="Session Select" style="display: none;" RunAt="Server" />
     <asp:RadioButtonList ID="SessionTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
-      <asp:ListItem Value="User Conference Only">User Conference Only (September 11-12): $850</asp:ListItem>
-      <asp:ListItem Value="Basic Training and Conference">Basic Training and Conference (September 10-12): $1100</asp:ListItem>
+      <asp:ListItem Value="User Conference Only">User Conference Only (September 11-12): <span id="ConferenceOnlyPrice">$850</span></asp:ListItem>
+      <asp:ListItem Value="Basic Training and Conference">Basic Training and Conference (September 10-12): <span id="TrainingAndConferencePrice">$1,100</span></asp:ListItem>
     </asp:RadioButtonList>
 
     <p style="margin-top: 1rem;">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</p>
 
-    <p><em>*Conference fee increases by $400 after June 1, 2018.</em> <strong>In addition, attendees who register by June 1 will be entered into a drawing for a Microsoft Surface Pro.</strong></p>
+    <p><em>*Conference fee increases by <span id="PriceIncrease">$400</span> after June 1, 2018.</em> <strong>In addition, attendees who register by June 1 will be entered into a drawing for a Microsoft Surface Pro.</strong></p>
 
   </fieldset>
 
@@ -325,6 +332,32 @@ void Page_Load(Object Src, EventArgs E) {
           setTimeout(function() {
             toggleDisabled('input[id$="PONumber_Field"]', false);
           }, 250);
+        }
+      });
+
+      /**
+       * Update registration fees and price increase amount if the academic discount checkbox is selected
+       */
+      var
+        conferenceOnlyPriceLabel                = '#ConferenceOnlyPrice',
+        conferenceOnlyRate                      = '$850',
+        conferenceOnlyDiscountRate              = '$425',
+        trainingAndConferencePriceLabel         = '#TrainingAndConferencePrice',
+        trainingAndConferenceRate               = '$1,100',
+        trainingAndConferenceDiscountRate       = '$550',
+        priceIncreaseLabel                      = '#PriceIncrease',
+        priceIncreaseRate                       = '$400',
+        priceIncreaseDiscountRate               = '$200';
+      $('#AcademicDiscountCheck').change(function () {
+        if ($(this).is(':checked')) {
+          $(conferenceOnlyPriceLabel).text(conferenceOnlyDiscountRate);
+          $(trainingAndConferencePriceLabel).text(trainingAndConferenceDiscountRate);
+          $(priceIncreaseLabel).text(priceIncreaseDiscountRate);
+        }
+        else {
+          $(conferenceOnlyPriceLabel).text(conferenceOnlyRate);
+          $(trainingAndConferencePriceLabel).text(trainingAndConferenceRate);
+          $(priceIncreaseLabel).text(priceIncreaseRate);
         }
       });
 
