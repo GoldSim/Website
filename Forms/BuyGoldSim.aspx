@@ -419,5 +419,19 @@
       $(fields).prop('disabled', disabled);
     };
 
+    /**
+      * Monitor Radionuclide and Contaminant Transport checkboxes to ensure only RT is checked if the user selects both
+      */
+    $('#RTAddOnCheck').change(function() {
+      if ($('#CTAddOnCheck').is(':checked')) {
+        $('#CTAddOnCheck').prop('checked', false);
+      }
+    });
+    $('#CTAddOnCheck').change(function() {
+      if ($('#RTAddOnCheck').is(':checked')) {
+        $('#RTAddOnCheck').prop('checked', false);
+      }
+    });
+
   </script>
 </asp:Content>

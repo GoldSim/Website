@@ -235,9 +235,14 @@
       /**
         * Monitor Radionuclide and Contaminant Transport checkboxes to ensure only RT is checked if the user selects both
         */
-      $('#RT, #CT').change(function() {
-        if ($('#RT').is(':checked') && $('#CT').is(':checked')) {
+      $('#RT').change(function() {
+        if ($('#CT').is(':checked')) {
           $('#CT').prop('checked', false);
+        }
+      });
+      $('#CT').change(function() {
+        if ($('#RT').is(':checked')) {
+          $('#RT').prop('checked', false);
         }
       });
 
