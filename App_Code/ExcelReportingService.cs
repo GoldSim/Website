@@ -76,7 +76,7 @@ namespace GoldSim.Web {
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
-        Color headerRowBackgroundColor          = ColorTranslator.FromHtml("#262626");
+        Color headerRowBackgroundColor          = ColorTranslator.FromHtml("#404040");
         using (var cellRange = worksheet.Cells[1, 1, 1, 24]) {
           cellRange.Style.Font.Color.SetColor(Color.White);
           cellRange.Style.Fill.PatternType      = ExcelFillStyle.Solid;
@@ -97,9 +97,10 @@ namespace GoldSim.Web {
         worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
         /*----------------------------------------------------------------------------------------------------------------------
-        | Set column filters
+        | Set column filters and give the Free Type column extra width to account for the filter
         \---------------------------------------------------------------------------------------------------------------------*/
         worksheet.Cells["E1:F1"].AutoFilter     = true;
+        worksheet.Column(5).Width               = 12;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Apply the spreadsheet to the stream
