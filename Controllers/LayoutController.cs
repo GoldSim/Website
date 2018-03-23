@@ -12,6 +12,7 @@ using Ignia.Topics;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Web.Mvc;
 using GoldSim.Web.Models;
+using GoldSim.Web;
 
 namespace GoldSim.Web.Controllers {
 
@@ -21,7 +22,13 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  public class LayoutController : TopicController {
+  public class LayoutController : Controller {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository                = null;
+    private                     Topic                           _currentTopic                   = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -30,7 +37,35 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base(topicRepository, currentTopic) {
+    public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base() {
+      _topicRepository = topicRepository;
+      _currentTopic = currentTopic;
+    }
+
+    /*==========================================================================================================================
+    | TOPIC REPOSITORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the Topic Repository in order to gain arbitrary access to the entire topic graph.
+    /// </summary>
+    /// <returns>The TopicRepository associated with the controller.</returns>
+    protected ITopicRepository TopicRepository {
+      get {
+        return _topicRepository;
+      }
+    }
+
+    /*==========================================================================================================================
+    | CURRENT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the current topic associated with the request.
+    /// </summary>
+    /// <returns>The Topic associated with the current request.</returns>
+    protected Topic CurrentTopic {
+      get {
+        return _currentTopic;
+      }
     }
 
     /*==========================================================================================================================
