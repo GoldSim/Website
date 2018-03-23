@@ -2189,6 +2189,8 @@
     <Compile Include="GoldSimControllerFactory.cs" />
     <Compile Include="Helpers\WebFormMvcBridge.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
+    <Compile Include="Models\FaqItemTopicViewModel.cs" />
+    <Compile Include="Models\FaqTopicViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
     <Compile Include="Models\RenderActionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
