@@ -30,7 +30,11 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base(topicRepository, currentTopic) {
+    public LayoutController(
+      ITopicRepository topicRepository,
+      ITopicRoutingService mvcTopicRoutingService,
+      ITopicMappingService topicMappingService
+    ) : base(topicRepository, mvcTopicRoutingService, topicMappingService) {
     }
 
     /*==========================================================================================================================
