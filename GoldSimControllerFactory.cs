@@ -41,6 +41,7 @@ namespace GoldSim.Web {
         requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
+      var topicMappingService           = new TopicMappingService();
       #pragma warning restore CS0618
 
       //Set default controller
@@ -72,7 +73,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(TopicController)) {
-        return new TopicController(topicRepository, mvcTopicRoutingService);
+        return new TopicController(topicRepository, mvcTopicRoutingService, topicMappingService);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);
