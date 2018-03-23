@@ -49,7 +49,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = _topicRepository.Load().GetTopic("Root:CustomerRequests:Licenses");
+      var licenseRequestContainer       = _topicRepository.Load("Root:CustomerRequests:Licenses");
       var licenseRequests               = licenseRequestContainer.Children.Where(topic => topic.ContentType == "AcademicRequest" || topic.ContentType == "EvaluationRequest");
       var memoryStream                  = _reportingService.GetLicenseRequests(licenseRequests);
 
