@@ -48,7 +48,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic = Topic.Create("Error", "Page");
+      var topic = TopicFactory.Create("Error", "Page");
       topic.Title = "General Error";
       topic.Description = "Friendly error page.";
 
@@ -81,7 +81,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic = Topic.Create("NotFound", "Page");
+      var topic = TopicFactory.Create("NotFound", "Page");
       topic.Title = "Page Not Found";
       topic.Description = "Friendly 404 error page.";
 
@@ -114,7 +114,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish faux error Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic = Topic.Create("InternalServer", "Page");
+      var topic = TopicFactory.Create("InternalServer", "Page");
       topic.Title = "Internal Server Error";
       topic.Description = "Friendly 500 error page.";
 
