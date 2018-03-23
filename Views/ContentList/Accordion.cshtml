@@ -1,9 +1,9 @@
-﻿@model TopicViewModel
+﻿@model ContentListTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
 
-  string contentType = Model.Topic.Attributes.GetValue("ContentType").ToLower();
+  string contentType = Model.ContentType.ToLower();
   string viewType = contentType;
 
 }
@@ -12,7 +12,7 @@
 
   <!-- Body Content -->
   <section class="embedded pane body">
-    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+    @Html.Raw(@Model.Body)
   </section>
   <!-- Body Content -->
 
@@ -21,12 +21,12 @@
 @section PageBodySection {
 
   <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
-    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic.Children["Categories"] != null && Model.Topic.Children["Categories"].Children.Count > 0) {
-      foreach (Topic category in Model.Topic.Children["Categories"].Children.OrderBy(c => c)) {
+    @if (Model.Categories != null && Model.Categories.Count > 0) {
+      foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="@category.Key">
           <h2>@category.Title</h2>
           <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
-            @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted.Where(t => t.Attributes.GetValue("Category", "").Equals(category))) {
+            @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
               @WriteContentItem(contentItem, viewType)
             }
           </ul>
@@ -35,7 +35,7 @@
     }
     else {
       <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
-        @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
+        @foreach (var contentItem in Model.ContentItems) {
           @WriteContentItem(contentItem, viewType)
         }
       </ul>
@@ -49,7 +49,7 @@
   <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
 }
 
-@helper WriteContentItem(Topic contentItem, string viewType) {
+@helper WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
   <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
     <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
       @if (viewType.Equals("faq")) {
@@ -64,9 +64,9 @@
       @if (viewType.Equals("faq")) {
         <span class="marker">A:</span>
       }
-      @Html.Raw(@contentItem.Attributes.GetValue("Description"))
-      @if (!String.IsNullOrEmpty(contentItem.Attributes.GetValue("LearnMoreURL"))) {
-        <p><strong><a href="@contentItem.Attributes.GetValue("LearnMoreURL")">Learn more</a></strong></p>
+      @Html.Raw(@contentItem.Description)
+      @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl)) {
+        <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
       }
     </div>
   </li>
