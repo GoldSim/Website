@@ -1,7 +1,7 @@
 ﻿@model SlideshowTopicViewModel
 
 @{
-  ViewBag.Title = Model.Topic.Title;
+  ViewBag.Title = Model.Title;
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
@@ -13,16 +13,16 @@
 
 @section PostTitleSection {
   <!-- Controls -->
-  <!-- @Model.Topic.Attributes.GetValue("TransitionEffect") -->
+  <!-- @Model.TransitionEffect -->
 }
 
 @section PageBodySection {
   <section class="panel body">
-    <!-- <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Body"))</p> -->
+    <!-- <p>@Html.Raw(Model.Body)</p> -->
     <div class="carousel-wrapper">
       <div class="owl-carousel">
-        @if (Model.Topic.Children["ContentItems"] != null && Model.Topic.Children["ContentItems"].Children.Count > 0) {
-          foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
+        @if (Model.ContentItems != null && Model.ContentItems.Count > 0) {
+          foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
             @WriteContentItem(contentItem)
           }
         }
@@ -139,11 +139,11 @@
   </script>
 }
 
-@helper WriteContentItem(Topic contentItem) {
+@helper WriteContentItem(SlideTopicViewModel contentItem) {
   <article data-hash="@contentItem.Key" class="slide">
-    @Html.Raw(HttpUtility.HtmlDecode(contentItem.Attributes.GetValue("Description")))
-    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("LearnMoreUrl"))) {
-      <p><a href="@contentItem.Attributes.GetValue("LearnMoreUrl")" target="_blank">Learn More</a></p>
+    @Html.Raw(contentItem.Description)
+    @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl)) {
+      <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
     }
   </article>
 }
