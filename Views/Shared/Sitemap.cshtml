@@ -31,7 +31,7 @@
   | OPEN NODE
   \------------------------------------------------------------------------------------------------------------------------*@
   <url>
-    <loc>@Html.Encode("https://www.goldsim.com" + topic.WebPath)</loc>
+    <loc>@Html.Encode("https://www.goldsim.com" + topic.GetWebPath())</loc>
     <changefreq>monthly</changefreq>
     @if (topic.LastModified > DateTime.MinValue) {
       <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>

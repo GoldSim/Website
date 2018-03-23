@@ -27,7 +27,7 @@
             {
               if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
               {
-                <option value="@topic.WebPath" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.GetValue("ShortTitle", @topic.Title)</option>
+                <option value="@topic.GetWebPath()" @((Model.Topic == topic) ? " selected" : "")>@topic.Attributes.GetValue("ShortTitle", @topic.Title)</option>
               }
             }
           </select>
@@ -46,7 +46,7 @@
         {
           if (topic.Attributes.GetValue("IsHidden", "0").Equals("0"))
           {
-            <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.GetValue("ShortTitle", @topic.Title)</a></li>
+            <li><a href="@topic.GetWebPath()" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.GetValue("ShortTitle", @topic.Title)</a></li>
           }
         }
       </ul>

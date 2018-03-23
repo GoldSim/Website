@@ -59,7 +59,7 @@
     @if(applications.Count > 0) {
       <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
       foreach (Topic application in applications) {
-        <a href="@application.WebPath" class="comma delimited">@application.Title</a>
+        <a href="@application.GetWebPath()" class="comma delimited">@application.Title</a>
       }
     }
   </div>
