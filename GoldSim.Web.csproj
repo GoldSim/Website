@@ -83,6 +83,10 @@
     <Reference Include="Ignia.Topics.Data.Sql">
       <HintPath>..\..\Topics\201707\Ignia.Topics.Data.Sql.dll</HintPath>
     </Reference>
+    <Reference Include="Ignia.Topics.ViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Ignia.Topics.ViewModels.dll</HintPath>
+    </Reference>
     <Reference Include="Ignia.Topics.Web">
       <HintPath>..\..\Topics\201707\Ignia.Topics.Web.dll</HintPath>
     </Reference>
