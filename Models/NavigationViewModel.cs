@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Web.Mvc;
+using GoldSim.Web;
 
 namespace GoldSim.Web.Models {
 
@@ -21,8 +22,8 @@ namespace GoldSim.Web.Models {
   ///   A view model for various types of navigation menues.
   /// </summary>
   /// <remarks>
-  ///   In addition to a reference to the <see cref="Ignia.Topics.Repositories.ITopicRepository"/>, the 
-  ///   <see cref="NavigationViewModel"/> also provides access to the parent topic of the topics that should be displayed in 
+  ///   In addition to a reference to the <see cref="Ignia.Topics.Repositories.ITopicRepository"/>, the
+  ///   <see cref="NavigationViewModel"/> also provides access to the parent topic of the topics that should be displayed in
   ///   the menu as well as a reference to the child item corresponding to the current page.
   /// </remarks>
   public class NavigationViewModel : TopicViewModel {
