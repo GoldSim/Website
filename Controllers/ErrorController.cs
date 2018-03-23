@@ -5,10 +5,10 @@
 \=============================================================================================================================*/
 using System.Web.Mvc;
 using Ignia.Topics;
-using Ignia.Topics.Models;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
+using GoldSim.Web;
 
 namespace GoldSim.Web.Controllers {
 
@@ -56,7 +56,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel();
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -89,7 +89,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel();
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -122,7 +122,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel();
+      var topicViewModel = new TopicViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
