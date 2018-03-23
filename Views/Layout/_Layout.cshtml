@@ -119,7 +119,7 @@
                 <h2 class="category title">@ViewBag.Context</h2>
               }
               <h1 class="page title long cell">
-                @(Model.Topic.ContentType.Equals("PageGroup")? "Overview" : @Model.Title)
+                @(Model.ContentType.Equals("PageGroup")? "Overview" : @Model.Title)
               </h1>
               @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
                 <p class="subtitle">@Model.Subtitle</p>
