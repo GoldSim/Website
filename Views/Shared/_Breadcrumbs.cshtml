@@ -27,7 +27,7 @@
     int position                                = 1;
     List<string> urlPathParts                   = new List<string>();
     if (Model.Topic != null) {
-      urlPathParts              = Model.Topic.WebPath.Split('/').ToList();
+      urlPathParts              = Model.Topic.GetWebPath().Split('/').ToList();
     }
 
     if (urlPathParts.Count > 0) {
@@ -48,7 +48,7 @@
                                 + "  \"@type\": \"ListItem\", "
                                 + "  \"position\": " + position + ", "
                                 + "  \"item\": { "
-                                + "    \"@id\": \"https://www.GoldSim.com" + breadcrumbTopic.WebPath.TrimEnd('/') + "\", "
+                                + "    \"@id\": \"https://www.GoldSim.com" + breadcrumbTopic.GetWebPath().TrimEnd('/') + "\", "
                                 + "    \"name\": \"" + breadcrumbTopic.Title + "\" "
                                 + "  } "
                                 + "},";
