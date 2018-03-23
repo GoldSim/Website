@@ -26,7 +26,7 @@ namespace GoldSim.Web.Models {
   ///   <see cref="NavigationViewModel"/> also provides access to the parent topic of the topics that should be displayed in
   ///   the menu as well as a reference to the child item corresponding to the current page.
   /// </remarks>
-  public class NavigationViewModel : TopicViewModel {
+  public class NavigationViewModel : TopicEntityViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

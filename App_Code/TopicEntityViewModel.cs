@@ -23,7 +23,7 @@ namespace GoldSim.Web {
   ///   Will be the primary model used by the <see cref="TopicController{T}"/>, and any specialized derivatives (although those
   ///   derivatives may well need to be created to extend the view model with data specific to that content type and its views.
   /// </remarks>
-  public class TopicViewModel {
+  public class TopicEntityViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -37,7 +37,7 @@ namespace GoldSim.Web {
     ///   Initializes a new instance of a Topic View Model with appropriate dependencies.
     /// </summary>
     /// <returns>A Topic view model.</returns>
-    public TopicViewModel(ITopicRepository topicRepository, Topic topic) {
+    public TopicEntityViewModel(ITopicRepository topicRepository, Topic topic) {
       TopicRepository = topicRepository;
       Topic = topic;
     }

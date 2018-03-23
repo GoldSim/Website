@@ -50,7 +50,7 @@ namespace GoldSim.Web.Controllers {
       | Establish Page Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       Topic topic = _topicRepository.Load();
-      TopicViewModel topicViewModel = new TopicViewModel(_topicRepository, _topicRepository.Load());
+      TopicEntityViewModel topicViewModel = new TopicEntityViewModel(_topicRepository, _topicRepository.Load());
 
       /*------------------------------------------------------------------------------------------------------------------------
       | DEFINE CONTENT TYPE

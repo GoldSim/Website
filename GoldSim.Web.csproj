@@ -2165,7 +2165,7 @@
     </None>
     <Compile Include="App_Code\ExcelReportingService.cs" />
     <Compile Include="App_Code\IReportingService.cs" />
-    <Compile Include="App_Code\TopicViewModel.cs" />
+    <Compile Include="App_Code\LegacyTopicViewModel.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>

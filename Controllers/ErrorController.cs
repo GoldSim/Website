@@ -24,7 +24,6 @@ namespace GoldSim.Web.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private ITopicRepository _topicRepository = null;
-    private Topic _currentTopic = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -56,7 +55,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicEntityViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -89,7 +88,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicEntityViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
@@ -122,7 +121,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel = new TopicViewModel(_topicRepository, topic);
+      var topicViewModel = new TopicEntityViewModel(_topicRepository, topic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the view
