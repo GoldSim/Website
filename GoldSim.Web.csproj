@@ -2188,6 +2188,8 @@
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
     <Compile Include="Helpers\WebFormMvcBridge.cs" />
+    <Compile Include="Models\ExampleApplicationIndexTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationIndexTopicViewModel.cs" />
     <Compile Include="Models\DocumentPointerTopicViewModel.cs" />
     <Compile Include="Models\ExampleApplicationTopicViewModel.cs" />
     <Compile Include="Models\ApplicationPageTopicViewModel.cs" />
