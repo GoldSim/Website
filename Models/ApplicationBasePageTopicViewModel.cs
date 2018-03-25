@@ -21,7 +21,7 @@ namespace GoldSim.Web.Models {
   ///   to this view model. That said, it provides a base schema definition for e.g. <see cref="ApplicationPageTopicViewModel"/>
   ///   and <see cref="ExampleApplicationTopicViewModel"/>.
   /// </remarks>
-  public class ApplicationBasePageTopicViewModel : TopicViewModel {
+  public class ApplicationBasePageTopicViewModel : PageTopicViewModel {
 
     public string ThumbnailImageUrl { get; set; }
     public string Category { get; set; }
