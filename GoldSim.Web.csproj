@@ -2188,7 +2188,12 @@
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
     <Compile Include="Helpers\WebFormMvcBridge.cs" />
+    <Compile Include="Models\DocumentPointerTopicViewModel.cs" />
+    <Compile Include="Models\ExampleApplicationTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationPageTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationBasePageTopicViewModel.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
+    <Compile Include="Models\TechnicalPaperTopicViewModel.cs" />
     <Compile Include="Models\FaqItemTopicViewModel.cs" />
     <Compile Include="Models\FaqTopicViewModel.cs" />
     <Compile Include="Models\GlossaryItemTopicViewModel.cs" />

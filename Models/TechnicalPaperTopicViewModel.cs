@@ -13,13 +13,19 @@ using Ignia.Topics.ViewModels;
 namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: FAQ ITEM TOPIC
+  | VIEW MODEL: TECHNICAL PAPER TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>FAQItem</c> topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>TechnicalPaper</c> topic.
   /// </summary>
-  public class FaqItemTopicViewModel: ContentItemTopicViewModel {
+  public class TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
 
+    public string Authors { get; set; }
+    public string PublicationName { get; set; }
+    public string PublicationUrl { get; set; }
+    public string PublicationDate { get; set; }
+    public string DownloadLabel { get; set; }
+    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 
   } //Class
 } //Namespace
