@@ -2195,6 +2195,7 @@
     <Compile Include="Models\ApplicationPageTopicViewModel.cs" />
     <Compile Include="Models\ApplicationBasePageTopicViewModel.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
+    <Compile Include="Models\ICardViewModel.cs" />
     <Compile Include="Models\TechnicalPaperTopicViewModel.cs" />
     <Compile Include="Models\FaqItemTopicViewModel.cs" />
     <Compile Include="Models\FaqTopicViewModel.cs" />
