@@ -23,7 +23,7 @@ namespace GoldSim.Web.Models {
   /// </remarks>
   public class ApplicationBasePageTopicViewModel : PageTopicViewModel {
 
-    public string ThumbnailImageUrl { get; set; }
+    public string ThumbnailImage { get; set; }
     public string Category { get; set; }
     public string LearnMoreUrl { get; set; }
     [DefaultValue("Learn More")]

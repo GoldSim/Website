@@ -7,6 +7,7 @@ using Ignia.Topics.ViewModels;
 using Ignia.Topics.Mapping;
 using System.ComponentModel;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace GoldSim.Web.Models {
 
@@ -16,7 +17,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationIndex</c> topic.
   /// </summary>
-  public class ApplicationIndexTopicViewModel : TopicViewModel {
+  public class ApplicationIndexTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -29,9 +30,9 @@ namespace GoldSim.Web.Models {
     public string FilteredDocumentType { get; set; }
     [Metadata("ApplicationCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalApplications { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessApplications { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> SystemsApplications { get; set; }
+    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
+    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
+    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
@@ -42,9 +43,37 @@ namespace GoldSim.Web.Models {
     ///   cref="LookupListItemTopicViewModel.Title"/>.
     /// </summary>
     /// <param name="category"></param>
-    /// <returns></returns>
+    /// <returns>The title corresponding to the category key.</returns>
     public string GetCategoryTitle(string category) {
       return Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
+    }
+
+    /*==========================================================================================================================
+    | GET ALL APPLICATIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Returns a consolidated list of <i>all</i> applications from the corresponding properties.
+    /// </summary>
+    /// <returns>A consolidated list of applications.</returns>
+    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> GetAllApplications() {
+      return new TopicViewModelCollection<ApplicationBasePageTopicViewModel>(
+        EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList()
+      );
+    }
+
+    /*==========================================================================================================================
+    | GET CATEGORIZED APPLICATIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Returns a dictionary of applications keyed by <see cref="Categories"/>.
+    /// </summary>
+    /// <returns>A consolidated list of applications.</returns>
+    public Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>> GetCategorizedApplications() {
+      var categorizedApplications = new Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>>();
+      categorizedApplications.Add(nameof(EnvironmentalSystems), EnvironmentalSystems);
+      categorizedApplications.Add(nameof(BusinessSystems), BusinessSystems);
+      categorizedApplications.Add(nameof(EngineeredSystems), EngineeredSystems);
+      return categorizedApplications;
     }
 
     /*==========================================================================================================================
