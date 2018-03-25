@@ -3,13 +3,14 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Controllers;
-using Ignia.Topics;
-using Ignia.Topics.Web;
-using Ignia.Topics.Web.Mvc;
 using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GoldSim.Web.Controllers;
+using Ignia.Topics;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Web;
+using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web {
 
@@ -41,7 +42,7 @@ namespace GoldSim.Web {
         requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
-      var topicMappingService           = new TopicMappingService();
+      var topicMappingService           = new TopicMappingService(topicRepository);
       #pragma warning restore CS0618
 
       //Set default controller
