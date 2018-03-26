@@ -16,6 +16,10 @@ namespace GoldSim.Web.Models {
   /// </summary>
   public class HomeTopicViewModel: ContentItemTopicViewModel {
 
+    public string Subtitle { get; set; }
+
+    public string Introduction { get; set; }
+
     [Recurse(Relationships.Children)]
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; set; }
 
