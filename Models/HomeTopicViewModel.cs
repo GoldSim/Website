@@ -3,11 +3,6 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.ViewModels;
 
@@ -22,7 +17,7 @@ namespace GoldSim.Web.Models {
   public class HomeTopicViewModel: ContentItemTopicViewModel {
 
     [Recurse(Relationships.Children)]
-    public TopicViewModelCollection<PageTopicViewModel> Related { get; set; }
+    public TopicViewModelCollection<PageTopicViewModel> Applications { get; set; }
 
-  } //Class
-} //Namespace
+  } // Class
+} // Namespace
