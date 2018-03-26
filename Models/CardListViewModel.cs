@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models {
     ///   Initializes a new instance of a Card List View Model with appropriate dependencies.
     /// </summary>
     /// <returns>A card list view model.</returns>
-    public CardListViewModel(List<ICardViewModel> cards, string className="") {
+    public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
       _cards = cards;
       _className = className;
     }
@@ -48,7 +48,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
     /// <returns>A <see cref="List{T}"/> of <see cref="Ignia.Topics.Topic"/>, each representing a unique card.</returns>
-    public List<ICardViewModel> Cards {
+    public IEnumerable<ICardViewModel> Cards {
       get {
         return _cards;
       }
