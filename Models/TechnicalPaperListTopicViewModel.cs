@@ -19,8 +19,6 @@ namespace GoldSim.Web.Models {
     [Metadata("FieldCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> FieldCategories { get; set; }
 
-    public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; set; }
-
   } // Class
 
 } // Namespace
