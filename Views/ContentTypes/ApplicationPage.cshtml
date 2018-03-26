@@ -109,14 +109,14 @@
       <!-- Learn More -->
       <h1 id="LearnMore">Learn More</h1>
       <ul>
-        @if ((Model.CompareTo?? "None").EndsWith("Approaches")) {
+        @if (Model.CompareTo.EndsWith("Approaches")) {
           <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
         }
-        else if ((Model.CompareTo?? "None").EndsWith("Excel")) {
+        else if (Model.CompareTo.EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
         @if (!String.IsNullOrEmpty(Model.LearnMoreUrl)) {
-          <li><a href="@Model.LearnMoreUrl">@(Model.LearnMoreLabel?? "Learn more")</a></li>
+          <li><a href="@Model.LearnMoreUrl">@Model.LearnMoreLabel</a></li>
         }
       </ul>
       <!-- Learn More -->
