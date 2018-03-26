@@ -30,9 +30,9 @@ namespace GoldSim.Web.Models {
     public string FilteredDocumentType { get; set; }
     [Metadata("ApplicationCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
