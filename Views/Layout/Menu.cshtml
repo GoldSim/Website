@@ -31,7 +31,7 @@
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
     <a href="@(topic.Children.Count > 2 || isDesktop? @topic.WebPath : "#")" class="@(topic.IsSelected? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')">
-      @(topic.ShortTitle?? topic.Title)
+      @(topic.ShortTitle?? topic.Title?? topic.Key)
     </a>
 
     @*==========================================================================================================================
