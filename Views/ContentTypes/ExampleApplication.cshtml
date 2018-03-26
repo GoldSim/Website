@@ -1,18 +1,7 @@
-﻿@model TopicViewModel
+﻿@model ExampleApplicationTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  // Populate related Applications
-  List<Topic> applications = new List<Topic>();
-  if (Model.Topic.Relationships.Contains("Applications")) {
-    foreach (Topic relatedApplication in Model.Topic.Relationships["Applications"]) {
-      if (!applications.Contains(relatedApplication)) {
-        applications.Add(relatedApplication);
-      }
-    }
-  }
-
 }
 
 @section Head {
@@ -24,12 +13,14 @@
         "@@type": "WebPage",
         "@@id": "https://google.com/article"
       },
-      "headline": "@Model.Topic.Title",
+      "headline": "@Model.Title",
       "image": [
-        "https://www.GoldSim.com@(Model.Topic.Attributes.GetValue("ThumbnailImage"))"
+        "https://www.GoldSim.com@(Model.ThumbnailImage)"
       ],
+      @*
       "datePublished": "@Model.Topic.VersionHistory.First().ToString("s")",
       "dateModified": "@Model.Topic.VersionHistory.Last().ToString("s")",
+      *@
       "author": {
         "@@type": "Person",
         "name": "Rick Kossik"
@@ -42,7 +33,7 @@
           "url": "https://www.goldsim.com/Images/Logo.png"
         }
       },
-      "description": "@Model.Topic.Attributes.GetValue("MetaDescription", Model.Topic.Attributes.GetValue("Description", Model.Topic.Attributes.GetValue("Abstract", "")))"
+      "description": "@(Model.MetaDescription?? Model.Abstract)"
     }
   </script>
 }
@@ -50,22 +41,22 @@
 @section PostTitleSection {
 
   <!-- Post Title -->
-  <div class="medium-@(!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))? "8" : "12") cell align-middle metadata">
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Customer"))) {
+  <div class="medium-@(!String.IsNullOrEmpty(@Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
+    @if (!String.IsNullOrEmpty(@Model.Customer)) {
       <strong>Client:</strong>
-      @Html.Raw(@customer(@Model.Topic.Attributes.GetValue("Customer"), @Model.Topic.Attributes.GetValue("CustomerURL")))
+      @Html.Raw(getCustomerLink(Model.Customer, Model.CustomerUrl))
       <br/>
     }
     @if(applications.Count > 0) {
-      <strong>@((applications.Count == 1)? "Application" : "Applications"):</strong>
-      foreach (Topic application in applications) {
-        <a href="@application.GetWebPath()" class="comma delimited">@application.Title</a>
+      <strong>@((Model.Applications.Count == 1)? "Application" : "Applications"):</strong>
+      foreach (var application in Model.Applications) {
+        <a href="@application.WebPath" class="comma delimited">@application.Title</a>
       }
     }
   </div>
-  @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("DownloadURL"))) {
+  @if (!String.IsNullOrEmpty(Model.DownloadUrl)) {
     <div class="medium-4 cell align-middle text-right metadata">
-      @Html.Raw(downloadButton(@Model.Topic.Attributes.GetValue("DownloadURL")))
+      @Html.Raw(downloadButton(Model.DownloadUrl))
     </div>
   }
   <!-- /Post Title -->
@@ -76,29 +67,29 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ThumbnailImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
       <picture class="callout picture">
-        <source srcset="@Model.Topic.Attributes.GetValue("ThumbnailImage")" />
-        <img src="@Model.Topic.Attributes.GetValue("ThumbnailImage")" alt="@Model.Topic.Title">
+        <source srcset="@Model.ThumbnailImage" />
+        <img src="@Model.ThumbnailImage" alt="@Model.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Abstract", ""))) {
+    @if (!String.IsNullOrEmpty(Model.Abstract)) {
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Abstract", ""))</p>
+      <p>@Html.Raw(Model.Abstract)</p>
       <!-- /Abstract -->
     }
 
-    @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+    @Html.Raw(Model.Body)
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("LearnMoreURL"))) {
+    @if (!String.IsNullOrEmpty(Model.LearnMoreUrl)) {
       <h1>Learn More</h1>
       <ul>
-        <li><a href="@Model.Topic.Attributes.GetValue("LearnMoreURL")">@Model.Topic.Attributes.GetValue("LearnMoreLabel", "Learn more")</a></li>
+        <li><a href="@Model.LearnMoreUrl">@Model.LearnMoreLabel</a></li>
       </ul>
     }
 
@@ -117,7 +108,7 @@
   </script>
 }
 
-@helper customer(string customerName, string customerUrl) {
+@helper getCustomerLink(string customerName, string customerUrl) {
   if (!String.IsNullOrEmpty(customerUrl)) {
     <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
   }
