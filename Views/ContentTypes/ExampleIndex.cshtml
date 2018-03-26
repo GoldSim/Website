@@ -38,7 +38,7 @@
 @section PageBodySection {
 
   <section class="panel body">
-    @Html.Partial("_CardList", new CardListViewModel(applications.Cast<ICardViewModel>().ToList(), "case-study"))
+    @Html.Partial("_CardList", new CardListViewModel(applications, "case-study"))
   </section>
 
 }
