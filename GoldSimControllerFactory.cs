@@ -70,7 +70,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, mvcTopicRoutingService.GetCurrentTopic());
+        return new LayoutController(topicRepository, mvcTopicRoutingService, topicMappingService);
       }
 
       if (controllerType == typeof(TopicController)) {

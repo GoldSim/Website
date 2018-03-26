@@ -1,61 +1,35 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
+| Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ignia.Topics;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
-using GoldSim.Web;
+using System.Web;
+using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | CLASS: NAVIGATION VIEW MODEL
+  | VIEW MODEL: NAVIGATION TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   A view model for various types of navigation menues.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about the navigation.
   /// </summary>
   /// <remarks>
-  ///   In addition to a reference to the <see cref="Ignia.Topics.Repositories.ITopicRepository"/>, the
-  ///   <see cref="NavigationViewModel"/> also provides access to the parent topic of the topics that should be displayed in
-  ///   the menu as well as a reference to the child item corresponding to the current page.
+  ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
+  ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationViewModel : TopicEntityViewModel {
+  public class NavigationViewModel: PageTopicViewModel {
 
-    /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private     Topic                           _navigationRootTopic    = null;
+    public string HeaderImageUrl { get; set; }
 
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a Navigation View Model with appropriate dependencies.
-    /// </summary>
-    /// <returns>A Topic view model.</returns>
-    public NavigationViewModel(ITopicRepository topicRepository, Topic navigationRootTopic, Topic topic) : base(topicRepository, topic) {
-      _navigationRootTopic = navigationRootTopic;
-    }
+    [DefaultValue(false)]
+    public bool IsSelected { get; set; }
 
-    /*==========================================================================================================================
-    | NAVIGATION ROOT TOPIC
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the topic under which the navigation should be rendered.
-    /// </summary>
-    /// <returns>The <see cref="Ignia.Topics.Topic"/> whose children represent the navigaton elements.</returns>
-    public Topic NavigationRootTopic {
-      get {
-        return _navigationRootTopic;
-      }
-    }
+    public TopicViewModelCollection<NavigationViewModel> Children { get; set; }
 
   } //Class
 } //Namespace

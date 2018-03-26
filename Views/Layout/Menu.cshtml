@@ -1,12 +1,12 @@
 ﻿@model NavigationViewModel
 
-@if (Model.NavigationRootTopic != null) {
+@if (Model.Children.Count > 0) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
     </button>
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false"><!-- data-submenu-toggle="true" -->
-      @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted) {
+      @foreach (var topic in Model.Children) {
         @WriteMenu(topic, false);
       }
     </ul>
@@ -15,7 +15,7 @@
   <nav id="PrimaryNavigation" class="navigation primary grid-x show-for-large">
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
-        @foreach (Topic topic in @Model.NavigationRootTopic.Children.Sorted) {
+        @foreach (var topic in Model.Children) {
           @WriteMenu(topic, true);
         }
       </ul>
@@ -24,36 +24,26 @@
 
 }
 
-@helper WriteMenu(Topic topic, bool isDesktop = true, int indentLevel = 1) {
-
-  @*============================================================================================================================
-  | SKIP DISABLED, INACTIVE, AND HIDDEN TOPICS
-  \---------------------------------------------------------------------------------------------------------------------------*@
-  if (!IsValid(topic)) { return; }
-
-  @*============================================================================================================================
-  | DEFINE VARIABLES
-  \---------------------------------------------------------------------------------------------------------------------------*@
-  var hasChildren = !topic.ContentType.Equals("PageGroup") && indentLevel < 3 && topic.Children.Count(IsValid) > 2;
+@helper WriteMenu(NavigationViewModel topic, bool isDesktop = true, int indentLevel = 1) {
 
   @*============================================================================================================================
   | WRITE NODE
   \---------------------------------------------------------------------------------------------------------------------------*@
   <li>
-    <a href="@(!hasChildren || isDesktop? @topic.GetWebPath() : "#")" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.GetWebPath()')">
-      @topic.Attributes.GetValue("ShortTitle", @topic.Title)
+    <a href="@(topic.Children.Count > 2 || isDesktop? @topic.WebPath : "#")" class="@(topic.IsSelected? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')">
+      @(topic.ShortTitle?? topic.Title)
     </a>
 
     @*==========================================================================================================================
     | OPEN NODE
     \-------------------------------------------------------------------------------------------------------------------------*@
-    @if (hasChildren) {
-      <ul class="menu @(isDesktop? "dropdown" : "vertical") @(IsSelected(topic, Model.Topic)? "is-active" : "") nested"@(isDesktop? " data-dropdown-menu" : "")>
+    @if (topic.Children.Count > 2) {
+      <ul class="menu @(isDesktop? "dropdown" : "vertical") @(topic.IsSelected? "is-active" : "") nested"@(isDesktop? " data-dropdown-menu" : "")>
         <li>
           @if (!isDesktop) {
-            <a href="@topic.GetWebPath()" class="@(IsSelected(topic, Model.Topic) ? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.GetWebPath()')">Overview</a>
+            <a href="@topic.WebPath" class="@(topic.IsSelected? "selected" : "")" onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')">Overview</a>
           }
-          @foreach (Topic childTopic in topic.Children.Sorted) {
+          @foreach (var childTopic in topic.Children) {
             @WriteMenu(childTopic, isDesktop, indentLevel + 1);
           }
       </ul>
@@ -61,29 +51,3 @@
   </li>
 
 }
-
-@functions{
-
-  /*============================================================================================================================
-  | DETERMINE VALID
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  public bool IsValid(Topic topic) {
-    return
-    topic.Attributes.GetValue("IsInactive") != "1" &&
-    topic.Attributes.GetValue("IsDisabled") != "1" &&
-    topic.Attributes.GetValue("IsHidden") != "1";
-  }
-
-  /*============================================================================================================================
-  | DETERMINE SELECTED
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  public bool IsSelected(Topic topic, Topic currentTopic) {
-    while (currentTopic != null) {
-      if (currentTopic == topic) return true;
-      currentTopic = currentTopic.Parent;
-    }
-    return false;
-  }
-
-}
-
