@@ -1,8 +1,8 @@
-﻿@model TopicViewModel
+﻿@model ApplicationPageTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-  ViewBag.Context = @getCategoryTitle(@Model.Topic.Attributes.GetValue("Category", "")) + " Applications";
+  ViewBag.Context = Model.GetCategoryTitle(Model.Category) + " Applications";
 }
 
 @section Head {
@@ -14,12 +14,14 @@
         "@@type": "WebPage",
         "@@id": "https://google.com/article"
       },
-      "headline": "@Model.Topic.Title",
+      "headline": "@Model.Title",
       "image": [
-        "https://www.GoldSim.com@(Model.Topic.Attributes.GetValue("ThumbnailImage"))"
+        "https://www.GoldSim.com@(Model.ThumbnailImage)"
       ],
-      "datePublished": "@Model.Topic.VersionHistory.First().ToString("s")",
-      "dateModified": "@Model.Topic.VersionHistory.Last().ToString("s")",
+      @*
+      "datePublished": "@Model.VersionHistory.First().ToString("s")",
+      "dateModified": "@Model.VersionHistory.Last().ToString("s")",
+      *@
       "author": {
         "@@type": "Person",
         "name": "Rick Kossik"
@@ -32,7 +34,7 @@
           "url": "https://www.goldsim.com/Images/Logo.png"
         }
       },
-      "description": "@Model.Topic.Attributes.GetValue("MetaDescription", Model.Topic.Attributes.GetValue("Description", Model.Topic.Attributes.GetValue("Abstract", "")))"
+      "description": "@(Model.MetaDescription?? Model.Abstract)""
     }
   </script>
 }
@@ -41,80 +43,80 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ThumbnailImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
       <picture class="callout picture thumbnail">
-        <source srcset="@Model.Topic.Attributes.GetValue("ThumbnailImage")" />
-        <img src="@Model.Topic.Attributes.GetValue("ThumbnailImage")" alt="@Model.Topic.Title">
+        <source srcset="@Model.ThumbnailImage" />
+        <img src="@Model.ThumbnailImage" alt="@Model.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("Abstract", ""))) {
+    @if (!String.IsNullOrEmpty(@Model.Abstract)) {
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Html.Raw(@Model.Topic.Attributes.GetValue("Abstract", ""))</p>
+      <p>@Html.Raw(@Model.Abstract)</p>
       <!-- /Abstract -->
     }
 
     <!-- Body Content -->
     <article class="page body">
-      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+      @Html.Raw(@Model.Body)
     </article>
     <!-- /Body Content -->
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("ModelImage"))) {
+    @if (!String.IsNullOrEmpty(@Model.ModelImage)) {
       <!-- Model Image -->
       <figure class="illustration full" id="Screenshot">
-        <img src="@Model.Topic.Attributes.GetValue("ModelImage")" alt="model" />
+        <img src="@Model.ModelImage" alt="model" />
       </figure>
       <!-- /Model Image -->
     }
 
-    @if (getIncomingRelationships("ExampleApplication").Count > 0) {
+    @if (Model.ExampleApplications.Count > 0) {
       <!-- Related Case Studies -->
       <h1 id="Examples">Examples</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getIncomingRelationships("ExampleApplication"), "case-study"))
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(Model.ExampleApplications.Cast<ICardViewModel>().ToList(), "case-study"))
       <!-- /Related Case Studies -->
     }
 
-    @if (getRelationships("Modules").Count > 0) {
+    @if (Model.Modules.Count > 0) {
       <!-- Related Modules -->
       <h1 id="Modules">Modules</h1>
-      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(getRelationships("Modules"), "modules"))
+      @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(Model.Modules.Cast<ICardViewModel>().ToList(), "modules"))
       <!-- /Related Modules -->
     }
 
-    @if (getIncomingRelationships("WhitePaper").Count > 0) {
+    @if (Model.WhitePapers.Count > 0) {
       <!-- Related White Papers -->
       <h1 id="WhitePapers">White Papers</h1>
       <ul>
-        @foreach (Topic paper in getIncomingRelationships("WhitePaper")) {
-          <li><a href="@paper.Attributes.GetValue("URL")" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+        @foreach (var paper in Model.WhitePapers) {
+          <li><a href="@paper.LearnMoreUrl")" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
     }
 
-    @if (getIncomingRelationships("TechnicalPaper").Count > 0) {
+    @if (Model.TechnicalPapers.Count > 0) {
       <h1 id="TechnicalPapers">Technical Papers</h1>
-      @Html.Partial("_TechnicalPaperList", getIncomingRelationships("TechnicalPaper"))
+      @Html.Partial("_TechnicalPaperList", Model.TechnicalPapers)
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("CompareTo")) || !String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("URL"))) {
+    @if (!String.IsNullOrEmpty(Model.CompareTo) || !String.IsNullOrEmpty(Model.LearnMoreUrl)) {
 
       <!-- Learn More -->
       <h1 id="LearnMore">Learn More</h1>
       <ul>
-        @if (@Model.Topic.Attributes.GetValue("CompareTo", "None").EndsWith("Approaches")) {
+        @if ((Model.CompareTo?? "None").EndsWith("Approaches")) {
           <li><a href="/Topic/615">Compare GoldSim</a> to other simulation approaches</li>
         }
-        else if (@Model.Topic.Attributes.GetValue("CompareTo", "None").EndsWith("Excel")) {
+        else if ((Model.CompareTo?? "None").EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
-        @if (!String.IsNullOrEmpty(@Model.Topic.Attributes.GetValue("LearnMoreURL"))) {
-          <li><a href="@Model.Topic.Attributes.GetValue("LearnMoreURL")">@Model.Topic.Attributes.GetValue("LearnMoreLabel", "Learn more")</a></li>
+        @if (!String.IsNullOrEmpty(Model.LearnMoreUrl)) {
+          <li><a href="@Model.LearnMoreUrl">@(Model.LearnMoreLabel?? "Learn more")</a></li>
         }
       </ul>
       <!-- Learn More -->
@@ -127,78 +129,6 @@
 
 @section Scripts {
   <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
-}
-
-@functions{
-
-  /*============================================================================================================================
-  | DEFINE VARIABLES
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  Dictionary<string, List<Topic>> _relationships = new Dictionary<string, List<Topic>>();
-
-  /*============================================================================================================================
-  | GET INCOMING RELATIONSHIPS
-  >-----------------------------------------------------------------------------------------------------------------------------
-  | Given incoming relationships, finds topics pointing to the application that are of a particular content type.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  List<Topic> getIncomingRelationships(string contentType) {
-
-    if (!_relationships.ContainsKey(contentType)) {
-
-      var incomingRelationships = new List<Topic>();
-
-      if (Model.Topic.IncomingRelationships.Count > 0 && Model.Topic.IncomingRelationships.Contains("Applications")) {
-
-        // Loop through incoming Applications relationships to populate topic lists
-        foreach (Topic relatedTopic in Model.Topic.IncomingRelationships["Applications"].Sorted) {
-          if (
-            relatedTopic.Attributes.GetValue("DocumentType", relatedTopic.ContentType).Equals(contentType) &&
-            !incomingRelationships.Contains(relatedTopic)
-          ) {
-            incomingRelationships.Add(relatedTopic);
-          }
-        }
-
-      }
-
-      _relationships.Add(contentType, incomingRelationships);
-
-    }
-
-    return _relationships[contentType];
-
-  }
-
-  /*============================================================================================================================
-  | GET (OUTGOING) RELATIONSHIPS
-  >-----------------------------------------------------------------------------------------------------------------------------
-  | Given an (outgoing) relationship, returns all topics associated with the relationship.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-   List<Topic> getRelationships(string relationship) {
-    if (Model.Topic.Relationships.Count > 0 && Model.Topic.Relationships.Contains(relationship)) {
-      return Model.Topic.Relationships[relationship].ToList();
-    }
-    return new List<Topic>();
-  }
-
-  /*============================================================================================================================
-  | GET CATEGORY TITLE
-  >-----------------------------------------------------------------------------------------------------------------------------
-  | Returns the Category Topic's Title property.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  string getCategoryTitle(string categoryKey) {
-    string categoryTitle        = categoryKey;
-    Topic applicationCategories = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:ApplicationCategories:LookupList");
-
-    foreach(Topic applicationCategory in applicationCategories.Children) {
-      if (applicationCategory.Key.Equals(categoryKey)) {
-        categoryTitle           = applicationCategory.Title;
-      }
-    }
-
-    return categoryTitle;
-  }
-
 }
 
 <!--

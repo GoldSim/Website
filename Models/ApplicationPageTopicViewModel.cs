@@ -21,6 +21,15 @@ namespace GoldSim.Web.Models {
     public string CompareTo { get; set; }
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; set; }
 
+    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; set; }
+
+    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<DocumentPointerTopicViewModel> WhitePapers { get; set; }
+
+    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; set; }
+
   } // Class
 
 } // Namespace

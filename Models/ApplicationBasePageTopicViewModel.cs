@@ -6,6 +6,7 @@
 using Ignia.Topics.ViewModels;
 using Ignia.Topics.Mapping;
 using System.ComponentModel;
+using System.Linq;
 
 namespace GoldSim.Web.Models {
 
@@ -23,11 +24,29 @@ namespace GoldSim.Web.Models {
   /// </remarks>
   public class ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
+    public string Abstract { get; set; }
     public string ThumbnailImage { get; set; }
     public string Category { get; set; }
     public string LearnMoreUrl { get; set; }
     [DefaultValue("Learn More")]
     public string LearnMoreLabel { get; set; }
+
+    [Metadata("ApplicationCategories")]
+    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
+
+    /*==========================================================================================================================
+    | GET CATEGORY TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Looks up a category from the <see cref="Categories"/> collection based on the <see
+    ///   cref="LookupListItemTopicViewModel.Key"/> and returns the corresponding <see
+    ///   cref="LookupListItemTopicViewModel.Title"/>.
+    /// </summary>
+    /// <param name="category"></param>
+    /// <returns>The title corresponding to the category key.</returns>
+    public string GetCategoryTitle(string category) {
+      return Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
+    }
 
   } // Class
 
