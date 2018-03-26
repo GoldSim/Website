@@ -36,7 +36,7 @@ namespace GoldSim.Forms.Common.Templates {
     private     string                          _saveToTopicPath        = null;
     private     string                          _saveAsContentType      = "";
     private     Dictionary<string, string>      _formValues             = null;
-    private     Topic                           _genericEmailDomainsLookup      = TopicRepository.RootTopic.GetTopic("Configuration:Metadata:GenericEmailDomains:LookupList");
+    private     Topic                           _genericEmailDomainsLookup      = TopicRepository.DataProvider.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList");
     private     List<string>                    _genericEmailDomains    = null;
 
     /*==========================================================================================================================
@@ -62,7 +62,7 @@ namespace GoldSim.Forms.Common.Templates {
     public Topic FormTopic {
       get {
         if (_formTopic == null) {
-          _formTopic = TopicRepository.RootTopic.GetTopic(764);
+          _formTopic = TopicRepository.DataProvider.Load(764);
         }
         return _formTopic;
       }
@@ -303,8 +303,8 @@ namespace GoldSim.Forms.Common.Templates {
     public void SaveFormAsTopic() {
 
       string    topicKey        = SaveAsContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
-      Topic     topic           = Topic.Create(topicKey, SaveAsContentType);
-      Topic     parentTopic     = TopicRepository.RootTopic.GetTopic(SaveToTopicPath);
+      Topic     topic           = TopicFactory.Create(topicKey, SaveAsContentType);
+      Topic     parentTopic     = TopicRepository.DataProvider.Load(SaveToTopicPath);
       string    parentId        = "-1";
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -318,7 +318,7 @@ namespace GoldSim.Forms.Common.Templates {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent              = TopicRepository.RootTopic.GetTopic(SaveToTopicPath);
+      topic.Parent              = TopicRepository.DataProvider.Load(SaveToTopicPath);
       topic.Attributes.SetValue("ParentID", parentId);
       topic.LastModified        = DateTime.Now;
 
