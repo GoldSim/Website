@@ -44,9 +44,7 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) {
-      return Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
-    }
+    public string GetCategoryTitle(string category) => Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
 
   } // Class
 
