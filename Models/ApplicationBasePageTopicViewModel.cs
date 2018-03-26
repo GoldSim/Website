@@ -28,6 +28,7 @@ namespace GoldSim.Web.Models {
     public string ThumbnailImage { get; set; }
     public string Category { get; set; }
     public string LearnMoreUrl { get; set; }
+
     [DefaultValue("Learn More")]
     public string LearnMoreLabel { get; set; }
 

@@ -18,7 +18,11 @@ namespace GoldSim.Web.Models {
   public class ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
 
     public string ModelImage { get; set; }
+
+    [DefaultValue("None")]
     public string CompareTo { get; set; }
+
+    [Relationship(RelationshipType.Relationship)]
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; set; }
 
     [Relationship("Applications", RelationshipType.IncomingRelationship)]
