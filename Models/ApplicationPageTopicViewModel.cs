@@ -19,7 +19,7 @@ namespace GoldSim.Web.Models {
 
     public string ModelImage { get; set; }
 
-    [DefaultValue("None")]
+    [DefaultValue("")]
     public string CompareTo { get; set; }
 
     [Relationship(RelationshipType.Relationship)]
@@ -29,6 +29,7 @@ namespace GoldSim.Web.Models {
     public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; set; }
 
     [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    [FilterByAttribute("DocumentType", "WhitePaper")]
     public TopicViewModelCollection<DocumentPointerTopicViewModel> WhitePapers { get; set; }
 
     [Relationship("Applications", RelationshipType.IncomingRelationship)]
