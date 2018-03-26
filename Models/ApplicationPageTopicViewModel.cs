@@ -29,6 +29,7 @@ namespace GoldSim.Web.Models {
     public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; set; }
 
     [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    [FilterByAttribute("DocumentType", "WhitePaper")]
     public TopicViewModelCollection<DocumentPointerTopicViewModel> WhitePapers { get; set; }
 
     [Relationship("Applications", RelationshipType.IncomingRelationship)]
