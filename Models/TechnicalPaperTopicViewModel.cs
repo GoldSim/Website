@@ -21,7 +21,7 @@ namespace GoldSim.Web.Models {
   public class TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
 
     public string Authors { get; set; }
-    public string PublicationName { get; set; }
+    public string Publication { get; set; }
     public string PublicationUrl { get; set; }
     public string PublicationDate { get; set; }
     public string DownloadLabel { get; set; }
