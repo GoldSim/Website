@@ -21,10 +21,9 @@
   | WebPath's parts (excluding "Web"), up to the current Topic.
   \---------------------------------------------------------------------------------------------------------------------------*/
   public String GetBreadcrumbsItems() {
-    var breadcrumbsString = "";
-    var breadcrumbsJsonLd = "";
-    var position = Model.UniqueKey.Split(':').Length;
-    var topic = Model;
+    var breadcrumbsString       = "";
+    var position                = Model.UniqueKey.Split(':').Length;
+    var topic                   = Model;
 
     while (topic != null) {
       var breadcrumbItem = "{ "
@@ -40,8 +39,7 @@
     }
 
     // Return the completed set of BreadcrumbList ListItem strings
-    breadcrumbsJsonLd = breadcrumbsString.TrimEnd(',');
-    return breadcrumbsJsonLd;
+    return breadcrumbsString.TrimEnd(',');
 
   }
 
