@@ -2198,6 +2198,7 @@
     <Compile Include="Models\CardListViewModel.cs" />
     <Compile Include="Models\ICardViewModel.cs" />
     <Compile Include="Models\PageGroupTopicViewModel.cs" />
+    <Compile Include="Models\HomeTopicViewModel.cs" />
     <Compile Include="Models\TechnicalPaperTopicViewModel.cs" />
     <Compile Include="Models\FaqItemTopicViewModel.cs" />
     <Compile Include="Models\FaqTopicViewModel.cs" />
