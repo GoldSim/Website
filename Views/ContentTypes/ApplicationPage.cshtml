@@ -43,7 +43,7 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.ThumbnailImage)) {
+    @if (!String.IsNullOrEmpty(Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
       <picture class="callout picture thumbnail">
         <source srcset="@Model.ThumbnailImage" />
@@ -52,24 +52,24 @@
       <!-- /Thumbnail Image -->
     }
 
-    @if (!String.IsNullOrEmpty(@Model.Abstract)) {
+    @if (!String.IsNullOrEmpty(Model.Abstract)) {
       <!-- Abstract -->
       <!-- <h1>Abstract</h1> -->
       <!-- Abstract Text -->
-      <p>@Html.Raw(@Model.Abstract)</p>
+      <p>@Html.Raw(Model.Abstract)</p>
       <!-- /Abstract -->
     }
 
     <!-- Body Content -->
     <article class="page body">
-      @Html.Raw(@Model.Body)
+      @Html.Raw(Model.Body)
     </article>
     <!-- /Body Content -->
 
-    @if (!String.IsNullOrEmpty(@Model.ModelImage)) {
+    @if (!String.IsNullOrEmpty(Model.ModelImage)) {
       <!-- Model Image -->
       <figure class="illustration full" id="Screenshot">
-        <img src="@Model.ModelImage" alt="model" />
+        <img src="Model.ModelImage" alt="model" />
       </figure>
       <!-- /Model Image -->
     }

@@ -41,8 +41,8 @@
 @section PostTitleSection {
 
   <!-- Post Title -->
-  <div class="medium-@(!String.IsNullOrEmpty(@Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
-    @if (!String.IsNullOrEmpty(@Model.Customer)) {
+  <div class="medium-@(!String.IsNullOrEmpty(Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
+    @if (!String.IsNullOrEmpty(Model.Customer)) {
       <strong>Client:</strong>
       @Html.Raw(getCustomerLink(Model.Customer, Model.CustomerUrl))
       <br/>
@@ -67,7 +67,7 @@
 
   <section class="panel body">
 
-    @if (!String.IsNullOrEmpty(@Model.ThumbnailImage)) {
+    @if (!String.IsNullOrEmpty(Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
       <picture class="callout picture">
         <source srcset="@Model.ThumbnailImage" />
