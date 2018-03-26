@@ -81,14 +81,12 @@
       <!-- /Related Case Studies -->
     }
 
-    @*
     @if (Model.Modules.Count > 0) {
       <!-- Related Modules -->
       <h1 id="Modules">Modules</h1>
       @Html.Partial("_CardList", new GoldSim.Web.Models.CardListViewModel(Model.Modules.Cast<ICardViewModel>().ToList(), "modules"))
       <!-- /Related Modules -->
     }
-    *@
 
     @if (Model.WhitePapers.Count > 0) {
       <!-- Related White Papers -->
