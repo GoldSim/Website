@@ -19,8 +19,8 @@
       ],
       @*
       "datePublished": "@Model.Topic.VersionHistory.First().ToString("s")",
-      "dateModified": "@Model.Topic.VersionHistory.Last().ToString("s")",
       *@
+      "dateModified": "@Model.LastModified.ToString("s")",
       "author": {
         "@@type": "Person",
         "name": "Rick Kossik"
