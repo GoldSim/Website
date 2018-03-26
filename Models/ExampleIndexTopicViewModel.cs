@@ -16,7 +16,7 @@ namespace GoldSim.Web.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ExampleApplicationIndex</c>
   ///   topic.
   /// </summary>
-  public class ExampleApplicationIndexTopicViewModel: ApplicationIndexTopicViewModel {
+  public class ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
 
     [Relationship("EnvironmentalExamples")]
     public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
