@@ -19,7 +19,7 @@ namespace GoldSim.Web.Models {
 
     public string ModelImage { get; set; }
 
-    [DefaultValue("None")]
+    [DefaultValue("")]
     public string CompareTo { get; set; }
 
     [Relationship(RelationshipType.Relationship)]
