@@ -257,7 +257,7 @@
                 <h2>Environmental<br />Systems Modeling</h2>
                 @if (EnvironmentalSystems != null) {
                 <ul id="EnvironmentalApplications">
-                  @foreach (Topic application in EnvironmentalSystems.Children) {
+                  @foreach (Topic application in EnvironmentalSystems) {
                   <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                   }
                 </ul>
@@ -269,7 +269,7 @@
                 <h2>Engineered<br />Systems Modeling</h2>
                 @if (EngineeredSystems != null) {
                 <ul id="EngineeredApplications">
-                  @foreach (Topic application in EngineeredSystems.Children) {
+                  @foreach (Topic application in EngineeredSystems) {
                   <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                   }
                 </ul>
@@ -281,7 +281,7 @@
                 <h2>Business<br />Systems Modeling</h2>
                 @if (BusinessSystems != null) {
                 <ul id="BusinessApplications">
-                  @foreach (Topic application in BusinessSystems.Children) {
+                  @foreach (Topic application in BusinessSystems) {
                   <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
                   }
                 </ul>
