@@ -14,9 +14,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Home</c> topic.
   /// </summary>
-  public class HomeTopicViewModel: ContentItemTopicViewModel {
-
-    public string Subtitle { get; set; }
+  public class HomeTopicViewModel: PageTopicViewModel {
 
     public string Introduction { get; set; }
 
