@@ -47,7 +47,7 @@
       @Html.Raw(getCustomerLink(Model.Customer, Model.CustomerUrl))
       <br/>
     }
-    @if(applications.Count > 0) {
+    @if(Model.Applications.Count > 0) {
       <strong>@((Model.Applications.Count == 1)? "Application" : "Applications"):</strong>
       foreach (var application in Model.Applications) {
         <a href="@application.WebPath" class="comma delimited">@application.Title</a>
