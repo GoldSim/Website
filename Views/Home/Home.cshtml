@@ -258,7 +258,7 @@
                 @if (EnvironmentalSystems != null) {
                 <ul id="EnvironmentalApplications">
                   @foreach (var application in EnvironmentalSystems) {
-                  <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
+                  <li><a href="@application.WebPath">@application.ShortTitle &raquo;</a></li>
                   }
                 </ul>
                 }
@@ -270,7 +270,7 @@
                 @if (EngineeredSystems != null) {
                 <ul id="EngineeredApplications">
                   @foreach (var application in EngineeredSystems) {
-                  <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
+                  <li><a href="@application.WebPath">@application.ShortTitle &raquo;</a></li>
                   }
                 </ul>
                 }
@@ -282,7 +282,7 @@
                 @if (BusinessSystems != null) {
                 <ul id="BusinessApplications">
                   @foreach (var application in BusinessSystems) {
-                  <li><a href="@application.GetWebPath()">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
+                  <li><a href="@application.WebPath">@application.ShortTitle &raquo;</a></li>
                   }
                 </ul>
                 }
