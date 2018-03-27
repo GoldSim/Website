@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
   ///   topic.
   /// </summary>
-  public class ApplicationContainerTopicViewModel {
+  public class ApplicationContainerTopicViewModel : PageTopicViewModel {
 
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
 
