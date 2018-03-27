@@ -19,23 +19,7 @@ namespace GoldSim.Web.Controllers {
   public class ErrorController : Controller {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private ITopicRepository _topicRepository = null;
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a Topic Controller with necessary dependencies.
-    /// </summary>
-    /// <returns>A topic controller for loading OnTopic views.</returns>
-    public ErrorController(ITopicRepository topicRepository) {
-      _topicRepository = topicRepository;
-    }
-
-    /*==========================================================================================================================
-    | GET: /Error
+    | GET: /Error/Error
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides the default custom error page for the site.
