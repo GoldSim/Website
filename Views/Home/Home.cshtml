@@ -247,7 +247,7 @@
           </header>
           <p class="text show-for-medium">GoldSim has been used for a wide range of diverse applications, ranging from modeling complex environmental systems, to comparing alternative business strategies, to evaluating the risks associated with space missions. You can explore the various GoldSim applications and view case studies below.</p>
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
-            @foreach (var applicationContainer in Model.Applications) {
+            @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
               <div class="medium-4 cell">
                 <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
                   <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
