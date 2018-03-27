@@ -21,7 +21,7 @@
     <!-- <p>@Html.Raw(Model.Body)</p> -->
     <div class="carousel-wrapper">
       <div class="owl-carousel">
-        @if (Model.ContentItems != null && Model.ContentItems.Count > 0) {
+        @if (Model.ContentItems.Count > 0) {
           foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
             @WriteContentItem(contentItem)
           }
