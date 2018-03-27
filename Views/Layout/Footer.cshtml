@@ -1,9 +1,5 @@
 ﻿@model NavigationViewModel
 
-@{
-  Topic CompanyTopic = @Model.NavigationRootTopic;
-}
-
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="site footer" role="contentinfo">
   <div class="grid-container">
@@ -13,12 +9,10 @@
 
       <!-- Company Information -->
       <div class="company cell small-6 small-order-2 medium-3 medium-order-1 large-3">
-        <p class="list link heading"><a href="@CompanyTopic.WebPath">@CompanyTopic.Attributes.GetValue("ShortTitle", @CompanyTopic.Title)</a></p>
+        <p class="list link heading"><a href="@Model.WebPath">@(Model.ShortTitle?? Model.Title)</a></p>
         <ul>
-          @foreach (Topic topic in CompanyTopic.Children.Sorted) {
-            if (topic.Attributes.GetValue("IsHidden", "0").Equals("0")) {
-              <li><a href="@topic.WebPath" class="@((Model.Topic == topic)? "selected" : "")">@topic.Attributes.GetValue("ShortTitle", @topic.Title)</a></li>
-            }
+          @foreach (var topic in Model.Children) {
+            <li><a href="@topic.WebPath" class="@((Model.IsSelected)? "selected" : "")">@(topic.ShortTitle?? topic.Title)</a></li>
           }
         </ul>
       </div>

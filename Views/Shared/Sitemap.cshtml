@@ -23,15 +23,15 @@
   | SKIP DISABLED, CONFIGURATION, AND EXCLUDED CONTENT TYPES
   \------------------------------------------------------------------------------------------------------------------------*@
   if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return;}
-  if (topic.UniqueKey.StartsWith("Root:Configuration")) {return;}
-  if (topic.UniqueKey.IndexOf("CustomerRequests") >= 0) {return;}
+  if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return;}
+  if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return;}
   if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return;}
 
   @*=========================================================================================================================
   | OPEN NODE
   \------------------------------------------------------------------------------------------------------------------------*@
   <url>
-    <loc>@Html.Encode("https://www.goldsim.com" + topic.WebPath)</loc>
+    <loc>@Html.Encode("https://www.goldsim.com" + topic.GetWebPath())</loc>
     <changefreq>monthly</changefreq>
     @if (topic.LastModified > DateTime.MinValue) {
       <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
@@ -56,7 +56,7 @@
       @foreach (var relationship in topic.Relationships) {
         <DataObject type="@relationship.Name">
           @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
-            <Attribute name="TopicKey">@relatedTopic.UniqueKey.Replace("Root:", "")</Attribute>
+            <Attribute name="TopicKey">@relatedTopic.GetUniqueKey().Replace("Root:", "")</Attribute>
           }
         </DataObject>
       }

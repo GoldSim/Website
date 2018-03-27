@@ -1,10 +1,7 @@
-﻿@model TopicViewModel
+﻿@model TechnicalPaperListTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  Topic fieldCategories    = Model.TopicRepository.Load().GetTopic("Configuration:Metadata:FieldCategories:LookupList");
-  Topic papers             = Model.TopicRepository.Load().GetTopic("Web:Applications:TechnicalPapers:ContentItems");
 }
 
 @section PageBodySection {
@@ -12,20 +9,20 @@
   <section class="panel body">
 
     <article class="page body">
-      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
-      @if (fieldCategories.Children.Count > 0) {
+      @Html.Raw(Model.Body)
+      @if (Model.FieldCategories.Count > 0) {
         <h1>Categories</h1>
         <ul>
-          @foreach (Topic fieldCategory in fieldCategories.Children.Sorted) {
+          @foreach (var fieldCategory in Model.FieldCategories) {
             <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
           }
         </ul>
       }
     </article>
 
-    @foreach (Topic fieldCategory in fieldCategories.Children.Sorted) {
+    @foreach (var fieldCategory in Model.FieldCategories) {
       <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
-      @Html.Partial("_TechnicalPaperList", papers.Children.Sorted.Where(t => t.Attributes.GetValue("Category").Equals(fieldCategory.Key)).ToList())
+      @Html.Partial("_TechnicalPaperList", Model.ContentItems.Where(t => (t.Category?? "").Equals(fieldCategory.Key)).Cast<TechnicalPaperTopicViewModel>().ToList())
     }
 
   </section>

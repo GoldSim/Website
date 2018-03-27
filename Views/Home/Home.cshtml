@@ -1,10 +1,7 @@
-﻿@{
+﻿@model HomeTopicViewModel
+
+@{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  Topic EnvironmentalSystems    = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EnvironmentalSystems");
-  Topic EngineeredSystems       = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:EngineeredSystems");
-  Topic BusinessSystems         = Model.TopicRepository.Load().GetTopic("Web:Applications:Areas:BusinessSystems");
-
 }
 
 @section Head {
@@ -71,10 +68,10 @@
             <div class="small-12 medium-8 medium-offset-2 centered">
 
               <!-- Short Title -->
-              <h1 class="page title short">@Model.Topic.Title</h1>
+              <h1 class="page title short">@Model.Title</h1>
 
               <!-- Long Title (Subtitle) -->
-              <h1 class="page title long">@Model.Topic.Attributes.GetValue("Subtitle")</h1>
+              <h1 class="page title long">@Model.Subtitle</h1>
 
               <!-- Video -->
               <div class="video wrapper">
@@ -119,7 +116,7 @@
           <header>
             <h1>What is GoldSim?</h1>
           </header>
-          @Html.Raw(@Model.Topic.Attributes.GetValue("Introduction"))
+          @Html.Raw(Model.Introduction)
         </section>
         <!-- /Introduction Pane -->
 
@@ -250,42 +247,18 @@
           </header>
           <p class="text show-for-medium">GoldSim has been used for a wide range of diverse applications, ranging from modeling complex environmental systems, to comparing alternative business strategies, to evaluating the risks associated with space missions. You can explore the various GoldSim applications and view case studies below.</p>
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
-            <div class="medium-4 cell">
-              <div class="card environmental" data-equalizer-watch>
-                <h2>Environmental<br />Systems Modeling</h2>
-                @if (EnvironmentalSystems != null) {
-                <ul id="EnvironmentalApplications">
-                  @foreach (Topic application in EnvironmentalSystems.Children) {
-                  <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
+            @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
+              <div class="medium-4 cell">
+                <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
+                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
+                  <ul id="@(applicationContainer.Key + "Applications")">
+                    @foreach (var application in applicationContainer.Children) {
+                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
+                    }
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="medium-4 cell">
-              <div class="card engineered" data-equalizer-watch>
-                <h2>Engineered<br />Systems Modeling</h2>
-                @if (EngineeredSystems != null) {
-                <ul id="EngineeredApplications">
-                  @foreach (Topic application in EngineeredSystems.Children) {
-                  <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
-              </div>
-            </div>
-            <div class="medium-4 cell">
-              <div class="card business" data-equalizer-watch>
-                <h2>Business<br />Systems Modeling</h2>
-                @if (BusinessSystems != null) {
-                <ul id="BusinessApplications">
-                  @foreach (Topic application in BusinessSystems.Children) {
-                  <li><a href="@application.WebPath">@application.Attributes.GetValue("ShortTitle", @application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
-              </div>
-            </div>
+            }
           </div>
         </section>
         <!-- Applications Pane -->

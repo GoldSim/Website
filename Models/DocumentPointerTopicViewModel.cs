@@ -3,29 +3,22 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel;
 using Ignia.Topics.ViewModels;
+using Ignia.Topics.Mapping;
+using System.ComponentModel;
 
 namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: NAVIGATION TOPIC
+  | VIEW MODEL: DOCUMENT POINTER TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about the navigation.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>DocumentPointer</c> topic.
   /// </summary>
-  /// <remarks>
-  ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
-  ///   constructed by the <see cref="LayoutController"/>.
-  /// </remarks>
-  public class NavigationViewModel: PageTopicViewModel {
+  public class DocumentPointerTopicViewModel: ApplicationBasePageTopicViewModel {
 
-    public string HeaderImageUrl { get; set; }
-
-    [DefaultValue(false)]
-    public bool IsSelected { get; set; }
-
-    public TopicViewModelCollection<NavigationViewModel> Children { get; set; }
+    public string DocumentType { get; set; }
+    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 
   } // Class
 

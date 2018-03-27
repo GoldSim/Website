@@ -1,4 +1,4 @@
-﻿@model TopicViewModel
+﻿@model ContentListTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
@@ -6,55 +6,55 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+<section class="panel body">
 
-    @if (!String.IsNullOrEmpty(Model.Topic.Attributes.GetValue("Body"))) {
-      <!-- Body Content -->
-      <article class="page body">
-        @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
-      </article>
-      <!-- /Body Content -->
-    }
+  @if (!String.IsNullOrEmpty(Model.Body)) {
+    <!-- Body Content -->
+    <article class="page body">
+      @Html.Raw(Model.Body)
+    </article>
+    <!-- /Body Content -->
+  }
 
-    @Html.Partial("_TableOfContents")
+  @Html.Partial("_TableOfContents")
 
-    @if (Model.Topic.Attributes.Contains("Categories") && Model.Topic.Children["Categories"] != null && Model.Topic.Children["Categories"].Children.Count > 0) {
-      foreach (Topic category in Model.Topic.Children["Categories"].Children.OrderBy(c => c)) {
-        <section id="@category.Key" class="content list">
-          <h1>@category.Title</h1>
-          @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted.Where(t => t.Attributes.GetValue("Category", "").Equals(category))) {
-            @WriteContentItem(contentItem, "h2")
-          }
-        </section>
-      }
-    }
-    else {
-      <section class="content list">
-        @foreach (Topic contentItem in Model.Topic.Children["ContentItems"].Children.Sorted) {
-          @WriteContentItem(contentItem)
+  @if (Model.Categories.Count > 0) {
+    foreach (var category in Model.Categories.OrderBy(c => c)) {
+      <section id="@category.Key" class="content list">
+        <h1>@category.Title</h1>
+        @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
+          @WriteContentItem(contentItem, "h2")
         }
       </section>
     }
+  }
+  else {
+    <section class="content list">
+      @foreach (var contentItem in Model.ContentItems) {
+        @WriteContentItem(contentItem)
+      }
+    </section>
+  }
 
-  </section>
+</section>
 
 }
 
-@helper WriteContentItem(Topic contentItem, string element = "h1") {
+@helper WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
   <article id="@contentItem.Key">
     <@element>@contentItem.Title<@("/" + element)>
-    @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("ThumbnailImage"))) {
+    @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage)) {
       <!-- Thumbnail Image -->
       <picture class="callout picture thumbnail small">
-        <source srcset="@contentItem.Attributes.GetValue("ThumbnailImage")" />
-        <img src="@contentItem.Attributes.GetValue("ThumbnailImage")" alt="@contentItem.Title">
+        <source srcset="@contentItem.ThumbnailImage" />
+        <img src="@contentItem.ThumbnailImage" alt="@contentItem.Title">
       </picture>
       <!-- /Thumbnail Image -->
     }
     <div>
-      @Html.Raw(HttpUtility.HtmlDecode(@contentItem.Attributes.GetValue("Description")))
-      @if (!String.IsNullOrWhiteSpace(contentItem.Attributes.GetValue("LearnMoreUrl"))) {
-        <p><a href="@contentItem.Attributes.GetValue("LearnMoreUrl")" target="_blank">Learn More</a></p>
+      @Html.Raw(HttpUtility.HtmlDecode(contentItem.Description))
+      @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl)) {
+        <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
       }
     </div>
 </article>

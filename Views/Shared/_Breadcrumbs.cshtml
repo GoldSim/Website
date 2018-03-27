@@ -7,7 +7,7 @@
     "@@context": "http://schema.org",
     "@@type": "BreadcrumbList",
     "itemListElement": [
-      @Html.Raw(@GetBreadcrumbsItems())
+      @Html.Raw(GetBreadcrumbsItems())
     ]
   }
 </script>
@@ -21,50 +21,25 @@
   | WebPath's parts (excluding "Web"), up to the current Topic.
   \---------------------------------------------------------------------------------------------------------------------------*/
   public String GetBreadcrumbsItems() {
-    StringBuilder breadcrumbsStringBuilder      = new StringBuilder("");
-    string breadcrumbsJsonLd                    = "";
-    string uniqueKey                            = "Root";
-    int position                                = 1;
-    List<string> urlPathParts                   = new List<string>();
-    if (Model.Topic != null) {
-      urlPathParts              = Model.Topic.WebPath.Split('/').ToList();
-    }
+    var breadcrumbsString       = "";
+    var position                = Model.UniqueKey.Split(':').Length;
+    var topic                   = Model;
 
-    if (urlPathParts.Count > 0) {
-      foreach (string urlPathPart in urlPathParts) {
-
-        // Add to the uniqueKey string to ensure the current Topic is retrieved appropriately
-        if (!String.IsNullOrEmpty(urlPathPart)) {
-          uniqueKey            += ":" + urlPathPart;
-        }
-
-        // Build the JSON-LD string for the current breadcrumb item
-        if (!String.IsNullOrEmpty(urlPathPart) && urlPathPart != "Web") {
-          Topic breadcrumbTopic = Model.TopicRepository.Load().GetTopic(uniqueKey);
-          string breadcrumbItem = "";
-
-          if (breadcrumbTopic != null) {
-            breadcrumbItem      = "{ "
-                                + "  \"@type\": \"ListItem\", "
-                                + "  \"position\": " + position + ", "
-                                + "  \"item\": { "
-                                + "    \"@id\": \"https://www.GoldSim.com" + breadcrumbTopic.WebPath.TrimEnd('/') + "\", "
-                                + "    \"name\": \"" + breadcrumbTopic.Title + "\" "
-                                + "  } "
-                                + "},";
-          }
-
-          breadcrumbsStringBuilder.Append(breadcrumbItem);
-
-          position++;
-        }
-      }
-
+    while (topic != null) {
+      var breadcrumbItem = "{ "
+        + "  \"@type\": \"ListItem\", "
+        + "  \"position\": " + (position--) + ", "
+        + "  \"item\": { "
+        + "    \"@id\": \"https://www.GoldSim.com" + topic.UniqueKey.Replace(':', '/').TrimEnd('/') + "\", "
+        + "    \"name\": \"" + topic.Title + "\" "
+        + "  } "
+        + "},";
+      breadcrumbsString = breadcrumbItem + breadcrumbsString;
+      topic = topic.Parent;
     }
 
     // Return the completed set of BreadcrumbList ListItem strings
-    breadcrumbsJsonLd           = breadcrumbsStringBuilder.ToString().TrimEnd(',');
-    return breadcrumbsJsonLd;
+    return breadcrumbsString.TrimEnd(',');
 
   }
 

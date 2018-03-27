@@ -3,13 +3,14 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Controllers;
-using Ignia.Topics;
-using Ignia.Topics.Web;
-using Ignia.Topics.Web.Mvc;
 using System;
 using System.Web.Mvc;
 using System.Web.Routing;
+using GoldSim.Web.Controllers;
+using Ignia.Topics;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Web;
+using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web {
 
@@ -34,13 +35,14 @@ namespace GoldSim.Web {
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
       #pragma warning disable CS0618
-      var topicRepository       = TopicRepository.DataProvider;
-      var rootTopic             = TopicRepository.RootTopic;
-      var topicRoutingService   = new TopicRoutingService(
+      var topicRepository               = TopicRepository.DataProvider;
+      var rootTopic                     = TopicRepository.RootTopic;
+      var mvcTopicRoutingService        = new MvcTopicRoutingService(
         topicRepository,
         requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
+      var topicMappingService           = new TopicMappingService(topicRepository);
       #pragma warning restore CS0618
 
       //Set default controller
@@ -60,7 +62,7 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(ErrorController)) {
-        return new ErrorController(topicRepository, null);
+        return new ErrorController();
       }
 
       if (controllerType == typeof(ReportingController)) {
@@ -68,11 +70,11 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, topicRoutingService.Topic);
+        return new LayoutController(topicRepository, mvcTopicRoutingService, topicMappingService);
       }
 
       if (controllerType == typeof(TopicController)) {
-        return new TopicController(topicRepository, topicRoutingService.Topic);
+        return new TopicController(topicRepository, mvcTopicRoutingService, topicMappingService);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);
@@ -80,9 +82,10 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Release
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //There are no resources to release
+      // There are no resources to release
 
     }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace

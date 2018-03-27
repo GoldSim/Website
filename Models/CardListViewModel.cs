@@ -3,14 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ignia.Topics;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web.Models {
 
@@ -25,8 +18,8 @@ namespace GoldSim.Web.Models {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private List<Topic> _cards = null;
-    private string _className = null;
+    private                     IEnumerable<ICardViewModel>     _cards                          = null;
+    private                     string                          _className                      = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -35,9 +28,9 @@ namespace GoldSim.Web.Models {
     ///   Initializes a new instance of a Card List View Model with appropriate dependencies.
     /// </summary>
     /// <returns>A card list view model.</returns>
-    public CardListViewModel(List<Topic> cards, string className="") {
-      _cards = cards;
-      _className = className;
+    public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
+      _cards                    = cards;
+      _className                = className;
     }
 
     /*==========================================================================================================================
@@ -47,7 +40,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
     /// <returns>A <see cref="List{T}"/> of <see cref="Ignia.Topics.Topic"/>, each representing a unique card.</returns>
-    public List<Topic> Cards {
+    public IEnumerable<ICardViewModel> Cards {
       get {
         return _cards;
       }
@@ -66,5 +59,6 @@ namespace GoldSim.Web.Models {
       }
     }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace

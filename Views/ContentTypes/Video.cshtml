@@ -1,7 +1,7 @@
-﻿@model TopicViewModel
+﻿@model VideoTopicViewModel
 
 @{
-  ViewBag.Title = Model.Topic.Title;
+  ViewBag.Title = Model.Title;
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
@@ -11,14 +11,14 @@
 
     <!-- Description -->
     <article class="page body">
-      @Html.Raw(@Model.Topic.Attributes.GetValue("Body"))
+      @Html.Raw(Model.Body)
     </article>
     <!-- /Description -->
 
     <!-- Video Area -->
     <div class="video-wrapper">
-      <video controls @(!String.IsNullOrEmpty(Model.Topic.Attributes.GetValue("PosterURL")) ? "poster=" + @Model.Topic.Attributes.GetValue("PosterURL") : "")>
-        <source src="@Model.Topic.Attributes.GetValue("VideoURL")" type="video/mp4" />
+      <video controls @(!String.IsNullOrEmpty(Model.PosterUrl) ? "poster=" + Model.PosterUrl : "")>
+        <source src="@Model.VideoUrl" type="video/mp4" />
         Your browser does not support the HTML5 video.
       </video>
     </div>

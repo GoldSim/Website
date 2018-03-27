@@ -3,10 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
@@ -48,7 +44,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      var topic = _topicRepository.Load().GetTopic(topicId);
+      var topic = _topicRepository.Load(topicId);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Provide error handling
@@ -60,7 +56,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Perform redirect
       \------------------------------------------------------------------------------------------------------------------------*/
-      return RedirectPermanent(topic.WebPath);
+      return RedirectPermanent(topic.GetWebPath());
 
     }
 
@@ -87,7 +83,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Perform redirect
       \------------------------------------------------------------------------------------------------------------------------*/
-      return RedirectPermanent(topic.WebPath);
+      return RedirectPermanent(topic.GetWebPath());
 
     }
 
@@ -105,6 +101,6 @@ namespace GoldSim.Web.Controllers {
       return null;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

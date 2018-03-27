@@ -3,15 +3,12 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
 using GoldSim.Web.Models;
+using Ignia.Topics.Mapping;
 
 namespace GoldSim.Web.Controllers {
 
@@ -21,7 +18,15 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  public class LayoutController : TopicController {
+  public class LayoutController : Controller {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            ITopicRoutingService            _topicRoutingService            = null;
+    private readonly            ITopicMappingService            _topicMappingService            = null;
+    private                     Topic                           _currentTopic                   = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -30,7 +35,43 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(ITopicRepository topicRepository, Topic currentTopic) : base(topicRepository, currentTopic) {
+    public LayoutController(
+      ITopicRepository topicRepository,
+      ITopicRoutingService topicRoutingService,
+      ITopicMappingService topicMappingService
+    ) : base() {
+      _topicRepository          = topicRepository;
+      _topicRoutingService      = topicRoutingService;
+      _topicMappingService      = topicMappingService;
+    }
+
+    /*==========================================================================================================================
+    | TOPIC REPOSITORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the Topic Repository in order to gain arbitrary access to the entire topic graph.
+    /// </summary>
+    /// <returns>The TopicRepository associated with the controller.</returns>
+    protected ITopicRepository TopicRepository {
+      get {
+        return _topicRepository;
+      }
+    }
+
+    /*==========================================================================================================================
+    | CURRENT TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to the current topic associated with the request.
+    /// </summary>
+    /// <returns>The Topic associated with the current request.</returns>
+    protected Topic CurrentTopic {
+      get {
+        if (_currentTopic == null) {
+          _currentTopic = _topicRoutingService.GetCurrentTopic();
+        }
+        return _currentTopic;
+      }
     }
 
     /*==========================================================================================================================
@@ -45,15 +86,7 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var currentTopic          = CurrentTopic;
-      Topic navigationRootTopic = null;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Identify current topic
-      >-------------------------------------------------------------------------------------------------------------------------
-      | Since the current topic logic for the main menu is complicated by the fact that a) it is a hierarchical menu, and b)
-      | not all menu items are displayed according to their depth (e.g., due to PageGroup and hidden topics), this will simply
-      | return the current topic, and allow the view to determine if it is a decendent of the navigation item.
-      \-----------------------------------------------------------------------------------------------------------------------*/
+      var navigationRootTopic   = (Topic)null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
@@ -70,9 +103,9 @@ namespace GoldSim.Web.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish a navigation view model
+      | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic, false, 3);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -80,7 +113,6 @@ namespace GoldSim.Web.Controllers {
       return PartialView(navigationViewModel);
 
     }
-
 
     /*==========================================================================================================================
     | PAGE LEVEL NAVIGATION
@@ -93,7 +125,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic navigationRootTopic = null;
+      var navigationRootTopic   = (Topic)null;
       var currentTopic          = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -111,26 +143,9 @@ namespace GoldSim.Web.Controllers {
       if (navigationRootTopic?.Parent == null) navigationRootTopic = null;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Identify current topic
-      >-------------------------------------------------------------------------------------------------------------------------
-      | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This
-      | should be skipped if the navigation root is null, as that suggests the current page is not a descendent of a group page.
+      | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      while (
-        navigationRootTopic != null &&
-        currentTopic != null &&
-        currentTopic != navigationRootTopic &&
-        currentTopic?.Parent != navigationRootTopic
-      ) {
-        currentTopic            = currentTopic.Parent;
-      }
-
-      if (currentTopic?.Parent != navigationRootTopic) currentTopic = null;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish a navigation view model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -151,7 +166,7 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var currentTopic          = CurrentTopic;
-      Topic navigationRootTopic = null;
+      var navigationRootTopic   = (Topic)null;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify navigation root
@@ -168,9 +183,9 @@ namespace GoldSim.Web.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish a navigation view model
+      | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -194,21 +209,9 @@ namespace GoldSim.Web.Controllers {
       var currentTopic          = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Identify current topic
-      >-------------------------------------------------------------------------------------------------------------------------
-      | The current topic is an immediate child of the the navigation root, but an ascendent of the current page topic. This may
-      | be null if the current page is not a descendent of company.
+      | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      while (currentTopic?.Parent != null && currentTopic?.Parent != navigationRootTopic) {
-        currentTopic            = currentTopic.Parent;
-      }
-
-      if (currentTopic?.Parent != navigationRootTopic) currentTopic = null;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish a navigation view model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new NavigationViewModel(TopicRepository, navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -217,5 +220,38 @@ namespace GoldSim.Web.Controllers {
 
     }
 
-  }
-}
+    /*==========================================================================================================================
+    | ADD NESTED TOPICS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A helper function that allows a set number of tiers to be added to a <see cref="NavigationViewModel"/> tree.
+    /// </summary>
+    private NavigationViewModel AddNestedTopics(
+      Topic sourceTopic,
+      Topic currentTopic,
+      bool allowPageGroups      = true,
+      int tiers                 = 1
+    ) {
+      tiers--;
+      if (sourceTopic == null) {
+        return null;
+      }
+      var viewModel = _topicMappingService.Map<NavigationViewModel>(sourceTopic, Relationships.None);
+      viewModel.IsSelected = (currentTopic?.GetUniqueKey()?? "").StartsWith(sourceTopic.GetUniqueKey());
+      if (tiers >= 0 && (allowPageGroups || !sourceTopic.ContentType.Equals("PageGroup"))) {
+        foreach (var topic in sourceTopic.Children.Sorted.Where(t => t.IsVisible())) {
+          viewModel.Children.Add(
+            AddNestedTopics(
+              topic,
+              currentTopic,
+              allowPageGroups,
+              tiers
+            )
+          );
+        }
+      }
+      return viewModel;
+    }
+
+  } // Class
+} // Namespace

@@ -18,7 +18,7 @@
     <AssemblyName>GoldSim.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>63082</IISExpressSSLPort>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -82,6 +82,10 @@
     </Reference>
     <Reference Include="Ignia.Topics.Data.Sql">
       <HintPath>..\..\Topics\201707\Ignia.Topics.Data.Sql.dll</HintPath>
+    </Reference>
+    <Reference Include="Ignia.Topics.ViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Ignia.Topics.ViewModels.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.Web">
       <HintPath>..\..\Topics\201707\Ignia.Topics.Web.dll</HintPath>
@@ -2161,6 +2165,7 @@
     </None>
     <Compile Include="App_Code\ExcelReportingService.cs" />
     <Compile Include="App_Code\IReportingService.cs" />
+    <Compile Include="App_Code\TopicEntityViewModel.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
@@ -2183,9 +2188,25 @@
     </Compile>
     <Compile Include="GoldSimControllerFactory.cs" />
     <Compile Include="Helpers\WebFormMvcBridge.cs" />
+    <Compile Include="Models\ExampleIndexTopicViewModel.cs" />
+    <Compile Include="Models\ModulePageTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationIndexTopicViewModel.cs" />
+    <Compile Include="Models\DocumentPointerTopicViewModel.cs" />
+    <Compile Include="Models\ExampleApplicationTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationPageTopicViewModel.cs" />
+    <Compile Include="Models\ApplicationBasePageTopicViewModel.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
+    <Compile Include="Models\ICardViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
+    <Compile Include="Models\PageGroupTopicViewModel.cs" />
+    <Compile Include="Models\HomeTopicViewModel.cs" />
+    <Compile Include="Models\TechnicalPaperTopicViewModel.cs" />
+    <Compile Include="Models\FaqItemTopicViewModel.cs" />
+    <Compile Include="Models\FaqTopicViewModel.cs" />
+    <Compile Include="Models\GlossaryItemTopicViewModel.cs" />
+    <Compile Include="Models\GlossaryTopicViewModel.cs" />
     <Compile Include="Models\RenderActionViewModel.cs" />
+    <Compile Include="Models\TechnicalPaperListTopicViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
