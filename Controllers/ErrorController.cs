@@ -41,7 +41,7 @@ namespace GoldSim.Web.Controllers {
     ///   Provides the default custom error page for the site.
     /// </summary>
     /// <returns>The site's default error view.</returns>
-    public ActionResult Index() {
+    public ActionResult Error() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Instantiate view model
