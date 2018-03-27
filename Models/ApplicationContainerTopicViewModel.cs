@@ -18,6 +18,8 @@ namespace GoldSim.Web.Models {
 
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
 
+    public string DisplayOrder { get; set; }
+
   } // Class
 
 } // Namespace
