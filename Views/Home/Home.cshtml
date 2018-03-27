@@ -2,11 +2,6 @@
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
-
-  var EnvironmentalSystems      = Model.Applications["EnvironmentalSystems"].Children;
-  var EngineeredSystems         = Model.Applications["EngineeredSystems"].Children;
-  var BusinessSystems           = Model.Applications["BusinessSystems"].Children;
-
 }
 
 @section Head {
@@ -252,42 +247,18 @@
           </header>
           <p class="text show-for-medium">GoldSim has been used for a wide range of diverse applications, ranging from modeling complex environmental systems, to comparing alternative business strategies, to evaluating the risks associated with space missions. You can explore the various GoldSim applications and view case studies below.</p>
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
-            <div class="medium-4 cell">
-              <div class="card environmental" data-equalizer-watch>
-                <h2>Environmental<br />Systems Modeling</h2>
-                @if (EnvironmentalSystems != null) {
-                <ul id="EnvironmentalApplications">
-                  @foreach (var application in EnvironmentalSystems) {
-                  <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
+            @foreach (var applicationContainer in Model.Applications) {
+              <div class="medium-4 cell">
+                <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
+                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
+                  <ul id="@(applicationContainer.Key + "Applications")">
+                    @foreach (var application in applicationContainer.Children) {
+                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
+                    }
+                  </ul>
+                </div>
               </div>
-            </div>
-            <div class="medium-4 cell">
-              <div class="card engineered" data-equalizer-watch>
-                <h2>Engineered<br />Systems Modeling</h2>
-                @if (EngineeredSystems != null) {
-                <ul id="EngineeredApplications">
-                  @foreach (var application in EngineeredSystems) {
-                  <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
-              </div>
-            </div>
-            <div class="medium-4 cell">
-              <div class="card business" data-equalizer-watch>
-                <h2>Business<br />Systems Modeling</h2>
-                @if (BusinessSystems != null) {
-                <ul id="BusinessApplications">
-                  @foreach (var application in BusinessSystems) {
-                  <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                  }
-                </ul>
-                }
-              </div>
-            </div>
+            }
           </div>
         </section>
         <!-- Applications Pane -->
