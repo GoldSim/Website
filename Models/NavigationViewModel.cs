@@ -3,11 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Web;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models {
@@ -31,5 +27,6 @@ namespace GoldSim.Web.Models {
 
     public TopicViewModelCollection<NavigationViewModel> Children { get; set; }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace

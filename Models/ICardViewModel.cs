@@ -23,5 +23,6 @@ namespace GoldSim.Web.Models {
     string WebPath { get; }
     string Title { get; }
 
-  } //Interface
-} //Namespace
+  } // Interface
+
+} // Namespace

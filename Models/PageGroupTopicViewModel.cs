@@ -3,11 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GoldSim.Web.Models {
 
@@ -26,5 +21,6 @@ namespace GoldSim.Web.Models {
     public string ThumbnailImage { get; set; }
     public string WebPath { get; set; }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace

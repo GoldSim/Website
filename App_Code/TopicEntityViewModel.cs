@@ -38,8 +38,8 @@ namespace GoldSim.Web {
     /// </summary>
     /// <returns>A Topic view model.</returns>
     public TopicEntityViewModel(ITopicRepository topicRepository, Topic topic) {
-      TopicRepository = topicRepository;
-      Topic = topic;
+      TopicRepository           = topicRepository;
+      Topic                     = topic;
     }
 
     /*==========================================================================================================================
@@ -79,6 +79,6 @@ namespace GoldSim.Web {
     /// <returns>The <see cref="GetTopic()"/> associated with the current page.</returns>
     public Topic Topic { get; }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

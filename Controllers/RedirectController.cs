@@ -3,10 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
@@ -105,6 +101,6 @@ namespace GoldSim.Web.Controllers {
       return null;
     }
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

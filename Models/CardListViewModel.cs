@@ -3,15 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Ignia.Topics;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.ViewModels;
-using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web.Models {
 
@@ -37,8 +29,8 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <returns>A card list view model.</returns>
     public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
-      _cards = cards;
-      _className = className;
+      _cards                    = cards;
+      _className                = className;
     }
 
     /*==========================================================================================================================
@@ -67,5 +59,6 @@ namespace GoldSim.Web.Models {
       }
     }
 
-  } //Class
-} //Namespace
+  } // Class
+
+} // Namespace

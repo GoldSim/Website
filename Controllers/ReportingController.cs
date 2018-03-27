@@ -60,6 +60,6 @@ namespace GoldSim.Web.Controllers {
 
     }
 
-  }
+  } // Class
 
-}
+} // Namespace

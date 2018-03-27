@@ -4,8 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using Ignia.Topics.ViewModels;
-using Ignia.Topics.Mapping;
-using System.ComponentModel;
 
 namespace GoldSim.Web.Models {
 

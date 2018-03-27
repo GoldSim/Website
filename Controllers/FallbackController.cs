@@ -3,10 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace GoldSim.Web.Controllers {
@@ -18,7 +14,6 @@ namespace GoldSim.Web.Controllers {
   ///   Provides an empty fallback controller, which will be called if no other controller is identified. The primary purpose of
   ///   this controller is to throw a 404.
   /// </summary>
-
   public class FallbackController : Controller {
 
     /*==========================================================================================================================
@@ -40,6 +35,6 @@ namespace GoldSim.Web.Controllers {
     /// <returns>The site's default view.</returns>
     public ActionResult Index() => HttpNotFound("No controller available to handle this request.");
 
-  } //Class
+  } // Class
 
-} //Namespace
+} // Namespace

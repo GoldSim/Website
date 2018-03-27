@@ -3,18 +3,12 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
 using GoldSim.Web.Models;
-using GoldSim.Web;
 using Ignia.Topics.Mapping;
-using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Controllers {
 
@@ -46,9 +40,9 @@ namespace GoldSim.Web.Controllers {
       ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService
     ) : base() {
-      _topicRepository = topicRepository;
-      _topicRoutingService = topicRoutingService;
-      _topicMappingService = topicMappingService;
+      _topicRepository          = topicRepository;
+      _topicRoutingService      = topicRoutingService;
+      _topicMappingService      = topicMappingService;
     }
 
     /*==========================================================================================================================
@@ -111,7 +105,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = AddNestedTopics(navigationRootTopic, currentTopic, false, 3);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic, false, 3);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -151,7 +145,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -191,7 +185,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -217,7 +211,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -235,8 +229,8 @@ namespace GoldSim.Web.Controllers {
     private NavigationViewModel AddNestedTopics(
       Topic sourceTopic,
       Topic currentTopic,
-      bool allowPageGroups = true,
-      int tiers = 1
+      bool allowPageGroups      = true,
+      int tiers                 = 1
     ) {
       tiers--;
       if (sourceTopic == null) {
@@ -259,5 +253,5 @@ namespace GoldSim.Web.Controllers {
       return viewModel;
     }
 
-  } //Class
-} //Namespace
+  } // Class
+} // Namespace

@@ -6,8 +6,6 @@
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web;
-using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web.Controllers {
 
@@ -49,13 +47,13 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish Page Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic topic = _topicRepository.Load();
-      TopicEntityViewModel topicViewModel = new TopicEntityViewModel(_topicRepository, _topicRepository.Load());
+      Topic                     topic           = _topicRepository.Load();
+      TopicEntityViewModel      topicViewModel  = new TopicEntityViewModel(_topicRepository, _topicRepository.Load());
 
       /*------------------------------------------------------------------------------------------------------------------------
       | DEFINE CONTENT TYPE
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Response.ContentType = "text/xml";
+      Response.ContentType      = "text/xml";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the homepage view
@@ -64,6 +62,6 @@ namespace GoldSim.Web.Controllers {
 
     }
 
-  }
+  } // Class
 
-}
+} // Namespace

@@ -22,4 +22,5 @@ namespace GoldSim.Web.Models {
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; set; }
 
   } // Class
+
 } // Namespace
