@@ -16,10 +16,11 @@ using Ignia.Topics.Web.Mvc;
 namespace GoldSim.Web {
 
   /*============================================================================================================================
-  | CLASS: HOME CONTROLLER
+  | CLASS: CONTROLLER FACTORY
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to the default homepage for the site.
+  ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
+  ///   Dependency Injection.
   /// </summary>
   class GoldSimControllerFactory : DefaultControllerFactory {
 
