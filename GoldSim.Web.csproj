@@ -2197,6 +2197,7 @@
     <Compile Include="Models\ApplicationBasePageTopicViewModel.cs" />
     <Compile Include="Models\CardListViewModel.cs" />
     <Compile Include="Models\ICardViewModel.cs" />
+    <Compile Include="Models\NavigationTopicViewModel.cs" />
     <Compile Include="Models\NavigationViewModel.cs" />
     <Compile Include="Models\PageGroupTopicViewModel.cs" />
     <Compile Include="Models\HomeTopicViewModel.cs" />

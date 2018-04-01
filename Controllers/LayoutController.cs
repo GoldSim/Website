@@ -9,6 +9,7 @@ using Ignia.Topics;
 using Ignia.Topics.Repositories;
 using GoldSim.Web.Models;
 using Ignia.Topics.Mapping;
+using System.Collections.Generic;
 
 namespace GoldSim.Web.Controllers {
 
@@ -19,6 +20,11 @@ namespace GoldSim.Web.Controllers {
   ///   Provides access to the default homepage for the site.
   /// </summary>
   public class LayoutController : Controller {
+
+    /*==========================================================================================================================
+    | STATIC VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private static Dictionary<int, NavigationTopicViewModel> _cache = new Dictionary<int, NavigationTopicViewModel>();
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -105,7 +111,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic, false, 3);
+      var navigationViewModel   = new NavigationViewModel() {
+        NavigationRoot          = GetCachedViewModel(navigationRootTopic, false, 3),
+        CurrentKey              = CurrentTopic.GetUniqueKey()
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -145,7 +154,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel() {
+        NavigationRoot          = GetCachedViewModel(navigationRootTopic),
+        CurrentKey              = CurrentTopic.GetUniqueKey()
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -185,7 +197,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel() {
+        NavigationRoot          = GetCachedViewModel(navigationRootTopic),
+        CurrentKey              = CurrentTopic.GetUniqueKey()
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -211,7 +226,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = AddNestedTopics(navigationRootTopic, currentTopic);
+      var navigationViewModel   = new NavigationViewModel() {
+        NavigationRoot          = GetCachedViewModel(navigationRootTopic),
+        CurrentKey              = CurrentTopic.GetUniqueKey()
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -221,14 +239,42 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
+    | GET CACHED VIEW MODEL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A helper function that acts as a façade to <see cref="AddNestedTopics(Topic, Topic, Boolean, Int32)"/>, allowing the
+    ///   root topic to be cached.
+    /// </summary>
+    /// <param name="sourceTopic">The <see cref="Topic"/> to pull the values from.</param>
+    /// <param name="allowPageGroups">Determines whether <see cref="PageGroupTopicViewModel"/>s should be crawled.</param>
+    /// <param name="tiers">Determines how many tiers of children should be included in the graph.</param>
+    private NavigationTopicViewModel GetCachedViewModel(
+      Topic sourceTopic,
+      bool allowPageGroups      = true,
+      int tiers                 = 1
+    ) {
+      if (sourceTopic == null) {
+        return null;
+      }
+      if (_cache.ContainsKey(sourceTopic.Id)) {
+        return _cache[sourceTopic.Id];
+      }
+      var viewModel = AddNestedTopics(sourceTopic, allowPageGroups, tiers);
+      _cache.Add(sourceTopic.Id, viewModel);
+      return viewModel;
+    }
+
+    /*==========================================================================================================================
     | ADD NESTED TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   A helper function that allows a set number of tiers to be added to a <see cref="NavigationViewModel"/> tree.
     /// </summary>
-    private NavigationViewModel AddNestedTopics(
+    /// <param name="sourceTopic">The <see cref="Topic"/> to pull the values from.</param>
+    /// <param name="allowPageGroups">Determines whether <see cref="PageGroupTopicViewModel"/>s should be crawled.</param>
+    /// <param name="tiers">Determines how many tiers of children should be included in the graph.</param>
+    private NavigationTopicViewModel AddNestedTopics(
       Topic sourceTopic,
-      Topic currentTopic,
       bool allowPageGroups      = true,
       int tiers                 = 1
     ) {
@@ -236,14 +282,12 @@ namespace GoldSim.Web.Controllers {
       if (sourceTopic == null) {
         return null;
       }
-      var viewModel = _topicMappingService.Map<NavigationViewModel>(sourceTopic, Relationships.None);
-      viewModel.IsSelected = (currentTopic?.GetUniqueKey()?? "").StartsWith(sourceTopic.GetUniqueKey());
+      var viewModel = _topicMappingService.Map<NavigationTopicViewModel>(sourceTopic, Relationships.None);
       if (tiers >= 0 && (allowPageGroups || !sourceTopic.ContentType.Equals("PageGroup"))) {
         foreach (var topic in sourceTopic.Children.Sorted.Where(t => t.IsVisible())) {
           viewModel.Children.Add(
             AddNestedTopics(
               topic,
-              currentTopic,
               allowPageGroups,
               tiers
             )

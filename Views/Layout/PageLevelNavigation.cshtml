@@ -11,20 +11,22 @@
   }
 </style>
 
-@if (Model != null) {
+@if (Model.NavigationRoot != null) {
   <!-- Page Title Area -->
   <header class="header page-banner">
     <div class="grid-container">
       <div class="grid-x">
-        <h1 class="title short cell">@Model.Title</h1>
+        <h1 class="title short cell">@Model.NavigationRoot.Title</h1>
       </div>
-      @if (Model.Children.Count > 0)
+      @if (Model.NavigationRoot.Children.Count > 0)
       {
         <!-- Mobile Page Navigation Area -->
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
-            @foreach (var topic in Model.Children) {
-              <option value="@topic.WebPath" @((topic.IsSelected) ? " selected" : "")>@(topic.ShortTitle?? topic.Title)</option>
+            @foreach (var topic in Model.NavigationRoot.Children) {
+              <option value="@topic.WebPath" @((topic.IsSelected(Model.CurrentKey)) ? " selected" : "")>
+                @(topic.ShortTitle?? topic.Title)
+              </option>
             }
           </select>
         </nav>
@@ -34,12 +36,14 @@
   </header>
   <!-- /Page Title Area -->
 
-  if (Model != null && Model.Children.Count > 0) {
+  if (Model.NavigationRoot != null && Model.NavigationRoot.Children.Count > 0) {
     <!-- Page Navigation Area -->
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
-        @foreach (var topic in Model.Children) {
-          <li><a href="@topic.WebPath" class="@(topic.IsSelected? "selected" : "")">@(topic.ShortTitle?? topic.Title)</a></li>
+        @foreach (var topic in Model.NavigationRoot.Children) {
+          <li><a href="@topic.WebPath" class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")">
+            @(topic.ShortTitle?? topic.Title)
+          </a></li>
         }
       </ul>
     </nav>
@@ -55,8 +59,8 @@
   | Gets the HeaderImageURL Attribute to combine with gradient CSS definitions
   \---------------------------------------------------------------------------------------------------------------------------*/
   string GetBannerImage() {
-    if (Model != null && !String.IsNullOrEmpty(Model.HeaderImageUrl)) {
-      return ", url(" + Model.HeaderImageUrl + ")";
+    if (Model.NavigationRoot != null && !String.IsNullOrEmpty(Model.NavigationRoot.HeaderImageUrl)) {
+      return ", url(" + Model.NavigationRoot.HeaderImageUrl + ")";
     }
     return "";
   }

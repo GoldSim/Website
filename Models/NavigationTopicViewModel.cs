@@ -18,11 +18,11 @@ namespace GoldSim.Web.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationViewModel {
+  public class NavigationTopicViewModel: PageTopicViewModel {
 
-    public string CurrentKey { get; set; }
-    public NavigationTopicViewModel NavigationRoot { get; set; }
-
+    public string HeaderImageUrl { get; set; }
+    public TopicViewModelCollection<NavigationTopicViewModel> Children { get; set; }
+    public bool IsSelected(string uniqueKey) => uniqueKey.StartsWith(this.UniqueKey);
 
   } // Class
 
