@@ -9,6 +9,7 @@ using System.Web.Routing;
 using GoldSim.Web.Controllers;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
+using Ignia.Topics.Repositories;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
 
@@ -23,6 +24,28 @@ namespace GoldSim.Web {
   class GoldSimControllerFactory : DefaultControllerFactory {
 
     /*==========================================================================================================================
+    | PRIVATE INSTANCES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicMappingService            _topicMappingService            = null;
+    private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            Topic                           _rootTopic                      = null;
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes a new instance of the <see cref="GoldSimControllerFactory"/>, including any shared dependencies to be used
+    ///   across instances of controllers.
+    /// </summary>
+    public GoldSimControllerFactory() : base() {
+      #pragma warning disable CS0618
+      _topicRepository          = TopicRepository.DataProvider;
+      _topicMappingService      = new TopicMappingService(_topicRepository);
+      _rootTopic                = TopicRepository.RootTopic;
+      #pragma warning restore CS0618
+    }
+
+    /*==========================================================================================================================
     | GET CONTROLLER INSTANCE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -34,16 +57,11 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      #pragma warning disable CS0618
-      var topicRepository               = TopicRepository.DataProvider;
-      var rootTopic                     = TopicRepository.RootTopic;
       var mvcTopicRoutingService        = new MvcTopicRoutingService(
-        topicRepository,
+        _topicRepository,
         requestContext.HttpContext.Request.Url,
         requestContext.RouteData
       );
-      var topicMappingService           = new TopicMappingService(topicRepository);
-      #pragma warning restore CS0618
 
       //Set default controller
       if (controllerType == null) {
@@ -54,11 +72,11 @@ namespace GoldSim.Web {
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (controllerType == typeof(RedirectController)) {
-        return new RedirectController(topicRepository);
+        return new RedirectController(_topicRepository);
       }
 
       if (controllerType == typeof(SitemapController)) {
-        return new SitemapController(topicRepository, null);
+        return new SitemapController(_topicRepository, null);
       }
 
       if (controllerType == typeof(ErrorController)) {
@@ -66,15 +84,15 @@ namespace GoldSim.Web {
       }
 
       if (controllerType == typeof(ReportingController)) {
-        return new ReportingController(topicRepository, new ExcelReportingService());
+        return new ReportingController(_topicRepository, new ExcelReportingService());
       }
 
       if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(topicRepository, mvcTopicRoutingService, topicMappingService);
+        return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
       }
 
       if (controllerType == typeof(TopicController)) {
-        return new TopicController(topicRepository, mvcTopicRoutingService, topicMappingService);
+        return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
       }
 
       return base.GetControllerInstance(requestContext, controllerType);
@@ -82,10 +100,9 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Release
       \-----------------------------------------------------------------------------------------------------------------------*/
-      // There are no resources to release
+      //There are no resources to release
 
     }
 
-  } // Class
-
-} // Namespace
+  } //Class
+} //Namespace
