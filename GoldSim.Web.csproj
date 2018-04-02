@@ -18,7 +18,7 @@
     <AssemblyName>GoldSim.Web</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44300</IISExpressSSLPort>
+    <IISExpressSSLPort>63082</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -2202,6 +2202,7 @@
     <Compile Include="Models\NavigationViewModel.cs" />
     <Compile Include="Models\PageGroupTopicViewModel.cs" />
     <Compile Include="Models\HomeTopicViewModel.cs" />
+    <Compile Include="Models\SearchTopicViewModel.cs" />
     <Compile Include="Models\TechnicalPaperTopicViewModel.cs" />
     <Compile Include="Models\FaqItemTopicViewModel.cs" />
     <Compile Include="Models\FaqTopicViewModel.cs" />
