@@ -47,7 +47,7 @@
           @if (!isDesktop) {
             <a
               href="@topic.WebPath"
-              class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")"
+              class="@(topic.UniqueKey.Equals(Model.CurrentKey)? "selected" : "")"
               onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')"
             >Overview</a>
           }
