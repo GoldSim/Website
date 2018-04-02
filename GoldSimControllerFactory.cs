@@ -72,36 +72,30 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (controllerType == typeof(RedirectController)) {
-        return new RedirectController(_topicRepository);
+      switch (controllerType.Name) {
+
+        case nameof(RedirectController):
+          return new RedirectController(_topicRepository);
+
+        case nameof(SitemapController):
+          return new SitemapController(_topicRepository, null);
+
+        case nameof(ErrorController):
+          return new ErrorController();
+
+        case nameof(ReportingController):
+          return new ReportingController(_topicRepository, new ExcelReportingService());
+
+        case nameof(LayoutController):
+          return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+
+        case nameof(TopicController):
+          return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+
+        default:
+          return base.GetControllerInstance(requestContext, controllerType);
+
       }
-
-      if (controllerType == typeof(SitemapController)) {
-        return new SitemapController(_topicRepository, null);
-      }
-
-      if (controllerType == typeof(ErrorController)) {
-        return new ErrorController();
-      }
-
-      if (controllerType == typeof(ReportingController)) {
-        return new ReportingController(_topicRepository, new ExcelReportingService());
-      }
-
-      if (controllerType == typeof(LayoutController)) {
-        return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
-      }
-
-      if (controllerType == typeof(TopicController)) {
-        return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
-      }
-
-      return base.GetControllerInstance(requestContext, controllerType);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Release
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      //There are no resources to release
 
     }
 
