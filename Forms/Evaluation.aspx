@@ -77,6 +77,17 @@
   }
 
   /*============================================================================================================================
+  | VALIDATOR: TERMS OF USE CHECK
+  >=============================================================================================================================
+  | Ensures that the terms of use agreement checkbox is checked.
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  void TermsCheckValidator(object source, ServerValidateEventArgs args) {
+    if (!TOUCheck.Checked) {
+      args.IsValid = false;
+    }
+  }
+
+  /*============================================================================================================================
   | VALIDATOR: EMAIL DOMAIN
   >=============================================================================================================================
   | Ensures that the email address entered is not from a generic / free email domain.
@@ -195,6 +206,33 @@
 
     </div>
 
+  </fieldset>
+
+  <fieldset>
+    <legend>Terms of Use</legend>
+    <div class="grid-x grid-margin-x">
+
+      <div class="cell">
+        <p>By checking the box below I agree to the following:</p>
+        <ol>
+          <li>I will only use this free Trial Version for the purpose of evaluating and/or testing the software or taking a GoldSim training course.</li>
+          <li>I will <em>not</em> use this free Trial Version for consulting or other commercial applications. If I require a temporary license for such purposes, I will <a href="mailto:support@goldsim.com">contact the GoldSim Technology Group</a>.</li>
+        </ol>
+      </div>
+      <div class="cell">
+        <div class="checkbox">
+          <asp:CheckBox ID="TOUCheck" ClientIDMode="Static" RunAt="Server" />
+          <label for="TOUCheck" RunAt="Server">I agree to these terms of use.</label>
+        </div>
+        <asp:CustomValidator
+          OnServerValidate      = "TermsCheckValidator"
+          ErrorMessage          = "Please accept the terms of use."
+          Display               = "None"
+          RunAt                 = "Server"
+          />
+      </div>
+
+    </div>
   </fieldset>
 
 </asp:Content>
