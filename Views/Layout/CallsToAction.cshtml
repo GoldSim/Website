@@ -14,7 +14,7 @@
 
 @helper callsToActionContents() {
 
-  string currentPath            = ((Model.NavigationRoot != null && !String.IsNullOrEmpty(Model.NavigationRoot.WebPath)) ? Model.NavigationRoot.WebPath.ToLower() : "");
+  string currentPath            = (!String.IsNullOrEmpty(Model.CurrentKey) ? Model.CurrentKey.ToLower() : "");
   string callToActionType       = "general";
   if (currentPath.Contains("purchase")) {
     callToActionType            = "purchase";
