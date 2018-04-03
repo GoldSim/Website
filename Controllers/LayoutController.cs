@@ -113,7 +113,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel   = new NavigationViewModel() {
         NavigationRoot          = GetCachedViewModel(navigationRootTopic, false, 3),
-        CurrentKey              = CurrentTopic.GetUniqueKey()
+        CurrentKey              = CurrentTopic?.GetUniqueKey()
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -156,7 +156,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel   = new NavigationViewModel() {
         NavigationRoot          = GetCachedViewModel(navigationRootTopic),
-        CurrentKey              = CurrentTopic.GetUniqueKey()
+        CurrentKey              = CurrentTopic?.GetUniqueKey()
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -199,7 +199,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel   = new NavigationViewModel() {
         NavigationRoot          = GetCachedViewModel(navigationRootTopic),
-        CurrentKey              = CurrentTopic.GetUniqueKey()
+        CurrentKey              = CurrentTopic?.GetUniqueKey()
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -228,7 +228,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel   = new NavigationViewModel() {
         NavigationRoot          = GetCachedViewModel(navigationRootTopic),
-        CurrentKey              = CurrentTopic.GetUniqueKey()
+        CurrentKey              = CurrentTopic?.GetUniqueKey()
       };
 
       /*------------------------------------------------------------------------------------------------------------------------

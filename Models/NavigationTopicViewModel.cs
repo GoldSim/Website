@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models {
 
     public string HeaderImageUrl { get; set; }
     public TopicViewModelCollection<NavigationTopicViewModel> Children { get; set; }
-    public bool IsSelected(string uniqueKey) => uniqueKey.StartsWith(this.UniqueKey);
+    public bool IsSelected(string uniqueKey) => uniqueKey?.StartsWith(this.UniqueKey) ?? false;
 
   } // Class
 
