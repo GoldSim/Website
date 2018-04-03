@@ -186,7 +186,7 @@ namespace GoldSim.Web.Controllers {
       | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
       \-----------------------------------------------------------------------------------------------------------------------*/
       navigationRootTopic       = currentTopic;
-      while (navigationRootTopic?.Parent?.Parent != null) {
+      while (navigationRootTopic?.Parent?.Parent?.Parent != null) {
         navigationRootTopic     = navigationRootTopic.Parent;
       }
 
