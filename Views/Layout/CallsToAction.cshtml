@@ -14,12 +14,12 @@
 
 @helper callsToActionContents() {
 
-  string currentPath            = (!String.IsNullOrEmpty(Model.CurrentKey) ? Model.CurrentKey.ToLower() : "");
+  string currentNavigationRoot  = (Model.NavigationRoot != null ? Model.NavigationRoot.Key.ToLower() : "");
   string callToActionType       = "general";
-  if (currentPath.Contains("purchase")) {
+  if (currentNavigationRoot.Equals("purchase")) {
     callToActionType            = "purchase";
   }
-  if (currentPath.Contains("customers")) {
+  if (currentNavigationRoot.Equals("customers")) {
     callToActionType            = "customers";
   }
 
