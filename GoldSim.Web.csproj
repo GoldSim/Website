@@ -2170,7 +2170,6 @@
       <DependentUpon>FormField.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
-    <Compile Include="Controllers\FallbackController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />

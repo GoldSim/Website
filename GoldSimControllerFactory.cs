@@ -67,7 +67,7 @@ namespace GoldSim.Web {
 
       //Set default controller
       if (controllerType == null) {
-        controllerType = typeof(FallbackController);
+        controllerType = typeof(OnTopic.FallbackController);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
