@@ -1,4 +1,4 @@
-﻿@model NavigationViewModel
+﻿@model Ignia.Topics.Web.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
 @if (Model.NavigationRoot.Children.Count > 0) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
@@ -24,7 +24,7 @@
 
 }
 
-@helper WriteMenu(NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
+@helper WriteMenu(GoldSim.Web.Models.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
 
   @*============================================================================================================================
   | WRITE NODE

@@ -3,7 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using Ignia.Topics;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models {
@@ -18,11 +20,11 @@ namespace GoldSim.Web.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationTopicViewModel: PageTopicViewModel {
+  public class NavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModelCore<NavigationTopicViewModel> {
 
     public string HeaderImageUrl { get; set; }
-    public TopicViewModelCollection<NavigationTopicViewModel> Children { get; set; }
-    public bool IsSelected(string uniqueKey) => uniqueKey?.StartsWith(this.UniqueKey) ?? false;
+    public virtual Collection<NavigationTopicViewModel> Children { get; set; }
+    public bool IsSelected(string uniqueKey) => uniqueKey?.StartsWith(UniqueKey) ?? false;
 
   } // Class
 
