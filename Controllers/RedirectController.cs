@@ -6,6 +6,7 @@
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
+using OnTopic = Ignia.Topics.Web.Mvc.Controllers;
 
 namespace GoldSim.Web.Controllers {
 
@@ -15,12 +16,12 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Handles redirect based on e.g., TopicID or legacy PageID.
   /// </summary>
-  public class RedirectController : Controller {
+  public class RedirectController : OnTopic.RedirectController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     ITopicRepository        _topicRepository        = null;
+    private                     ITopicRepository                _topicRepository                = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -29,35 +30,8 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public RedirectController(ITopicRepository topicRepository) : base() {
+    public RedirectController(ITopicRepository topicRepository) : base(topicRepository) {
       _topicRepository          = topicRepository;
-    }
-
-    /*==========================================================================================================================
-    | REDIRECT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Redirect based on TopicID
-    /// </summary>
-    public ActionResult TopicRedirect(int topicId) {
-
-      /*-------------------------------------------------------------------------------------------------------------------------
-      | Find the topic with the correct PageID.
-      \------------------------------------------------------------------------------------------------------------------------*/
-      var topic = _topicRepository.Load(topicId);
-
-      /*-------------------------------------------------------------------------------------------------------------------------
-      | Provide error handling
-      \------------------------------------------------------------------------------------------------------------------------*/
-      if (topic == null) {
-        return HttpNotFound("Invalid TopicID.");
-      }
-
-      /*-------------------------------------------------------------------------------------------------------------------------
-      | Perform redirect
-      \------------------------------------------------------------------------------------------------------------------------*/
-      return RedirectPermanent(topic.GetWebPath());
-
     }
 
     /*==========================================================================================================================
