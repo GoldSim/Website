@@ -12,6 +12,7 @@ using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
+using OnTopic = Ignia.Topics.Web.Mvc.Controllers;
 
 namespace GoldSim.Web {
 
@@ -77,8 +78,8 @@ namespace GoldSim.Web {
         case nameof(RedirectController):
           return new RedirectController(_topicRepository);
 
-        case nameof(SitemapController):
-          return new SitemapController(_topicRepository, null);
+        case nameof(OnTopic.SitemapController):
+          return new OnTopic.SitemapController(_topicRepository);
 
         case nameof(ErrorController):
           return new ErrorController();

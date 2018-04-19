@@ -2165,7 +2165,6 @@
     </None>
     <Compile Include="App_Code\ExcelReportingService.cs" />
     <Compile Include="App_Code\IReportingService.cs" />
-    <Compile Include="App_Code\TopicEntityViewModel.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
@@ -2176,7 +2175,6 @@
     <Compile Include="Controllers\LayoutController.cs" />
     <Compile Include="Controllers\RedirectController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
-    <Compile Include="Controllers\SitemapController.cs" />
     <Content Include="Forms\Common\Templates\Forms.Layout.master.cs">
       <DependentUpon>Forms.Layout.master</DependentUpon>
     </Content>
