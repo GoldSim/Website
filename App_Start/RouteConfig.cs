@@ -40,25 +40,19 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle legacy redirects
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //### NOTE JJC041918: Since GoldSim is deriving and customizing the RedirecController, its name is ambiguous between
-      //the Ignia and GoldSim namespaces. As a result, the optional namespaces argument is required.
       routes.MapRoute(
         name: "LegacyRedirect",
         url: "Page/{pageId}",
-        defaults: new { controller = "Redirect", action = "LegacyRedirect" },
-        namespaces: new string[] { "GoldSim.Web.Controllers" }
+        defaults: new { controller = "LegacyRedirect", action = "Redirect" }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle OnTopic redirects
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //### NOTE JJC041918: Since GoldSim is deriving and customizing the RedirecController, its name is ambiguous between
-      //the Ignia and GoldSim namespaces. As a result, the optional namespaces argument is required.
       routes.MapRoute(
         name: "TopicRedirect",
         url: "Topic/{topicId}",
-        defaults: new { controller = "Redirect", action = "TopicRedirect" },
-        namespaces: new string[] { "GoldSim.Web.Controllers" }
+        defaults: new { controller = "Redirect", action = "Redirect" }
       );
 
       /*------------------------------------------------------------------------------------------------------------------------

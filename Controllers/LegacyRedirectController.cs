@@ -6,17 +6,20 @@
 using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
-using OnTopic = Ignia.Topics.Web.Mvc.Controllers;
 
 namespace GoldSim.Web.Controllers {
 
   /*============================================================================================================================
-  | CLASS: REDIRECT CONTROLLER
+  | CLASS: LEGACY REDIRECT CONTROLLER
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Handles redirect based on e.g., TopicID or legacy PageID.
+  ///   Prior to migrating to OnTopic, GoldSim had a legacy data model where pages were mapped to /Page/ID/. With the migration
+  ///   to OnTopic, those identifiers were stored as a custom attribute, <c>PageId</c>, on each topic that maps to one of the
+  ///   legacy pages. To support external references that may still be pointing to these URLs, the <see
+  ///   cref="LegacyRedirectController"/> provides routing that looks up topics based on the legacy <c>PageId</c> and then
+  ///   redirects to the new, friendly URL.
   /// </summary>
-  public class RedirectController : OnTopic.RedirectController {
+  public class LegacyRedirectController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -30,7 +33,7 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public RedirectController(ITopicRepository topicRepository) : base(topicRepository) {
+    public LegacyRedirectController(ITopicRepository topicRepository) : base() {
       _topicRepository          = topicRepository;
     }
 
@@ -38,7 +41,7 @@ namespace GoldSim.Web.Controllers {
     | REDIRECT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Redirect based on TopicID
+    ///   Redirect based on PageId.
     /// </summary>
     public ActionResult LegacyRedirect(int pageId) {
 
