@@ -29,6 +29,7 @@ namespace GoldSim.Web {
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicMappingService            _topicMappingService            = null;
+    private readonly            ITopicMappingService            _cachedTopicMappingService      = null;
     private readonly            ITopicRepository                _topicRepository                = null;
     private readonly            Topic                           _rootTopic                      = null;
 
@@ -41,9 +42,10 @@ namespace GoldSim.Web {
     /// </summary>
     public GoldSimControllerFactory() : base() {
       #pragma warning disable CS0618
-      _topicRepository          = TopicRepository.DataProvider;
-      _topicMappingService      = new TopicMappingService(_topicRepository);
-      _rootTopic                = TopicRepository.RootTopic;
+      _topicRepository                                          = TopicRepository.DataProvider;
+      _topicMappingService                                      = new TopicMappingService(_topicRepository);
+      _cachedTopicMappingService                                = new CachedTopicMappingService(_topicMappingService);
+      _rootTopic                                                = TopicRepository.RootTopic;
       #pragma warning restore CS0618
     }
 
@@ -88,7 +90,7 @@ namespace GoldSim.Web {
           return new ReportingController(_topicRepository, new ExcelReportingService());
 
         case nameof(LayoutController):
-          return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+          return new LayoutController(_topicRepository, mvcTopicRoutingService, _cachedTopicMappingService);
 
         case nameof(TopicController):
           return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
