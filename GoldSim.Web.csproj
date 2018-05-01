@@ -2172,7 +2172,7 @@
     </None>
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
-    <Compile Include="Controllers\RedirectController.cs" />
+    <Compile Include="Controllers\LegacyRedirectController.cs" />
     <Compile Include="Controllers\ReportingController.cs" />
     <Content Include="Forms\Common\Templates\Forms.Layout.master.cs">
       <DependentUpon>Forms.Layout.master</DependentUpon>
