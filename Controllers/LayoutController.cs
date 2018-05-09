@@ -74,7 +74,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
+        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -109,7 +109,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
+        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -138,7 +138,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
+        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
