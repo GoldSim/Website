@@ -25,14 +25,14 @@ namespace GoldSim.Web.Models {
     [Relationship(RelationshipType.Relationship)]
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; set; }
 
-    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
     public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; set; }
 
-    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
     [FilterByAttribute("DocumentType", "WhitePaper")]
     public TopicViewModelCollection<DocumentPointerTopicViewModel> WhitePapers { get; set; }
 
-    [Relationship("Applications", RelationshipType.IncomingRelationship)]
+    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; set; }
 
   } // Class
