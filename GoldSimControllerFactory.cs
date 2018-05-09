@@ -28,6 +28,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicMappingService            _cachedTopicMappingService      = null;
     private readonly            ITopicRepository                _topicRepository                = null;
@@ -43,7 +44,8 @@ namespace GoldSim.Web {
     public GoldSimControllerFactory() : base() {
       #pragma warning disable CS0618
       _topicRepository                                          = TopicRepository.DataProvider;
-      _topicMappingService                                      = new TopicMappingService(_topicRepository);
+      _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
+      _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
       _cachedTopicMappingService                                = new CachedTopicMappingService(_topicMappingService);
       _rootTopic                                                = TopicRepository.RootTopic;
       #pragma warning restore CS0618
