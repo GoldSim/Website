@@ -3,16 +3,14 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
-using Ignia.Topics;
-using Ignia.Topics.Repositories;
 using GoldSim.Web.Models;
+using Ignia.Topics;
 using Ignia.Topics.Mapping;
-using System.Collections.Generic;
+using Ignia.Topics.Repositories;
 using Ignia.Topics.Web.Mvc.Controllers;
 using Ignia.Topics.Web.Mvc.Models;
-using System.Threading.Tasks;
 
 namespace GoldSim.Web.Controllers {
 
@@ -22,7 +20,7 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  public class LayoutController : LayoutControllerBase<NavigationTopicViewModel> {
+  public class LayoutController : CachedLayoutControllerBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

@@ -30,7 +30,6 @@ namespace GoldSim.Web {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
-    private readonly            ITopicMappingService            _cachedTopicMappingService      = null;
     private readonly            ITopicRepository                _topicRepository                = null;
     private readonly            Topic                           _rootTopic                      = null;
 
@@ -46,7 +45,6 @@ namespace GoldSim.Web {
       _topicRepository                                          = TopicRepository.DataProvider;
       _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
-      _cachedTopicMappingService                                = new CachedTopicMappingService(_topicMappingService);
       _rootTopic                                                = TopicRepository.RootTopic;
       #pragma warning restore CS0618
     }
@@ -95,7 +93,7 @@ namespace GoldSim.Web {
           return new ReportingController(_topicRepository, new ExcelReportingService());
 
         case nameof(LayoutController):
-          return new LayoutController(_topicRepository, mvcTopicRoutingService, _cachedTopicMappingService);
+          return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 
         case nameof(TopicController):
           return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
