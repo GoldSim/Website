@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GoldSim.Web</RootNamespace>
     <AssemblyName>GoldSim.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>63082</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
@@ -44,6 +44,7 @@
     <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
     <ExcludeFoldersFromDeployment>Help</ExcludeFoldersFromDeployment>
     <ExcludeGeneratedDebugSymbol>false</ExcludeGeneratedDebugSymbol>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
