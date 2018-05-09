@@ -12,6 +12,7 @@ using Ignia.Topics.Mapping;
 using System.Collections.Generic;
 using Ignia.Topics.Web.Mvc.Controllers;
 using Ignia.Topics.Web.Mvc.Models;
+using System.Threading.Tasks;
 
 namespace GoldSim.Web.Controllers {
 
@@ -47,7 +48,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides page-level navigation for the current page.
     /// </summary>
-    public PartialViewResult PageLevelNavigation() {
+    public async Task<PartialViewResult> PageLevelNavigation() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -73,7 +74,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = AddNestedTopics(navigationRootTopic),
+        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -90,7 +91,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides the Calls To Action panel for the site layout.
     /// </summary>
-    public PartialViewResult CallsToAction() {
+    public async Task<PartialViewResult> CallsToAction() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -108,7 +109,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = AddNestedTopics(navigationRootTopic),
+        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -125,7 +126,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides the footer for the site layout, which exposes the navigation from the company.
     /// </summary>
-    public PartialViewResult Footer() {
+    public async Task<PartialViewResult> Footer() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -137,7 +138,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = AddNestedTopics(navigationRootTopic),
+        NavigationRoot = await AddNestedTopicsAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
