@@ -20,7 +20,7 @@ namespace GoldSim.Web.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModelCore<NavigationTopicViewModel> {
+  public class NavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<NavigationTopicViewModel> {
 
     public string HeaderImageUrl { get; set; }
     public virtual Collection<NavigationTopicViewModel> Children { get; set; }
