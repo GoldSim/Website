@@ -18,7 +18,7 @@ namespace GoldSim.Web.Models {
 
     public string Introduction { get; set; }
 
-    [Recurse(Relationships.Children)]
+    [Follow(Relationships.Children)]
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; set; }
 
   } // Class
