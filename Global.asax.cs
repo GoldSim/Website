@@ -114,49 +114,6 @@ namespace GoldSim.Web {
 
     }
 
-    /*==========================================================================================================================
-    | EVENT: APPLICATION ERROR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Handles errors that are not otherwise handled by the page_error object or inline error handling code.
-    /// </summary>
-    void xApplication_Error(object sender, EventArgs e) {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle HTTP exceptions (namely, 404s)
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (Server.GetLastError().GetType() == typeof(HttpException)) {
-        switch (((HttpException)Server.GetLastError()).GetHttpCode()) {
-          case 404:
-            Server.ClearError();
-            Server.Transfer(
-              "/Common/Error.Pages/404.aspx?"
-              + "PagePath=" + Server.UrlEncode(Context.Request.ServerVariables["SCRIPT_NAME"])
-              + "&QueryString=" + Server.UrlEncode(Context.Request.QueryString.ToString())
-            );
-            return;
-          default:
-            break;
-        }
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle querystring/form hacks
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (Server.GetLastError().GetType() == typeof(System.Web.HttpRequestValidationException)) {
-        Server.ClearError();
-        Server.Transfer("/Common/Error.Pages/XSS.aspx");
-        return;
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Clear error and redirect to a friendly error page
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      Server.ClearError();
-      Server.Transfer("/Common/Error.Pages/Exception.aspx");
-
-    }
-
   }
 
 }
