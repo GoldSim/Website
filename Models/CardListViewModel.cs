@@ -16,12 +16,6 @@ namespace GoldSim.Web.Models {
   public class CardListViewModel {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     IEnumerable<ICardViewModel>     _cards                          = null;
-    private                     string                          _className                      = null;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -29,8 +23,8 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <returns>A card list view model.</returns>
     public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
-      _cards                    = cards;
-      _className                = className;
+      Cards                    = cards;
+      ClassName                = className;
     }
 
     /*==========================================================================================================================
@@ -40,11 +34,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
     /// <returns>A <see cref="List{T}"/> of <see cref="Ignia.Topics.Topic"/>, each representing a unique card.</returns>
-    public IEnumerable<ICardViewModel> Cards {
-      get {
-        return _cards;
-      }
-    }
+    public IEnumerable<ICardViewModel> Cards { get; } = null;
 
     /*==========================================================================================================================
     | CLASS NAME
@@ -53,12 +43,7 @@ namespace GoldSim.Web.Models {
     ///   Provides the (optional) CSS class to be associated with each card.
     /// </summary>
     /// <returns>A CSS class name.</returns>
-    public string ClassName {
-      get {
-        return _className;
-      }
-    }
-
+    public string ClassName { get; } = null;
   } // Class
 
 } // Namespace

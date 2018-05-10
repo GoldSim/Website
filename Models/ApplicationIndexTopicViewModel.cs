@@ -44,9 +44,8 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) {
-      return Categories.Where(t => t.Key.Equals(category.Replace("Systems", ""))).FirstOrDefault()?.Title?? category;
-    }
+    public string GetCategoryTitle(string category) =>
+      Categories.Where(t => t.Key.Equals(category.Replace("Systems", ""))).FirstOrDefault()?.Title?? category;
 
     /*==========================================================================================================================
     | GET ALL APPLICATIONS
@@ -55,11 +54,10 @@ namespace GoldSim.Web.Models {
     ///   Returns a consolidated list of <i>all</i> applications from the corresponding properties.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> GetAllApplications() {
-      return new TopicViewModelCollection<ApplicationBasePageTopicViewModel>(
+    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> GetAllApplications() =>
+      new TopicViewModelCollection<ApplicationBasePageTopicViewModel>(
         EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList()
       );
-    }
 
     /*==========================================================================================================================
     | GET CATEGORIZED APPLICATIONS
@@ -69,10 +67,11 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
     public Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>> GetCategorizedApplications() {
-      var categorizedApplications = new Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>>();
-      categorizedApplications.Add(nameof(EnvironmentalSystems), EnvironmentalSystems);
-      categorizedApplications.Add(nameof(BusinessSystems), BusinessSystems);
-      categorizedApplications.Add(nameof(EngineeredSystems), EngineeredSystems);
+      var categorizedApplications = new Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>> {
+        { nameof(EnvironmentalSystems), EnvironmentalSystems },
+        { nameof(BusinessSystems), BusinessSystems },
+        { nameof(EngineeredSystems), EngineeredSystems }
+      };
       return categorizedApplications;
     }
 

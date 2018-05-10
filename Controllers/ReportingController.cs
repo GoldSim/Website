@@ -34,8 +34,8 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Reporting Controller with necessary dependencies.
     /// </summary>
     public ReportingController(ITopicRepository topicRepository, IReportingService reportingService) : base() {
-      _topicRepository          = topicRepository ?? throw new ArgumentNullException("topicRepository");
-      _reportingService         = reportingService ?? throw new ArgumentNullException("reportingService");
+      _topicRepository          = topicRepository ?? throw new ArgumentNullException(nameof(topicRepository));
+      _reportingService         = reportingService ?? throw new ArgumentNullException(nameof(reportingService));
     }
 
     /*==========================================================================================================================

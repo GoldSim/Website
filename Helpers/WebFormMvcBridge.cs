@@ -40,19 +40,25 @@ namespace GoldSim.Web.Helpers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Simulate routing for WebFormController
       \-----------------------------------------------------------------------------------------------------------------------*/
-      RouteData routeData               = new RouteData();
+      var routeData             = new RouteData();
       routeData.Values.Add("controller", "WebFormController");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Initialize Controller context using WebFormController
       \-----------------------------------------------------------------------------------------------------------------------*/
-      ControllerContext controllerContext = new ControllerContext(new RequestContext(httpContextBase, routeData), new WebFormController());
+      var controllerContext = new ControllerContext(new RequestContext(httpContextBase, routeData), new WebFormController());
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Find the provided view and render it with simulated View context
       \-----------------------------------------------------------------------------------------------------------------------*/
-      IView view                        = FindPartialView(controllerContext, partialViewName);
-      ViewContext viewContext           = new ViewContext(controllerContext, view, new ViewDataDictionary { Model = model }, new TempDataDictionary(), httpContextBase.Response.Output);
+      var view                  = FindPartialView(controllerContext, partialViewName);
+      var viewContext           = new ViewContext(
+        controllerContext,
+        view,
+        new ViewDataDictionary { Model = model },
+        new TempDataDictionary(),
+        httpContextBase.Response.Output
+      );
       view.Render(viewContext, httpContextBase.Response.Output);
 
     }
@@ -69,7 +75,7 @@ namespace GoldSim.Web.Helpers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Search for partial view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      ViewEngineResult result           = ViewEngines.Engines.FindPartialView(controllerContext, partialViewName);
+      var result = ViewEngines.Engines.FindPartialView(controllerContext, partialViewName);
       if (result.View != null) {
         return result.View;
       }
@@ -77,8 +83,8 @@ namespace GoldSim.Web.Helpers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Build view locations searched message for exception in the case the partial view is not found
       \-----------------------------------------------------------------------------------------------------------------------*/
-      StringBuilder locationsText       = new StringBuilder();
-      foreach (string location in result.SearchedLocations) {
+      var locationsText = new StringBuilder();
+      foreach (var location in result.SearchedLocations) {
         locationsText.AppendLine();
         locationsText.Append(location);
       }
@@ -96,9 +102,15 @@ namespace GoldSim.Web.Helpers {
     /// <summary>
     ///   Pass-through method for calling RenderPartial() from an ASPX page.
     /// </summary>
-    public static void RenderAction(string controllerName, string actionName, object routeValues) {
-      RenderPartial("PartialRender", new RenderActionViewModel() { ControllerName = controllerName, ActionName = actionName, RouteValues = routeValues });
-    }
+    public static void RenderAction(string controllerName, string actionName, object routeValues) =>
+      RenderPartial(
+        "PartialRender",
+        new RenderActionViewModel() {
+          ControllerName = controllerName,
+          ActionName = actionName,
+          RouteValues = routeValues
+        }
+      );
 
   } // Class
 

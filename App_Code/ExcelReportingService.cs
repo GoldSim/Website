@@ -31,20 +31,12 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | MIME TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public string MimeType {
-      get {
-        return "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
-      }
-    }
+    public string MimeType => "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
 
     /*==========================================================================================================================
     | FILE EXTENSION
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public string FileExtension {
-      get {
-        return ".xlsx";
-      }
-    }
+    public string FileExtension => ".xlsx";
 
     /*==========================================================================================================================
     | DOWNLOAD LICENSE REQUESTS
@@ -60,36 +52,36 @@ namespace GoldSim.Web {
     public MemoryStream GetLicenseRequests(IEnumerable<Topic> licenseRequests) {
       MemoryStream memoryStream;
 
-      using (ExcelPackage excelPackage = new ExcelPackage()) {
+      using (var excelPackage = new ExcelPackage()) {
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Create the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        ExcelWorksheet worksheet = excelPackage.Workbook.Worksheets.Add("Working");
+        var worksheet = excelPackage.Workbook.Worksheets.Add("Working");
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
-        DataTable licenseRequestData = GetLicenseRequestData(licenseRequests);
+        var licenseRequestData = GetLicenseRequestData(licenseRequests);
         worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
-        Color headerRowBackgroundColor          = ColorTranslator.FromHtml("#404040");
+        var headerRowBackgroundColor = ColorTranslator.FromHtml("#404040");
         using (var cellRange = worksheet.Cells[1, 1, 1, 24]) {
           cellRange.Style.Font.Color.SetColor(Color.White);
-          cellRange.Style.Fill.PatternType      = ExcelFillStyle.Solid;
+          cellRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
           cellRange.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
-          cellRange.Style.WrapText              = true;
+          cellRange.Style.WrapText = true;
         }
         worksheet.View.FreezePanes(2, 1);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Set the font for the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name    = "Tahoma";
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size    = 10;
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Tahoma";
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 10;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Auto-fit data rows to their contents
@@ -124,7 +116,7 @@ namespace GoldSim.Web {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Establish DataTable
       \-------------------------------------------------------------------------------------------------------------------------*/
-      DataTable licenseRequestData = new DataTable();
+      var licenseRequestData = new DataTable();
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Set up column headers
@@ -157,11 +149,11 @@ namespace GoldSim.Web {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Set row data
       \-------------------------------------------------------------------------------------------------------------------------*/
-      foreach (Topic licenseRequest in licenseRequests) {
+      foreach (var licenseRequest in licenseRequests) {
 
         // Set variable values
-        string requestType              = (licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Evaluation" : "Academic");
-        int productOptionConfiguration  = 1;
+        var requestType = licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Evaluation" : "Academic";
+        var productOptionConfiguration  = 1;
 
         // Determine Product Option configuration
         if (
