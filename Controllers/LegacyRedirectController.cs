@@ -43,7 +43,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Redirect based on PageId.
     /// </summary>
-    public ActionResult LegacyRedirect(int pageId) {
+    public ActionResult Redirect(int pageId) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
