@@ -2176,6 +2176,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\ExcelReportingService.cs" />
+    <Compile Include="Services\GoldSimTopicViewModelLookupService.cs" />
+    <Compile Include="Services\IReportingService.cs" />
     <Content Include="!Admin\Topics\Common\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -2188,9 +2191,6 @@
       <DependentUpon>ContentCleanup.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </None>
-    <Compile Include="App_Code\ExcelReportingService.cs" />
-    <Compile Include="App_Code\GoldSimTopicViewModelLookupService.cs" />
-    <Compile Include="App_Code\IReportingService.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
