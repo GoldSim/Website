@@ -7615,12 +7615,15 @@ html {
 body {
   position: relative;
   margin: 0;
+  padding-top: 0;
   padding-bottom: 45.75rem;
   min-height: 100%;
   background-color: #f3f3f3; }
   @media print, screen and (min-width: 40em) {
     body {
       padding-bottom: 26.75rem; } }
+  body.has-notice {
+    padding-top: 3.75rem; }
 
 #SiteHeader {
   position: relative;
@@ -8174,10 +8177,10 @@ table.gsc-completion-container td {
   float: none;
   margin: 0;
   border: 0 none transparent;
-  padding-right: 2.5rem;
-  padding-left: 2.5rem;
   text-align: center; }
   .alert-box.announcement {
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
     background-color: #fec10d; }
     .alert-box.announcement a {
       font-weight: 600;
@@ -8202,8 +8205,15 @@ table.gsc-completion-container td {
       font-size: 3.5rem;
       color: #202020; }
   .alert-box.notice {
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    padding-right: initial;
+    padding-left: initial;
     color: white;
-    background-color: #00adef; }
+    background-color: #202020; }
 
 .panel.calls-to-action .headline,
 .panel.calls-to-action .button-group {

@@ -37,7 +37,7 @@
       @RenderSection("DeferredStyles", false)
     </noscript>
   </head>
-  <body vocab="http://schema.org/" typeof="WebPage">
+  <body vocab="http://schema.org/" typeof="WebPage" class="has-notice">
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
