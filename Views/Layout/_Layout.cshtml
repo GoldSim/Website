@@ -39,6 +39,12 @@
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
+    @if (IsSectionDefined("CookiesNoticeSection")) {
+      @RenderSection("CookiesNoticeSection")
+    } else {
+      @Html.Partial("_CookiesNotice")
+    }
+
     <!-- Site Header Area -->
 	  @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
