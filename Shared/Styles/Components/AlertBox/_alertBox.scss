@@ -16,13 +16,13 @@
 // CORE
 //----------------------------------------------------------------------------------------------
 .alert-box {
+  float                         : none;
+  margin                        : 0;
+  border                        : 0 none transparent;
+  padding-right                 : rem-calc(40);
+  padding-left                  : rem-calc(40);
+  text-align                    : center;
   &.announcement {
-    float                       : none;
-    margin                      : 0;
-    border                      : 0 none transparent;
-    padding-right               : rem-calc(40);
-    padding-left                : rem-calc(40);
-    text-align                  : center;
     background-color            : $palette-yellow;
     a {
       font-weight               : 600;
@@ -52,8 +52,12 @@
         top                     : 0;
         right                   : rem-calc(36);
         font-size               : rem-calc(56);
-        color                   : $palette-black
+        color                   : $palette-black;
       }
     }
+  }
+  &.notice {
+    color                       : $palette-white;
+    background-color            : $palette-blue;
   }
 }

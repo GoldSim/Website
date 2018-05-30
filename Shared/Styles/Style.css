@@ -7606,6 +7606,9 @@ video {
 .site.footer .social {
   margin-bottom: 1rem; }
 
+[style*="visibility:hidden"] {
+  display: none; }
+
 html {
   height: 100%; }
 
@@ -8167,36 +8170,40 @@ table.gsc-completion-container td {
   background-color: transparent;
   cursor: pointer; }
 
-.alert-box.announcement {
+.alert-box {
   float: none;
   margin: 0;
   border: 0 none transparent;
   padding-right: 2.5rem;
   padding-left: 2.5rem;
-  text-align: center;
-  background-color: #fec10d; }
-  .alert-box.announcement a {
-    font-weight: 600;
-    text-decoration: underline; }
-    .alert-box.announcement a:hover, .alert-box.announcement a:focus, .alert-box.announcement a:active, .alert-box.announcement a:visited {
-      color: #202020;
+  text-align: center; }
+  .alert-box.announcement {
+    background-color: #fec10d; }
+    .alert-box.announcement a {
+      font-weight: 600;
       text-decoration: underline; }
-  .alert-box.announcement i.fa {
-    position: relative;
-    top: 3px;
-    margin-right: 6px;
-    font-size: 24px; }
-    @media screen and (max-width: 47.9375em) {
-      .alert-box.announcement i.fa {
-        display: block;
-        top: 0;
-        margin-right: 0;
-        margin-bottom: 6px; } }
-  .alert-box.announcement button.close-button {
-    top: 0;
-    right: 2.25rem;
-    font-size: 3.5rem;
-    color: #202020; }
+      .alert-box.announcement a:hover, .alert-box.announcement a:focus, .alert-box.announcement a:active, .alert-box.announcement a:visited {
+        color: #202020;
+        text-decoration: underline; }
+    .alert-box.announcement i.fa {
+      position: relative;
+      top: 3px;
+      margin-right: 6px;
+      font-size: 24px; }
+      @media screen and (max-width: 47.9375em) {
+        .alert-box.announcement i.fa {
+          display: block;
+          top: 0;
+          margin-right: 0;
+          margin-bottom: 6px; } }
+    .alert-box.announcement button.close-button {
+      top: 0;
+      right: 2.25rem;
+      font-size: 3.5rem;
+      color: #202020; }
+  .alert-box.notice {
+    color: white;
+    background-color: #00adef; }
 
 .panel.calls-to-action .headline,
 .panel.calls-to-action .button-group {
