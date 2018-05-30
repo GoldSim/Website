@@ -48,7 +48,7 @@
 
       // Set display cookie
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-      document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString();
+      document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString() + ';path=/';
 
       // Handle body spacing buffer
       $('body').removeClass('has-notice');
