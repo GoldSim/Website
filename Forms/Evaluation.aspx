@@ -77,17 +77,6 @@
   }
 
   /*============================================================================================================================
-  | VALIDATOR: TERMS OF USE CHECK
-  >=============================================================================================================================
-  | Ensures that the terms of use agreement checkbox is checked.
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  void TermsCheckValidator(object source, ServerValidateEventArgs args) {
-    if (!TOUCheck.Checked) {
-      args.IsValid = false;
-    }
-  }
-
-  /*============================================================================================================================
   | VALIDATOR: EMAIL DOMAIN
   >=============================================================================================================================
   | Ensures that the email address entered is not from a generic / free email domain.
@@ -219,18 +208,7 @@
           <li>I will <em>not</em> use this free Trial Version for consulting or other commercial applications. If I require a temporary license for such purposes, I will <a href="mailto:support@goldsim.com">contact the GoldSim Technology Group</a>.</li>
         </ol>
       </div>
-      <div class="cell">
-        <div class="checkbox">
-          <asp:CheckBox ID="TOUCheck" ClientIDMode="Static" RunAt="Server" />
-          <label for="TOUCheck" RunAt="Server">I agree to these terms of use.</label>
-        </div>
-        <asp:CustomValidator
-          OnServerValidate      = "TermsCheckValidator"
-          ErrorMessage          = "Please accept the terms of use."
-          Display               = "None"
-          RunAt                 = "Server"
-          />
-      </div>
+      <GoldSimForm:TouAndNewsletterCheck ID="TouAndNewsletterCheck" RunAt="Server" />
 
     </div>
   </fieldset>
