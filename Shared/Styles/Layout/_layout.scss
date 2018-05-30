@@ -44,6 +44,9 @@ body {
   }
   &.has-notice {
     padding-top                 : rem-calc(60);
+    @include breakpoint(767px down) {
+      padding-top               : rem-calc(136);
+    }
   }
 }
 

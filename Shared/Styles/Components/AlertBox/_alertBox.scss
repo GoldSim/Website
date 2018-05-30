@@ -19,10 +19,10 @@
   float                         : none;
   margin                        : 0;
   border                        : 0 none transparent;
-  padding-right                 : rem-calc(40);
-  padding-left                  : rem-calc(40);
   text-align                    : center;
   &.announcement {
+    padding-right               : rem-calc(40);
+    padding-left                : rem-calc(40);
     background-color            : $palette-yellow;
     a {
       font-weight               : 600;
@@ -57,7 +57,27 @@
     }
   }
   &.notice {
+    z-index                     : 999;
+    position                    : fixed;
+    top                         : 0;
+    right                       : 0;
+    left                        : 0;
+    text-align                  : left;
     color                       : $palette-white;
-    background-color            : $palette-blue;
+    background-color            : $palette-black;
+    @include breakpoint(767px down) {
+      text-align                : center;
+    }
+    a {
+      color                     : $palette-white;
+      text-decoration           : underline;
+    }
+    button {
+      min-width                 : initial;
+      @include breakpoint(767px down) {
+        position                : static;
+        margin-top              : rem-calc(16);
+      }
+    }
   }
 }

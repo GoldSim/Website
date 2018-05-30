@@ -7624,6 +7624,9 @@ body {
       padding-bottom: 26.75rem; } }
   body.has-notice {
     padding-top: 3.75rem; }
+    @media screen and (max-width: 47.9375em) {
+      body.has-notice {
+        padding-top: 8.5rem; } }
 
 #SiteHeader {
   position: relative;
@@ -8210,10 +8213,21 @@ table.gsc-completion-container td {
     top: 0;
     right: 0;
     left: 0;
-    padding-right: initial;
-    padding-left: initial;
+    text-align: left;
     color: white;
     background-color: #202020; }
+    @media screen and (max-width: 47.9375em) {
+      .alert-box.notice {
+        text-align: center; } }
+    .alert-box.notice a {
+      color: white;
+      text-decoration: underline; }
+    .alert-box.notice button {
+      min-width: initial; }
+      @media screen and (max-width: 47.9375em) {
+        .alert-box.notice button {
+          position: static;
+          margin-top: 1rem; } }
 
 .panel.calls-to-action .headline,
 .panel.calls-to-action .button-group {
