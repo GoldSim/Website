@@ -1550,9 +1550,6 @@
     <Content Include="!Admin\Topics\Images\Vendor\jQueryUI\ui-icons_7c7c7c_256x240.png" />
     <Content Include="!Admin\Topics\Images\Vendor\jQueryUI\ui-icons_ff0000_256x240.png" />
     <Content Include="!Admin\Topics\Images\Vendor\jQueryUI\ui-icons_ffffff_256x240.png" />
-    <Content Include="!Admin\Topics\Migration\ContentCleanup.aspx" />
-    <None Include="!Admin\Topics\Migration\GoldSim.NewContentTypes.Setup.aspx" />
-    <None Include="!Admin\Topics\Migration\Migration.Functions.inc.aspx" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Ascending.png" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Both.png" />
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Descending.png" />
@@ -1581,37 +1578,9 @@
     <Content Include="bin\System.Web.Webpages.Deployment.dll" />
     <Content Include="bin\System.Web.Webpages.dll" />
     <Content Include="bin\System.Web.Webpages.Razor.dll" />
-    <Content Include="Common\Global\Client.Scripts\Activate.MSIE.js" />
     <Content Include="Common\Global\Client.Scripts\ClientValidation.js" />
-    <Content Include="Common\Global\Client.Scripts\dhtmlHistory.FlashInit.js" />
-    <Content Include="Common\Global\Client.Scripts\dhtmlHistory.js" />
-    <Content Include="Common\Global\Client.Scripts\dotIR.js" />
-    <Content Include="Common\Global\Client.Scripts\Flash.Sniffer.inc" />
-    <Content Include="Common\Global\Client.Scripts\FormatPhone.js" />
-    <Content Include="Common\Global\Client.Scripts\GetFlash.js" />
-    <Content Include="Common\Global\Client.Scripts\HighlightForm.js" />
-    <Content Include="Common\Global\Client.Scripts\HighlightTable.js" />
-    <Content Include="Common\Global\Client.Scripts\jQuery.MaskedInput.Pack.js" />
-    <Content Include="Common\Global\Client.Scripts\jQuery.Pack.js" />
-    <Content Include="Common\Global\Client.Scripts\Main.js" />
-    <Content Include="Common\Global\Client.Scripts\Menu.js" />
-    <Content Include="Common\Global\Client.Scripts\MSIE.Png.js" />
-    <Content Include="Common\Global\Client.Scripts\swfObject.js" />
-    <Content Include="Common\Global\Client.Scripts\Tooltip.js" />
-    <Content Include="Common\Global\Controls\BingSearch.ascx" />
     <Content Include="Common\Global\Controls\ClientValidation.ascx" />
-    <Content Include="Common\Global\Controls\Debug.ascx" />
-    <Content Include="Common\Global\Controls\Flash.ascx" />
     <Content Include="Common\Global\Controls\FormField.ascx" />
-    <Content Include="Common\Global\Controls\ImageReplace.ascx" />
-    <Content Include="Common\Global\Controls\LookupBox.ascx" />
-    <Content Include="Common\Global\Controls\Menu.ascx" />
-    <Content Include="Common\Global\Controls\Menu.css" />
-    <Content Include="Common\Global\Controls\MenuItem.ascx" />
-    <Content Include="Common\Global\Controls\Pager.ascx" />
-    <Content Include="Common\Global\Controls\SMS.ascx" />
-    <Content Include="Common\Global\Controls\TextImage.ascx" />
-    <Content Include="Common\Global\Controls\TextTruncation.ascx" />
     <Content Include="Common\Global\CS.Functions\AddAttributeToFields.aspx" />
     <Content Include="Common\Global\CS.Functions\AddSQLParameter.aspx" />
     <Content Include="Common\Global\CS.Functions\BindXmlToControl.aspx" />
@@ -2186,10 +2155,6 @@
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Content>
-    <None Include="!Admin\Topics\Migration\ContentCleanup.aspx.cs">
-      <DependentUpon>ContentCleanup.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </None>
     <Compile Include="App_Start\RouteConfig.cs" />
     <None Include="Common\Global\Controls\FormField.ascx.cs">
       <DependentUpon>FormField.ascx</DependentUpon>
