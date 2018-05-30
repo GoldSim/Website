@@ -52,6 +52,8 @@
   </head>
   <body itemscope itemtype="https://schema.org/WebPage">
 
+    <!-- #Include virtual="/Views/Shared/_CookiesNotice.cshtml" -->
+
     <asp:ContentPlaceHolder ID="HeaderContainer" RunAt="Server">
       <!-- Site Header Area -->
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
