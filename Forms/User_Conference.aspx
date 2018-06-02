@@ -216,7 +216,7 @@ void Page_Load(Object Src, EventArgs E) {
 
   <fieldset>
 
-   <legend>Conference Options (Early Bird Pricing*)</legend>
+   <legend>Conference Options</legend>
 
     <!-- Academic Discount -->
     <div class="checkbox" style="margin-bottom: 1rem;">
@@ -228,13 +228,11 @@ void Page_Load(Object Src, EventArgs E) {
     <%-- SESSION TYPE --%>
     <asp:Label ID="SessionSelect" CssClass="Session Select" style="display: none;" RunAt="Server" />
     <asp:RadioButtonList ID="SessionTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" CssClass="radio" RunAt="Server">
-      <asp:ListItem Value="User Conference Only">User Conference Only (September 11-12): <span id="ConferenceOnlyPrice">$850</span></asp:ListItem>
-      <asp:ListItem Value="Basic Training and Conference">Basic Training and Conference (September 10-12): <span id="TrainingAndConferencePrice">$1,100</span></asp:ListItem>
+      <asp:ListItem Value="User Conference Only">User Conference Only (September 11-12): <span id="ConferenceOnlyPrice">$1,250</span></asp:ListItem>
+      <asp:ListItem Value="Basic Training and Conference">Basic Training and Conference (September 10-12): <span id="TrainingAndConferencePrice">$1,500</span></asp:ListItem>
     </asp:RadioButtonList>
 
     <p style="margin-top: 1rem;">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</p>
-
-    <p><em>*Conference fee increases by <span id="PriceIncrease">$400</span> after June 1, 2018.</em> <strong>In addition, attendees who register by June 1 will be entered into a drawing for a Microsoft Surface Pro.</strong></p>
 
   </fieldset>
 
