@@ -338,11 +338,11 @@ void Page_Load(Object Src, EventArgs E) {
        */
       var
         conferenceOnlyPriceLabel                = '#ConferenceOnlyPrice',
-        conferenceOnlyRate                      = '$850',
-        conferenceOnlyDiscountRate              = '$425',
+        conferenceOnlyRate                      = '$1,250',
+        conferenceOnlyDiscountRate              = '$625',
         trainingAndConferencePriceLabel         = '#TrainingAndConferencePrice',
-        trainingAndConferenceRate               = '$1,100',
-        trainingAndConferenceDiscountRate       = '$550',
+        trainingAndConferenceRate               = '$1,500',
+        trainingAndConferenceDiscountRate       = '$750',
         priceIncreaseLabel                      = '#PriceIncrease',
         priceIncreaseRate                       = '$400',
         priceIncreaseDiscountRate               = '$200';
