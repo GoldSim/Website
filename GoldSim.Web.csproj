@@ -1559,6 +1559,7 @@
     <Content Include="!Admin\Topics\ReviewRequests\Images\Sort.Descending.png" />
     <Content Include="!Admin\Topics\ReviewRequests\LicenseRequests.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="app_initializing.htm" />
     <Content Include="bin\AntiXssLibrary.dll" />
     <Content Include="bin\EPPlus.dll" />
     <Content Include="bin\HtmlSanitizationLibrary.dll" />
