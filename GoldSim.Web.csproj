@@ -90,25 +90,29 @@
     <Reference Include="Ignia.Toolbox">
       <HintPath>..\..\Topics\201707\Ignia.Toolbox.dll</HintPath>
     </Reference>
-    <Reference Include="Ignia.Topics">
-      <HintPath>..\..\Topics\201707\Ignia.Topics.dll</HintPath>
+    <Reference Include="Ignia.Topics, Version=3.6.1762.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.3.6.1762\lib\net47\Ignia.Topics.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Data.Caching">
-      <HintPath>..\..\Topics\201707\Ignia.Topics.Data.Caching.dll</HintPath>
+    <Reference Include="Ignia.Topics.Data.Caching, Version=3.6.1762.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.Data.Caching.3.6.1762\lib\net47\Ignia.Topics.Data.Caching.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Data.Sql">
-      <HintPath>..\..\Topics\201707\Ignia.Topics.Data.Sql.dll</HintPath>
+    <Reference Include="Ignia.Topics.Data.Sql, Version=3.6.1739.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.Data.Sql.3.6.1739\lib\net47\Ignia.Topics.Data.Sql.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.ViewModels, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Ignia.Topics.ViewModels.dll</HintPath>
+    <Reference Include="Ignia.Topics.ViewModels, Version=3.6.1762.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.ViewModels.3.6.1762\lib\net47\Ignia.Topics.ViewModels.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Web">
-      <HintPath>..\..\Topics\201707\Ignia.Topics.Web.dll</HintPath>
+    <Reference Include="Ignia.Topics.Web, Version=3.6.1759.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.Web.3.6.1759\lib\net47\Ignia.Topics.Web.dll</HintPath>
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Ignia.Topics.Web.Mvc, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\Ignia\Repositories\Topics-Library\Ignia.Topics.Web.Mvc\bin\Release\Ignia.Topics.Web.Mvc.dll</HintPath>
+    <Reference Include="Ignia.Topics.Web.Mvc, Version=3.6.1767.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Ignia.Topics.Web.Mvc.3.6.1767\lib\net47\Ignia.Topics.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
@@ -1609,7 +1613,6 @@
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
     <Content Include="bin\ApplicationInsights.config" />
     <None Include="Common\Global\Headers\Form.Headers.inc.aspx" />
-    <Content Include="ErrorTest.html" />
     <Content Include="Forms\Academic.Student.aspx" />
     <Content Include="Forms\Academic.Instructor.aspx" />
     <Content Include="Forms\BuyGoldSim.aspx" />
