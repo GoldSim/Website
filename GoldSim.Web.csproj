@@ -129,8 +129,8 @@
     <Reference Include="Microsoft.ApplicationInsights, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ApplicationInsights.2.6.4\lib\net46\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.ApplicationInsights.SnapshotCollector, Version=1.2.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>packages\Microsoft.ApplicationInsights.SnapshotCollector.1.2.3\lib\net45\Microsoft.ApplicationInsights.SnapshotCollector.dll</HintPath>
+    <Reference Include="Microsoft.ApplicationInsights.SnapshotCollector, Version=1.3.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.ApplicationInsights.SnapshotCollector.1.3.0\lib\net45\Microsoft.ApplicationInsights.SnapshotCollector.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.6.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ApplicationInsights.TraceListener.2.6.4\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
@@ -1554,47 +1554,8 @@
     <Content Include="!Admin\Topics\ReviewRequests\LicenseRequests.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="app_initializing.htm" />
-    <Content Include="bin\AntiXssLibrary.dll" />
-    <Content Include="bin\EPPlus.dll" />
-    <Content Include="bin\HtmlSanitizationLibrary.dll" />
-    <Content Include="bin\Ignia.Toolbox.dll" />
-    <Content Include="bin\Ignia.Topics.Data.Caching.dll" />
-    <Content Include="bin\Ignia.Topics.Data.Caching.pdb" />
-    <Content Include="bin\Ignia.Topics.Data.Sql.dll" />
-    <Content Include="bin\Ignia.Topics.Data.Sql.pdb" />
-    <Content Include="bin\Ignia.Topics.dll" />
-    <Content Include="bin\Ignia.Topics.pdb" />
-    <Content Include="bin\Ignia.Topics.ViewModels.dll" />
-    <Content Include="bin\Ignia.Topics.ViewModels.pdb" />
-    <Content Include="bin\Ignia.Topics.Web.dll" />
-    <Content Include="bin\Ignia.Topics.Web.Mvc.dll" />
-    <Content Include="bin\Ignia.Topics.Web.Mvc.pdb" />
-    <Content Include="bin\Ignia.Topics.Web.pdb" />
-    <Content Include="bin\Microsoft.AI.Agent.Intercept.dll" />
-    <Content Include="bin\Microsoft.AI.DependencyCollector.dll" />
-    <Content Include="bin\Microsoft.AI.DependencyCollector.xml" />
-    <Content Include="bin\Microsoft.AI.PerfCounterCollector.dll" />
-    <Content Include="bin\Microsoft.AI.ServerTelemetryChannel.dll" />
-    <Content Include="bin\Microsoft.AI.Web.dll" />
-    <Content Include="bin\Microsoft.AI.Web.xml" />
-    <Content Include="bin\Microsoft.AI.WindowsServer.dll" />
-    <Content Include="bin\Microsoft.AI.WindowsServer.xml" />
-    <Content Include="bin\Microsoft.ApplicationInsights.dll" />
-    <Content Include="bin\Microsoft.ApplicationInsights.TraceListener.dll" />
-    <Content Include="bin\Microsoft.AspNet.TelemetryCorrelation.dll" />
-    <Content Include="bin\Microsoft.AspNet.TelemetryCorrelation.xml" />
-    <Content Include="bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
-    <Content Include="bin\Microsoft.Web.Infrastructure.dll" />
-    <Content Include="bin\Newtonsoft.Json.dll" />
-    <Content Include="bin\System.Diagnostics.DiagnosticSource.dll" />
-    <Content Include="bin\System.Diagnostics.DiagnosticSource.xml" />
-    <Content Include="bin\System.Linq.dll" />
-    <Content Include="bin\System.Web.Helpers.dll" />
-    <Content Include="bin\System.Web.Mvc.dll" />
-    <Content Include="bin\System.Web.Razor.dll" />
-    <Content Include="bin\System.Web.Webpages.Deployment.dll" />
-    <Content Include="bin\System.Web.Webpages.dll" />
-    <Content Include="bin\System.Web.Webpages.Razor.dll" />
+    <Content Include="bin\GoldSim.Web.dll" />
+    <Content Include="bin\GoldSim.Web.pdb" />
     <Content Include="Common\Global\Client.Scripts\ClientValidation.js" />
     <Content Include="Common\Global\Controls\ClientValidation.ascx" />
     <Content Include="Common\Global\Controls\FormField.ascx" />
@@ -1606,7 +1567,6 @@
     <Content Include="Common\Global\CS.Functions\ImportFromQuerystring.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.aspx" />
     <Content Include="Common\Global\CS.Functions\TreeView.Functions.bak.aspx" />
-    <Content Include="bin\ApplicationInsights.config" />
     <None Include="Common\Global\Headers\Form.Headers.inc.aspx" />
     <Content Include="Forms\Academic.Student.aspx" />
     <Content Include="Forms\Academic.Instructor.aspx" />
