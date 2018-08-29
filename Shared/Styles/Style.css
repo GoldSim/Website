@@ -8229,58 +8229,56 @@ table.gsc-completion-container td {
           position: static;
           margin-top: 1rem; } }
 
-.panel.calls-to-action .headline,
-.panel.calls-to-action .button-group {
-  margin-bottom: 0; }
-
-.panel.calls-to-action .headline {
-  display: inline-block;
-  padding-bottom: 0.75rem;
-  font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
-  font-size: 1.5rem;
-  font-weight: 300;
-  text-align: center; }
-  @media print, screen and (min-width: 64em) {
-    .panel.calls-to-action .headline {
-      padding-bottom: 0;
-      font-size: 2rem;
-      text-align: left; } }
-  @media screen and (min-width: 1024px) and (max-height: 864px) {
-    .panel.calls-to-action .headline {
-      padding-top: 0.1875rem;
-      font-size: 1.5rem; } }
-
-@media print, screen and (min-width: 40em) {
+.panel.calls-to-action {
+  background-color: rgba(255, 255, 255, 0.925); }
+  .panel.calls-to-action .headline,
   .panel.calls-to-action .button-group {
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    justify-content: center; } }
-
-@media print, screen and (min-width: 64em) {
-  .panel.calls-to-action .button-group {
-    -webkit-box-pack: start;
-    -ms-flex-pack: start;
-    justify-content: initial; } }
-
-.panel.calls-to-action .button-group .button {
-  margin-bottom: 0.5rem; }
-  @media print, screen and (min-width: 40em) {
-    .panel.calls-to-action .button-group .button {
-      max-width: 20rem; } }
-  @media print, screen and (min-width: 64em) {
-    .panel.calls-to-action .button-group .button {
-      margin-right: 2rem;
-      margin-bottom: 0;
-      max-width: auto; } }
-  .panel.calls-to-action .button-group .button:last-of-type {
-    margin-right: 0;
     margin-bottom: 0; }
-    @media print, screen and (min-width: 40em) {
-      .panel.calls-to-action .button-group .button:last-of-type {
-        margin-bottom: 0.5rem; } }
+  .panel.calls-to-action .headline {
+    display: inline-block;
+    padding-bottom: 0.75rem;
+    font-family: "Oxygen", "Source Sans Pro", "Helvetica Neue", Helvetica, Roboto, Arial, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center; }
     @media print, screen and (min-width: 64em) {
-      .panel.calls-to-action .button-group .button:last-of-type {
-        margin-bottom: 0; } }
+      .panel.calls-to-action .headline {
+        padding-bottom: 0;
+        font-size: 2rem;
+        text-align: left; } }
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      .panel.calls-to-action .headline {
+        padding-top: 0.1875rem;
+        font-size: 1.5rem; } }
+  @media print, screen and (min-width: 40em) {
+    .panel.calls-to-action .button-group {
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      justify-content: center; } }
+  @media print, screen and (min-width: 64em) {
+    .panel.calls-to-action .button-group {
+      -webkit-box-pack: start;
+      -ms-flex-pack: start;
+      justify-content: initial; } }
+  .panel.calls-to-action .button-group .button {
+    margin-bottom: 0.5rem; }
+    @media print, screen and (min-width: 40em) {
+      .panel.calls-to-action .button-group .button {
+        max-width: 20rem; } }
+    @media print, screen and (min-width: 64em) {
+      .panel.calls-to-action .button-group .button {
+        margin-right: 2rem;
+        margin-bottom: 0;
+        max-width: auto; } }
+    .panel.calls-to-action .button-group .button:last-of-type {
+      margin-right: 0;
+      margin-bottom: 0; }
+      @media print, screen and (min-width: 40em) {
+        .panel.calls-to-action .button-group .button:last-of-type {
+          margin-bottom: 0.5rem; } }
+      @media print, screen and (min-width: 64em) {
+        .panel.calls-to-action .button-group .button:last-of-type {
+          margin-bottom: 0; } }
 
 section.panel.body ~ section.panel.accordion {
   margin-top: 3rem; }
