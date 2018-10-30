@@ -7577,7 +7577,10 @@ video {
 .site.footer .navigation dl {
   margin-bottom: 0; }
   .site.footer .navigation dl.emails {
-    margin-top: 2.5rem; }
+    margin-top: 3.25rem; }
+    @media screen and (max-width: 47.9375em) {
+      .site.footer .navigation dl.emails {
+        margin-top: 2.25rem; } }
   .site.footer .navigation dl dt {
     position: relative;
     top: 0;

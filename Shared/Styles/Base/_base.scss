@@ -141,7 +141,10 @@ video {
     dl {
       margin-bottom             : 0;
       &.emails {
-        margin-top              : rem-calc(40);
+        margin-top              : rem-calc(52);
+        @include breakpoint(767px down) {
+          margin-top            : rem-calc(36);
+        }
       }
       dt {
         position                : relative;
