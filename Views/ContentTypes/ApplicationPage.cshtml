@@ -93,7 +93,7 @@
       <h1 id="WhitePapers">White Papers</h1>
       <ul>
         @foreach (var paper in Model.WhitePapers) {
-          <li><a href="@paper.LearnMoreUrl" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+          <li><a href="@paper.Url" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
