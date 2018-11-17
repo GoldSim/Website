@@ -18,6 +18,7 @@ namespace GoldSim.Web.Models {
   public class DocumentPointerTopicViewModel: ApplicationBasePageTopicViewModel {
 
     public string DocumentType { get; set; }
+    public string Url { get; set; }
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 
   } // Class
