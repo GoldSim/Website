@@ -62,7 +62,7 @@
     | Send email receipt (to user)
     \-------------------------------------------------------------------------------------------------------------------------*/
     Utility.SendWebPage(
-      "http://" + Request.Url.Host + "/Forms/Evaluation.Receipt.html",
+      "https://" + Request.Url.Host + "/Forms/Evaluation.Receipt.html",
       "GoldSim Evaluation Request",
       "Software@GoldSim.com",
       email
@@ -193,9 +193,58 @@
       <%-- REFERRAL SOURCE SELECTION --%>
       <GoldSimForm:ReferralSourceSelection ID="ReferralSource" RunAt="Server" />
 
+      <!-- Training Course Check -->
+      <div id="TrainingCourseCheckField" class="cell" style="margin-top: 1rem;">
+        <div class="checkbox">
+          <asp:CheckBox ID="TrainingCourseCheck" ClientIDMode="Static" RunAt="Server" />
+          <label for="TrainingCourseCheck" RunAt="Server">Are you using this Trial Version for a training course?</label>
+        </div>
+      </div>
+
     </div>
 
   </fieldset>
+
+  <fieldset>
+    <legend>Trainer Contact Information</legend>
+    <div class="grid-x grid-margin-x">
+
+      <div class="medium-6 cell">
+        <Ignia:FormField
+          ID                    = "TrainerName"
+          LabelName             = "*Name"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+      <div class="medium-6 cell">
+        <Ignia:FormField
+          ID                    = "TrainerEmail"
+          LabelName             = "*Email"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+      <div class="cell">
+        <Ignia:FormField
+          ID                    = "TrainerOrganization"
+          LabelName             = "*Organization"
+          MaxLength             = "150"
+          FieldSize             = "320"
+          CssClass              = "TextField"
+          SkinId                = "BoxedPairs"
+          RunAt                 = "Server"
+          />
+      </div>
+
+    </div>
+  <fieldset>
 
   <fieldset>
     <legend>Terms of Use</legend>
@@ -222,7 +271,21 @@
       /**
        * Establish variables
        */
-      var genericEmailDomains   = <%= JsonConvert.SerializeObject(Master.GenericEmailDomains) %>;
+      var
+        genericEmailDomains     = <%= JsonConvert.SerializeObject(Master.GenericEmailDomains) %>,
+        trainerInfoFields       = 'input[id$="TrainerName_Field"], input[id$="TrainerEmail_Field"], input[id$="TrainerOrganization_Field"]',
+        trainerInfoLabels       = 'label[id$="TrainerName_Label"], label[id$="TrainerEmail_Label"], label[id$="TrainerOrganization_Label"]';
+
+      /**
+       * Sets conditionally required fields to disabled and not required by default
+       */
+      toggleDisabled(trainerInfoFields, true);
+      toggleRequired(trainerInfoFields, false);
+
+      /**
+       * Sets label class on conditionally required fields
+       */
+      $(trainerInfoLabels).addClass('required');
 
       /**
        * Validate user's email domain on blur
@@ -249,6 +312,22 @@
       });
 
       /**
+       * Conditionally enables Trainer fields if invoice payment choice is selected
+       */
+      $('#TrainingCourseCheck').change(function () {
+        if ($(this).is(':checked')) {
+          toggleRequired(trainerInfoFields, true);
+          toggleDisabled(trainerInfoFields, false);
+        }
+        else {
+          setTimeout(function() {
+            toggleRequired(trainerInfoFields, false);
+            toggleDisabled(trainerInfoFields, true);
+          }, 250);
+        }
+      });
+
+      /**
         * Monitor Radionuclide and Contaminant Transport checkboxes to ensure only RT is checked if the user selects both
         */
       $('#RT').change(function() {
@@ -263,5 +342,20 @@
       });
 
     });
+
+    /**
+      * Removes or adds required attribute on fields depending on field selection
+      */
+    function toggleRequired(fields, required) {
+      $(fields).prop('required', required);
+    };
+
+    /**
+      * Sets disabled state on provided fields (selectors) and provided true/false state
+      */
+    function toggleDisabled(fields, disabled) {
+      $(fields).prop('disabled', disabled);
+    };
+
   </script>
 </asp:Content>
