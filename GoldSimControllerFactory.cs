@@ -86,6 +86,9 @@ namespace GoldSim.Web {
         case nameof(SitemapController):
           return new SitemapController(_topicRepository);
 
+        case nameof(PaymentsController):
+          return new PaymentsController(_topicRepository);
+
         case nameof(ErrorController):
           return new ErrorController();
 
