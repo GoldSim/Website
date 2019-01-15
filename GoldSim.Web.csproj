@@ -2131,6 +2131,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Code\BraintreeConfiguration.cs" />
+    <Compile Include="App_Code\IBraintreeConfiguration.cs" />
+    <Compile Include="Controllers\PaymentsController.cs" />
+    <Compile Include="Models\PaymentsTopicViewModel.cs" />
     <Compile Include="Services\ExcelReportingService.cs" />
     <Compile Include="Services\GoldSimTopicViewModelLookupService.cs" />
     <Compile Include="Services\IReportingService.cs" />
@@ -2395,6 +2399,7 @@
     <Content Include="Shared\Styles\Components\AlertBox\_alertBox.scss" />
     <Content Include="Views\Shared\_Announcement.cshtml" />
     <Content Include="Views\Shared\_CookiesNotice.cshtml" />
+    <Content Include="Views\ContentTypes\Payments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
