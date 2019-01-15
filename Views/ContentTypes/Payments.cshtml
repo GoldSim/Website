@@ -74,6 +74,7 @@
       </div>
     </header>
     <!-- /Site Header Area -->
+
     <!-- Navigation Menu -->
     @Html.Action("Menu", "Layout")
 
@@ -88,17 +89,18 @@
         <!-- /Long Title (Subtitle) -->
 
         <!-- Main Page Content -->
-        <div class="grid-container">
-          <div class="grid-x grid-margin-x">
-            <section class="panel body" style="width: 100%">
+        <section class="panel body" style="width: 100%">
 
-              <div class="cell">
-                @if (TempData["ConfirmationText"] != null) {
-                  <p>@TempData["ConfirmationText"].ToString()</p>
-                }
-              </div>
+          <div class="cell">
+            @if (TempData["ConfirmationText"] != null) {
+              <p>@TempData["ConfirmationText"].ToString()</p>
+            }
+          </div>
 
-              <form action="/Payments/Create" id="PaymentsForm" method="post">
+          <form action="/Payments/Create" id="PaymentsForm" method="post">
+
+            <div class="grid-container">
+              <div class="grid-x grid-margin-x">
 
                 <!-- Company Name -->
                 <div class="cell">
@@ -127,47 +129,55 @@
                 <!-- CC Number -->
                 <div class="cell">
                   <label for="CardNumber" class="required">
-                    Card Number
-                    <div id="CardNumber"></div>
+                    *Card Number
+                    <span id="CardNumber"></span>
                   </label>
                 </div>
 
                 <!-- CVV Code -->
                 <div class="medium-3 cell">
-                  <label for="Cvv" class="required">*CVV</label>
-                  <div id="Cvv"></div>
+                  <label for="Cvv" class="required">
+                    *CVV
+                    <span id="Cvv"></span>
+                  </label>
                 </div>
 
                 <!-- Expiration Month -->
                 <div class="medium-3 cell">
-                  <label for="ExpirationMonth" class="required">*Expiration Month</label>
-                  <div id="ExpirationMonth"></div>
+                  <label for="ExpirationMonth" class="required">
+                    *Expiration Month
+                    <span id="ExpirationMonth"></span>
+                  </label>
                 </div>
 
                 <!-- Expiration Year -->
                 <div class="medium-3 cell">
-                  <label for="ExpirationYear" class="required">*Expiration Year</label>
-                  <div id="ExpirationYear"></div>
+                  <label for="ExpirationYear" class="required">
+                    *Expiration Year
+                    <span id="ExpirationYear"></span>
+                  </label>
                 </div>
 
                 <!-- Postal Code -->
                 <div class="medium-3 cell">
-                  <label for="PostalCode" class="required">*ZIP / Postal Code</label>
-                  <div id="PostalCode"></div>
+                  <label for="PostalCode" class="required">
+                    *ZIP / Postal Code
+                    <span id="PostalCode"></span>
+                  </label>
                 </div>
 
                 <input id="PaymentMethodNonce" name="paymentMethodNonce" type="hidden" />
 
                 <!-- Submit -->
                 <div class="cell">
-                  <input type="submit" value="Submit Payment" disabled />
+                  <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
                 </div>
 
-              </form>
+              </div>
+            </div>
+          </form>
 
-            </section>
-          </div>
-        </div>
+        </section>
         <!-- /Main Page Content -->
 
       </article>
@@ -180,30 +190,25 @@
     <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
     <!-- Foundation -->
     <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
-
-    <script>
-      /**
-       * Initialize Foundation
-       */
-      $(document).foundation();
-    </script>
-    <script src="/Shared/Scripts/Scripts.js"></script>
-
+    <!-- Braintree -->
     <script src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
     <script src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
 
     <script>
+
+      /**
+       * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
+       */
       var clientToken           = "@ViewBag.ClientToken";
       var form                  = document.querySelector('#PaymentsForm');
-      var submit                = document.querySelector('input[type="submit"]');
+      var submit                = document.querySelector('button[type="submit"]');
 
+      var clientInstance        = braintree.client.create({
+        authorization           : clientToken
+      }, function (clientError, clientInstance) {
 
-      var clientInstance = braintree.client.create({
-        authorization: clientToken
-      }, function (clientErr, clientInstance) {
-
-        if (clientErr) {
-          console.error(clientErr);
+        if (clientError) {
+          console.error(clientError);
           return;
         }
 
@@ -231,10 +236,10 @@
               placeholder       : '12345'
             }
           }
-        }, function (hostedFieldsErr, hostedFieldsInstance) {
+        }, function (hostedFieldsError, hostedFieldsInstance) {
 
-          if (hostedFieldsErr) {
-            console.error(hostedFieldsErr);
+          if (hostedFieldsError) {
+            console.error(hostedFieldsError);
             return;
           }
 
@@ -243,9 +248,9 @@
           form.addEventListener('submit', function (event) {
             event.preventDefault();
 
-            hostedFieldsInstance.tokenize(function (tokenizeErr, payload) {
-              if (tokenizeErr) {
-                console.error(tokenizeErr);
+            hostedFieldsInstance.tokenize(function (tokenizeError, payload) {
+              if (tokenizeError) {
+                console.error(tokenizeError);
                 return;
               }
 
@@ -257,7 +262,14 @@
         });
       });
 
+      /**
+       * Initialize Foundation
+       */
+      $(document).foundation();
+
     </script>
+
+    <script src="/Shared/Scripts/Scripts.js"></script>
 
   </body>
 </html>
