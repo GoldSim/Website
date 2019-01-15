@@ -92,8 +92,8 @@
         <section class="panel body" style="width: 100%">
 
           <div class="cell">
-            @if (TempData["ConfirmationText"] != null) {
-              <p>@TempData["ConfirmationText"].ToString()</p>
+            @if (TempData["ConfirmationMessage"] != null) {
+              <p>@TempData["ConfirmationMessage"].ToString()</p>
             }
           </div>
 
@@ -114,7 +114,7 @@
                 <div class="medium-6 cell">
                   <label for="Invoice" class="required">
                     *Invoice Number
-                    <input id="Invoice" name="invoice" type="text">
+                    <input id="Invoice" name="invoice" type="text" placeholder="Invoice Number">
                   </label>
                 </div>
 
