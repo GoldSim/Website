@@ -3675,10 +3675,16 @@ select {
     .button.primary:hover, .button.primary:focus {
       background-color: #d59f01;
       color: #202020; }
-  .button.secondary {
+  .button.secondary, input.submit:disabled, input[type='submit']:disabled,
+  button.submit:disabled,
+  button[type='submit']:disabled {
     background-color: #cccccc;
     color: #202020; }
-    .button.secondary:hover, .button.secondary:focus {
+    .button.secondary:hover, input.submit:hover:disabled, input[type='submit']:hover:disabled,
+    button.submit:hover:disabled,
+    button[type='submit']:hover:disabled, .button.secondary:focus, input.submit:focus:disabled, input[type='submit']:focus:disabled,
+    button.submit:focus:disabled,
+    button[type='submit']:focus:disabled {
       background-color: #a3a3a3;
       color: #202020; }
   .button.success {
@@ -3717,10 +3723,26 @@ select {
       .button.disabled.primary, .button.disabled.primary:hover, .button.disabled.primary:focus, .button[disabled].primary, .button[disabled].primary:hover, .button[disabled].primary:focus {
         background-color: #fec10d;
         color: #202020; }
-    .button.disabled.secondary, .button[disabled].secondary {
+    .button.disabled.secondary, input.disabled.submit:disabled, input.disabled[type='submit']:disabled,
+    button.disabled.submit:disabled,
+    button.disabled[type='submit']:disabled, .button[disabled].secondary, input[disabled].submit:disabled, input[disabled][type='submit']:disabled,
+    button[disabled].submit:disabled,
+    button[disabled][type='submit']:disabled {
       opacity: 0.25;
       cursor: not-allowed; }
-      .button.disabled.secondary, .button.disabled.secondary:hover, .button.disabled.secondary:focus, .button[disabled].secondary, .button[disabled].secondary:hover, .button[disabled].secondary:focus {
+      .button.disabled.secondary, input.disabled.submit:disabled, input.disabled[type='submit']:disabled,
+      button.disabled.submit:disabled,
+      button.disabled[type='submit']:disabled, .button.disabled.secondary:hover, input.disabled.submit:hover:disabled, input.disabled[type='submit']:hover:disabled,
+      button.disabled.submit:hover:disabled,
+      button.disabled[type='submit']:hover:disabled, .button.disabled.secondary:focus, input.disabled.submit:focus:disabled, input.disabled[type='submit']:focus:disabled,
+      button.disabled.submit:focus:disabled,
+      button.disabled[type='submit']:focus:disabled, .button[disabled].secondary, input[disabled].submit:disabled, input[disabled][type='submit']:disabled,
+      button[disabled].submit:disabled,
+      button[disabled][type='submit']:disabled, .button[disabled].secondary:hover, input[disabled].submit:hover:disabled, input[disabled][type='submit']:hover:disabled,
+      button[disabled].submit:hover:disabled,
+      button[disabled][type='submit']:hover:disabled, .button[disabled].secondary:focus, input[disabled].submit:focus:disabled, input[disabled][type='submit']:focus:disabled,
+      button[disabled].submit:focus:disabled,
+      button[disabled][type='submit']:focus:disabled {
         background-color: #cccccc;
         color: #202020; }
     .button.disabled.success, .button[disabled].success {
@@ -3769,13 +3791,27 @@ select {
         .button.hollow.primary:hover.disabled, .button.hollow.primary:hover[disabled], .button.hollow.primary:focus.disabled, .button.hollow.primary:focus[disabled] {
           border: 2px solid #fec10d;
           color: #fec10d; }
-    .button.hollow.secondary {
+    .button.hollow.secondary, input.hollow.submit:disabled, input.hollow[type='submit']:disabled,
+    button.hollow.submit:disabled,
+    button.hollow[type='submit']:disabled {
       border: 2px solid #cccccc;
       color: #cccccc; }
-      .button.hollow.secondary:hover, .button.hollow.secondary:focus {
+      .button.hollow.secondary:hover, input.hollow.submit:hover:disabled, input.hollow[type='submit']:hover:disabled,
+      button.hollow.submit:hover:disabled,
+      button.hollow[type='submit']:hover:disabled, .button.hollow.secondary:focus, input.hollow.submit:focus:disabled, input.hollow[type='submit']:focus:disabled,
+      button.hollow.submit:focus:disabled,
+      button.hollow[type='submit']:focus:disabled {
         border-color: #666666;
         color: #666666; }
-        .button.hollow.secondary:hover.disabled, .button.hollow.secondary:hover[disabled], .button.hollow.secondary:focus.disabled, .button.hollow.secondary:focus[disabled] {
+        .button.hollow.secondary:hover.disabled, input.hollow.submit:hover.disabled:disabled, input.hollow[type='submit']:hover.disabled:disabled,
+        button.hollow.submit:hover.disabled:disabled,
+        button.hollow[type='submit']:hover.disabled:disabled, .button.hollow.secondary:hover[disabled], input.hollow.submit:hover[disabled]:disabled, input.hollow[type='submit']:hover[disabled]:disabled,
+        button.hollow.submit:hover[disabled]:disabled,
+        button.hollow[type='submit']:hover[disabled]:disabled, .button.hollow.secondary:focus.disabled, input.hollow.submit:focus.disabled:disabled, input.hollow[type='submit']:focus.disabled:disabled,
+        button.hollow.submit:focus.disabled:disabled,
+        button.hollow[type='submit']:focus.disabled:disabled, .button.hollow.secondary:focus[disabled], input.hollow.submit:focus[disabled]:disabled, input.hollow[type='submit']:focus[disabled]:disabled,
+        button.hollow.submit:focus[disabled]:disabled,
+        button.hollow[type='submit']:focus[disabled]:disabled {
           border: 2px solid #cccccc;
           color: #cccccc; }
     .button.hollow.success {
@@ -3840,16 +3876,48 @@ select {
           color: #fec10d; }
       .button.clear.primary, .button.clear.primary.disabled, .button.clear.primary[disabled], .button.clear.primary:hover, .button.clear.primary:hover.disabled, .button.clear.primary:hover[disabled], .button.clear.primary:focus, .button.clear.primary:focus.disabled, .button.clear.primary:focus[disabled] {
         border-color: transparent; }
-    .button.clear.secondary {
+    .button.clear.secondary, input.clear.submit:disabled, input.clear[type='submit']:disabled,
+    button.clear.submit:disabled,
+    button.clear[type='submit']:disabled {
       border: 2px solid #cccccc;
       color: #cccccc; }
-      .button.clear.secondary:hover, .button.clear.secondary:focus {
+      .button.clear.secondary:hover, input.clear.submit:hover:disabled, input.clear[type='submit']:hover:disabled,
+      button.clear.submit:hover:disabled,
+      button.clear[type='submit']:hover:disabled, .button.clear.secondary:focus, input.clear.submit:focus:disabled, input.clear[type='submit']:focus:disabled,
+      button.clear.submit:focus:disabled,
+      button.clear[type='submit']:focus:disabled {
         border-color: #666666;
         color: #666666; }
-        .button.clear.secondary:hover.disabled, .button.clear.secondary:hover[disabled], .button.clear.secondary:focus.disabled, .button.clear.secondary:focus[disabled] {
+        .button.clear.secondary:hover.disabled, input.clear.submit:hover.disabled:disabled, input.clear[type='submit']:hover.disabled:disabled,
+        button.clear.submit:hover.disabled:disabled,
+        button.clear[type='submit']:hover.disabled:disabled, .button.clear.secondary:hover[disabled], input.clear.submit:hover[disabled]:disabled, input.clear[type='submit']:hover[disabled]:disabled,
+        button.clear.submit:hover[disabled]:disabled,
+        button.clear[type='submit']:hover[disabled]:disabled, .button.clear.secondary:focus.disabled, input.clear.submit:focus.disabled:disabled, input.clear[type='submit']:focus.disabled:disabled,
+        button.clear.submit:focus.disabled:disabled,
+        button.clear[type='submit']:focus.disabled:disabled, .button.clear.secondary:focus[disabled], input.clear.submit:focus[disabled]:disabled, input.clear[type='submit']:focus[disabled]:disabled,
+        button.clear.submit:focus[disabled]:disabled,
+        button.clear[type='submit']:focus[disabled]:disabled {
           border: 2px solid #cccccc;
           color: #cccccc; }
-      .button.clear.secondary, .button.clear.secondary.disabled, .button.clear.secondary[disabled], .button.clear.secondary:hover, .button.clear.secondary:hover.disabled, .button.clear.secondary:hover[disabled], .button.clear.secondary:focus, .button.clear.secondary:focus.disabled, .button.clear.secondary:focus[disabled] {
+      .button.clear.secondary, input.clear.submit:disabled, input.clear[type='submit']:disabled,
+      button.clear.submit:disabled,
+      button.clear[type='submit']:disabled, .button.clear.secondary.disabled, input.clear.disabled.submit:disabled, input.clear.disabled[type='submit']:disabled,
+      button.clear.disabled.submit:disabled,
+      button.clear.disabled[type='submit']:disabled, .button.clear.secondary[disabled], input.clear[disabled].submit:disabled, input.clear[disabled][type='submit']:disabled,
+      button.clear[disabled].submit:disabled,
+      button.clear[disabled][type='submit']:disabled, .button.clear.secondary:hover, input.clear.submit:hover:disabled, input.clear[type='submit']:hover:disabled,
+      button.clear.submit:hover:disabled,
+      button.clear[type='submit']:hover:disabled, .button.clear.secondary:hover.disabled, input.clear.submit:hover.disabled:disabled, input.clear[type='submit']:hover.disabled:disabled,
+      button.clear.submit:hover.disabled:disabled,
+      button.clear[type='submit']:hover.disabled:disabled, .button.clear.secondary:hover[disabled], input.clear.submit:hover[disabled]:disabled, input.clear[type='submit']:hover[disabled]:disabled,
+      button.clear.submit:hover[disabled]:disabled,
+      button.clear[type='submit']:hover[disabled]:disabled, .button.clear.secondary:focus, input.clear.submit:focus:disabled, input.clear[type='submit']:focus:disabled,
+      button.clear.submit:focus:disabled,
+      button.clear[type='submit']:focus:disabled, .button.clear.secondary:focus.disabled, input.clear.submit:focus.disabled:disabled, input.clear[type='submit']:focus.disabled:disabled,
+      button.clear.submit:focus.disabled:disabled,
+      button.clear[type='submit']:focus.disabled:disabled, .button.clear.secondary:focus[disabled], input.clear.submit:focus[disabled]:disabled, input.clear[type='submit']:focus[disabled]:disabled,
+      button.clear.submit:focus[disabled]:disabled,
+      button.clear[type='submit']:focus[disabled]:disabled {
         border-color: transparent; }
     .button.clear.success {
       border: 2px solid #66ae3d;
@@ -3913,7 +3981,9 @@ select {
     border-top-color: #fec10d; }
   .button.dropdown.hollow.primary::after {
     border-top-color: #fec10d; }
-  .button.dropdown.hollow.secondary::after {
+  .button.dropdown.hollow.secondary::after, input.dropdown.hollow.submit:disabled::after, input.dropdown.hollow[type='submit']:disabled::after,
+  button.dropdown.hollow.submit:disabled::after,
+  button.dropdown.hollow[type='submit']:disabled::after {
     border-top-color: #cccccc; }
   .button.dropdown.hollow.success::after {
     border-top-color: #66ae3d; }
@@ -6875,11 +6945,15 @@ select {
             box-shadow: none;
     border-color: #fec10d; }
 
-input:active, input:focus {
+input:active, input:focus,
+button:active,
+button:focus {
   -webkit-box-shadow: none;
           box-shadow: none; }
 
-input.submit {
+input.submit, input[type='submit'],
+button.submit,
+button[type='submit'] {
   margin-top: 2rem;
   margin-bottom: 0; }
 
@@ -7080,9 +7154,15 @@ a[href$=".gsm"] {
     border-color: #fec10d;
     color: #fec10d;
     background-color: white; }
-  .button.secondary:hover {
+  .button.secondary:hover, input.submit:hover:disabled, input[type='submit']:hover:disabled,
+  button.submit:hover:disabled,
+  button[type='submit']:hover:disabled {
     background-color: #999999; }
-  .button.secondary:focus, .button.secondary:active {
+  .button.secondary:focus, input.submit:focus:disabled, input[type='submit']:focus:disabled,
+  button.submit:focus:disabled,
+  button[type='submit']:focus:disabled, .button.secondary:active, input.submit:active:disabled, input[type='submit']:active:disabled,
+  button.submit:active:disabled,
+  button[type='submit']:active:disabled {
     border-color: #999999;
     color: #999999;
     background-color: white; }

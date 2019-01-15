@@ -60,16 +60,21 @@ select {
   }
 }
 
-input {
+input,
+button {
   &:active,
   &:focus {
     box-shadow                  : none;
   }
   &:hover {
   }
-  &.submit {
+  &.submit,
+  &[type='submit'] {
     margin-top                  : rem-calc(32);
     margin-bottom               : 0;
+    &:disabled {
+      @extend .button.secondary;
+    }
   }
 }
 

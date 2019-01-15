@@ -15,12 +15,14 @@
   &:visited {
     color                       : $palette-black;
   }
-  &:hover {
+  &:hover,
+  &.hover {
     color                       : $palette-yellow;
     background-color            : $palette-black;
   }
   &:focus,
-  &:active {
+  &:active,
+  &.active {
     border-color                : $palette-yellow;
     color                       : $palette-yellow;
     background-color            : $palette-white;
