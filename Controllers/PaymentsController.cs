@@ -14,6 +14,8 @@ using Ignia.Topics.Web.Mvc.Controllers;
 using Ignia.Topics.Web.Mvc.Models;
 using GoldSim.Web.Models;
 using Ignia.Topics;
+using System.Threading.Tasks;
+using Ignia.Topics.Web.Mvc;
 
 namespace GoldSim.Web.Controllers {
 
@@ -29,6 +31,9 @@ namespace GoldSim.Web.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private     readonly        ITopicRepository                _topicRepository                = null;
+    private     readonly        ITopicRoutingService            _topicRoutingService            = null;
+    private     readonly        ITopicMappingService            _topicMappingService            = null;
+    private                     Topic                           _currentTopic                   = null;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
 
     /*==========================================================================================================================
@@ -48,8 +53,16 @@ namespace GoldSim.Web.Controllers {
       topicRoutingService,
       topicMappingService
     ) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set values locally
+      \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = topicRepository;
+      _topicRoutingService      = topicRoutingService;
+      _topicMappingService      = topicMappingService;
+      _currentTopic             = topicRoutingService.GetCurrentTopic();
       _braintreeConfiguration   = braintreeConfiguration;
+
     }
 
     /*==========================================================================================================================
@@ -76,23 +89,13 @@ namespace GoldSim.Web.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public virtual ActionResult Index(string id = "") {
+    public async override Task<ActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
-      Transaction transaction   = null;
-      Topic paymentsTopic       = _topicRepository.Load("Root:Web:Purchase:Payments");
-      if (!String.IsNullOrEmpty(id)) {
-        transaction             = braintreeGateway.Transaction.Find(id);
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish Page Topic
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = new TopicEntityViewModel(_topicRepository, paymentsTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to view
@@ -101,21 +104,15 @@ namespace GoldSim.Web.Controllers {
       ViewBag.DebugData         = "test";
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Handle transaction results
+      | Establish default view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
-        TempData["ConfirmationMessage"]         = "Your payment has been successfully submitted.";
-      }
-      else {
-        TempData["ConfirmationMessage"]         = "There was a problem with your submission. Please check your information and try again.";
-      };
-
-      ViewBag.Transaction = transaction;
+      var topicViewModel        = await _topicMappingService.MapAsync(CurrentTopic);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Return view
+      | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View("Payments");
+      //return View();
+      return new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
 
     }
 
