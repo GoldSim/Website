@@ -8,7 +8,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Braintree;
+using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
+using Ignia.Topics.Web.Mvc.Controllers;
 using Ignia.Topics.Web.Mvc.Models;
 using GoldSim.Web.Models;
 using Ignia.Topics;
@@ -21,12 +23,13 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the Payments page of the website, with Braintree Payments integration functionality.
   /// </summary>
-  public class PaymentsController : Controller {
+  public class PaymentsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private     readonly        ITopicRepository                _topicRepository                = null;
+    private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -35,17 +38,19 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public PaymentsController(ITopicRepository topicRepository) {
-      _topicRepository = topicRepository;
+    public PaymentsController(
+      ITopicRepository topicRepository,
+      ITopicRoutingService topicRoutingService,
+      ITopicMappingService topicMappingService,
+      IBraintreeConfiguration braintreeConfiguration
+    ) : base(
+      topicRepository,
+      topicRoutingService,
+      topicMappingService
+    ) {
+      _topicRepository          = topicRepository;
+      _braintreeConfiguration   = braintreeConfiguration;
     }
-
-    /*==========================================================================================================================
-    | BRAINTREE CONFIGURATION
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides access to the Braintree Gateway configuration.
-    /// </summary>
-    public IBraintreeConfiguration BraintreeConfiguration = new BraintreeConfiguration();
 
     /*==========================================================================================================================
     | TRANSACTION SUCESS STATUSES
@@ -76,7 +81,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var braintreeGateway      = BraintreeConfiguration.GetGateway();
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
       Transaction transaction   = null;
       Topic paymentsTopic       = _topicRepository.Load("Root:Web:Purchase:Payments");
@@ -110,7 +115,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View("Payments", topicViewModel);
+      return View("Payments");
 
     }
 
@@ -126,7 +131,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var gateway               = BraintreeConfiguration.GetGateway();
+      var gateway               = _braintreeConfiguration.GetGateway();
       Decimal amount;
 
       /*------------------------------------------------------------------------------------------------------------------------
