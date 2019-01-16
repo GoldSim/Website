@@ -71,6 +71,15 @@ namespace GoldSim.Web {
       if (controllerType == null) {
         controllerType = typeof(FallbackController);
       }
+      if (controllerType.GetType() == typeof(TopicController)) {
+        switch (mvcTopicRoutingService.GetCurrentTopic().ContentType) {
+          case "Payments":
+            controllerType = typeof(PaymentsController);
+            break;
+          default:
+            break;
+        }
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
@@ -87,7 +96,7 @@ namespace GoldSim.Web {
           return new SitemapController(_topicRepository);
 
         case nameof(PaymentsController):
-          return new PaymentsController(_topicRepository);
+          return new PaymentsController(_topicRepository, mvcTopicRoutingService, _topicMappingService, new BraintreeConfiguration(mvcTopicRoutingService));
 
         case nameof(ErrorController):
           return new ErrorController();
