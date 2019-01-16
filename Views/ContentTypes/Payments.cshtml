@@ -1,200 +1,114 @@
 ﻿@{
-  Layout = null; // "~/Views/Layout/_Layout.cshtml";
+  Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<!DOCTYPE html>
-<html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
-  <head runat="server">
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@Model.Title - GoldSim</title>
-    <meta name="keywords" content="simulation software, business simulation software, decision analysis software, discrete event, Monte Carlo, Monte Carlo simulation, modeling, modelling, decision analysis, process modeling, process simulation software, simulation technology, supply chain software, uncertainty analysis, stochastic, uncertainty, probabilistic" />
-    <meta name="description" content="GoldSim is a powerful and flexible platform for visualizing and dynamically simulating nearly any kind of physical, financial or organizational system. This page summarizes the available GoldSim software products." />
-    <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
-    <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
-    <link rel="canonical" href="https://www.goldsim.com<%= Request.Url.AbsolutePath.ToString().ToLower() %>" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicons/favicon-16x16.png" />
-    <link rel="manifest" href="/Images/Favicons/manifest.json" />
-    <link rel="mask-icon" href="/Images/Favicons/safari-pinned-tab.svg" color="#000000" />
-    <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
-    <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
-    <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
-    <style type="text/css">
-      header.site.header {
-        -webkit-box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
-        box-shadow: 0 0 9px 2px rgba(0, 0, 0, 0.07);
+@section PageBodySection {
+
+  <!-- Main Page Content -->
+  <section class="panel body" style="width: 100%">
+
+    <div class="cell">
+      @if (TempData["ConfirmationMessage"] != null)
+      {
+        <p>@TempData["ConfirmationMessage"].ToString()</p>
       }
-    </style>
-    <script>
-      /**
-       * Initialize Google Analytics
-       */
-      (function (i, s, o, g, r, a, m) {
-      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-        (i[r].q = i[r].q || []).push(arguments)
-      }, i[r].l = 1 * new Date(); a = s.createElement(o),
-        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-      })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
-      ga('create', 'UA-2082450-1', 'auto');
-      ga('send', 'pageview');
-    </script>
-  </head>
-  <body itemscope itemtype="https://schema.org/WebPage">
-    @Html.Partial("_CookiesNotice")
+    </div>
 
-    <!-- Site Header Area -->
-    <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
-      <div class="title-bar-left menu">
-        <button class="menu-icon hide-for-large" type="button" data-open="PrimaryNavigationSmallScreen"></button>
-      </div>
-      <!-- Logo -->
-      <div class="title-bar-middle logo centered">
-        <a href="/"><img src="/Images/Logo.svg" alt="GoldSim Technology Group" class="logo" /></a>
-      </div>
-      <!-- /Logo -->
-      <div class="title-bar-right search">
-        <div class="search form closed">
-          <form id="SearchBarSearchForm" action="/Web/Search/">
-            <!-- Search Input -->
-            <div class="input">
-              <input type="search" id="SearchBarSearchQuery" name="SearchText" />
-            </div>
-            <!-- Search Open / Close Button -->
-            <div class="buttons">
-              <button type="button" class="icon"></button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </header>
-    <!-- /Site Header Area -->
+    <form action="/Payments/Create" id="PaymentsForm" method="post">
 
-    <!-- Navigation Menu -->
-    @Html.Action("Menu", "Layout")
+      <div class="grid-container">
+        <div class="grid-x grid-margin-x">
 
-    <main id="MainContentArea" class="page content" role="main">
-      <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
-
-        <!-- Long Title (Subtitle) -->
-        <header class="grid-x">
-          <h1 class="page title long cell">GoldSim Payments</h1>
-          <p class="subtitle">Payments Form for GoldSim Invoices</p>
-        </header>
-        <!-- /Long Title (Subtitle) -->
-
-        <!-- Main Page Content -->
-        <section class="panel body" style="width: 100%">
-
+          <!-- Company Name -->
           <div class="cell">
-            @if (TempData["ConfirmationMessage"] != null) {
-              <p>@TempData["ConfirmationMessage"].ToString()</p>
-            }
+            <label for="Company" class="required">
+              *Company Name
+              <input id="Company" name="company" type="text" placeholder="Company Name">
+            </label>
           </div>
 
-          <form action="/Payments/Create" id="PaymentsForm" method="post">
+          <!-- Invoice Number -->
+          <div class="medium-6 cell">
+            <label for="Invoice" class="required">
+              *Invoice Number
+              <input id="Invoice" name="invoice" type="text" placeholder="Invoice Number">
+            </label>
+          </div>
 
-            <div class="grid-container">
-              <div class="grid-x grid-margin-x">
+          <!-- Amount -->
+          <div class="medium-6 cell">
+            <label for="Amount" class="required">
+              *Amount
+              <input id="Amount" name="amount" type="tel" min="1" placeholder="1000">
+            </label>
+          </div>
 
-                <!-- Company Name -->
-                <div class="cell">
-                  <label for="Company" class="required">
-                    *Company Name
-                    <input id="Company" name="company" type="text" placeholder="Company Name">
-                  </label>
-                </div>
+          <!-- CC Number -->
+          <div class="cell">
+            <label for="CardNumber" class="required">
+              *Card Number
+              <span id="CardNumber"></span>
+            </label>
+          </div>
 
-                <!-- Invoice Number -->
-                <div class="medium-6 cell">
-                  <label for="Invoice" class="required">
-                    *Invoice Number
-                    <input id="Invoice" name="invoice" type="text" placeholder="Invoice Number">
-                  </label>
-                </div>
+          <!-- CVV Code -->
+          <div class="medium-3 cell">
+            <label for="Cvv" class="required">
+              *CVV
+              <span id="Cvv"></span>
+            </label>
+          </div>
 
-                <!-- Amount -->
-                <div class="medium-6 cell">
-                  <label for="Amount" class="required">
-                    *Amount
-                    <input id="Amount" name="amount" type="tel" min="1" placeholder="1000">
-                  </label>
-                </div>
+          <!-- Expiration Month -->
+          <div class="medium-3 cell">
+            <label for="ExpirationMonth" class="required">
+              *Expiration Month
+              <span id="ExpirationMonth"></span>
+            </label>
+          </div>
 
-                <!-- CC Number -->
-                <div class="cell">
-                  <label for="CardNumber" class="required">
-                    *Card Number
-                    <span id="CardNumber"></span>
-                  </label>
-                </div>
+          <!-- Expiration Year -->
+          <div class="medium-3 cell">
+            <label for="ExpirationYear" class="required">
+              *Expiration Year
+              <span id="ExpirationYear"></span>
+            </label>
+          </div>
 
-                <!-- CVV Code -->
-                <div class="medium-3 cell">
-                  <label for="Cvv" class="required">
-                    *CVV
-                    <span id="Cvv"></span>
-                  </label>
-                </div>
+          <!-- Postal Code -->
+          <div class="medium-3 cell">
+            <label for="PostalCode" class="required">
+              *ZIP / Postal Code
+              <span id="PostalCode"></span>
+            </label>
+          </div>
 
-                <!-- Expiration Month -->
-                <div class="medium-3 cell">
-                  <label for="ExpirationMonth" class="required">
-                    *Expiration Month
-                    <span id="ExpirationMonth"></span>
-                  </label>
-                </div>
+          <input id="PaymentMethodNonce" name="paymentMethodNonce" type="hidden" />
 
-                <!-- Expiration Year -->
-                <div class="medium-3 cell">
-                  <label for="ExpirationYear" class="required">
-                    *Expiration Year
-                    <span id="ExpirationYear"></span>
-                  </label>
-                </div>
+          <!-- Submit -->
+          <div class="cell">
+            <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
+          </div>
 
-                <!-- Postal Code -->
-                <div class="medium-3 cell">
-                  <label for="PostalCode" class="required">
-                    *ZIP / Postal Code
-                    <span id="PostalCode"></span>
-                  </label>
-                </div>
+          Debug: @ViewBag.DebugData
+          <br />@ViewData.ModelMetadata.ModelType
+          <br />@ViewContext.Controller.GetType().Name
+        </div>
+      </div>
+    </form>
 
-                <input id="PaymentMethodNonce" name="paymentMethodNonce" type="hidden" />
+  </section>
+  <!-- /Main Page Content -->
 
-                <!-- Submit -->
-                <div class="cell">
-                  <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
-                </div>
+}
 
-              </div>
-            </div>
-          </form>
+@section Scripts {
 
-        </section>
-        <!-- /Main Page Content -->
+  <!-- Braintree -->
+  <script src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
+  <script src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
 
-      </article>
-    </main>
-
-    <!-- Footer -->
-    @Html.Action("Footer", "Layout")
-
-    <!-- jQuery -->
-    <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
-    <!-- Foundation -->
-    <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
-    <!-- Braintree -->
-    <script src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
-    <script src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
-
-    <script>
+  <script>
 
       /**
        * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
@@ -267,9 +181,6 @@
        */
       $(document).foundation();
 
-    </script>
+  </script>
 
-    <script src="/Shared/Scripts/Scripts.js"></script>
-
-  </body>
-</html>
+}
