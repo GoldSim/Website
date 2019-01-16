@@ -25,6 +25,18 @@ namespace GoldSim.Web {
     public string PublicKey { get; set; }
     public string PrivateKey { get; set; }
     private IBraintreeGateway BraintreeGateway { get; set; }
+    private readonly ITopicRoutingService _topicRoutingService = null;
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes a new instance of the <see cref="BraintreeConfiguration"/>, including any shared dependencies to be used
+    ///   across instances of controllers.
+    /// </summary>
+    public BraintreeConfiguration(ITopicRoutingService topicRoutingService) {
+      _topicRoutingService      = topicRoutingService;
+    }
 
     /*==========================================================================================================================
     | CREATE GATEWAY
