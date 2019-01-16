@@ -59,20 +59,32 @@ namespace GoldSim.Web {
       | Get API credentials from Environment Variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (MerchantId == null || PublicKey == null || PrivateKey == null) {
-        Environment             = System.Environment.GetEnvironmentVariable("BraintreeEnvironment");
-        MerchantId              = System.Environment.GetEnvironmentVariable("BraintreeMerchantId");
-        PublicKey               = System.Environment.GetEnvironmentVariable("BraintreePublicKey");
-        PrivateKey              = System.Environment.GetEnvironmentVariable("BraintreePrivateKey");
+        if (Environment.Equals("sandbox")) {
+          MerchantId            = System.Environment.GetEnvironmentVariable("BraintreeDevelopmentMerchantId");
+          PublicKey             = System.Environment.GetEnvironmentVariable("BraintreeDevelopmentPublicApiKey");
+          PrivateKey            = System.Environment.GetEnvironmentVariable("BraintreeDevelopmentPrivateApiKey");
+        }
+        else {
+          MerchantId            = System.Environment.GetEnvironmentVariable("BraintreeProductionMerchantId");
+          PublicKey             = System.Environment.GetEnvironmentVariable("BraintreeProductionPublicApiKey");
+          PrivateKey            = System.Environment.GetEnvironmentVariable("BraintreeProductionPrivateApiKey");
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get API credentials from App Settings
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (MerchantId == null || PublicKey == null || PrivateKey == null) {
-        Environment             = GetConfigurationSetting("BraintreeEnvironment");
-        MerchantId              = GetConfigurationSetting("BraintreeMerchantId");
-        PublicKey               = GetConfigurationSetting("BraintreePublicKey");
-        PrivateKey              = GetConfigurationSetting("BraintreePrivateKey");
+        if (Environment.Equals("sandbox")) {
+          MerchantId            = GetConfigurationSetting("BraintreeDevelopmentMerchantId");
+          PublicKey             = GetConfigurationSetting("BraintreeDevelopmentPublicApiKey");
+          PrivateKey            = GetConfigurationSetting("BraintreeDevelopmentPrivateApiKey");
+        }
+        else {
+          MerchantId            = GetConfigurationSetting("BraintreeProductionMerchantId");
+          PublicKey             = GetConfigurationSetting("BraintreeProductionPublicApiKey");
+          PrivateKey            = GetConfigurationSetting("BraintreeProductionPrivateApiKey");
+        }
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
