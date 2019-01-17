@@ -23,7 +23,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | PRIVATE FIELDS
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     IBraintreeGateway               _braintreeGateway                = null;
+    private                     IBraintreeGateway               _braintreeGateway               = null;
     private readonly            ITopicRoutingService            _topicRoutingService            = null;
 
     /*==========================================================================================================================
@@ -58,7 +58,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Topic PaymentsTopic       = TopicRepository.DataProvider.Load("Root:Web:Purchase:Payments");
+      var PaymentsTopic         = _topicRoutingService.GetCurrentTopic();
       Environment               = "sandbox";
 
       /*------------------------------------------------------------------------------------------------------------------------
