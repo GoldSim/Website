@@ -15,6 +15,8 @@ namespace GoldSim.Web.Models {
   /// </summary>
   public class PaymentsTopicViewModel : PageTopicViewModel {
 
+    public string ClientToken { get; set; }
+
 
   } // Class
 
