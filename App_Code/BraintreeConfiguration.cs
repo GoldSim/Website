@@ -97,7 +97,7 @@ namespace GoldSim.Web {
     ///   finally, the <see cref="ConfigurationManager.AppSettings"/>.
     /// </remarks>
     /// <returns>The configured value for the given variable.</returns>
-    public string GetConfigurationSetting(string variable, string defaultValue) {
+    public string GetConfigurationSetting(string variable, string defaultValue = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
