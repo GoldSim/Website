@@ -28,10 +28,7 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicRepository                _topicRepository                = null;
-    private     readonly        ITopicRoutingService            _topicRoutingService            = null;
     private     readonly        ITopicMappingService            _topicMappingService            = null;
-    private                     Topic                           _currentTopic                   = null;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
 
     /*==========================================================================================================================
@@ -55,10 +52,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set values locally
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _topicRepository          = topicRepository;
-      _topicRoutingService      = topicRoutingService;
       _topicMappingService      = topicMappingService;
-      _currentTopic             = topicRoutingService.GetCurrentTopic();
       _braintreeConfiguration   = braintreeConfiguration;
 
     }
