@@ -1,4 +1,5 @@
-﻿@{
+﻿@model PaymentsTopicViewModel
+@{
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
@@ -90,9 +91,6 @@
             <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
           </div>
 
-          Debug: @ViewBag.DebugData
-          <br />@ViewData.ModelMetadata.ModelType
-          <br />@ViewContext.Controller.GetType().Name
         </div>
       </div>
     </form>
@@ -113,7 +111,7 @@
       /**
        * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
        */
-      var clientToken           = "@ViewBag.ClientToken";
+      var clientToken           = "@Model.ClientToken";
       var form                  = document.querySelector('#PaymentsForm');
       var submit                = document.querySelector('button[type="submit"]');
 
