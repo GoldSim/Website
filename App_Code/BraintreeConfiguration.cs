@@ -40,7 +40,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | PUBLIC PROPERTIES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public string Environment { get; set; }
+    public string Environment { get; set; } = "sandbox";
     public string MerchantId { get; set; }
     public string PublicKey { get; set; }
     public string PrivateKey { get; set; }
@@ -58,7 +58,6 @@ namespace GoldSim.Web {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
-      Environment               = "sandbox";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get API credentials from Payments Topic
