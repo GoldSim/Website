@@ -13,7 +13,6 @@ using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Web;
 using Ignia.Topics.Web.Mvc;
-using Ignia.Web.Tools;
 
 namespace GoldSim.Web {
 
@@ -78,42 +77,6 @@ namespace GoldSim.Web {
 
     }
 
-    /*==========================================================================================================================
-    | METHOD: REGISTER ROUTES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Establishes (non-MVC) URL routes and maps them to the appropriate page handlers.
-    /// </summary>
-    /// <param name="routes">
-    ///   The route collection for the server, typically passed from the <see cref="System.Web.HttpApplication"/> class.
-    /// </param>
-    void RegisterRoutes(RouteCollection routes) {
+  } //Class
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Ignore ASPX pages
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      routes.IgnoreRoute("{WebPage}.aspx/{*pathInfo}");
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Add default and legacy routes
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      routes.MapPageRoute("Edit",       "Edit/{*directory}",    "~/!Admin/Topics/Default.aspx");
-      routes.MapPageRoute("Legacy",     "Content.asp",          "~/Redirector.aspx");
-      routes.MapPageRoute("Redirect",   "Topic/{topicID}",      "~/Redirector.aspx");
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Ignore ASPX pages
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      routes.Add(
-        "TopicUrl",
-        new Route(
-          "{namespace}/{*path}",
-          new TopicsRouteHandler()
-        )
-      );
-
-    }
-
-  }
-
-}
+} //Namespace
