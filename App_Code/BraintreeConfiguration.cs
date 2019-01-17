@@ -20,12 +20,11 @@ namespace GoldSim.Web {
   ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>
   public class BraintreeConfiguration : IBraintreeConfiguration {
 
-    public string Environment { get; set; }
-    public string MerchantId { get; set; }
-    public string PublicKey { get; set; }
-    public string PrivateKey { get; set; }
-    private IBraintreeGateway BraintreeGateway { get; set; }
-    private readonly ITopicRoutingService _topicRoutingService = null;
+    /*==========================================================================================================================
+    | PRIVATE FIELDS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private                     IBraintreeGateway               _braintreeGateway                = null;
+    private readonly            ITopicRoutingService            _topicRoutingService            = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -37,6 +36,15 @@ namespace GoldSim.Web {
     public BraintreeConfiguration(ITopicRoutingService topicRoutingService) {
       _topicRoutingService      = topicRoutingService;
     }
+
+    /*==========================================================================================================================
+    | PUBLIC PROPERTIES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    public string Environment { get; set; }
+    public string MerchantId { get; set; }
+    public string PublicKey { get; set; }
+    public string PrivateKey { get; set; }
+
 
     /*==========================================================================================================================
     | CREATE GATEWAY
@@ -116,11 +124,11 @@ namespace GoldSim.Web {
     /// <returns>The configured Braintree payments gateway.</returns>
     public IBraintreeGateway GetGateway() {
 
-      if (BraintreeGateway == null) {
-        BraintreeGateway        = CreateGateway();
+      if (_braintreeGateway == null) {
+        _braintreeGateway        = CreateGateway();
       }
 
-      return BraintreeGateway;
+      return _braintreeGateway;
     }
 
     /*==========================================================================================================================
