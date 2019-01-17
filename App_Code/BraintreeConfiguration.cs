@@ -56,40 +56,14 @@ namespace GoldSim.Web {
     public IBraintreeGateway CreateGateway() {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
-      var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase)? "Development" : "Production";
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Get API credentials from Payments Topic
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      MerchantId                = paymentsTopic.Attributes.GetValue($"Braintree{environmentVariable}MerchantId");
-      PublicKey                 = paymentsTopic.Attributes.GetValue($"Braintree{environmentVariable}PublicApiKey");
-      PrivateKey                = paymentsTopic.Attributes.GetValue($"Braintree{environmentVariable}PrivateApiKey");
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Get API credentials from Environment Variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (MerchantId == null || PublicKey == null || PrivateKey == null) {
-        MerchantId              = System.Environment.GetEnvironmentVariable($"Braintree{environmentVariable}MerchantId");
-        PublicKey               = System.Environment.GetEnvironmentVariable($"Braintree{environmentVariable}PublicApiKey");
-        PrivateKey              = System.Environment.GetEnvironmentVariable($"Braintree{environmentVariable}PrivateApiKey");
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Get API credentials from App Settings
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (MerchantId == null || PublicKey == null || PrivateKey == null) {
-        MerchantId              = GetConfigurationSetting($"Braintree{environmentVariable}MerchantId");
-        PublicKey               = GetConfigurationSetting($"Braintree{environmentVariable}PublicApiKey");
-        PrivateKey              = GetConfigurationSetting($"Braintree{environmentVariable}PrivateApiKey");
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Return the Braintree API gateway
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new BraintreeGateway(Braintree.Environment.ParseEnvironment(Environment), MerchantId, PublicKey, PrivateKey);
+      return new BraintreeGateway(
+        Braintree.Environment.ParseEnvironment(Environment),
+        GetConfigurationSetting(nameof(MerchantId), MerchantId),
+        GetConfigurationSetting(nameof(PublicKey), PublicKey),
+        GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
+      );
 
     }
 
@@ -104,21 +78,61 @@ namespace GoldSim.Web {
     public IBraintreeGateway GetGateway() {
 
       if (_braintreeGateway == null) {
-        _braintreeGateway        = CreateGateway();
+        _braintreeGateway = CreateGateway();
       }
 
       return _braintreeGateway;
     }
 
+
     /*==========================================================================================================================
     | GET CONFIGURATION SETTING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Conveniene method for looking up configuration settings; currently pulls from the application's `AppSettings`
-    ///   configuration.
+    ///   Gets the configuration value by first checking the local property, and then falling back to other configuration
+    ///   sources.
     /// </summary>
-    private string GetConfigurationSetting(string setting) {
-      return ConfigurationManager.AppSettings[setting];
+    /// <remarks>
+    ///   Fallback configuration sources include, in order, the <see cref="Topic"/>, the <see cref="Environment"/>, and,
+    ///   finally, the <see cref="ConfigurationManager.AppSettings"/>.
+    /// </remarks>
+    /// <returns>The configured value for the given variable.</returns>
+    public string GetConfigurationSetting(string variable, string defaultValue) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
+      var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
+      var compositeVariable     = $"Braintree{environmentVariable}{variable}";
+      var value                 = defaultValue;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get API credentials from Payments Topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (String.IsNullOrEmpty(value)) {
+        value = paymentsTopic.Attributes.GetValue(compositeVariable);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get API credentials from Environment Variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (String.IsNullOrEmpty(value)) {
+        value = System.Environment.GetEnvironmentVariable(compositeVariable);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get API credentials from App Settings
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (String.IsNullOrEmpty(value)) {
+        value = ConfigurationManager.AppSettings[compositeVariable];
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the Braintree API gateway
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return value;
+
     }
 
   } // Class
