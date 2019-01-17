@@ -98,20 +98,20 @@ namespace GoldSim.Web.Controllers {
       var clientToken           = braintreeGateway.ClientToken.Generate();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Pass client token to view
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      ViewBag.ClientToken       = clientToken;
-      ViewBag.DebugData         = "test";
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Establish default view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync(CurrentTopic);
+      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Pass client token to model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (topicViewModel != null) {
+        topicViewModel.ClientToken      = clientToken;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //return View();
       return new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
 
     }
