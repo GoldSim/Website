@@ -98,7 +98,7 @@ namespace GoldSim.Web.Controllers {
       | Pass client token to model
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (topicViewModel != null) {
-        topicViewModel.ClientToken      = clientToken;
+        topicViewModel.ClientToken = clientToken;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
