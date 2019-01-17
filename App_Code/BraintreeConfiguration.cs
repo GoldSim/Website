@@ -117,7 +117,7 @@ namespace GoldSim.Web {
     ///   Conveniene method for looking up configuration settings; currently pulls from the application's `AppSettings`
     ///   configuration.
     /// </summary>
-    public string GetConfigurationSetting(string setting) {
+    private string GetConfigurationSetting(string setting) {
       return ConfigurationManager.AppSettings[setting];
     }
 
