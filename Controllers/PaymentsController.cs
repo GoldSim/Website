@@ -58,7 +58,7 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | TRANSACTION SUCESS STATUSES
+    | TRANSACTION SUCCESS STATUSES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Defines a subset of Braintree transaction statuses, specifically associated with successful transactions.
