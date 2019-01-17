@@ -7,7 +7,6 @@ using System;
 using System.Configuration;
 using Braintree;
 using Ignia.Topics;
-using Ignia.Topics.Web;
 
 namespace GoldSim.Web {
 
