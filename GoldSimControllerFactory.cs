@@ -71,14 +71,14 @@ namespace GoldSim.Web {
       if (controllerType == null) {
         controllerType = typeof(FallbackController);
       }
-      if (controllerType.GetType() == typeof(TopicController)) {
-        switch (mvcTopicRoutingService.GetCurrentTopic().ContentType) {
-          case "Payments":
-            controllerType = typeof(PaymentsController);
-            break;
-          default:
-            break;
-        }
+
+      // Force controller recognition for specific Content Types
+      switch (mvcTopicRoutingService.GetCurrentTopic().ContentType) {
+        case "Payments":
+          controllerType      = typeof(PaymentsController);
+          break;
+        default:
+          break;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
