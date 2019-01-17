@@ -5,17 +5,15 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using Braintree;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc.Controllers;
-using Ignia.Topics.Web.Mvc.Models;
 using GoldSim.Web.Models;
 using Ignia.Topics;
-using System.Threading.Tasks;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Repositories;
 using Ignia.Topics.Web.Mvc;
+using Ignia.Topics.Web.Mvc.Controllers;
 
 namespace GoldSim.Web.Controllers {
 
