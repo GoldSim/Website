@@ -45,7 +45,6 @@ namespace GoldSim.Web {
     public string PublicKey { get; set; }
     public string PrivateKey { get; set; }
 
-
     /*==========================================================================================================================
     | CREATE GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -58,21 +57,21 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var PaymentsTopic         = _topicRoutingService.GetCurrentTopic();
+      var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
       Environment               = "sandbox";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get API credentials from Payments Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (Environment.Equals("sandbox")) {
-        MerchantId              = PaymentsTopic.Attributes.GetValue("BraintreeDevelopmentMerchantId");
-        PublicKey               = PaymentsTopic.Attributes.GetValue("BraintreeDevelopmentPublicApiKey");
-        PrivateKey              = PaymentsTopic.Attributes.GetValue("BraintreeDevelopmentPrivateApiKey");
+        MerchantId              = paymentsTopic.Attributes.GetValue("BraintreeDevelopmentMerchantId");
+        PublicKey               = paymentsTopic.Attributes.GetValue("BraintreeDevelopmentPublicApiKey");
+        PrivateKey              = paymentsTopic.Attributes.GetValue("BraintreeDevelopmentPrivateApiKey");
       }
       else {
-        MerchantId              = PaymentsTopic.Attributes.GetValue("BraintreeProductionMerchantId");
-        PublicKey               = PaymentsTopic.Attributes.GetValue("BraintreeProductionPublicApiKey");
-        PrivateKey              = PaymentsTopic.Attributes.GetValue("BraintreeProductionPrivateApiKey");
+        MerchantId              = paymentsTopic.Attributes.GetValue("BraintreeProductionMerchantId");
+        PublicKey               = paymentsTopic.Attributes.GetValue("BraintreeProductionPublicApiKey");
+        PrivateKey              = paymentsTopic.Attributes.GetValue("BraintreeProductionPrivateApiKey");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
