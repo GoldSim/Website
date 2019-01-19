@@ -115,7 +115,10 @@ namespace GoldSim.Web.Controllers {
     ///   Provides payments form processing
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public ActionResult Create() {
+    //public ActionResult Create() {
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public ActionResult Index() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -130,7 +133,8 @@ namespace GoldSim.Web.Controllers {
         amount                  = Convert.ToDecimal(Request["amount"]);
       }
       catch (FormatException e) {
-        return RedirectToAction("Index");
+        //return RedirectToAction("Index");
+        return RedirectToRoute("WebTopics");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -155,10 +159,16 @@ namespace GoldSim.Web.Controllers {
       Result<Transaction> result                = gateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
         Transaction transaction                 = result.Target;
-        return RedirectToAction("Index", new { id = transaction.Id });
+        //return RedirectToAction("Index", new { id = transaction.Id });
+        //return RedirectToRoute(
+        //  "WebTopics",
+        //  new { controller: "Payments" }
+        //);
+        return RedirectToRoute("WebTopics");
       }
       else if (result.Transaction != null) {
-        return RedirectToAction("Index", new { id = result.Transaction.Id } );
+        //return RedirectToAction("Index", new { id = result.Transaction.Id } );
+        return RedirectToRoute("WebTopics");
       }
       else {
         string errorMessages                    = "";
@@ -166,7 +176,8 @@ namespace GoldSim.Web.Controllers {
           errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
         }
         // TempData["Flash"]                    = errorMessages;
-        return RedirectToAction("Index");
+        // return RedirectToAction("Index");
+        return RedirectToRoute("WebTopics");
       }
 
     }
