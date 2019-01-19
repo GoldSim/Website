@@ -15,7 +15,7 @@
       }
     </div>
 
-    <form action="/Payments/Create" id="PaymentsForm" method="post">
+    <form id="PaymentsForm" method="post">
 
       <div class="grid-container">
         <div class="grid-x grid-margin-x">
@@ -85,6 +85,8 @@
           </div>
 
           <input id="PaymentMethodNonce" name="paymentMethodNonce" type="hidden" />
+
+          @Html.AntiForgeryToken()
 
           <!-- Submit -->
           <div class="cell">
@@ -166,7 +168,7 @@
                 return;
               }
 
-              document.querySelector('Nonce').value             = payload.nonce;
+              document.querySelector('#PaymentMethodNonce').value             = payload.nonce;
               form.submit();
             });
           }, false);
