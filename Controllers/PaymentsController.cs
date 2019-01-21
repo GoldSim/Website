@@ -167,7 +167,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Result<Transaction> result                = gateway.Transaction.Sale(request);
+      Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
         Transaction transaction                 = result.Target;
         topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("SuccessConfirmationMessage");
