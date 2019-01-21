@@ -90,7 +90,7 @@ namespace GoldSim.Web.Controllers {
       var clientToken           = braintreeGateway.ClientToken.Generate();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish default view model
+      | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
 
@@ -118,11 +118,13 @@ namespace GoldSim.Web.Controllers {
     //public ActionResult Create() {
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public ActionResult Index() {
+    public async Task<ActionResult> IndexAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
       var gateway               = _braintreeConfiguration.GetGateway();
       Decimal amount;
 
@@ -133,8 +135,11 @@ namespace GoldSim.Web.Controllers {
         amount                  = Convert.ToDecimal(Request["amount"]);
       }
       catch (FormatException e) {
-        //return RedirectToAction("Index");
-        return RedirectToRoute("WebTopics");
+        topicViewModel.IsValid  = false;
+        topicViewModel.ErrorMessageAmount       = "The format of the value you entered for the payment amount is invalid; please"
+                                                + "re-enter the payment amount in valid monetary format.";
+        topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
+        return topicViewResult;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -159,25 +164,18 @@ namespace GoldSim.Web.Controllers {
       Result<Transaction> result                = gateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
         Transaction transaction                 = result.Target;
-        //return RedirectToAction("Index", new { id = transaction.Id });
-        //return RedirectToRoute(
-        //  "WebTopics",
-        //  new { controller: "Payments" }
-        //);
-        return RedirectToRoute("WebTopics");
+        topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("AmountErrorMessage");
+        return topicViewResult;
       }
       else if (result.Transaction != null) {
-        //return RedirectToAction("Index", new { id = result.Transaction.Id } );
-        return RedirectToRoute("WebTopics");
+        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please contact <a href=\"mailto:software@goldsim\">GoldSim</a> for assistance.");
+        return topicViewResult;
       }
       else {
-        string errorMessages                    = "";
         foreach (ValidationError error in result.Errors.DeepAll()) {
-          errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
+          topicViewModel.ErrorMessages.Add(error.Code.ToString(), error.Message);
         }
-        // TempData["Flash"]                    = errorMessages;
-        // return RedirectToAction("Index");
-        return RedirectToRoute("WebTopics");
+        return topicViewResult;
       }
 
     }
