@@ -8,12 +8,21 @@
   <!-- Main Page Content -->
   <section class="panel body" style="width: 100%">
 
-    <div class="cell">
-      @if (TempData["ConfirmationMessage"] != null)
-      {
-        <p>@TempData["ConfirmationMessage"].ToString()</p>
-      }
-    </div>
+    @if (Model.ErrorMessages.Count > 0) {
+      <div class="callout alert">
+        <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
+        <ul>
+          @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
+            <li>@Model.ErrorMessages[errorMessageKey]</li>
+          }
+        </ul>
+      </div>
+    }
+    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
+      <div class="callout success">
+        <p>@Model.ConfirmationMessageSuccess</p>
+      </div>
+    }
 
     <form id="PaymentsForm" method="post">
 
