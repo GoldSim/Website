@@ -8,7 +8,7 @@
   <!-- Main Page Content -->
   <section class="panel body" style="width: 100%">
 
-    @if (Model.ErrorMessages.Count > 0) {
+    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
       <div class="callout alert">
         <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
         <ul>
