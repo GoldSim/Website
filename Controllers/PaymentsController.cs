@@ -162,7 +162,7 @@ namespace GoldSim.Web.Controllers {
       Result<Transaction> result                = gateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
         Transaction transaction                 = result.Target;
-        topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("AmountErrorMessage");
+        topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("SuccessConfirmationMessage");
         return topicViewResult;
       }
       else if (result.Transaction != null) {
