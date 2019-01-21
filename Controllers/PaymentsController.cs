@@ -125,8 +125,16 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
       var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
-      var gateway               = _braintreeConfiguration.GetGateway();
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
+      var clientToken           = braintreeGateway.ClientToken.Generate();
       Decimal amount;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Pass client token to model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (topicViewModel != null) {
+        topicViewModel.ClientToken = clientToken;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify payment amount format
