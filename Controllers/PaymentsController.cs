@@ -136,8 +136,6 @@ namespace GoldSim.Web.Controllers {
       }
       catch (FormatException e) {
         topicViewModel.IsValid  = false;
-        topicViewModel.ErrorMessageAmount       = "The format of the value you entered for the payment amount is invalid; please"
-                                                + "re-enter the payment amount in valid monetary format.";
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
       }

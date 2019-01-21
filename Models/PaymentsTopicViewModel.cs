@@ -18,7 +18,6 @@ namespace GoldSim.Web.Models {
 
     public bool? IsValid { get; set; }
     public string ClientToken { get; set; }
-    public string ErrorMessageAmount { get; set; }
     public Dictionary<string, string> ErrorMessages { get; set; }
     public string ConfirmationMessageSuccess { get; set; }
 
