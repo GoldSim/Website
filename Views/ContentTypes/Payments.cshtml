@@ -101,7 +101,7 @@
 
           <!-- Submit -->
           <div class="cell">
-            <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
+            <button type="submit" disabled class="button large submit primary">Submit Payment</button>
           </div>
 
         </div>
@@ -156,7 +156,10 @@
             cvv: {
               type              : 'password',
               selector          : '#Cvv',
-              placeholder       : '123'
+              placeholder       : '123',
+              maskInput         : {
+                character       : '*'
+              }
             },
             expirationMonth: {
               selector          : '#ExpirationMonth',
