@@ -49,22 +49,22 @@ function executeBraintree(clientToken) {
         },
         cvv: {
           selector              : '#Cvv',
-          placeholder           : '123',
+          placeholder           : '111',
           maskInput             : {
             character           : '*'
           }
         },
         expirationMonth: {
           selector              : '#ExpirationMonth',
-          placeholder           : '01'
+          placeholder           : 'MM'
         },
         expirationYear: {
           selector              : '#ExpirationYear',
-          placeholder           : '2021'
+          placeholder           : 'YYYY'
         },
         postalCode: {
           selector              : '#PostalCode',
-          placeholder           : '12345'
+          placeholder           : '11111'
         }
       }
     },
@@ -109,6 +109,12 @@ function executeBraintree(clientToken) {
                 $.each(tokenizeError.details.invalidFieldKeys, function (index, key) {
                   if (key === 'number') {
                     $('#CCNumberError').removeClass('is-hidden');
+                  }
+                  if (key === 'expirationMonth') {
+                    $('#ExpirationMonthError').removeClass('is-hidden');
+                  }
+                  if (key === 'expirationYear') {
+                    $('#ExpirationYearError').removeClass('is-hidden');
                   }
                   if (key === 'cvv') {
                     $('#CvvError').removeClass('is-hidden');
