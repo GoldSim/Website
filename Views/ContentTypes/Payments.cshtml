@@ -65,39 +65,30 @@
           </div>
 
           <!-- CC Number -->
-          <div class="cell">
+          <div class="medium-6 cell">
             <label for="CardNumber" class="hosted-field-label required">
               *Card Number
               <span id="CardNumber" class="hosted-field required"></span>
             </label>
           </div>
 
+          <!-- Expiration Month/Year -->
+          <div class="medium-6 cell">
+            <label for="Expiration" class="hosted-field-label required">*Expiration</label>
+            <span id="ExpirationMonth" class="hosted-field padded required" style="margin-right: .9375rem; width: 23%;"></span>
+            <span id="ExpirationYear" class="hosted-field padded required" style="margin-left: .9375rem; width: 68%;"></span>
+          </div>
+
           <!-- CVV Code -->
-          <div class="medium-3 cell">
+          <div class="medium-6 cell">
             <label for="Cvv" class="hosted-field-label required">
               *CVV
               <span id="Cvv" class="hosted-field padded required"></span>
             </label>
           </div>
 
-          <!-- Expiration Month -->
-          <div class="medium-3 cell">
-            <label for="ExpirationMonth" class="hosted-field-label required">
-              *Expiration Month
-              <span id="ExpirationMonth" class="hosted-field padded required"></span>
-            </label>
-          </div>
-
-          <!-- Expiration Year -->
-          <div class="medium-3 cell">
-            <label for="ExpirationYear" class="hosted-field-label required">
-              *Expiration Year
-              <span id="ExpirationYear" class="hosted-field padded required"></span>
-            </label>
-          </div>
-
           <!-- Postal Code -->
-          <div class="medium-3 cell">
+          <div class="medium-6 cell">
             <label for="PostalCode" class="hosted-field-label required">
               *ZIP / Postal Code
               <span id="PostalCode" class="hosted-field padded required"></span>
@@ -163,6 +154,7 @@
               placeholder       : '1111 1111 1111 1111'
             },
             cvv: {
+              type              : 'password',
               selector          : '#Cvv',
               placeholder       : '123'
             },
@@ -222,6 +214,9 @@
                       var containerElement = element.getAttribute('id');
                       $('label[for="' + containerElement + '"]').addClass('is-invalid-label');
                       $('span#' + containerElement).addClass('is-invalid-input');
+                      if (containerElement.startsWith('Expiration')) {
+                        $('label[for="Expiration"]').addClass('is-invalid-label');
+                      }
                     });
                     break;
 
