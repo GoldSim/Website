@@ -7,31 +7,28 @@
 
   <section class="panel body" style="width: 100%">
 
-    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0)
-    {
+    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
       <div class="callout alert error-message">
-        <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
+        <p>@Model.ErrorMessagesIntroduction</p>
         <ul>
-          @foreach (string errorMessageKey in Model.ErrorMessages.Keys)
-          {
+          @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
             <li>@Model.ErrorMessages[errorMessageKey]</li>
           }
         </ul>
       </div>
     }
     <div id="ClientSideErrors" class="callout alert error-message is-hidden">
-      <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
+      <p>@Model.ErrorMessagesIntroduction</p>
       <ul>
-        <li id="EmptyFieldsError" class="is-hidden">Please fill out all fields.</li>
-        <li id="CCNumberError" class="is-hidden">Please enter a valid credit card number.</li>
-        <li id="ExpirationMonthError" class="is-hidden">Please enter a valid expiration month.</li>
-        <li id="ExpirationYearError" class="is-hidden">Please enter a valid expiration year.</li>
-        <li id="CvvError" class="is-hidden">Please enter a valid card verification value (CVV).</li>
-        <li id="PostalCodeError" class="is-hidden">Please enter a valid ZIP or postal code.</li>
+        <li id="EmptyFieldsError" class="is-hidden">@Model.EmptyFieldsErrorMessage</li>
+        <li id="CCNumberError" class="is-hidden">@Model.CreditCardNumberErrorMessage</li>
+        <li id="ExpirationMonthError" class="is-hidden">@Model.ExpirationMonthErrorMessage</li>
+        <li id="ExpirationYearError" class="is-hidden">@Model.ExpirationYearErrorMessage</li>
+        <li id="CvvError" class="is-hidden">@Model.CvvErrorMessage</li>
+        <li id="PostalCodeError" class="is-hidden">@Model.PostalCodeErrorMessage</li>
       </ul>
     </div>
-    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess))
-    {
+    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
       <div class="callout success success-message">
         <p>@Model.ConfirmationMessageSuccess</p>
       </div>

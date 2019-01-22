@@ -19,6 +19,14 @@ namespace GoldSim.Web.Models {
     public bool? IsValid { get; set; }
     public string ClientToken { get; set; }
     public Dictionary<string, string> ErrorMessages { get; set; } = new Dictionary<string, string>();
+    public string ErrorMessagesIntroduction { get; set; }
+    public string AmountErrorMessage { get; set; }
+    public string EmptyFieldsErrorMessage { get; set; }
+    public string CreditCardNumberErrorMessage { get; set; }
+    public string ExpirationMonthErrorMessage { get; set; }
+    public string ExpirationYearErrorMessage { get; set; }
+    public string CvvErrorMessage { get; set; }
+    public string PostalCodeErrorMessage { get; set; }
     public string ConfirmationMessageSuccess { get; set; }
 
   } // Class
