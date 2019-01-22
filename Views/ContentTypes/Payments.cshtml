@@ -5,20 +5,31 @@
 
 @section PageBodySection {
 
-  <!-- Main Page Content -->
   <section class="panel body" style="width: 100%">
 
-    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
+    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0)
+    {
       <div class="callout alert">
         <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
         <ul>
-          @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
+          @foreach (string errorMessageKey in Model.ErrorMessages.Keys)
+          {
             <li>@Model.ErrorMessages[errorMessageKey]</li>
           }
         </ul>
       </div>
     }
-    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
+    <div id="ClientSideErrors" class="callout alert is-hidden">
+      <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
+      <ul>
+        <li id="EmptyFieldsError" class="is-hidden">Please fill out all fields.</li>
+        <li id="CCNumberError" class="is-hidden">Please enter a valid credit card number.</li>
+        <li id="CvvError" class="is-hidden">Please enter a valid card verification value (CVV).</li>
+        <li id="PostalCodeError" class="is-hidden">Please enter a valid ZIP or postal code.</li>
+      </ul>
+    </div>
+    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess))
+    {
       <div class="callout success">
         <p>@Model.ConfirmationMessageSuccess</p>
       </div>
@@ -55,7 +66,7 @@
 
           <!-- CC Number -->
           <div class="cell">
-            <label for="CardNumber" class="required">
+            <label for="CardNumber" class="hosted-field-label required">
               *Card Number
               <span id="CardNumber" class="hosted-field required"></span>
             </label>
@@ -63,7 +74,7 @@
 
           <!-- CVV Code -->
           <div class="medium-3 cell">
-            <label for="Cvv" class="required">
+            <label for="Cvv" class="hosted-field-label required">
               *CVV
               <span id="Cvv" class="hosted-field padded required"></span>
             </label>
@@ -71,7 +82,7 @@
 
           <!-- Expiration Month -->
           <div class="medium-3 cell">
-            <label for="ExpirationMonth" class="required">
+            <label for="ExpirationMonth" class="hosted-field-label required">
               *Expiration Month
               <span id="ExpirationMonth" class="hosted-field padded required"></span>
             </label>
@@ -79,7 +90,7 @@
 
           <!-- Expiration Year -->
           <div class="medium-3 cell">
-            <label for="ExpirationYear" class="required">
+            <label for="ExpirationYear" class="hosted-field-label required">
               *Expiration Year
               <span id="ExpirationYear" class="hosted-field padded required"></span>
             </label>
@@ -87,7 +98,7 @@
 
           <!-- Postal Code -->
           <div class="medium-3 cell">
-            <label for="PostalCode" class="required">
+            <label for="PostalCode" class="hosted-field-label required">
               *ZIP / Postal Code
               <span id="PostalCode" class="hosted-field padded required"></span>
             </label>
@@ -107,9 +118,10 @@
     </form>
 
   </section>
-  <!-- /Main Page Content -->
 
 }
+
+@section CallsToActionSection {}
 
 @section Scripts {
 
@@ -139,13 +151,10 @@
           client: clientInstance,
           styles: {
             'input': {
-              'font-family': 'Helvetica, Roboto, Arial, sans-serif',
-              'font-size': '.9375rem',
-              'line-height': '1.5',
-              'color': 'rgb(32, 32, 32)'
-            },
-            ':focus': {
-              'border-color': 'rgb(254, 193, 13)'
+              'font-family'     : 'Helvetica, Roboto, Arial, sans-serif',
+              'font-size'       : '.9375rem',
+              'line-height'     : '1.5',
+              'color'           : 'rgb(32, 32, 32)'
             }
           },
           fields: {
@@ -185,6 +194,52 @@
             hostedFieldsInstance.tokenize(function (tokenizeError, payload) {
               if (tokenizeError) {
                 console.error(tokenizeError);
+
+                switch (tokenizeError.code) {
+
+                  case 'HOSTED_FIELDS_FIELDS_EMPTY':
+                    // occurs when none of the fields are filled in
+                    $('label.hosted-field-label.required').addClass('is-invalid-label');
+                    $('span.hosted-field.required').addClass('is-invalid-input');
+                    $('#EmptyFieldsError').removeClass('is-hidden');
+                    $('#ClientSideErrors').removeClass('is-hidden');
+                    break;
+
+                  case 'HOSTED_FIELDS_FIELDS_INVALID':
+                    // occurs when certain fields do not pass client side validation
+                    $.each(tokenizeError.details.invalidFieldKeys, function(index, key) {
+                      if (key === 'number') {
+                        $('#CCNumberError').removeClass('is-hidden');
+                      }
+                      if (key === 'cvv') {
+                        $('#CvvError').removeClass('is-hidden');
+                      }
+                      if (key === 'postalCode') {
+                        $('#PostalCodeError').removeClass('is-hidden');
+                      }
+                    });
+                    $.each(tokenizeError.details.invalidFields, function (fieldContainer, element) {
+                      var containerElement = element.getAttribute('id');
+                      $('label[for="' + containerElement + '"]').addClass('is-invalid-label');
+                      $('span#' + containerElement).addClass('is-invalid-input');
+                    });
+                    break;
+
+                  case 'HOSTED_FIELDS_FAILED_TOKENIZATION':
+                    // occurs for any other tokenization error on the server
+                    console.error('Tokenization failed server side. Is the card valid?');
+                    break;
+
+                  case 'HOSTED_FIELDS_TOKENIZATION_NETWORK_ERROR':
+                    // occurs when the Braintree gateway cannot be contacted
+                    console.error('Network error occurred when tokenizing.');
+                    break;
+
+                  default:
+                    console.error(tokenizeError);
+                }
+
+                $('#ClientSideErrors').removeClass('is-hidden');
 
                 return;
               }
