@@ -8478,3 +8478,30 @@ ul.accordion {
   outline-color: transparent; }
   [data-whatinput='mouse'] * {
     outline: 0; }
+
+.payments-form input::-webkit-input-placeholder {
+  color: #858585; }
+
+.payments-form input:-ms-input-placeholder {
+  color: #858585; }
+
+.payments-form input::-ms-input-placeholder {
+  color: #858585; }
+
+.payments-form input::placeholder {
+  color: #858585; }
+
+.hosted-field {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  height: 2.4375rem; }
+  .hosted-field.padded {
+    padding: 0 0.5rem; }
+  .hosted-field:focus, .hosted-field.braintree-hosted-fields-focused {
+    border-color: #fec10d; }

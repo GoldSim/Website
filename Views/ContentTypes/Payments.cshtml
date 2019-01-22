@@ -24,7 +24,7 @@
       </div>
     }
 
-    <form id="PaymentsForm" method="post">
+    <form id="PaymentsForm" method="post" class="payments-form">
 
       <div class="grid-container">
         <div class="grid-x grid-margin-x">
@@ -57,7 +57,7 @@
           <div class="cell">
             <label for="CardNumber" class="required">
               *Card Number
-              <span id="CardNumber"></span>
+              <span id="CardNumber" class="hosted-field required"></span>
             </label>
           </div>
 
@@ -65,7 +65,7 @@
           <div class="medium-3 cell">
             <label for="Cvv" class="required">
               *CVV
-              <span id="Cvv"></span>
+              <span id="Cvv" class="hosted-field padded required"></span>
             </label>
           </div>
 
@@ -73,7 +73,7 @@
           <div class="medium-3 cell">
             <label for="ExpirationMonth" class="required">
               *Expiration Month
-              <span id="ExpirationMonth"></span>
+              <span id="ExpirationMonth" class="hosted-field padded required"></span>
             </label>
           </div>
 
@@ -81,7 +81,7 @@
           <div class="medium-3 cell">
             <label for="ExpirationYear" class="required">
               *Expiration Year
-              <span id="ExpirationYear"></span>
+              <span id="ExpirationYear" class="hosted-field padded required"></span>
             </label>
           </div>
 
@@ -89,7 +89,7 @@
           <div class="medium-3 cell">
             <label for="PostalCode" class="required">
               *ZIP / Postal Code
-              <span id="PostalCode"></span>
+              <span id="PostalCode" class="hosted-field padded required"></span>
             </label>
           </div>
 
@@ -137,6 +137,17 @@
 
         braintree.hostedFields.create({
           client: clientInstance,
+          styles: {
+            'input': {
+              'font-family': 'Helvetica, Roboto, Arial, sans-serif',
+              'font-size': '.9375rem',
+              'line-height': '1.5',
+              'color': 'rgb(32, 32, 32)'
+            },
+            ':focus': {
+              'border-color': 'rgb(254, 193, 13)'
+            }
+          },
           fields: {
             number: {
               selector          : '#CardNumber',
@@ -174,6 +185,7 @@
             hostedFieldsInstance.tokenize(function (tokenizeError, payload) {
               if (tokenizeError) {
                 console.error(tokenizeError);
+
                 return;
               }
 
