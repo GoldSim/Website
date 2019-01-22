@@ -9,7 +9,7 @@
 
     @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0)
     {
-      <div class="callout alert">
+      <div class="callout alert error-message">
         <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
         <ul>
           @foreach (string errorMessageKey in Model.ErrorMessages.Keys)
@@ -19,7 +19,7 @@
         </ul>
       </div>
     }
-    <div id="ClientSideErrors" class="callout alert is-hidden">
+    <div id="ClientSideErrors" class="callout alert error-message is-hidden">
       <p>There were problems with your payment submission. Please correct the following and submit your payment again:</p>
       <ul>
         <li id="EmptyFieldsError" class="is-hidden">Please fill out all fields.</li>
@@ -30,7 +30,7 @@
     </div>
     @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess))
     {
-      <div class="callout success">
+      <div class="callout success success-message">
         <p>@Model.ConfirmationMessageSuccess</p>
       </div>
     }
