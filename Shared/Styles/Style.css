@@ -3438,6 +3438,12 @@ input[type='search'] {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
 
+[type='number'] {
+  -moz-appearance: textfield; }
+  [type='number']::-webkit-inner-spin-button, [type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; }
+
 [type='file'],
 [type='checkbox'],
 [type='radio'] {
