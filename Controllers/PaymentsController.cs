@@ -169,9 +169,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
-        Transaction transaction                 = result.Target;
-        topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("SuccessConfirmationMessage");
-        return topicViewResult;
+        return Redirect("/Web/Purchase/PaymentConfirmation");
       }
       else if (result.Transaction != null) {
         topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please contact <a href=\"mailto:software@goldsim\">GoldSim</a> for assistance.");
