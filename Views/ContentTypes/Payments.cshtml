@@ -59,7 +59,10 @@
           <div class="medium-6 cell">
             <label for="Amount" class="required">
               *Amount
-              <input id="Amount" name="amount" type="tel" required min="1" placeholder="1000">
+              <span class="input-group">
+                <span class="input-group-label">$</span>
+                <input id="Amount" name="amount" type="number" required min="1" placeholder="1000" class="input-group-field">
+              </span>
             </label>
           </div>
 
