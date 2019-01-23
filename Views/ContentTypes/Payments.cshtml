@@ -5,17 +5,36 @@
 
 @section PageBodySection {
 
-  <!-- Main Page Content -->
   <section class="panel body" style="width: 100%">
 
-    <div class="cell">
-      @if (TempData["ConfirmationMessage"] != null)
-      {
-        <p>@TempData["ConfirmationMessage"].ToString()</p>
-      }
+    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
+      <div class="callout alert error-message">
+        <p>@Model.ErrorMessagesIntroduction</p>
+        <ul>
+          @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
+            <li>@Model.ErrorMessages[errorMessageKey]</li>
+          }
+        </ul>
+      </div>
+    }
+    <div id="ClientSideErrors" class="callout alert error-message is-hidden">
+      <p>@Model.ErrorMessagesIntroduction</p>
+      <ul>
+        <li id="EmptyFieldsError" class="is-hidden">@Model.EmptyFieldsErrorMessage</li>
+        <li id="CCNumberError" class="is-hidden">@Model.CreditCardNumberErrorMessage</li>
+        <li id="ExpirationMonthError" class="is-hidden">@Model.ExpirationMonthErrorMessage</li>
+        <li id="ExpirationYearError" class="is-hidden">@Model.ExpirationYearErrorMessage</li>
+        <li id="CvvError" class="is-hidden">@Model.CvvErrorMessage</li>
+        <li id="PostalCodeError" class="is-hidden">@Model.PostalCodeErrorMessage</li>
+      </ul>
     </div>
+    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
+      <div class="callout success success-message">
+        <p>@Model.ConfirmationMessageSuccess</p>
+      </div>
+    }
 
-    <form action="/Payments/Create" id="PaymentsForm" method="post">
+    <form id="PaymentsForm" method="post" class="payments-form">
 
       <div class="grid-container">
         <div class="grid-x grid-margin-x">
@@ -24,7 +43,7 @@
           <div class="cell">
             <label for="Company" class="required">
               *Company Name
-              <input id="Company" name="company" type="text" placeholder="Company Name">
+              <input id="Company" name="company" type="text" required placeholder="Company Name">
             </label>
           </div>
 
@@ -32,7 +51,7 @@
           <div class="medium-6 cell">
             <label for="Invoice" class="required">
               *Invoice Number
-              <input id="Invoice" name="invoice" type="text" placeholder="Invoice Number">
+              <input id="Invoice" name="invoice" type="text" required placeholder="Invoice Number">
             </label>
           </div>
 
@@ -40,55 +59,48 @@
           <div class="medium-6 cell">
             <label for="Amount" class="required">
               *Amount
-              <input id="Amount" name="amount" type="tel" min="1" placeholder="1000">
+              <input id="Amount" name="amount" type="tel" required min="1" placeholder="1000">
             </label>
           </div>
 
           <!-- CC Number -->
-          <div class="cell">
-            <label for="CardNumber" class="required">
+          <div class="medium-6 cell">
+            <label for="CardNumber" class="hosted-field-label required">
               *Card Number
-              <span id="CardNumber"></span>
+              <span id="CardNumber" class="hosted-field required"></span>
             </label>
+          </div>
+
+          <!-- Expiration Month/Year -->
+          <div class="medium-6 cell">
+            <label for="Expiration" class="hosted-field-label required">*Expiration</label>
+            <span id="ExpirationMonth" class="hosted-field padded required" style="margin-right: .9375rem; width: 23%;"></span>
+            <span id="ExpirationYear" class="hosted-field padded required" style="margin-left: .9375rem; width: 67%;"></span>
           </div>
 
           <!-- CVV Code -->
-          <div class="medium-3 cell">
-            <label for="Cvv" class="required">
+          <div class="medium-6 cell">
+            <label for="Cvv" class="hosted-field-label required">
               *CVV
-              <span id="Cvv"></span>
-            </label>
-          </div>
-
-          <!-- Expiration Month -->
-          <div class="medium-3 cell">
-            <label for="ExpirationMonth" class="required">
-              *Expiration Month
-              <span id="ExpirationMonth"></span>
-            </label>
-          </div>
-
-          <!-- Expiration Year -->
-          <div class="medium-3 cell">
-            <label for="ExpirationYear" class="required">
-              *Expiration Year
-              <span id="ExpirationYear"></span>
+              <span id="Cvv" class="hosted-field padded required"></span>
             </label>
           </div>
 
           <!-- Postal Code -->
-          <div class="medium-3 cell">
-            <label for="PostalCode" class="required">
+          <div class="medium-6 cell">
+            <label for="PostalCode" class="hosted-field-label required">
               *ZIP / Postal Code
-              <span id="PostalCode"></span>
+              <span id="PostalCode" class="hosted-field padded required"></span>
             </label>
           </div>
 
           <input id="PaymentMethodNonce" name="paymentMethodNonce" type="hidden" />
 
+          @Html.AntiForgeryToken()
+
           <!-- Submit -->
           <div class="cell">
-            <button type="submit" disabled class="button large submit secondary">Submit Payment</button>
+            <button type="submit" disabled class="button large submit primary">Submit Payment</button>
           </div>
 
         </div>
@@ -96,15 +108,17 @@
     </form>
 
   </section>
-  <!-- /Main Page Content -->
 
 }
+
+@section CallsToActionSection {}
 
 @section Scripts {
 
   <!-- Braintree -->
   <script src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
   <script src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
+  <script src="~/Shared/Scripts/Payments.js"></script>
 
   <script>
 
@@ -112,67 +126,7 @@
        * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
        */
       var clientToken           = "@Model.ClientToken";
-      var form                  = document.querySelector('#PaymentsForm');
-      var submit                = document.querySelector('button[type="submit"]');
-
-      var clientInstance        = braintree.client.create({
-        authorization           : clientToken
-      }, function (clientError, clientInstance) {
-
-        if (clientError) {
-          console.error(clientError);
-          return;
-        }
-
-        braintree.hostedFields.create({
-          client: clientInstance,
-          fields: {
-            number: {
-              selector          : '#CardNumber',
-              placeholder       : '1111 1111 1111 1111'
-            },
-            cvv: {
-              selector          : '#Cvv',
-              placeholder       : '123'
-            },
-            expirationMonth: {
-              selector          : '#ExpirationMonth',
-              placeholder       : '01'
-            },
-            expirationYear: {
-              selector          : '#ExpirationYear',
-              placeholder       : '2021'
-            },
-            postalCode: {
-              selector          : '#PostalCode',
-              placeholder       : '12345'
-            }
-          }
-        }, function (hostedFieldsError, hostedFieldsInstance) {
-
-          if (hostedFieldsError) {
-            console.error(hostedFieldsError);
-            return;
-          }
-
-          submit.removeAttribute('disabled');
-
-          form.addEventListener('submit', function (event) {
-            event.preventDefault();
-
-            hostedFieldsInstance.tokenize(function (tokenizeError, payload) {
-              if (tokenizeError) {
-                console.error(tokenizeError);
-                return;
-              }
-
-              document.querySelector('Nonce').value             = payload.nonce;
-              form.submit();
-            });
-          }, false);
-
-        });
-      });
+      executeBraintree(clientToken);
 
       /**
        * Initialize Foundation

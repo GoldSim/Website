@@ -176,20 +176,35 @@ textarea.Error {
     background-color            : $palette-white;
   }
 }
-.alert {
+.alert,
+.success {
   &.callout {
     float                       : none;
   }
-  &.error-message {
+  &.error-message,
+  &.success-message {
     box-shadow                  : none;
     margin-left                 : 0;
     border                      : 0 none transparent;
-    border-left                 : 3px solid $palette-red;
+    border-left                 : 3px solid $palette-black;
     padding                     : rem-calc(0 12);
     line-height                 : 1.2;
     font-weight                 : 600;
-    color                       : $palette-red;
     background-color            : $palette-white;
+  }
+  &.error-message {
+    border-color                : $palette-red;
+    color                       : $palette-red;
+    ul {
+      margin-top                : rem-calc(16);
+      li {
+        margin-bottom           : rem-calc(8);
+      }
+    }
+  }
+  &.success-message {
+    border-color                : $palette-green;
+    color                       : $palette-green;
   }
 }
 span[id*="Validator"][style*="visibility:hidden"] {

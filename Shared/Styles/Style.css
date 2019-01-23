@@ -7015,20 +7015,38 @@ textarea.Error:not(:focus) {
   border-color: #eb5d62;
   background-color: white; }
 
-.alert.callout {
+.alert.callout,
+.success.callout {
   float: none; }
 
-.alert.error-message {
+.alert.error-message, .alert.success-message,
+.success.error-message,
+.success.success-message {
   -webkit-box-shadow: none;
           box-shadow: none;
   margin-left: 0;
   border: 0 none transparent;
-  border-left: 3px solid #eb5d62;
+  border-left: 3px solid #202020;
   padding: 0 0.75rem;
   line-height: 1.2;
   font-weight: 600;
-  color: #eb5d62;
   background-color: white; }
+
+.alert.error-message,
+.success.error-message {
+  border-color: #eb5d62;
+  color: #eb5d62; }
+  .alert.error-message ul,
+  .success.error-message ul {
+    margin-top: 1rem; }
+    .alert.error-message ul li,
+    .success.error-message ul li {
+      margin-bottom: 0.5rem; }
+
+.alert.success-message,
+.success.success-message {
+  border-color: #66ae3d;
+  color: #66ae3d; }
 
 span[id*="Validator"][style*="visibility:hidden"] {
   display: none; }
@@ -8478,3 +8496,30 @@ ul.accordion {
   outline-color: transparent; }
   [data-whatinput='mouse'] * {
     outline: 0; }
+
+.payments-form input::-webkit-input-placeholder {
+  color: #858585; }
+
+.payments-form input:-ms-input-placeholder {
+  color: #858585; }
+
+.payments-form input::-ms-input-placeholder {
+  color: #858585; }
+
+.payments-form input::placeholder {
+  color: #858585; }
+
+.hosted-field {
+  display: inline-block;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0 0 1rem;
+  border: 1px solid #cccccc;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  height: 2.4375rem; }
+  .hosted-field.padded {
+    padding: 0 0.5rem; }
+  .hosted-field:focus, .hosted-field.braintree-hosted-fields-focused {
+    border-color: #fec10d; }

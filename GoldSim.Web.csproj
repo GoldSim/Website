@@ -1806,6 +1806,7 @@
     <Content Include="Images\Favicons\manifest.json" />
     <Content Include="Configuration\appSettings.config" />
     <Content Include="Connected Services\Application Insights\ConnectedService.json" />
+    <Content Include="Shared\Scripts\Payments.js" />
     <Content Include="Shared\Scripts\Vendor\DashJS\dash.all.debug.js.map" />
     <Content Include="Shared\Scripts\Vendor\DashJS\dash.all.min.js.map" />
     <Content Include="Media\Home\GoldSim_Overview_1000k_Segment_1.m4s" />

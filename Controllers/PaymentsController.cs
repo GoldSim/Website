@@ -90,7 +90,7 @@ namespace GoldSim.Web.Controllers {
       var clientToken           = braintreeGateway.ClientToken.Generate();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish default view model
+      | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
 
@@ -115,13 +115,26 @@ namespace GoldSim.Web.Controllers {
     ///   Provides payments form processing
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public ActionResult Create() {
+    //public ActionResult Create() {
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<ActionResult> IndexAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var gateway               = _braintreeConfiguration.GetGateway();
+      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
+      var clientToken           = braintreeGateway.ClientToken.Generate();
       Decimal amount;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Pass client token to model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (topicViewModel != null) {
+        topicViewModel.ClientToken = clientToken;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify payment amount format
@@ -130,7 +143,9 @@ namespace GoldSim.Web.Controllers {
         amount                  = Convert.ToDecimal(Request["amount"]);
       }
       catch (FormatException e) {
-        return RedirectToAction("Index");
+        topicViewModel.IsValid  = false;
+        topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
+        return topicViewResult;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -152,21 +167,21 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Result<Transaction> result                = gateway.Transaction.Sale(request);
+      Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
       if (result.IsSuccess()) {
         Transaction transaction                 = result.Target;
-        return RedirectToAction("Index", new { id = transaction.Id });
+        topicViewModel.ConfirmationMessageSuccess       = CurrentTopic.Attributes.GetValue("SuccessConfirmationMessage");
+        return topicViewResult;
       }
       else if (result.Transaction != null) {
-        return RedirectToAction("Index", new { id = result.Transaction.Id } );
+        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please contact <a href=\"mailto:software@goldsim\">GoldSim</a> for assistance.");
+        return topicViewResult;
       }
       else {
-        string errorMessages                    = "";
         foreach (ValidationError error in result.Errors.DeepAll()) {
-          errorMessages += "Error: " + (int)error.Code + " - " + error.Message + "\n";
+          topicViewModel.ErrorMessages.Add(error.Code.ToString(), error.Message);
         }
-        // TempData["Flash"]                    = errorMessages;
-        return RedirectToAction("Index");
+        return topicViewResult;
       }
 
     }
