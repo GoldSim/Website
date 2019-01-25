@@ -12,7 +12,7 @@
         <p>@Model.ErrorMessagesIntroduction</p>
         <ul>
           @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
-            <li>@Model.ErrorMessages[errorMessageKey]</li>
+            <li>@Html.Raw(Model.ErrorMessages[errorMessageKey])</li>
           }
         </ul>
       </div>
