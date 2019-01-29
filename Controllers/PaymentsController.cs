@@ -174,6 +174,10 @@ namespace GoldSim.Web.Controllers {
         return Redirect("/Web/Purchase/PaymentConfirmation");
       }
       else if (result.Transaction != null) {
+        Transaction transaction                 = result.Transaction;
+        if (transaction.AvsPostalCodeResponseCode != null && transaction.AvsPostalCodeResponseCode == "N") {
+          topicViewModel.ErrorMessages.Add("InvalidPostalCode", "Please enter the postal code associated with your credit card billing address.");
+        }
         topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim\">GoldSim</a> (<a href=\"tel: 1 - 425 - 295 - 7985\">+1 (425) 295-6985</a>) for assistance.");
         return topicViewResult;
       }
