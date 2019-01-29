@@ -156,6 +156,8 @@ namespace GoldSim.Web.Controllers {
         Amount                  = amount,
         PaymentMethodNonce      = nonce,
         CustomFields            = new Dictionary<string, string> {
+          { "cardholder", Request["cardholderName"] },
+          { "email", Request["customerEmail"] },
           { "company", Request["company"] },
           { "invoice", Request["invoice"] }
         },
@@ -172,7 +174,7 @@ namespace GoldSim.Web.Controllers {
         return Redirect("/Web/Purchase/PaymentConfirmation");
       }
       else if (result.Transaction != null) {
-        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please contact <a href=\"mailto:software@goldsim\">GoldSim</a> for assistance.");
+        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim\">GoldSim</a> (<a href=\"tel: 1 - 425 - 295 - 7985\">+1 (425) 295-6985</a>) for assistance.");
         return topicViewResult;
       }
       else {

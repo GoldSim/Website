@@ -39,11 +39,28 @@
       <div class="grid-container">
         <div class="grid-x grid-margin-x">
 
-          <!-- Company Name -->
+          <!-- Customer -->
           <div class="cell">
+            <label for="CardholderName" class="required">
+              *Cardholder Name
+              <input id="CardholderName" name="cardholderName" type="text" placeholder="Cardholder Name">
+            </label>
+          </div>
+          <!-- /Customer -->
+
+          <!-- Company Name -->
+          <div class="medium-6 cell">
             <label for="Company" class="required">
               *Company Name
               <input id="Company" name="company" type="text" required placeholder="Company Name">
+            </label>
+          </div>
+
+          <!-- Email Address -->
+          <div class="medium-6 cell">
+            <label for="CustomerEmail" class="required">
+              *Email Address
+              <input id="CustomerEmail" name="customerEmail" type="email" placeholder="Email Address">
             </label>
           </div>
 
@@ -51,7 +68,7 @@
           <div class="medium-6 cell">
             <label for="Invoice" class="required">
               *Invoice Number
-              <input id="Invoice" name="invoice" type="text" required placeholder="Invoice Number">
+              <input id="Invoice" name="invoice" type="number" placeholder="Invoice Number">
             </label>
           </div>
 
