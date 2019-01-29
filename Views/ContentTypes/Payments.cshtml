@@ -68,7 +68,7 @@
           <div class="medium-6 cell">
             <label for="Invoice" class="required">
               *Invoice Number
-              <input id="Invoice" name="invoice" type="number" placeholder="Invoice Number">
+              <input id="Invoice" name="invoice" type="text" maxlength="4" pattern="^\d{4,4}$" placeholder="1111" oninvalid="this.setCustomValidity('Please enter a 4-digit number.')" onchange="this.setCustomValidity('')">
             </label>
           </div>
 
