@@ -89,7 +89,9 @@ function executeBraintree(clientToken) {
       form.addEventListener('submit', function (event) {
         event.preventDefault();
 
-        hostedFieldsInstance.tokenize(function (tokenizeError, payload) {
+        hostedFieldsInstance.tokenize({
+          cardholderName: event.target.cardholderName.value
+        }, function(tokenizeError, payload) {
           if (tokenizeError) {
             console.error(tokenizeError);
 
