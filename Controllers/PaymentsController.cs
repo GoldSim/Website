@@ -154,6 +154,7 @@ namespace GoldSim.Web.Controllers {
       var nonce                 = Request["paymentMethodNonce"];
       var request               = new TransactionRequest {
         Amount                  = amount,
+        PurchaseOrderNumber     = Request["invoice"],
         PaymentMethodNonce      = nonce,
         CustomFields            = new Dictionary<string, string> {
           { "cardholder", Request["cardholderName"] },
@@ -178,7 +179,7 @@ namespace GoldSim.Web.Controllers {
         if (transaction.AvsPostalCodeResponseCode != null && transaction.AvsPostalCodeResponseCode == "N") {
           topicViewModel.ErrorMessages.Add("InvalidPostalCode", "Please enter the postal code associated with your credit card billing address.");
         }
-        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim\">GoldSim</a> (<a href=\"tel: 1 - 425 - 295 - 7985\">+1 (425) 295-6985</a>) for assistance.");
+        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was completed but was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
         return topicViewResult;
       }
       else {
