@@ -7,6 +7,12 @@
 
   <section class="panel body" style="width: 100%">
 
+    <div class="grid-container">
+      <div class="grid-x">
+        @Html.Raw(Model.Body)
+      </div>
+    </div>
+
     @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
       <div class="callout alert error-message">
         <p>@Model.ErrorMessagesIntroduction</p>
