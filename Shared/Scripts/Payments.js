@@ -61,10 +61,6 @@ function executeBraintree(clientToken) {
         expirationYear: {
           selector              : '#ExpirationYear',
           placeholder           : 'YYYY'
-        },
-        postalCode: {
-          selector              : '#PostalCode',
-          placeholder           : '11111'
         }
       }
     },
@@ -120,9 +116,6 @@ function executeBraintree(clientToken) {
                   }
                   if (key === 'cvv') {
                     $('#CvvError').removeClass('is-hidden');
-                  }
-                  if (key === 'postalCode') {
-                    $('#PostalCodeError').removeClass('is-hidden');
                   }
                 });
                 // Set error styles for erring fields and their labels
