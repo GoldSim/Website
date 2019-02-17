@@ -176,9 +176,6 @@ namespace GoldSim.Web.Controllers {
       }
       else if (result.Transaction != null) {
         var transaction                         = result.Transaction;
-        if (transaction.AvsPostalCodeResponseCode != null && transaction.AvsPostalCodeResponseCode == "N") {
-          topicViewModel.ErrorMessages.Add("InvalidPostalCode", "Please enter the postal code associated with your credit card billing address.");
-        }
         if (!String.IsNullOrEmpty(result.Message)) {
           topicViewModel.ErrorMessages.Add("TransactionMessage", result.Message);
         }
