@@ -203,6 +203,9 @@ namespace GoldSim.Web.Controllers {
       if (result.Target != null) {
         transaction                             = result.Target;
       }
+      else if (result.Transaction != null) {
+        transaction                             = result.Transaction;
+      }
 
       if (result.IsSuccess()) {
 
@@ -224,10 +227,8 @@ namespace GoldSim.Web.Controllers {
 
         }
 
-        // Set notification email body
+        // Set notification email body and send email
         notificationEmail.Body                  = emailBody.ToString();
-
-        // Send notification email
         new SmtpClient().Send(notificationEmail);
 
         // Redirect to confirmation view
@@ -236,18 +237,39 @@ namespace GoldSim.Web.Controllers {
       }
       else {
 
+        // Add (subject and body) details to notification email based on transaction details
+        notificationEmail.Subject               = emailSubjectPrefix + invoiceNumber + " Failed";
+        if (transaction != null) {
+          var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
+
+          emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
+          emailBody.Append(" - Credit Card (Last Four Digits): " + (transaction.CreditCard?.LastFour ?? "Not Available"));
+          emailBody.AppendLine();
+        }
+        else {
+          emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
+        }
+
         // Display general error message
         topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
 
         // Display transaction message returned from Braintree
         if (!String.IsNullOrEmpty(result.Message)) {
-          topicViewModel.ErrorMessages.Add("TransactionMessage", result.Message);
+          topicViewModel.ErrorMessages.Add("TransactionMessage", "Payment Status: " + result.Message);
+          emailBody.Append(" - Transaction Result: " + result.Message);
+          emailBody.AppendLine();
         }
 
         // Display any specific error messages returned from Braintree
         foreach (ValidationError error in result.Errors.DeepAll()) {
-          topicViewModel.ErrorMessages.Add(error.Code.ToString(), error.Message);
+          topicViewModel.ErrorMessages.Add(error.Code.ToString(), "Error: " + error.Message);
+          emailBody.Append(" - Error: " + error.Message);
+          emailBody.AppendLine();
         }
+
+        // Set notification email body and send email
+        notificationEmail.Body  = emailBody.ToString();
+        new SmtpClient().Send(notificationEmail);
 
         // Return form view with error messages
         return topicViewResult;
