@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -129,8 +130,11 @@ namespace GoldSim.Web.Controllers {
       var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
-      string emailSubjectPrefix = "GoldSim: Payments: Credit Card Payment for Invoice ";
-      string emailSubjectStatus = "Successful";
+      string cardholderName     = Request["cardholderName"];
+      string customerEmail      = Request["customerEmail"];
+      string companyName        = Request["company"];
+      string invoiceNumber      = Request["invoice"];
+      string emailSubjectPrefix = "GoldSim Payments: Credit Card Payment for Invoice ";
       StringBuilder emailBody   = new StringBuilder("");
       Decimal amount;
 
@@ -162,10 +166,10 @@ namespace GoldSim.Web.Controllers {
         PurchaseOrderNumber     = Request["invoice"],
         PaymentMethodNonce      = nonce,
         CustomFields            = new Dictionary<string, string> {
-          { "cardholder", Request["cardholderName"] },
-          { "email", Request["customerEmail"] },
-          { "company", Request["company"] },
-          { "invoice", Request["invoice"] }
+          { "cardholder"        , cardholderName },
+          { "email"             , customerEmail },
+          { "company"           , companyName },
+          { "invoice"           , invoiceNumber }
         },
         Options                 = new TransactionOptionsRequest {
           SubmitForSettlement   = true
@@ -175,16 +179,18 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("software@goldsim.com"));
-      emailBody.Append("GoldSim Payments transaction details:");
+      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("katherine.trunkey@ignia.com"));
       emailBody.AppendLine();
-      emailBody.Append(" - Cardholder Name: "   + Request["cardholderName"]);
       emailBody.AppendLine();
-      emailBody.Append(" - Customer Email: "    + Request["customerEmail"]);
+      emailBody.Append("Transaction details:");
       emailBody.AppendLine();
-      emailBody.Append(" - Company Name: "      + Request["company"]);
+      emailBody.Append(" - Cardholder Name: "   + cardholderName);
       emailBody.AppendLine();
-      emailBody.Append(" - Invoice Number: "    + Request["invoice"]);
+      emailBody.Append(" - Customer Email: "    + customerEmail);
+      emailBody.AppendLine();
+      emailBody.Append(" - Company Name: "      + companyName);
+      emailBody.AppendLine();
+      emailBody.Append(" - Invoice Number: "    + invoiceNumber);
       emailBody.AppendLine();
       emailBody.Append(" - Amount: "            + "$" + amount);
       emailBody.AppendLine();
@@ -194,12 +200,39 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
       Transaction transaction                   = null;
-      if (result.Transaction != null) {
-        transaction                             = result.Transaction;
+      if (result.Target != null) {
+        transaction                             = result.Target;
       }
 
       if (result.IsSuccess()) {
+
+        // Add (subject and body) details to notification email based on transaction details
+        if (transaction != null) {
+
+          if (transaction.Status != null) {
+            if (TransactionSuccessStatuses.Contains(transaction.Status)) {
+              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Successful";
+            }
+            else {
+              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Failed";
+            }
+          }
+
+          emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
+          emailBody.Append(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
+          emailBody.AppendLine();
+
+        }
+
+        // Set notification email body
+        notificationEmail.Body                  = emailBody.ToString();
+
+        // Send notification email
+        new SmtpClient().Send(notificationEmail);
+
+        // Redirect to confirmation view
         return Redirect("/Web/Purchase/PaymentConfirmation");
+
       }
       else if (result.Message != null) {
 
