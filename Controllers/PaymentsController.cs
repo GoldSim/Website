@@ -115,7 +115,6 @@ namespace GoldSim.Web.Controllers {
     ///   Provides payments form processing
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    //public ActionResult Create() {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<ActionResult> IndexAsync() {
@@ -176,6 +175,7 @@ namespace GoldSim.Web.Controllers {
       }
       else if (result.Transaction != null) {
         var transaction                         = result.Transaction;
+
         if (!String.IsNullOrEmpty(result.Message)) {
           topicViewModel.ErrorMessages.Add("TransactionMessage", result.Message);
         }
