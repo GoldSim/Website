@@ -5,6 +5,9 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Mail;
+using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using Braintree;
@@ -126,6 +129,9 @@ namespace GoldSim.Web.Controllers {
       var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
+      string emailSubjectPrefix = "GoldSim: Payments: Credit Card Payment for Invoice ";
+      string emailSubjectStatus = "Successful";
+      StringBuilder emailBody   = new StringBuilder("");
       Decimal amount;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -167,9 +173,27 @@ namespace GoldSim.Web.Controllers {
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Set up notification email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("software@goldsim.com"));
+      emailBody.Append("GoldSim Payments transaction details:");
+      emailBody.AppendLine();
+      emailBody.Append(" - Cardholder Name: "   + Request["cardholderName"]);
+      emailBody.AppendLine();
+      emailBody.Append(" - Customer Email: "    + Request["customerEmail"]);
+      emailBody.AppendLine();
+      emailBody.Append(" - Company Name: "      + Request["company"]);
+      emailBody.AppendLine();
+      emailBody.Append(" - Invoice Number: "    + Request["invoice"]);
+      emailBody.AppendLine();
+      emailBody.Append(" - Amount: "            + "$" + amount);
+      emailBody.AppendLine();
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
       Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
+
       if (result.IsSuccess()) {
         return Redirect("/Web/Purchase/PaymentConfirmation");
       }
