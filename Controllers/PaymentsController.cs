@@ -234,18 +234,22 @@ namespace GoldSim.Web.Controllers {
         return Redirect("/Web/Purchase/PaymentConfirmation");
 
       }
-      else if (result.Message != null) {
+      else {
 
+        // Display general error message
+        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
+
+        // Display transaction message returned from Braintree
         if (!String.IsNullOrEmpty(result.Message)) {
           topicViewModel.ErrorMessages.Add("TransactionMessage", result.Message);
         }
-        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
-        return topicViewResult;
-      }
-      else {
+
+        // Display any specific error messages returned from Braintree
         foreach (ValidationError error in result.Errors.DeepAll()) {
           topicViewModel.ErrorMessages.Add(error.Code.ToString(), error.Message);
         }
+
+        // Return form view with error messages
         return topicViewResult;
       }
 
