@@ -179,7 +179,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("katherine.trunkey@ignia.com"));
+      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("software@goldsim.com"));
       emailBody.AppendLine();
       emailBody.AppendLine();
       emailBody.Append("Transaction details:");
