@@ -87,7 +87,7 @@
     function ShowPaymentInstructions(value) {
       var paymentInstructionsBox = document.getElementById('<%= PaymentInstructions.ClientID %>');
       if (value == 'C_C') {
-        paymentInstructionsBox.innerHTML        = 'If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.';
+        paymentInstructionsBox.innerHTML        = 'There is a 2.9% fee when paying by credit card (this is not greater than our cost of acceptance). We will send a URL for entering credit card information.';
         }
       else {
         paymentInstructionsBox.innerHTML        = 'If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.';
@@ -223,9 +223,9 @@
       <%-- PAYMENT TYPE --%>
       <div class="cell">
         <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" ClientIDMode="Static" CssClass="radio" RunAt="Server">
-          <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
           <asp:ListItem Value="Invoice_Self" onclick="ShowPaymentInstructions('I_S')">Invoice Me</asp:ListItem>
           <asp:ListItem Value="Invoice_AP" onclick="ShowPaymentInstructions('I_AP')">Invoice Accounts Payable</asp:ListItem>
+          <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
         </asp:RadioButtonList>
         <asp:Label ID="PaymentInstructions" CssClass="Payment instructions" style="display: none;" RunAt="Server" />
       </div>
