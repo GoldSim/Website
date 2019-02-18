@@ -193,12 +193,15 @@ namespace GoldSim.Web.Controllers {
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
       Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
+      Transaction transaction                   = null;
+      if (result.Transaction != null) {
+        transaction                             = result.Transaction;
+      }
 
       if (result.IsSuccess()) {
         return Redirect("/Web/Purchase/PaymentConfirmation");
       }
-      else if (result.Transaction != null) {
-        var transaction                         = result.Transaction;
+      else if (result.Message != null) {
 
         if (!String.IsNullOrEmpty(result.Message)) {
           topicViewModel.ErrorMessages.Add("TransactionMessage", result.Message);
