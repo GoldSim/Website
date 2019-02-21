@@ -389,10 +389,18 @@
        * Conditionally enables PO and AP fields if invoice payment choice is selected
        */
       $('[id^="PaymentTypeSelection"]').change(function () {
-        if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+        if ($(this).attr('id') === 'PaymentTypeSelection_2' && $(this).is(':checked')) {
           toggleRequired(purchaseOrderRequiredFields, false);
           toggleRequired(apContactInfoRequiredFields, false);
           toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
+        }
+        else if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+          setTimeout(function() {
+            toggleRequired(purchaseOrderRequiredFields, true);
+            toggleRequired(apContactInfoRequiredFields, false);
+            toggleDisabled('#POInfo input', false);
+            toggleDisabled('#APContactInfo input, #APContactInfo select', true);
+          }, 250);
         }
         else if ($(this).is(':checked')) {
           setTimeout(function() {
