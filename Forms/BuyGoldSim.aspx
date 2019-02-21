@@ -148,11 +148,6 @@
         <GoldSimForm:Phone ID="BuyerPhone" RunAt="Server" />
       </div>
 
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="BuyerFax" RunAt="Server" />
-      </div>
-
     </div>
   </fieldset>
 
@@ -205,11 +200,6 @@
       <%-- PHONE --%>
       <div class="medium-6 cell">
         <GoldSimForm:Phone ID="UserPhone" ValidationGroup="Licensee" RunAt="Server" />
-      </div>
-
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="UserFax" ValidationGroup="Licensee" RunAt="Server" />
       </div>
 
     </div>
@@ -326,11 +316,6 @@
       <%-- PHONE --%>
       <div class="medium-6 cell">
         <GoldSimForm:Phone ID="APContactPhone" ValidationGroup="AccountsPayable" RunAt="Server" />
-      </div>
-
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="APContactFax" ValidationGroup="AccountsPayable" RunAt="Server" />
       </div>
 
   </fieldset>
