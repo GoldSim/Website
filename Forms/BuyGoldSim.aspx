@@ -228,7 +228,7 @@
     <div class="grid-x grid-margin-x">
 
       <%-- PO NUMBER --%>
-      <div class="medium-6 cell">
+      <div class="medium-4 cell">
         <Ignia:FormField
           ID                    = "PONumber"
           LabelName             = "*Purchase Order Number"
@@ -242,7 +242,7 @@
       </div>
 
       <%-- PO NOTES --%>
-      <div class="cell">
+      <div class="medium-8 cell">
         <Ignia:FormField
           ID                    = "PurchaseNotes"
           LabelName             = "Other Purchase Notes"
