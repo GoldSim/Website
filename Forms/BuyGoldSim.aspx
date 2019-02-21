@@ -255,15 +255,6 @@
           />
       </div>
 
-      <%-- PAPER COPY CHECK --%>
-      <div ID="PaperCopyField" class="cell">
-        <p class="instructions"><em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.</p>
-        <div class="checkbox">
-          <asp:CheckBox ID="PaperCopyCheck" ClientIDMode="Static" RunAt="Server" />
-          <label for="PaperCopyCheck" RunAt="Server">I would prefer a paper invoice or receipt.</label>
-        </div>
-      </div>
-
     </div>
   </fieldset>
 
