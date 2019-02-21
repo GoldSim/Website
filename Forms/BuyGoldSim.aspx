@@ -227,20 +227,6 @@
     <legend>Purchase Order Information</legend>
     <div class="grid-x grid-margin-x">
 
-      <%-- TAX ID --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField
-          ID                    = "TaxID"
-          LabelName             = "*Purchaser Tax ID"
-          AccessKey             = "T"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-
       <%-- PO NUMBER --%>
       <div class="medium-6 cell">
         <Ignia:FormField
