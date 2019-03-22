@@ -179,7 +179,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("software@goldsim.com"), new MailAddress("software@goldsim.com"));
+      MailMessage notificationEmail             = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
       emailBody.AppendLine();
       emailBody.AppendLine();
       emailBody.Append("Transaction details:");
@@ -223,6 +223,8 @@ namespace GoldSim.Web.Controllers {
 
           emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
           emailBody.Append(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
+          emailBody.AppendLine();
+          emailBody.Append(" - Card Type: " + transaction.CreditCard.CardType.ToString());
           emailBody.AppendLine();
 
         }
