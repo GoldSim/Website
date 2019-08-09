@@ -152,7 +152,7 @@ namespace GoldSim.Web {
       foreach (var licenseRequest in licenseRequests) {
 
         // Set variable values
-        var requestType = licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Evaluation" : "Academic";
+        var requestType = licenseRequest.ContentType.StartsWith("eval", StringComparison.InvariantCultureIgnoreCase) ? "Trial" : "Academic";
         var productOptionConfiguration  = 1;
 
         // Determine Product Option configuration

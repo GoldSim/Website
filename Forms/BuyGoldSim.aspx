@@ -87,7 +87,7 @@
     function ShowPaymentInstructions(value) {
       var paymentInstructionsBox = document.getElementById('<%= PaymentInstructions.ClientID %>');
       if (value == 'C_C') {
-        paymentInstructionsBox.innerHTML        = 'If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.';
+        paymentInstructionsBox.innerHTML        = 'There is a 2.9% fee when paying by credit card (this is not greater than our cost of acceptance). We will send a URL for entering credit card information.';
         }
       else {
         paymentInstructionsBox.innerHTML        = 'If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.';
@@ -148,11 +148,6 @@
         <GoldSimForm:Phone ID="BuyerPhone" RunAt="Server" />
       </div>
 
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="BuyerFax" RunAt="Server" />
-      </div>
-
     </div>
   </fieldset>
 
@@ -207,11 +202,6 @@
         <GoldSimForm:Phone ID="UserPhone" ValidationGroup="Licensee" RunAt="Server" />
       </div>
 
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="UserFax" ValidationGroup="Licensee" RunAt="Server" />
-      </div>
-
     </div>
   </fieldset>
 
@@ -223,9 +213,9 @@
       <%-- PAYMENT TYPE --%>
       <div class="cell">
         <asp:RadioButtonList ID="PaymentTypeSelection" AppendDataBoundItems="true" RepeatLayout="Flow" RepeatDirection="Vertical" ClientIDMode="Static" CssClass="radio" RunAt="Server">
-          <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
           <asp:ListItem Value="Invoice_Self" onclick="ShowPaymentInstructions('I_S')">Invoice Me</asp:ListItem>
           <asp:ListItem Value="Invoice_AP" onclick="ShowPaymentInstructions('I_AP')">Invoice Accounts Payable</asp:ListItem>
+          <asp:ListItem Value="Credit_Card" onclick="ShowPaymentInstructions('C_C')">Credit Card</asp:ListItem>
         </asp:RadioButtonList>
         <asp:Label ID="PaymentInstructions" CssClass="Payment instructions" style="display: none;" RunAt="Server" />
       </div>
@@ -237,22 +227,8 @@
     <legend>Purchase Order Information</legend>
     <div class="grid-x grid-margin-x">
 
-      <%-- TAX ID --%>
-      <div class="medium-6 cell">
-        <Ignia:FormField
-          ID                    = "TaxID"
-          LabelName             = "*Purchaser Tax ID"
-          AccessKey             = "T"
-          MaxLength             = "150"
-          FieldSize             = "320"
-          CssClass              = "TextField"
-          SkinId                = "BoxedPairs"
-          RunAt                 = "Server"
-          />
-      </div>
-
       <%-- PO NUMBER --%>
-      <div class="medium-6 cell">
+      <div class="medium-4 cell">
         <Ignia:FormField
           ID                    = "PONumber"
           LabelName             = "*Purchase Order Number"
@@ -266,7 +242,7 @@
       </div>
 
       <%-- PO NOTES --%>
-      <div class="cell">
+      <div class="medium-8 cell">
         <Ignia:FormField
           ID                    = "PurchaseNotes"
           LabelName             = "Other Purchase Notes"
@@ -277,15 +253,6 @@
           SkinId                = "BoxedPairs"
           RunAt                 = "Server"
           />
-      </div>
-
-      <%-- PAPER COPY CHECK --%>
-      <div ID="PaperCopyField" class="cell">
-        <p class="instructions"><em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.</p>
-        <div class="checkbox">
-          <asp:CheckBox ID="PaperCopyCheck" ClientIDMode="Static" RunAt="Server" />
-          <label for="PaperCopyCheck" RunAt="Server">I would prefer a paper invoice or receipt.</label>
-        </div>
       </div>
 
     </div>
@@ -326,11 +293,6 @@
       <%-- PHONE --%>
       <div class="medium-6 cell">
         <GoldSimForm:Phone ID="APContactPhone" ValidationGroup="AccountsPayable" RunAt="Server" />
-      </div>
-
-      <%-- FAX --%>
-      <div class="medium-6 cell">
-        <GoldSimForm:Fax ID="APContactFax" ValidationGroup="AccountsPayable" RunAt="Server" />
       </div>
 
   </fieldset>
@@ -389,10 +351,18 @@
        * Conditionally enables PO and AP fields if invoice payment choice is selected
        */
       $('[id^="PaymentTypeSelection"]').change(function () {
-        if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+        if ($(this).attr('id') === 'PaymentTypeSelection_2' && $(this).is(':checked')) {
           toggleRequired(purchaseOrderRequiredFields, false);
           toggleRequired(apContactInfoRequiredFields, false);
           toggleDisabled('#POInfo input, #APContactInfo input, #APContactInfo select', true);
+        }
+        else if ($(this).attr('id') === 'PaymentTypeSelection_0' && $(this).is(':checked')) {
+          setTimeout(function() {
+            toggleRequired(purchaseOrderRequiredFields, true);
+            toggleRequired(apContactInfoRequiredFields, false);
+            toggleDisabled('#POInfo input', false);
+            toggleDisabled('#APContactInfo input, #APContactInfo select', true);
+          }, 250);
         }
         else if ($(this).is(':checked')) {
           setTimeout(function() {

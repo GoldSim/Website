@@ -65,7 +65,8 @@
     <asp:ListItem Value="Desktop-Standalone" Selected="True" onclick="RecalculateTotal()">Desktop Standalone</asp:ListItem>
     <asp:ListItem Value="Enterprise-Standalone" onclick="RecalculateTotal()">Enterprise Standalone</asp:ListItem>
     <asp:ListItem Value="Concurrent-Network" onclick="RecalculateTotal()">Concurrent Network</asp:ListItem>
-    <asp:ListItem Value="Leased-Standalone" onclick="RecalculateTotal()">Leased Standalone</asp:ListItem>
+    <asp:ListItem Value="Leased-Standalone-1-year" onclick="RecalculateTotal()">Leased Standalone (1 year)</asp:ListItem>
+    <asp:ListItem Value="Leased-Standalone-3-months" onclick="RecalculateTotal()">Leased Standalone (3 months)</asp:ListItem>
   </asp:DropDownList>
 </div>
 
