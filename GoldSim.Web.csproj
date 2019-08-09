@@ -16,7 +16,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>GoldSim.Web</RootNamespace>
     <AssemblyName>GoldSim.Web</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort>63082</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
@@ -2188,6 +2188,24 @@
     <Compile Include="Models\GlossaryTopicViewModel.cs" />
     <Compile Include="Models\RenderActionViewModel.cs" />
     <Compile Include="Models\TechnicalPaperListTopicViewModel.cs" />
+    <Compile Include="Models\Forms\Address.cs" />
+    <Compile Include="Models\Forms\AdvancedTrainingTopicsSelection.cs" />
+    <Compile Include="Models\Forms\BindingModels\AcademicFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\DemoFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\InstructorAcademicFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\NewsletterFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\PurchaseBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\PurchaseFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\QuoteFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\StudentAcademicFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\TrialFormBindingModel.cs" />
+    <Compile Include="Models\Forms\BindingModels\UserConferenceFormBindingModel.cs" />
+    <Compile Include="Models\Forms\Contact.cs" />
+    <Compile Include="Models\Forms\CoreContact.cs" />
+    <Compile Include="Models\Forms\ExtendedContact.cs" />
+    <Compile Include="Models\Forms\ExtendedProfile.cs" />
+    <Compile Include="Models\Forms\ModuleSelection.cs" />
+    <Compile Include="Models\Forms\Profile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
