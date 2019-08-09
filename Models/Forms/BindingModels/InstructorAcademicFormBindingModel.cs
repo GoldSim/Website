@@ -19,6 +19,12 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
   /// </summary>
   public class InstructorAcademicFormBindingModel : AcademicFormBindingModel {
 
+    /*==========================================================================================================================
+    | PROPERTY: WEB PAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's faculty web page address.
+    /// </summary>
     [Url]
     [StringLength(255)]
     [Display(Name ="Faculty Web Page")]

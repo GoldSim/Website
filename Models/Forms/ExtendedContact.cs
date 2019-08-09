@@ -20,10 +20,22 @@ namespace GoldSim.Web.Models.Forms {
   /// </summary>
   public class ExtendedContact : Contact {
 
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new instances of a <see cref="ExtendedContact"/> object.
+    /// </summary>
     public ExtendedContact() {
       Address=new Address();
     }
 
+    /*==========================================================================================================================
+    | PROPERTY: ADDRESS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's physical address.
+    /// </summary>
     [Required]
     public Address Address { get; }
 

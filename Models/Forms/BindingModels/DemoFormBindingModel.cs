@@ -19,6 +19,12 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
   /// </summary>
   public class DemoFormBindingModel : ExtendedProfile {
 
+    /*==========================================================================================================================
+    | PROPERTY: OTHER TOOLS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    /// </summary>
     [Required]
     [StringLength(1000)]
     [Display(Name ="*What other risk analysis tools do you use, or are evaluating ?")]

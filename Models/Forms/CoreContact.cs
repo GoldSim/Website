@@ -24,21 +24,45 @@ namespace GoldSim.Web.Models.Forms {
   /// </remarks>
   public class CoreContact {
 
+    /*==========================================================================================================================
+    | PROPERTY: FIRST NAME
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's first name.
+    /// </summary>
     [Required]
     [StringLength(255)]
     [Display(Name="First Name")]
     public string FirstName { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: LAST NAME
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's last name.
+    /// </summary>
     [Required]
     [StringLength(255)]
     [Display(Name="Last Name")]
     public string LastName { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: ORGANIZATION
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's organization or institution name.
+    /// </summary>
     [Required]
     [StringLength(255)]
     [Display(Name="Organization Name")]
     public string Organization { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: EMAIL ADDRESS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's email address.
+    /// </summary>
     [Required]
     [EmailAddress]
     [StringLength(255)]

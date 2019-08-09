@@ -23,10 +23,22 @@ namespace GoldSim.Web.Models.Forms {
   /// </remarks>
   public class Contact : CoreContact {
 
+    /*==========================================================================================================================
+    | PROPERTY: COUNTRY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the ISO 3155 (alpha-3) country code.
+    /// </summary>
     [Required]
     [StringLength(3)]
     public string Country { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: PHONE NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's phone number.
+    /// </summary>
     [Required]
     [Phone]
     [StringLength(50)]
