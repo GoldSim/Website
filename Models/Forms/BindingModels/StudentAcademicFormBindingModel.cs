@@ -26,7 +26,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of the <see cref="StudentAcademicFormBindingModel"/> object.
     /// </summary>
     public StudentAcademicFormBindingModel() {
-      Sponsor=new CoreContact();
+      Sponsor = new CoreContact();
     }
 
     /*==========================================================================================================================
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the academic sponsor of the student (usually their instructor or academic advisor).
     /// </summary>
-    [Display(Name ="Student Sponsor")]
+    [Display(Name="Student Sponsor")]
     public CoreContact Sponsor { get; }
 
   }

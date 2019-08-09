@@ -27,8 +27,8 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of a <see cref="PurchaseBindingModel"/> object.
     /// </summary>
     public PurchaseBindingModel() {
-      BuyerContact=new ExtendedContact();
-      Modules=new ModuleSelection();
+      BuyerContact = new ExtendedContact();
+      Modules = new ModuleSelection();
     }
 
     /*==========================================================================================================================

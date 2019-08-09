@@ -27,7 +27,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// </summary>
     [Url]
     [StringLength(255)]
-    [Display(Name ="Faculty Web Page")]
+    [Display(Name="Faculty Web Page")]
     public string Webpage { get; set; }
 
   }

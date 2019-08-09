@@ -27,7 +27,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// </summary>
     [Required]
     [StringLength(1000)]
-    [Display(Name ="*What other risk analysis tools do you use, or are evaluating ?")]
+    [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
     public string OtherTools { get; set; }
 
   }

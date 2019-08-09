@@ -28,7 +28,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   Initializes a new instance of an <see cref="ExtendedProfile"/> object.
     /// </summary>
     public ExtendedProfile() {
-      Modules=new ModuleSelection();
+      Modules = new ModuleSelection();
     }
 
     /*==========================================================================================================================
@@ -38,7 +38,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the modules that the user has selected.
     /// </summary>
     [Required]
-    [Display(Name ="I am also interested in:")]
+    [Display(Name="I am also interested in:")]
     public ModuleSelection Modules { get; }
 
     /*==========================================================================================================================
@@ -52,7 +52,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   however, we're able to provide form validation and error messaging.
     /// </remarks>
     [Range(typeof(bool), "true", "true", "The terms of service must be accepted.")]
-    [Display(Name ="I agree to these terms of use.I also agree to receive the GoldSim newsletter.")]
+    [Display(Name="I agree to these terms of use.I also agree to receive the GoldSim newsletter.")]
     public bool AcceptTermsOfUse { get; set; }
 
   }

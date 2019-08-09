@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Instantiates a new instance of a <see cref="AcademicFormBindingModel"/> object.
     /// </summary>
     public AcademicFormBindingModel() {
-      Address=new Address();
+      Address = new Address();
     }
 
     /*==========================================================================================================================

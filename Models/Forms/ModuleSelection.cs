@@ -26,7 +26,7 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
-    [Display(Name ="Reliability Module")]
+    [Display(Name="Reliability Module")]
     public bool Reliability { get; set; }
 
     /*==========================================================================================================================
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user is interested in the Radionuclide Transport (RT) Module.
     /// </summary>
-    [Display(Name ="Radionuclide Transport (RT) Module")]
+    [Display(Name="Radionuclide Transport (RT) Module")]
     public bool RadionuclideTransport { get; set; }
 
     /*==========================================================================================================================
@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user is interested in the Contaminant Transport (CT) Module.
     /// </summary>
-    [Display(Name ="Contaminant Transport (CT) Module")]
+    [Display(Name="Contaminant Transport (CT) Module")]
     public bool ContaminantTransport { get; set; }
 
     /*==========================================================================================================================
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
-    [Display(Name ="Distributed Processing (DP-Plus) Module")]
+    [Display(Name="Distributed Processing (DP-Plus) Module")]
     public bool DistributedProcessing { get; set; }
 
     /*==========================================================================================================================
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user is interested in the quick start package.
     /// </summary>
-    [Display(Name ="Quick Start Package")]
+    [Display(Name="Quick Start Package")]
     public bool QuickStartPackage { get; set; }
 
   }

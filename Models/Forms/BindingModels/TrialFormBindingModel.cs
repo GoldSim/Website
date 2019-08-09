@@ -26,7 +26,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
     /// </summary>
     public TrialFormBindingModel() {
-      Trainer=new CoreContact();
+      Trainer = new CoreContact();
     }
 
     /*==========================================================================================================================
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
     /// </summary>
-    [Display(Name ="Trainer Contact Information")]
+    [Display(Name="Trainer Contact Information")]
     public CoreContact Trainer { get; }
 
     /*==========================================================================================================================
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// </summary>
     [Required]
     [StringLength(1000)]
-    [Display(Name ="*What other risk analysis tools do you use, or are evaluating ?")]
+    [Display(Name="What other risk analysis tools do you use, or are evaluating ?")]
     public string OtherTools { get; set; }
 
   }

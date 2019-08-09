@@ -27,7 +27,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   Initializes a new instances of a <see cref="ExtendedContact"/> object.
     /// </summary>
     public ExtendedContact() {
-      Address=new Address();
+      Address = new Address();
     }
 
     /*==========================================================================================================================
