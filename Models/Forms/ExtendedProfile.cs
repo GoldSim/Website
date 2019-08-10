@@ -51,7 +51,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   It is required that the user accept the terms of use, so this should always be set to true. By having it in the model,
     ///   however, we're able to provide form validation and error messaging.
     /// </remarks>
-    [Range(typeof(bool), "true", "true", "The terms of service must be accepted.")]
+    [Range(typeof(bool), "true", "true", ErrorMessage="The terms of service must be accepted.")]
     [Display(Name="I agree to these terms of use.I also agree to receive the GoldSim newsletter.")]
     public bool AcceptTermsOfUse { get; set; }
 
