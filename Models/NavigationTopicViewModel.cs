@@ -6,6 +6,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Ignia.Topics;
+using Ignia.Topics.Models;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models {
