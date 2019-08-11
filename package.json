@@ -27,9 +27,10 @@
   },
   "homepage": "https://github.com/Ignia/gulp-workflow",
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
     "bower": "^1.8.8",
     "del": "^4.0.0",
-    "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
     "gulp-babel": "^8.0.0",
     "gulp-clean-css": "^4.2.0",
@@ -51,5 +52,8 @@
     "imagemin-pngcrush": "^6.0.0",
     "jshint": "^2.10.2",
     "jsonminify": "^0.4.1"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1"
   }
 }
