@@ -74,7 +74,7 @@ namespace GoldSim.Web {
 
       // Force controller recognition for specific Content Types
       if (controllerType.Equals(typeof(TopicController))) {
-        switch (mvcTopicRoutingService.GetCurrentTopic().ContentType) {
+        switch (mvcTopicRoutingService.GetCurrentTopic()?.ContentType) {
           case "Payments":
             controllerType      = typeof(PaymentsController);
             break;
