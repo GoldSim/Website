@@ -20,7 +20,12 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the default homepage for the site.
   /// </summary>
-  public class LayoutController : CachedLayoutControllerBase<NavigationTopicViewModel> {
+  public class LayoutController : LayoutControllerBase<NavigationTopicViewModel> {
+
+    /*==========================================================================================================================
+    | PRIVATE FIELDS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository                = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -30,14 +35,14 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public LayoutController(
-      ITopicRepository topicRepository,
       ITopicRoutingService topicRoutingService,
-      ITopicMappingService topicMappingService
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService,
+      ITopicRepository topicRepository
     ) : base(
-      topicRepository,
       topicRoutingService,
-      topicMappingService
+      hierarchicalTopicMappingService
     ) {
+      _topicRepository = topicRepository;
     }
 
     /*==========================================================================================================================
@@ -72,7 +77,7 @@ namespace GoldSim.Web.Controllers {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
+        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -101,13 +106,13 @@ namespace GoldSim.Web.Controllers {
       >-------------------------------------------------------------------------------------------------------------------------
       | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = base.GetNavigationRoot(currentTopic, 3, "Web");
+      var navigationRootTopic = HierarchicalTopicMappingService.GetHierarchicalRoot(currentTopic, 3, "Web");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
+        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 
@@ -129,14 +134,14 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = TopicRepository.Load("Web:Company");
+      var navigationRootTopic = _topicRepository.Load("Web:Company");
       var currentTopic = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await GetRootViewModelAsync(navigationRootTopic),
+        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 

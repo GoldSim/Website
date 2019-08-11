@@ -7,6 +7,7 @@ using System;
 using System.Web.Mvc;
 using System.Web.Routing;
 using GoldSim.Web.Controllers;
+using GoldSim.Web.Models;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
@@ -33,6 +34,8 @@ namespace GoldSim.Web {
     private readonly            ITopicRepository                _topicRepository                = null;
     private readonly            Topic                           _rootTopic                      = null;
 
+    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService = null;
+
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -42,10 +45,27 @@ namespace GoldSim.Web {
     /// </summary>
     public GoldSimControllerFactory() : base() {
       #pragma warning disable CS0618
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | SAVE STANDARD DEPENDENCIES
+      \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository                                          = TopicRepository.DataProvider;
       _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
       _rootTopic                                                = TopicRepository.RootTopic;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var service = new HierarchicalTopicMappingService<NavigationTopicViewModel>(
+        _topicRepository,
+        _topicMappingService
+      );
+
+      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
+        service
+      );
+
       #pragma warning restore CS0618
     }
 
@@ -107,7 +127,7 @@ namespace GoldSim.Web {
           return new ReportingController(_topicRepository, new ExcelReportingService());
 
         case nameof(LayoutController):
-          return new LayoutController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+          return new LayoutController(mvcTopicRoutingService, _hierarchicalTopicMappingService, _topicRepository);
 
         case nameof(TopicController):
           return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
