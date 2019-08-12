@@ -18,6 +18,7 @@ using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Web.Mvc;
 using Ignia.Topics.Web.Mvc.Controllers;
+using Decimal = System.Decimal;
 
 namespace GoldSim.Web.Controllers {
 
