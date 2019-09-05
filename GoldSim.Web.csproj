@@ -18,7 +18,7 @@
     <AssemblyName>GoldSim.Web</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>63082</IISExpressSSLPort>
+    <IISExpressSSLPort>44300</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
     <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
     <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
@@ -94,22 +94,22 @@
       <HintPath>..\..\Topics\201707\Ignia.Toolbox.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.3.8.0-alpha.257\lib\net47\Ignia.Topics.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.3.8.0-alpha.267\lib\net48\Ignia.Topics.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.Data.Caching, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.Data.Caching.3.8.0-alpha.257\lib\net47\Ignia.Topics.Data.Caching.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.Data.Caching.3.8.0-alpha.267\lib\net48\Ignia.Topics.Data.Caching.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.Data.Sql, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.Data.Sql.3.8.0-alpha.257\lib\net47\Ignia.Topics.Data.Sql.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.Data.Sql.3.8.0-alpha.267\lib\net48\Ignia.Topics.Data.Sql.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.ViewModels, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.ViewModels.3.8.0-alpha.257\lib\net47\Ignia.Topics.ViewModels.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.ViewModels.3.8.0-alpha.267\lib\net48\Ignia.Topics.ViewModels.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.Web, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.Web.3.8.0-alpha.257\lib\net47\Ignia.Topics.Web.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.Web.3.8.0-alpha.267\lib\net48\Ignia.Topics.Web.dll</HintPath>
     </Reference>
     <Reference Include="Ignia.Topics.Web.Mvc, Version=3.8.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>packages\Ignia.Topics.Web.Mvc.3.8.0-alpha.257\lib\net47\Ignia.Topics.Web.Mvc.dll</HintPath>
+      <HintPath>packages\Ignia.Topics.Web.Mvc.3.8.0-alpha.267\lib\net48\Ignia.Topics.Web.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=2.4.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.ApplicationInsights.Agent.Intercept.2.4.0\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
