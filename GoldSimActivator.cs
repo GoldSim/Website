@@ -26,7 +26,7 @@ namespace GoldSim.Web {
   ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
   ///   Dependency Injection.
   /// </summary>
-  public class GoldSimActivator : IControllerActivator {
+  public class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
     | PRIVATE INSTANCES
@@ -160,6 +160,30 @@ namespace GoldSim.Web {
 
     }
 
+
+    /// <summary>
+    ///   Registers dependencies, and injects them into new instances of view components in response to each request.
+    /// </summary>
+    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    public object Create(ViewComponentContext context) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Determine view component type
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Type viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Resolve
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      switch (viewComponentType.Name) {
+
+        default:
+          throw new Exception($"Unknown view component {viewComponentType.Name}");
+
+      }
+
+    }
+
     /*==========================================================================================================================
     | METHOD: RELEASE
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -167,6 +191,12 @@ namespace GoldSim.Web {
     ///   Responds to a request to release resources associated with a particular controller.
     /// </summary>
     public void Release(ControllerContext context, object controller) { }
+
+    /// <summary>
+    ///   Responds to a request to release resources associated with a particular view component.
+    /// </summary>
+    public void Release(ViewComponentContext context, object viewComponent) { }
+
 
   } //Class
 } //Namespace
