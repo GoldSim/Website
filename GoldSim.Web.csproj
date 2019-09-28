@@ -50,6 +50,7 @@
     <TypeScriptSourceMap>True</TypeScriptSourceMap>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
+    <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
