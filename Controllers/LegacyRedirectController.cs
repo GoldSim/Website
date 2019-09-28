@@ -3,9 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Controllers {
 

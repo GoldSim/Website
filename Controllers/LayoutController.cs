@@ -4,13 +4,13 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using GoldSim.Web.Models;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc.Controllers;
-using Ignia.Topics.Web.Mvc.Models;
+using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.AspNetCore.Mvc.Models;
 
 namespace GoldSim.Web.Controllers {
 

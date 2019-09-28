@@ -10,14 +10,13 @@ using System.Net.Mail;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using Braintree;
 using GoldSim.Web.Models;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
-using Ignia.Topics.Web.Mvc.Controllers;
+using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using Decimal = System.Decimal;
 
 namespace GoldSim.Web.Controllers {
