@@ -54,11 +54,23 @@
 
   <ItemGroup>
     <Compile Remove="!Admin\**" />
-    <EmbeddedResource Remove="!Admin\**" />
-    <Compile Remove="Forms\**" />
-    <EmbeddedResource Remove="Forms\**" />
     <Compile Remove="Common\**" />
+    <Compile Remove="Forms\**" />
+    <Compile Remove="Downloads\**" />
+    <Compile Remove="Help\**" />
+    <Compile Remove="Media\**" />
+    <EmbeddedResource Remove="!Admin\**" />
     <EmbeddedResource Remove="Common\**" />
+    <EmbeddedResource Remove="Forms\**" />
+    <EmbeddedResource Remove="Downloads\**" />
+    <EmbeddedResource Remove="Help\**" />
+    <EmbeddedResource Remove="Media\**" />
+    <None Remove="!Admin\**" />
+    <None Remove="Common\**" />
+    <None Remove="Forms\**" />
+    <None Remove="Downloads\**" />
+    <None Remove="Help\**" />
+    <None Remove="Media\**" />
   </ItemGroup>
 
   <ItemGroup>
