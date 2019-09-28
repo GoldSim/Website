@@ -4,55 +4,72 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Web.Mvc;
-using System.Web.Routing;
 using GoldSim.Web.Controllers;
 using GoldSim.Web.Models;
 using Ignia.Topics;
+using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.Data.Caching;
+using Ignia.Topics.Data.Sql;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Web;
-using Ignia.Topics.Web.Mvc;
-using Ignia.Topics.Web.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 namespace GoldSim.Web {
 
   /*============================================================================================================================
-  | CLASS: CONTROLLER FACTORY
+  | CLASS: GOLDSIM ACTIVATOR
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
   ///   Dependency Injection.
   /// </summary>
-  class GoldSimControllerFactory : DefaultControllerFactory {
+  public class GoldSimActivator : IControllerActivator {
 
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            string                          _connectionString               = null;
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
     private readonly            Topic                           _rootTopic                      = null;
 
+    /*==========================================================================================================================
+    | HIERARCHICAL TOPIC MAPPING SERVICE
+    \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Establishes a new instance of the <see cref="GoldSimControllerFactory"/>, including any shared dependencies to be used
+    ///   Establishes a new instance of the <see cref="GoldSimActivator"/>, including any shared dependencies to be used
     ///   across instances of controllers.
     /// </summary>
-    public GoldSimControllerFactory() : base() {
-      #pragma warning disable CS0618
+    /// <remarks>
+    ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
+    ///   to all requests.
+    /// </remarks>
+    public GoldSimActivator(string connectionString) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _topicRepository                                          = TopicRepository.DataProvider;
+                                _connectionString               = connectionString;
+      var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
+      var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
+      var                       topicViewModel                  = new Ignia.Topics.ViewModels.PageTopicViewModel();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | PRELOAD REPOSITORY
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      _topicRepository                                          = cachedTopicRepository;
       _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
-      _rootTopic                                                = TopicRepository.RootTopic;
+      _rootTopic                                                = _topicRepository.Load();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
@@ -66,25 +83,29 @@ namespace GoldSim.Web {
         service
       );
 
-      #pragma warning restore CS0618
     }
 
     /*==========================================================================================================================
-    | GET CONTROLLER INSTANCE
+    | METHOD: CREATE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Overrides the factory method for creating new instances of controllers.
+    ///   Registers dependencies, and injects them into new instances of controllers in response to each request.
     /// </summary>
     /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
-    protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType) {
+    public object Create(ControllerContext context) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Determine controller type
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Type controllerType = context.ActionDescriptor.ControllerTypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcTopicRoutingService        = new MvcTopicRoutingService(
+      var mvcTopicRoutingService = new MvcTopicRoutingService(
         _topicRepository,
-        requestContext.HttpContext.Request.Url,
-        requestContext.RouteData
+        new Uri($"https://{context.HttpContext.Request.Host}/{context.HttpContext.Request.Path}"),
+        context.RouteData
       );
 
       //Set default controller
@@ -133,11 +154,19 @@ namespace GoldSim.Web {
           return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 
         default:
-          return base.GetControllerInstance(requestContext, controllerType);
+          throw new Exception($"Unknown controller {controllerType.Name}");
 
       }
 
     }
+
+    /*==========================================================================================================================
+    | METHOD: RELEASE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Responds to a request to release resources associated with a particular controller.
+    /// </summary>
+    public void Release(ControllerContext context, object controller) { }
 
   } //Class
 } //Namespace
