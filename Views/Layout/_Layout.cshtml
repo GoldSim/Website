@@ -170,7 +170,7 @@
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
     } else {
-      @Html.Action("Footer", "Layout")
+      <vc:footer />
     }
 
     <!-- jQuery -->

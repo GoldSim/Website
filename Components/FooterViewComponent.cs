@@ -3,41 +3,43 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Threading.Tasks;
-using GoldSim.Web.Models;
-using Ignia.Topics;
+using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc.Models;
+using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.Repositories;
+using GoldSim.Web.Models;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: LAYOUT CONTROLLER
+  | CLASS: FOOTER VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to the default homepage for the site.
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   instances representing the footer of the site.
   /// </summary>
-  public class LayoutController : LayoutControllerBase<NavigationTopicViewModel> {
+  public class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
-    | PRIVATE FIELDS
+    | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            ITopicRepository                _topicRepository;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a Topic Controller with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="FooterViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(
+    /// <returns>A <see cref="FooterViewComponent"/>.</returns>
+    public FooterViewComponent(
       ITopicRoutingService topicRoutingService,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService,
-      ITopicRepository topicRepository
+      ITopicRepository topicRepository,
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRoutingService,
       hierarchicalTopicMappingService
@@ -46,12 +48,12 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | FOOTER
+    | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the footer for the site layout, which exposes the navigation from the company.
+    ///   Provides the footer menu for the site.
     /// </summary>
-    public async Task<PartialViewResult> Footer() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -70,9 +72,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return PartialView(navigationViewModel);
+      return View(navigationViewModel);
 
     }
 
   } // Class
+
 } // Namespace

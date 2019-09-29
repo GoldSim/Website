@@ -196,6 +196,9 @@ namespace GoldSim.Web {
         case nameof(CallsToActionViewComponent):
           return new CallsToActionViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
 
+        case nameof(FooterViewComponent):
+          return new FooterViewComponent(mvcTopicRoutingService, _topicRepository, _hierarchicalTopicMappingService);
+
         default:
           throw new Exception($"Unknown view component {viewComponentType.Name}");
 
