@@ -142,7 +142,12 @@ namespace GoldSim.Web {
           return new SitemapController(_topicRepository);
 
         case nameof(PaymentsController):
-          return new PaymentsController(_topicRepository, mvcTopicRoutingService, _topicMappingService, new BraintreeConfiguration(mvcTopicRoutingService));
+          return new PaymentsController(
+            _topicRepository,
+            mvcTopicRoutingService,
+            _topicMappingService,
+            new BraintreeConfiguration(mvcTopicRoutingService, _configuration)
+          );
 
         case nameof(ErrorController):
           return new ErrorController();
