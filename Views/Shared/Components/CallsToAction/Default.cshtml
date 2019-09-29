@@ -1,0 +1,50 @@
+﻿@model Ignia.Topics.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
+
+<!-- CTAs Area -->
+<aside id="CallsToAction" class="calls-to-action panel off-screen" data-sticky data-stick-to="bottom" data-btm-anchor="SiteFooter" data-margin-bottom="0">
+  <div class="grid-container">
+    <div class="grid-x grid-margin-x">
+
+      @{callsToActionContents();}
+
+    </div>
+  </div>
+</aside>
+<!-- /CTAs Area -->
+
+@{
+
+  void callsToActionContents() {
+
+    string currentNavigationRoot  = (Model.NavigationRoot != null ? Model.NavigationRoot.Key.ToLower() : "");
+    string callToActionType       = "general";
+    if (currentNavigationRoot.Equals("purchase")) {
+      callToActionType            = "purchase";
+    }
+    if (currentNavigationRoot.Equals("customers")) {
+      callToActionType            = "customers";
+    }
+
+    <div class="show-for-large large-4 cell">
+      <span class="headline">@(callToActionType.Equals("customers") ? "Need Support?" : (callToActionType.Equals("purchase") ? "Ready to Buy?" : "See it in action"))</span>
+    </div>
+
+    <div class="medium-12 large-8 cell">
+      <div class="stacked-for-small button-group">
+        @if (callToActionType.Equals("customers")) {
+          <a href="https://support.goldsim.com/hc/en-us/requests/new" class="button large call-to-action support" onclick="trackEvent(this, 'CTA', 'Click', 'Support Request'); return false;">Submit a Request &raquo;</a>
+          <a href="https://support.goldsim.com/hc/en-us/community/topics" class="button large call-to-action forums" onclick="trackEvent(this, 'CTA', 'Click', 'Forums'); return false;">Visit Forums &raquo;</a>
+        }
+        else if (callToActionType.Equals("purchase")) {
+          <a href="/Forms/Quote.aspx" class="button large call-to-action quote" onclick="trackEvent(this, 'CTA', 'Click', 'Quote Request'); return false;">Request a Quote &raquo;</a>
+          <a href="/Forms/BuyGoldSim.aspx" class="button large call-to-action buy" onclick="trackEvent(this, 'CTA', 'Click', 'Purchase GoldSim'); return false;">Purchase GoldSim &raquo;</a>
+        }
+        else {
+          <a href="/Forms/Demo.aspx" class="button large call-to-action demo" onclick="trackEvent(this, 'CTA', 'Click', 'Demo Request'); return false;">Request a Web Demo &raquo;</a>
+          <a href="/Forms/Evaluation.aspx" class="button large call-to-action eval" onclick="trackEvent(this, 'CTA', 'Click', 'Trial Request'); return false;">Request a Trial Version &raquo;</a>
+        }
+      </div>
+    </div>
+  }
+
+}

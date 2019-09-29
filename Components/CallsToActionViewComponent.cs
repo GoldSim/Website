@@ -3,61 +3,68 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Threading.Tasks;
-using GoldSim.Web.Models;
-using Ignia.Topics;
+using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc.Models;
+using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.Internal.Diagnostics;
+using GoldSim.Web.Models;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: LAYOUT CONTROLLER
+  | CLASS: PAGE-LEVEL NAVIGATION VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to the default homepage for the site.
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  public class LayoutController : LayoutControllerBase<NavigationTopicViewModel> {
-
-    /*==========================================================================================================================
-    | PRIVATE FIELDS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository                = null;
+  public abstract class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a Topic Controller with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LayoutController(
+    protected CallsToActionViewComponent(
       ITopicRoutingService topicRoutingService,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService,
-      ITopicRepository topicRepository
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRoutingService,
       hierarchicalTopicMappingService
-    ) {
-      _topicRepository = topicRepository;
-    }
+    ) {}
 
     /*==========================================================================================================================
-    | FOOTER
+    | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the footer for the site layout, which exposes the navigation from the company.
+    ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
+    ///   page group.
     /// </summary>
-    public async Task<PartialViewResult> Footer() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = _topicRepository.Load("Web:Company");
-      var currentTopic = CurrentTopic;
+      var currentTopic          = CurrentTopic;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Identify navigation root
+      >-------------------------------------------------------------------------------------------------------------------------
+      | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var navigationRootTopic = HierarchicalTopicMappingService.GetHierarchicalRoot(currentTopic, 3, "Web");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate conditions
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Assume(navigationRootTopic, $"The root topic could not be identified for the page-level navigation.");
+      Contract.Assume(CurrentTopic, $"The current topic could not be identified for the page-level navigation.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
@@ -70,9 +77,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return PartialView(navigationViewModel);
+      return View(navigationViewModel);
 
     }
 
   } // Class
+
 } // Namespace
