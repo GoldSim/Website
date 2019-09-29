@@ -22,7 +22,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  public abstract class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    protected CallsToActionViewComponent(
+    public CallsToActionViewComponent(
       ITopicRoutingService topicRoutingService,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
