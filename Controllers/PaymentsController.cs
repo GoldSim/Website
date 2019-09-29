@@ -130,10 +130,10 @@ namespace GoldSim.Web.Controllers {
       var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
-      string cardholderName     = Request["cardholderName"];
-      string customerEmail      = Request["customerEmail"];
-      string companyName        = Request["company"];
-      string invoiceNumber      = Request["invoice"];
+      string cardholderName     = HttpContext.Request.Form["cardholderName"];
+      string customerEmail      = HttpContext.Request.Form["customerEmail"];
+      string companyName        = HttpContext.Request.Form["company"];
+      string invoiceNumber      = HttpContext.Request.Form["invoice"];
       string emailSubjectPrefix = "GoldSim Payments: Credit Card Payment for Invoice ";
       StringBuilder emailBody   = new StringBuilder("");
       Decimal amount;
@@ -149,7 +149,7 @@ namespace GoldSim.Web.Controllers {
       | Verify payment amount format
       \-----------------------------------------------------------------------------------------------------------------------*/
       try {
-        amount                  = Convert.ToDecimal(Request["amount"]);
+        amount                  = Convert.ToDecimal(HttpContext.Request.Form["amount"]);
       }
       catch (FormatException e) {
         topicViewModel.IsValid  = false;
@@ -160,10 +160,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble and send Braintree transaction
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var nonce                 = Request["paymentMethodNonce"];
+      var nonce                 = HttpContext.Request.Form["paymentMethodNonce"];
       var request               = new TransactionRequest {
         Amount                  = amount,
-        PurchaseOrderNumber     = Request["invoice"],
+        PurchaseOrderNumber     = HttpContext.Request.Form["invoice"],
         PaymentMethodNonce      = nonce,
         CustomFields            = new Dictionary<string, string> {
           { "cardholder"        , cardholderName },
