@@ -108,7 +108,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      return TopicView(topicViewModel, CurrentTopic.View);
 
     }
 
@@ -127,7 +127,7 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
-      var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      var topicViewResult       = TopicView(topicViewModel, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
       string cardholderName     = HttpContext.Request.Form["cardholderName"];
