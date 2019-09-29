@@ -66,7 +66,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var activator = new GoldSimActivator(Configuration.GetConnectionString("OnTopic"));
+      var activator = new GoldSimActivator(Configuration);
 
       services.AddSingleton<IControllerActivator>(activator);
       services.AddSingleton<IViewComponentActivator>(activator);

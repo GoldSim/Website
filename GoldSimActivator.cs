@@ -17,6 +17,7 @@ using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
+using Microsoft.Extensions.Configuration;
 
 namespace GoldSim.Web {
 
@@ -32,7 +33,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            string                          _connectionString               = null;
+    private readonly            IConfiguration                  _configuration;
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
@@ -54,12 +55,13 @@ namespace GoldSim.Web {
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
     ///   to all requests.
     /// </remarks>
-    public GoldSimActivator(string connectionString) {
+    public GoldSimActivator(IConfiguration configuration) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
-                                _connectionString               = connectionString;
+                                _configuration                  = configuration;
+      var                       connectionString                = configuration.GetConnectionString("OnTopic");
       var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
       var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
       var                       topicViewModel                  = new Ignia.Topics.ViewModels.PageTopicViewModel();
