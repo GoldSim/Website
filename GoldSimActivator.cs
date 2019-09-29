@@ -190,6 +190,9 @@ namespace GoldSim.Web {
         case nameof(MenuViewComponent):
           return new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
 
+        case nameof(PageLevelNavigationViewComponent):
+          return new PageLevelNavigationViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
+
         default:
           throw new Exception($"Unknown view component {viewComponentType.Name}");
 

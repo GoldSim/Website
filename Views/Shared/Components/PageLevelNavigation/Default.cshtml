@@ -1,4 +1,4 @@
-﻿@model Ignia.Topics.Web.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
+﻿@model Ignia.Topics.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
 <style>
   .page-banner {
@@ -24,7 +24,7 @@
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
             @foreach (var topic in Model.NavigationRoot.Children) {
-              <option value="@topic.WebPath" @((topic.IsSelected(Model.CurrentKey)) ? " selected" : "")>
+              <option value="@topic.WebPath" selected="@(topic.IsSelected(Model.CurrentKey))">
                 @(topic.ShortTitle?? topic.Title)
               </option>
             }

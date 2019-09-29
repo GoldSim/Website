@@ -46,49 +46,6 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | PAGE LEVEL NAVIGATION
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides page-level navigation for the current page.
-    /// </summary>
-    public async Task<PartialViewResult> PageLevelNavigation() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = (Topic)null;
-      var currentTopic = CurrentTopic;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Identify navigation root
-      >-------------------------------------------------------------------------------------------------------------------------
-      | The navigation root in the case of the page-level navigation any parent of content type "PageGroup".
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      navigationRootTopic = currentTopic;
-      if (navigationRootTopic != null) {
-        while (navigationRootTopic.Parent != null && !navigationRootTopic.ContentType.Equals("PageGroup")) {
-          navigationRootTopic = navigationRootTopic.Parent;
-        }
-      }
-
-      if (navigationRootTopic?.Parent == null) navigationRootTopic = null;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Construct view model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
-        CurrentKey = CurrentTopic?.GetUniqueKey()
-      };
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Return the corresponding view
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      return PartialView(navigationViewModel);
-
-    }
-
-    /*==========================================================================================================================
     | CALLS TO ACTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

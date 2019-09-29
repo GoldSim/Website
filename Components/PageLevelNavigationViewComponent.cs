@@ -8,19 +8,19 @@ using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Ignia.Topics.Models;
-using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics;
 using GoldSim.Web.Models;
 
 namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: MENU VIEW COMPONENT
+  | CLASS: PAGE-LEVEL NAVIGATION VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
-  ///   instances.
+  ///   instances representing the nearest page-level navigation.
   /// </summary>
   /// <remarks>
   ///   <para>
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  public class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
+  public class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public MenuViewComponent(
+    public PageLevelNavigationViewComponent(
       ITopicRoutingService topicRoutingService,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
@@ -48,4 +48,5 @@ namespace GoldSim.Web.Components {
     ) {}
 
   } // Class
+
 } // Namespace
