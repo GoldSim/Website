@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
 using GoldSim.Web.Models;
 using Ignia.Topics;
@@ -173,9 +174,21 @@ namespace GoldSim.Web {
       Type viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Register
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var mvcTopicRoutingService = new MvcTopicRoutingService(
+        _topicRepository,
+        new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
+        context.ViewContext.RouteData
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
       switch (viewComponentType.Name) {
+
+        case nameof(MenuViewComponent):
+          return new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
 
         default:
           throw new Exception($"Unknown view component {viewComponentType.Name}");
