@@ -151,7 +151,7 @@ namespace GoldSim.Web.Controllers {
       try {
         amount                  = Convert.ToDecimal(HttpContext.Request.Form["amount"]);
       }
-      catch (FormatException e) {
+      catch (FormatException) {
         topicViewModel.IsValid  = false;
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
