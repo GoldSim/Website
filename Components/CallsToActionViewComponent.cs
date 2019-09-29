@@ -16,7 +16,7 @@ using GoldSim.Web.Models;
 namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: PAGE-LEVEL NAVIGATION VIEW COMPONENT
+  | CLASS: CALLS TO ACTION VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
@@ -43,8 +43,7 @@ namespace GoldSim.Web.Components {
     | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
-    ///   page group.
+    ///   Provides the calls-to-action for the current page, which may change based on the current context.
     /// </summary>
     public async Task<IViewComponentResult> InvokeAsync() {
 
