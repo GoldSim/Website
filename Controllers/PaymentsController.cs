@@ -3,20 +3,20 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using Braintree;
+using GoldSim.Web.Models;
+using Ignia.Topics;
+using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Braintree;
-using GoldSim.Web.Models;
-using Ignia.Topics;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using Decimal = System.Decimal;
 
 namespace GoldSim.Web.Controllers {
