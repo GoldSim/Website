@@ -85,7 +85,7 @@ namespace GoldSim.Web.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public async override Task<ActionResult> IndexAsync(string path) {
+    public async override Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -121,7 +121,7 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> IndexAsync() {
+    public async Task<IActionResult> IndexAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
