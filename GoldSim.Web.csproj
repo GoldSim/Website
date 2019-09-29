@@ -24,7 +24,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AntiXSS" Version="4.3.0" />
     <PackageReference Include="Braintree" Version="4.15.0" />
     <PackageReference Include="EPPlus" Version="4.5.3.2" />
     <PackageReference Include="Ignia.Topics" Version="3.8.0-alpha.267" />
