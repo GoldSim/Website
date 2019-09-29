@@ -11,63 +11,76 @@
   }
 </urlset>
 
-@helper AddNodeToOutput(Topic topic, int indentLevel) {
 
-  @*=========================================================================================================================
-  | DEFINE VARIABLES
-  \------------------------------------------------------------------------------------------------------------------------*@
-  string[] excludeContentTypes = { "CustomerRequest", "AcademicRequest", "EvaluationRequest", "List" };
-  string[] excludeAttributes = { "Body", "IsActive", "IsDisabled", "ParentID", "URL", "RelatedContent", "SortOrder" };
 
-  @*=========================================================================================================================
-  | SKIP DISABLED, CONFIGURATION, AND EXCLUDED CONTENT TYPES
-  \------------------------------------------------------------------------------------------------------------------------*@
-  if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return;}
-  if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return;}
-  if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return;}
-  if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return;}
+@{
 
-  @*=========================================================================================================================
-  | OPEN NODE
-  \------------------------------------------------------------------------------------------------------------------------*@
-  <url>
-    <loc>@Html.Encode("https://www.goldsim.com" + topic.GetWebPath())</loc>
-    <changefreq>monthly</changefreq>
-    @if (topic.LastModified > DateTime.MinValue) {
-      <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
-    }
-    <priority>@(1.0/indentLevel)</priority>
-    <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+  IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
 
-      @*=====================================================================================================================
-      | LOOP THROUGH ATTRIBUTES
-      \--------------------------------------------------------------------------------------------------------------------*@
-      <DataObject type="@topic.Attributes.GetValue("ContentType", "Page" )">
-        @foreach (var attribute in topic.Attributes) {
-          if (Array.IndexOf(excludeAttributes, attribute.Key) >= 0) { continue; }
-          if (topic.Attributes[attribute.Key].Value.Length > 256) { continue; }
-          <Attribute name="@attribute.Key">@Encoder.XmlEncode((string)topic.Attributes[attribute.Key].Value)</Attribute>
+  IHtmlContent AddNodeToOutput(Topic topic, int indentLevel) {
+
+    /*=========================================================================================================================
+    | DEFINE VARIABLES
+    \------------------------------------------------------------------------------------------------------------------------*/
+    string[] excludeContentTypes = { "CustomerRequest", "AcademicRequest", "EvaluationRequest", "List" };
+    string[] excludeAttributes = { "Body", "IsActive", "IsDisabled", "ParentID", "URL", "RelatedContent", "SortOrder" };
+
+
+    /*=========================================================================================================================
+    | SKIP DISABLED, CONFIGURATION, AND EXCLUDED CONTENT TYPES
+    \------------------------------------------------------------------------------------------------------------------------*/
+    if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return null;}
+    if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return null;}
+    if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return null;}
+    if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return null;}
+
+    /*=========================================================================================================================
+    | OPEN NODE
+    \------------------------------------------------------------------------------------------------------------------------*/
+    var result = Body(
+      @<url>
+        <loc>@topic.GetWebPath()</loc>
+        <changefreq>monthly</changefreq>
+        @if (topic.LastModified > DateTime.MinValue) {
+          <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
         }
-      </DataObject>
+        <priority>@(1.0 / indentLevel)</priority>
+        <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
 
-      @*=====================================================================================================================
-      | LOOP THROUGH RELATIONSHIPS
-      \--------------------------------------------------------------------------------------------------------------------*@
-      @foreach (var relationship in topic.Relationships) {
-        <DataObject type="@relationship.Name">
-          @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
-            <Attribute name="TopicKey">@relatedTopic.GetUniqueKey().Replace("Root:", "")</Attribute>
+          /*=====================================================================================================================
+          | LOOP THROUGH ATTRIBUTES
+          \--------------------------------------------------------------------------------------------------------------------*/
+          <DataObject type="@topic.Attributes.GetValue("ContentType", "Page")">
+            @foreach (var attributeValue in topic.Attributes) {
+              if (Array.IndexOf(excludeAttributes, attributeValue.Key) >= 0) { continue; }
+              if (topic.Attributes[attributeValue.Key].Value.Length > 256) { continue; }
+              <Attribute name="@attributeValue.Key">@Encoder.XmlEncode((string)topic.Attributes[attributeValue.Key].Value)</Attribute>
+            }
+          </DataObject>
+
+          /*=====================================================================================================================
+          | LOOP THROUGH RELATIONSHIPS
+          \--------------------------------------------------------------------------------------------------------------------*/
+          @foreach (var relationship in topic.Relationships) {
+            <DataObject type="@relationship.Name">
+              @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
+                <Attribute name="TopicKey">@relatedTopic.GetUniqueKey().Replace("Root:", "")</Attribute>
+              }
+            </DataObject>
           }
-        </DataObject>
-      }
-    </PageMap>
-  </url>
+        </PageMap>
+      </url>
+    );
 
-  @*=========================================================================================================================
-  | LOOP THROUGH CHILDREN
-  \------------------------------------------------------------------------------------------------------------------------*@
-  foreach (var childNode in topic.Children) {
-    @AddNodeToOutput(childNode, indentLevel + 1);
+    /*=========================================================================================================================
+    | LOOP THROUGH CHILDREN
+    \------------------------------------------------------------------------------------------------------------------------*/
+    var output = new HtmlContentBuilder();
+    output.AppendHtml(result);
+    foreach (var childNode in topic.Children) {
+      output.AppendHtml(AddNodeToOutput(childNode, indentLevel + 1));
+    }
+    return output;
   }
 
 }
