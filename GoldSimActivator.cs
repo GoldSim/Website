@@ -148,9 +148,6 @@ namespace GoldSim.Web {
         case nameof(ReportingController):
           return new ReportingController(_topicRepository, new ExcelReportingService());
 
-        case nameof(LayoutController):
-          return new LayoutController(mvcTopicRoutingService, _hierarchicalTopicMappingService, _topicRepository);
-
         case nameof(TopicController):
           return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
 
