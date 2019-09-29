@@ -27,7 +27,7 @@
           <h2>@category.Title</h2>
           <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
             @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-              @WriteContentItem(contentItem, viewType)
+              @{WriteContentItem(contentItem, viewType);}
             }
           </ul>
         </section>
@@ -36,7 +36,7 @@
     else {
       <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
         @foreach (var contentItem in Model.ContentItems) {
-          @WriteContentItem(contentItem, viewType)
+          @{WriteContentItem(contentItem, viewType);}
         }
       </ul>
     }
@@ -49,27 +49,31 @@
   <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
 }
 
-@helper WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
-  <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
-    <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
-      @if (viewType.Equals("faq")) {
-        <span class="marker">Q:</span>
-        <span itemprop="name">@contentItem.Title</span>
-      }
-      else {
-        @contentItem.Title
-      }
-    </a>
-    <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key" @(viewType.Equals("faq") ? " itemprop=acceptedAnswer itemscope itemtype=http://schema.org/Answer" : "")>
-      @if (viewType.Equals("faq")) {
-        <span class="marker">A:</span>
-      }
-      @Html.Raw(@contentItem.Description)
-      @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl)) {
-        <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
-      }
-    </div>
-  </li>
+@{
+
+  void WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
+    <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
+      <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
+        @if (viewType.Equals("faq")) {
+          <span class="marker">Q:</span>
+          <span itemprop="name">@contentItem.Title</span>
+        }
+        else {
+          @contentItem.Title
+        }
+      </a>
+      <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key" @(viewType.Equals("faq") ? " itemprop=acceptedAnswer itemscope itemtype=http://schema.org/Answer" : "")>
+        @if (viewType.Equals("faq")) {
+          <span class="marker">A:</span>
+        }
+        @Html.Raw(@contentItem.Description)
+        @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl)) {
+          <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
+        }
+      </div>
+    </li>
+  }
+
 }
 
 <!--

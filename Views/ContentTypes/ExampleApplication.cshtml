@@ -44,7 +44,7 @@
   <div class="medium-@(!String.IsNullOrEmpty(Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
     @if (!String.IsNullOrEmpty(Model.Customer)) {
       <strong>Client:</strong>
-      @Html.Raw(getCustomerLink(Model.Customer, Model.CustomerUrl))
+      @{getCustomerLink(Model.Customer, Model.CustomerUrl);}
       <br/>
     }
     @if(Model.Applications.Count > 0) {
@@ -56,7 +56,7 @@
   </div>
   @if (!String.IsNullOrEmpty(Model.DownloadUrl)) {
     <div class="medium-4 cell align-middle text-right metadata">
-      @Html.Raw(downloadButton(Model.DownloadUrl))
+      @{downloadButton(Model.DownloadUrl);}
     </div>
   }
   <!-- /Post Title -->
@@ -108,41 +108,44 @@
   </script>
 }
 
-@helper getCustomerLink(string customerName, string customerUrl) {
-  if (!String.IsNullOrEmpty(customerUrl)) {
-    <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
-  }
-  else {
-    <strong>@customerName</strong>
-  }
-}
+@{
 
-@helper downloadButton(string downloadUrl) {
-
-  string label                = "Download";
-  string downloadName         = "";
-
-  if (!String.IsNullOrEmpty(downloadUrl)) {
-    string url                = downloadUrl;
-    if (url.IndexOf("/") >= 0) {
-      url                     = url.Substring(url.LastIndexOf("/") + 1);
+  void getCustomerLink(string customerName, string customerUrl) {
+    if (!String.IsNullOrEmpty(customerUrl)) {
+      <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
     }
-    if (url.ToLower().EndsWith(".pdf")) {
-      url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
+    else {
+      <strong>@customerName</strong>
     }
-    downloadName              = url;
   }
 
-  if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
-    label = "Learn More";
-  }
+  void downloadButton(string downloadUrl) {
 
-  <a href="@downloadUrl" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
-    @label
-  </a>
+    string label                = "Download";
+    string downloadName         = "";
+
+    if (!String.IsNullOrEmpty(downloadUrl)) {
+      string url                = downloadUrl;
+      if (url.IndexOf("/") >= 0) {
+        url                     = url.Substring(url.LastIndexOf("/") + 1);
+      }
+      if (url.ToLower().EndsWith(".pdf")) {
+        url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
+      }
+      downloadName              = url;
+    }
+
+    if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
+      label = "Learn More";
+    }
+
+    <a href="@downloadUrl" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
+      @label
+    </a>
+
+  }
 
 }
-
 <!--
   Content Type: Case Study
   View Location: ~/Views/CaseStudy/CaseStudy.cshtml
