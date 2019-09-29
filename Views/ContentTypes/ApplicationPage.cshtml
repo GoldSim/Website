@@ -77,14 +77,14 @@
     @if (Model.ExampleApplications.Count > 0) {
       <!-- Related Case Studies -->
       <h1 id="Examples">Examples</h1>
-      @Html.Partial("_CardList", new CardListViewModel(Model.ExampleApplications, "case-study"))
+      <partial name="_CardList" model="@(new CardListViewModel(Model.ExampleApplications, "case-study"))" />
       <!-- /Related Case Studies -->
     }
 
     @if (Model.Modules.Count > 0) {
       <!-- Related Modules -->
       <h1 id="Modules">Modules</h1>
-      @Html.Partial("_CardList", new CardListViewModel(Model.Modules, "modules"))
+      <partial name="_CardList" model="@(new CardListViewModel(Model.Modules, "modules"))" />
       <!-- /Related Modules -->
     }
 
@@ -101,7 +101,7 @@
 
     @if (Model.TechnicalPapers.Count > 0) {
       <h1 id="TechnicalPapers">Technical Papers</h1>
-      @Html.Partial("_TechnicalPaperList", Model.TechnicalPapers)
+      <partial name="_TechnicalPaperList" model="@Model.TechnicalPapers" />
     }
 
     @if (!String.IsNullOrEmpty(Model.CompareTo) || !String.IsNullOrEmpty(Model.LearnMoreUrl)) {

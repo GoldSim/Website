@@ -22,7 +22,7 @@
 
     @foreach (var fieldCategory in Model.FieldCategories) {
       <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
-      @Html.Partial("_TechnicalPaperList", Model.ContentItems.Where(t => (t.Category?? "").Equals(fieldCategory.Key)).Cast<TechnicalPaperTopicViewModel>().ToList())
+      <partial name="_TechnicalPaperList" model="@(Model.ContentItems.Where(t => (t.Category?? "").Equals(fieldCategory.Key)).Cast<TechnicalPaperTopicViewModel>().ToList())" />
     }
 
   </section>

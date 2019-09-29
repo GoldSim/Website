@@ -16,7 +16,7 @@
     <!-- /Body Content -->
   }
 
-  @Html.Partial("_TableOfContents")
+  <partial name="_TableOfContents" />
 
   @if (Model.Categories.Count > 0) {
     foreach (var category in Model.Categories.OrderBy(c => c)) {

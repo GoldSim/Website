@@ -19,7 +19,7 @@
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css?@(DateTime.Now.ToString("yyyyMMddhh"))" />
-    @Html.Partial("_Breadcrumbs")
+    <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
     <script>
       /**
@@ -42,7 +42,7 @@
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
     } else {
-      @Html.Partial("_CookiesNotice")
+      <partial name="_CookiesNotice" />
     }
 
     <!-- Site Header Area -->
@@ -69,7 +69,7 @@
 
           <!-- Site Search -->
           <div class="title-bar-right search">
-            @Html.Partial("_SearchBar")
+           <partial name="_SearchBar" />
           </div>
           <!-- /Site Search -->
         }
@@ -164,7 +164,7 @@
     @if (IsSectionDefined("AnnouncementSection")) {
       @RenderSection("AnnouncementSection")
     } else {
-      // @Html.Partial("_Announcement", null, new ViewDataDictionary { { "AnnouncementArea", "Footer" }, { "LinkLabel", "User Conference Overview" } })
+      <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
     }
 
     @if (IsSectionDefined("FooterSection")) {
