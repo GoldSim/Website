@@ -21,7 +21,7 @@
         <h1 id="@category.Key">@category.Title</h1>
         <section id="Group-@category.Key" class="content list">
           @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-            @{WriteContentItem(contentItem, "h2");}
+            WriteContentItem(contentItem, "h2");
           }
         </section>
       }
@@ -29,7 +29,7 @@
     else {
       <section class="content list">
         @foreach (var contentItem in Model.ContentItems) {
-          @{WriteContentItem(contentItem);}
+          WriteContentItem(contentItem);
         }
       </section>
     }

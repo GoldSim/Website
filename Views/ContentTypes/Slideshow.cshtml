@@ -23,7 +23,7 @@
       <div class="owl-carousel">
         @if (Model.ContentItems.Count > 0) {
           foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
-            @{WriteContentItem(contentItem);}
+            WriteContentItem(contentItem);
           }
         }
       </div>

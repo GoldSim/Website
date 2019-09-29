@@ -44,7 +44,7 @@
   <div class="medium-@(!String.IsNullOrEmpty(Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
     @if (!String.IsNullOrEmpty(Model.Customer)) {
       <strong>Client:</strong>
-      @{getCustomerLink(Model.Customer, Model.CustomerUrl);}
+      getCustomerLink(Model.Customer, Model.CustomerUrl);
       <br/>
     }
     @if(Model.Applications.Count > 0) {

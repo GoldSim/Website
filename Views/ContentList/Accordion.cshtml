@@ -27,7 +27,7 @@
           <h2>@category.Title</h2>
           <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
             @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-              @{WriteContentItem(contentItem, viewType);}
+              WriteContentItem(contentItem, viewType);
             }
           </ul>
         </section>
@@ -36,7 +36,7 @@
     else {
       <ul class="accordion" data-accordion data-allow-all-closed="true" data-deep-link="true">
         @foreach (var contentItem in Model.ContentItems) {
-          @{WriteContentItem(contentItem, viewType);}
+          WriteContentItem(contentItem, viewType);
         }
       </ul>
     }
