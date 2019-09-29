@@ -52,7 +52,7 @@
             @foreach (var attributeValue in topic.Attributes) {
               if (Array.IndexOf(excludeAttributes, attributeValue.Key) >= 0) { continue; }
               if (topic.Attributes[attributeValue.Key].Value.Length > 256) { continue; }
-              <Attribute name="@attributeValue.Key">@Encoder.XmlEncode((string)topic.Attributes[attributeValue.Key].Value)</Attribute>
+              <Attribute name="@attributeValue.Key">@XmlEncode((string)topic.Attributes[attributeValue.Key].Value)</Attribute>
             }
           </DataObject>
 
@@ -80,5 +80,7 @@
     }
     return output;
   }
+
+  string XmlEncode(string input) => input.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
 
 }
