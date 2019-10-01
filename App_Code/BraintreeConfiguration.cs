@@ -55,19 +55,13 @@ namespace GoldSim.Web {
     ///   Instantiates the Braintree communication gateway, utilizing the appropriate Braintree environment and API credentials.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway CreateGateway() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Return the Braintree API gateway
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      return new BraintreeGateway(
+    public IBraintreeGateway CreateGateway() =>
+      new BraintreeGateway(
         Braintree.Environment.ParseEnvironment(Environment),
         GetConfigurationSetting(nameof(MerchantId), MerchantId),
         GetConfigurationSetting(nameof(PublicKey), PublicKey),
         GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
       );
-
-    }
 
     /*==========================================================================================================================
     | GET GATEWAY
