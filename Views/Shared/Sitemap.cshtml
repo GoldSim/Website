@@ -5,15 +5,13 @@
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   @foreach (var topic in Model.RootTopic.Children) {
-    @AddNodeToOutput(topic, 1)
+    AddNodeToOutput(topic, 1);
   }
 </urlset>
 
 @{
 
-  IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
-
-  IHtmlContent AddNodeToOutput(Topic topic, int indentLevel) {
+  void AddNodeToOutput(Topic topic, int indentLevel) {
 
     /*=========================================================================================================================
     | DEFINE VARIABLES
@@ -25,58 +23,53 @@
     /*=========================================================================================================================
     | SKIP DISABLED, CONFIGURATION, AND EXCLUDED CONTENT TYPES
     \------------------------------------------------------------------------------------------------------------------------*/
-    if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return null;}
-    if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return null;}
-    if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return null;}
-    if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return null;}
+    if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return;}
+    if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return;}
+    if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return;}
+    if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return;}
 
     /*=========================================================================================================================
     | OPEN NODE
     \------------------------------------------------------------------------------------------------------------------------*/
-    var result = Body(
-      @<url>
-        <loc>@topic.GetWebPath()</loc>
-        <changefreq>monthly</changefreq>
-        @if (topic.LastModified > DateTime.MinValue) {
-          <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
-        }
-        <priority>@(1.0 / indentLevel)</priority>
-        <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
+    <url>
+      <loc>@topic.GetWebPath()</loc>
+      <changefreq>monthly</changefreq>
+      @if (topic.LastModified > DateTime.MinValue) {
+        <lastmod>@topic.LastModified.Date.ToString("yyyy-MM-dd")</lastmod>
+      }
+      <priority>@(1.0 / indentLevel)</priority>
+      <PageMap xmlns="http://www.google.com/schemas/sitemap-pagemap/1.0">
 
-          @*====================================================================================================================
-          | LOOP THROUGH ATTRIBUTES
-          \--------------------------------------------------------------------------------------------------------------------*@
-          <DataObject type="@topic.Attributes.GetValue("ContentType", "Page")">
-            @foreach (var attributeValue in topic.Attributes) {
-              if (Array.IndexOf(excludeAttributes, attributeValue.Key) >= 0) { continue; }
-              if (topic.Attributes[attributeValue.Key].Value.Length > 256) { continue; }
-              <Attribute name="@attributeValue.Key">@XmlEncode((string)topic.Attributes[attributeValue.Key].Value)</Attribute>
+        @*====================================================================================================================
+        | LOOP THROUGH ATTRIBUTES
+        \--------------------------------------------------------------------------------------------------------------------*@
+        <DataObject type="@topic.Attributes.GetValue("ContentType", "Page")">
+          @foreach (var attributeValue in topic.Attributes) {
+            if (Array.IndexOf(excludeAttributes, attributeValue.Key) >= 0) { continue; }
+            if (topic.Attributes[attributeValue.Key].Value.Length > 256) { continue; }
+            <Attribute name="@attributeValue.Key">@XmlEncode((string)topic.Attributes[attributeValue.Key].Value)</Attribute>
+          }
+        </DataObject>
+
+        @*=====================================================================================================================
+        | LOOP THROUGH RELATIONSHIPS
+        \--------------------------------------------------------------------------------------------------------------------*@
+        @foreach (var relationship in topic.Relationships) {
+          <DataObject type="@relationship.Name">
+            @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
+              <Attribute name="TopicKey">@relatedTopic.GetUniqueKey().Replace("Root:", "")</Attribute>
             }
           </DataObject>
-
-          @*=====================================================================================================================
-          | LOOP THROUGH RELATIONSHIPS
-          \--------------------------------------------------------------------------------------------------------------------*@
-          @foreach (var relationship in topic.Relationships) {
-            <DataObject type="@relationship.Name">
-              @foreach (var relatedTopic in topic.Relationships[relationship.Name]) {
-                <Attribute name="TopicKey">@relatedTopic.GetUniqueKey().Replace("Root:", "")</Attribute>
-              }
-            </DataObject>
-          }
-        </PageMap>
-      </url>
-    );
+        }
+      </PageMap>
+    </url>
 
     /*=========================================================================================================================
     | LOOP THROUGH CHILDREN
     \------------------------------------------------------------------------------------------------------------------------*/
-    var output = new HtmlContentBuilder();
-    output.AppendHtml(result);
     foreach (var childNode in topic.Children) {
-      output.AppendHtml(AddNodeToOutput(childNode, indentLevel + 1));
+      AddNodeToOutput(childNode, indentLevel + 1);
     }
-    return output;
   }
 
   string XmlEncode(string input) => input.Replace("<", "&lt;").Replace(">", "&gt;").Replace("&", "&amp;");
