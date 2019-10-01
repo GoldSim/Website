@@ -37,7 +37,6 @@ namespace GoldSim.Web {
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
-    private readonly            Topic                           _rootTopic                      = null;
 
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
@@ -72,7 +71,8 @@ namespace GoldSim.Web {
       _topicRepository                                          = cachedTopicRepository;
       _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
-      _rootTopic                                                = _topicRepository.Load();
+
+      _topicRepository.Load();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
