@@ -1,6 +1,6 @@
-﻿@model ContentListTopicViewModel
+﻿@model GoldSim.Web.Models.ContentListTopicViewModel
 
-@if ((ViewContext.View as RazorView).Path.IndexOf("IndexedList") > 0) {
+@if (Model.IsIndexed) {
   <aside class="contents">
     <h1>Contents</h1>
     <ul>

@@ -50,6 +50,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia topics
       \-----------------------------------------------------------------------------------------------------------------------*/
+      Replace(typeof(ContentListTopicViewModel));
       Replace(typeof(NavigationTopicViewModel));
       Replace(typeof(PageGroupTopicViewModel));
 
