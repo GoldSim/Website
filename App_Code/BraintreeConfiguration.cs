@@ -127,7 +127,7 @@ namespace GoldSim.Web {
       | Get API credentials from App Settings
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
-        value = _configuration.GetValue<String>(compositeVariable);
+        value = _configuration.GetValue<string>(compositeVariable);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
