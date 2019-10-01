@@ -108,6 +108,7 @@ namespace GoldSim.Web {
       app.UseEndpoints(endpoints => {
         endpoints.MapControllers();
         endpoints.MapTopicRoute("Web");
+        endpoints.MapTopicRedirect();
         endpoints.MapControllerRoute(
           name: "LegacyRedirect",
           pattern: "Page/{pageId}",
