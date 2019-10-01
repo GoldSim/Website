@@ -51,9 +51,19 @@
     "gulp-util": "^3.0.8",
     "imagemin-pngcrush": "^6.0.0",
     "jshint": "^2.10.2",
-    "jsonminify": "^0.4.1"
+    "jsonminify": "^0.4.1",
+    "foundation-sites": "6.5.3"
   },
   "dependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "font-awesome": "^4.7.0",
+    "dashjs": "^3.0.0",
+    "simple-pagination.js": "^1.6.0",
+    "gsap": "^2.1.3",
+    "headroom.js": "0.10.3",
+    "jquery": "^3.4.1",
+    "owl.carousel": "^2.3.4",
+    "scrollmagic": "2.0.7",
+    "awesome-foundation6-checkbox": "2.0.0"
   }
 }
