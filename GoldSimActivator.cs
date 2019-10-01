@@ -63,7 +63,6 @@ namespace GoldSim.Web {
       var                       connectionString                = configuration.GetConnectionString("OnTopic");
       var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
       var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
-      var                       topicViewModel                  = new Ignia.Topics.ViewModels.PageTopicViewModel();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | PRELOAD REPOSITORY
