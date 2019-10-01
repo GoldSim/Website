@@ -231,7 +231,10 @@ namespace GoldSim.Web.Controllers {
 
         // Set notification email body and send email
         notificationEmail.Body                  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
+
+        using (var smtpClient = new SmtpClient()) {
+          smtpClient.Send(notificationEmail);
+        }
 
         // Redirect to confirmation view
         return Redirect("/Web/Purchase/PaymentConfirmation");
@@ -271,7 +274,10 @@ namespace GoldSim.Web.Controllers {
 
         // Set notification email body and send email
         notificationEmail.Body  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
+
+        using (var smtpClient = new SmtpClient()) {
+          smtpClient.Send(notificationEmail);
+          }
 
         // Return form view with error messages
         return topicViewResult;
