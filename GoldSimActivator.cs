@@ -129,39 +129,30 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
-      switch (controllerType.Name) {
+      return controllerType.Name switch {
 
-        case nameof(RedirectController):
-          return new RedirectController(_topicRepository);
+        nameof(RedirectController) => new RedirectController(_topicRepository),
 
-        case nameof(LegacyRedirectController):
-          return new LegacyRedirectController(_topicRepository);
+        nameof(LegacyRedirectController) => new LegacyRedirectController(_topicRepository),
 
-        case nameof(SitemapController):
-          return new SitemapController(_topicRepository);
+        nameof(SitemapController) => new SitemapController(_topicRepository),
 
-        case nameof(PaymentsController):
-          return new PaymentsController(
+        nameof(PaymentsController) => new PaymentsController(
             _topicRepository,
             mvcTopicRoutingService,
             _topicMappingService,
             new BraintreeConfiguration(mvcTopicRoutingService, _configuration)
-          );
+          ),
 
-        case nameof(ErrorController):
-          return new ErrorController();
+        nameof(ErrorController) => new ErrorController(),
 
-        case nameof(ReportingController):
-          return new ReportingController(_topicRepository, new ExcelReportingService());
+        nameof(ReportingController) => new ReportingController(_topicRepository, new ExcelReportingService()),
 
-        case nameof(TopicController):
-          return new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService);
+        nameof(TopicController) => new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService),
 
-        default:
-          throw new Exception($"Unknown controller {controllerType.Name}");
+        _ => throw new Exception($"Unknown controller {controllerType.Name}")
 
-      }
-
+      };
     }
 
 
@@ -188,25 +179,23 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
-      switch (viewComponentType.Name) {
+      return viewComponentType.Name switch {
 
-        case nameof(MenuViewComponent):
-          return new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
+        nameof(MenuViewComponent)
+          => new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
 
-        case nameof(PageLevelNavigationViewComponent):
-          return new PageLevelNavigationViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
+        nameof(PageLevelNavigationViewComponent)
+          => new PageLevelNavigationViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
 
-        case nameof(CallsToActionViewComponent):
-          return new CallsToActionViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService);
+        nameof(CallsToActionViewComponent)
+          => new CallsToActionViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
 
-        case nameof(FooterViewComponent):
-          return new FooterViewComponent(mvcTopicRoutingService, _topicRepository, _hierarchicalTopicMappingService);
+        nameof(FooterViewComponent)
+          => new FooterViewComponent(mvcTopicRoutingService, _topicRepository, _hierarchicalTopicMappingService),
 
-        default:
-          throw new Exception($"Unknown view component {viewComponentType.Name}");
+        _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
 
-      }
-
+      };
     }
 
     /*==========================================================================================================================
