@@ -80,7 +80,7 @@ namespace GoldSim.Web {
     ///   Provides configuration the application. This method is called by the runtime to bootstrap the application
     ///   configuration, including the HTTP pipeline.
     /// </summary>
-    public void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+    public static void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Error Pages

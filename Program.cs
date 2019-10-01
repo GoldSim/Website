@@ -23,7 +23,7 @@ namespace GoldSim.Web {
   ///   The <see cref="Program"/> class—and it's <see cref="Program.Main(string[])"/> method—represent the entry point into the
   ///   ASP.NET Core web application.
   /// </summary>
-  public class Program {
+  public static class Program {
 
     /*==========================================================================================================================
     | METHOD: MAIN
