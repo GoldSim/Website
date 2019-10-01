@@ -99,7 +99,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine controller type
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Type controllerType = context.ActionDescriptor.ControllerTypeInfo.AsType();
+      var controllerType = context.ActionDescriptor.ControllerTypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
@@ -165,7 +165,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine view component type
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Type viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
+      var viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register

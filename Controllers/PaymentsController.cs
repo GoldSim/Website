@@ -130,13 +130,12 @@ namespace GoldSim.Web.Controllers {
       var topicViewResult       = TopicView(topicViewModel, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
-      string cardholderName     = HttpContext.Request.Form["cardholderName"];
-      string customerEmail      = HttpContext.Request.Form["customerEmail"];
-      string companyName        = HttpContext.Request.Form["company"];
-      string invoiceNumber      = HttpContext.Request.Form["invoice"];
-      string emailSubjectPrefix = "GoldSim Payments: Credit Card Payment for Invoice ";
-      StringBuilder emailBody   = new StringBuilder("");
-      Decimal amount;
+      var cardholderName        = HttpContext.Request.Form["cardholderName"];
+      var customerEmail         = HttpContext.Request.Form["customerEmail"];
+      var companyName           = HttpContext.Request.Form["company"];
+      var invoiceNumber         = HttpContext.Request.Form["invoice"];
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
+      var emailBody             = new StringBuilder("");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
@@ -148,7 +147,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify payment amount format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out amount)) {
+      if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out var amount)) {
         topicViewModel.IsValid = false;
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
@@ -176,7 +175,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
       emailBody.AppendLine();
       emailBody.AppendLine();
       emailBody.Append("Transaction details:");
@@ -195,7 +194,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
+      var result                                = braintreeGateway.Transaction.Sale(request);
       Transaction transaction                   = null;
       if (result.Target != null) {
         transaction                             = result.Target;
@@ -263,7 +262,7 @@ namespace GoldSim.Web.Controllers {
         }
 
         // Display any specific error messages returned from Braintree
-        foreach (ValidationError error in result.Errors.DeepAll()) {
+        foreach (var error in result.Errors.DeepAll()) {
           topicViewModel.ErrorMessages.Add(error.Code.ToString(), "Error: " + error.Message);
           emailBody.Append(" - Error: " + error.Message);
           emailBody.AppendLine();
