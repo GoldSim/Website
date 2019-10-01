@@ -18,9 +18,9 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <ExcludeFoldersFromDeployment>Images\Courses</ExcludeFoldersFromDeployment>
-    <ExcludeFoldersFromDeployment>Images\Content</ExcludeFoldersFromDeployment>
-    <ExcludeFoldersFromDeployment>Help</ExcludeFoldersFromDeployment>
+    <ExcludeFoldersFromDeployment>wwwroot\Images\Courses</ExcludeFoldersFromDeployment>
+    <ExcludeFoldersFromDeployment>wwwroot\Images\Content</ExcludeFoldersFromDeployment>
+    <ExcludeFoldersFromDeployment>wwwroot\Help</ExcludeFoldersFromDeployment>
   </PropertyGroup>
 
   <ItemGroup>
@@ -56,21 +56,21 @@
     <Compile Remove="!Admin\**" />
     <Compile Remove="Common\**" />
     <Compile Remove="Forms\**" />
-    <Compile Remove="Downloads\**" />
-    <Compile Remove="Help\**" />
-    <Compile Remove="Media\**" />
+    <Compile Remove="wwwroot\Downloads\**" />
+    <Compile Remove="wwwroot\Help\**" />
+    <Compile Remove="wwwroot\Media\**" />
     <EmbeddedResource Remove="!Admin\**" />
     <EmbeddedResource Remove="Common\**" />
     <EmbeddedResource Remove="Forms\**" />
-    <EmbeddedResource Remove="Downloads\**" />
-    <EmbeddedResource Remove="Help\**" />
-    <EmbeddedResource Remove="Media\**" />
+    <EmbeddedResource Remove="wwwroot\Downloads\**" />
+    <EmbeddedResource Remove="wwwroot\Help\**" />
+    <EmbeddedResource Remove="wwwroot\Media\**" />
     <None Remove="!Admin\**" />
     <None Remove="Common\**" />
     <None Remove="Forms\**" />
-    <None Remove="Downloads\**" />
-    <None Remove="Help\**" />
-    <None Remove="Media\**" />
+    <None Remove="wwwroot\Downloads\**" />
+    <None Remove="wwwroot\Help\**" />
+    <None Remove="wwwroot\Media\**" />
   </ItemGroup>
 
   <ItemGroup>
