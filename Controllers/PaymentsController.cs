@@ -148,11 +148,8 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify payment amount format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      try {
-        amount                  = Convert.ToDecimal(HttpContext.Request.Form["amount"]);
-      }
-      catch (FormatException) {
-        topicViewModel.IsValid  = false;
+      if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out amount)) {
+        topicViewModel.IsValid = false;
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
       }
