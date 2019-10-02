@@ -7,6 +7,7 @@ using GoldSim.Web.Models.Forms.BindingModels;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
+using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
 
@@ -49,13 +50,22 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
+    | CREATE VIEW MODEL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Constructs a new view model
+    /// </summary>
+    public FormPageTopicViewModel<T> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
+      _topicMappingService.MapAsync(CurrentTopic, new FormPageTopicViewModel<T>(bindingModel)) as FormPageTopicViewModel<T>;
+
+    /*==========================================================================================================================
     | FORM: TRIAL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Request a trial of the product.
     /// </summary>
     [HttpGet]
-    public IActionResult Trial() => View(new TrialFormBindingModel());
+    public IActionResult Trial() => View(CreateViewModel<TrialFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -63,7 +73,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<TrialFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -81,7 +91,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<DemoFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -99,7 +109,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<QuoteFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -117,7 +127,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<PurchaseFormBindingModel>(bindingModel));
     }
 
 
@@ -136,7 +146,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<NewsletterFormBindingModel>(bindingModel));
     }
 
 
@@ -155,7 +165,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<InstructorAcademicFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -173,7 +183,7 @@ namespace GoldSim.Web.Controllers {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(bindingModel);
+      return View(CreateViewModel<StudentAcademicFormBindingModel>(bindingModel));
     }
 
 
