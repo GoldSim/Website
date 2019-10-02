@@ -8,6 +8,7 @@ using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
 
 namespace GoldSim.Web.Controllers {
 
@@ -18,12 +19,12 @@ namespace GoldSim.Web.Controllers {
   ///   Provides common processing for all GoldSim forms pages. Each form will be represented by a unique action on this
   ///   controller.
   /// </summary>
-  public class FormsController : Controller {
+  public class FormsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicMappingService            _topicMappingService;
     private readonly            IReverseTopicMappingService     _reverseMappingService;
 
     /*==========================================================================================================================
@@ -33,8 +34,17 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public FormsController(ITopicRepository topicRepository, IReverseTopicMappingService reverseTopicMappingService) : base() {
-      _topicRepository          = topicRepository;
+    public FormsController(
+      ITopicRepository topicRepository,
+      ITopicRoutingService topicRoutingService,
+      ITopicMappingService topicMappingService,
+      IReverseTopicMappingService reverseTopicMappingService
+    ) : base(
+      topicRepository,
+      topicRoutingService,
+      topicMappingService
+    ) {
+      _topicMappingService      = topicMappingService;
       _reverseMappingService    = reverseTopicMappingService;
     }
 
