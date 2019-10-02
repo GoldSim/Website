@@ -6,6 +6,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Ignia.Topics;
+using Ignia.Topics.Models;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models {
@@ -23,7 +24,7 @@ namespace GoldSim.Web.Models {
   public class NavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<NavigationTopicViewModel> {
 
     public string HeaderImageUrl { get; set; }
-    public virtual Collection<NavigationTopicViewModel> Children { get; set; }
+    public virtual Collection<NavigationTopicViewModel> Children { get; } = new Collection<NavigationTopicViewModel>();
     public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
 
 

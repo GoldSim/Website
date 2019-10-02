@@ -4,56 +4,75 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using Ignia.Topics.Repositories;
-using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Ignia.Topics.Mapping;
+using Ignia.Topics;
+using Ignia.Topics.AspNetCore.Mvc.Models;
+using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.Repositories;
+using GoldSim.Web.Models;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: REPORTING CONTROLLER
+  | CLASS: FOOTER VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides access to GoldSim data reporting routes.
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   instances representing the footer of the site.
   /// </summary>
-  public class ReportingController : Controller {
+  public class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicRepository        _topicRepository        = null;
-    private     readonly        IReportingService       _reportingService       = null;
+    private readonly            ITopicRepository                _topicRepository;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a Reporting Controller with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="FooterViewComponent"/> with necessary dependencies.
     /// </summary>
-    public ReportingController(ITopicRepository topicRepository, IReportingService reportingService) : base() {
-      _topicRepository          = topicRepository ?? throw new ArgumentNullException(nameof(topicRepository));
-      _reportingService         = reportingService ?? throw new ArgumentNullException(nameof(reportingService));
+    /// <returns>A <see cref="FooterViewComponent"/>.</returns>
+    public FooterViewComponent(
+      ITopicRoutingService topicRoutingService,
+      ITopicRepository topicRepository,
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
+    ) : base(
+      topicRoutingService,
+      hierarchicalTopicMappingService
+    ) {
+      _topicRepository = topicRepository;
     }
 
     /*==========================================================================================================================
-    | LICENSE REQUESTS
+    | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a downloadable file stream containing the Excel spreadsheet report for License Request data.
+    ///   Provides the footer menu for the site.
     /// </summary>
-    public FileStreamResult LicenseRequests() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = _topicRepository.Load("Root:CustomerRequests:Licenses");
-      var licenseRequests               = licenseRequestContainer.Children.Where(topic => topic.ContentType == "AcademicRequest" || topic.ContentType == "EvaluationRequest");
-      var memoryStream                  = _reportingService.GetLicenseRequests(licenseRequests);
+      var navigationRootTopic = _topicRepository.Load("Web:Company");
+      var currentTopic = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Return the Excel spreadsheet as a file stream
+      | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return File(memoryStream, _reportingService.MimeType, "MultipleFreeLicenses" + _reportingService.FileExtension);
+      var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
+        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
+        CurrentKey = CurrentTopic?.GetUniqueKey()
+      };
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return the corresponding view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return View(navigationViewModel);
 
     }
 

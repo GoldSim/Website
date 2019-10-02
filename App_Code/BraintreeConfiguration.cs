@@ -7,6 +7,7 @@ using System;
 using System.Configuration;
 using Braintree;
 using Ignia.Topics;
+using Microsoft.Extensions.Configuration;
 
 namespace GoldSim.Web {
 
@@ -25,6 +26,7 @@ namespace GoldSim.Web {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private                     IBraintreeGateway               _braintreeGateway               = null;
     private readonly            ITopicRoutingService            _topicRoutingService            = null;
+    private readonly            IConfiguration                  _configuration                  = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,8 +35,9 @@ namespace GoldSim.Web {
     ///   Establishes a new instance of the <see cref="BraintreeConfiguration"/>, including any shared dependencies to be used
     ///   across instances of controllers.
     /// </summary>
-    public BraintreeConfiguration(ITopicRoutingService topicRoutingService) {
+    public BraintreeConfiguration(ITopicRoutingService topicRoutingService, IConfiguration configuration) {
       _topicRoutingService      = topicRoutingService;
+      _configuration            = configuration;
     }
 
     /*==========================================================================================================================
@@ -52,19 +55,13 @@ namespace GoldSim.Web {
     ///   Instantiates the Braintree communication gateway, utilizing the appropriate Braintree environment and API credentials.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway CreateGateway() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Return the Braintree API gateway
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      return new BraintreeGateway(
+    public IBraintreeGateway CreateGateway() =>
+      new BraintreeGateway(
         Braintree.Environment.ParseEnvironment(Environment),
         GetConfigurationSetting(nameof(MerchantId), MerchantId),
         GetConfigurationSetting(nameof(PublicKey), PublicKey),
         GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
       );
-
-    }
 
     /*==========================================================================================================================
     | GET GATEWAY
@@ -124,7 +121,7 @@ namespace GoldSim.Web {
       | Get API credentials from App Settings
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
-        value = ConfigurationManager.AppSettings[compositeVariable];
+        value = _configuration.GetValue<string>(compositeVariable);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

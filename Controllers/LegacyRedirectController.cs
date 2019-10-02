@@ -3,9 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Web.Mvc;
 using Ignia.Topics;
 using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Controllers {
 
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     ITopicRepository                _topicRepository                = null;
+    private readonly            ITopicRepository                _topicRepository;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Redirect based on PageId.
     /// </summary>
-    public ActionResult Redirect(int pageId) {
+    public IActionResult Redirect(int pageId) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
@@ -54,7 +54,7 @@ namespace GoldSim.Web.Controllers {
       | Provide error handling
       \------------------------------------------------------------------------------------------------------------------------*/
       if (topic == null) {
-        return HttpNotFound("Invalid PageID.");
+        return NotFound("Invalid PageID.");
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------

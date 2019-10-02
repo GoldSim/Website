@@ -1,30 +1,28 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
+| Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.Web.Mvc;
+using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | CLASS: WEB FORM CONTROLLER
+  | VIEW MODEL: CONTENT LIST TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Handles pass-through rendering of MVC partial views for Web Forms (ASPX) pages.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a content list topic.
   /// </summary>
-  /// <remarks>
-  ///   Adapted from solution described at https://stackoverflow.com/questions/702746/how-to-include-a-partial-view-inside-a-webform#answer-24867151
-  /// </remarks>
-  public class WebFormController : Controller {
+  public class ContentListTopicViewModel : Ignia.Topics.ViewModels.ContentListTopicViewModel {
 
     /*==========================================================================================================================
-    | PARTIAL RENDER
+    | IS INDEXED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the pass-through partial view.
+    ///   Provides a flag determining whether or not the content list should be indexed.
     /// </summary>
-    public ActionResult PartialRender() => PartialView();
+    /// <returns>True if the content list should be indexed; false otherwise.</returns>
+    public bool IsIndexed { get; set; } = false;
 
   } // Class
 

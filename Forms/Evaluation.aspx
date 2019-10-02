@@ -28,7 +28,7 @@
     Master.SaveAsContentType    = "EvaluationRequest";
 
     // Submit button label
-    Master.SubmitLabel          = "Request Evaluation";
+    Master.SubmitLabel          = "Request Trial";
 
     // Custom processing event
     Master.ProcessForm         += ProcessForm;
@@ -39,7 +39,7 @@
   | PROCESS FORM
   >=============================================================================================================================
   | Override default form processing to provide conditional email support.  Includes a manual redirect to prevent default
-  | processing of the form since the evaluation requires a highly customized experience.
+  | processing of the form since the trial requires a highly customized experience.
   \---------------------------------------------------------------------------------------------------------------------------*/
   public void ProcessForm(Object sender, CommandEventArgs args) {
 
@@ -51,7 +51,7 @@
     /*--------------------------------------------------------------------------------------------------------------------------
     | Send trial request email
     \-------------------------------------------------------------------------------------------------------------------------*/
-    Master.EmailForm("Evaluation Download Request", "Software@GoldSim.com", "website@goldsim.com");
+    Master.EmailForm("Trial Download Request", "Software@GoldSim.com", "website@goldsim.com");
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Save form as Topic
@@ -62,8 +62,8 @@
     | Send email receipt (to user)
     \-------------------------------------------------------------------------------------------------------------------------*/
     Utility.SendWebPage(
-      $"https://{Request.Url.Host}:{Request.Url.Port}/Forms/Evaluation.Receipt.html",
-      "GoldSim Evaluation Request",
+      "https://" + Request.Url.Host + "/Forms/Evaluation.Receipt.html",
+      "GoldSim Trial Request",
       "Software@GoldSim.com",
       email
     );
@@ -132,7 +132,7 @@
       </div>
       <div class="cell">
         <p id="EmailInstructions" class="field instructions" ClientIDMode="Static" runat="server">Only institutional email domains are accepted. Email addresses of free domains (yahoo.com, gmail.com, etc.) are not accepted nor processed. You can refer to our <a href="/Topic/4222/">privacy policy</a> regarding how we use your email address.</p>
-        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;" ClientIDMode="Static" runat="server">While we would like to grant your evaluation request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
+        <p id="EmailErrorInstructions" class="field instructions error" style="display: none;" ClientIDMode="Static" runat="server">While we would like to grant your trial request, we cannot provide licenses to email addresses that are not associated with an organization (that is, we do not send license information to free webmail or ISP accounts). If you would like to evaluate GoldSim, please use an email address associated with your business or organization. If you are concerned about providing your organizational email address, please view our privacy policy regarding how we use your email address. If you have no other email address to use, please indicate this in an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a>.</p>
       </div>
       <!-- /Email -->
 
@@ -188,7 +188,21 @@
       <!-- /Existing Tools Description -->
 
       <%-- MODULE INTEREST CHECKBOXES --%>
-      <GoldSimForm:ModuleInterestSelection ID="ModuleInterest" RunAt="Server" />
+      <div class="cell">
+        <label>I am also interested in:</label>
+      </div>
+      <div class="medium-6 cell" style="margin-bottom: 1rem;">
+        <div class="checkbox">
+          <asp:CheckBox ID="RT" ClientIDMode="Static" RunAt="Server" />
+          <label for="RT">Radionuclide Transport Module</label>
+        </div>
+      </div>
+      <div class="medium-6 cell" style="margin-bottom: 1rem;">
+        <div class="checkbox">
+          <asp:CheckBox ID="CT" ClientIDMode="Static" RunAt="Server" />
+          <label for="CT">Contaminant Transport Module</label>
+        </div>
+      </div>
 
       <%-- REFERRAL SOURCE SELECTION --%>
       <GoldSimForm:ReferralSourceSelection ID="ReferralSource" RunAt="Server" />

@@ -1,17 +1,18 @@
-﻿@model Ignia.Topics.Web.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
-
-<style>
-  .page-banner {
-    background-image:   -ms-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
-    background-image:   -moz-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
-    background-image:   -o-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
-    background-image:   -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.9)), color-stop(100, rgba(32,32,32,0)))@GetBannerImage();
-    background-image:   -webkit-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
-    background-image:   linear-gradient(to top, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
-  }
-</style>
+﻿@model Ignia.Topics.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
 @if (Model.NavigationRoot != null) {
+
+  <style>
+    .page-banner {
+      background-image:   -ms-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+      background-image:   -moz-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+      background-image:   -o-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+      background-image:   -webkit-gradient(linear, left bottom, left top, color-stop(0, rgba(32,32,32,0.9)), color-stop(100, rgba(32,32,32,0)))@GetBannerImage();
+      background-image:   -webkit-linear-gradient(bottom, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+      background-image:   linear-gradient(to top, rgba(32,32,32,0.9) 0%, rgba(32,32,32,0) 100%)@GetBannerImage();
+    }
+  </style>
+
   <!-- Page Title Area -->
   <header class="header page-banner">
     <div class="grid-container">
@@ -24,7 +25,7 @@
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
             @foreach (var topic in Model.NavigationRoot.Children) {
-              <option value="@topic.WebPath" @((topic.IsSelected(Model.CurrentKey)) ? " selected" : "")>
+              <option value="@topic.WebPath" selected="@(topic.IsSelected(Model.CurrentKey))">
                 @(topic.ShortTitle?? topic.Title)
               </option>
             }

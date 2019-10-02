@@ -1,1 +1,13 @@
-﻿@RenderPage("~/Views/ContentList/ContentList.cshtml")
+﻿@model GoldSim.Web.Models.ContentListTopicViewModel
+
+@{
+  Model.IsIndexed = true;
+}
+
+<partial name="~/Views/ContentList/ContentList.cshtml" />
+
+<!--
+  Content Type: Content List
+  View Type: Indexed List
+  View Location: ~/Views/ContentList/IndexedList.cshtml
+-->

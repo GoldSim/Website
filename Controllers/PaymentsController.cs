@@ -3,21 +3,21 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using Braintree;
+using GoldSim.Web.Models;
+using Ignia.Topics;
+using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
-using Braintree;
-using GoldSim.Web.Models;
-using Ignia.Topics;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
-using Ignia.Topics.Web.Mvc.Controllers;
+using Decimal = System.Decimal;
 
 namespace GoldSim.Web.Controllers {
 
@@ -85,7 +85,7 @@ namespace GoldSim.Web.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public async override Task<ActionResult> IndexAsync(string path) {
+    public async override Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -108,7 +108,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      return TopicView(topicViewModel, CurrentTopic.View);
 
     }
 
@@ -121,22 +121,21 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> IndexAsync() {
+    public async Task<IActionResult> IndexAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
-      var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      var topicViewResult       = TopicView(topicViewModel, CurrentTopic.View);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var clientToken           = braintreeGateway.ClientToken.Generate();
-      string cardholderName     = Request["cardholderName"];
-      string customerEmail      = Request["customerEmail"];
-      string companyName        = Request["company"];
-      string invoiceNumber      = Request["invoice"];
-      string emailSubjectPrefix = "GoldSim Payments: Credit Card Payment for Invoice ";
-      StringBuilder emailBody   = new StringBuilder("");
-      Decimal amount;
+      var cardholderName        = HttpContext.Request.Form["cardholderName"];
+      var customerEmail         = HttpContext.Request.Form["customerEmail"];
+      var companyName           = HttpContext.Request.Form["company"];
+      var invoiceNumber         = HttpContext.Request.Form["invoice"];
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
+      var emailBody             = new StringBuilder("");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
@@ -148,11 +147,8 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify payment amount format
       \-----------------------------------------------------------------------------------------------------------------------*/
-      try {
-        amount                  = Convert.ToDecimal(Request["amount"]);
-      }
-      catch (FormatException e) {
-        topicViewModel.IsValid  = false;
+      if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out var amount)) {
+        topicViewModel.IsValid = false;
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
       }
@@ -160,10 +156,10 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble and send Braintree transaction
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var nonce                 = Request["paymentMethodNonce"];
+      var nonce                 = HttpContext.Request.Form["paymentMethodNonce"];
       var request               = new TransactionRequest {
         Amount                  = amount,
-        PurchaseOrderNumber     = Request["invoice"],
+        PurchaseOrderNumber     = HttpContext.Request.Form["invoice"],
         PaymentMethodNonce      = nonce,
         CustomFields            = new Dictionary<string, string> {
           { "cardholder"        , cardholderName },
@@ -179,7 +175,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
       emailBody.AppendLine();
       emailBody.AppendLine();
       emailBody.Append("Transaction details:");
@@ -198,7 +194,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
+      var result                                = braintreeGateway.Transaction.Sale(request);
       Transaction transaction                   = null;
       if (result.Target != null) {
         transaction                             = result.Target;
@@ -231,7 +227,10 @@ namespace GoldSim.Web.Controllers {
 
         // Set notification email body and send email
         notificationEmail.Body                  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
+
+        using (var smtpClient = new SmtpClient()) {
+          smtpClient.Send(notificationEmail);
+        }
 
         // Redirect to confirmation view
         return Redirect("/Web/Purchase/PaymentConfirmation");
@@ -263,7 +262,7 @@ namespace GoldSim.Web.Controllers {
         }
 
         // Display any specific error messages returned from Braintree
-        foreach (ValidationError error in result.Errors.DeepAll()) {
+        foreach (var error in result.Errors.DeepAll()) {
           topicViewModel.ErrorMessages.Add(error.Code.ToString(), "Error: " + error.Message);
           emailBody.Append(" - Error: " + error.Message);
           emailBody.AppendLine();
@@ -271,7 +270,10 @@ namespace GoldSim.Web.Controllers {
 
         // Set notification email body and send email
         notificationEmail.Body  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
+
+        using (var smtpClient = new SmtpClient()) {
+          smtpClient.Send(notificationEmail);
+          }
 
         // Return form view with error messages
         return topicViewResult;

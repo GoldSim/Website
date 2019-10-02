@@ -372,8 +372,8 @@ compilerconfig.json
 compilerconfig.json.defaults
 Common/Global/
 \!Admin/
-Images/Content/
+wwwroot/Images/Content/
 Downloads
-Images/Courses/
+wwwroot/Images/Courses/
 Help/
 Media/
