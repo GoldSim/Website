@@ -7,11 +7,11 @@
 <%@ Reference   Control="/Common/Global/Controls/FormField.ascx" %>
 
 <Script RunAt="Server">
-/*==============================================================================================================================
-| Author        Ignia, LLC
-| Client        GoldSim
-| Project       Website
-\=============================================================================================================================*/
+  /*==============================================================================================================================
+  | Author        Ignia, LLC
+  | Client        GoldSim
+  | Project       Website
+  \=============================================================================================================================*/
 
   /*============================================================================================================================
   | PAGE LOAD
@@ -102,7 +102,7 @@
 </asp:Content>
 
 <asp:Content ContentPlaceHolderId="Content" runat="Server">
-  <p>Trial versions are fully functional expiring 30 days after registration. GoldSim is easy to install, register (and uninstall), and, of course, there is no obligation to buy and your privacy is respected. Free technical support is provided throughout your trial.</p>
+  <p>Trial versions are fully functional, but limit the size of models that can be built or edited (to 50 elements). The license expires 30 days from the date it was issued. GoldSim is easy to install, activate (and uninstall), and, of course, there is no obligation to buy and your privacy is respected. Free technical support is provided throughout your trial.</p>
 
   <fieldset>
     <div class="grid-x grid-margin-x">
@@ -189,7 +189,8 @@
 
       <%-- MODULE INTEREST CHECKBOXES --%>
       <div class="cell">
-        <label>I am also interested in:</label>
+        <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
+	<label>I am also interested in:</label>
       </div>
       <div class="medium-6 cell" style="margin-bottom: 1rem;">
         <div class="checkbox">
