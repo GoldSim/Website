@@ -10,6 +10,7 @@ using Ignia.Topics.Repositories;
 using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using System.Threading.Tasks;
 
 namespace GoldSim.Web.Controllers {
 
@@ -55,8 +56,11 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Constructs a new view model
     /// </summary>
-    public FormPageTopicViewModel<T> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
-      _topicMappingService.MapAsync(CurrentTopic, new FormPageTopicViewModel<T>(bindingModel)) as FormPageTopicViewModel<T>;
+    public async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() {
+      var viewModel = await _topicMappingService.MapAsync(CurrentTopic, new FormPageTopicViewModel<T>(bindingModel));
+      var viewModelTyped = viewModel as FormPageTopicViewModel<T>;
+      return viewModelTyped;
+    }
 
     /*==========================================================================================================================
     | FORM: TRIAL
@@ -65,15 +69,18 @@ namespace GoldSim.Web.Controllers {
     ///   Request a trial of the product.
     /// </summary>
     [HttpGet]
-    public IActionResult Trial() => View(CreateViewModel<TrialFormBindingModel>());
+    public async Task<IActionResult> TrialAsync() {
+      var bindingModel = await CreateViewModel<TrialFormBindingModel>();
+      return View(bindingModel);
+      }
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Trial(TrialFormBindingModel bindingModel) {
+    public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<TrialFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<TrialFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -83,15 +90,15 @@ namespace GoldSim.Web.Controllers {
     ///   Request a demonstration of the product.
     /// </summary>
     [HttpGet]
-    public IActionResult Demo() => View(new DemoFormBindingModel());
+    public async Task<IActionResult> DemoAsync() => View(await CreateViewModel<DemoFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Demo(DemoFormBindingModel bindingModel) {
+    public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<DemoFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<DemoFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -101,15 +108,15 @@ namespace GoldSim.Web.Controllers {
     ///   Request a quote for the product
     /// </summary>
     [HttpGet]
-    public IActionResult Quote() => View(new QuoteFormBindingModel());
+    public async Task<IActionResult> QuoteAsync() => View(await CreateViewModel<QuoteFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Quote(QuoteFormBindingModel bindingModel) {
+    public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<QuoteFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<QuoteFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -119,15 +126,15 @@ namespace GoldSim.Web.Controllers {
     ///   Request to purchase a license of the product
     /// </summary>
     [HttpGet]
-    public IActionResult Purchase() => View(new PurchaseFormBindingModel());
+    public async Task<IActionResult> PurchaseAsync() => View(await CreateViewModel<PurchaseFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Purchase(PurchaseFormBindingModel bindingModel) {
+    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<PurchaseFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<PurchaseFormBindingModel>(bindingModel));
     }
 
 
@@ -138,15 +145,15 @@ namespace GoldSim.Web.Controllers {
     ///   Signup for the GoldSim newsletter
     /// </summary>
     [HttpGet]
-    public IActionResult Newsletter() => View(new NewsletterFormBindingModel());
+    public async Task<IActionResult> NewsletterAsync() => View(await CreateViewModel<NewsletterFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Newsletter(NewsletterFormBindingModel bindingModel) {
+    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<NewsletterFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<NewsletterFormBindingModel>(bindingModel));
     }
 
 
@@ -157,15 +164,16 @@ namespace GoldSim.Web.Controllers {
     ///   Request an academic license of the product for faculty.
     /// </summary>
     [HttpGet]
-    public IActionResult InstructorAcademic() => View(new InstructorAcademicFormBindingModel());
+    public async Task<IActionResult> InstructorAcademicAsync()
+      => View(await CreateViewModel<InstructorAcademicFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult InstructorAcademic(InstructorAcademicFormBindingModel bindingModel) {
+    public async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<InstructorAcademicFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<InstructorAcademicFormBindingModel>(bindingModel));
     }
 
     /*==========================================================================================================================
@@ -175,15 +183,15 @@ namespace GoldSim.Web.Controllers {
     ///   Request an academic license of the product for faculty.
     /// </summary>
     [HttpGet]
-    public IActionResult StudentAcademic() => View(new StudentAcademicFormBindingModel());
+    public async Task<IActionResult> StudentAcademicAsync() => View(await CreateViewModel<StudentAcademicFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult StudentAcademic(StudentAcademicFormBindingModel bindingModel) {
+    public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) {
       if (ModelState.IsValid) {
         return RedirectToAction("Index");
       }
-      return View(CreateViewModel<StudentAcademicFormBindingModel>(bindingModel));
+      return View(await CreateViewModel<StudentAcademicFormBindingModel>(bindingModel));
     }
 
 
