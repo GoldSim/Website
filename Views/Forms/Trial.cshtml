@@ -1,0 +1,93 @@
+﻿@model FormPageTopicViewModel<TrialFormBindingModel>
+
+<div class="row">
+  <div class="col-md-4">
+    <form asp-action="Trial">
+      <div asp-validation-summary="All" class="text-danger"></div>
+
+      <h4>Tell us about yourself</h4>
+
+      <div class="form-group">
+        <label asp-for="BindingModel.FirstName" class="control-label"></label>
+        <input asp-for="BindingModel.FirstName" class="form-control" />
+        <span asp-validation-for="BindingModel.FirstName" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.LastName" class="control-label"></label>
+        <input asp-for="BindingModel.LastName" class="form-control" />
+        <span asp-validation-for="BindingModel.LastName" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.Email" class="control-label"></label>
+        <input asp-for="BindingModel.Email" class="form-control" />
+        <span asp-validation-for="BindingModel.Email" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.Organization" class="control-label"></label>
+        <input asp-for="BindingModel.Organization" class="form-control" />
+        <span asp-validation-for="BindingModel.Organization" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.PhoneNumber" class="control-label"></label>
+        <input asp-for="BindingModel.PhoneNumber" class="form-control" />
+        <span asp-validation-for="BindingModel.PhoneNumber" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.Country" class="control-label"></label>
+        <input asp-for="BindingModel.Country" class="form-control" />
+        <span asp-validation-for="BindingModel.Country" class="text-danger"></span>
+      </div>
+
+      <h4>Tell us about your requirements</h4>
+      <div class="form-group">
+        <label asp-for="BindingModel.OtherTools" class="control-label"></label>
+        <input asp-for="BindingModel.OtherTools" class="form-control" />
+        <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.AreaOfFocus" class="control-label"></label>
+        <input asp-for="BindingModel.AreaOfFocus" class="form-control" />
+        <span asp-validation-for="BindingModel.AreaOfFocus" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.AreaOfFocusOther" class="control-label"></label>
+        <input asp-for="BindingModel.AreaOfFocusOther" class="form-control" />
+        <span asp-validation-for="BindingModel.AreaOfFocusOther" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.ProblemStatement" class="control-label"></label>
+        <input asp-for="BindingModel.ProblemStatement" class="form-control" />
+        <span asp-validation-for="BindingModel.ProblemStatement" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.ReferralSource" class="control-label"></label>
+        <input asp-for="BindingModel.ReferralSource" class="form-control" />
+        <span asp-validation-for="BindingModel.ReferralSource" class="text-danger"></span>
+      </div>
+      <div class="form-group">
+        <label asp-for="BindingModel.ReferralDetails" class="control-label"></label>
+        <input asp-for="BindingModel.ReferralDetails" class="form-control" />
+        <span asp-validation-for="BindingModel.ReferralDetails" class="text-danger"></span>
+      </div>
+
+      <div class="form-group form-check">
+        <label class="form-check-label">
+          <input class="form-check-input" data-val="True" asp-for="BindingModel.AcceptTermsOfUse" /> @Html.DisplayNameFor(model => model.BindingModel.AcceptTermsOfUse)
+        </label>
+      </div>
+
+      <div class="form-group">
+        <input type="submit" value="Create" class="btn btn-primary" />
+      </div>
+
+    </form>
+  </div>
+</div>
+
+<div>
+  <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
