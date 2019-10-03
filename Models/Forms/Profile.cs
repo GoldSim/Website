@@ -38,7 +38,6 @@ namespace GoldSim.Web.Models.Forms {
     /// <summary>
     ///   Gets or sets the user's custom area of focus, for cases where the out-of-the-box options aren't relevant.
     /// </summary>
-    [Required]
     [StringLength(255)]
     [Display(Name="Other")]
     public string AreaOfFocusOther { get; set; }

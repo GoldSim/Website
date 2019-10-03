@@ -52,7 +52,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   however, we're able to provide form validation and error messaging.
     /// </remarks>
     [Range(typeof(bool), "true", "true", ErrorMessage="The terms of service must be accepted.")]
-    [Display(Name="I agree to these terms of use.I also agree to receive the GoldSim newsletter.")]
+    [Display(Name="I agree to these terms of use. I also agree to receive the GoldSim newsletter.")]
     public bool AcceptTermsOfUse { get; set; }
 
   }
