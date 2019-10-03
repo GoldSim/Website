@@ -71,6 +71,11 @@ namespace GoldSim.Web {
       services.AddSingleton<IControllerActivator>(activator);
       services.AddSingleton<IViewComponentActivator>(activator);
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Configure Application Insights
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      services.AddApplicationInsightsTelemetry(Configuration);
+
     }
 
     /*==========================================================================================================================
