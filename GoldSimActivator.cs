@@ -144,6 +144,13 @@ namespace GoldSim.Web {
             new BraintreeConfiguration(mvcTopicRoutingService, _configuration)
           ),
 
+        nameof(FormsController) => new FormsController(
+          _topicRepository,
+          mvcTopicRoutingService,
+          _topicMappingService,
+          new ReverseTopicMappingService(_topicRepository)
+        ),
+
         nameof(ErrorController) => new ErrorController(),
 
         nameof(ReportingController) => new ReportingController(_topicRepository, new ExcelReportingService()),
