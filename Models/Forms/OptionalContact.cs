@@ -9,45 +9,56 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Models.Forms {
 
   /*============================================================================================================================
-  | BINDING MODEL: REQUEST A TRIAL FORM
+  | MODEL: OPTIONAL CONTACT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Request a Trial form.
+  ///   Provides a strongly-typed data transfer object for representing optional contact information.
   /// </summary>
-  public class TrialFormBindingModel : ExtendedProfile {
+  public class OptionalContact {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: FIRST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
+    ///   Gets or sets the user's first name.
     /// </summary>
-    public TrialFormBindingModel() {
-      Trainer = new OptionalContact();
-    }
+    [StringLength(255)]
+    [Display(Name="First Name")]
+    public virtual string FirstName { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: TRAINER
+    | PROPERTY: LAST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
+    ///   Gets or sets the user's last name.
     /// </summary>
-    [Display(Name="Trainer Contact Information")]
-    public OptionalContact Trainer { get; }
+    [StringLength(255)]
+    [Display(Name="Last Name")]
+    public virtual string LastName { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: OTHER TOOLS
+    | PROPERTY: ORGANIZATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    ///   Gets or sets the user's organization or institution name.
     /// </summary>
-    [Required]
-    [StringLength(1000)]
-    [Display(Name="What other risk analysis tools do you use, or are evaluating ?")]
-    public string OtherTools { get; set; }
+    [StringLength(255)]
+    [Display(Name="Organization Name")]
+    public virtual string Organization { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: EMAIL ADDRESS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's email address.
+    /// </summary>
+    [EmailAddress]
+    [StringLength(255)]
+    [Display(Name="Email Address")]
+    public virtual string Email { get; set; }
 
   }
 
