@@ -56,11 +56,11 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Constructs a new view model
     /// </summary>
-    public async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() {
-      var viewModel = await _topicMappingService.MapAsync(CurrentTopic, new FormPageTopicViewModel<T>(bindingModel));
-      var viewModelTyped = viewModel as FormPageTopicViewModel<T>;
-      return viewModelTyped;
-    }
+    public async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
+      await _topicMappingService.MapAsync(
+        CurrentTopic,
+        new FormPageTopicViewModel<T>(bindingModel)
+      ) as FormPageTopicViewModel<T>;
 
     /*==========================================================================================================================
     | FORM: TRIAL
