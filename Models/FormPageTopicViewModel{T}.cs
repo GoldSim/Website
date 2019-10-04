@@ -24,7 +24,7 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <returns>A <see cref="FormPageTopicViewModel"/>.</returns>
     public FormPageTopicViewModel(T bindingModel = null) {
-      BindingModel = bindingModel;
+      BindingModel = bindingModel?? new T();
     }
 
     /*==========================================================================================================================
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a reference to the binding model that should be used for the form itself.
     /// </summary>
     /// <returns>The <typeparamref name="T"/> binding model.</returns>
-    public T BindingModel { get; set; } = null;
+    public T BindingModel { get; }
 
   } // Class
 
