@@ -1,0 +1,16 @@
+﻿@model ModuleSelection
+
+<div class="medium-6 cell" style="margin-bottom: 1rem;">
+  <div class="checkbox">
+    <input type="checkbox" asp-for="RadionuclideTransport" />
+    <label asp-for="RadionuclideTransport"></label>
+    <span asp-validation-for="RadionuclideTransport" class="text-danger"></span>
+  </div>
+  <div class="checkbox">
+    <input type="checkbox" asp-for="ContaminantTransport" />
+    <label asp-for="ContaminantTransport"></label>
+    <span asp-validation-for="ContaminantTransport" class="text-danger"></span>
+  </div>
+</div>
+
+<!-- View Location: ~/Views/Forms/_TransportModules.cshtml -->

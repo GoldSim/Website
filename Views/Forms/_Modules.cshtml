@@ -1,0 +1,22 @@
+﻿@model ModuleSelection
+
+<div class="cell">
+  <label>I am also interested in:</label>
+</div>
+
+<partial name="_TransportModules" for="@Model" />
+
+<div class="medium-6 cell" style="margin-bottom: 1rem;">
+  <div class="checkbox">
+    <input type="checkbox" asp-for="Reliability" />
+    <label asp-for="Reliability"></label>
+    <span asp-validation-for="Reliability" class="text-danger"></span>
+  </div>
+  <div class="checkbox">
+    <input type="checkbox" asp-for="DistributedProcessing" />
+    <label asp-for="DistributedProcessing"></label>
+    <span asp-validation-for="DistributedProcessing" class="text-danger"></span>
+  </div>
+</div>
+
+<!-- View Location: ~/Views/Forms/_Modules.cshtml -->
