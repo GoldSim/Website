@@ -1,0 +1,30 @@
+﻿@model Address
+
+<div class="cell form-field">
+  <label asp-for="Street1" class="labeled"></label>
+  <input asp-for="Street1" class="field" />
+  <span asp-validation-for="Street1" class="text-danger"></span>
+</div>
+<div class="cell form-field">
+  <label asp-for="Street2" class="labeled"></label>
+  <input asp-for="Street2" class="field" />
+  <span asp-validation-for="Street2" class="text-danger"></span>
+</div>
+
+<div class="medium-6 cell form-field">
+  <label asp-for="City" class="labeled"></label>
+  <input asp-for="City" class="field" />
+  <span asp-validation-for="City" class="text-danger"></span>
+</div>
+<div class="small-6 medium-3 cell form-field">
+  <label asp-for="Province" class="labeled"></label>
+  <input asp-for="Province" class="field" />
+  <span asp-validation-for="Province" class="text-danger"></span>
+</div>
+<div class="small-6 medium-3 cell form-field">
+  <label asp-for="PostalCode" class="labeled"></label>
+  <input asp-for="PostalCode" class="field" />
+  <span asp-validation-for="PostalCode" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/_Address.cshtml -->
