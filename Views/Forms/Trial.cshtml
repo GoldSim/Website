@@ -6,6 +6,7 @@
     @Html.Raw(Model.Body)
 
     <form asp-action="Trial">
+
       <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
 
       <fieldset>
@@ -56,14 +57,7 @@
             </ol>
           </div>
 
-          <div class="cell">
-            <div class="checkbox">
-              <input type="checkbox" asp-for="BindingModel.AcceptTermsOfUse" />
-              <label asp-for="BindingModel.AcceptTermsOfUse">I agree to these terms of use. I also agree to receive the GoldSim newsletter.</label>
-            </div>
-            <p class="instructions">Note: the GoldSim newsletter is sent a few times a year, and you may unsubscribe at any time.</p>
-            <span id="ContentContainer_Content_TouAndNewsletterCheck_ctl01" style="display:none;"></span>
-          </div>
+          <partial name="_Modules" for="BindingModel" />
 
         </div>
       </fieldset>
