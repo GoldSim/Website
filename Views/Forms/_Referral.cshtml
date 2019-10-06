@@ -1,0 +1,18 @@
+﻿@model Profile
+
+<div class="medium-6 cell Referral Select">
+  <label asp-for="ReferralSource" class="label"></label>
+  <input asp-for="ReferralSource" class="field form-field" type="text" />
+  <span asp-validation-for="ReferralSource" class="text-danger"></span>
+</div>
+<div class="medium-6 cell form-field">
+  <label asp-for="ReferralDetails" class="label"></label>
+  <input asp-for="ReferralDetails" class="form-field" type="text" />
+  <span asp-validation-for="ReferralDetails" class="text-danger"></span>
+</div>
+
+<div class="cell">
+  <p class="instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
+</div>
+
+<!-- View Location: ~/Views/Forms/_Referral.cshtml -->

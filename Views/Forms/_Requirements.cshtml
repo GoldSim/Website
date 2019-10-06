@@ -1,0 +1,20 @@
+﻿@model Profile
+
+<div class="medium-6 cell form-field">
+  <label asp-for="AreaOfFocus" class="label"></label>
+  <input asp-for="AreaOfFocus" class="field" />
+  <span asp-validation-for="AreaOfFocus" class="text-danger"></span>
+</div>
+<div class="medium-6 cell form-field">
+  <label asp-for="AreaOfFocusOther" class="label"></label>
+  <input asp-for="AreaOfFocusOther" class="field" />
+  <span asp-validation-for="AreaOfFocusOther" class="text-danger"></span>
+</div>
+
+<div class="cell">
+  <label asp-for="ProblemStatement" class="label"></label>
+  <textarea asp-for="ProblemStatement" class="form-field"></textarea>
+  <span asp-validation-for="ProblemStatement" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/_Requirements.cshtml -->

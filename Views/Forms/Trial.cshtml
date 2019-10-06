@@ -11,35 +11,8 @@
       <fieldset>
         <div class="grid-x grid-margin-x">
 
-          <partial name="_CoreContact" for="BindingModel" />
-
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.Country" class="label"></label>
-            <input asp-for="BindingModel.Country" class="field" />
-            <span asp-validation-for="BindingModel.Country" class="text-danger"></span>
-          </div>
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.PhoneNumber" class="label"></label>
-            <input asp-for="BindingModel.PhoneNumber" class="field" />
-            <span asp-validation-for="BindingModel.PhoneNumber" class="text-danger"></span>
-          </div>
-
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.AreaOfFocus" class="label"></label>
-            <input asp-for="BindingModel.AreaOfFocus" class="field" />
-            <span asp-validation-for="BindingModel.AreaOfFocus" class="text-danger"></span>
-          </div>
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.AreaOfFocusOther" class="label"></label>
-            <input asp-for="BindingModel.AreaOfFocusOther" class="field" />
-            <span asp-validation-for="BindingModel.AreaOfFocusOther" class="text-danger"></span>
-          </div>
-
-          <div class="cell">
-            <label asp-for="BindingModel.ProblemStatement" class="label"></label>
-            <textarea asp-for="BindingModel.ProblemStatement" class="form-field"></textarea>
-            <span asp-validation-for="BindingModel.ProblemStatement" class="text-danger"></span>
-          </div>
+          <partial name="_Contact" for="BindingModel" />
+          <partial name="_Requirements" for="BindingModel" />
 
           <div class="cell">
             <label asp-for="BindingModel.OtherTools" class="label"></label>
@@ -65,20 +38,7 @@
             </div>
           </div>
 
-          <div class="medium-6 cell Referral Select">
-            <label asp-for="BindingModel.ReferralSource" class="label"></label>
-            <input asp-for="BindingModel.ReferralSource" class="field form-field" type="text" />
-            <span asp-validation-for="BindingModel.ReferralSource" class="text-danger"></span>
-          </div>
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.ReferralDetails" class="label"></label>
-            <input asp-for="BindingModel.ReferralDetails" class="form-field" type="text" />
-            <span asp-validation-for="BindingModel.ReferralDetails" class="text-danger"></span>
-          </div>
-
-          <div class="cell">
-            <p class="instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
-          </div>
+          <partial name="_Referral" for="BindingModel" />
 
           <!-- Training Course Check -->
           <div id="TrainingCourseCheckField" class="cell" style="margin-top: 1rem;">
