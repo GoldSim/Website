@@ -1,0 +1,18 @@
+﻿@model ExtendedContact
+
+<partial name="_CoreContact" for="@Model" />
+<partial name="_Address" for="@Model.Address" />
+
+<div class="cell form-field">
+  <label asp-for="Country" class="label"></label>
+  <input asp-for="Country" class="field" />
+  <span asp-validation-for="Country" class="text-danger"></span>
+</div>
+
+<div class="medium-6 cell form-field">
+  <label asp-for="PhoneNumber" class="label"></label>
+  <input asp-for="PhoneNumber" class="field" type="tel" />
+  <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/_ExtendedContact.cshtml -->
