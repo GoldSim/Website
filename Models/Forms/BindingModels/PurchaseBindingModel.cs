@@ -32,7 +32,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     }
 
     /*==========================================================================================================================
-    | PROPERTY: BUYER (CONTACT0
+    | PROPERTY: BUYER (CONTACT)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets the buyer's contact information; this will typically represent the organization the user is employed by.
