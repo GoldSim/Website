@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -32,6 +33,15 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     public AcademicFormBindingModel() {
       Address = new Address();
     }
+
+    /*==========================================================================================================================
+    | PROPERTY: ORGANIZATION
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's organization or institution name.
+    /// </summary>
+    [DisplayName("Name of Institution")]
+    public override string Organization { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS

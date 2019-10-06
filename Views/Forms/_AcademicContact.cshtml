@@ -1,0 +1,41 @@
+﻿@model AcademicFormBindingModel
+
+<div class="medium-6 cell form-field">
+  <label asp-for="FirstName" class="label"></label>
+  <input asp-for="FirstName" class="field" />
+  <span asp-validation-for="FirstName" class="text-danger"></span>
+</div>
+<div class="medium-6 cell form-field">
+  <label asp-for="LastName" class="label"></label>
+  <input asp-for="LastName" class="field" />
+  <span asp-validation-for="LastName" class="text-danger"></span>
+</div>
+
+<div class="medium-6 cell form-field">
+  <label asp-for="Organization" class="label"></label>
+  <input asp-for="Organization" class="field" />
+  <span asp-validation-for="Organization" class="text-danger"></span>
+</div>
+<div class="medium-6 cell form-field">
+  <label asp-for="Email" class="label"></label>
+  <input asp-for="Email" class="field" />
+  <span asp-validation-for="Email" class="text-danger"></span>
+</div>
+
+<div class="cell text-right">
+  <p id="EmailInstructions" class="field instructions">Email must be associated with an academic institution</p>
+  <p id="EmailErrorInstructions" class="field error instructions" style="display: none;">Unfortunately, we can't issue free academic licenses to generic email addresses like hotmail, gmail and yahoo. If possible, please use an email address that is associated with your university. If you don't have a university email address, please have your faculty sponsor send an email to <a href="mailto:software@goldsim.com">software@goldsim.com</a> confirming you are a student. We will then forward the license details to him or her.</p>
+</div>
+
+<div class="medium-6 cell form-field">
+  <label asp-for="Department" class="label"></label>
+  <input asp-for="Department" class="field" />
+  <span asp-validation-for="Department" class="text-danger"></span>
+</div>
+<div class="medium-6 cell form-field">
+  <label asp-for="PhoneNumber" class="label"></label>
+  <input asp-for="PhoneNumber" class="field" />
+  <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/_AcademicContact.cshtml -->
