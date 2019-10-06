@@ -34,7 +34,35 @@
           <div class="cell">
             <p>Please identify a professor or teacher who will act as your sponsor.</p>
           </div>
-          <partial name="_CoreContact" for="BindingModel.Sponsor" />
+
+          <div class="medium-6 cell form-field">
+            <label asp-for="BindingModel.Sponsor.FirstName" class="label"></label>
+            <input asp-for="BindingModel.Sponsor.FirstName" class="field" />
+            <span asp-validation-for="BindingModel.Sponsor.FirstName" class="text-danger"></span>
+          </div>
+          <div class="medium-6 cell form-field">
+            <label asp-for="BindingModel.Sponsor.LastName" class="label"></label>
+            <input asp-for="BindingModel.Sponsor.LastName" class="field" />
+            <span asp-validation-for="BindingModel.Sponsor.LastName" class="text-danger"></span>
+          </div>
+
+          <div class="cell form-field">
+            <label asp-for="BindingModel.Sponsor.Organization" class="label"></label>
+            <input asp-for="BindingModel.Sponsor.Organization" class="field" />
+            <span asp-validation-for="BindingModel.Sponsor.Organization" class="text-danger"></span>
+          </div>
+
+          <div class="medium-6 cell form-field">
+            <label asp-for="BindingModel.Sponsor.Email" class="label"></label>
+            <input asp-for="BindingModel.Sponsor.Email" class="field" />
+            <span asp-validation-for="BindingModel.Sponsor.Email" class="text-danger"></span>
+          </div>
+          <div class="medium-6 cell form-field">
+            <label asp-for="BindingModel.Sponsor.PhoneNumber" class="label"></label>
+            <input asp-for="BindingModel.Sponsor.PhoneNumber" class="field" />
+            <span asp-validation-for="BindingModel.Sponsor.PhoneNumber" class="text-danger"></span>
+          </div>
+
         </div>
       </fieldset>
 

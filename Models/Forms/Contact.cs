@@ -31,7 +31,7 @@ namespace GoldSim.Web.Models.Forms {
     /// </summary>
     [Required]
     [StringLength(3)]
-    public string Country { get; set; }
+    public virtual string Country { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PHONE NUMBER
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Models.Forms {
     [Phone]
     [StringLength(50)]
     [Display(Name="Phone Number")]
-    public string PhoneNumber { get; set; }
+    public virtual string PhoneNumber { get; set; }
 
   }
 
