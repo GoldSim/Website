@@ -26,7 +26,6 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
     /// </summary>
     public TrialFormBindingModel() {
-      Trainer = new OptionalContact();
     }
 
     /*==========================================================================================================================
@@ -36,7 +35,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
     /// </summary>
     [Display(Name="Trainer Contact Information")]
-    public OptionalContact Trainer { get; }
+    public CoreContact Trainer { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS

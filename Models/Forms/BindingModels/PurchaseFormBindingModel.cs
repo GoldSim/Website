@@ -26,8 +26,8 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of a <see cref="PurchaseFormBindingModel"/> object.
     /// </summary>
     public PurchaseFormBindingModel() : base() {
-      UserContact = new ExtendedContact();
-      AccountsPayableContact = new ExtendedContact();
+    //UserContact = new ExtendedContact();
+    //AccountsPayableContact = new ExtendedContact();
     }
 
     /*==========================================================================================================================
@@ -37,7 +37,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Gets or sets the user's contact information.
     /// </summary>
     [Display(Name="Intended User Contact Information")]
-    public ExtendedContact UserContact { get; }
+    public ExtendedContact UserContact { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ACCOUNTS PAYABLE (contact)
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Gets or sets the contact information for the accounts payable department of the user's organization.
     /// </summary>
     [Display(Name="Accounts Payable Contact Information")]
-    public ExtendedContact AccountsPayableContact { get; }
+    public ExtendedContact AccountsPayableContact { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
