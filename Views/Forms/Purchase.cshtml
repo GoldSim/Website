@@ -27,8 +27,10 @@
       <fieldset>
         <legend>Licensee Information</legend>
         <div class="grid-x grid-margin-x">
-          <label><input type="radio" name="Licensee" value="Myself" /> I am the primary technical contact for this license purchase.</label>
-          <label><input type="radio" name="Licensee" value="Other" /> I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
+          <div class="cell radio">
+            <label><input type="radio" name="Licensee" value="Myself" /> I am the primary technical contact for this license purchase.</label>
+            <label><input type="radio" name="Licensee" value="Other" /> I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
+          </div>
         </div>
       </fieldset>
       <fieldset>
@@ -41,10 +43,12 @@
       <fieldset>
         <legend>Payment Information</legend>
         <div class="grid-x grid-margin-x">
-          <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
-          <label><input type="radio" name="PaymentMethod" value="AccountsPayable" /> Invoice Accounts Payable</label>
-          <label><input type="radio" name="PaymentMethod" value="Credit Card" /> Invoice Accounts Payable</label>
-          <span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
+          <div class="cell radio">
+            <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
+            <label><input type="radio" name="PaymentMethod" value="AccountsPayable" /> Invoice Accounts Payable</label>
+            <label><input type="radio" name="PaymentMethod" value="CreditCard" /> Pay by Credit Card</label>
+            <span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
+          </div>
         </div>
       </fieldset>
       <fieldset>
