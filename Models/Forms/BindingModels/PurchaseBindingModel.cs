@@ -68,7 +68,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// </summary>
     [Required]
     [Range(1, 1000, ErrorMessage="At least one license is required.")]
-    [Display(Name="License Type")]
+    [Display(Name="License Quantity")]
     public int Quantity { get; set; }
 
     /*==========================================================================================================================
