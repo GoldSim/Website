@@ -68,9 +68,12 @@ namespace GoldSim.Web.Models.Forms {
     [Display(Name="Modeling Population Growth")]
     public bool ModelingPopulationGrowth { get; set; }
 
+    [Display(Name = "Other (Please Specify)")]
+    public bool Other { get; set; }
+
     [StringLength(255)]
-    [Display(Name="Other(Please Specify)")]
-    public string Other { get; set; }
+    [Display(Name="Other Topic(s) of Interest")]
+    public string OtherDetails { get; set; }
 
   }
 

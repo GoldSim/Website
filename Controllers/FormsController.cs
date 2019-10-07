@@ -194,6 +194,24 @@ namespace GoldSim.Web.Controllers {
       return View(await CreateViewModel<StudentAcademicFormBindingModel>(bindingModel));
     }
 
+    /*==========================================================================================================================
+    | FORM: USER CONFERENCE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Request an academic license of the product for faculty.
+    /// </summary>
+    [HttpGet]
+    public async Task<IActionResult> UserConferenceAsync() => View(await CreateViewModel<UserConferenceFormBindingModel>());
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) {
+      if (ModelState.IsValid) {
+        return RedirectToAction("Index");
+      }
+      return View(await CreateViewModel<UserConferenceFormBindingModel>(bindingModel));
+    }
+
 
   } // Class
 
