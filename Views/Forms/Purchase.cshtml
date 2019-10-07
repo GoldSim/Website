@@ -35,7 +35,7 @@
       </fieldset>
       <fieldset>
         <legend>Indended User Contact Information</legend>
-        <div class="grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x" id="UserContactForm">
           <partial name="_ExtendedContact" for="BindingModel.UserContact" />
         </div>
       </fieldset>
@@ -53,7 +53,7 @@
       </fieldset>
       <fieldset>
         <legend>Purchase Order Information</legend>
-        <div class="grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x" id="PurchaseOrderForm">
           <div class="medium-4 cell">
             <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
             <input asp-for="BindingModel.PurchaseOrderNumber" class="field" />
@@ -68,7 +68,7 @@
       </fieldset>
       <fieldset>
         <legend>Accounts Payable Contact Information</legend>
-        <div class="grid-x grid-margin-x">
+        <div class="grid-x grid-margin-x" id="AccountsPayableForm">
           <partial name="_ExtendedContact" for="BindingModel.AccountsPayableContact" />
         </div>
       </fieldset>
@@ -82,4 +82,49 @@
 
 @section Scripts {
   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+  <script>
+    $(document).ready(function () {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish default state
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("#UserContactForm :input").prop("disabled", true);
+      $("#PurchaseOrderForm :input").prop("disabled", true);
+      $("#AccountsPayableForm :input").prop("disabled", true);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle payment information
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("input[name='Licensee']").click(function () {
+        $("#UserContactForm :input").prop("disabled", $(this).val() == "Myself");
+      });
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle payment information
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("input[name='PaymentMethod']").click(function () {
+        var instructions = $("#PaymentInstructions");
+        var purchaseOrderForm = $("#PurchaseOrderForm :input").prop("disabled", true);
+        var accountsPayableForm = $("#AccountsPayableForm :input").prop("disabled", true);
+
+        instructions.html("If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.");
+        switch ($(this).val()) {
+          case "Invoice":
+            purchaseOrderForm.prop("disabled", false);
+            break;
+          case "AccountsPayable":
+            purchaseOrderForm.prop("disabled", false);
+            accountsPayableForm.prop("disabled", false);
+            break;
+          case "CreditCard":
+            instructions.html("There is a 2.9% fee when paying by credit card (this is not greater than our cost of acceptance). We will send a URL for entering credit card information.");
+            break;
+        }
+        instructions.show();
+      });
+
+    });
+  </script>
+
 }

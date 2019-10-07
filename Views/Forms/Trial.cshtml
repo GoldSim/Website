@@ -30,10 +30,10 @@
           <partial name="_Referral" for="BindingModel" />
 
           <!-- Training Course Check -->
-          <div id="TrainingCourseCheckField" class="cell" style="margin-top: 1rem;">
+          <div class="cell">
             <div class="checkbox">
-              <input name="IsTrainingCourse" id="TrainingCourseCheck" type="checkbox" />
-              <label for="TrainingCourseCheck">Are you using this Trial Version for a training course?</label>
+              <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
+              <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
             </div>
           </div>
 
@@ -42,7 +42,9 @@
 
       <fieldset>
         <legend>Trainer Contact Information</legend>
-        <partial name="_OptionalContact" for="BindingModel.Trainer" />
+        <div class="grid-x grid-margin-x" id="TrainerContactForm">
+          <partial name="_CoreContact" for="BindingModel.Trainer" />
+        </div>
       </fieldset>
 
       <fieldset>
@@ -71,4 +73,23 @@
 
 @section Scripts {
   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+  <script>
+    $(document).ready(function () {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish default state
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("#TrainerContactForm :input").prop("disabled", true);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle trainer form
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("input[name='IsTrainingCourse']").click(function () {
+        $("#TrainerContactForm :input").prop("disabled", !$(this).is(":checked"));
+      });
+
+    });
+  </script>
+
 }
