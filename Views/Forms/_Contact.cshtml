@@ -2,15 +2,8 @@
 
 <partial name="_CoreContact" for="@Model" />
 
-<div class="medium-6 cell form-field">
-  <label asp-for="Country" class="label"></label>
-  <input asp-for="Country" class="field" />
-  <span asp-validation-for="Country" class="text-danger"></span>
 </div>
-<div class="medium-6 cell form-field">
-  <label asp-for="PhoneNumber" class="label"></label>
-  <input asp-for="PhoneNumber" class="field" />
-  <span asp-validation-for="PhoneNumber" class="text-danger"></span>
-</div>
+
+<partial name="_ContactLocation" for="@Model" />
 
 <!-- View Location: ~/Views/Forms/_Contact.cshtml -->
