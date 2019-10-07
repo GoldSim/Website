@@ -41,10 +41,12 @@ namespace GoldSim.Web.Components {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public MenuViewComponent(
       ITopicRoutingService topicRoutingService,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService,
+      ITopicRepository topicRepository
     ) : base(
       topicRoutingService,
-      hierarchicalTopicMappingService
+      hierarchicalTopicMappingService,
+      topicRepository
     ) {}
 
   } // Class

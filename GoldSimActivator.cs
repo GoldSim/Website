@@ -189,7 +189,7 @@ namespace GoldSim.Web {
       return viewComponentType.Name switch {
 
         nameof(MenuViewComponent)
-          => new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
+          => new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService, _topicRepository),
 
         nameof(PageLevelNavigationViewComponent)
           => new PageLevelNavigationViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
