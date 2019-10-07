@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.Forms {
   ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
   ///   nearly every form binding model used by GoldSim.
   /// </remarks>
-  public class CoreContact: OptionalContact {
+  public class CoreContact {
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
@@ -31,7 +31,9 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the user's first name.
     /// </summary>
     [Required]
-    public override string FirstName { get; set; }
+    [StringLength(255)]
+    [Display(Name = "First Name")]
+    public virtual string FirstName { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: LAST NAME
@@ -40,7 +42,9 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the user's last name.
     /// </summary>
     [Required]
-    public override string LastName { get; set; }
+    [StringLength(255)]
+    [Display(Name = "Last Name")]
+    public virtual string LastName { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -49,7 +53,9 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the user's organization or institution name.
     /// </summary>
     [Required]
-    public override string Organization { get; set; }
+    [StringLength(255)]
+    [Display(Name = "Organization Name")]
+    public virtual string Organization { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
@@ -58,7 +64,10 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the user's email address.
     /// </summary>
     [Required]
-    public override string Email { get; set; }
+    [EmailAddress]
+    [StringLength(255)]
+    [Display(Name = "Email Address")]
+    public virtual string Email { get; set; }
 
   }
 
