@@ -37,7 +37,10 @@
       <fieldset>
         <legend>Additional Information</legend>
         <div class="grid-x grid-margin-x">
-          <partial name="_Modules" for="BindingModel.Modules" />
+          <div class="cell">
+            <label>I am also interested in:</label>
+            <partial name="_Modules" for="BindingModel.Modules" />
+          </div>
           <partial name="_Requirements" for="BindingModel" />
           <partial name="_Referral" for="BindingModel" />
         </div>
