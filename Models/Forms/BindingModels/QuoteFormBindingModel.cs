@@ -25,6 +25,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the fax number for the user (or their organization) so that the quote may be faxed to them.
     /// </summary>
+    [Phone]
     [StringLength(50)]
     [Display(Name="Fax")]
     public string FaxNumber { get; set; }
