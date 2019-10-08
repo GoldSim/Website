@@ -76,18 +76,16 @@ namespace GoldSim.Web.Controllers {
     ///   Request a trial of the product.
     /// </summary>
     [HttpGet]
-    public async Task<IActionResult> TrialAsync() {
-      var bindingModel = await CreateViewModel<TrialFormBindingModel>();
-      return View(bindingModel);
-      }
+    public async Task<IActionResult> TrialAsync() => View(await CreateViewModel<TrialFormBindingModel>());
 
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
+      if (!ModelState.IsValid) {
+        return View(await CreateViewModel<TrialFormBindingModel>(bindingModel));
       }
-      return View(await CreateViewModel<TrialFormBindingModel>(bindingModel));
+      SendReceipt();
+      return RedirectToAction("Index");
     }
 
     /*==========================================================================================================================
@@ -102,10 +100,11 @@ namespace GoldSim.Web.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
+      if (!ModelState.IsValid) {
+        return View(await CreateViewModel<DemoFormBindingModel>(bindingModel));
       }
-      return View(await CreateViewModel<DemoFormBindingModel>(bindingModel));
+      SendReceipt();
+      return RedirectToAction("Index");
     }
 
     /*==========================================================================================================================
@@ -120,10 +119,11 @@ namespace GoldSim.Web.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
+      if (!ModelState.IsValid) {
+        return View(await CreateViewModel<QuoteFormBindingModel>(bindingModel));
       }
-      return View(await CreateViewModel<QuoteFormBindingModel>(bindingModel));
+      SendReceipt();
+      return RedirectToAction("Index");
     }
 
     /*==========================================================================================================================
@@ -138,10 +138,11 @@ namespace GoldSim.Web.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
+      if (!ModelState.IsValid) {
+        return View(await CreateViewModel<PurchaseFormBindingModel>(bindingModel));
       }
-      return View(await CreateViewModel<PurchaseFormBindingModel>(bindingModel));
+      SendReceipt();
+      return RedirectToAction("Index");
     }
 
 
@@ -157,10 +158,11 @@ namespace GoldSim.Web.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
+      if (!ModelState.IsValid) {
+        return View(await CreateViewModel<NewsletterFormBindingModel>(bindingModel));
       }
-      return View(await CreateViewModel<NewsletterFormBindingModel>(bindingModel));
+      SendReceipt();
+      return RedirectToAction("Index");
     }
 
 
