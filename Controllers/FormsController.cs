@@ -219,7 +219,65 @@ namespace GoldSim.Web.Controllers {
       return View(await CreateViewModel<UserConferenceFormBindingModel>(bindingModel));
     }
 
+    /*==========================================================================================================================
+    | HELPER: SEND RECEIPT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Send an email to GoldSim containing all of the form values.
+    /// </summary>
+    private void SendReceipt(string subject = null, string sender = null, string recipient = null) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      subject                   = subject??     "GoldSim.com/Forms: " + CurrentTopic.Key;
+      recipient                 = recipient??   "Jeremy@Ignia.com";
+      sender                    = sender??      "Website@GoldSim.com";
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Assemble email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
+
+      mail.Subject              = subject;
+      mail.Body                 = GetFormValues();
+      mail.IsBodyHtml           = true;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      _smptService.SendAsync(mail);
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: GET FORM VALUES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a list of form values from the <see cref="ControllerContext"/> and returns it as an HTML string.
+    /// </summary>
+    private string GetFormValues() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Define variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var output = new StringBuilder();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Loop over form values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var field in HttpContext.Request.Form.Keys.OrderBy(key => key)) {
+        var fieldName = field.Replace("_", ": ").Replace(".", ": ").Replace("BindingModel: ", "");
+        HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
+        output.Append($"<b>{fieldName}:</b> {fieldValues.ToString()}<br />");
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return form values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return output.ToString();
+
+    }
 
   } // Class
-
 } // Namespace
