@@ -129,11 +129,9 @@
             </div>
           </div>
           <div class="cell form-field">
-            <div class="checkbox">
-              <label asp-for="BindingModel.TrainingTopics.OtherDetails"></label>
-              <input asp-for="BindingModel.TrainingTopics.OtherDetails" type="text" />
-              <span asp-validation-for="BindingModel.TrainingTopics.OtherDetails" class="text-danger"></span>
-            </div>
+            <label asp-for="BindingModel.TrainingTopics.OtherDetails"></label>
+            <input asp-for="BindingModel.TrainingTopics.OtherDetails" type="text" />
+            <span asp-validation-for="BindingModel.TrainingTopics.OtherDetails" class="text-danger"></span>
           </div>
 
         </div>
@@ -147,10 +145,10 @@
             <label asp-for="BindingModel.WithStudentDiscount"></label>
             <span asp-validation-for="BindingModel.WithStudentDiscount" class="text-danger"></span>
           </div>
-          <div class="cell">
+          <div class="cell radio">
             <label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> User Conference Only (September 11-12): $1,250</label>
-            <label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> Basic Training and Conference (September 10-12): $1,500</label>
-            <span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</span>
+            <br /><label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> Basic Training and Conference (September 10-12): $1,500</label>
+            <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</span>
           </div>
         </div>
       </fieldset>
@@ -158,9 +156,9 @@
       <fieldset>
         <legend>Payment Information</legend>
         <div class="grid-x grid-margin-x">
-          <div class="cell">
+          <div class="cell radio">
             <label><input type="radio" name="PaymentMethod" value="CreditCard" /> Credit Card</label>
-            <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
+            <br /><label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
           </div>
           <div class="cell">
             <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
