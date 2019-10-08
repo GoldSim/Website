@@ -11,6 +11,10 @@ using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using System.Threading.Tasks;
+using System.Text;
+using GoldSim.Web.Services;
+using System.Net.Mail;
+using System.Linq;
 
 namespace GoldSim.Web.Controllers {
 
@@ -28,6 +32,7 @@ namespace GoldSim.Web.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            IReverseTopicMappingService     _reverseMappingService;
+    private readonly            ISmtpService                    _smptService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -40,7 +45,8 @@ namespace GoldSim.Web.Controllers {
       ITopicRepository topicRepository,
       ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService,
-      IReverseTopicMappingService reverseTopicMappingService
+      IReverseTopicMappingService reverseTopicMappingService,
+      ISmtpService smtpService
     ) : base(
       topicRepository,
       topicRoutingService,
@@ -48,6 +54,7 @@ namespace GoldSim.Web.Controllers {
     ) {
       _topicMappingService      = topicMappingService;
       _reverseMappingService    = reverseTopicMappingService;
+      _smptService              = smtpService;
     }
 
     /*==========================================================================================================================

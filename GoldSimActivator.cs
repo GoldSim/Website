@@ -7,6 +7,7 @@ using System;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
 using GoldSim.Web.Models;
+using GoldSim.Web.Services;
 using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
+using SendGrid;
 
 namespace GoldSim.Web {
 
@@ -37,6 +39,7 @@ namespace GoldSim.Web {
     private readonly            ITypeLookupService              _typeLookupService              = null;
     private readonly            ITopicMappingService            _topicMappingService            = null;
     private readonly            ITopicRepository                _topicRepository                = null;
+    private readonly            ISmtpService                    _smtpService                    = null;
 
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
@@ -72,6 +75,14 @@ namespace GoldSim.Web {
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
 
       _topicRepository.Load();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CONSTRUCT SMTP CLIENT
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var sendGridApiKey = _configuration.GetValue<string>("SendGrid:ApiKey");
+      var sendGridClient = new SendGridClient(sendGridApiKey);
+
+      _smtpService = new SendGridSmtpService(sendGridClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
@@ -148,7 +159,8 @@ namespace GoldSim.Web {
           _topicRepository,
           mvcTopicRoutingService,
           _topicMappingService,
-          new ReverseTopicMappingService(_topicRepository)
+          new ReverseTopicMappingService(_topicRepository),
+          _smtpService
         ),
 
         nameof(ErrorController) => new ErrorController(),
