@@ -271,6 +271,9 @@ namespace GoldSim.Web.Controllers {
       foreach (var field in HttpContext.Request.Form.Keys.OrderBy(key => key).Where(key => key.StartsWith("BindingModel"))) {
         var fieldName = field.Replace("_", ": ").Replace(".", ": ").Replace("BindingModel: ", "");
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
+        if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
+          fieldValues = fieldValues[0];
+        }
         output.Append($"<b>{fieldName}:</b> {fieldValues.ToString()}<br />");
       }
 
