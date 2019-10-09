@@ -55,7 +55,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   Optionally overrides the subject of the email receipt.
     /// </summary>
-    public string EmailReceipt { get; set; }
+    public string EmailSubject { get; set; }
 
     /*==========================================================================================================================
     | EMAIL RECIPIENT
