@@ -82,7 +82,7 @@ namespace GoldSim.Web.Controllers {
         return View(viewModel);
       }
       if (!viewModel.DisableEmailReceipt) {
-        SendReceipt();
+        SendReceipt(viewModel.EmailSubject, viewModel.EmailSender, viewModel.EmailRecipient);
       }
       return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
     }
