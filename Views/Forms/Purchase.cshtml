@@ -2,87 +2,73 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
-    @Html.Raw(Model.Body)
+  <fieldset>
+    <legend>Product Selection</legend>
+    <div class="grid-x grid-margin-x">
+      <p>Multiple license purchases may be subject to volume discounts. Upon receipt of your purchase request, GoldSim will contact you with a final price quote.</p>
+      <partial name="_ProductSelection" for="BindingModel" />
+    </div>
+  </fieldset>
 
-    <form asp-action="Purchase">
+  <fieldset>
+    <legend>Buyer Contact Information</legend>
+    <div class="grid-x grid-margin-x">
+      <partial name="_ExtendedContact" for="BindingModel.BuyerContact" />
+    </div>
+  </fieldset>
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+  <fieldset>
+    <legend>Licensee Information</legend>
+    <div class="grid-x grid-margin-x">
+      <div class="cell radio">
+        <label><input type="radio" name="Licensee" value="Myself" /> I am the primary technical contact for this license purchase.</label>
+        <br /><label><input type="radio" name="Licensee" value="Other" /> I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Indended User Contact Information</legend>
+    <div class="grid-x grid-margin-x" id="UserContactForm">
+      <partial name="_ExtendedContact" for="BindingModel.UserContact" />
+    </div>
+  </fieldset>
 
-      <fieldset>
-        <legend>Product Selection</legend>
-        <div class="grid-x grid-margin-x">
-          <p>Multiple license purchases may be subject to volume discounts. Upon receipt of your purchase request, GoldSim will contact you with a final price quote.</p>
-          <partial name="_ProductSelection" for="BindingModel" />
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Buyer Contact Information</legend>
-        <div class="grid-x grid-margin-x">
-          <partial name="_ExtendedContact" for="BindingModel.BuyerContact" />
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Licensee Information</legend>
-        <div class="grid-x grid-margin-x">
-          <div class="cell radio">
-            <label><input type="radio" name="Licensee" value="Myself" /> I am the primary technical contact for this license purchase.</label>
-            <br /><label><input type="radio" name="Licensee" value="Other" /> I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Indended User Contact Information</legend>
-        <div class="grid-x grid-margin-x" id="UserContactForm">
-          <partial name="_ExtendedContact" for="BindingModel.UserContact" />
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Payment Information</legend>
-        <div class="grid-x grid-margin-x">
-          <div class="cell radio">
-            <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
-            <br /><label><input type="radio" name="PaymentMethod" value="AccountsPayable" /> Invoice Accounts Payable</label>
-            <br /><label><input type="radio" name="PaymentMethod" value="CreditCard" /> Pay by Credit Card</label>
-            <br /><span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Purchase Order Information</legend>
-        <div class="grid-x grid-margin-x" id="PurchaseOrderForm">
-          <div class="medium-4 cell">
-            <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
-            <input asp-for="BindingModel.PurchaseOrderNumber" class="field" />
-            <span asp-validation-for="BindingModel.PurchaseOrderNumber" class="text-danger"></span>
-          </div>
-          <div class="medium-8 cell">
-            <label asp-for="BindingModel.Instructions" class="label"></label>
-            <input asp-for="BindingModel.Instructions" class="field" />
-            <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
-          </div>
-        </div>
-      </fieldset>
-      <fieldset>
-        <legend>Accounts Payable Contact Information</legend>
-        <div class="grid-x grid-margin-x" id="AccountsPayableForm">
-          <partial name="_ExtendedContact" for="BindingModel.AccountsPayableContact" />
-        </div>
-      </fieldset>
-
-      <input type="submit" value="Send Purchase Request" class="submit button large primary" />
-
-    </form>
-  </section>
+  <fieldset>
+    <legend>Payment Information</legend>
+    <div class="grid-x grid-margin-x">
+      <div class="cell radio">
+        <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
+        <br /><label><input type="radio" name="PaymentMethod" value="AccountsPayable" /> Invoice Accounts Payable</label>
+        <br /><label><input type="radio" name="PaymentMethod" value="CreditCard" /> Pay by Credit Card</label>
+        <br /><span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Purchase Order Information</legend>
+    <div class="grid-x grid-margin-x" id="PurchaseOrderForm">
+      <div class="medium-4 cell">
+        <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
+        <input asp-for="BindingModel.PurchaseOrderNumber" class="field" />
+        <span asp-validation-for="BindingModel.PurchaseOrderNumber" class="text-danger"></span>
+      </div>
+      <div class="medium-8 cell">
+        <label asp-for="BindingModel.Instructions" class="label"></label>
+        <input asp-for="BindingModel.Instructions" class="field" />
+        <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
+      </div>
+    </div>
+  </fieldset>
+  <fieldset>
+    <legend>Accounts Payable Contact Information</legend>
+    <div class="grid-x grid-margin-x" id="AccountsPayableForm">
+      <partial name="_ExtendedContact" for="BindingModel.AccountsPayableContact" />
+    </div>
+  </fieldset>
 
 }
 
 @section Scripts {
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
   <script>
     $(document).ready(function () {
 
@@ -126,9 +112,4 @@
 
     });
   </script>
-
-}
-
-@section Head {
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
 }

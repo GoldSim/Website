@@ -1,0 +1,33 @@
+﻿@model FormPageTopicViewModel
+
+@{
+  Layout = "/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
+  @RenderSection("Head", required: false)
+}
+
+@section PageBodySection {
+  <section class="panel body">
+
+    @Html.Raw(Model.Body)
+
+    <form asp-action="@ViewContext.RouteData.Values["Action"]">
+
+      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+
+      @RenderSection("PageBodySection", required: false)
+
+      <input type="submit" value="@(Model.SubmitButtonLabel?? "Submit")" class="submit button large primary" />
+
+    </form>
+
+  </section>
+}
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  @RenderSection("Scripts", required: false)
+}

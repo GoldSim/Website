@@ -2,30 +2,10 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
-    @Html.Raw(Model.Body)
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+      <partial name="_CoreContact" for="BindingModel" />
+    </div>
+  </fieldset>
 
-    <form asp-action="Newsletter">
-
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
-
-      <fieldset>
-        <div class="grid-x grid-margin-x">
-          <partial name="_CoreContact" for="BindingModel" />
-        </div>
-      </fieldset>
-
-      <input type="submit" value="Subscribe" class="submit button large primary" />
-
-    </form>
-  </section>
-
-}
-
-@section Scripts {
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-@section Head {
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
 }

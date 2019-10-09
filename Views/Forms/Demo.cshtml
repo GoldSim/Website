@@ -2,49 +2,29 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
-    @Html.Raw(Model.Body)
+  <fieldset>
+    <div class="grid-x grid-margin-x">
 
-    <form asp-action="Demo">
+      <partial name="_Contact" for="BindingModel" />
+      <partial name="_Requirements" for="BindingModel" />
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+      <div class="cell">
+        <label asp-for="BindingModel.OtherTools" class="label"></label>
+        <textarea asp-for="BindingModel.OtherTools" class="form-field"></textarea>
+        <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
+      </div>
 
-      <fieldset>
-        <div class="grid-x grid-margin-x">
+      <div class="cell">
+        <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
+      </div>
+      <div class="cell">
+        <label>I am also interested in:</label>
+        <partial name="_TransportModules" for="BindingModel.Modules" />
+      </div>
 
-          <partial name="_Contact" for="BindingModel" />
-          <partial name="_Requirements" for="BindingModel" />
+      <partial name="_Referral" for="BindingModel" />
 
-          <div class="cell">
-            <label asp-for="BindingModel.OtherTools" class="label"></label>
-            <textarea asp-for="BindingModel.OtherTools" class="form-field"></textarea>
-            <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
-          </div>
+    </div>
+  </fieldset>
 
-          <div class="cell">
-            <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
-          </div>
-          <div class="cell">
-            <label>I am also interested in:</label>
-            <partial name="_TransportModules" for="BindingModel.Modules" />
-          </div>
-
-          <partial name="_Referral" for="BindingModel" />
-
-        </div>
-      </fieldset>
-
-      <input type="submit" value="Request Web Demo" class="submit button large primary" />
-
-    </form>
-  </section>
-
-}
-
-@section Scripts {
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
-
-@section Head {
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
 }

@@ -1,46 +1,38 @@
 ﻿@model FormPageTopicViewModel<QuoteFormBindingModel>
 
+@{
+  Layout = "/Views/Layout/_Form.cshtml";
+}
+
 @section PageBodySection {
 
-  <section class="panel body">
-    @Html.Raw(Model.Body)
+  <fieldset>
+    <legend>Product Selection</legend>
+    <div class="grid-x grid-margin-x">
 
-    <form asp-action="Quote">
+      <div class="cell"><p>Multiple license purchases may be subject to volume discounts.</p></div>
+      <partial name="_ProductSelection" for="BindingModel" />
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+      <div class="cell form-field">
+        <label asp-for="BindingModel.Instructions"></label>
+        <textarea asp-for="BindingModel.Instructions"></textarea>
+        <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
+      </div>
 
-      <fieldset>
-        <legend>Product Selection</legend>
-        <div class="grid-x grid-margin-x">
+    </div>
+  </fieldset>
 
-          <div class="cell"><p>Multiple license purchases may be subject to volume discounts.</p></div>
-          <partial name="_ProductSelection" for="BindingModel" />
-
-          <div class="cell form-field">
-            <label asp-for="BindingModel.Instructions"></label>
-            <textarea asp-for="BindingModel.Instructions"></textarea>
-            <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
-          </div>
-
-        </div>
-      </fieldset>
-
-      <fieldset>
-        <legend>Buyer Contact Information</legend>
-        <div class="grid-x grid-margin-x">
-          <partial name="_ExtendedContact" for="BindingModel.BuyerContact" />
-          <div class="medium-6 cell form-field">
-            <label asp-for="BindingModel.FaxNumber"></label>
-            <input asp-for="BindingModel.FaxNumber" type="tel"></textarea>
-            <span asp-validation-for="BindingModel.FaxNumber" class="text-danger"></span>
-          </div>
-        </div>
-      </fieldset>
-
-      <input type="submit" value="Send Quote Request" class="submit button large primary" />
-
-    </form>
-  </section>
+  <fieldset>
+    <legend>Buyer Contact Information</legend>
+    <div class="grid-x grid-margin-x">
+      <partial name="_ExtendedContact" for="BindingModel.BuyerContact" />
+      <div class="medium-6 cell form-field">
+        <label asp-for="BindingModel.FaxNumber"></label>
+        <input asp-for="BindingModel.FaxNumber" type="tel"></textarea>
+        <span asp-validation-for="BindingModel.FaxNumber" class="text-danger"></span>
+      </div>
+    </div>
+  </fieldset>
 
 }
 

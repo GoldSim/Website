@@ -2,80 +2,66 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
-    @Html.Raw(Model.Body)
+  <fieldset>
+    <div class="grid-x grid-margin-x">
 
-    <form asp-action="Trial">
+      <partial name="_Contact" for="BindingModel" />
+      <partial name="_Requirements" for="BindingModel" />
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+      <div class="cell">
+        <label asp-for="BindingModel.OtherTools" class="label"></label>
+        <textarea asp-for="BindingModel.OtherTools" class="form-field"></textarea>
+        <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
+      </div>
 
-      <fieldset>
-        <div class="grid-x grid-margin-x">
+      <div class="cell">
+        <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
+      </div>
+      <div class="cell">
+        <label>I am also interested in:</label>
+        <partial name="_TransportModules" for="BindingModel.Modules" />
+      </div>
 
-          <partial name="_Contact" for="BindingModel" />
-          <partial name="_Requirements" for="BindingModel" />
+      <partial name="_Referral" for="BindingModel" />
 
-          <div class="cell">
-            <label asp-for="BindingModel.OtherTools" class="label"></label>
-            <textarea asp-for="BindingModel.OtherTools" class="form-field"></textarea>
-            <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
-          </div>
-
-          <div class="cell">
-            <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
-          </div>
-          <div class="cell">
-            <label>I am also interested in:</label>
-            <partial name="_TransportModules" for="BindingModel.Modules" />
-          </div>
-
-          <partial name="_Referral" for="BindingModel" />
-
-          <!-- Training Course Check -->
-          <div class="cell">
-            <div class="checkbox">
-              <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
-              <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
-            </div>
-          </div>
-
+      <!-- Training Course Check -->
+      <div class="cell">
+        <div class="checkbox">
+          <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
+          <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
         </div>
-      </fieldset>
+      </div>
 
-      <fieldset>
-        <legend>Trainer Contact Information</legend>
-        <div class="grid-x grid-margin-x" id="TrainerContactForm">
-          <partial name="_CoreContact" for="BindingModel.Trainer" />
-        </div>
-      </fieldset>
+    </div>
+  </fieldset>
 
-      <fieldset>
-        <legend>Terms of Use</legend>
-        <div class="grid-x grid-margin-x">
+  <fieldset>
+    <legend>Trainer Contact Information</legend>
+    <div class="grid-x grid-margin-x" id="TrainerContactForm">
+      <partial name="_CoreContact" for="BindingModel.Trainer" />
+    </div>
+  </fieldset>
 
-          <div class="cell">
-            <p>By checking the box below I agree to the following:</p>
-            <ol>
-              <li>I will only use this free Trial Version for the purpose of evaluating and/or testing the software or taking a GoldSim training course.</li>
-              <li>I will <em>not</em> use this free Trial Version for consulting or other commercial applications. If I require a temporary license for such purposes, I will <a href="mailto:support@goldsim.com">contact the GoldSim Technology Group</a>.</li>
-            </ol>
-          </div>
+  <fieldset>
+    <legend>Terms of Use</legend>
+    <div class="grid-x grid-margin-x">
 
-          <partial name="_TermsOfUse" for="BindingModel" />
+      <div class="cell">
+        <p>By checking the box below I agree to the following:</p>
+        <ol>
+          <li>I will only use this free Trial Version for the purpose of evaluating and/or testing the software or taking a GoldSim training course.</li>
+          <li>I will <em>not</em> use this free Trial Version for consulting or other commercial applications. If I require a temporary license for such purposes, I will <a href="mailto:support@goldsim.com">contact the GoldSim Technology Group</a>.</li>
+        </ol>
+      </div>
 
-        </div>
-      </fieldset>
+      <partial name="_TermsOfUse" for="BindingModel" />
 
-      <input type="submit" value="Request Trial" class="submit button large primary" />
-
-    </form>
-  </section>
+    </div>
+  </fieldset>
 
 }
 
 @section Scripts {
-  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-
   <script>
     $(document).ready(function () {
 
@@ -93,9 +79,4 @@
 
     });
   </script>
-
-}
-
-@section Head {
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/RedCastor/awesome-foundation6-checkbox.css" />
 }
