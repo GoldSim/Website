@@ -58,16 +58,34 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | CREATE VIEW MODEL
+    | HELPER: CREATE VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Constructs a new view model
+    ///   Constructs a new view model based on the <typeparamref name="T"/> binding model type.
     /// </summary>
-    public async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
+    private async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
       await _topicMappingService.MapAsync(
         CurrentTopic,
         new FormPageTopicViewModel<T>(bindingModel)
       ) as FormPageTopicViewModel<T>;
+
+    /*==========================================================================================================================
+    | HELPER: PROCESS FORM
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Helper function to process a form postback request.
+    /// </summary>
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> ProcessForm<T>(T bindingModel) where T: class, new() {
+      var viewModel = await CreateViewModel<T>(bindingModel);
+      if (!ModelState.IsValid) {
+        return View(viewModel);
+      }
+      if (!viewModel.DisableEmailReceipt) {
+        SendReceipt();
+      }
+      return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
+    }
 
     /*==========================================================================================================================
     | FORM: TRIAL
@@ -80,13 +98,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) {
-      if (!ModelState.IsValid) {
-        return View(await CreateViewModel<TrialFormBindingModel>(bindingModel));
-      }
-      SendReceipt();
-      return RedirectToAction("Index");
-    }
+    public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) =>
+      await ProcessForm<TrialFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: DEMO
@@ -99,13 +112,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) {
-      if (!ModelState.IsValid) {
-        return View(await CreateViewModel<DemoFormBindingModel>(bindingModel));
-      }
-      SendReceipt();
-      return RedirectToAction("Index");
-    }
+    public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) =>
+      await ProcessForm<DemoFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: QUOTE
@@ -118,13 +126,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) {
-      if (!ModelState.IsValid) {
-        return View(await CreateViewModel<QuoteFormBindingModel>(bindingModel));
-      }
-      SendReceipt();
-      return RedirectToAction("Index");
-    }
+    public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) =>
+      await ProcessForm<QuoteFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: PURCHASE
@@ -137,14 +140,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) {
-      if (!ModelState.IsValid) {
-        return View(await CreateViewModel<PurchaseFormBindingModel>(bindingModel));
-      }
-      SendReceipt();
-      return RedirectToAction("Index");
-    }
-
+    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
+      await ProcessForm<PurchaseFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: NEWSLETTER
@@ -157,14 +154,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel) {
-      if (!ModelState.IsValid) {
-        return View(await CreateViewModel<NewsletterFormBindingModel>(bindingModel));
-      }
-      SendReceipt();
-      return RedirectToAction("Index");
-    }
-
+    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel) =>
+      await ProcessForm<NewsletterFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
@@ -178,12 +169,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
-      }
-      return View(await CreateViewModel<InstructorAcademicFormBindingModel>(bindingModel));
-    }
+    public async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) =>
+      await ProcessForm<InstructorAcademicFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: ACADEMIC (STUDENT)
@@ -196,12 +183,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
-      }
-      return View(await CreateViewModel<StudentAcademicFormBindingModel>(bindingModel));
-    }
+    public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) =>
+      await ProcessForm<StudentAcademicFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | FORM: USER CONFERENCE
@@ -214,12 +197,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) {
-      if (ModelState.IsValid) {
-        return RedirectToAction("Index");
-      }
-      return View(await CreateViewModel<UserConferenceFormBindingModel>(bindingModel));
-    }
+    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
+      await ProcessForm<UserConferenceFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
     | HELPER: SEND RECEIPT
