@@ -16,6 +16,7 @@ using GoldSim.Web.Services;
 using System.Net.Mail;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 namespace GoldSim.Web.Controllers {
 
@@ -258,6 +259,51 @@ namespace GoldSim.Web.Controllers {
       | Return form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       return output.ToString();
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: SAVE TO TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Adds the form values to a new <see cref="Topic"/>, and saves it to the <see cref="ITopicRepository"/>.
+    /// </summary>
+    private void SaveToTopic(string contentType) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var       topicKey        = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+      var       topic           = TopicFactory.Create(topicKey, contentType);
+      var       parentKey       = "CustomerRequests:LicenseTests";
+      var       parentTopic     = TopicRepository.Load(parentKey);
+      var       parentId        = -1;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate Topic Parent
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (parentTopic == null) {
+        throw new Exception($"The topic '{parentKey}' could not be found. A root topic to store forms to is required.");
+      }
+      parentId                  = parentTopic.Id;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set Topic values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      topic.Parent              = parentTopic;
+      topic.LastModified        = DateTime.Now;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set Topic Attributes based on form input values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var field in GetFormValues()) {
+        topic.Attributes.SetValue(field.Key.Replace(".", ""), field.Value);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Save form Topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      TopicRepository.Save(topic);
 
     }
 
