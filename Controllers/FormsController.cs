@@ -15,6 +15,7 @@ using System.Text;
 using GoldSim.Web.Services;
 using System.Net.Mail;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace GoldSim.Web.Controllers {
 
@@ -33,6 +34,7 @@ namespace GoldSim.Web.Controllers {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            IReverseTopicMappingService     _reverseMappingService;
     private readonly            ISmtpService                    _smptService;
+    private                     Dictionary<string, string>      _formValues;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -221,7 +223,7 @@ namespace GoldSim.Web.Controllers {
       var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
 
       mail.Subject              = subject;
-      mail.Body                 = GetFormValues();
+      mail.Body                 = GetEmailBody();
       mail.IsBodyHtml           = true;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -232,12 +234,12 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | HELPER: GET FORM VALUES
+    | HELPER: GET EMAIL BODY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Retrieves a list of form values from the <see cref="ControllerContext"/> and returns it as an HTML string.
     /// </summary>
-    private string GetFormValues() {
+    private string GetEmailBody() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Define variables
@@ -247,19 +249,54 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var field in HttpContext.Request.Form.Keys.OrderBy(key => key).Where(key => key.StartsWith("BindingModel"))) {
-        var fieldName = field.Replace("_", ": ").Replace(".", ": ").Replace("BindingModel: ", "");
-        HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
-        if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
-          fieldValues = fieldValues[0];
-        }
-        output.Append($"<b>{ToTitleCase(fieldName)}:</b> {fieldValues.ToString()}<br />");
+      foreach (var field in GetFormValues()) {
+        var fieldName = ToTitleCase(field.Key.Replace(".", ": "));
+        output.Append($"<b>{fieldName}:</b> {field.Value}<br />");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       return output.ToString();
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: GET FORM VALUES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves a list of form values from the <see cref="ControllerContext"/> and returns it as dictionary.
+    /// </summary>
+    private Dictionary<string, string> GetFormValues() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Check cache
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (_formValues != null) {
+        return _formValues;
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Define variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      _formValues = new Dictionary<string, string>();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Loop over form values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var field in HttpContext.Request.Form.Keys.OrderBy(key => key).Where(key => key.StartsWith("BindingModel"))) {
+        var fieldName = field.Replace("_", ".").Replace("BindingModel.", "");
+        HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
+        if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
+          fieldValues = fieldValues[0];
+        }
+        _formValues.Add(fieldName, fieldValues.ToString());
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return form values
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return _formValues;
 
     }
 
