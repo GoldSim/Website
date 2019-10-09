@@ -253,7 +253,7 @@ namespace GoldSim.Web.Controllers {
         if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
           fieldValues = fieldValues[0];
         }
-        output.Append($"<b>{fieldName}:</b> {fieldValues.ToString()}<br />");
+        output.Append($"<b>{ToTitleCase(fieldName)}:</b> {fieldValues.ToString()}<br />");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -262,6 +262,28 @@ namespace GoldSim.Web.Controllers {
       return output.ToString();
 
     }
+
+    /*==========================================================================================================================
+    | HELPER: TO TITLE CASE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given a string in PascalCase, will conert to Title Case.
+    /// </summary>
+    public static string ToTitleCase(string input) {
+
+      if (string.IsNullOrEmpty(input)) return input;
+
+      var sb = new StringBuilder();
+      sb.Append(char.ToUpper(input[0]));
+
+      for(var i=1; i < input.Length; i++) {
+        if(char.IsUpper(input[i]) || char.IsDigit(input[i])) sb.Append(' ');
+        sb.Append(input[i]);
+      }
+
+      return sb.ToString();
+    }
+
 
   } // Class
 } // Namespace
