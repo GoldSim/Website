@@ -1,0 +1,9 @@
+﻿@model Boolean
+
+<div class="checkbox">
+  <input type="checkbox" asp-for="@Model" />
+  <label asp-for="@Model"></label>
+  <span asp-validation-for="@Model" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/EditorTemplates/Boolean.cshtml -->

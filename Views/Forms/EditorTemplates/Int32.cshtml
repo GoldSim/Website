@@ -1,0 +1,15 @@
+﻿@model Int32
+
+@{
+  if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
+    cssClass = "medium-6";
+  }
+}
+
+<div class="@cssClass cell form-field">
+  <label asp-for="@Model" class="labeled"></label>
+  <input asp-for="@Model" class="field" />
+  <span asp-validation-for="@Model" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/EditorTemplates/String.cshtml -->

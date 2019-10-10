@@ -1,0 +1,15 @@
+﻿@model String
+
+@{
+  if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
+    cssClass = "";
+  }
+}
+
+<div class="@cssClass cell form-field">
+  <label asp-for="@Model" class="labeled"></label>
+  <textarea asp-for="@Model" class="field"></textarea>
+  <span asp-validation-for="@Model" class="text-danger"></span>
+</div>
+
+<!-- View Location: ~/Views/Forms/EditorTemplates/TextArea.cshtml -->
