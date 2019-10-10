@@ -1,31 +1,14 @@
 ﻿@model PurchaseBindingModel
 
-<div class="medium-6 cell form-field">
-  <label asp-for="Product" class="label"></label>
-  <input asp-for="Product" class="form-field" type="text"></input>
-  <span asp-validation-for="Product" class="text-danger"></span>
-</div>
+@Html.EditorFor(model => model.Product)
+@Html.EditorFor(model => model.LicenseType)
 
-<div class="medium-6 cell form-field">
-  <label asp-for="LicenseType" class="label"></label>
-  <input asp-for="LicenseType" class="form-field" type="text"></input>
-  <span asp-validation-for="LicenseType" class="text-danger"></span>
-</div>
-
-<div class="medium-6 cell form-field">
-  <label asp-for="Quantity" class="label"></label>
-  <input asp-for="Quantity" class="form-field" type="number"></input>
-  <span asp-validation-for="Quantity" class="text-danger"></span>
-</div>
+@Html.EditorFor(model => model.Quantity)
 
 <div class="medium-6 cell form-field">
   <label>Add-on Modules:</label>
   <partial name="_modules" for="Modules" />
   <div class="medium-6 cell" style="margin-bottom: 1rem;">
-    <div class="checkbox">
-      <input type="checkbox" asp-for="Modules.QuickStartPackage" />
-      <label asp-for="Modules.QuickStartPackage"></label>
-      <span asp-validation-for="Modules.QuickStartPackage" class="text-danger"></span>
-    </div>
+    @Html.EditorFor(model => model.Modules.QuickStartPackage)
   </div>
 </div>

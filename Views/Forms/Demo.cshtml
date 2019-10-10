@@ -8,11 +8,7 @@
       <partial name="_Contact" for="BindingModel" />
       <partial name="_Requirements" for="BindingModel" />
 
-      <div class="cell">
-        <label asp-for="BindingModel.OtherTools" class="label"></label>
-        <textarea asp-for="BindingModel.OtherTools" class="form-field"></textarea>
-        <span asp-validation-for="BindingModel.OtherTools" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
 
       <div class="cell">
         <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>

@@ -3,16 +3,8 @@
 <partial name="_TransportModules" for="@Model" />
 
 <div class="medium-6 cell">
-  <div class="checkbox">
-    <input type="checkbox" asp-for="Reliability" />
-    <label asp-for="Reliability"></label>
-    <span asp-validation-for="Reliability" class="text-danger"></span>
-  </div>
-  <div class="checkbox">
-    <input type="checkbox" asp-for="DistributedProcessing" />
-    <label asp-for="DistributedProcessing"></label>
-    <span asp-validation-for="DistributedProcessing" class="text-danger"></span>
-  </div>
+  @Html.EditorFor(model => model.Reliability)
+  @Html.EditorFor(model => model.DistributedProcessing)
 </div>
 
 <!-- View Location: ~/Views/Forms/_Modules.cshtml -->

@@ -13,11 +13,7 @@
       <div class="cell"><p>Multiple license purchases may be subject to volume discounts.</p></div>
       <partial name="_ProductSelection" for="BindingModel" />
 
-      <div class="cell form-field">
-        <label asp-for="BindingModel.Instructions"></label>
-        <textarea asp-for="BindingModel.Instructions"></textarea>
-        <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.Instructions, "TextArea", new { cssClass = "" })
 
     </div>
   </fieldset>
@@ -26,11 +22,7 @@
     <legend>Buyer Contact Information</legend>
     <div class="grid-x grid-margin-x">
       <partial name="_ExtendedContact" for="BindingModel.BuyerContact" />
-      <div class="medium-6 cell form-field">
-        <label asp-for="BindingModel.FaxNumber"></label>
-        <input asp-for="BindingModel.FaxNumber" type="tel"></textarea>
-        <span asp-validation-for="BindingModel.FaxNumber" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.FaxNumber, "String")
     </div>
   </fieldset>
 

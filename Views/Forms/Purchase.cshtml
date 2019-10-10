@@ -47,16 +47,8 @@
   <fieldset>
     <legend>Purchase Order Information</legend>
     <div class="grid-x grid-margin-x" id="PurchaseOrderForm">
-      <div class="medium-4 cell">
-        <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
-        <input asp-for="BindingModel.PurchaseOrderNumber" class="field" />
-        <span asp-validation-for="BindingModel.PurchaseOrderNumber" class="text-danger"></span>
-      </div>
-      <div class="medium-8 cell">
-        <label asp-for="BindingModel.Instructions" class="label"></label>
-        <input asp-for="BindingModel.Instructions" class="field" />
-        <span asp-validation-for="BindingModel.Instructions" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.PurchaseOrderNumber, new { cssClass = "medium-4" })
+      @Html.EditorFor(model => model.BindingModel.Instructions, new { cssClass = "medium-8" })
     </div>
   </fieldset>
   <fieldset>

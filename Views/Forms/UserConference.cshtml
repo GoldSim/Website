@@ -6,21 +6,15 @@
     <legend>Contact Information</legend>
     <div class="grid-x grid-margin-x">
       <partial name="_ExtendedContact" for="BindingModel" />
-      <div class="medium-6 cell form-field">
-        <label asp-for="BindingModel.FaxNumber"></label>
-        <input asp-for="BindingModel.FaxNumber" type="tel"></input>
-        <span asp-validation-for="BindingModel.FaxNumber" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.FaxNumber, "String")
     </div>
   </fieldset>
 
   <fieldset>
     <legend>Poster Session</legend>
     <div class="grid-x grid-margin-x">
-      <div class="cell checkbox">
-        <input type="checkbox" asp-for="BindingModel.WillSubmitPoster" />
-        <label asp-for="BindingModel.WillSubmitPoster"></label>
-        <span asp-validation-for="BindingModel.WillSubmitPoster" class="text-danger"></span>
+      <div class="medium-6 cell">
+        @Html.EditorFor(model => model.BindingModel.WillSubmitPoster)
         <p style="margin-top: 1rem;"><em>We will follow up with instructions for submitting and presenting your poster at the conference.</em> <strong>Poster presenters will be entered into a drawing for a $500 Amazon gift certificate. Attendees will also vote on a Best Poster, with the winner receiving a $500 Amazon gift certificate.</strong></p>
       </div>
     </div>
@@ -33,99 +27,27 @@
         <p>The first day of the conference (September 11) will consist of two parallel sessions on advanced GoldSim applications and modeling techniques. Attendees will be able to move between the two sessions (each topic will last approximately 1 hour) in order to select the topics that best align with their interests. Topics will be based on attendee requests specified below:</p>
       </div>
       <div class="medium-6 cell">
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.Scripts" />
-          <label asp-for="BindingModel.TrainingTopics.Scripts"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.Scripts" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.DiscreteEventModeling" />
-          <label asp-for="BindingModel.TrainingTopics.DiscreteEventModeling"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.DiscreteEventModeling" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingScenarios" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingScenarios"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingScenarios" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.TimesteppingTechniques" />
-          <label asp-for="BindingModel.TrainingTopics.TimesteppingTechniques"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.TimesteppingTechniques" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelCalibration" />
-          <label asp-for="BindingModel.TrainingTopics.ModelCalibration"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelCalibration" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.DashboardAuthoring" />
-          <label asp-for="BindingModel.TrainingTopics.DashboardAuthoring"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.DashboardAuthoring" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.CausalitySequence" />
-          <label asp-for="BindingModel.TrainingTopics.CausalitySequence"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.CausalitySequence" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ReliabilityModeling" />
-          <label asp-for="BindingModel.TrainingTopics.ReliabilityModeling"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ReliabilityModeling" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.GeochemicalCalculations" />
-          <label asp-for="BindingModel.TrainingTopics.GeochemicalCalculations"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.GeochemicalCalculations" class="text-danger"></span>
-        </div>
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.Scripts)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.DiscreteEventModeling)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingScenarios)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.TimesteppingTechniques)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelCalibration)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.DashboardAuthoring)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.CausalitySequence)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ReliabilityModeling)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.GeochemicalCalculations)
       </div>
       <div class="medium-6 cell">
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingPumps" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingPumps"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingPumps" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingReservoirOperations" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingReservoirOperations"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingReservoirOperations" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingRunoff" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingRunoff"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingRunoff" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.StochasticWeatherGeneration" />
-          <label asp-for="BindingModel.TrainingTopics.StochasticWeatherGeneration"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.StochasticWeatherGeneration" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.RiverRouting" />
-          <label asp-for="BindingModel.TrainingTopics.RiverRouting"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.RiverRouting" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingFlowNetworks" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingFlowNetworks"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingFlowNetworks" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.ModelingPopulationGrowth" />
-          <label asp-for="BindingModel.TrainingTopics.ModelingPopulationGrowth"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.ModelingPopulationGrowth" class="text-danger"></span>
-        </div>
-        <div class="checkbox">
-          <input type="checkbox" asp-for="BindingModel.TrainingTopics.Other" />
-          <label asp-for="BindingModel.TrainingTopics.Other"></label>
-          <span asp-validation-for="BindingModel.TrainingTopics.Other" class="text-danger"></span>
-        </div>
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingPumps)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingReservoirOperations)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingRunoff)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.StochasticWeatherGeneration)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.RiverRouting)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingFlowNetworks)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.ModelingPopulationGrowth)
+        @Html.EditorFor(model => model.BindingModel.TrainingTopics.Other)
       </div>
-      <div class="cell form-field">
-        <label asp-for="BindingModel.TrainingTopics.OtherDetails"></label>
-        <input asp-for="BindingModel.TrainingTopics.OtherDetails" type="text" />
-        <span asp-validation-for="BindingModel.TrainingTopics.OtherDetails" class="text-danger"></span>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.TrainingTopics.OtherDetails, new { cssClass="" })
 
     </div>
   </fieldset>
@@ -133,10 +55,8 @@
   <fieldset>
     <legend>Conference Options</legend>
     <div class="grid-x grid-margin-x">
-      <div class="cell checkbox">
-        <input type="checkbox" asp-for="BindingModel.WithStudentDiscount" />
-        <label asp-for="BindingModel.WithStudentDiscount"></label>
-        <span asp-validation-for="BindingModel.WithStudentDiscount" class="text-danger"></span>
+      <div class="medium-6 cell">
+         @Html.EditorFor(model => model.BindingModel.WithStudentDiscount)
       </div>
       <div class="cell radio">
         <label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> User Conference Only (September 11-12): $1,250</label>
@@ -153,23 +73,13 @@
         <label><input type="radio" name="PaymentMethod" value="CreditCard" /> Credit Card</label>
         <br /><label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
       </div>
-      <div class="cell">
-        <label asp-for="BindingModel.PurchaseOrderNumber" class="label"></label>
-        <input asp-for="BindingModel.PurchaseOrderNumber" class="field" />
-        <span asp-validation-for="BindingModel.PurchaseOrderNumber" class="text-danger"></span>
+      @Html.EditorFor(model => model.BindingModel.PurchaseOrderNumber, new { cssClass = "" })
+      @Html.EditorFor(model => model.BindingModel.AdditionalInstructions, "TextArea")
+      <div class="medium-6 cell">
+        @Html.EditorFor(model => model.BindingModel.WithPaperReceipt)
       </div>
       <div class="cell">
-        <label asp-for="BindingModel.AdditionalInstructions" class="label"></label>
-        <input asp-for="BindingModel.AdditionalInstructions" class="field" />
-        <span asp-validation-for="BindingModel.AdditionalInstructions" class="text-danger"></span>
-      </div>
-      <div class="cell checkbox">
-        <input type="checkbox" asp-for="BindingModel.WithPaperReceipt" />
-        <label asp-for="BindingModel.WithPaperReceipt"></label>
-        <span asp-validation-for="BindingModel.WithPaperReceipt" class="text-danger"></span>
         <p class="instructions"><em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.</p>
-      </div>
-      <div class="cell">
         <p>Note that you will not be charged when you submit this form. This order is not valid until accepted by GoldSim Technology Group. We will contact you to complete the transaction.</p>
       </div>
     </div>
