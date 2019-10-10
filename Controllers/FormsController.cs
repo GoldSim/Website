@@ -87,6 +87,11 @@ namespace GoldSim.Web.Controllers {
       if (!viewModel.DisableEmailReceipt) {
         SendReceipt(viewModel.EmailSubject, viewModel.EmailSender, viewModel.EmailRecipient);
       }
+      var types = new List<Type> { typeof(TrialFormBindingModel), typeof(StudentAcademicFormBindingModel), typeof(InstructorAcademicFormBindingModel) };
+      var bindingModelType = viewModel.BindingModel.GetType();
+      if (types.Contains(bindingModelType)) {
+        SaveToTopic((bindingModelType.Name.Contains("Trial")? "Evaluation" : "Academic") + "Request");
+      }
       return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
     }
 
