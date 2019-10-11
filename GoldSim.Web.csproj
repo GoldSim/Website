@@ -93,6 +93,37 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Downloads</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\eNews</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Help</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Media</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Webinars</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Content</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Courses</AbsolutePath>
+    </MsDeploySkipRules>
+ </ItemGroup>
+
   <Target Name="AfterBuild">
     <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="$(OutputPath)\$(AssemblyName).config" />
     <TransformXml Source="Configuration\connectionStrings.config" Transform="Configuration\connectionStrings.$(Configuration).config" Destination="$(WebProjectOutputDir)\Configuration\connectionStrings.config" />
