@@ -8,6 +8,7 @@ node_modules/*
 *.css.map
 wwwroot/Shared/Styles/Views/*.css
 wwwroot/Shared/Styles/Style.css
+wwwroot/Shared/Fonts/*.*
 
 # User-specific files
 *.suo

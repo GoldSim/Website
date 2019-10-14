@@ -35,7 +35,9 @@ var     environment             = 'development',
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const   files                   = {
           scssPath:               'Shared/Styles/Style.scss',
-          scssViewsPath:          'Shared/Styles/Views/*.scss'
+          scssViewsPath:          'Shared/Styles/Views/*.scss',
+          fontsPath:              [ 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+                                  ]
                                 }
 
 /*==============================================================================================================================
@@ -96,6 +98,16 @@ function scssViewsTask() {
 }
 
 /*==============================================================================================================================
+| TASK: FONTS
+>-------------------------------------------------------------------------------------------------------------------------------
+| Copies fonts from package manager to the build directory.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function fontsTask() {
+  return src(files.fontsPath)
+    .pipe(dest(outputDir + 'Shared/Fonts/'));
+}
+
+/*==============================================================================================================================
 | EXPORT TASKS
 >-------------------------------------------------------------------------------------------------------------------------------
 | Exports the above defined tasks for use by gulp.
@@ -107,7 +119,7 @@ exports.scss                    = parallel(scssTask, scssViewsTask);
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(scssTask, scssViewsTask);
+exports.build = parallel(scssTask, scssViewsTask, fontsTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -115,4 +127,4 @@ exports.build = parallel(scssTask, scssViewsTask);
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(scssTask, scssViewsTask);
+exports.default = parallel(scssTask, scssViewsTask, fontsTask);

@@ -94,7 +94,8 @@ video {
 .site.footer {
   .heading,
   dl dd,
-  i.fa {
+  i.fa,
+  i.fab {
     font-size                   : rem-calc(20);
     color                       : $palette-grey-light;
     @include breakpoint(medium) {

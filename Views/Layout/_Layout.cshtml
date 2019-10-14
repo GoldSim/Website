@@ -18,7 +18,7 @@
     <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css?@(DateTime.Now.ToString("yyyyMMddhh"))" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css?@(DateTime.Now.ToString("yyyyMMddhh"))" />
     <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
     <script>
@@ -33,7 +33,6 @@
       ga('send', 'pageview');
     </script>
     <noscript id="DeferredStyles">
-      <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
       @RenderSection("DeferredStyles", false)
     </noscript>
     @Html.Raw(JavaScriptSnippet.FullScript)
