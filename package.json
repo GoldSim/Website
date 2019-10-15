@@ -27,11 +27,20 @@
     "autoprefixer": "^9.6.5",
     "awesome-foundation6-checkbox": "^2.0.0",
     "cssnano": "^4.1.10",
+    "dashjs": "^3.0.0",
+    "foundation-sites": "^6.5.3",
+    "gsap": "^2.1.3",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
     "gulp-postcss": "^8.0.0",
     "gulp-sass": "^4.0.2",
-    "gulp-sourcemaps": "^2.6.5"
+    "gulp-sourcemaps": "^2.6.5",
+    "headroom.js": "^0.10.3",
+    "jquery": "^3.4.1",
+    "merge2": "^1.3.0",
+    "owl.carousel": "^2.3.4",
+    "scrollmagic": "^2.0.7",
+    "simple-pagination.js": "^1.6.0"
   },
   "dependencies": {}
 }

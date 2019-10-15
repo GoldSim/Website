@@ -15,13 +15,14 @@ const   sass                    = require('gulp-sass'),
         postCss                 = require("gulp-postcss"),
         autoPrefixer            = require("autoprefixer"),
         cssNano                 = require("cssnano"),
-        sourceMaps              = require("gulp-sourcemaps");
+        sourceMaps              = require("gulp-sourcemaps"),
+        merge                   = require('merge2');
 
 /*==============================================================================================================================
 | VARIABLES
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var     environment             = 'development',
-        outputDir               = '',
+        outputDir               = 'wwwroot',
         isProduction            = false;
 
 /*==============================================================================================================================
@@ -33,12 +34,42 @@ var     environment             = 'development',
 | ### NOTE: JJC021715: These paths are only intended for source files. Destination files will not use glob "magic", and will
 | be conditional based on the outputDir. As a result, they will likely be hardcoded into each task's dest() method.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-const   files                   = {
-          scssPath:               'Shared/Styles/Style.scss',
-          scssViewsPath:          'Shared/Styles/Views/*.scss',
-          fontsPath:              [ 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+const files = {
+  scss                          : [ 'Shared/Styles/Style.scss',
+                                    'Shared/Styles/Views/*.scss'
                                   ]
-                                }
+}
+
+/*==============================================================================================================================
+| DEPENDENCIES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Paths to third-party dependencies that need to by copies into the project. This is exclusively for pre-compiled client-side
+| files, such as JavaScript (excluding TypeScript), CSS (excluding SCSS), images, and the occasional font.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+const dependencies = {
+  'Scripts': {
+    'DashJS'                    : 'node_modules/dashjs/dist/dash.all.*',
+    'FlaviusMatis'              : 'node_modules/simple-pagination.js/*.js',
+    'GreenSock'                 : [ 'node_modules/gsap/src/minified/**',
+                                    'node_modules/gsap/src/uncompressed/**'
+                                  ],
+    'Headroom'                  : 'node_modules/headroom.js/dist/**',
+    'jQuery'                    : 'node_modules/jquery/dist/*.*',
+    'OwlCarousel'               : 'node_modules/owl.carousel/dist/*.js',
+    'ScrollMagic'               : [ 'node_modules/scrollmagic/scrollmagic/minified/**',
+                                    'scrollmagic/scrollmagic/uncompressed/**'
+                                  ],
+    'ZURB'                      : [ 'node_modules/foundation-sites/dist/js/foundation.js*',
+                                    'node_modules/foundation-sites/dist/js/foundation.min.*'
+                                  ]
+  },
+  'Styles': {
+    'OwlCarousel'               : 'node_modules/owl.carousel/dist/assets/*.*'
+  },
+  'Fonts': {
+   'FontAwesome'                : 'node_modules/@fortawesome/fontawesome-free/webfonts/*'
+  }
+}
 
 /*==============================================================================================================================
 | SET ENVIRONMENT
@@ -49,25 +80,23 @@ environment                     = process.env.BUILD_ENVIRONMENT || environment;
 
 // Environment: Development
 if (environment === 'development') {
-  outputDir                     = 'wwwroot/';
-  sassStyle                     = 'expanded';
   isProduction                  = false;
 }
 
 // Environment: Production
 else {
-  outputDir                     = 'wwwroot/';
-  sassStyle                     = 'compressed';
   isProduction                  = true;
 }
 
 /*==============================================================================================================================
-| TASK: SCSS FILE
+| TASK: SCSS
 >-------------------------------------------------------------------------------------------------------------------------------
-| Compiles the SCSS  file and moves it to the build directory.
+| Compiles the SCSS files, including views, and moves them to the build directory.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 function scssTask() {
-  return src(files.scssPath)
+  return src(files.scss, {base: 'Shared/Styles'})
+    //.pipe(autoPrefixer({ browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'] }))
+    //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
     .pipe(sass())
     .on("error", sass.logError)
@@ -76,35 +105,26 @@ function scssTask() {
       cssNano()
     ]))
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + 'Shared/Styles/'));
+    .pipe(dest(outputDir + '/Shared/Styles/'));
 }
 
 /*==============================================================================================================================
-| TASK: SCSS VIEWS
+| TASK: DEPENDENCIES
 >-------------------------------------------------------------------------------------------------------------------------------
-| Compiles SCSS view files and moves them to the build directory.
+| Copies static dependencies from their source folders and into their appropriate build folders.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function scssViewsTask() {
-  return src(files.scssViewsPath)
-    .pipe(sourceMaps.init())
-    .pipe(sass())
-    .on("error", sass.logError)
-    .pipe(postCss([
-      autoPrefixer(),
-      cssNano()
-    ]))
-    .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + 'Shared/Styles/Views/'));
-}
-
-/*==============================================================================================================================
-| TASK: FONTS
->-------------------------------------------------------------------------------------------------------------------------------
-| Copies fonts from package manager to the build directory.
-\-----------------------------------------------------------------------------------------------------------------------------*/
-function fontsTask() {
-  return src(files.fontsPath)
-    .pipe(dest(outputDir + 'Shared/Fonts/'));
+function dependenciesTask() {
+  console.log("Beginning dependencies task");
+  var streams = [];
+  for (var contentType in dependencies) {
+    for (var dependency in dependencies[contentType]) {
+      streams.push(
+        src(dependencies[contentType][dependency])
+          .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)))
+      );
+    }
+  }
+  return merge(streams);
 }
 
 /*==============================================================================================================================
@@ -112,14 +132,15 @@ function fontsTask() {
 >-------------------------------------------------------------------------------------------------------------------------------
 | Exports the above defined tasks for use by gulp.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.scss                    = parallel(scssTask, scssViewsTask);
+exports.scss                    = scssTask;
+exports.dependencies            = dependenciesTask;
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(scssTask, scssViewsTask, fontsTask);
+exports.build = parallel(scssTask, dependenciesTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -127,4 +148,4 @@ exports.build = parallel(scssTask, scssViewsTask, fontsTask);
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(scssTask, scssViewsTask, fontsTask);
+exports.default = parallel(scssTask, dependenciesTask);
