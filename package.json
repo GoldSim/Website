@@ -25,6 +25,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.11.2",
     "autoprefixer": "^9.6.5",
+    "awesome-foundation6-checkbox": "^2.0.0",
     "cssnano": "^4.1.10",
     "gulp": "^4.0.2",
     "gulp-if": "^3.0.0",
