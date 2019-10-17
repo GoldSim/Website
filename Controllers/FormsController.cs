@@ -17,6 +17,7 @@ using System.Net.Mail;
 using System.Linq;
 using System.Collections.Generic;
 using System;
+using GoldSim.Web.Models.Forms;
 
 namespace GoldSim.Web.Controllers {
 
@@ -80,19 +81,34 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> ProcessForm<T>(T bindingModel) where T: class, new() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate model
+      \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel = await CreateViewModel<T>(bindingModel);
       if (!ModelState.IsValid) {
         return View(viewModel);
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Optionally send email receipt
+      \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.DisableEmailReceipt) {
         SendReceipt(viewModel.EmailSubject, viewModel.EmailSender, viewModel.EmailRecipient);
       }
-      var types = new List<Type> { typeof(TrialFormBindingModel), typeof(StudentAcademicFormBindingModel), typeof(InstructorAcademicFormBindingModel) };
-      var bindingModelType = viewModel.BindingModel.GetType();
-      if (types.Contains(bindingModelType)) {
-        SaveToTopic((bindingModelType.Name.Contains("Trial")? "Evaluation" : "Academic") + "Request");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Optionally save as topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (viewModel.SaveAsTopic) {
+        SaveToTopic(viewModel.BindingModel.GetType().Name.Replace("BindingModel", ""));
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Redirect to configured follow-up page
+      \-----------------------------------------------------------------------------------------------------------------------*/
       return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
+
     }
 
     /*==========================================================================================================================

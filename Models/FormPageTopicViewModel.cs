@@ -73,6 +73,15 @@ namespace GoldSim.Web.Models {
     /// </summary>
     public string EmailSender { get; set; }
 
+    /*==========================================================================================================================
+    | SAVE AS TOPIC?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
+    ///   cref="Ignia.Topics.Topic"/> in the configured <see cref="Ignia.Topics.Repositories.ITopicrepository"/>.
+    /// </summary>
+    public bool SaveAsTopic { get; set; } = false;
+
   } // Class
 
 } // Namespace
