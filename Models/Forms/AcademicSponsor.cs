@@ -77,8 +77,5 @@ namespace GoldSim.Web.Models.Forms {
     [Display(Name="Sponsor Phone Number")]
     public override string PhoneNumber { get; set; }
 
-
-
-  }
-
-}
+  } //Class
+} //Namespace
