@@ -5,7 +5,7 @@ This repository is intended to support deployment efforts associated with the co
 Built using:
 
 - [Ignia Topic Library](https://github.com/Ignia/Topics-Library)
-- [Microsoft ASP.NET MVC Framework](https://www.asp.net/mvc)
+- [Microsoft ASP.NET Core 3.0](https://www.asp.net/core)
 
 # Status
-In Development
+Ongoing development
