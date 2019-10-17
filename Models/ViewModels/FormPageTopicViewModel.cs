@@ -6,7 +6,7 @@
 using System.Collections.Generic;
 using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
   | CLASS: FORM PAGE VIEW MODEL

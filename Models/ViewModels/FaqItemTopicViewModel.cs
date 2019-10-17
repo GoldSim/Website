@@ -1,23 +1,25 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
-| Project       Website
+| Client        Ignia, LLC
+| Project       Topics Library
 \=============================================================================================================================*/
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
-  | VIEW MODEL: MODULE PAGE TOPIC
+  | VIEW MODEL: FAQ ITEM TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ModulePage</c>
-  ///   topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>FAQItem</c> topic.
   /// </summary>
-  public class ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+  public class FaqItemTopicViewModel: ContentItemTopicViewModel {
 
-    public string ThumbnailImage { get; set; }
 
-  } // Class
-
-} // Namespace
+  } //Class
+} //Namespace

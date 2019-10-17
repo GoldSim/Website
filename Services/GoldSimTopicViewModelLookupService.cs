@@ -4,7 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.ViewModels;
 
 namespace GoldSim.Web {
 

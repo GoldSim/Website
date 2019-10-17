@@ -6,7 +6,7 @@
 using Ignia.Topics.Mapping;
 using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
   | VIEW MODEL: HOME TOPIC

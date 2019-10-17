@@ -9,7 +9,7 @@ using Ignia.Topics;
 using Ignia.Topics.Models;
 using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
   | VIEW MODEL: NAVIGATION TOPIC

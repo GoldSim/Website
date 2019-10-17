@@ -11,7 +11,7 @@ using Ignia.Topics.Models;
 using Ignia.Topics.AspNetCore.Mvc.Components;
 using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics;
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.ViewModels;
 
 namespace GoldSim.Web.Components {
 

@@ -1,28 +1,24 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
+| Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
-  | INTERFACE: CARD VIEW MODEL
+  | VIEW MODEL: TECHNICAL PAPER LIST TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Ensures that a <see cref="TopicViewModel"/> meets the base requirements for being treated as a card.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a Technical Paper List topic.
   /// </summary>
-  public interface ICardViewModel {
+  public class TechnicalPaperListTopicViewModel : ContentListTopicViewModel {
 
-    string ThumbnailImage { get; }
-    string WebPath { get; }
-    string Title { get; }
+    [Metadata("FieldCategories")]
+    public TopicViewModelCollection<LookupListItemTopicViewModel> FieldCategories { get; set; }
 
-  } // Interface
+  } // Class
 
 } // Namespace

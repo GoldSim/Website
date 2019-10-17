@@ -1,25 +1,28 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics.ViewModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
-  | VIEW MODEL: APPLICATION CONTAINER TOPIC
+  | INTERFACE: CARD VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
-  ///   topic.
+  ///   Ensures that a <see cref="TopicViewModel"/> meets the base requirements for being treated as a card.
   /// </summary>
-  public class ApplicationContainerTopicViewModel : PageTopicViewModel {
+  public interface ICardViewModel {
 
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
+    string ThumbnailImage { get; }
+    string WebPath { get; }
+    string Title { get; }
 
-    public string DisplayOrder { get; set; }
-
-  } // Class
+  } // Interface
 
 } // Namespace

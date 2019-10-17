@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using Braintree;
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.ViewModels;
 using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;

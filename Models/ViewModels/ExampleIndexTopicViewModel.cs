@@ -7,7 +7,7 @@ using Ignia.Topics.ViewModels;
 using Ignia.Topics.Mapping;
 using System.ComponentModel;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
   | VIEW MODEL: EXAMPLE APPLICATION INDEX TOPIC

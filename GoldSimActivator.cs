@@ -6,7 +6,7 @@
 using System;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.ViewModels;
 using GoldSim.Web.Services;
 using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;

@@ -6,7 +6,7 @@
 using Ignia.Topics.ViewModels;
 using System.Collections.Generic;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.ViewModels {
 
   /*============================================================================================================================
   | VIEW MODEL: PAYMENTS TOPIC
