@@ -7,7 +7,7 @@ using GoldSim.Web.Models.Forms.BindingModels;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using System.Threading.Tasks;
