@@ -9,14 +9,17 @@
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const   {src, dest, parallel}   = require('gulp');
 
-const   gulpif                  = require('gulp-if');
+const   gulpif                  = require('gulp-if'),
+        concat                  = require('gulp-concat'),
+        merge                   = require('merge2');
 
 const   sass                    = require('gulp-sass'),
         postCss                 = require("gulp-postcss"),
         autoPrefixer            = require("autoprefixer"),
         cssNano                 = require("cssnano"),
         sourceMaps              = require("gulp-sourcemaps"),
-        merge                   = require('merge2');
+        jshint                  = require('gulp-jshint'),
+        uglify                  = require('gulp-uglify');
 
 /*==============================================================================================================================
 | VARIABLES
@@ -37,7 +40,9 @@ var     environment             = 'development',
 const files = {
   scss                          : [ 'Shared/Styles/Style.scss',
                                     'Shared/Styles/Views/*.scss'
-                                  ]
+                                  ],
+  js                            : 'Shared/Scripts/*.js',
+  jsViews                       : 'Shared/Scripts/Views/*.js'
 }
 
 /*==============================================================================================================================
@@ -109,6 +114,34 @@ function scssTask() {
 }
 
 /*==============================================================================================================================
+| TASK: JAVASCRIPT FILES
+>-------------------------------------------------------------------------------------------------------------------------------
+| Minimizes JavaScript files as part of production process.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function jsTask() {
+  return src(files.js, { base: 'Shared/Scripts' })
+    //.pipe(jshint('.jshintrc'))
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(concat('Scripts.js'))
+    .pipe(uglify())
+    .pipe(dest(outputDir + '/Shared/Scripts/'));
+}
+
+/*==============================================================================================================================
+| TASK: JAVASCRIPT VIEWS
+>-------------------------------------------------------------------------------------------------------------------------------
+| Minimizes JavaScript files associated with views as part of production process.
+\-----------------------------------------------------------------------------------------------------------------------------*/
+function jsViewsTask() {
+  return src(files.jsViews)
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'))
+    .pipe(uglify())
+    .pipe(dest(outputDir + '/Shared/Scripts/Views/'));
+}
+
+/*==============================================================================================================================
 | TASK: DEPENDENCIES
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies static dependencies from their source folders and into their appropriate build folders.
@@ -134,13 +167,14 @@ function dependenciesTask() {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 exports.scss                    = scssTask;
 exports.dependencies            = dependenciesTask;
+exports.js                      = parallel(jsTask, jsViewsTask);
 
 /*==============================================================================================================================
 | TASK: BUILD
 >-------------------------------------------------------------------------------------------------------------------------------
 | Composite task that will call all build-related tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.build = parallel(scssTask, dependenciesTask);
+exports.build = parallel(scssTask, dependenciesTask, jsTask, jsViewsTask);
 
 /*==============================================================================================================================
 | TASK: DEFAULT
@@ -148,4 +182,4 @@ exports.build = parallel(scssTask, dependenciesTask);
 | The default task when Gulp runs, assuming no task is specified. Assuming the environment variable isn't explicitly defined
 | otherwise, will run on development-oriented tasks.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-exports.default = parallel(scssTask, dependenciesTask);
+exports.default = parallel(scssTask, dependenciesTask, jsTask, jsViewsTask);

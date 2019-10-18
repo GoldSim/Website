@@ -48,6 +48,6 @@
       regex = new RegExp('[\\?&]' + parameter + '=([^&#]*)'),
       results = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-  };
+  }
 
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));

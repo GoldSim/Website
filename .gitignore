@@ -5,10 +5,7 @@
 node_modules/*
 
 # These are needed, however, they're generated so don't need/want to track
-*.css.map
-wwwroot/Shared/Scripts/Vendor/**/*
-wwwroot/Shared/Styles/**/*
-wwwroot/Shared/Fonts/**/*
+wwwroot/Shared/**/*
 
 # User-specific files
 *.suo
