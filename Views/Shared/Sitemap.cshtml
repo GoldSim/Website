@@ -23,7 +23,7 @@
     /*=========================================================================================================================
     | SKIP DISABLED, CONFIGURATION, AND EXCLUDED CONTENT TYPES
     \------------------------------------------------------------------------------------------------------------------------*/
-    if (topic.Attributes.GetValue("IsInactive") == "1" || topic.Attributes.GetValue("IsDisabled") == "1") {return;}
+    if (topic.Attributes.GetValue("IsDisabled") == "1" || topic.Attributes.GetValue("NoIndex") == "1") {return;}
     if (topic.GetUniqueKey().StartsWith("Root:Configuration")) {return;}
     if (topic.GetUniqueKey().IndexOf("CustomerRequests") >= 0) {return;}
     if (Array.IndexOf(excludeContentTypes, topic.Attributes.GetValue("ContentType")) >= 0) {return;}

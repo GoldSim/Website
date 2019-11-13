@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model PageTopicViewModel
+
+<!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
   <head>
     <meta charset="UTF-8">
@@ -19,6 +21,9 @@
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css?@(DateTime.Now.ToString("yyyyMMddhh"))" />
+    @if (Model.NoIndex?? false) {
+      <meta name="robots" content="noindex">
+    }
     <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
     <script>
