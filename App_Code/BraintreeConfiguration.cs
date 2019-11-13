@@ -100,14 +100,15 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
       var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
-      var compositeVariable     = $"Braintree{environmentVariable}{variable}";
+      var compositeVariable     = $"Braintree:{environmentVariable}:{variable}";
+      var compositeAttributeKey = $"Braintree{environmentVariable}{variable}";
       var value                 = defaultValue;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get API credentials from Payments Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
-        value = paymentsTopic.Attributes.GetValue(compositeVariable);
+        value = paymentsTopic.Attributes.GetValue(compositeAttributeKey);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
