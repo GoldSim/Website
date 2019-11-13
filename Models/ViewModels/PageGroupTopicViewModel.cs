@@ -19,8 +19,6 @@ namespace GoldSim.Web.Models.ViewModels {
   public class PageGroupTopicViewModel : Ignia.Topics.ViewModels.PageGroupTopicViewModel, ICardViewModel {
 
     public string ThumbnailImage { get; set; }
-    public string WebPath { get; set; }
 
   } // Class
-
 } // Namespace
