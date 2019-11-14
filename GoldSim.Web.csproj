@@ -60,21 +60,8 @@
     <Compile Remove="!Admin\**" />
     <Compile Remove="Common\**" />
     <Compile Remove="Forms\**" />
-    <Compile Remove="wwwroot\Downloads\**" />
-    <Compile Remove="wwwroot\Help\**" />
-    <Compile Remove="wwwroot\Media\**" />
-    <EmbeddedResource Remove="!Admin\**" />
-    <EmbeddedResource Remove="Common\**" />
-    <EmbeddedResource Remove="Forms\**" />
-    <EmbeddedResource Remove="wwwroot\Downloads\**" />
-    <EmbeddedResource Remove="wwwroot\Help\**" />
-    <EmbeddedResource Remove="wwwroot\Media\**" />
-    <None Remove="!Admin\**" />
-    <None Remove="Common\**" />
-    <None Remove="Forms\**" />
-    <None Remove="wwwroot\Downloads\**" />
-    <None Remove="wwwroot\Help\**" />
-    <None Remove="wwwroot\Media\**" />
+    <Content Remove="wwwroot\Downloads\**" />
+    <Content Remove="wwwroot\Media\**" />
   </ItemGroup>
 
   <ItemGroup>
