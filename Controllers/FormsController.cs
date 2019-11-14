@@ -18,6 +18,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System;
 using GoldSim.Web.Models.Forms;
+using Microsoft.AspNetCore.Authorization;
 
 namespace GoldSim.Web.Controllers {
 

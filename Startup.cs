@@ -15,6 +15,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Ignia.Topics.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Logging;
 
 namespace GoldSim.Web {
 
@@ -54,6 +58,19 @@ namespace GoldSim.Web {
     ///   Provides configuration of services. This method is called by the runtime to bootstrap the server configuration.
     /// </summary>
     public void ConfigureServices(IServiceCollection services) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Use the Microsoft Identity Platform for authentication
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      services.AddAuthentication(options => {
+        options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
+        options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+      })
+      .AddOpenIdConnect(options => {
+        Configuration.GetSection("OpenIdConnect").Bind(options);
+      })
+      .AddCookie();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
@@ -105,6 +122,8 @@ namespace GoldSim.Web {
       app.UseHttpsRedirection();
       app.UseStaticFiles();
       app.UseRouting();
+      app.UseAuthentication();
+      app.UseAuthorization();
       app.UseCors("default");
 
       /*------------------------------------------------------------------------------------------------------------------------
