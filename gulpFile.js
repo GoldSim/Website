@@ -121,10 +121,12 @@ function scssTask() {
 function jsTask() {
   return src(files.js, { base: 'Shared/Scripts' })
     //.pipe(jshint('.jshintrc'))
+    .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(concat('Scripts.js'))
     .pipe(uglify())
+    .pipe(sourceMaps.write('.'))
     .pipe(dest(outputDir + '/Shared/Scripts/'));
 }
 
@@ -135,9 +137,11 @@ function jsTask() {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 function jsViewsTask() {
   return src(files.jsViews)
+    .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
+    .pipe(sourceMaps.write('.'))
     .pipe(dest(outputDir + '/Shared/Scripts/Views/'));
 }
 
