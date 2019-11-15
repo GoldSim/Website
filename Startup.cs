@@ -143,6 +143,12 @@ namespace GoldSim.Web {
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
+        endpoints.MapAreaControllerRoute(
+          name: "TopicEditor",
+          areaName: "Editor",
+          pattern: "OnTopic/{action}/{**path}",
+          defaults: new { controller = "Editor" }
+        ).RequireAuthorization();
         endpoints.MapControllers();
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Forms");
@@ -156,14 +162,7 @@ namespace GoldSim.Web {
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}"
         );
-        endpoints.MapAreaControllerRoute(
-          name: "TopicEditor",
-          areaName: "Editor",
-          pattern: "OnTopic/{action}/{**path}",
-          defaults: new { controller = "Editor" }
-        );
       });
-
     }
 
   } //Class
