@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using GoldSim.Web.Models.ViewModels;
+using Ignia.Topics.Editor.Mvc.Infrastructure;
 
 namespace GoldSim.Web {
 
@@ -15,7 +16,7 @@ namespace GoldSim.Web {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
-  public class GoldSimTopicViewModelLookupService : Ignia.Topics.ViewModels.TopicViewModelLookupService {
+  public class GoldSimTopicViewModelLookupService : EditorViewModelLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

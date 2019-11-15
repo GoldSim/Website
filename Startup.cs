@@ -15,6 +15,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.Editor.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
@@ -39,8 +40,9 @@ namespace GoldSim.Web {
     /// <param name="configuration">
     ///   The shared <see cref="IConfiguration"/> dependency.
     /// </param>
-    public Startup(IConfiguration configuration) {
+    public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
       Configuration = configuration;
+      HostingEnvironment = webHostEnvironment;
     }
 
     /*==========================================================================================================================
@@ -50,6 +52,14 @@ namespace GoldSim.Web {
     ///   Provides a (public) reference to the application's <see cref="IConfiguration"/> service.
     /// </summary>
     public IConfiguration Configuration { get; }
+
+    /*==========================================================================================================================
+    | PROPERTY: HOSTING ENVIRONMENT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a (public) reference to the application's <see cref="IWebHostEnvironment"/> service.
+    /// </summary>
+    public IWebHostEnvironment HostingEnvironment { get; }
 
     /*==========================================================================================================================
     | METHOD: CONFIGURE SERVICES
@@ -78,12 +88,15 @@ namespace GoldSim.Web {
       services.AddControllersWithViews()
 
         //Add OnTopic support
-        .AddTopicSupport();
+        .AddTopicSupport()
+
+        //Add OnTopic editor support
+        .AddTopicEditor();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var activator = new GoldSimActivator(Configuration);
+      var activator = new GoldSimActivator(Configuration, HostingEnvironment);
 
       services.AddSingleton<IControllerActivator>(activator);
       services.AddSingleton<IViewComponentActivator>(activator);
@@ -142,6 +155,12 @@ namespace GoldSim.Web {
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller=Home}/{action=Index}/{id?}"
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "TopicEditor",
+          areaName: "Editor",
+          pattern: "OnTopic/{action}/{**path}",
+          defaults: new { controller = "Editor" }
         );
       });
 
