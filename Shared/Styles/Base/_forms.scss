@@ -161,10 +161,10 @@ span.radio {
 label {
   &.required {
     font-weight                 : 600;
+    &:before {
+      content                   : "*"
+    }
   }
-}
-input[data-val-required] {
-  border-right-width            : 15px;
 }
 
 .field-validation-error,

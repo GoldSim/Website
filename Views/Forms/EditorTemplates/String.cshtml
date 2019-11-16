@@ -7,7 +7,7 @@
 }
 
 <div class="@cssClass cell form-field">
-  <label asp-for="@Model" class="labeled"></label>
+  <label asp-for="@Model" class="@(ViewData.ModelMetadata.IsRequired? "required" : "")"></label>
   <input asp-for="@Model" class="field" />
   <span asp-validation-for="@Model" class="text-danger"></span>
 </div>
