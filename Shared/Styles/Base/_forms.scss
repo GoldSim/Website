@@ -163,6 +163,10 @@ label {
     font-weight                 : 600;
   }
 }
+input[data-val-required] {
+  border-right-width            : 15px;
+}
+
 .field-validation-error,
 .is-invalid-label,
 label.error {
