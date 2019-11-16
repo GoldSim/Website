@@ -3,6 +3,7 @@
 | Client        Ignia, LLC
 | Project       Topics Library
 \=============================================================================================================================*/
+using System;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
@@ -18,7 +19,7 @@ namespace GoldSim.Web.Models.ViewModels {
     public string Authors { get; set; }
     public string Publication { get; set; }
     public string PublicationUrl { get; set; }
-    public string PublicationDate { get; set; }
+    public DateTime PublicationDate { get; set; }
     public string DownloadLabel { get; set; }
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 

@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using Ignia.Topics.Mapping;
 using Ignia.Topics.ViewModels;
+using System.Linq;
 
 namespace GoldSim.Web.Models.ViewModels {
 
@@ -18,6 +19,16 @@ namespace GoldSim.Web.Models.ViewModels {
 
     [Metadata("FieldCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> FieldCategories { get; set; }
+
+    public TopicViewModelCollection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
+      new TopicViewModelCollection<TechnicalPaperTopicViewModel>(
+        ContentItems
+          .Where(t => (t.Category ?? "")
+          .Equals(category))
+        .Cast<TechnicalPaperTopicViewModel>()
+        .OrderByDescending(p => p.PublicationDate)
+        .AsEnumerable()
+      );
 
   } // Class
 
