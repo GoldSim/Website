@@ -163,15 +163,17 @@ label {
     font-weight                 : 600;
   }
 }
+.field-validation-error,
 .is-invalid-label,
-label.Error {
+label.error {
   font-weight                   : 600;
   color                         : $palette-red;
 }
+.input-validation-error,
 .is-invalid-input,
-input.Error,
-select.Error,
-textarea.Error {
+input.error,
+select.error,
+textarea.error {
   &:not(:focus) {
     border-color                : $palette-red;
     background-color            : $palette-white;
@@ -215,11 +217,11 @@ span[id*="Validator"][style*="visibility:hidden"] {
 //----------------------------------------------------------------------------------------------
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
-.instructions {
+.instructions, .validation-instructions {
   font-size                     : rem-calc(16);
   font-style                    : italic;
   color                         : $palette-grey-medium;
-  &.error {
+  &.error, &.validation-summary-errors {
     color                       : $palette-red;
   }
 }
