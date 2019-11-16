@@ -1,10 +1,6 @@
 ﻿@model Profile
 
-<div class="medium-6 cell form-field select">
-  <label asp-for="AreaOfFocus" class="label"></label>
-  <input asp-for="AreaOfFocus" class="field" />
-  <span asp-validation-for="AreaOfFocus" class="text-danger"></span>
-</div>
+@Html.EditorFor(model => model.AreaOfFocus, "Select", new { })
 @Html.EditorFor(model => model.AreaOfFocusOther)
 
 @Html.EditorFor(model => model.ProblemStatement, "TextArea")
