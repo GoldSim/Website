@@ -103,7 +103,7 @@
       <ObjectName>dirPath</ObjectName>
       <AbsolutePath>wwwroot\\Images\\Courses</AbsolutePath>
     </MsDeploySkipRules>
- </ItemGroup>
+  </ItemGroup>
 
   <Target Name="AfterBuild">
     <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="$(OutputPath)\$(AssemblyName).config" />
