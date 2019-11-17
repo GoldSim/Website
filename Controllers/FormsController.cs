@@ -226,6 +226,22 @@ namespace GoldSim.Web.Controllers {
       await ProcessForm<UserConferenceFormBindingModel>(bindingModel);
 
     /*==========================================================================================================================
+    | ACTION: VERIFY EMAIL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an email address, ensures that it doesn't contain any of the public email domains.
+    /// </summary>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
+      var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
+      var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
+      if (invalidDomain != null) {
+        return Json($"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.");
+      }
+      return Json(data: true);
+    }
+
+    /*==========================================================================================================================
     | HELPER: SEND RECEIPT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

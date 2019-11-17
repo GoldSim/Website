@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -65,8 +66,8 @@ namespace GoldSim.Web.Models.Forms {
     /// </summary>
     [Required]
     [EmailAddress]
-    [StringLength(255)]
     [Display(Name = "Email Address")]
+    [Remote(action: "VerifyEmail", controller: "Forms")]
     public virtual string Email { get; set; }
 
   }
