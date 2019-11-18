@@ -3,6 +3,8 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
+using Ignia.Topics.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -23,7 +25,27 @@ namespace GoldSim.Web.Models.Forms {
   ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
   ///   nearly every form binding model used by GoldSim.
   /// </remarks>
-  public class CoreContact {
+  public class CoreContact: ITopicBindingModel {
+
+    /*==========================================================================================================================
+    | PROPERTY: KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the key for the topic, in the case this is saved to a topic.
+    /// </summary>
+    [DisableMapping]
+    [StringLength(255)]
+    public virtual string Key { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the content type for the topic in the case this is saved to a topic.
+    /// </summary>
+    [DisableMapping]
+    [StringLength(255)]
+    public virtual string ContentType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
