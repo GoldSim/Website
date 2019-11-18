@@ -20,6 +20,7 @@ using System;
 using GoldSim.Web.Models.Forms;
 using Microsoft.AspNetCore.Authorization;
 using Ignia.Topics.Models;
+using System.Net.Http;
 
 namespace GoldSim.Web.Controllers {
 
@@ -94,10 +95,18 @@ namespace GoldSim.Web.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Optionally send email receipt
+      | Optionally send internal receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.DisableEmailReceipt) {
-        SendReceipt(viewModel.EmailSubject, viewModel.EmailSender, viewModel.EmailRecipient);
+        await SendInternalReceipt(viewModel.EmailSubject, viewModel.EmailRecipient, viewModel.EmailSender);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Optionally send customer receipt
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var coreContact = bindingModel as CoreContact;
+      if (viewModel.CustomerEmail != null && coreContact != null) {
+        await SendCustomerReceipt(viewModel.CustomerEmail, coreContact.Email, viewModel.EmailSender);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -245,18 +254,18 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | HELPER: SEND RECEIPT
+    | HELPER: SEND INTERNAL RECEIPT (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Send an email to GoldSim containing all of the form values.
     /// </summary>
-    private void SendReceipt(string subject = null, string sender = null, string recipient = null) {
+    private async Task SendInternalReceipt(string subject = null, string recipient = null, string sender = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       subject                   = subject??     "GoldSim.com/Forms: " + CurrentTopic.Key;
-      recipient                 = recipient??   "Jeremy@Ignia.com";
+      recipient                 = "Jeremy@Ignia.com";
       sender                    = sender??      "Website@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -271,7 +280,46 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _smptService.SendAsync(mail);
+      await _smptService.SendAsync(mail);
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: SEND CUSTOMER RECEIPT (ASYNC)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Send an email to the customer containing the contents of a configured webpage.
+    /// </summary>
+    private async Task SendCustomerReceipt(EmailTopicViewModel webpage, string recipient, string sender = null) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var subject               = webpage.ShortTitle?? webpage.Title?? webpage.Key?? "GoldSim Request";
+      var request               = HttpContext.Request;
+      var url                   = new Uri($"{request.Scheme}://{request.Host}{webpage.WebPath}");
+      sender                    = sender?? "Software@GoldSim.com";
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Assemble body
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var client                = new HttpClient();
+      var response              = await client.GetAsync(url);
+      var pageContents          = await response.Content.ReadAsStringAsync();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Assemble email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
+
+      mail.Subject              = subject;
+      mail.Body                 = pageContents;
+      mail.IsBodyHtml           = true;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      await _smptService.SendAsync(mail);
 
     }
 
