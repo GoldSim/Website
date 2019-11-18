@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using Ignia.Topics.ViewModels;
-using Ignia.Topics.Mapping;
+using Ignia.Topics.Mapping.Annotations;
 using System.ComponentModel;
 using System.Linq;
 
