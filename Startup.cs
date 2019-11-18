@@ -144,7 +144,10 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
-        endpoints.MapControllers();
+        endpoints.MapControllerRoute(
+          name: "default",
+          pattern: "{controller=Home}/{action=Index}/"
+        );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
@@ -153,10 +156,7 @@ namespace GoldSim.Web {
           pattern: "Page/{pageId}",
           defaults: new { controller = "LegacyRedirect", action = "Redirect" }
         );
-        endpoints.MapControllerRoute(
-          name: "default",
-          pattern: "{controller=Home}/{action=Index}/{id?}"
-        );
+        endpoints.MapControllers();
       });
     }
 
