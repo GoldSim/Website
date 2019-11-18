@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -39,6 +40,7 @@ namespace GoldSim.Web.Models.Forms {
     /// </summary>
     [Required]
     [Display(Name="I am also interested in:")]
+    [MapToParent]
     public ModuleSelection Modules { get; }
 
     /*==========================================================================================================================

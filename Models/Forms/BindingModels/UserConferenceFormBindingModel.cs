@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -76,6 +77,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets what additional training topics the attendee is interested in, if any, as part of their training session.
     /// </summary>
+    [MapToParent]
     [Display(Name="Advanced Training Topics")]
     public AdvancedTrainingTopicsSelection TrainingTopics { get; }
 

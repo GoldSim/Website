@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -34,6 +35,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
     /// </summary>
+    [MapToParent]
     [Display(Name="Trainer Contact Information")]
     public CoreContact Trainer { get; set; }
 

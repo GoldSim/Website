@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -36,6 +37,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the user's contact information.
     /// </summary>
+    [MapToParent]
     [Display(Name="Intended User Contact Information")]
     public ExtendedContact UserContact { get; set; }
 
@@ -45,6 +47,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the contact information for the accounts payable department of the user's organization.
     /// </summary>
+    [MapToParent]
     [Display(Name="Accounts Payable Contact Information")]
     public ExtendedContact AccountsPayableContact { get; set; }
 

@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -35,6 +36,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the academic sponsor of the student (usually their instructor or academic advisor).
     /// </summary>
+    [MapToParent]
     [Display(Name="Student Sponsor")]
     public AcademicSponsor Sponsor { get; }
 

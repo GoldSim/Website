@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -37,6 +38,7 @@ namespace GoldSim.Web.Models.Forms {
     ///   Gets or sets the user's physical address.
     /// </summary>
     [Required]
+    [MapToParent]
     public Address Address { get; }
 
   }
