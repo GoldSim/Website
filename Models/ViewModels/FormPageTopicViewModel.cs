@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.Generic;
+using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
@@ -72,6 +73,15 @@ namespace GoldSim.Web.Models.ViewModels {
     ///   Optionally overrides the sender of the email receipt.
     /// </summary>
     public string EmailSender { get; set; }
+
+    /*==========================================================================================================================
+    | CUSTOMER EMAIL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Optional link to a page that should be sent to the customer as a receipt.
+    /// </summary>
+    [AttributeKey("CustomerEmailTopicId")]
+    public EmailTopicViewModel CustomerEmail { get; set; }
 
     /*==========================================================================================================================
     | SAVE AS TOPIC?
