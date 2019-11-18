@@ -13,9 +13,11 @@ using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using Ignia.Topics.Data.Caching;
 using Ignia.Topics.Data.Sql;
+using Ignia.Topics.Editor.Mvc;
 using Ignia.Topics.Editor.Mvc.Components;
 using Ignia.Topics.Editor.Mvc.Controllers;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
+using Ignia.Topics.Internal.Diagnostics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Hosting;
@@ -45,6 +47,7 @@ namespace GoldSim.Web {
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ISmtpService                    _smtpService;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
+    private readonly            StandardEditorComposer          _standardEditorComposer;
 
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
@@ -65,6 +68,12 @@ namespace GoldSim.Web {
     public GoldSimActivator(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Verify dependencies
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(configuration, nameof(configuration));
+      Contract.Requires(webHostEnvironment, nameof(webHostEnvironment));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
                                 _configuration                  = configuration;
@@ -81,6 +90,11 @@ namespace GoldSim.Web {
       _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
 
       _topicRepository.Load();
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | INITIALIZE EDITOR COMPOSER
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      _standardEditorComposer   = new StandardEditorComposer(_topicRepository, _webHostEnvironment);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
@@ -206,6 +220,16 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
+
+      //Handle standard topic editor view components
+      if (_standardEditorComposer.IsEditorComponent(viewComponentType)) {
+        return _standardEditorComposer.ActivateEditorComponent(
+          viewComponentType,
+          mvcTopicRoutingService
+        );
+      }
+
+      //Handle GoldSim-specific view components
       return viewComponentType.Name switch {
 
         nameof(MenuViewComponent)
@@ -219,60 +243,6 @@ namespace GoldSim.Web {
 
         nameof(FooterViewComponent)
           => new FooterViewComponent(mvcTopicRoutingService, _topicRepository, _hierarchicalTopicMappingService),
-
-        nameof(BooleanViewComponent)
-          => new BooleanViewComponent(),
-
-        nameof(DateTimeViewComponent)
-          => new DateTimeViewComponent(),
-
-        nameof(DisplayOptionsViewComponent)
-          => new DisplayOptionsViewComponent(),
-
-        nameof(FileListViewComponent)
-          => new FileListViewComponent(_webHostEnvironment),
-
-        nameof(FilePathViewComponent)
-          => new FilePathViewComponent(
-            new MvcTopicRoutingService(
-              _topicRepository,
-              new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
-              context.ViewContext.RouteData
-            )
-          ),
-
-        nameof(HtmlViewComponent)
-          => new HtmlViewComponent(),
-
-        nameof(LastModifiedViewComponent)
-          => new LastModifiedViewComponent(),
-
-        nameof(LastModifiedByViewComponent)
-          => new LastModifiedByViewComponent(),
-
-        nameof(NestedTopicListViewComponent)
-          => new NestedTopicListViewComponent(_topicRepository),
-
-        nameof(NumberViewComponent)
-          => new NumberViewComponent(),
-
-        nameof(RelationshipViewComponent)
-          => new RelationshipViewComponent(),
-
-        nameof(TextViewComponent)
-          => new TextViewComponent(),
-
-        nameof(TextAreaViewComponent)
-          => new TextAreaViewComponent(),
-
-        nameof(TokenizedTopicListViewComponent)
-          => new TokenizedTopicListViewComponent(_topicRepository),
-
-        nameof(TopicListViewComponent)
-          => new TopicListViewComponent(_topicRepository),
-
-        nameof(TopicReferenceViewComponent)
-          => new TopicReferenceViewComponent(),
 
         _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
 
