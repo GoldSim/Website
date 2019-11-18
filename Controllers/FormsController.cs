@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System;
 using GoldSim.Web.Models.Forms;
 using Microsoft.AspNetCore.Authorization;
+using Ignia.Topics.Models;
 
 namespace GoldSim.Web.Controllers {
 
@@ -68,11 +69,12 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Constructs a new view model based on the <typeparamref name="T"/> binding model type.
     /// </summary>
-    private async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null) where T: class, new() =>
-      await _topicMappingService.MapAsync(
-        CurrentTopic,
-        new FormPageTopicViewModel<T>(bindingModel)
-      ) as FormPageTopicViewModel<T>;
+    private async Task<FormPageTopicViewModel<T>> CreateViewModel<T>(T bindingModel = null)
+      where T: class, ITopicBindingModel, new() =>
+        await _topicMappingService.MapAsync(
+          CurrentTopic,
+          new FormPageTopicViewModel<T>(bindingModel)
+        ) as FormPageTopicViewModel<T>;
 
     /*==========================================================================================================================
     | HELPER: PROCESS FORM
@@ -81,7 +83,7 @@ namespace GoldSim.Web.Controllers {
     ///   Helper function to process a form postback request.
     /// </summary>
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ProcessForm<T>(T bindingModel) where T: class, new() {
+    public async Task<IActionResult> ProcessForm<T>(T bindingModel) where T: class, ITopicBindingModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -102,7 +104,7 @@ namespace GoldSim.Web.Controllers {
       | Optionally save as topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (viewModel.SaveAsTopic) {
-        SaveToTopic(viewModel.BindingModel.GetType().Name.Replace("BindingModel", ""));
+        await SaveToTopic(viewModel.BindingModel);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -233,6 +235,7 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     [HttpGet, HttpPost]
     public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
+      if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
       var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
       if (invalidDomain != null) {
@@ -306,37 +309,34 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Adds the form values to a new <see cref="Topic"/>, and saves it to the <see cref="ITopicRepository"/>.
     /// </summary>
-    private void SaveToTopic(string contentType) {
+    private async Task SaveToTopic(ITopicBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var       topicKey        = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
-      var       topic           = TopicFactory.Create(topicKey, contentType);
-      var       parentKey       = "CustomerRequests:LicenseTests";
-      var       parentTopic     = TopicRepository.Load(parentKey);
-      var       parentId        = -1;
+      bindingModel.ContentType  = bindingModel.GetType().Name.Replace("BindingModel", "");
+      bindingModel.Key          = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var       parentKey       = "CustomerRequests:LicenseTests";
+      var       parentTopic     = TopicRepository.Load(parentKey);
+
       if (parentTopic == null) {
         throw new Exception($"The topic '{parentKey}' could not be found. A root topic to store forms to is required.");
       }
-      parentId                  = parentTopic.Id;
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Map binding model to new topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var       topic           = await _reverseMappingService.MapAsync(bindingModel);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
       topic.Parent              = parentTopic;
       topic.LastModified        = DateTime.Now;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Set Topic Attributes based on form input values
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var field in GetFormValues()) {
-        topic.Attributes.SetValue(field.Key.Replace(".", ""), field.Value);
-      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Save form Topic
