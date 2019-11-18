@@ -76,18 +76,18 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
-                                _configuration                  = configuration;
-                                _webHostEnvironment             = webHostEnvironment;
-      var                       connectionString                = configuration.GetConnectionString("OnTopic");
-      var                       sqlTopicRepository              = new SqlTopicRepository(connectionString);
-      var                       cachedTopicRepository           = new CachedTopicRepository(sqlTopicRepository);
+          _configuration        = configuration;
+          _webHostEnvironment   = webHostEnvironment;
+      var connectionString      = configuration.GetConnectionString("OnTopic");
+      var sqlTopicRepository    = new SqlTopicRepository(connectionString);
+      var cachedTopicRepository = new CachedTopicRepository(sqlTopicRepository);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | PRELOAD REPOSITORY
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _topicRepository                                          = cachedTopicRepository;
-      _typeLookupService                                        = new GoldSimTopicViewModelLookupService();
-      _topicMappingService                                      = new TopicMappingService(_topicRepository, _typeLookupService);
+      _topicRepository          = cachedTopicRepository;
+      _typeLookupService        = new GoldSimTopicViewModelLookupService();
+      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
       _topicRepository.Load();
 
@@ -99,10 +99,10 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var sendGridApiKey = _configuration.GetValue<string>("SendGrid:ApiKey");
-      var sendGridClient = new SendGridClient(sendGridApiKey);
+      var sendGridApiKey        = _configuration.GetValue<string>("SendGrid:ApiKey");
+      var sendGridClient        = new SendGridClient(sendGridApiKey);
 
-      _smtpService = new SendGridSmtpService(sendGridClient);
+      _smtpService              = new SendGridSmtpService(sendGridClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
