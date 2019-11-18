@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.Generic;
+using Ignia.Topics.Models;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
@@ -14,7 +15,7 @@ namespace GoldSim.Web.Models.ViewModels {
   /// <summary>
   ///   A view model for rendering a form page with a strongly-typed binding model.
   /// </summary>
-  public class FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, new() {
+  public class FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, ITopicBindingModel, new() {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
