@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,7 +19,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
   ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
   ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
   /// </summary>
-  public class PurchaseBindingModel {
+  public class PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -27,18 +28,8 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Initializes a new instance of a <see cref="PurchaseBindingModel"/> object.
     /// </summary>
     public PurchaseBindingModel() {
-      BuyerContact = new ExtendedContact();
       Modules = new ModuleSelection();
     }
-
-    /*==========================================================================================================================
-    | PROPERTY: BUYER (CONTACT)
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the buyer's contact information; this will typically represent the organization the user is employed by.
-    /// </summary>
-    [Display(Name="Contact Information")]
-    public ExtendedContact BuyerContact { get; }
 
     /*==========================================================================================================================
     | PROPERTY: PRODUCT
@@ -89,6 +80,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// </summary>
     [Required]
     [Display(Name="Add-On Modules:")]
+    [MapToParent]
     public ModuleSelection Modules { get; }
 
   }
