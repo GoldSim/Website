@@ -146,7 +146,7 @@ namespace GoldSim.Web {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
         endpoints.MapControllers();
         endpoints.MapTopicRoute("Web");
-        endpoints.MapTopicRoute("Forms");
+        endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
         endpoints.MapControllerRoute(
           name: "LegacyRedirect",
