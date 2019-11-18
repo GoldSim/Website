@@ -59,7 +59,7 @@ namespace GoldSim.Web.Models.Forms {
     | PROPERTY: COUNTRY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the ISO 3155 (alpha-3) country code.
+    ///   Gets or sets the country name.
     /// </summary>
     /// <remarks>
     ///   The country is not required for an academic sponsor, but needs to be accounted for as part of <see

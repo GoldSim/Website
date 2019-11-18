@@ -27,10 +27,10 @@ namespace GoldSim.Web.Models.Forms {
     | PROPERTY: COUNTRY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the ISO 3155 (alpha-3) country code.
+    ///   Gets or sets the country name.
     /// </summary>
     [Required]
-    [StringLength(3)]
+    [StringLength(75)]
     public virtual string Country { get; set; }
 
     /*==========================================================================================================================
