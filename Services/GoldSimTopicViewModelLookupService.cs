@@ -40,6 +40,7 @@ namespace GoldSim.Web {
       Add(typeof(ExampleIndexTopicViewModel));
       Add(typeof(FaqItemTopicViewModel));
       Add(typeof(FaqTopicViewModel));
+      Add(typeof(FollowupTopicViewModel));
       Add(typeof(FormPageTopicViewModel));
       Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(GlossaryTopicViewModel));
