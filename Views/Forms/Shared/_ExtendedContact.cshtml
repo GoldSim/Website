@@ -2,8 +2,8 @@
 
 <partial name="_CoreContact" for="@Model" />
 <partial name="_Address" for="@Model.Address" />
-<partial name="_PhoneNumber" for="@Model" />
 
 @Html.EditorFor(model => model.Country, "Select")
+@Html.EditorFor(model => model.PhoneNumber, "String")
 
 <!-- View Location: ~/Views/Forms/_ExtendedContact.cshtml -->
