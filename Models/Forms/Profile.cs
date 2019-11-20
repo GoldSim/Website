@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -30,6 +31,7 @@ namespace GoldSim.Web.Models.Forms {
     [Required]
     [StringLength(100)]
     [Display(Name="Area of Focus")]
+    [Metadata("FocusArea")]
     public string AreaOfFocus { get; set; }
 
     /*==========================================================================================================================
@@ -62,6 +64,7 @@ namespace GoldSim.Web.Models.Forms {
     [Required]
     [StringLength(100)]
     [Display(Name="How did you learn about GoldSim?")]
+    [Metadata("ReferralSource")]
     public string ReferralSource { get; set; }
 
     /*==========================================================================================================================

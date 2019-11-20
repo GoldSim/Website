@@ -3,6 +3,8 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using Ignia.Topics.Mapping.Annotations;
+using Ignia.Topics.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -31,6 +33,7 @@ namespace GoldSim.Web.Models.Forms {
     /// </summary>
     [Required]
     [StringLength(75)]
+    [Metadata("Country")]
     public virtual string Country { get; set; }
 
     /*==========================================================================================================================
