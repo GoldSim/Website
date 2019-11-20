@@ -232,6 +232,9 @@ namespace GoldSim.Web {
       //Handle GoldSim-specific view components
       return viewComponentType.Name switch {
 
+        nameof(MetadataLookupViewComponent)
+          => new MetadataLookupViewComponent(_topicRepository),
+
         nameof(MenuViewComponent)
           => new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService, _topicRepository),
 

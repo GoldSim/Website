@@ -1,0 +1,7 @@
+﻿@model MetadataLookupViewModel
+
+<select asp-for=@Model asp-items="Model.Options">
+  <option value="">@Model.DefaultText</option>
+</select>
+
+<!-- View Location: ~/Views/Shared/Components/MetadataLookup/Default.cshtml -->
