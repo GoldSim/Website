@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using Ignia.Topics;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
@@ -156,61 +157,50 @@ namespace GoldSim.Web {
         var productOptionConfiguration  = 1;
 
         // Determine Product Option configuration
-        if (
-          licenseRequest.Attributes.GetValue("DP") == "True" &&
-          licenseRequest.Attributes.GetValue("RL") == "True" &&
-          licenseRequest.Attributes.GetValue("RT") == "True"
-        ) {
+        if (requestedModules("Reliability", "DistributedProcessing", "RadionuclideTransport")) {
           productOptionConfiguration    = 12;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("DP") == "True" &&
-          licenseRequest.Attributes.GetValue("RL") == "True" &&
-          licenseRequest.Attributes.GetValue("CT") == "True"
-        ) {
+        else if (requestedModules("Reliability", "DistributedProcessing", "ContaminantTransport")) {
           productOptionConfiguration    = 11;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("RL") == "True" &&
-          licenseRequest.Attributes.GetValue("RT") == "True"
-        ) {
+        else if (requestedModules("Reliability", "RadionuclideTransport")) {
           productOptionConfiguration    = 10;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("RL") == "True" &&
-          licenseRequest.Attributes.GetValue("CT") == "True"
-        ) {
+        else if (requestedModules("Reliability", "ContaminantTransport")) {
           productOptionConfiguration    = 9;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("DP") == "True" &&
-          licenseRequest.Attributes.GetValue("RT") == "True"
-        ) {
+        else if (requestedModules("DistributedProcessing", "RadionuclideTransport")) {
           productOptionConfiguration    = 8;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("DP") == "True" &&
-          licenseRequest.Attributes.GetValue("CT") == "True"
-        ) {
+        else if (requestedModules("DistributedProcessing", "ContaminantTransport")) {
           productOptionConfiguration    = 7;
         }
-        else if (
-          licenseRequest.Attributes.GetValue("DP") == "True" &&
-          licenseRequest.Attributes.GetValue("RL") == "True"
-        ) {
+        else if (requestedModules("DistributedProcessing", "Reliability")) {
           productOptionConfiguration    = 6;
         }
-        else if (licenseRequest.Attributes.GetValue("RT") == "True") {
+        else if (requestedModules("RadionuclideTransport")) {
           productOptionConfiguration    = 5;
         }
-        else if (licenseRequest.Attributes.GetValue("CT") == "True") {
+        else if (requestedModules("ContaminantTransport")) {
           productOptionConfiguration    = 4;
         }
-        else if (licenseRequest.Attributes.GetValue("RL") == "True") {
+        else if (requestedModules("Reliability")) {
           productOptionConfiguration    = 3;
         }
-        else if (licenseRequest.Attributes.GetValue("DP") == "True") {
+        else if (requestedModules("DistributedProcessing")) {
           productOptionConfiguration    = 2;
+        }
+
+        bool requestedModules(params string[] moduleList)
+          => moduleList.All(m => licenseRequest.Attributes.GetBoolean($"Modules{m}", false) == true);
+
+        //Define composite street address
+        var street1 = licenseRequest.Attributes.GetValue("Street1", "");
+        var street2 = licenseRequest.Attributes.GetValue("Street2", "");
+        var address = street1;
+
+        if (!String.IsNullOrWhiteSpace(street2)) {
+          address += $", {street2}";
         }
 
         // Add data row for each request
@@ -223,22 +213,22 @@ namespace GoldSim.Web {
           "Config_" + productOptionConfiguration.ToString(),
           "TRUE",
           licenseRequest.Attributes.GetValue("Department", ""),
-          (licenseRequest.Attributes.GetValue("Address1", "") + (!String.IsNullOrEmpty(licenseRequest.Attributes.GetValue("Address2", "")) ? ", " + licenseRequest.Attributes.GetValue("Address2", "") : "")),
+          address,
           licenseRequest.Attributes.GetValue("City", ""),
-          licenseRequest.Attributes.GetValue("State", ""),
-          licenseRequest.Attributes.GetValue("Postal", ""),
-          licenseRequest.Attributes.GetValue("CountryList", ""),
-          licenseRequest.Attributes.GetValue("Phone", ""),
-          licenseRequest.Attributes.GetValue("AreaOfFocusList", ""),
-          licenseRequest.Attributes.GetValue("ReferralSelectionList", ""),
+          licenseRequest.Attributes.GetValue("Province", ""),
+          licenseRequest.Attributes.GetValue("PostalCode", ""),
+          licenseRequest.Attributes.GetValue("Country", ""),
+          licenseRequest.Attributes.GetValue("PhoneNumber", ""),
+          licenseRequest.Attributes.GetValue("AreaOfFocus", ""),
+          licenseRequest.Attributes.GetValue("ReferralSource", ""),
           licenseRequest.Attributes.GetValue("ReferralDetails", ""),
-          licenseRequest.Attributes.GetValue("ProblemDescription", ""),
-          licenseRequest.Attributes.GetValue("ExistingToolsDescription", ""),
+          licenseRequest.Attributes.GetValue("ProblemStatement", ""),
+          licenseRequest.Attributes.GetValue("OtherTools", ""),
           licenseRequest.Attributes.GetValue("SponsorFirstName", ""),
           licenseRequest.Attributes.GetValue("SponsorLastName", ""),
-          licenseRequest.Attributes.GetValue("SponsorDepartment", ""),
+          licenseRequest.Attributes.GetValue("SponsorOrganization", ""),
           licenseRequest.Attributes.GetValue("SponsorEmail", ""),
-          licenseRequest.Attributes.GetValue("SponsorPhone", "")
+          licenseRequest.Attributes.GetValue("SponsorPhoneNumber", "")
         );
 
       }
