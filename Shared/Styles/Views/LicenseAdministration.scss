@@ -1,0 +1,52 @@
+﻿/* General */
+.ext-mb-text {
+  color: rgb(51, 51, 51);
+}
+
+#PageContentArea + div {
+  display: none;
+}
+
+/* Requests Table */
+table.dataTable thead th, table.dataTable thead td {
+  padding: 10px;
+}
+
+div.dataTables_wrapper {
+  padding-top: 25px;
+}
+
+.dataTables_filter {
+  display: none;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  border-radius: 0;
+  padding: 0.25em 0.5em;
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button.current, .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: none;
+  border-color: rgb(51, 51, 51);
+}
+
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  background: rgb(77, 77, 77);
+  border-color: rgb(51, 51, 51);
+}
+
+div.dataTables_paginate.paging_simple_numbers {
+  padding-top: 15px;
+}
+
+table.dataTable thead .sorting {
+  background-image: url('/Images/Icons/Sort.Both.png');
+}
+
+table.dataTable thead .sorting_asc {
+  background-image: url('/Images/Icons/Sort.Ascending.png');
+}
+
+table.dataTable thead .sorting_desc {
+  background-image: url('/Images/Icons/Sort.Descending.png');
+}
