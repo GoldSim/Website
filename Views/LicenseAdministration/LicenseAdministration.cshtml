@@ -24,10 +24,12 @@
 
   <section class="panel">
 
+    <form asp-action="Delete" method="post">
 
       <!-- Actions (Delete) -->
       <div class="Actions Top">
         <a id="ExportRequestsButton" class="button large" href="/Licenses/Export/">Export Requests</a>
+        <button id="DeletePageButtonTop" class="button large" onclick="if(!confirmDelete()) return false;">Delete Selected</button>
       </div>
 
       <!-- /Actions (Delete) -->
@@ -37,6 +39,7 @@
         <table id="PendingRequests" class="table table-striped table-responsive table-highlight" data-provide="datatable" data-display-rows="10" data-info="false" data-search="false" data-length-change="false" data-paginate="true">
           <thead>
             <tr>
+              <th data-filterable="false" data-sortable="false"><input type="checkbox" name="selectAllRecords" value="1" id="SelectAllRecords" /></th>
               <th data-filterable="true" data-sortable="true" class="sorting Header"><span class="Sort Label">Name</span></th>
               <th data-filterable="false" data-sortable="false" class="Header"><span class="Sort Label">Organization</span></th>
               <th data-filterable="true" data-sortable="true" class="sorting Header"><span class="Sort Label">Type</span></th>
@@ -46,6 +49,7 @@
           <tbody>
             @foreach (var request in Model.Requests) {
               <tr id="@Model.Key" class="Request-Row">
+                <td><input type="checkbox" name="topics" value=@request.Id /></td>
                 <td>@request.FirstName @request.LastName</td>
                 <td>@request.Organization</td>
                 <td>@request.GetType().Name.Replace("FormTopicViewModel", "")</td>
@@ -68,6 +72,7 @@
       </div>
       <!-- /Edit Form -->
 
+    </form>
   </section>
 }
 
