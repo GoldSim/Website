@@ -4,6 +4,7 @@
 | Project       Topics Library
 \=============================================================================================================================*/
 using System;
+using GoldSim.Web.Models.Licenses;
 using GoldSim.Web.Models.ViewModels;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
 
@@ -50,6 +51,15 @@ namespace GoldSim.Web {
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | License administration
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(LicenseAdministrationTopicViewModel));
+      Add(typeof(LicenseRequestTopicViewModel));
+      Add(typeof(TrialFormTopicViewModel));
+      Add(typeof(InstructorAcademicFormTopicViewModel));
+      Add(typeof(StudentAcademicFormTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia topics
