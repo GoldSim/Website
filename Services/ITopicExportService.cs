@@ -10,18 +10,19 @@ using Ignia.Topics;
 namespace GoldSim.Web {
 
   /*============================================================================================================================
-  | INTERFACE: REPORTING SERVICE
+  | INTERFACE: TOPIC EXPORT SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Given contextual information (such as mime and file type), will determine the current reporting method to return.
+  ///   Given a list of topics, will export in the format determined by the concrete implementation. Results will be returned
+  ///   as a <see cref="MemoryStream"/>.
   /// </summary>
-  public interface IReportingService {
+  public interface ITopicExportService {
 
     /*==========================================================================================================================
     | MIME TYPE
-    \-------------------------------------------------------------------------------------------------------------------------*/
+    \--------------------------------I-----------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the mime type associated with the reporting method output file.
+    ///   Gets the mime type associated with the output file.
     /// </summary>
     string MimeType { get; }
 
@@ -29,18 +30,17 @@ namespace GoldSim.Web {
     | FILE EXTENSION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the file extension associated with the reporting method output file.
+    ///   Gets the file extension associated withoutput file.
     /// </summary>
     string FileExtension { get; }
 
     /*==========================================================================================================================
-    | GET LICENSE REQUESTS
+    | EXPORT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the License Requests Topics data as a memory stream for download.
+    ///   Returns the topics data as a memory stream for download.
     /// </summary>
-    MemoryStream GetLicenseRequests(IEnumerable<Topic> licenseRequests);
+    MemoryStream Export(IEnumerable<Topic> topics);
 
   } // Interface
-
 } // Namespace

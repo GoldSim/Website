@@ -185,7 +185,12 @@ namespace GoldSim.Web {
 
         nameof(ErrorController) => new ErrorController(),
 
-        nameof(ReportingController) => new ReportingController(_topicRepository, new ExcelReportingService()),
+        nameof(LicensesController) => new LicensesController(
+          _topicRepository,
+          mvcTopicRoutingService,
+          _topicMappingService,
+          new LicenseExportService()
+        ),
 
         nameof(TopicController) => new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService),
 
@@ -195,7 +200,6 @@ namespace GoldSim.Web {
 
       };
     }
-
 
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of view components in response to each request.

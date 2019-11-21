@@ -16,17 +16,17 @@ using OfficeOpenXml.Style;
 namespace GoldSim.Web {
 
   /*============================================================================================================================
-  | CLASS: EXCEL REPORTING SERVICE
+  | CLASS: LICENSE EXPORT SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides utility methods for assembling Excel spreadsheet reports for GoldSim data.
   /// </summary>
-  public class ExcelReportingService : IReportingService {
+  public class LicenseExportService : ITopicExportService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public ExcelReportingService() {
+    public LicenseExportService() {
     }
 
     /*==========================================================================================================================
@@ -40,7 +40,7 @@ namespace GoldSim.Web {
     public string FileExtension => ".xlsx";
 
     /*==========================================================================================================================
-    | DOWNLOAD LICENSE REQUESTS
+    | EXPORT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Assembles an Excel spreadsheet with pending License Request data as a memory stream.
@@ -50,7 +50,8 @@ namespace GoldSim.Web {
     ///   library.
     /// </remarks>
     /// <returns>The memory stream representing the spreadsheet.</returns>
-    public MemoryStream GetLicenseRequests(IEnumerable<Topic> licenseRequests) {
+    public MemoryStream Export(IEnumerable<Topic> licenseRequests) {
+
       MemoryStream memoryStream;
 
       using (var excelPackage = new ExcelPackage()) {
@@ -240,6 +241,5 @@ namespace GoldSim.Web {
 
     }
 
-  }
-
-}
+  } //Class
+} //Namespace

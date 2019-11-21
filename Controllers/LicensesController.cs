@@ -3,61 +3,73 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
+using Ignia.Topics;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
 
 namespace GoldSim.Web.Controllers {
 
   /*============================================================================================================================
-  | CLASS: REPORTING CONTROLLER
+  | CLASS: LICENSES CONTROLLER
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides access to GoldSim data reporting routes.
   /// </summary>
-  public class ReportingController : Controller {
+  [Authorize]
+  public class LicensesController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicRepository        _topicRepository        = null;
-    private     readonly        IReportingService       _reportingService       = null;
+    private     readonly        ITopicExportService     _topicExportService     = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a Reporting Controller with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="LicensesController"/> with necessary dependencies.
     /// </summary>
-    public ReportingController(ITopicRepository topicRepository, IReportingService reportingService) : base() {
-      _topicRepository          = topicRepository ?? throw new ArgumentNullException(nameof(topicRepository));
-      _reportingService         = reportingService ?? throw new ArgumentNullException(nameof(reportingService));
+    public LicensesController(
+      ITopicRepository          topicRepository,
+      ITopicRoutingService      topicRoutingService,
+      ITopicMappingService      topicMappingService,
+      ITopicExportService       topicExportService
+    ) : base(
+      topicRepository,
+      topicRoutingService,
+      topicMappingService
+    ) {
+      _topicExportService       = topicExportService?? throw new ArgumentNullException(nameof(topicExportService));
     }
 
     /*==========================================================================================================================
-    | LICENSE REQUESTS
+    | EXPORT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a downloadable file stream containing the Excel spreadsheet report for License Request data.
+    ///   Provides a downloadable file stream containing the Excel spreadsheet report for license request data.
     /// </summary>
-    public FileStreamResult LicenseRequests() {
+    public FileStreamResult Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = _topicRepository.Load("Root:CustomerRequests:LicenseTests").Children;
+      var licenseRequestContainer       = TopicRepository.Load("Root:Licenses:Requests")?.Children;
       var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
-      var memoryStream                  = _reportingService.GetLicenseRequests(licenseRequests);
+      var memoryStream                  = _topicExportService.Export(licenseRequests);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the Excel spreadsheet as a file stream
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return File(memoryStream, _reportingService.MimeType, "MultipleFreeLicenses" + _reportingService.FileExtension);
+      return File(memoryStream, _topicExportService.MimeType, "MultipleFreeLicenses" + _topicExportService.FileExtension);
 
     }
 
-  } // Class
 
-} // Namespace
+  } //Class
+} //Namespace
