@@ -71,6 +71,12 @@ namespace GoldSim.Web {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Use the Microsoft Identity Platform for authentication
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### NOTE JJC20191122: OpenId only allows authentication against a single Azure AD tenant, or ALL Azure AD tenants. In
+      | order to permit authentication against both Ignia (as the development partner) and GoldSim (as the primary user) we
+      | need to validate the issuer. The issuer addresses can be retrieved per tenant by looking at the "issuer" attribute of
+      | the https://login.microsoftonline.com/{TenantId}/v2.0/.well-known/openid-configuration feed (where {TenantId} is e.g.
+      | "GoldSim.com").
       \-----------------------------------------------------------------------------------------------------------------------*/
       services.AddAuthentication(options => {
         options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
@@ -79,6 +85,15 @@ namespace GoldSim.Web {
       })
       .AddOpenIdConnect(options => {
         Configuration.GetSection("OpenIdConnect").Bind(options);
+        options.TokenValidationParameters = new TokenValidationParameters {
+          NameClaimType = "name",
+          ValidIssuers = new[] {
+            //Ignia users
+            $"https://login.microsoftonline.com/10dcd9d4-80f7-47c8-ad5a-7efddcd5f868/v2.0",
+            //GoldSim users
+            $"https://login.microsoftonline.com/abfc6769-97de-4dc7-8284-0ecc2fac5cfc/v2.0"
+          }
+        };
       })
       .AddCookie();
 
