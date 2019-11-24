@@ -129,6 +129,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request a trial of the product.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> TrialAsync() => View(await CreateViewModel<TrialFormBindingModel>());
 
     [HttpPost]
@@ -143,6 +144,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request a demonstration of the product.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> DemoAsync() => View(await CreateViewModel<DemoFormBindingModel>());
 
     [HttpPost]
@@ -157,6 +159,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request a quote for the product
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> QuoteAsync() => View(await CreateViewModel<QuoteFormBindingModel>());
 
     [HttpPost]
@@ -171,6 +174,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request to purchase a license of the product
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> PurchaseAsync() => View(await CreateViewModel<PurchaseFormBindingModel>());
 
     [HttpPost]
@@ -185,6 +189,7 @@ namespace GoldSim.Web.Controllers {
     ///   Signup for the GoldSim newsletter
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> NewsletterAsync() => View(await CreateViewModel<NewsletterFormBindingModel>());
 
     [HttpPost]
@@ -199,6 +204,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request an academic license of the product for faculty.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> InstructorAcademicAsync()
       => View(await CreateViewModel<InstructorAcademicFormBindingModel>());
 
@@ -214,6 +220,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request an academic license of the product for faculty.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> StudentAcademicAsync() => View(await CreateViewModel<StudentAcademicFormBindingModel>());
 
     [HttpPost]
@@ -228,6 +235,7 @@ namespace GoldSim.Web.Controllers {
     ///   Request an academic license of the product for faculty.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> UserConferenceAsync() => View(await CreateViewModel<UserConferenceFormBindingModel>());
 
     [HttpPost]
@@ -242,6 +250,7 @@ namespace GoldSim.Web.Controllers {
     ///   Signup for a training session with GoldSim.
     /// </summary>
     [HttpGet]
+    [ValidateTopic]
     public async Task<IActionResult> TrainingAsync() => View(await CreateViewModel<TrainingFormBindingModel>());
 
     [HttpPost]
