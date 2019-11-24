@@ -3,15 +3,14 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Ignia.Topics.Mapping;
-using Ignia.Topics;
-using Ignia.Topics.AspNetCore.Mvc.Models;
-using Ignia.Topics.AspNetCore.Mvc.Components;
-using Ignia.Topics.Internal.Diagnostics;
 using GoldSim.Web.Models.ViewModels;
+using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.AspNetCore.Mvc.Models;
+using Ignia.Topics.Internal.Diagnostics;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
 namespace GoldSim.Web.Components {
 
@@ -32,10 +31,10 @@ namespace GoldSim.Web.Components {
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public CallsToActionViewComponent(
-      ITopicRoutingService topicRoutingService,
+      ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
-      topicRoutingService,
+      topicRepository,
       hierarchicalTopicMappingService
     ) {}
 

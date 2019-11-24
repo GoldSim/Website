@@ -44,12 +44,10 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public PaymentsController(
       ITopicRepository topicRepository,
-      ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService,
       IBraintreeConfiguration braintreeConfiguration
     ) : base(
       topicRepository,
-      topicRoutingService,
       topicMappingService
     ) {
 

@@ -21,6 +21,7 @@ using GoldSim.Web.Models.Forms;
 using Microsoft.AspNetCore.Authorization;
 using Ignia.Topics.Models;
 using System.Net.Http;
+using Ignia.Topics.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Controllers {
 
@@ -50,13 +51,11 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public FormsController(
       ITopicRepository topicRepository,
-      ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
       ISmtpService smtpService
     ) : base(
       topicRepository,
-      topicRoutingService,
       topicMappingService
     ) {
       _topicMappingService      = topicMappingService;

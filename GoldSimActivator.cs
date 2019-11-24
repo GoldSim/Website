@@ -135,12 +135,6 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcTopicRoutingService = new MvcTopicRoutingService(
-        _topicRepository,
-        new Uri($"https://{context.HttpContext.Request.Host}/{context.HttpContext.Request.Path}"),
-        context.RouteData
-      );
-
       //Set default controller
       if (controllerType == null) {
         controllerType = typeof(FallbackController);
@@ -148,7 +142,7 @@ namespace GoldSim.Web {
 
       // Force controller recognition for specific Content Types
       if (controllerType.Equals(typeof(TopicController))) {
-        switch (mvcTopicRoutingService.GetCurrentTopic()?.ContentType) {
+        switch (_topicRepository.Load(context.RouteData)?.ContentType) {
           case "Payments":
             controllerType      = typeof(PaymentsController);
             break;
@@ -170,14 +164,12 @@ namespace GoldSim.Web {
 
         nameof(PaymentsController) => new PaymentsController(
             _topicRepository,
-            mvcTopicRoutingService,
             _topicMappingService,
-            new BraintreeConfiguration(mvcTopicRoutingService, _configuration)
+            new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData)
           ),
 
         nameof(FormsController) => new FormsController(
           _topicRepository,
-          mvcTopicRoutingService,
           _topicMappingService,
           new ReverseTopicMappingService(_topicRepository),
           _smtpService
@@ -187,14 +179,13 @@ namespace GoldSim.Web {
 
         nameof(LicensesController) => new LicensesController(
           _topicRepository,
-          mvcTopicRoutingService,
           _topicMappingService,
           new LicenseExportService()
         ),
 
-        nameof(TopicController) => new TopicController(_topicRepository, mvcTopicRoutingService, _topicMappingService),
+        nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
 
-        nameof(EditorController) => new EditorController(_topicRepository, mvcTopicRoutingService, _topicMappingService),
+        nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
 
       _ => throw new Exception($"Unknown controller {controllerType.Name}")
 
@@ -213,15 +204,6 @@ namespace GoldSim.Web {
       var viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Register
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var mvcTopicRoutingService = new MvcTopicRoutingService(
-        _topicRepository,
-        new Uri($"https://{context.ViewContext.HttpContext.Request.Host}/{context.ViewContext.HttpContext.Request.Path}"),
-        context.ViewContext.RouteData
-      );
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
 
@@ -229,7 +211,7 @@ namespace GoldSim.Web {
       if (_standardEditorComposer.IsEditorComponent(viewComponentType)) {
         return _standardEditorComposer.ActivateEditorComponent(
           viewComponentType,
-          mvcTopicRoutingService
+          _topicRepository
         );
       }
 
@@ -240,16 +222,16 @@ namespace GoldSim.Web {
           => new MetadataLookupViewComponent(_topicRepository),
 
         nameof(MenuViewComponent)
-          => new MenuViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService, _topicRepository),
+          => new MenuViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(PageLevelNavigationViewComponent)
-          => new PageLevelNavigationViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
+          => new PageLevelNavigationViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(CallsToActionViewComponent)
-          => new CallsToActionViewComponent(mvcTopicRoutingService, _hierarchicalTopicMappingService),
+          => new CallsToActionViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(FooterViewComponent)
-          => new FooterViewComponent(mvcTopicRoutingService, _topicRepository, _hierarchicalTopicMappingService),
+          => new FooterViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
 

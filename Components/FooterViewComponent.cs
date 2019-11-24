@@ -25,11 +25,6 @@ namespace GoldSim.Web.Components {
   public class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -37,14 +32,12 @@ namespace GoldSim.Web.Components {
     /// </summary>
     /// <returns>A <see cref="FooterViewComponent"/>.</returns>
     public FooterViewComponent(
-      ITopicRoutingService topicRoutingService,
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
-      topicRoutingService,
+      topicRepository,
       hierarchicalTopicMappingService
     ) {
-      _topicRepository = topicRepository;
     }
 
     /*==========================================================================================================================
@@ -58,7 +51,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = _topicRepository.Load("Web:Company");
+      var navigationRootTopic = TopicRepository.Load("Web:Company");
       var currentTopic = CurrentTopic;
 
       /*------------------------------------------------------------------------------------------------------------------------

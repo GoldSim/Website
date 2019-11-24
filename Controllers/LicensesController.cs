@@ -36,12 +36,10 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     public LicensesController(
       ITopicRepository          topicRepository,
-      ITopicRoutingService      topicRoutingService,
       ITopicMappingService      topicMappingService,
       ITopicExportService       topicExportService
     ) : base(
       topicRepository,
-      topicRoutingService,
       topicMappingService
     ) {
       _topicExportService       = topicExportService?? throw new ArgumentNullException(nameof(topicExportService));
