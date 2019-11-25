@@ -47,7 +47,8 @@
             </tr>
           </thead>
           <tbody>
-            @foreach (var request in Model.Requests) {
+            @foreach (var request in Model.Requests)
+            {
               <tr id="@Model.Key" class="Request-Row">
                 <td><input type="checkbox" name="topics" value=@request.Id /></td>
                 <td>@request.FirstName @request.LastName</td>
@@ -59,7 +60,8 @@
           </tbody>
         </table>
 
-        @if (Model.Requests.Count == 0) {
+        @if (Model.Requests.Count == 0)
+        {
           <!-- Messages Area -->
           <div id="MessagesArea" class="row Messages-Area">
             <div id="NoRequestsAlert" class="alert alert-info" role="alert" Style="margin-top: 25px; font-size: 15px;">
@@ -80,3 +82,5 @@
   <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
   <script src="~/Shared/Scripts/Views/LicenseAdministration.js"></script>
 }
+
+@section CallsToActionSection {}
