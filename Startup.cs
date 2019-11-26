@@ -141,11 +141,11 @@ namespace GoldSim.Web {
       }
       else {
         app.UseExceptionHandler("/Error/500");
-        // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+        app.UseExceptionHandler("/Error/InternalServer/");
+        app.UseHttpsRedirection();
         app.UseHsts();
       }
 
-      app.UseHttpsRedirection();
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Server defaults
       \-----------------------------------------------------------------------------------------------------------------------*/
