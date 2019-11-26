@@ -162,7 +162,7 @@ namespace GoldSim.Web {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
         endpoints.MapControllerRoute(
           name: "default",
-          pattern: "{controller=Home}/{action=Index}/"
+          pattern: "{controller}/{action=Index}/"
         );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Forms", "Forms");
