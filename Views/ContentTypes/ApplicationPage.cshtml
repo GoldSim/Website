@@ -101,7 +101,7 @@
 
     @if (Model.TechnicalPapers.Count > 0) {
       <h1 id="TechnicalPapers">Technical Papers</h1>
-      <partial name="_TechnicalPaperList" model="@Model.TechnicalPapers" />
+      <partial name="_TechnicalPaperList" model="@Model.TechnicalPapers.OrderByDescending(m => m.PublicationDate)" />
     }
 
     @if (!String.IsNullOrEmpty(Model.CompareTo) || !String.IsNullOrEmpty(Model.LearnMoreUrl)) {
