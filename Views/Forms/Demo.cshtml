@@ -10,14 +10,6 @@
 
       @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
 
-      <div class="cell">
-        <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
-      </div>
-      <div class="cell">
-        <label>I am also interested in:</label>
-        <partial name="_TransportModules" for="BindingModel.Modules" />
-      </div>
-
       <partial name="_Referral" for="BindingModel" />
 
     </div>
