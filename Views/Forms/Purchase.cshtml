@@ -21,8 +21,8 @@
     <legend>Licensee Information</legend>
     <div class="grid-x grid-margin-x">
       <div class="cell radio">
-        <label><input type="radio" name="Licensee" value="Myself" /> I am the primary technical contact for this license purchase.</label>
-        <br /><label><input type="radio" name="Licensee" value="Other" /> I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
+        <input type="radio" name="Licensee" value="Myself" id="Myself" /> <label for="Myself">I am the primary technical contact for this license purchase.</label>
+        <br /><input type="radio" name="Licensee" value="Other" id="Other" /> <label for="Other">I am acting as a third party (purchasing agent or distributor) for this purchase.</label>
       </div>
     </div>
   </fieldset>
@@ -37,10 +37,12 @@
     <legend>Payment Information</legend>
     <div class="grid-x grid-margin-x">
       <div class="cell radio">
-        <label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
-        <br /><label><input type="radio" name="PaymentMethod" value="AccountsPayable" /> Invoice Accounts Payable</label>
-        <br /><label><input type="radio" name="PaymentMethod" value="CreditCard" /> Pay by Credit Card</label>
-        <br /><span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
+        <input type="radio" name="PaymentMethod" id="Invoice" value="Invoice" /> <label for="Invoice">Invoice Me</label>
+        <br /><input type="radio" name="PaymentMethod" value="AccountsPayable" id="AccountsPayable" /> <label for="AccountsPayable">Invoice Accounts Payable</label>
+        <br /><input type="radio" name="PaymentMethod" value="CreditCard" id="CreditCard" /> <label for="CreditCard">Pay by Credit Card</label>
+      </div>
+      <div class="cell">
+        <span id="PaymentInstructions" class="Payment instructions" style="display: none;"></span>
       </div>
     </div>
   </fieldset>

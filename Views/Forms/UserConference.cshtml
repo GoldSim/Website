@@ -59,8 +59,8 @@
          @Html.EditorFor(model => model.BindingModel.WithStudentDiscount)
       </div>
       <div class="cell radio">
-        <label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> User Conference Only (September 11-12): $1,250</label>
-        <br /><label><input asp-for="BindingModel.IncludeTraining" type="radio" value="true" /> Basic Training and Conference (September 10-12): $1,500</label>
+        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="User Conference Only" /> <label for="ConferenceOnly">User Conference Only (September 11-12): $1,250</label>
+        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="Basic Training and Conference" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 10-12): $1,500</label>
         <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</span>
       </div>
     </div>
@@ -70,8 +70,8 @@
     <legend>Payment Information</legend>
     <div class="grid-x grid-margin-x">
       <div class="cell radio">
-        <label><input type="radio" name="PaymentMethod" value="CreditCard" /> Credit Card</label>
-        <br /><label><input type="radio" name="PaymentMethod" value="Invoice" /> Invoice Me</label>
+        <input type="radio" name="PaymentMethod" value="CreditCard" id="CreditCard" /> <label for="CreditCard">Credit Card</label>
+        <br /><input type="radio" name="PaymentMethod" value="Invoice" id="Invoice" /> <label for="Invoice">Invoice Me</label>
       </div>
       @Html.EditorFor(model => model.BindingModel.PurchaseOrderNumber, new { cssClass = "" })
       @Html.EditorFor(model => model.BindingModel.AdditionalInstructions, "TextArea")
