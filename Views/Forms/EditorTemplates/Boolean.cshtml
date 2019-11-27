@@ -2,6 +2,7 @@
 
 @{
   if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
+    cssClass = "medium-6";
   }
   ViewData.TryGetValue("style", out var style);
 }
