@@ -18,6 +18,8 @@ namespace GoldSim.Web.Models.ViewModels {
 
     public SelectList Options { get; set; }
     public string DefaultText { get; set; }
+    public string Value { get; set; }
+    public bool IsRequired { get; set; }
 
   } // Class
 } // Namespace

@@ -9,7 +9,7 @@
 
 <div class="@cssClass cell form-field select" style=@style>
   <label asp-for="@Model" class="@(ViewData.ModelMetadata.IsRequired? "required" : "")"></label>
-  <vc:metadata-lookup asp-for=@Model></vc:metadata-lookup>
+  <vc:metadata-lookup asp-for=@Model html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix></vc:metadata-lookup>
 </div>
 
 <!-- View Location: ~/Views/Forms/EditorTemplates/Select.cshtml -->

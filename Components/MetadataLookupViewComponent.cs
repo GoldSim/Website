@@ -57,7 +57,8 @@ namespace GoldSim.Web.Components {
     ///   Provides a dropdown list of metadata associated with the bound property.
     /// </summary>
     public IViewComponentResult Invoke(
-      ModelExpression aspFor
+      ModelExpression aspFor,
+      string htmlFieldPrefix
     )
     {
 
@@ -84,10 +85,10 @@ namespace GoldSim.Web.Components {
       | Set HTML field prefix
       \-----------------------------------------------------------------------------------------------------------------------*/
       var templateInfo = ViewData.TemplateInfo;
-      if (
-        String.IsNullOrEmpty(templateInfo.HtmlFieldPrefix) ||
-        !templateInfo.HtmlFieldPrefix.EndsWith(modelMetadata.Name, StringComparison.InvariantCulture)
-      ) {
+      if (String.IsNullOrEmpty(templateInfo.HtmlFieldPrefix)) {
+        templateInfo.HtmlFieldPrefix = htmlFieldPrefix;
+      }
+      if (!templateInfo.HtmlFieldPrefix.EndsWith(modelMetadata.Name, StringComparison.InvariantCulture)) {
         templateInfo.HtmlFieldPrefix = templateInfo.GetFullHtmlFieldName(modelMetadata.Name);
       }
 
@@ -95,7 +96,7 @@ namespace GoldSim.Web.Components {
       | Lookup metadata values
       \-----------------------------------------------------------------------------------------------------------------------*/
       var metadataList          = _topicRepository.Load(metadataKey)?.Children?? new TopicCollection();
-      var selectList            = new SelectList(metadataList, valueField, textField);
+      var selectList            = new SelectList(metadataList, valueField, textField, aspFor.Model?.ToString());
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate metadata
@@ -117,7 +118,9 @@ namespace GoldSim.Web.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var model = new MetadataLookupViewModel() {
         Options = selectList,
-        DefaultText = defaultText
+        DefaultText = defaultText,
+        Value = aspFor.Model?.ToString(),
+        IsRequired = modelMetadata.IsRequired
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
