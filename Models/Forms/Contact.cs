@@ -45,7 +45,7 @@ namespace GoldSim.Web.Models.Forms {
     [Required]
     [Phone]
     [StringLength(50)]
-    [Display(Name="Phone Number")]
+    [Display(Name="Telephone")]
     public virtual string PhoneNumber { get; set; }
 
   }
