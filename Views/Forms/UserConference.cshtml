@@ -13,9 +13,12 @@
   <fieldset>
     <legend>Poster Session</legend>
     <div class="grid-x grid-margin-x">
-      <div class="medium-6 cell">
-        @Html.EditorFor(model => model.BindingModel.WillSubmitPoster)
-        <p style="margin-top: 1rem;"><em>We will follow up with instructions for submitting and presenting your poster at the conference.</em> <strong>Poster presenters will be entered into a drawing for a $500 Amazon gift certificate. Attendees will also vote on a Best Poster, with the winner receiving a $500 Amazon gift certificate.</strong></p>
+      @Html.EditorFor(model => model.BindingModel.WillSubmitPoster, new { cssClass="" })
+      <div class="cell">
+        <p style="margin-top: 1rem;">
+          <em>We will follow up with instructions for submitting and presenting your poster at the conference.</em>
+          <strong>Poster presenters will be entered into a drawing for a $500 Amazon gift certificate. Attendees will also vote on a Best Poster, with the winner receiving a $500 Amazon gift certificate.</strong>
+        </p>
       </div>
     </div>
   </fieldset>
