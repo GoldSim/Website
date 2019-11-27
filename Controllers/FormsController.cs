@@ -83,7 +83,10 @@ namespace GoldSim.Web.Controllers {
     ///   Helper function to process a form postback request.
     /// </summary>
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ProcessForm<T>(T bindingModel) where T: class, ITopicBindingModel, new() {
+    public async Task<IActionResult> ProcessForm<T>(
+      T bindingModel,
+      string requestType = ""
+    ) where T: class, ITopicBindingModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -97,7 +100,8 @@ namespace GoldSim.Web.Controllers {
       | Optionally send internal receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.DisableEmailReceipt) {
-        await SendInternalReceipt(viewModel.EmailSubject, viewModel.EmailRecipient, viewModel.EmailSender);
+        var subject = (viewModel.EmailSubject + " " + requestType).Trim();
+        await SendInternalReceipt(subject, viewModel.EmailRecipient, viewModel.EmailSender);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -194,8 +198,8 @@ namespace GoldSim.Web.Controllers {
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel) =>
-      await ProcessForm<NewsletterFormBindingModel>(bindingModel);
+    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel, string requestType = null) =>
+      await ProcessForm<NewsletterFormBindingModel>(bindingModel, requestType);
 
     /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
