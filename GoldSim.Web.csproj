@@ -126,10 +126,6 @@
     </MsDeploySkipRules>
     <MsDeploySkipRules Include="CustomSkipFolder">
       <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Images\\Icons\\PartnerLogo</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
       <AbsolutePath>wwwroot\\Images\\Newsletter</AbsolutePath>
     </MsDeploySkipRules>
     <MsDeploySkipRules Include="CustomSkipFolder">
