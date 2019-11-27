@@ -90,11 +90,23 @@
     </MsDeploySkipRules>
     <MsDeploySkipRules Include="CustomSkipFolder">
       <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\FormImages</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
       <AbsolutePath>wwwroot\\Help</AbsolutePath>
     </MsDeploySkipRules>
     <MsDeploySkipRules Include="CustomSkipFolder">
       <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\KnowledgeBase</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
       <AbsolutePath>wwwroot\\Media</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Videos</AbsolutePath>
     </MsDeploySkipRules>
     <MsDeploySkipRules Include="CustomSkipFolder">
       <ObjectName>dirPath</ObjectName>
@@ -107,6 +119,22 @@
     <MsDeploySkipRules Include="CustomSkipFolder">
       <ObjectName>dirPath</ObjectName>
       <AbsolutePath>wwwroot\\Images\\Courses</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Email</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Icons\\PartnerLogo</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Newsletter</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Tutorials</AbsolutePath>
     </MsDeploySkipRules>
   </ItemGroup>
 
