@@ -76,16 +76,50 @@
         <input type="radio" name="PaymentMethod" value="CreditCard" id="CreditCard" /> <label for="CreditCard">Credit Card</label>
         <br /><input type="radio" name="PaymentMethod" value="Invoice" id="Invoice" /> <label for="Invoice">Invoice Me</label>
       </div>
+      <div class="cell">
+        <p id="PaymentInstructions" class="instructions"></p>
+      </div>
       @Html.EditorFor(model => model.BindingModel.PurchaseOrderNumber, new { cssClass = "" })
       @Html.EditorFor(model => model.BindingModel.AdditionalInstructions, "TextArea")
       <div class="medium-6 cell">
         @Html.EditorFor(model => model.BindingModel.WithPaperReceipt)
       </div>
       <div class="cell">
-        <p class="instructions"><em>NOTE</em>: GoldSim's standard method of invoicing and providing receipts is via email.</p>
         <p>Note that you will not be charged when you submit this form. This order is not valid until accepted by GoldSim Technology Group. We will contact you to complete the transaction.</p>
       </div>
     </div>
   </fieldset>
 
+}
+
+@section Scripts {
+  <script>
+    $(document).ready(function () {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish default state
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var instructions = $("#PaymentInstructions");
+      var purchaseOrderForm = $("#@Html.IdFor(m => m.BindingModel.PurchaseOrderNumber)").prop("disabled", true);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle payment information
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      $("input[name='PaymentMethod']").click(function () {
+        purchaseOrderForm.prop("disabled", true);
+        switch ($(this).val()) {
+          case "Invoice":
+            purchaseOrderForm.prop("disabled", false);
+            instructions.html("");
+            break;
+          case "CreditCard":
+            purchaseOrderForm.prop("disabled", true);
+            instructions.html("If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.");
+            break;
+        }
+        instructions.show();
+      });
+
+    });
+  </script>
 }
