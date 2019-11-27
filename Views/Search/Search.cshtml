@@ -46,8 +46,8 @@
      * Establish Bing Search API variables
      */
     var
-      apiKey                    = '@Configuration["BingSearchPrimaryApiKey"]',
-      customConfig              = '@Configuration["BingSearchCustomConfigID"]',
+      apiKey                    = '@Configuration["BingSearch:PrimaryApiKey"]',
+      customConfig              = '@Configuration["BingSearch:CustomConfigID"]',
       searchQuery               = getQuerystringValue('SearchText'),
       baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
       totalResults              = 0;
