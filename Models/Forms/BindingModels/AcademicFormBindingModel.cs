@@ -41,7 +41,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the user's organization or institution name.
     /// </summary>
-    [DisplayName("Name of Institution")]
+    [Display(Name="Name of Institution")]
     public override string Organization { get; set; }
 
     /*==========================================================================================================================
