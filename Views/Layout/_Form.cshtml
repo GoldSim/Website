@@ -4,23 +4,20 @@
   Layout = "/Views/Layout/_Layout.cshtml";
 }
 
-@section PageBodySection {
-  <section class="panel body">
+<section class="panel body">
 
-    @Html.Raw(Model.Body)
+  @Html.Raw(Model.Body)
 
-    <form asp-action="@ViewContext.RouteData.Values["Action"]">
+  <form asp-action="@ViewContext.RouteData.Values["Action"]">
+    <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+    @RenderSection("PageBodySection", required: false)
 
-      @RenderSection("PageBodySection", required: false)
 
-      <input type="submit" value="@(Model.SubmitButtonLabel?? "Submit")" class="submit button large primary" />
 
-    </form>
+  </form>
+</section>
 
-  </section>
-}
 
 @section Scripts {
 
