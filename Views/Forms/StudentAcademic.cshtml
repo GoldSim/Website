@@ -11,7 +11,7 @@
       </div>
       <partial name="_AcademicContact" for="BindingModel" />
       <partial name="_Address" for="BindingModel.Address" />
-      @Html.EditorFor(model => model.BindingModel.Country, "Select")
+      @Html.EditorFor(model => model.BindingModel.Country, "Select", new { cssClass = ""})
 
     </div>
   </fieldset>
