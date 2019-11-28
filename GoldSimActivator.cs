@@ -135,11 +135,6 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //Set default controller
-      if (controllerType == null) {
-        controllerType = typeof(FallbackController);
-      }
-
       // Force controller recognition for specific Content Types
       if (controllerType.Equals(typeof(TopicController))) {
         switch (_topicRepository.Load(context.RouteData)?.ContentType) {
@@ -174,8 +169,6 @@ namespace GoldSim.Web {
           new ReverseTopicMappingService(_topicRepository),
           _smtpService
         ),
-
-        nameof(ErrorController) => new ErrorController(),
 
         nameof(LicensesController) => new LicensesController(
           _topicRepository,
