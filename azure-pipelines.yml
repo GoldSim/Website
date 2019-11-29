@@ -15,6 +15,17 @@ variables:
   buildConfiguration: 'Release'
 
 steps:
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+
+- task: Gulp@1
+  inputs:
+    gulpFile: 'gulpfile.js'
+    targets: 
+    enableCodeCoverage: false
+
 - task: NuGetToolInstaller@1
 
 - task: NuGetCommand@2
