@@ -33,7 +33,7 @@ steps:
     command: 'restore'
     restoreSolution: '**/*.sln'
     feedsToUse: 'config'
-    externalFeedCredentials: 'Ignia'
+    externalFeedCredentials: 'Ignia NuGet Server'
 
 - task: VSBuild@1
   inputs:
