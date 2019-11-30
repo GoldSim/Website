@@ -31,7 +31,7 @@ steps:
 - task: NuGetCommand@2
   inputs:
     command: 'restore'
-    restoreSolution: '**/*.sln'
+    restoreSolution: '$(solution)'
     feedsToUse: 'config'
     externalFeedCredentials: 'Ignia NuGet Server'
 
