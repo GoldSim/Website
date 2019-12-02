@@ -26,13 +26,12 @@
   <ItemGroup>
     <PackageReference Include="Braintree" Version="4.16.0" />
     <PackageReference Include="EPPlus" Version="4.5.3.2" />
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.20" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.20" />
-    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.20" />
-    <PackageReference Include="Ignia.Topics.Data.Caching" Version="3.8.0-csharp8-update.20" />
-    <PackageReference Include="Ignia.Topics.Data.Sql" Version="3.8.0-csharp8-update.20" />
-    <PackageReference Include="Ignia.Topics.Editor.Models" Version="4.0.0-aspnetcore0013" />
-    <PackageReference Include="Ignia.Topics.Editor.Mvc" Version="4.0.0-aspnetcore0013" />
+    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.21" />
+    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.21" />
+    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.21" />
+    <PackageReference Include="Ignia.Topics.Data.Caching" Version="3.8.0-csharp8-update.21" />
+    <PackageReference Include="Ignia.Topics.Data.Sql" Version="3.8.0-csharp8-update.21" />
+    <PackageReference Include="Ignia.Topics.Editor.Mvc" Version="4.0.0-alpha0012" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
