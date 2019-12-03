@@ -1,7 +1,7 @@
 ﻿@model PurchaseBindingModel
 
-@Html.EditorFor(model => model.Product)
-@Html.EditorFor(model => model.LicenseType)
+@Html.EditorFor(model => model.Product, "Select")
+@Html.EditorFor(model => model.LicenseType, "Select")
 
 @Html.EditorFor(model => model.Quantity)
 

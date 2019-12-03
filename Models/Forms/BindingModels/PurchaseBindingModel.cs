@@ -38,6 +38,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     ///   Gets or sets the product the user is interested in purchasing (or getting a quote for).
     /// </summary>
     [StringLength(20)]
+    [Metadata("Products")]
     public string Product { get; set; }
 
     /*==========================================================================================================================
@@ -49,6 +50,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     [Required]
     [StringLength(30)]
     [Display(Name="License Type")]
+    [Metadata("LicenseTypes")]
     public string LicenseType { get; set; }
 
     /*==========================================================================================================================
