@@ -291,7 +291,7 @@ namespace GoldSim.Web.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       subject                   = subject??     "GoldSim.com/Forms: " + CurrentTopic.Key;
-      recipient                 = "Jeremy@Ignia.com";
+      recipient                 = recipient??   "Software@GoldSim.com";
       sender                    = sender??      "Website@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
