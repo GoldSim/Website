@@ -130,10 +130,13 @@ namespace GoldSim.Web.Controllers {
       | Establish topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var parentTopic           = _topicRepository.Load($"Invoices");
-      var topic                 = _topicRepository.Load($"Invoices:{invoice.InvoiceNumber}");
+      var topic                 = _topicRepository.Load($"Invoices:{invoice.Key?? invoice.InvoiceNumber}");
 
       if (topic == null) {
         topic                   = TopicFactory.Create(invoice.InvoiceNumber.ToString(), "Invoice", parentTopic);
+      }
+      else if (invoice.Key != invoice.InvoiceNumber) {
+        topic.Key = invoice.InvoiceNumber.ToString();
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
