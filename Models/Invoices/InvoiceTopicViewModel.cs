@@ -17,7 +17,16 @@ namespace GoldSim.Web.Models.Invoices {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing a customer invoice
   /// </summary>
-  public class InvoiceTopicViewModel: TopicViewModel, ITopicBindingModel {
+  public class InvoiceTopicViewModel {
+
+    /*==========================================================================================================================
+    | ID
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The unique identifier assigned by OnTopic for the entity.
+    /// </summary>
+    public int? Id { get; set; }
+
     /*==========================================================================================================================
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
