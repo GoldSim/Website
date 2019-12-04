@@ -163,6 +163,11 @@ namespace GoldSim.Web {
           name: "default",
           pattern: "{controller}/{action=Index}/"
         );
+        endpoints.MapControllerRoute(
+          name: "default",
+          pattern: "Invoices/{action=Index}/{invoiceNumber}/",
+          defaults: new { controller = "Invoices" }
+        );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Error");
         endpoints.MapTopicRoute("Forms", "Forms");

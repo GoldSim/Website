@@ -176,6 +176,11 @@ namespace GoldSim.Web {
           new LicenseExportService()
         ),
 
+        nameof(InvoicesController) => new InvoicesController(
+          _topicRepository,
+          _topicMappingService
+        ),
+
         nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
