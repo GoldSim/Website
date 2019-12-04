@@ -152,5 +152,31 @@ namespace GoldSim.Web.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | ACTION: VERIFY INVOICE NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number and, optionally, a <see cref="Topic.Id"/>, ensures that the value is unique.
+    /// </summary>
+    /// <remarks>
+    ///   The <see cref="Topic.Id"/> is required for existing invoices, as they should still be considered unique if the value
+    ///   has not been modified.
+    /// </remarks>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyInvoiceNumber(
+      [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
+      [Bind(Prefix="Invoice.Key")] int? key = null
+    ) {
+      if (invoiceNumber == null) return Json(data: true);
+      if (invoiceNumber == key) return Json(data: true);
+      var existingInvoice = _topicRepository.Load($"Invoices:{invoiceNumber}");
+      if (existingInvoice != null) {
+        var invoiceAmount = existingInvoice.Attributes.GetValue("InvoiceAmount");
+        return Json($"The invoice number {invoiceNumber} has already been entered, with the amount {invoiceAmount}");
+      }
+      return Json(data: true);
+    }
+
+
   } // Class
 } // Namespace

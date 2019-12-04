@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using Ignia.Topics.Models;
 using Ignia.Topics.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,6 +18,19 @@ namespace GoldSim.Web.Models.Invoices {
   ///   Provides a strongly-typed data transfer object for representing a customer invoice
   /// </summary>
   public class InvoiceTopicViewModel: TopicViewModel, ITopicBindingModel {
+    /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The unique identifier assigned to OnTopic for the particular invoice.
+    /// </summary>
+    /// <remarks>
+    ///   By convention, invoices are assigned the same <see cref="Topic.Key"/> as their <see cref="InvoiceNumber"/>. As such,
+    ///   the key will either be null (if it's a new invoice) or will be the original <see cref="InvoiceNumber"/> (if it's a
+    ///   previously saved invoice that's being edited). That can be used to provide conditional logic for existing invoices,
+    ///   such as detecting renames.
+    /// </remarks>
+    public int? Key { get; set; }
 
     /*==========================================================================================================================
     | INVOICE NUMBER
@@ -27,6 +41,7 @@ namespace GoldSim.Web.Models.Invoices {
     [Required]
     [Range(0, 99999)]
     [Display(Name="Invoice Number")]
+    [Remote("VerifyInvoiceNumber", "Invoices", AdditionalFields="Key")]
     public int InvoiceNumber { get; set; }
 
     /*==========================================================================================================================
