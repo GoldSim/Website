@@ -16,14 +16,14 @@
     <fieldset>
       <div class="grid-x grid-margin-x">
         <div class="medium-6 cell form-field">
-          <label asp-for="@Model.Invoice.InvoiceNumber" class="required"></label>
-          <input asp-for="@Model.Invoice.InvoiceNumber" type="number" class="field" />
+          <label asp-for="Invoice.InvoiceNumber" class="required"></label>
+          <input asp-for="Invoice.InvoiceNumber" type="number" class="field" />
         </div>
         <div class="medium-6 cell form-field">
-          <label asp-for="@Model.Invoice.InvoiceAmount" class="required"></label>
+          <label asp-for="Invoice.InvoiceAmount" class="required"></label>
           <span class="input-group">
             <span class="input-group-label">$</span>
-            <input asp-for="@Model.Invoice.InvoiceAmount" type="number" placeholder="1000" class="field input-group-field" />
+            <input asp-for="Invoice.InvoiceAmount" type="number" placeholder="1000" class="field input-group-field" />
           </span>
         </div>
       </div>
