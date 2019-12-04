@@ -35,14 +35,19 @@
       <div class="medium-6 cell text-left">
         <input type="submit" value="Submit" class="submit button large primary" />
       </div>
+      @if (Model.Invoice?.Id != null) {
+        <div class="medium-6 cell text-right">
+          <a href=@Url.Action("Delete", new { topics = Model.Invoice?.Id }) style="margin-top: 2rem" onclick="if(!confirmDelete()) return false;" class="submit button large secondary">Delete</a>
+        </div>
+      }
     </div>
 
   </form>
 </section>
 
-
 @section Scripts {
   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <script src="~/Shared/Scripts/Views/LicenseAdministration.js"></script>
 }
 
 @section CallsToActionSection {}
