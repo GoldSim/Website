@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Invoices;
+using GoldSim.Web.Administration.Models.Invoices;
 using Ignia.Topics;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Administration.Controllers {
 
   /*============================================================================================================================
   | CLASS: INVOICES CONTROLLER
@@ -21,6 +21,7 @@ namespace GoldSim.Web.Controllers {
   ///   Allows GoldSim to create, view, and edit invoices.
   /// </summary>
   [Authorize]
+  [Area("Administration")]
   public class InvoicesController : Controller {
 
     /*==========================================================================================================================
@@ -51,7 +52,7 @@ namespace GoldSim.Web.Controllers {
     ///   Constructs a new view model containing the
     /// </summary>
     private async Task<InvoiceTopicViewModel> GetInvoiceViewModel(int invoiceNumber) {
-      var invoice = _topicRepository.Load($"Invoices:{invoiceNumber}");
+      var invoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
       var viewModel = await _topicMappingService.MapAsync<InvoiceTopicViewModel>(invoice);
       return viewModel;
     }
@@ -66,7 +67,7 @@ namespace GoldSim.Web.Controllers {
       await CreateEditViewModel(invoiceNumber == null? null : await GetInvoiceViewModel(invoiceNumber?? 0));
 
     private async Task<EditInvoicePageTopicViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
-      var pageContent = _topicRepository.Load("Invoices:Edit");
+      var pageContent = _topicRepository.Load("Administration:Invoices:Edit");
       var viewModel = await _topicMappingService.MapAsync<EditInvoicePageTopicViewModel>(pageContent);
       viewModel.Invoice = invoice;
       return viewModel;
@@ -81,7 +82,7 @@ namespace GoldSim.Web.Controllers {
     [HttpGet]
     public async Task<IActionResult> IndexAsync() => View(
       await _topicMappingService.MapAsync<InvoicePageTopicViewModel>(
-        _topicRepository.Load("Invoices")
+        _topicRepository.Load("Administration:Invoices")
       )
     );
 
@@ -92,7 +93,7 @@ namespace GoldSim.Web.Controllers {
     ///   Creates an invoice for a new purchase.
     /// </summary>
     [HttpGet]
-    public async Task<IActionResult> EditAsync(int? invoiceNumber = null) => View(await CreateEditViewModel(invoiceNumber));
+    public async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -129,8 +130,8 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var parentTopic           = _topicRepository.Load($"Invoices");
-      var topic                 = _topicRepository.Load($"Invoices:{invoice.Key?? invoice.InvoiceNumber}");
+      var parentTopic           = _topicRepository.Load($"Administration:Invoices");
+      var topic                 = _topicRepository.Load($"Administration:Invoices:{invoice.Key?? invoice.InvoiceNumber}");
 
       if (topic == null) {
         topic                   = TopicFactory.Create(invoice.InvoiceNumber.ToString(), "Invoice", parentTopic);
@@ -196,7 +197,7 @@ namespace GoldSim.Web.Controllers {
     ) {
       if (invoiceNumber == null) return Json(data: true);
       if (invoiceNumber == key) return Json(data: true);
-      var existingInvoice = _topicRepository.Load($"Invoices:{invoiceNumber}");
+      var existingInvoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
       if (existingInvoice != null) {
         var invoiceAmount = existingInvoice.Attributes.GetValue("InvoiceAmount");
         return Json($"The invoice number {invoiceNumber} has already been entered, with the amount {invoiceAmount}");

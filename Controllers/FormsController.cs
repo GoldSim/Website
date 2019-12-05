@@ -394,7 +394,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var       parentKey       = "Licenses:Requests";
+      var       parentKey       = "Administration:Licenses";
       var       parentTopic     = TopicRepository.Load(parentKey);
 
       if (parentTopic == null) {

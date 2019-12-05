@@ -5,15 +5,15 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Forms;
 
-namespace GoldSim.Web.Models.Licenses {
+namespace GoldSim.Web.Administration.Models.Licenses {
 
   /*============================================================================================================================
-  | CLASS: TRIAL FORM VIEW MODEL
+  | CLASS: INSTRUCTOR ACADEMIC FORM VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   A view model for rendering a license request.
+  ///   A view model for rendering an academic licensing request.
   /// </summary>
-  public class TrialFormTopicViewModel: LicenseRequestTopicViewModel {
+  public class InstructorAcademicFormTopicViewModel: LicenseRequestTopicViewModel {
 
   } // Class
 } // Namespace

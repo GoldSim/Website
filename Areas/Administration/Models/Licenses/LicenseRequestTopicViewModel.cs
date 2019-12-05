@@ -3,29 +3,34 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
-using Ignia.Topics.Mapping.Annotations;
-using Ignia.Topics.ViewModels;
+using GoldSim.Web.Models.Forms;
+using System;
 
-namespace GoldSim.Web.Models.Licenses {
+namespace GoldSim.Web.Administration.Models.Licenses {
 
   /*============================================================================================================================
-  | CLASS: LICENSE ADMINISTRATION (VIEW MODEL)
+  | CLASS: LICENSE REQUEST VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   A view model for the license reporting tool.
+  ///   A view model for rendering a license request.
   /// </summary>
-  public class LicenseAdministrationTopicViewModel: PageTopicViewModel {
+  public class LicenseRequestTopicViewModel: CoreContact {
 
     /*==========================================================================================================================
-    | REQUESTS
+    | ID
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Maps topics under the current container which can be converted to a <see cref="LicenseRequestTopicViewModel"/>.
+    ///   The topic's unique identifier.
     /// </summary>
-    [Flatten]
-    [Follow(Relationships.Children)]
-    public List<LicenseRequestTopicViewModel> Requests { get; set; }
+    public int Id { get; set; }
+
+    /*==========================================================================================================================
+    | LAST MODIFIED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The date the request was submitted.
+    /// </summary>
+    public DateTime LastModified { get; set; }
 
   } // Class
 } // Namespace

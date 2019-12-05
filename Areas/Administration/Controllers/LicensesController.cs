@@ -21,6 +21,7 @@ namespace GoldSim.Web.Controllers {
   ///   Provides access to GoldSim data reporting routes.
   /// </summary>
   [Authorize]
+  [Area("Administration")]
   public class LicensesController : TopicController {
 
     /*==========================================================================================================================
@@ -56,7 +57,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = TopicRepository.Load("Root:Licenses:Requests")?.Children;
+      var licenseRequestContainer       = TopicRepository.Load("Root:Administration:Licenses")?.Children;
       var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);

@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using GoldSim.Web.Administration.Controllers;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
 using GoldSim.Web.Models.ViewModels;

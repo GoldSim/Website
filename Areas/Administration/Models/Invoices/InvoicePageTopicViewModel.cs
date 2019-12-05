@@ -3,34 +3,38 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Forms;
-using System;
+using System.Collections.Generic;
+using Ignia.Topics.Mapping.Annotations;
+using Ignia.Topics.ViewModels;
 
-namespace GoldSim.Web.Models.Licenses {
+namespace GoldSim.Web.Administration.Models.Invoices {
 
   /*============================================================================================================================
-  | CLASS: LICENSE REQUEST VIEW MODEL
+  | CLASS: INVOICE PAGE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   A view model for rendering a license request.
+  ///   A view model for rendering an invoice form page.
   /// </summary>
-  public class LicenseRequestTopicViewModel: CoreContact {
+  public class InvoicePageTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
-    | ID
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The topic's unique identifier.
+    ///   Initializes a new instance of a <see cref="EditInvoicePageTopicViewModel"/> with appropriate dependencies.
     /// </summary>
-    public int Id { get; set; }
+    /// <returns>A <see cref="EditInvoicePageTopicViewModel"/>.</returns>
+    public InvoicePageTopicViewModel() {}
 
     /*==========================================================================================================================
-    | LAST MODIFIED
+    | INVOICES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The date the request was submitted.
+    ///   Provides a list of invoices currently available in the system.
     /// </summary>
-    public DateTime LastModified { get; set; }
+    [Relationship(RelationshipType.Children)]
+    public List<InvoiceTopicViewModel> Invoices { get; } = new List<InvoiceTopicViewModel>();
 
   } // Class
+
 } // Namespace

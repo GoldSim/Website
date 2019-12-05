@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace GoldSim.Web.Models.Invoices {
+namespace GoldSim.Web.Administration.Models.Invoices {
 
   /*============================================================================================================================
   | VIEW MODEL: INVOICE TOPIC
