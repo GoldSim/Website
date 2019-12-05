@@ -160,7 +160,8 @@ namespace GoldSim.Web {
         nameof(PaymentsController) => new PaymentsController(
             _topicRepository,
             _topicMappingService,
-            new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData)
+            new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData),
+            _smtpService
           ),
 
         nameof(FormsController) => new FormsController(

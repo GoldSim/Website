@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using Braintree;
 using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Services;
 using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
@@ -34,6 +35,7 @@ namespace GoldSim.Web.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private     readonly        ITopicMappingService            _topicMappingService            = null;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
+    private     readonly        ISmtpService                    _smtpService                    = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -45,7 +47,8 @@ namespace GoldSim.Web.Controllers {
     public PaymentsController(
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService,
-      IBraintreeConfiguration braintreeConfiguration
+      IBraintreeConfiguration braintreeConfiguration,
+      ISmtpService smtpService
     ) : base(
       topicRepository,
       topicMappingService
@@ -56,6 +59,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicMappingService      = topicMappingService;
       _braintreeConfiguration   = braintreeConfiguration;
+      _smtpService              = smtpService;
 
     }
 
@@ -83,6 +87,7 @@ namespace GoldSim.Web.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
+    [HttpGet]
     public async override Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -111,7 +116,7 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | POST: CREATE
+    | POST: PROCESS PAYMENT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides payments form processing
@@ -226,9 +231,7 @@ namespace GoldSim.Web.Controllers {
         // Set notification email body and send email
         notificationEmail.Body                  = emailBody.ToString();
 
-        using (var smtpClient = new SmtpClient()) {
-          smtpClient.Send(notificationEmail);
-        }
+        await _smtpService.SendAsync(notificationEmail);
 
         // Redirect to confirmation view
         return Redirect("/Web/Purchase/PaymentConfirmation");
@@ -269,9 +272,7 @@ namespace GoldSim.Web.Controllers {
         // Set notification email body and send email
         notificationEmail.Body  = emailBody.ToString();
 
-        using (var smtpClient = new SmtpClient()) {
-          smtpClient.Send(notificationEmail);
-          }
+        await _smtpService.SendAsync(notificationEmail);
 
         // Return form view with error messages
         return topicViewResult;
