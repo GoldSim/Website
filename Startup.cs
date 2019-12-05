@@ -21,6 +21,7 @@ using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.StaticFiles;
 
 namespace GoldSim.Web {
 
@@ -144,6 +145,19 @@ namespace GoldSim.Web {
         app.UseHttpsRedirection();
         app.UseHsts();
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Enable downloads
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var provider = new FileExtensionContentTypeProvider();
+
+      provider.Mappings[".exe"] = "application/vnd.microsoft.portable-executable";
+      provider.Mappings[".gsm"] = "application/octet-stream";
+      provider.Mappings[".gsp"] = "application/octet-stream";
+
+      var staticFileOptions = new StaticFileOptions { ContentTypeProvider = provider };
+
+      app.UseStaticFiles(staticFileOptions);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Server defaults
