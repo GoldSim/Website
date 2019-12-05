@@ -72,4 +72,7 @@ table.dataTable thead .sorting_desc {
   background-image              : url('/Images/Icons/Sort.Descending.png');
 }
 
+tr.record[data-href]:hover td:not(.js-no-click) {
+  background-color              : $palette-yellow;
+  cursor                        : pointer;
 }

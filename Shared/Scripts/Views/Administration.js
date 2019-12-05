@@ -33,7 +33,16 @@
 
   });
 
-});
+  /**
+    * De-checks the "select all" checkbox in the event an individual row checkbox is toggled; also sets/resets the hidden
+    * field value of selected/checked records.
+    */
+  $('tr[data-href].record:not(td.js-no-click)').click(function() {
+    window.location = $(this).attr("data-href");
+  }).find(".js-no-click").click(function(e) {
+    e.stopPropagation();
+  });
+
 })(jQuery);
 
 /**

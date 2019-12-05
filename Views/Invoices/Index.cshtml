@@ -32,7 +32,6 @@
         <button class="button large" onclick="if(!confirmDelete()) return false;">Delete Selected</button>
       </div>
       <!-- /Actions (Delete) -->
-
       <!-- Edit Form -->
       <div class="wide table-wrapper">
 
@@ -47,10 +46,10 @@
           </thead>
           <tbody>
             @foreach (var invoice in Model.Invoices.OrderByDescending(m => m.InvoiceNumber)) {
-              <tr id="@Model.Key" class="Request-Row">
-                <td><input type="checkbox" name="topics" value=@invoice.Id /></td>
-                <td onclick="document.location.href='@Url.Action("Edit", new { invoiceNumber=invoice.InvoiceNumber })'">@invoice.InvoiceNumber</td>
-                <td onclick="document.location.href='@Url.Action("Edit", new { invoiceNumber=invoice.InvoiceNumber })'">$@invoice.InvoiceAmount</td>
+              <tr id="@Model.Key" class="record" data-href="@Url.Action("Edit", new { invoiceNumber=invoice.InvoiceNumber })">
+                <td class="js-no-click"><input type="checkbox" name="topics" value=@invoice.Id /></td>
+                <td>@invoice.InvoiceNumber</td>
+                <td>$@invoice.InvoiceAmount</td>
                 <td>@invoice.DatePaid?.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
               </tr>
             }
