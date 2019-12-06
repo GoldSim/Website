@@ -254,9 +254,8 @@ namespace GoldSim.Web.Controllers {
       // Display general error message
       ModelState.AddModelError(
         "Transaction",
-        "Your transaction was unsuccessful. Please correct any errors with your submission or contact " +
-        "<a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>)" +
-        "for assistance."
+        "Your transaction was unsuccessful. Please correct any errors with your submission or contact GoldSim at " +
+        "software@goldsim.com or +1 (425)295-6985 for assistance."
       );
 
       // Display transaction message returned from Braintree
