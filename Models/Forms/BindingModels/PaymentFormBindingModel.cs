@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Administration.Models.Invoices;
+using GoldSim.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
@@ -67,7 +68,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     [Required]
     [Range(1000, 99999)]
     [Display(Name="Invoice Number")]
-    [Remote("VerifyInvoice", "Payments", AdditionalFields="InvoiceAmount")]
+    [Remote(nameof(PaymentsController.VerifyInvoiceNumber), "Payments")]
     public int InvoiceNumber { get; set; }
 
     /*==========================================================================================================================
@@ -79,7 +80,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     [Required]
     [Range(1.00, 1000000.00)]
     [Display(Name = "Invoice Amount")]
-    [Remote("VerifyInvoice", "Payments", AdditionalFields="InvoiceNumber")]
+    [Remote(nameof(PaymentsController.VerifyInvoiceAmount), "Payments", AdditionalFields=nameof(InvoiceNumber))]
     public double InvoiceAmount { get; set; }
 
     /*==========================================================================================================================

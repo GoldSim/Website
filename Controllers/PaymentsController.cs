@@ -284,35 +284,55 @@ namespace GoldSim.Web.Controllers {
 
     }
 
-
     /*==========================================================================================================================
-    | ACTION: VERIFY INVOICE
+    | ACTION: VERIFY INVOICE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    ///   Given an invoice number, ensures the values matches a valid <see cref="InvoiceTopicViewModel"/>.
     /// </summary>
     /// <remarks>
-    ///   The <see cref="Topic.Id"/> is required for existing invoices, as they should still be considered unique if the value
-    ///   has not been modified.
+    ///   The purpose of this function is exclusively to validate whether or not an invoice number is valid. If the supplied
+    ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
+    ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
     [HttpGet, HttpPost]
-    public IActionResult VerifyInvoice(
-      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
-      [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
+    public IActionResult VerifyInvoiceNumber(
+      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
       if (invoiceNumber == null) return Json(data: true);
       var existingInvoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
-      var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
       if (existingInvoice == null) {
         return Json(
           $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
           $"If it is confirmed to be correct, contact GoldSim."
         );
       }
-      if (
-        invoiceAmount != null &&
-        !existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)
-      ) {
+      return Json(data: true);
+    }
+
+    /*==========================================================================================================================
+    | ACTION: VERIFY INVOICE AMOUNT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This is separated from <see cref="VerifyInvoiceNumber(int?)"/> so that we can return a distinct error for the
+    ///   <c>InvoiceNumber</c> and <c>InvoiceAmount</c>. To achieve this, the <see cref="VerifyInvoiceAmount(int?, double?)"/>
+    ///   action ignores errors that are picked up by the <see cref="VerifyInvoiceNumber(int?)"/>. That said, the methods are,
+    ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
+    ///   <c>InvoiceAmount</c>.
+    /// </remarks>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyInvoiceAmount(
+      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
+      [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
+    ) {
+      if (invoiceNumber == null || invoiceAmount == null) return Json(data: true);
+      var existingInvoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
+      if (existingInvoice == null || existingAmount == null) return Json(data: true);
+      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
         return Json(
           $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
           $"Please recheck the amount owed. If it is confirmed to be correct, contact GoldSim."
