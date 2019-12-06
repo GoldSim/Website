@@ -86,7 +86,7 @@ function executeBraintree(clientToken) {
         event.preventDefault();
 
         hostedFieldsInstance.tokenize({
-          cardholderName: event.target.cardholderName.value
+          cardholderName: form.BindingModel_CardholderName.value
         }, function(tokenizeError, payload) {
           if (tokenizeError) {
             console.error(tokenizeError);
@@ -150,7 +150,7 @@ function executeBraintree(clientToken) {
           }
 
           // Set the payment nonce hidden field value
-          document.querySelector('#PaymentMethodNonce').value   = payload.nonce;
+          document.querySelector('#BindingModel_PaymentMethodNonce').value = payload.nonce;
 
           // Submit the form
           form.submit();

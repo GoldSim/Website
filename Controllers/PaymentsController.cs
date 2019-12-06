@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using Braintree;
+using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
 using GoldSim.Web.Services;
 using Ignia.Topics;
@@ -79,16 +80,17 @@ namespace GoldSim.Web.Controllers {
       TransactionStatus.SUBMITTED_FOR_SETTLEMENT
     };
 
+
     /*==========================================================================================================================
-    | GET: INDEX (VIEW TOPIC)
+    | GET VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides access to a view associated with the current topic's Content Type, if appropriate, view (as defined by the
-    ///   query string or topic's view.
+    ///   Constructs a new <see cref="PaymentsTopicViewModel"/> based on the <see cref="TopicController.CurrentTopic"/> and,
+    ///   optionally, a <see cref="PaymentFormBindingModel"/>.
     /// </summary>
-    /// <returns>A view associated with the requested topic's Content Type and view.</returns>
+    /// <returns>A fully mapped <see cref="PaymentsTopicViewModel"/>.</returns>
     [HttpGet]
-    public async override Task<IActionResult> IndexAsync(string path) {
+    public async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -99,21 +101,35 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+
+      viewModel.BindingModel    = bindingModel;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topicViewModel != null) {
-        topicViewModel.ClientToken = clientToken;
+      if (viewModel != null) {
+        viewModel.ClientToken = clientToken;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return TopicView(topicViewModel, CurrentTopic.View);
+      return viewModel;
 
     }
+
+
+    /*==========================================================================================================================
+    | GET: INDEX (VIEW TOPIC)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides access to a view associated with the current topic's Content Type, if appropriate, view (as defined by the
+    ///   query string or topic's view.
+    /// </summary>
+    /// <returns>A view associated with the requested topic's Content Type and view.</returns>
+    [HttpGet]
+    public async override Task<IActionResult> IndexAsync(string path) => TopicView(await GetViewModel());
 
     /*==========================================================================================================================
     | POST: PROCESS PAYMENT
@@ -124,21 +140,7 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> IndexAsync() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
-      var topicViewResult       = TopicView(topicViewModel, CurrentTopic.View);
-      var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = braintreeGateway.ClientToken.Generate();
-      var cardholderName        = HttpContext.Request.Form["cardholderName"];
-      var customerEmail         = HttpContext.Request.Form["customerEmail"];
-      var companyName           = HttpContext.Request.Form["company"];
-      var invoiceNumber         = HttpContext.Request.Form["invoice"];
-      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
-      var emailBody             = new StringBuilder("");
+    public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
@@ -148,27 +150,28 @@ namespace GoldSim.Web.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Verify payment amount format
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out var amount)) {
         topicViewModel.IsValid = false;
         topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
         return topicViewResult;
       }
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
+      var emailBody             = new StringBuilder("");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble and send Braintree transaction
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var nonce                 = HttpContext.Request.Form["paymentMethodNonce"];
       var request               = new TransactionRequest {
-        Amount                  = amount,
-        PurchaseOrderNumber     = HttpContext.Request.Form["invoice"],
-        PaymentMethodNonce      = nonce,
+        Amount                  = (decimal)bindingModel.InvoiceAmount,
+        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(),
+        PaymentMethodNonce      = bindingModel.PaymentMethodNonce,
         CustomFields            = new Dictionary<string, string> {
-          { "cardholder"        , cardholderName },
-          { "email"             , customerEmail },
-          { "company"           , companyName },
-          { "invoice"           , invoiceNumber }
+          { "cardholder"        , bindingModel.CardholderName },
+          { "email"             , bindingModel.Email },
+          { "company"           , bindingModel.Organization },
+          { "invoice"           , bindingModel.InvoiceNumber.ToString() }
         },
         Options                 = new TransactionOptionsRequest {
           SubmitForSettlement   = true
@@ -179,19 +182,20 @@ namespace GoldSim.Web.Controllers {
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
       var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+
       emailBody.AppendLine();
       emailBody.AppendLine();
       emailBody.Append("Transaction details:");
       emailBody.AppendLine();
-      emailBody.Append(" - Cardholder Name: "   + cardholderName);
+      emailBody.Append(" - Cardholder Name: "   + bindingModel.CardholderName);
       emailBody.AppendLine();
-      emailBody.Append(" - Customer Email: "    + customerEmail);
+      emailBody.Append(" - Customer Email: "    + bindingModel.Email);
       emailBody.AppendLine();
-      emailBody.Append(" - Company Name: "      + companyName);
+      emailBody.Append(" - Company Name: "      + bindingModel.Organization);
       emailBody.AppendLine();
-      emailBody.Append(" - Invoice Number: "    + invoiceNumber);
+      emailBody.Append(" - Invoice Number: "    + bindingModel.InvoiceNumber);
       emailBody.AppendLine();
-      emailBody.Append(" - Amount: "            + "$" + amount);
+      emailBody.Append(" - Amount: "            + "$" + bindingModel.InvoiceAmount);
       emailBody.AppendLine();
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -213,10 +217,10 @@ namespace GoldSim.Web.Controllers {
 
           if (transaction.Status != null) {
             if (TransactionSuccessStatuses.Contains(transaction.Status)) {
-              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Successful";
+              notificationEmail.Subject           = emailSubjectPrefix + bindingModel.InvoiceNumber + " Successful";
             }
             else {
-              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Failed";
+              notificationEmail.Subject           = emailSubjectPrefix + bindingModel.InvoiceNumber + " Failed";
             }
           }
 
@@ -240,7 +244,7 @@ namespace GoldSim.Web.Controllers {
       else {
 
         // Add (subject and body) details to notification email based on transaction details
-        notificationEmail.Subject               = emailSubjectPrefix + invoiceNumber + " Failed";
+        notificationEmail.Subject               = emailSubjectPrefix + bindingModel.InvoiceNumber + " Failed";
         if (transaction != null) {
           var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
 
@@ -275,7 +279,7 @@ namespace GoldSim.Web.Controllers {
         await _smtpService.SendAsync(notificationEmail);
 
         // Return form view with error messages
-        return topicViewResult;
+        return TopicView(await GetViewModel(bindingModel));
       }
 
     }

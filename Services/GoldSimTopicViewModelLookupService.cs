@@ -50,6 +50,7 @@ namespace GoldSim.Web {
       Add(typeof(HomeTopicViewModel));
       Add(typeof(ModulePageTopicViewModel));
       Add(typeof(PaymentsTopicViewModel));
+      Add(typeof(PaymentFormBindingModel));
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
