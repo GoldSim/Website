@@ -34,6 +34,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     /// <summary>
     ///   Gets or sets the name on the credit card being paid with.
     /// </summary>
+    [Required]
     [Display(Name="Cardholder Name")]
     public string CardholderName { get; set; }
 
