@@ -11,7 +11,7 @@ function executeBraintree(clientToken) {
    */
   var
     form        = document.querySelector('#PaymentsForm'),
-    submit      = document.querySelector('button[type="submit"]');
+    submit      = document.querySelector('#PaymentsForm button[type="button"]');
 
   /**
    * Initialize Braintree client instance
@@ -82,8 +82,12 @@ function executeBraintree(clientToken) {
       /**
        * Handle form submission, including errors
        */
-      form.addEventListener('submit', function (event) {
+      submit.addEventListener('click', function (event) {
         event.preventDefault();
+
+        // Allow jQuery Validation the first stab at the data
+        //form.validate();
+        if (!$('#PaymentsForm').valid()) return;
 
         hostedFieldsInstance.tokenize({
           cardholderName: form.BindingModel_CardholderName.value
