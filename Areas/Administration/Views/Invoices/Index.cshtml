@@ -41,7 +41,7 @@
           </thead>
           <tbody>
             @foreach (var invoice in Model.Invoices.OrderByDescending(m => m.InvoiceNumber)) {
-              <tr id="@Model.Key" class="record" data-href="@Url.Action("Edit", new { invoiceNumber=invoice.InvoiceNumber })">
+              <tr id="@Model.Key" class="record" data-href="@Url.Action("Edit", new { id=invoice.InvoiceNumber })">
                 <td class="js-no-click"><input type="checkbox" name="topics" value=@invoice.Id /></td>
                 <td>@invoice.InvoiceNumber</td>
                 <td>$@invoice.InvoiceAmount</td>
