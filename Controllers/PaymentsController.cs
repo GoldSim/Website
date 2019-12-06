@@ -154,7 +154,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -207,10 +207,10 @@ namespace GoldSim.Web.Controllers {
 
           if (transaction.Status != null) {
             if (TransactionSuccessStatuses.Contains(transaction.Status)) {
-              notificationEmail.Subject           = emailSubjectPrefix + bindingModel.InvoiceNumber + " Successful";
+              notificationEmail.Subject           = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
             }
             else {
-              notificationEmail.Subject           = emailSubjectPrefix + bindingModel.InvoiceNumber + " Failed";
+              notificationEmail.Subject           = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
             }
           }
 
@@ -232,7 +232,7 @@ namespace GoldSim.Web.Controllers {
       else {
 
         // Add (subject and body) details to notification email based on transaction details
-        notificationEmail.Subject               = emailSubjectPrefix + bindingModel.InvoiceNumber + " Failed";
+        notificationEmail.Subject               = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
         if (transaction != null) {
           var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
 
