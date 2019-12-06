@@ -178,7 +178,7 @@ namespace GoldSim.Web {
           areaName: "Administration",
           pattern: "Administration/{controller}/{action=Index}/{id?}",
           defaults: new { area = "Administration" }
-        );
+        ).RequireAuthorization();
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller}/{action=Index}/"
