@@ -88,8 +88,17 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     | PROPERTY: PAYMENT METHOD NONCE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The authorization nonce returned from the PayPal web service.
+    ///   The encoded payment information returned from the Braintree script.
     /// </summary>
+    /// <remarks>
+    ///   The credit card number, expiration date, and CCV are all collected as part of the form, but not posted to the server.
+    ///   Instead, the data is encrypted in transit, and submitted as the <see cref="PaymentMethodNonce"/>. Even though the
+    ///   connection itself is encrypted via transport level security (TLS), encrypting the data itself ensures that it won't
+    ///   inadvertantly get stored in clear text as part of e.g. log files. For this reason, this binding model doesn't have
+    ///   fields for the credit card information, instead just exposing this property. If this value is null, that effectively
+    ///   means that no credit card information was entered or validated. That should get caught by Braintree's validation
+    ///   script, but to be safe we're marking this field as required.
+    /// </remarks>
     [Required(ErrorMessage="The credit card information is required.")]
     public string PaymentMethodNonce { get; set; }
 
