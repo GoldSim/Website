@@ -173,9 +173,6 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
-        endpoints.MapControllerRoute(
-          name: "default",
-          pattern: "{controller}/{action=Index}/"
         endpoints.MapAreaControllerRoute(
           name: "Administration",
           areaName: "Administration",
