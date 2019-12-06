@@ -284,6 +284,43 @@ namespace GoldSim.Web.Controllers {
 
     }
 
+
+    /*==========================================================================================================================
+    | ACTION: VERIFY INVOICE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    /// </summary>
+    /// <remarks>
+    ///   The <see cref="Topic.Id"/> is required for existing invoices, as they should still be considered unique if the value
+    ///   has not been modified.
+    /// </remarks>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyInvoice(
+      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
+      [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
+    ) {
+      if (invoiceNumber == null) return Json(data: true);
+      var existingInvoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
+      if (existingInvoice == null) {
+        return Json(
+          $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
+          $"If it is confirmed to be correct, contact GoldSim."
+        );
+      }
+      if (
+        invoiceAmount != null &&
+        !existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)
+      ) {
+        return Json(
+          $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
+          $"Please recheck the amount owed. If it is confirmed to be correct, contact GoldSim."
+        );
+      }
+      return Json(data: true);
+    }
+
   } // Class
 
 } // Namespace

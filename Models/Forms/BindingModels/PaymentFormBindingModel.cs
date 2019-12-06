@@ -67,6 +67,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     [Required]
     [Range(1000, 99999)]
     [Display(Name="Invoice Number")]
+    [Remote("VerifyInvoice", "Payments", AdditionalFields="InvoiceAmount")]
     public int InvoiceNumber { get; set; }
 
     /*==========================================================================================================================
@@ -78,6 +79,7 @@ namespace GoldSim.Web.Models.Forms.BindingModels {
     [Required]
     [Range(1.00, 1000000.00)]
     [Display(Name = "Invoice Amount")]
+    [Remote("VerifyInvoice", "Payments", AdditionalFields="InvoiceNumber")]
     public double InvoiceAmount { get; set; }
 
     /*==========================================================================================================================
