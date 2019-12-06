@@ -17,26 +17,26 @@
       </div>
     </div>
 
-    <div id="ClientSideErrors" class="callout alert error-message is-hidden">
-      <p>@Model.ErrorMessagesIntroduction</p>
-      <ul>
-        <li id="EmptyFieldsError" class="is-hidden">@Model.EmptyFieldsErrorMessage</li>
-        <li id="CCNumberError" class="is-hidden">@Model.CreditCardNumberErrorMessage</li>
-        <li id="ExpirationMonthError" class="is-hidden">@Model.ExpirationMonthErrorMessage</li>
-        <li id="ExpirationYearError" class="is-hidden">@Model.ExpirationYearErrorMessage</li>
-        <li id="CvvError" class="is-hidden">@Model.CvvErrorMessage</li>
-        <li id="PostalCodeError" class="is-hidden">@Model.PostalCodeErrorMessage</li>
-      </ul>
-    </div>
-    @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
-      <div class="callout success success-message">
-        <p>@Model.ConfirmationMessageSuccess</p>
-      </div>
-    }
-
     <form id="PaymentsForm" method="post" class="payments-form">
 
-      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+      <div id="ClientSideErrors" class="callout alert error-message is-hidden">
+        <p>@Model.ErrorMessagesIntroduction</p>
+        <ul>
+          <li id="EmptyFieldsError" class="is-hidden">@Model.EmptyFieldsErrorMessage</li>
+          <li id="CCNumberError" class="is-hidden">@Model.CreditCardNumberErrorMessage</li>
+          <li id="ExpirationMonthError" class="is-hidden">@Model.ExpirationMonthErrorMessage</li>
+          <li id="ExpirationYearError" class="is-hidden">@Model.ExpirationYearErrorMessage</li>
+          <li id="CvvError" class="is-hidden">@Model.CvvErrorMessage</li>
+          <li id="PostalCodeError" class="is-hidden">@Model.PostalCodeErrorMessage</li>
+        </ul>
+      </div>
+      <div asp-validation-summary="All" class="callout alert error-message"></div>
+
+      @if (!String.IsNullOrEmpty(Model.ConfirmationMessageSuccess)) {
+        <div class="callout success success-message">
+          <p>@Model.ConfirmationMessageSuccess</p>
+        </div>
+      }
 
       <div class="grid-container">
         <div class="grid-x grid-margin-x">

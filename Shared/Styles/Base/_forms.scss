@@ -186,10 +186,13 @@ textarea.error {
 .alert,
 .success {
   &.callout {
-    float                       : none;
+    float: none;
   }
+
   &.error-message,
-  &.success-message {
+  &.success-message,
+  &.validation-summary-valid,
+  &.validation-summary-errors {
     box-shadow                  : none;
     margin-left                 : 0;
     border                      : 0 none transparent;
@@ -199,21 +202,31 @@ textarea.error {
     font-weight                 : 600;
     background-color            : $palette-white;
   }
-  &.error-message {
+
+  &.error-message,
+  &.validation-summary-errors {
     border-color                : $palette-red;
     color                       : $palette-red;
+
     ul {
       margin-top                : rem-calc(16);
+
       li {
         margin-bottom           : rem-calc(8);
       }
     }
   }
+
   &.success-message {
     border-color                : $palette-green;
     color                       : $palette-green;
   }
 }
+
+.callout + .callout {
+  margin-top                    : 0px;
+}
+
 span[id*="Validator"][style*="visibility:hidden"] {
   display                       : none;
 }
@@ -225,8 +238,15 @@ span[id*="Validator"][style*="visibility:hidden"] {
   font-size                     : rem-calc(16);
   font-style                    : italic;
   color                         : $palette-grey-medium;
+
   &.error, &.validation-summary-errors {
     color                       : $palette-red;
   }
 }
 
+.validation-summary-valid {
+  display                       : none;
+}
+.validation-summary-errors {
+  display                       : block;
+}
