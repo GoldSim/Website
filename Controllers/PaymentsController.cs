@@ -191,14 +191,8 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var result                                = braintreeGateway.Transaction.Sale(request);
-      Transaction transaction                   = null;
-      if (result.Target != null) {
-        transaction                             = result.Target;
-      }
-      else if (result.Transaction != null) {
-        transaction                             = result.Transaction;
-      }
+      var result                = braintreeGateway.Transaction.Sale(request);
+      var transaction           = result.Target?? result.Transaction;
 
       if (result.IsSuccess()) {
 
