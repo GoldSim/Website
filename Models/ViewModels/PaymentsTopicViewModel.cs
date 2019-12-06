@@ -19,7 +19,6 @@ namespace GoldSim.Web.Models.ViewModels {
 
     public bool? IsValid { get; set; }
     public string ClientToken { get; set; }
-    public Dictionary<string, string> ErrorMessages { get; set; } = new Dictionary<string, string>();
     public string ErrorMessagesIntroduction { get; set; }
     public string AmountErrorMessage { get; set; }
     public string EmptyFieldsErrorMessage { get; set; }

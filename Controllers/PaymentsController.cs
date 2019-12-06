@@ -143,19 +143,15 @@ namespace GoldSim.Web.Controllers {
     public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Pass client token to model
+      | Validate binding model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topicViewModel != null) {
-        topicViewModel.ClientToken = clientToken;
+      if (!ModelState.IsValid) {
+        return TopicView(await GetViewModel(bindingModel));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!Decimal.TryParse(HttpContext.Request.Form["amount"], out var amount)) {
-        topicViewModel.IsValid = false;
-        topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
-        return topicViewResult;
-      }
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
       var emailBody             = new StringBuilder("");
@@ -257,18 +253,22 @@ namespace GoldSim.Web.Controllers {
         }
 
         // Display general error message
-        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
+        ModelState.AddModelError(
+          "TransactionStatus",
+          @"Your transaction was unsuccessful. Please correct any errors with your submission or contact " +
+          @"<a href=""mailto:software@goldsim.com"">GoldSim</a> (<a href=""tel:1-425-295-7985"">+1 (425) 295-6985</a>) for assistance."
+        );
 
         // Display transaction message returned from Braintree
         if (!String.IsNullOrEmpty(result.Message)) {
-          topicViewModel.ErrorMessages.Add("TransactionMessage", "Payment Status: " + result.Message);
+          ModelState.AddModelError("TransactionMessage", "Payment Status: " + result.Message);
           emailBody.Append(" - Transaction Result: " + result.Message);
           emailBody.AppendLine();
         }
 
         // Display any specific error messages returned from Braintree
         foreach (var error in result.Errors.DeepAll()) {
-          topicViewModel.ErrorMessages.Add(error.Code.ToString(), "Error: " + error.Message);
+          ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
           emailBody.Append(" - Error: " + error.Message);
           emailBody.AppendLine();
         }

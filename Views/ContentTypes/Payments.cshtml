@@ -17,16 +17,6 @@
       </div>
     </div>
 
-    @if (Model.ErrorMessages != null && Model.ErrorMessages.Count > 0) {
-      <div class="callout alert error-message">
-        <p>@Model.ErrorMessagesIntroduction</p>
-        <ul>
-          @foreach (string errorMessageKey in Model.ErrorMessages.Keys) {
-            <li>@Html.Raw(Model.ErrorMessages[errorMessageKey])</li>
-          }
-        </ul>
-      </div>
-    }
     <div id="ClientSideErrors" class="callout alert error-message is-hidden">
       <p>@Model.ErrorMessagesIntroduction</p>
       <ul>
@@ -45,6 +35,8 @@
     }
 
     <form id="PaymentsForm" method="post" class="payments-form">
+
+      <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
 
       <div class="grid-container">
         <div class="grid-x grid-margin-x">
