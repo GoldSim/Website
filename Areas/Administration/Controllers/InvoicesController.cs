@@ -63,12 +63,12 @@ namespace GoldSim.Web.Administration.Controllers {
     /// <summary>
     ///   Constructs a new view model containing the
     /// </summary>
-    private async Task<EditInvoicePageTopicViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
+    private async Task<EditInvoiceViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
       await CreateEditViewModel(invoiceNumber == null? null : await GetInvoiceViewModel(invoiceNumber?? 0));
 
-    private async Task<EditInvoicePageTopicViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
+    private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
       var pageContent = _topicRepository.Load("Administration:Invoices:Edit");
-      var viewModel = await _topicMappingService.MapAsync<EditInvoicePageTopicViewModel>(pageContent);
+      var viewModel = await _topicMappingService.MapAsync<EditInvoiceViewModel>(pageContent);
       viewModel.Invoice = invoice;
       return viewModel;
     }
@@ -81,7 +81,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     [HttpGet]
     public async Task<IActionResult> IndexAsync() => View(
-      await _topicMappingService.MapAsync<InvoicePageTopicViewModel>(
+      await _topicMappingService.MapAsync<InvoiceListViewModel>(
         _topicRepository.Load("Administration:Invoices")
       )
     );

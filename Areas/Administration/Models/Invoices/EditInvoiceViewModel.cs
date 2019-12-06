@@ -10,21 +10,21 @@ using Ignia.Topics.ViewModels;
 namespace GoldSim.Web.Administration.Models.Invoices {
 
   /*============================================================================================================================
-  | CLASS: EDIT INVOICE PAGE (VIEW MODEL)
+  | CLASS: EDIT INVOICE (VIEW MODEL)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   A view model for rendering an invoice form page.
   /// </summary>
-  public class EditInvoicePageTopicViewModel: PageTopicViewModel {
+  public class EditInvoiceViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="EditInvoicePageTopicViewModel"/> with appropriate dependencies.
+    ///   Initializes a new instance of a <see cref="EditInvoiceViewModel"/> with appropriate dependencies.
     /// </summary>
-    /// <returns>A <see cref="EditInvoicePageTopicViewModel"/>.</returns>
-    public EditInvoicePageTopicViewModel() {}
+    /// <returns>A <see cref="EditInvoiceViewModel"/>.</returns>
+    public EditInvoiceViewModel() {}
 
     /*==========================================================================================================================
     | INVOICE
