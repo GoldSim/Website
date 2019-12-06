@@ -24,6 +24,17 @@
       </div>
     </fieldset>
 
+    @if (Model.Invoice?.Id != null) {
+      <fieldset>
+        <div class="grid-x grid-margin-x">
+          <div class="cell form-field">
+            <input name="Invoice.DatePaid" id="DatePaid" type="checkbox" checked=@(Model.Invoice?.DatePaid != null) value="@(Model.Invoice?.DatePaid?? DateTime.Now)" />
+            <label for="DatePaid">The invoice has been paid</label>
+          </div>
+        </div>
+      </fieldset>
+    }
+
     <input type="hidden" asp-for="Invoice.Key" />
 
     <div class="grid-x grid-margin-x" style="margin-top: 1rem;">

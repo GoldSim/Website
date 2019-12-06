@@ -145,6 +145,7 @@ namespace GoldSim.Web.Administration.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       topic.Attributes.SetInteger("InvoiceNumber", invoice.InvoiceNumber);
       topic.Attributes.SetValue("InvoiceAmount", invoice.InvoiceAmount.ToString());
+      topic.Attributes.SetValue("DatePaid", invoice.DatePaid.ToString());
       topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity.Name?? "System");
       topic.LastModified = DateTime.Now;
       topic.IsHidden = true;
