@@ -181,19 +181,12 @@ namespace GoldSim.Web.Controllers {
       var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
 
       emailBody.AppendLine();
-      emailBody.AppendLine();
-      emailBody.Append("Transaction details:");
-      emailBody.AppendLine();
-      emailBody.Append(" - Cardholder Name: "   + bindingModel.CardholderName);
-      emailBody.AppendLine();
-      emailBody.Append(" - Customer Email: "    + bindingModel.Email);
-      emailBody.AppendLine();
-      emailBody.Append(" - Company Name: "      + bindingModel.Organization);
-      emailBody.AppendLine();
-      emailBody.Append(" - Invoice Number: "    + bindingModel.InvoiceNumber);
-      emailBody.AppendLine();
-      emailBody.Append(" - Amount: "            + "$" + bindingModel.InvoiceAmount);
-      emailBody.AppendLine();
+      emailBody.AppendLine("Transaction details:");
+      emailBody.AppendLine(" - Cardholder Name: "               + bindingModel.CardholderName);
+      emailBody.AppendLine(" - Customer Email: "                + bindingModel.Email);
+      emailBody.AppendLine(" - Company Name: "                  + bindingModel.Organization);
+      emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
+      emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process transaction result
@@ -222,10 +215,8 @@ namespace GoldSim.Web.Controllers {
           }
 
           emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
-          emailBody.Append(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
-          emailBody.AppendLine();
-          emailBody.Append(" - Card Type: " + transaction.CreditCard.CardType.ToString());
-          emailBody.AppendLine();
+          emailBody.AppendLine(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
+          emailBody.AppendLine(" - Card Type: " + transaction.CreditCard.CardType.ToString());
 
         }
 
@@ -246,8 +237,7 @@ namespace GoldSim.Web.Controllers {
           var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
 
           emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
-          emailBody.Append(" - Credit Card (Last Four Digits): " + (transaction.CreditCard?.LastFour ?? "Not Available"));
-          emailBody.AppendLine();
+          emailBody.AppendLine(" - Credit Card (Last Four Digits): " + (transaction.CreditCard?.LastFour ?? "Not Available"));
         }
         else {
           emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
@@ -263,15 +253,13 @@ namespace GoldSim.Web.Controllers {
         // Display transaction message returned from Braintree
         if (!String.IsNullOrEmpty(result.Message)) {
           ModelState.AddModelError("TransactionMessage", "Payment Status: " + result.Message);
-          emailBody.Append(" - Transaction Result: " + result.Message);
-          emailBody.AppendLine();
+          emailBody.AppendLine(" - Transaction Result: " + result.Message);
         }
 
         // Display any specific error messages returned from Braintree
         foreach (var error in result.Errors.DeepAll()) {
           ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
-          emailBody.Append(" - Error: " + error.Message);
-          emailBody.AppendLine();
+          emailBody.AppendLine(" - Error: " + error.Message);
         }
 
         // Set notification email body and send email
