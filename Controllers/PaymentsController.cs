@@ -152,6 +152,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice ";
       var emailBody             = new StringBuilder("");
@@ -300,7 +301,7 @@ namespace GoldSim.Web.Controllers {
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
       if (invoiceNumber == null) return Json(data: true);
-      var existingInvoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      var existingInvoice = GetInvoice(invoiceNumber);
       if (existingInvoice == null) {
         return Json(
           $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
@@ -328,8 +329,7 @@ namespace GoldSim.Web.Controllers {
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
     ) {
-      if (invoiceNumber == null || invoiceAmount == null) return Json(data: true);
-      var existingInvoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      var existingInvoice = GetInvoice(invoiceNumber);
       var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
       if (existingInvoice == null || existingAmount == null) return Json(data: true);
       if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
@@ -340,6 +340,19 @@ namespace GoldSim.Web.Controllers {
       }
       return Json(data: true);
     }
+
+    /*==========================================================================================================================
+    | FUNCTION: GET INVOICE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number, retrieves a corresponding topic.
+    /// </summary>
+    private Topic GetInvoice(int? invoiceNumber = null) {
+      if (invoiceNumber == null) return null;
+      var invoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      return invoice;
+    }
+
 
   } // Class
 
