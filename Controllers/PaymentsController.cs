@@ -80,7 +80,6 @@ namespace GoldSim.Web.Controllers {
       TransactionStatus.SUBMITTED_FOR_SETTLEMENT
     };
 
-
     /*==========================================================================================================================
     | GET VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -119,7 +118,6 @@ namespace GoldSim.Web.Controllers {
 
     }
 
-
     /*==========================================================================================================================
     | GET: INDEX (VIEW TOPIC)
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -150,16 +148,9 @@ namespace GoldSim.Web.Controllers {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var invoice               = GetInvoice(bindingModel.InvoiceNumber);
-      var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
-      var emailBody             = new StringBuilder("");
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Assemble and send Braintree transaction
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var request               = new TransactionRequest {
         Amount                  = (decimal)bindingModel.InvoiceAmount,
         PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(),
@@ -174,12 +165,47 @@ namespace GoldSim.Web.Controllers {
           SubmitForSettlement   = true
         }
       };
+      var result                = braintreeGateway.Transaction.Sale(request);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      await SendEmailReceipt(result, bindingModel);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle success
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (result.IsSuccess()) {
+        return Redirect("/Web/Purchase/PaymentConfirmation");
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return to view to display ModelState errors
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return TopicView(await GetViewModel(bindingModel));
+
+    }
+
+    /*==========================================================================================================================
+    | FUNCTION: SEND EMAIL RECEIPT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Sends an email receipt to GoldSim providing a record of the transaction.
+    /// </summary>
+    private async Task SendEmailReceipt(Result<Transaction> result, PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
       var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
+      var emailBody             = new StringBuilder("");
+      var transaction           = result.Target?? result.Transaction;
+      var creditCard            = transaction?.CreditCard;
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Apply common attributes
+      \-----------------------------------------------------------------------------------------------------------------------*/
       emailBody.AppendLine();
       emailBody.AppendLine("Transaction details:");
       emailBody.AppendLine(" - Cardholder Name: "               + bindingModel.CardholderName);
@@ -187,83 +213,67 @@ namespace GoldSim.Web.Controllers {
       emailBody.AppendLine(" - Company Name: "                  + bindingModel.Organization);
       emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
       emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
+      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ creditCard?.LastFour?? "Not Available");
+      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType?.ToString()?? "Not Available");
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Process transaction result
+      | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var result                = braintreeGateway.Transaction.Sale(request);
-      var transaction           = result.Target?? result.Transaction;
+      if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
+        notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+        emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
+        notificationEmail.Body = emailBody.ToString();
+        await _smtpService.SendAsync(notificationEmail);
+        return;
+      }
 
-      if (result.IsSuccess()) {
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Process unsuccessful result
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
 
-        // Add (subject and body) details to notification email based on transaction details
-        if (transaction != null) {
+      if (transaction != null) {
+        var status = transaction.ProcessorResponseText;
 
-          if (transaction.Status != null) {
-            if (TransactionSuccessStatuses.Contains(transaction.Status)) {
-              notificationEmail.Subject           = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
-            }
-            else {
-              notificationEmail.Subject           = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
-            }
-          }
-
-          emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
-          emailBody.AppendLine(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
-          emailBody.AppendLine(" - Card Type: " + transaction.CreditCard.CardType.ToString());
-
+        if (String.IsNullOrEmpty(status)) {
+          status = transaction.Status.ToString();
         }
 
-        // Set notification email body and send email
-        notificationEmail.Body                  = emailBody.ToString();
-
-        await _smtpService.SendAsync(notificationEmail);
-
-        // Redirect to confirmation view
-        return Redirect("/Web/Purchase/PaymentConfirmation");
-
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
       }
       else {
-
-        // Add (subject and body) details to notification email based on transaction details
-        notificationEmail.Subject               = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
-        if (transaction != null) {
-          var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
-
-          emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
-          emailBody.AppendLine(" - Credit Card (Last Four Digits): " + (transaction.CreditCard?.LastFour ?? "Not Available"));
-        }
-        else {
-          emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
-        }
-
-        // Display general error message
-        ModelState.AddModelError(
-          "TransactionStatus",
-          @"Your transaction was unsuccessful. Please correct any errors with your submission or contact " +
-          @"<a href=""mailto:software@goldsim.com"">GoldSim</a> (<a href=""tel:1-425-295-7985"">+1 (425) 295-6985</a>) for assistance."
-        );
-
-        // Display transaction message returned from Braintree
-        if (!String.IsNullOrEmpty(result.Message)) {
-          ModelState.AddModelError("TransactionMessage", "Payment Status: " + result.Message);
-          emailBody.AppendLine(" - Transaction Result: " + result.Message);
-        }
-
-        // Display any specific error messages returned from Braintree
-        foreach (var error in result.Errors.DeepAll()) {
-          ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
-          emailBody.AppendLine(" - Error: " + error.Message);
-        }
-
-        // Set notification email body and send email
-        notificationEmail.Body  = emailBody.ToString();
-
-        await _smtpService.SendAsync(notificationEmail);
-
-        // Return form view with error messages
-        return TopicView(await GetViewModel(bindingModel));
+        emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Process errors
+      \-----------------------------------------------------------------------------------------------------------------------*/
+
+      // Display general error message
+      ModelState.AddModelError(
+        "Transaction",
+        "Your transaction was unsuccessful. Please correct any errors with your submission or contact " +
+        "<a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>)" +
+        "for assistance."
+      );
+
+      // Display transaction message returned from Braintree
+      if (!String.IsNullOrEmpty(result.Message)) {
+        ModelState.AddModelError("Transaction", "Payment Status: " + result.Message);
+        emailBody.AppendLine(" - Transaction Result: " + result.Message);
+      }
+
+      // Display any specific error messages returned from Braintree
+      foreach (var error in result.Errors.DeepAll()) {
+        ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
+        emailBody.AppendLine(" - Error: " + error.Message);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      notificationEmail.Body = emailBody.ToString();
+      await _smtpService.SendAsync(notificationEmail);
 
     }
 
