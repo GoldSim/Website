@@ -27,11 +27,6 @@
 }
 
 /* Requests Table */
-table.dataTable thead th,
-table.dataTable thead td {
-  padding                       : 10px;
-}
-
 div.dataTables_wrapper {
   padding-top                   : 25px;
 }
@@ -40,38 +35,52 @@ div.dataTables_wrapper {
   display                       : none;
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button {
-  border-radius                 : 0;
-  padding                       : 0.25em 0.5em;
+.dataTables_wrapper .dataTables_paginate {
+
+  .paginate_button {
+    border-radius               : 0;
+    padding                     : 0.25em 0.5em;
+
+    &.disabled {
+      color                     : $palette-grey-light !important;
+    }
+
+    &.current,
+    &.current:hover {
+      background                : none;
+      border-color              : rgb(51, 51, 51);
+    }
+
+    &:hover {
+      background                : rgb(77, 77, 77);
+      border-color              : rgb(51, 51, 51);
+    }
+
+  }
+
+  &.paging_simple_numbers {
+    padding-top                 : 15px;
+  }
+
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button.current,
-.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
-  background                    : none;
-  border-color                  : rgb(51, 51, 51);
+table.dataTable thead {
+  th,
+  td {
+    padding                     : 10px;
+  }
+  .sorting {
+    background-image            : url('/Images/Icons/Sort.Both.png');
+  }
+  .sorting_asc {
+    background-image            : url('/Images/Icons/Sort.Ascending.png');
+  }
+  .sorting_desc {
+    background-image            : url('/Images/Icons/Sort.Descending.png');
+  }
 }
 
-.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
-  background                    : rgb(77, 77, 77);
-  border-color                  : rgb(51, 51, 51);
-}
-
-div.dataTables_paginate.paging_simple_numbers {
-  padding-top                   : 15px;
-}
-
-table.dataTable thead .sorting {
-  background-image              : url('/Images/Icons/Sort.Both.png');
-}
-
-table.dataTable thead .sorting_asc {
-  background-image              : url('/Images/Icons/Sort.Ascending.png');
-}
-
-table.dataTable thead .sorting_desc {
-  background-image              : url('/Images/Icons/Sort.Descending.png');
-}
-
+/* Hover state */
 tr.record[data-href]:hover td:not(.js-no-click) {
   background-color              : $palette-yellow;
   cursor                        : pointer;
