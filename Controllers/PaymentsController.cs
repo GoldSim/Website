@@ -178,6 +178,7 @@ namespace GoldSim.Web.Controllers {
       if (result.IsSuccess()) {
         var invoice = GetInvoice(bindingModel.InvoiceNumber);
         invoice.Attributes.SetDateTime("DatePaid", DateTime.Now);
+        TopicRepository.Save(invoice);
         return Redirect("/Web/Purchase/PaymentConfirmation");
       }
 
