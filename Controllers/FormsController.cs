@@ -442,7 +442,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var field in HttpContext.Request.Form.Keys.OrderBy(key => key).Where(key => key.StartsWith("BindingModel"))) {
+      foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel"))) {
         var fieldName = field.Replace("_", ".").Replace("BindingModel.", "");
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
         if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
