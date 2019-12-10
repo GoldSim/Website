@@ -173,6 +173,11 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
+        endpoints.MapControllerRoute(
+          name: "Payments",
+          pattern: "Web/Purchase/PayInvoice/",
+          defaults: new { controller = "Payments", action = "Index", path = "Web/Purchase/PayInvoice" }
+        );
         endpoints.MapAreaControllerRoute(
           name: "Administration",
           areaName: "Administration",
