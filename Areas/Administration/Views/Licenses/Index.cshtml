@@ -46,8 +46,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach (var request in Model.Requests)
-            {
+            @foreach (var request in Model.Requests) {
               <tr id="@Model.Key" class="record">
                 <td><input type="checkbox" name="topics" value=@request.Id /></td>
                 <td>@request.FirstName @request.LastName</td>
@@ -59,8 +58,7 @@
           </tbody>
         </table>
 
-        @if (Model.Requests.Count == 0)
-        {
+        @if (Model.Requests.Count == 0) {
           <!-- Messages Area -->
           <div id="MessagesArea" class="row Messages-Area">
             <div id="NoRequestsAlert" class="alert alert-info" role="alert" Style="margin-top: 25px; font-size: 15px;">
