@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Administration.Models.Invoices;
 using Ignia.Topics;
+using Ignia.Topics.Attributes;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Authorization;

@@ -10,6 +10,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using Ignia.Topics;
+using Ignia.Topics.Attributes;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
