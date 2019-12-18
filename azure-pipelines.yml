@@ -58,4 +58,4 @@ steps:
     DeploymentType: 'webDeploy'
     enableXmlTransform: false
     enableXmlVariableSubstitution: true
-    RemoveAdditionalFilesFlag: true
+    RemoveAdditionalFilesFlag: false
