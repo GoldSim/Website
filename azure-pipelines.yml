@@ -56,5 +56,5 @@ steps:
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     enableCustomDeployment: true
     DeploymentType: 'webDeploy'
-    enableXmlTransform: true
+    enableXmlTransform: false
     enableXmlVariableSubstitution: true
