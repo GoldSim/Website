@@ -46,3 +46,15 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'GoldSim Web Azure Subscription(10c18df6-85c7-4893-919d-c0f008a74af9)'
+    appType: 'webApp'
+    WebAppName: 'GoldSimWebStaging'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    enableCustomDeployment: true
+    DeploymentType: 'webDeploy'
+    enableXmlTransform: true
+    enableXmlVariableSubstitution: true
