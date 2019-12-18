@@ -53,7 +53,7 @@ steps:
     azureSubscription: 'GoldSim Web Azure Subscription(10c18df6-85c7-4893-919d-c0f008a74af9)'
     appType: 'webApp'
     WebAppName: 'GoldSimWebStaging'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/obj/Release/netcoreapp3.0/PubTmp/Out/**'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     enableCustomDeployment: true
     DeploymentType: 'webDeploy'
     enableXmlTransform: true
