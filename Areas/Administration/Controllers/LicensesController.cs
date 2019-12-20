@@ -3,14 +3,13 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics;
+using System;
+using System.Linq;
 using Ignia.Topics.AspNetCore.Mvc.Controllers;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Linq;
 
 namespace GoldSim.Web.Controllers {
 

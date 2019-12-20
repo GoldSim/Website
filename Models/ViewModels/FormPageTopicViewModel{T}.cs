@@ -3,9 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
 using Ignia.Topics.Models;
-using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
 

@@ -4,12 +4,8 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net.Mail;
 using System.Threading.Tasks;
-using Ignia.Topics;
-using Microsoft.Extensions.Configuration;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 

@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.Linq;
 using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.ViewModels;
-using System.Linq;
 
 namespace GoldSim.Web.Models.ViewModels {
 

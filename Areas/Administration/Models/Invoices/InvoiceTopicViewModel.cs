@@ -1,13 +1,11 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Ignia, LLC
-| Project       Topics Library
+| Client        Goldsim
+| Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics.Models;
-using Ignia.Topics.ViewModels;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Administration.Models.Invoices {
 

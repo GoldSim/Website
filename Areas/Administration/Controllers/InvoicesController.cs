@@ -3,6 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System;
+using System.Threading.Tasks;
 using GoldSim.Web.Administration.Models.Invoices;
 using Ignia.Topics;
 using Ignia.Topics.Attributes;
@@ -10,8 +12,6 @@ using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Threading.Tasks;
 
 namespace GoldSim.Web.Administration.Controllers {
 

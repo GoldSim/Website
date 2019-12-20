@@ -3,8 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
-using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.ViewModels;
 
 namespace GoldSim.Web.Administration.Models.Invoices {

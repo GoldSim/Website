@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Forms;
 
 namespace GoldSim.Web.Administration.Models.Licenses {
 

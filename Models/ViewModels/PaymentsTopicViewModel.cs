@@ -1,11 +1,10 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Ignia, LLC
-| Project       Topics Library
+| Client        Goldsim
+| Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Forms.BindingModels;
 using Ignia.Topics.ViewModels;
-using System.Collections.Generic;
 
 namespace GoldSim.Web.Models.ViewModels {
 

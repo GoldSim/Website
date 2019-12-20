@@ -3,14 +3,10 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.ComponentModel.DataAnnotations;
 using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace GoldSim.Web.Models.Forms {
 

@@ -4,13 +4,12 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Configuration;
 using Braintree;
 using Ignia.Topics;
-using Ignia.Topics.Repositories;
 using Ignia.Topics.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
+using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
 
 namespace GoldSim.Web {
 

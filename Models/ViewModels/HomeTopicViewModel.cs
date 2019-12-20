@@ -1,7 +1,7 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Ignia, LLC
-| Project       Topics Library
+| Client        Goldsim
+| Project       Website
 \=============================================================================================================================*/
 using Ignia.Topics.Mapping.Annotations;
 using Ignia.Topics.ViewModels;

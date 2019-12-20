@@ -1,10 +1,9 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Ignia, LLC
-| Project       Topics Library
+| Client        Goldsim
+| Project       Website
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace GoldSim.Web.Models.ViewModels {
 

@@ -3,15 +3,12 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
+using GoldSim.Web.Models.ViewModels;
+using Ignia.Topics.AspNetCore.Mvc.Components;
+using Ignia.Topics.AspNetCore.Mvc.Models;
 using Ignia.Topics.Mapping;
 using Ignia.Topics.Repositories;
-using Ignia.Topics.Models;
-using Ignia.Topics.AspNetCore.Mvc.Models;
-using Ignia.Topics.AspNetCore.Mvc.Components;
-using Ignia.Topics;
-using GoldSim.Web.Models.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Components {
 

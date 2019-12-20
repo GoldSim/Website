@@ -1,12 +1,12 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Ignia, LLC
-| Project       Topics Library
+| Client        Goldsim
+| Project       Website
 \=============================================================================================================================*/
 using System;
-using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
+using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
 using Ignia.Topics.Editor.Mvc.Infrastructure;
 

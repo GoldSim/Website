@@ -3,11 +3,10 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Administration.Models.Invoices;
-using GoldSim.Web.Controllers;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Models.Forms.BindingModels {
 

@@ -3,25 +3,24 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Forms.BindingModels;
-using Ignia.Topics;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using GoldSim.Web.Models.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
-using System.Threading.Tasks;
-using System.Text;
-using GoldSim.Web.Services;
-using System.Net.Mail;
-using System.Linq;
-using System.Collections.Generic;
 using System;
-using GoldSim.Web.Models.Forms;
-using Microsoft.AspNetCore.Authorization;
-using Ignia.Topics.Models;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Text;
+using System.Threading.Tasks;
+using GoldSim.Web.Models.Forms;
+using GoldSim.Web.Models.Forms.BindingModels;
+using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Services;
+using Ignia.Topics;
 using Ignia.Topics.AspNetCore.Mvc;
+using Ignia.Topics.AspNetCore.Mvc.Controllers;
+using Ignia.Topics.Mapping;
+using Ignia.Topics.Models;
+using Ignia.Topics.Repositories;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Controllers {
 
