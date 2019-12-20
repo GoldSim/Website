@@ -154,6 +154,8 @@ namespace GoldSim.Web {
       provider.Mappings[".exe"] = "application/vnd.microsoft.portable-executable";
       provider.Mappings[".gsm"] = "application/octet-stream";
       provider.Mappings[".gsp"] = "application/octet-stream";
+      provider.Mappings[".mpd"] = "application/dash+xml";
+      provider.Mappings[".m4s"] = "video/mp4";
 
       var staticFileOptions = new StaticFileOptions { ContentTypeProvider = provider };
 
