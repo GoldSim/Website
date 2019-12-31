@@ -1,0 +1,10 @@
+﻿@model Address
+
+@Html.EditorFor(model => model.Street1, new { cssClass = "" })
+@Html.EditorFor(model => model.Street2, new { cssClass = "" })
+
+@Html.EditorFor(model => model.City)
+@Html.EditorFor(model => model.Province, new { cssClass = "small-6 medium-3" })
+@Html.EditorFor(model => model.PostalCode, new { cssClass = "small-6 medium-3" })
+
+<!-- View Location: ~/Views/Forms/_Address.cshtml -->

@@ -1,0 +1,39 @@
+﻿@model TechnicalPaperListTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    <article class="page body">
+      @Html.Raw(Model.Body)
+      @if (Model.FieldCategories.Count > 0) {
+        <h1>Categories</h1>
+        <ul>
+          @foreach (var fieldCategory in Model.FieldCategories) {
+            <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
+          }
+        </ul>
+      }
+    </article>
+
+    @foreach (var fieldCategory in Model.FieldCategories) {
+      <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
+      <partial name="_TechnicalPaperList" model="@Model.GetTechnicalPapers(fieldCategory.Key)" />
+    }
+
+  </section>
+
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+}
+
+<!--
+  Content Type: Technical Paper List
+  View Location: ~/Views/TechnicalPaperList/TechnicalPaperList.cshtml
+-->

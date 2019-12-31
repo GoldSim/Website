@@ -1,0 +1,54 @@
+﻿//==============================================================================================
+// OVERRIDES
+//----------------------------------------------------------------------------------------------
+// Provides overrides of other styles, typically provided by third-party companies or other
+// teams.
+//----------------------------------------------------------------------------------------------
+// NOTE: Overrides in this file should be migrated to individual files under /Overrides and
+// imported if they get too long (say, over 10 selectors). In these cases, each file should be
+// named _vendor.scss, where "vendor" is the name of the corresponding file it is overriding.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// @import "hacks";
+@import '../foundationSettings';
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
+// ZURB FOUNDATION
+//----------------------------------------------------------------------------------------------
+* {
+  @include disable-mouse-outline;
+  outline-width                 : 0;
+  outline-color                 : transparent;
+}
+
+//----------------------------------------------------------------------------------------------
+// BRAINTREE
+//----------------------------------------------------------------------------------------------
+.payments-form {
+  input {
+    &::placeholder {
+      color                     : rgb(133, 133, 133);
+    }
+  }
+}
+.hosted-field {
+  display                       : inline-block;
+  box-sizing                    : border-box;
+  margin                        : rem-calc(0 0 16);
+  border                        : 1px solid $palette-grey-light;
+  border-radius                 : 0;
+  padding                       : 0;
+  width                         : 100%;
+  height                        : rem-calc(39);
+  &.padded {
+    padding                     : rem-calc(0 8);
+  }
+  &:focus,
+  &.braintree-hosted-fields-focused {
+    border-color                : $palette-yellow;
+  }
+}

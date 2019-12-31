@@ -1,0 +1,41 @@
+﻿@model FormPageTopicViewModel
+
+@{
+  Layout = "/Views/Layout/_Layout.cshtml";
+}
+
+<section class="panel body">
+
+  @Html.Raw(Model.Body)
+
+  <form asp-action="@ViewContext.RouteData.Values["Action"]">
+    <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+
+    @RenderSection("PageBodySection", required: false)
+
+    <div class="grid-x grid-margin-x" style="margin-top: 1rem;">
+      <div class="medium-6 cell text-left">
+        <input type="submit" value="@(Model.SubmitButtonLabel?? "Submit")" class="submit button large primary" />
+      </div>
+      <div class="medium-6 cell text-right">
+        @RenderSection("CancelButton", required: false)
+      </div>
+    </div>
+
+    @RenderSection("EndOfForm", required: false)
+
+  </form>
+</section>
+
+
+@section Scripts {
+
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+  @RenderSection("Scripts", required: false)
+
+  <script type="text/javascript" src="~/Shared/Scripts/Views/Forms.js"></script>
+
+}
+
+@section CallsToActionSection {}

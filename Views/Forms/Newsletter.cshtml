@@ -1,0 +1,17 @@
+﻿@model FormPageTopicViewModel<NewsletterFormBindingModel>
+
+@section PageBodySection {
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+      <partial name="_CoreContact" for="BindingModel" />
+    </div>
+  </fieldset>
+
+}
+
+@section CancelButton {
+  <div class="medium-6 cell text-right">
+    <button type="submit" value="Removal" name="RequestType" class="button large secondary">Unsubscribe</button>
+  </div>
+}

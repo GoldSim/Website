@@ -1,0 +1,568 @@
+﻿//==============================================================================================
+// HOME
+//----------------------------------------------------------------------------------------------
+// Represents styles specific to the GoldSim homepage.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// NOTE: It is expected that this page will co-exist with the centralized stylesheet and,
+// therefore, it is not necessary that it reimport shared styles. It may, however, need to
+// import variables and helpers.
+//----------------------------------------------------------------------------------------------
+  @import "../variables";
+  @import "../foundationSettings";
+  @import "../Helpers/mixins";
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+main {
+  > article[itemprop="mainContentOfPage"] {
+    padding                     : rem-calc(0 0 32);
+    @include breakpoint(large) {
+      padding                   : rem-calc(80 0 32);
+    }
+  }
+  > section > header {
+    position                    : relative;
+    padding                     : rem-calc(48 36);
+    box-shadow                  : inset 0 0 9px 2px rgba(32, 32, 32, 0.75);
+    background                  : $palette-black url('/Images/Home/Splash.Background.png') no-repeat center center;
+    background-size             : cover;
+    @include breakpoint(large) {
+      padding                   : rem-calc(48 0 0);             // WAS rem-calc(80 0 0)
+    }
+    @include media-screen-wide-short() {
+      padding                   : rem-calc(48 0 0);
+    }
+    .grid-container {
+      max-height                : initial;
+    }
+    @include media-screen-wide-short() {
+      h1.title.long {
+        font-size               : rem-calc(44);
+      }
+    }
+    @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+      min-height                : rem-calc(770);
+    }
+    .video {
+      &.wrapper,
+      &.preview {
+        width                   : rem-calc(240);
+        height                  : rem-calc(135);
+        @include breakpoint(medium) {
+          width                 : rem-calc(464);
+          height                : rem-calc(261);
+        }
+        @include breakpoint(large) {
+          width                 : rem-calc(553);
+          height                : rem-calc(311);
+        }
+        @include media-screen-wide-short() {
+          width                 : rem-calc(464);
+          height                : rem-calc(261);
+        }
+      }
+      &.wrapper {
+        margin                  : 0 auto 32px;
+        text-align              : center;
+        @include breakpoint(large) {
+          margin-bottom         : rem-calc(128);
+        }
+      }
+      &.preview {
+        @include clearfix;
+        display                 : table-cell;
+        position                : relative;
+        text-align              : center;
+        vertical-align          : middle;
+        background              : transparent url('/Images/Home/Video/Video.png') no-repeat center center;
+        background-size         : contain;
+        cursor                  : pointer;
+        img {
+          display               : inline-block;
+          width                 : rem-calc(44);
+          height                : rem-calc(44);
+          @include breakpoint(medium) {
+            width               : rem-calc(66);
+            height              : rem-calc(66);
+          }
+          @include breakpoint(large) {
+            width               : rem-calc(88);
+            height              : rem-calc(88);
+          }
+        }
+      }
+    }
+    .scroll.wrapper {
+      position                  : absolute;
+      right                     : 0;
+      bottom                    : rem-calc(32);
+      left                      : 0;
+      text-align                : center;
+    }
+    .arrow.scroll {
+      margin-top                : rem-calc(48);
+      width                     : rem-calc(35);
+      cursor                    : pointer;
+      @include breakpoint(medium) {
+        width                   : rem-calc(51);
+      }
+      @include breakpoint(large) {
+        width                   : rem-calc(69);
+      }
+      @include media-screen-wide-short() {
+        width                   : rem-calc(51);
+      }
+    }
+  }
+  > article {
+    padding                     : rem-calc(80 0 32);
+  }
+  .header {
+    &.js-full-height {
+      @include breakpoint(large) {
+      //min-height              : rem-calc(790);
+      }
+    }
+  }
+  section[role="region"] {
+    margin-bottom               : rem-calc(32);
+    @include breakpoint(medium) {
+      margin-bottom             : rem-calc(80);
+    }
+    @include media-screen-wide-short() {
+      margin-bottom             : rem-calc(64);
+    }
+    &:last-child {
+      margin-bottom             : 0;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// SKIN
+//----------------------------------------------------------------------------------------------
+
+// Pane/Panel Headings and Text
+.pane,
+.panel {
+  header {
+    h1 {
+      margin-bottom             : rem-calc(32);
+      text-align                : center;
+      @include breakpoint(medium) {
+        text-align              : left;
+      }
+    }
+  }
+}
+.pane {
+
+  header {
+    h1 {
+      text-align                : center;
+      @include breakpoint(medium) {
+        padding                 : rem-calc(0 110);
+        text-align              : left;
+      }
+      @include media-screen-wide-short {
+        padding                 : rem-calc(0 80);
+      }
+    }
+  }
+
+  p.text {
+    padding                     : rem-calc(0 36);
+    @include breakpoint(medium) {
+      padding                   : rem-calc(0 110);
+    }
+    @include media-screen-wide-short() {
+      padding                   : rem-calc(0 80);
+    }
+  }
+
+  // Applications
+  &.applications {
+    h2 {
+      margin                    : rem-calc(28) auto rem-calc(20);
+      font-size                 : rem-calc(20);
+      font-weight               : normal;
+      text-align                : center;
+      @include breakpoint(large) {
+        font-size               : rem-calc(24);
+      }
+    }
+    p.text {
+      margin-bottom             : rem-calc(48);
+    }
+  }
+
+  // CTAs
+  &.calls-to-action.links {
+    p.text {
+      ~ p.text {
+        margin-bottom           : rem-calc(48);
+      }
+    }
+  }
+
+}
+.panel {
+
+  // Introduction
+  &.introduction {
+    padding-right               : rem-calc(36);
+    padding-left                : rem-calc(36);
+    padding-bottom              : rem-calc(142);
+    background                  : $palette-white url('/Images/Home/Introduction.Background.Default.png') no-repeat bottom right;
+    background-size             : 75%;
+    @include breakpoint(medium) {
+      padding-right             : rem-calc(110);
+      padding-bottom            : rem-calc(280);
+      padding-left              : rem-calc(110);
+      background-size           : 62%;
+    }
+    @include breakpoint(large) {
+      padding-right             : rem-calc(415);
+      padding-bottom            : rem-calc(80);
+      background                : $palette-white url('/Images/Home/Introduction.Background.Large.png') no-repeat bottom right;
+      background-size           : contain;
+    }
+    @include media-screen-wide-short {
+      padding-left              : rem-calc(80);
+    }
+  }
+
+  // Customers
+  &.customers {
+    position                    : relative;
+    padding-bottom              : rem-calc(158);
+    background-image            : url('/Images/Home/Customers.Background.png');
+    background-position         : 100% 100%;
+    background-size             : contain;
+    background-repeat           : no-repeat;
+    @include breakpoint(medium) {
+      padding-bottom            : rem-calc(309);
+    }
+    @include breakpoint(large) {
+      padding-top               : rem-calc(64);
+      padding-right             : rem-calc(492);
+      padding-bottom            : rem-calc(64);
+      background-position       : rem-calc(136 -4);
+      background-size           : 93% 105%;
+    }
+    > header {
+      padding-right             : rem-calc(32);
+      @include breakpoint(large) {
+        padding-right           : rem-calc(64);
+      }
+    }
+    aside {
+      position                  : absolute;
+      top                       : 0;
+      right                     : 0;
+      bottom                    : auto;
+      overflow                  : hidden;
+      padding                   : rem-calc(0 110);
+      height                    : 100%;
+      font-size                 : rem-calc(30);
+      font-weight               : 600;
+      color                     : $palette-yellow;
+      text-align                : center;
+      div {
+        position                : relative;
+      }
+    }
+  }
+
+  // CTAs
+  &.calls-to-action.links {
+    padding-right               : rem-calc(320);
+    background                  : $palette-white url('/Images/Home/CTAs.Background.png') no-repeat 115% -8rem;
+  }
+
+}
+
+// Usage
+.usage {
+  .carousel-wrapper {
+    position                    : relative;
+    max-width                   : 100vmin;
+    @include breakpoint(large) {
+      max-width                 : rem-calc(960);
+    }
+  }
+  .owl-nav {
+  //position                    : absolute;
+    top                         : 0;
+    right                       : 0;
+    bottom                      : 0;
+    left                        : 0;
+    .owl-prev,
+    .owl-next {
+      z-index                   : 10;
+      display                   : inline-block;
+      position                  : absolute;
+      top                       : 0;
+      bottom                    : 0;
+      width                     : rem-calc(20);
+      background                : $palette-grey-lightest;
+      @include breakpoint(medium) {
+        width                   : rem-calc(110);
+      }
+      @include media-screen-wide-short() {
+        width                   : rem-calc(80);
+      }
+      &.disabled {
+        i.fa {
+          display               : none;
+        }
+      }
+      i.fa {
+        position                : absolute;
+        top                     : 40%;
+        font-size               : rem-calc(32);
+        color                   : lighten($palette-black, 44.5%);       // #959595
+      }
+    }
+    .owl-prev {
+      left                      : 0;
+      i.fa {
+        left                    : rem-calc(4);
+        @include breakpoint(medium) {
+          left                  : rem-calc(42);
+        }
+      }
+    }
+    .owl-next {
+      right                     : 0;
+      i.fa {
+        right                   : rem-calc(4);
+        @include breakpoint(medium) {
+          right                 : rem-calc(42);
+        }
+      }
+    }
+  }
+  .owl-item {
+    padding                     : rem-calc(0 36);
+    @include breakpoint(small only) {
+      min-height                : rem-calc(512);
+      background-color          : $palette-white;
+    }
+    @include breakpoint(medium) {
+      padding                   : rem-calc(0 110);
+    }
+    @include media-screen-wide-short {
+      padding                   : rem-calc(0 80);
+    }
+    p {
+      &:last-of-type {
+        margin-bottom           : 0;
+      }
+    }
+    .description {
+      @include breakpoint(small only) {
+        padding                 : rem-calc(12 0);
+      }
+    }
+    a.toggler {
+      display                   : block;
+      position                  : relative;
+      right                     : 0;
+      bottom                    : 0;
+      left                      : 0;
+      margin                    : rem-calc(0 -36);
+      border-bottom             : 0 none transparent;
+      padding                   : rem-calc(32 0);
+      text-align                : center;
+      color                     : $palette-white;
+      background-color          : $palette-black;
+    }
+  }
+  li {
+    padding-left                : 0;
+  }
+  h2 {
+    margin-bottom               : rem-calc(16);
+    padding                     : 0;
+    font-family                 : $body-font-family;
+    font-size                   : $body-text-size;
+    font-weight                 : 600;
+    text-align                  : center;
+    @include breakpoint(medium) {
+      text-align                : left;
+    }
+  }
+  .screenshot {
+    display                     : block;
+    margin                      : rem-calc(0 -16);
+    padding                     : 0;
+    height                      : 100%;
+    text-align                  : center;
+    @include breakpoint(medium) {
+      margin                    : 0;
+      padding                   : rem-calc(0 0 0 38);
+      text-align                : right;
+    }
+    img {
+      margin                    : 0 auto;
+      border                    : 1px solid $palette-grey-light;
+      @include breakpoint(medium) {
+        max-width               : rem-calc(331);
+      }
+    }
+  }
+}
+
+// Applications Cards
+.applications {
+  .card {
+    margin                      : rem-calc(0 36 14);
+    padding                     : rem-calc(166 0 0);
+    background-size             : contain;
+    background-position         : center top;
+    background-repeat           : no-repeat;
+    @media screen and (min-width: 400px) and (max-width: 599px) {
+      padding                   : rem-calc(224 0 0);
+    }
+    @include breakpoint(medium) {
+      margin                    : 0;
+      padding                   : rem-calc(135 0 0);
+    }
+    @include breakpoint(large) {
+      padding                   : rem-calc(198 0 0);
+    }
+    &.environmental {
+      background-image          : url('/Images/Content/Product/CT/CT_400px.png');
+      @include breakpoint(medium) {
+        margin-right            : rem-calc(-16);
+        margin-left             : rem-calc(16);
+      }
+      @include breakpoint(large) {
+        margin-right            : auto;
+        margin-left             : auto;
+      }
+    }
+    &.engineered {
+      background-image          : url('/Images/Content/Product/RL/RL_400px.png');
+    }
+    &.business {
+      background-image          : url('/Images/Content/Product/FN/FN_400px.png');
+      @include breakpoint(medium) {
+        margin-right            : rem-calc(16);
+        margin-left             : rem-calc(-16);
+      }
+      @include breakpoint(large) {
+        margin-right            : auto;
+        margin-left             : auto;
+      }
+    }
+    picture {
+      overflow                  : hidden;
+      width                     : 100%;
+      height                    : 100%;
+      max-height                : rem-calc(225);
+      img {
+        width                   : 100%;
+      }
+    }
+    ul {
+      list-style-type           : none;
+      margin                    : rem-calc(5 0 0);
+      padding-bottom            : rem-calc(32);
+      li {
+        margin-bottom           : 0;
+        padding                 : 0;
+        line-height             : 1.4;
+        a {
+          display               : block;
+          padding               : rem-calc(16 28);
+          font-weight           : normal;
+          border                : 0 none transparent;
+          &:hover,
+          &:focus,
+          &:active {
+            color               : $body-font-color;
+            background-color    : $palette-yellow;
+          }
+          &:visited {
+            color               : $body-font-color;
+          }
+        }
+        &:first-child {
+          a {
+            margin-top          : rem-calc(-16);
+          }
+        }
+        &:last-child {
+          a {
+            margin-bottom       : rem-calc(-16);
+          }
+        }
+      }
+    }
+  }
+}
+
+// CTAs
+.calls-to-action.links {
+  .cell {
+    padding                     : rem-calc(0 36);
+    text-align                  : center;
+    @include breakpoint(medium) {
+      padding                   : 0;
+    }
+    &:first-of-type {
+      .button {
+        margin-bottom           : rem-calc(18);
+      }
+      @include breakpoint(large) {
+        .button {
+          margin-bottom         : 0;
+        }
+      }
+    }
+  }
+  .button {
+    margin-bottom               : 0;
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    width                       : 100%;
+    @include breakpoint(medium) {
+      width                     : auto;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// OVERRIDES
+//----------------------------------------------------------------------------------------------
+
+// Typography
+h1.title {
+  &.short {
+    position                    : static;
+    padding-bottom              : rem-calc(8);
+    font-size                   : rem-calc(18);
+    color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+    @include breakpoint(large) {
+      font-size                 : rem-calc(30);
+    }
+  }
+  &.long {
+    margin-bottom               : rem-calc(44);
+    color                       : $palette-white;
+  }
+}
+
+// Video Popup
+.reveal-overlay {
+  background-color              : rgba(32, 32, 32, 0.85);
+}

@@ -1,0 +1,83 @@
+﻿//==============================================================================================
+// ANNOUNCEMENT
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the top-of-page announcement alert.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import "../../variables";
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+.alert-box {
+  float                         : none;
+  margin                        : 0;
+  border                        : 0 none transparent;
+  text-align                    : center;
+  &.announcement {
+    padding-right               : rem-calc(40);
+    padding-left                : rem-calc(40);
+    background-color            : $palette-yellow;
+    a {
+      font-weight               : 600;
+      text-decoration           : underline;
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited {
+        color                   : $palette-black;
+        text-decoration         : underline;
+      }
+    }
+    i.fa {
+      position                  : relative;
+      top                       : 3px;
+      margin-right              : 6px;
+      font-size                 : 24px;
+      @include breakpoint(767px down) {
+        display                 : block;
+        top                     : 0;
+        margin-right            : 0;
+        margin-bottom           : 6px;
+      }
+    }
+    button {
+      &.close-button {
+        top                     : 0;
+        right                   : rem-calc(36);
+        font-size               : rem-calc(56);
+        color                   : $palette-black;
+      }
+    }
+  }
+  &.notice {
+    z-index                     : 999;
+    position                    : fixed;
+    top                         : 0;
+    right                       : 0;
+    left                        : 0;
+    text-align                  : left;
+    color                       : $palette-white;
+    background-color            : $palette-black;
+    @include breakpoint(767px down) {
+      text-align                : center;
+    }
+    a {
+      color                     : $palette-white;
+      text-decoration           : underline;
+    }
+    button {
+      min-width                 : initial;
+      @include breakpoint(767px down) {
+        position                : static;
+        margin-top              : rem-calc(16);
+      }
+    }
+  }
+}

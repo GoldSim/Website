@@ -1,0 +1,59 @@
+﻿@model EditInvoiceViewModel
+
+<section class="panel body">
+
+  @Html.Raw(Model.Body)
+
+  <form asp-action="Edit" method="post">
+
+    <div asp-validation-summary="All" class="text-danger validation-instructions"></div>
+
+    <fieldset>
+      <div class="grid-x grid-margin-x">
+        <div class="medium-6 cell form-field">
+          <label asp-for="Invoice.InvoiceNumber" class="required"></label>
+          <input asp-for="Invoice.InvoiceNumber" type="number" class="field" />
+        </div>
+        <div class="medium-6 cell form-field">
+          <label asp-for="Invoice.InvoiceAmount" class="required"></label>
+          <span class="input-group">
+            <span class="input-group-label">$</span>
+            <input asp-for="Invoice.InvoiceAmount" type="number" placeholder="1000" class="field input-group-field" />
+          </span>
+        </div>
+      </div>
+    </fieldset>
+
+    @if (Model.Invoice?.Id != null) {
+      <fieldset>
+        <div class="grid-x grid-margin-x">
+          <div class="cell form-field">
+            <input name="Invoice.DatePaid" id="DatePaid" type="checkbox" checked=@(Model.Invoice?.DatePaid != null) value="@(Model.Invoice?.DatePaid?? DateTime.Now)" />
+            <label for="DatePaid">The invoice has been paid</label>
+          </div>
+        </div>
+      </fieldset>
+    }
+
+    <input type="hidden" asp-for="Invoice.Key" />
+
+    <div class="grid-x grid-margin-x" style="margin-top: 1rem;">
+      <div class="medium-6 cell text-left">
+        <input type="submit" value="Submit" class="submit button large primary" />
+      </div>
+      @if (Model.Invoice?.Id != null) {
+        <div class="medium-6 cell text-right">
+          <a href=@Url.Action("Delete", new { topics = Model.Invoice?.Id }) style="margin-top: 2rem" onclick="if(!confirmDelete()) return false;" class="submit button large secondary">Delete</a>
+        </div>
+      }
+    </div>
+
+  </form>
+</section>
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+  <script src="~/Shared/Scripts/Views/LicenseAdministration.js"></script>
+}
+
+@section CallsToActionSection {}

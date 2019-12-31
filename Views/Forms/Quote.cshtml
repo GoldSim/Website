@@ -1,0 +1,33 @@
+﻿@model FormPageTopicViewModel<QuoteFormBindingModel>
+
+@{
+  Layout = "/Views/Layout/_Form.cshtml";
+}
+
+@section PageBodySection {
+
+  <fieldset>
+    <legend>Product Selection</legend>
+    <div class="grid-x grid-margin-x">
+
+      <div class="cell"><p>Multiple license purchases may be subject to volume discounts.</p></div>
+      <partial name="_ProductSelection" for="BindingModel" />
+
+      @Html.EditorFor(model => model.BindingModel.Instructions, "TextArea", new { cssClass = "" })
+
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Buyer Contact Information</legend>
+    <div class="grid-x grid-margin-x">
+      <partial name="_ExtendedContact" for="BindingModel" />
+      @Html.EditorFor(model => model.BindingModel.FaxNumber, "String")
+    </div>
+  </fieldset>
+
+}
+
+@section Scripts {
+  @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
