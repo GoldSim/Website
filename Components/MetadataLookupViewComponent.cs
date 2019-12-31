@@ -6,13 +6,13 @@
 using System;
 using System.Linq;
 using GoldSim.Web.Models.ViewModels;
-using Ignia.Topics;
-using Ignia.Topics.Collections;
-using Ignia.Topics.Mapping.Annotations;
-using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using OnTopic;
+using OnTopic.Collections;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 

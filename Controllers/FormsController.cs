@@ -14,13 +14,14 @@ using GoldSim.Web.Models.Forms;
 using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
 using GoldSim.Web.Services;
-using Ignia.Topics;
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Models;
-using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.AspNetCore.Mvc.Controllers;
+using OnTopic.Mapping;
+using OnTopic.Mapping.Reverse;
+using OnTopic.Models;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 

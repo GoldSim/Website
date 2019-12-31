@@ -33,7 +33,7 @@ namespace GoldSim.Web.Models.ViewModels {
     /// <summary>
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
-    /// <returns>A <see cref="List{T}"/> of <see cref="Ignia.Topics.Topic"/>, each representing a unique card.</returns>
+    /// <returns>A <see cref="List{T}"/> of <see cref="OnTopic.Topic"/>, each representing a unique card.</returns>
     public IEnumerable<ICardViewModel> Cards { get; } = null;
 
     /*==========================================================================================================================

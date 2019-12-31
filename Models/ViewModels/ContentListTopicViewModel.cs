@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ViewModels {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a content list topic.
   /// </summary>
-  public class ContentListTopicViewModel : Ignia.Topics.ViewModels.ContentListTopicViewModel {
+  public class ContentListTopicViewModel : OnTopic.ViewModels.ContentListTopicViewModel {
 
     /*==========================================================================================================================
     | IS INDEXED?

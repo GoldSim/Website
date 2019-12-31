@@ -4,8 +4,8 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
-using Ignia.Topics.Mapping.Annotations;
-using Ignia.Topics.Models;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Models.Forms {

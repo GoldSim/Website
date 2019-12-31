@@ -53,7 +53,7 @@
 
   void WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
     <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
-      <a class="accordion-title@(viewType.Equals("faq") ? " question" : "")" href="#@contentItem.Key">
+      <a class="accordion-title@(viewType.Equals("faq")? " question" : "")" href="#@contentItem.Key">
         @if (viewType.Equals("faq")) {
           <span class="marker">Q:</span>
           <span itemprop="name">@contentItem.Title</span>
@@ -67,7 +67,7 @@
           <span class="marker">A:</span>
         }
         @Html.Raw(@contentItem.Description)
-        @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl)) {
+        @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl?.ToString())) {
           <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
         }
       </div>

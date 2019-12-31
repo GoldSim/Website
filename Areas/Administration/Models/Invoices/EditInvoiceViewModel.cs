@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics.ViewModels;
+using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Administration.Models.Invoices {
 

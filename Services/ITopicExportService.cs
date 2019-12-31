@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.Generic;
 using System.IO;
-using Ignia.Topics;
+using OnTopic;
 
 namespace GoldSim.Web {
 

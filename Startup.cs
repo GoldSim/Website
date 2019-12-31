@@ -3,8 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics.AspNetCore.Mvc;
-using Ignia.Topics.Editor.Mvc;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;

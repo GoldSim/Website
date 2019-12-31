@@ -3,8 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Ignia.Topics.Mapping.Annotations;
-using Ignia.Topics.ViewModels;
+using OnTopic.Mapping.Annotations;
+using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
 
@@ -87,7 +87,7 @@ namespace GoldSim.Web.Models.ViewModels {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
-    ///   cref="Ignia.Topics.Topic"/> in the configured <see cref="Ignia.Topics.Repositories.ITopicrepository"/>.
+    ///   cref="OnTopic.Topic"/> in the configured <see cref="OnTopic.Repositories.ITopicrepository"/>.
     /// </summary>
     public bool SaveAsTopic { get; set; } = false;
 

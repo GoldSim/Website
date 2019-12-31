@@ -42,9 +42,9 @@
 
   void WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
     <article>
-      <@element id="@contentItem.Key" class="link"><a href="@(contentItem.LearnMoreUrl?? "#")" target="_blank">@contentItem.Title</a><@("/" + element)>
-      @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage)) {
-        <a href="@(contentItem.LearnMoreUrl?? "#")" target="_blank">
+      <@element id="@contentItem.Key" class="link"><a href="@(contentItem.LearnMoreUrl?? new Uri("#"))" target="_blank">@contentItem.Title</a><@("/" + element)>
+      @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage?.ToString())) {
+        <a href="@(contentItem.LearnMoreUrl?? new Uri("#"))" target="_blank">
           <!-- Thumbnail Image -->
           <picture class="callout picture thumbnail small">
             <source srcset="@contentItem.ThumbnailImage" />

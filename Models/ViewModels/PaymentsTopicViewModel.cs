@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Forms.BindingModels;
-using Ignia.Topics.ViewModels;
+using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {
 

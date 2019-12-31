@@ -12,7 +12,7 @@
     <Company>GoldSim Technology Group</Company>
     <Product>GoldSim Website</Product>
     <Description>Models, helpers, and configuration for the GoldSim website.</Description>
-    <Copyright>Copyright © 2019</Copyright>
+    <Copyright>©2020</Copyright>
     <Authors>Ignia</Authors>
     <AssemblyVersion>2.2.0</AssemblyVersion>
   </PropertyGroup>
@@ -26,12 +26,12 @@
   <ItemGroup>
     <PackageReference Include="Braintree" Version="4.16.0" />
     <PackageReference Include="EPPlus" Version="4.5.3.2" />
-    <PackageReference Include="Ignia.Topics" Version="3.8.0-csharp8-update.34" />
-    <PackageReference Include="Ignia.Topics.ViewModels" Version="3.8.0-csharp8-update.34" />
-    <PackageReference Include="Ignia.Topics.AspNetCore.Mvc" Version="3.8.0-csharp8-update.34" />
-    <PackageReference Include="Ignia.Topics.Data.Caching" Version="3.8.0-csharp8-update.34" />
-    <PackageReference Include="Ignia.Topics.Data.Sql" Version="3.8.0-csharp8-update.34" />
-    <PackageReference Include="Ignia.Topics.Editor.Mvc" Version="4.0.0-alpha0011" />
+    <PackageReference Include="OnTopic" Version="4.0.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Editor.AspNetCore" Version="4.0.0-alpha.40" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.2" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />

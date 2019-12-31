@@ -144,7 +144,7 @@
   void WriteContentItem(SlideTopicViewModel contentItem) {
     <article data-hash="@contentItem.Key" class="slide">
       @Html.Raw(contentItem.Description)
-      @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl)) {
+      @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl?.ToString())) {
         <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
       }
     </article>

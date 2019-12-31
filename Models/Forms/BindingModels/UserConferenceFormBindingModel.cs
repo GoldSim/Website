@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
-using Ignia.Topics.Mapping.Annotations;
+using OnTopic.Mapping.Annotations;
 
 namespace GoldSim.Web.Models.Forms.BindingModels {
 

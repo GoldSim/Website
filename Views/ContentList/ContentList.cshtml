@@ -45,7 +45,7 @@
   void WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
     <article id="@contentItem.Key">
       <@element>@contentItem.Title<@("/" + element)>
-      @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage)) {
+      @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage?.ToString())) {
         <!-- Thumbnail Image -->
         <picture class="callout picture thumbnail small">
           <source srcset="@contentItem.ThumbnailImage" />
@@ -55,7 +55,7 @@
       }
       <div>
         @Html.Raw(HttpUtility.HtmlDecode(contentItem.Description))
-        @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl)) {
+        @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl?.ToString())) {
           <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
         }
       </div>

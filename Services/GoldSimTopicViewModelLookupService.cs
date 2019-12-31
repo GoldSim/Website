@@ -8,7 +8,7 @@ using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
 using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
-using Ignia.Topics.Editor.Mvc.Infrastructure;
+using OnTopic.Editor.AspNetCore.Infrastructure;
 
 namespace GoldSim.Web {
 

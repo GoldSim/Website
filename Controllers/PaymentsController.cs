@@ -13,12 +13,12 @@ using Braintree;
 using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
 using GoldSim.Web.Services;
-using Ignia.Topics;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
-using Ignia.Topics.Attributes;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic;
+using OnTopic.AspNetCore.Mvc.Controllers;
+using OnTopic.Attributes;
+using OnTopic.Mapping;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 

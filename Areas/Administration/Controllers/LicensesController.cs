@@ -5,11 +5,11 @@
 \=============================================================================================================================*/
 using System;
 using System.Linq;
-using Ignia.Topics.AspNetCore.Mvc.Controllers;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic.AspNetCore.Mvc.Controllers;
+using OnTopic.Mapping;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 

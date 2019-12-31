@@ -5,11 +5,11 @@
 \=============================================================================================================================*/
 using System.Threading.Tasks;
 using GoldSim.Web.Models.ViewModels;
-using Ignia.Topics.AspNetCore.Mvc.Components;
-using Ignia.Topics.AspNetCore.Mvc.Models;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic.AspNetCore.Mvc.Components;
+using OnTopic.AspNetCore.Mvc.Models;
+using OnTopic.Mapping.Hierarchical;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 
