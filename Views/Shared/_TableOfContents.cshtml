@@ -1,0 +1,19 @@
+﻿@model GoldSim.Web.Models.ViewModels.ContentListTopicViewModel
+
+@if (Model.IsIndexed) {
+  <aside class="contents">
+    <h1>Contents</h1>
+    <ul>
+      @if (Model.Categories != null && Model.Categories.Count > 0) {
+        foreach (var category in Model.Categories.OrderBy(c => c)) {
+          <li><a href="#@category.Key">@category.Title</a></li>
+        }
+      }
+      else {
+        foreach (var contentItem in Model.ContentItems) {
+          <li><a href="#@contentItem.Key">@contentItem.Title</a></li>
+        }
+      }
+    </ul>
+  </aside>
+}

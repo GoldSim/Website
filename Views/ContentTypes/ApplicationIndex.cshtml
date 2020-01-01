@@ -1,0 +1,70 @@
+﻿@model ApplicationIndexTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <script type="application/ld+json">
+    {
+      "@@context":"http://schema.org",
+      "@@type":"ItemList",
+      "itemListElement":[
+        @for (var i = 0; i < Model.GetAllApplications().Count; i++) {
+          <text>
+            {
+              "@@type": "ListItem",
+              "position": @(i + 1),
+              "url": "https://www.goldsim.com@(Model.GetAllApplications()[i].WebPath)"
+            } @(Model.GetAllApplications().Count.Equals(i+1)? "" : ",")
+          </text>
+        }
+      ]
+    }
+  </script>
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(Model.Body)
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel accordion">
+    <ul class="accordion applications" data-accordion data-allow-all-closed="true" data-deep-link="true">
+
+      @foreach (var category in Model.GetCategorizedApplications()) {
+
+        <!-- @category.Key -->
+        <li class="accordion-item" data-accordion-item><!--  @(Model.IsFirst()? "is-active" : "") -->
+          <a class="accordion-title" href="#@category.Key">@Model.GetCategoryTitle(category.Key)</a>
+
+          <!-- @category.Key Applications -->
+          <div class="accordion-content" data-tab-content id="@category.Key">
+            <partial name="_CardList" model="@(new CardListViewModel(category.Value, "application"))" />
+          </div>
+          <!-- /@category.Key Applications -->
+
+        </li>
+
+      }
+
+    </ul>
+  </section>
+
+}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+}
+
+<!--
+  Content Type: Application List
+  View Location: ~/Views/ApplicationIndex/ApplicationIndex.cshtml
+-->

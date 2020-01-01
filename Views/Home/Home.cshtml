@@ -1,0 +1,413 @@
+﻿@model HomeTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <meta name="google" content="nositelinkssearchbox" />
+  <script type="application/ld+json">
+    {
+      "@@context": "http://schema.org",
+      "@@type": "WebSite",
+      "url": "https://www.goldsim.com/",
+      "potentialAction": {
+        "@@type": "SearchAction",
+        "target": "https://www.goldsim.com/Web/Search/?SearchText={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@@context": "http://schema.org",
+      "@@type": "VideoObject",
+      "name": "GoldSim Monte Carlo Simulation Software",
+      "description": "An introduction to GoldSim's Monte Carlo Simulation Software",
+      "thumbnailUrl": [
+        "https://www.goldsim.com/Images/Home/Video/Video.1x1.png",
+        "https://www.goldsim.com/Images/Home/Video/Video.4x3.png",
+        "https://www.goldsim.com/Images/Home/Video/Video.16x9.png"
+      ],
+      "uploadDate": "2017-10-25T08:00:00+08:00",
+      "duration": "PT2M16S",
+      "publisher": {
+        "@@type": "Organization",
+        "name": "GoldSim Technology Group",
+        "logo": {
+          "@@type": "ImageObject",
+          "url": "https://www.goldsim.com/Images/Logo.png"
+        }
+      },
+      "contentUrl": "https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_102517.mp4"
+    }
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Home.css" />
+}
+
+@section DeferredStyles {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.carousel.min.css" />
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/OwlCarousel/owl.theme.default.min.css">
+}
+
+@section MainContentSection {
+
+  <!-- Main Site Content Area -->
+  <main id="MainContentArea" class="page content" role="main">
+
+    <!-- Page Header Area -->
+    <section id="PageHeaderSection">
+
+      <!-- Page Title Area -->
+      <header class="header">
+        <div class="grid-container">
+          <div class="grid-x grid-padding-x">
+            <div class="small-12 medium-8 medium-offset-2 centered">
+
+              <!-- Short Title -->
+              <h1 class="page title short">@Model.Title</h1>
+
+              <!-- Long Title (Subtitle) -->
+              <h1 class="page title long">@Model.Subtitle</h1>
+
+              <!-- Video -->
+              <div class="video wrapper">
+                <div class="video preview" data-open="VideoModal"><img src="~/Images/Home/Play.svg" alt="Play Video" /></div>
+              </div>
+              <div class="large reveal" id="VideoModal" data-reveal>
+                <div class="responsive-embed widescreen video">
+                  <video id="IntroductionVideo" controls>
+                    <source type="video/mp4" />
+                    Your browser does not support HTML5 video.
+                  </video>
+                </div>
+                <button class="close-button" data-close aria-label="Close modal" type="button">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <!-- /Video -->
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Scroll Indicator -->
+        <div class="scroll wrapper">
+          <img src="~/Images/Home/Arrow.Down.svg" alt="Scroll for More" class="arrow scroll" />
+        </div>
+        <!-- /Scroll Indicator -->
+
+      </header>
+      <!-- /Page Title Area -->
+
+    </section>
+    <!-- /Page Header Area -->
+
+    <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
+
+      <!-- Main Page Content -->
+      <div class="grid-x">
+
+        <!-- Introduction Pane -->
+        <section id="Introduction" class="cell panel introduction" role="region">
+          <header>
+            <h1>What is GoldSim?</h1>
+          </header>
+          @Html.Raw(Model.Introduction)
+        </section>
+        <!-- /Introduction Pane -->
+
+        <!-- Slideshow Pane -->
+        <section id="Usage" class="pane usage" role="region">
+          <header>
+            <h1>What can you do with GoldSim?</h1>
+          </header>
+          <div class="carousel-wrapper hide-for-small-only">
+            <div class="owl-carousel large" aria-label="What can you do with GoldSim?">
+              <div class="grid-x">
+                <div class="medium-6 cell description">
+                  <h2>Evaluate Alternatives Using Dynamic Simulation</h2>
+                  <p>GoldSim is a powerful and flexible software platform for visualizing and dynamically simulating the future behavior of nearly any kind of physical, financial or organizational system. You build a model in an intuitive manner by literally drawing a picture (an influence diagram) of your system. You can use these models to gain a diagnostic understanding of the system, ask "what if" questions about it, and evaluate alternative designs, policies, and plans.</p>
+                </div>
+                <div class="medium-6 cell screenshot">
+                  <picture>
+                    <source srcset="/Images/Home/Slides/Slide01.png" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
+                  </picture>
+                </div>
+              </div>
+              <div class="grid-x">
+                <div class="medium-6 cell description">
+                  <h2>Represent Uncertainty Using Monte Carlo Simulation</h2>
+                  <p>Because the real world is inherently uncertain, GoldSim has powerful features to allow you to quantitatively represent the random variability and uncertainty that is present in all systems. GoldSim uses Monte Carlo simulation to produce quantitative probabilistic predictions of future performance (e.g., "there is a 25% chance of an adverse outcome") in order to better support the decision-making process.</p>
+                </div>
+                <div class="medium-6 cell screenshot">
+                  <picture>
+                    <source srcset="/Images/Home/Slides/Slide02.png" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
+                  </picture>
+                </div>
+              </div>
+              <div class="grid-x">
+                <div class="medium-6 cell description">
+                  <h2>Represent Complex Dynamics and Build Realistic Models that Can Still be Easily Understood</h2>
+                  <p>GoldSim is a hybrid simulator, allowing you to superimpose the occurrence and consequences of discrete events (e.g., financial transactions, accidents, failures) onto continuously varying systems (i.e., material and information flows). This ability, coupled with features to support the construction of hierarchical, top-down models, facilitates the simulation of large, complex systems while keeping the models easy to understand, navigate and explain to others.</p>
+                </div>
+                <div class="medium-6 cell screenshot">
+                  <picture>
+                    <source srcset="/Images/Home/Slides/Slide03.png" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
+                  </picture>
+                </div>
+              </div>
+              <div class="grid-x">
+                <div class="medium-6 cell description">
+                  <h2>Tackle Problems that Cannot be Addressed Using Simpler Approaches</h2>
+                  <p>The product of over 25 years of development, GoldSim's powerful and flexible featues, ability to create custom interfaces, and specialized extension modules (e.g., for financial modeling, reliability analysis, and mass transport modeling) allow you to address problems that can't be adequately represented using simple simulation approaches.</p>
+                  <p>You can learn more about GoldSim by taking the <a href="/Topic/641/">Quick Tour</a>.</p>
+                </div>
+                <div class="medium-6 cell screenshot">
+                  <picture>
+                    <source srcset="/Images/Home/Slides/Slide04.png" />
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
+                  </picture>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-wrapper hide-for-medium">
+            <div class="owl-carousel small" aria-label="What can you do with GoldSim?">
+              <div>
+                <div class="description">
+                  <h2>Evaluate Alternatives Using Dynamic Simulation</h2>
+                  <p>GoldSim is a powerful and flexible software platform for visualizing and dynamically simulating the future behavior of nearly any kind of physical, financial or organizational system. You build a model in an intuitive manner by literally drawing a picture (an influence diagram) of your system. You can use these models to gain a diagnostic understanding of the system, ask "what if" questions about it, and evaluate alternative designs, policies, and plans.</p>
+                </div>
+                <picture id="Slide1Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide01.png" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide01.png" alt="Dynamic Simulation" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Represent Uncertainty Using Monte Carlo Simulation</h2>
+                  <p>Because the real world is inherently uncertain, GoldSim has powerful features to allow you to quantitatively represent the random variability and uncertainty that is present in all systems. GoldSim uses Monte Carlo simulation to produce quantitative probabilistic predictions of future performance (e.g., "there is a 25% chance of an adverse outcome") in order to better support the decision-making process.</p>
+                </div>
+                <picture id="Slide2Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide02.png" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide02.png" alt="Monte Carlo Simulation" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Represent Complex Dynamics and Build Realistic Models that Can Still be Easily Understood</h2>
+                  <p>GoldSim is a hybrid simulator, allowing you to superimpose the occurrence and consequences of discrete events (e.g., financial transactions, accidents, failures) onto continuously varying systems (i.e., material and information flows). This ability, coupled with features to support the construction of hierarchical, top-down models, facilitates the simulation of large, complex systems while keeping the models easy to understand, navigate and explain to others.</p>
+                </div>
+                <picture id="Slide3Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide03.png" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide03.png" alt="Realistic Models" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+              <div>
+                <div class="description">
+                  <h2>Tackle Problems that Cannot be Addressed Using Simpler Approaches</h2>
+                  <p>The product of over 25 years of development, GoldSim's powerful and flexible featues, ability to create custom interfaces, and specialized extension modules (e.g., for financial modeling, reliability analysis, and mass transport modeling) allow you to address problems that can't be adequately represented using simple simulation approaches.</p>
+                  <p>You can learn more about GoldSim by taking the <a href="/Topic/641/">Quick Tour</a>.</p>
+                </div>
+                <picture id="Slide4Screenshot" class="screenshot is-hidden">
+                  <source srcset="/Images/Home/Slides/Slide04.png" />
+                  <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Home/Slides/Slide04.png" alt="Complex Model" />
+                </picture>
+                <a class="toggler js-toggle-slide">View Screenshot</a>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /Slideshow Pane -->
+
+        <!-- Customers Pane -->
+        <section id="Customers" class="cell panel customers" role="region">
+          <header>
+            <h1>Where in the World is GoldSim?</h1>
+          </header>
+          <p>GoldSim is used by over 600 commercial and government organizations in nearly 60 countries worldwide.</p>
+          <p><a href="/Topic/19/">View a partial list of organizations</a> &raquo;</p>
+        </section>
+        <!-- /Customers Pane -->
+
+        <!-- Applications Pane -->
+        <section id="Applications" class="pane applications" role="region">
+          <header>
+            <h1>Learn About GoldSim Applications</h1>
+          </header>
+          <p class="text show-for-medium">GoldSim has been used for a wide range of diverse applications, ranging from modeling complex environmental systems, to comparing alternative business strategies, to evaluating the risks associated with space missions. You can explore the various GoldSim applications and view case studies below.</p>
+          <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
+            @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
+              <div class="medium-4 cell">
+                <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
+                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
+                  <ul id="@(applicationContainer.Key + "Applications")">
+                    @foreach (var application in applicationContainer.Children) {
+                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
+                    }
+                  </ul>
+                </div>
+              </div>
+            }
+          </div>
+        </section>
+        <!-- Applications Pane -->
+
+        <!-- CTAs Pane -->
+        <section id="HomeCallsToAction" class="cell pane calls-to-action links" role="region">
+          <header>
+            <h1>Learn More</h1>
+          </header>
+          <p class="text">If you are new to simulation, view a brief <a href="/Web/Introduction/">Simulation Primer</a>.</p>
+          <p class="text">If you are just beginning the process of selecting a simulation tool, <a href="/Topic/656/">read our guide for selecting one that best meets your needs</a>.</p>
+          <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
+            <div class="large-6 cell">
+              <a href="/Forms/Demo/" class="button huge white demo" onclick="trackEvent(this, 'Home CTA', 'Click', 'Demo Request'); return false;">Request a Web Demo &raquo;</a>
+            </div>
+            <div class="large-6 cell">
+              <a href="/Forms/Trial/" class="button huge white eval" onclick="trackEvent(this, 'Home CTA', 'Click', 'Trial Request'); return false;">Request a Trial Version &raquo;</a>
+            </div>
+          </div>
+        </section>
+        <!-- /CTAs Pane -->
+
+      </div>
+      <!-- /Main Page Content -->
+
+    </article>
+
+  </main>
+  <!-- /Main Site Content Area -->
+
+}
+
+@section CallsToActionSection {}
+
+@section AnnouncementSection {}
+
+@section Scripts {
+  <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
+  <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js"></script>
+  <script>
+    function init() {
+      var deferredImages = document.getElementsByTagName('img');
+      for (var i = 0; i < deferredImages.length; i++) {
+        if (deferredImages[i].getAttribute('data-src')) {
+          deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
+        }
+      }
+    }
+    window.onload = init;
+  </script>
+  <script>
+    $(function() {
+
+      /**
+       * Establish variables
+       */
+      var
+        isVideoLoaded           = false,
+        introductionPanelPosition = ($('#Introduction').offset().top - 24),
+        isSafari                = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
+        isIos                   = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+        isIe11                  = !!navigator.userAgent.match(/Trident\/7\./);
+
+      /**
+       * Handle splash screen arrow scroll click
+       */
+      $('img.arrow.scroll').click(function() {
+        $('html,body').animate({
+          scrollTop: introductionPanelPosition
+        }, 1000);
+      });
+
+      /**
+       * Instantiate carousel for large and small screens
+       */
+      $('.owl-carousel.large').owlCarousel({
+        items: 1,
+        margin: 0,
+        autoHeight: true,
+        nav: true,
+        navText: [
+          '<i class="fa fa-caret-left"></i>',
+          '<i class="fa fa-caret-right"></i>'
+        ],
+        loop: false
+      });
+      $('.owl-carousel.small').owlCarousel({
+        items: 1,
+        margin: 0,
+        autoHeight: false,
+        nav: true,
+        navText: [
+          '<i class="fa fa-caret-left"></i>',
+          '<i class="fa fa-caret-right"></i>'
+        ],
+        loop: false
+      });
+
+      /**
+       * Handle toggling of carousel slide text / screenshot
+       */
+      $.fn.toggleText = function (textOriginal, textToggled) {
+        if (this.text() == textOriginal) {
+          this.text(textToggled);
+        }
+        else {
+          this.text(textOriginal);
+        }
+        return this;
+      };
+      $('a.js-toggle-slide').click(function () {
+        $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
+        $(this).toggleText('View Screenshot', 'View Description');
+      });
+
+      /**
+       * Handle video playback based on Foundation Reveal events
+       */
+      $(document).on('open.zf.reveal', '[data-reveal]', function () {
+        if (isVideoLoaded === false) {
+          var
+            manifestUrl         = '/Media/Home/GoldSim_Overview_dash.mpd',
+            fallbackUrl         = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
+            dashPlayer          = dashjs.MediaPlayer().create();
+
+          // Only initialize DASH for supported browsers
+          if (!(isIos && isSafari) && !isIe11) {
+            dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
+          }
+          // Otherwise, use fallback / original video
+          else {
+            $('#IntroductionVideo source').attr('src', fallbackUrl);
+            $('#IntroductionVideo')[0].play();
+          }
+
+          // Toggle video loaded
+          isVideoLoaded = true;
+
+          // Track video play event
+          ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
+        }
+        else {
+          $('#IntroductionVideo')[0].play();
+        }
+      });
+      $(document).on('closed.zf.reveal', '[data-reveal]', function () {
+        $('#IntroductionVideo')[0].pause();
+      });
+
+    });
+  </script>
+}
+
+<!-- View Location: ~/Home/Index.cshtml -->

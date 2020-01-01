@@ -1,0 +1,241 @@
+﻿//==============================================================================================
+// SEARCH BAR
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the (Google Custom) site search.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import "../../variables";
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// HELPERS
+//----------------------------------------------------------------------------------------------
+@keyframes fadeInBackground {
+  0%   {
+    background-color            : transparent;
+  }
+  100% {
+    background-color            : $palette-yellow;
+  }
+}
+@keyframes fadeOutBackground {
+  0%   {
+    background-color            : $palette-yellow;
+  }
+  100% {
+    background-color            : transparent;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// OVERRIDES
+//----------------------------------------------------------------------------------------------
+// NOTE: These should be moved to a centralized _overrides.scss file. For discoverability,
+// however, the overrides are being placed here instead.
+//----------------------------------------------------------------------------------------------
+form.gsc-search-box.gsc-search-box-tools {
+  margin-bottom                 : 0;
+  font-size                     : rem-calc(30);
+  td.gsc-search-button,
+  td.gsc-clear-button,
+  td.gsib_b,
+  table.gsc-branding {
+    display                     : none;
+  }
+  table td {
+    border                      : 0 none transparent;
+    background-color            : transparent;
+  }
+  table.gsc-search-box {
+    margin-bottom               : 0;
+    padding-right               : 0;
+    tbody {
+      border                    : 0 none transparent;
+      background-color          : transparent;
+      tr {
+        border-bottom           : 0 none transparent;
+        background-color        : transparent;
+      }
+    }
+    .gsc-input > input:hover,
+    .gsc-input-box-hover,
+    .gsc-input-box-focus {
+      box-shadow                : none !important;
+    }
+    td.gsc-input {
+      border                    : 0 none transparent;
+      padding                   : 0;
+      background-color          : transparent;
+      .gsc-input-box {
+        border                  : 0 none transparent;
+        height                  : rem-calc(32);
+        background-color        : transparent;
+        table {
+          margin-bottom         : 0;
+          width                 : auto;
+          tbody {
+            border              : 0 none transparent;
+            background-color    : transparent;
+          }
+          td.gsib_a {
+            padding             : 0;
+          }
+        }
+        input.gsc-input {
+          font-size             : rem-calc(30);
+          line-height           : rem-calc(32);
+        }
+      }
+    }
+
+  }
+}
+
+table.gsc-completion-container {
+  td {
+    background-color            : $palette-white;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+.search {
+
+  &.title-bar-right {
+    height                      : 100%;
+  }
+
+  &.form {
+    display                     : table;
+    position                    : absolute;
+    top                         : 0;
+    right                       : 0;
+    bottom                      : 0;
+    width                       : auto;
+    min-height                  : rem-calc(100);
+    height                      : 100%;
+    @include breakpoint(large) {
+      max-width                 : rem-calc(420);
+    }
+    @include media-screen-wide-short {
+      min-height                : rem-calc(80);
+    }
+    form {
+      display                   : table-row;
+    }
+    input {
+      border                    : 0 none transparent;
+      margin-bottom             : 0;
+      box-shadow                : none;
+      font-size                 : rem-calc(30);
+      background-color          : transparent !important;
+      &::-webkit-input-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &::-moz-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &:-ms-input-placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+      &::placeholder {
+        color                   : transparent;
+        transition              : color 0.15s linear 0s;
+      }
+    }
+    &.closed {
+      background-color          : transparent;
+      transition                : background-color 0.2s linear 0.3s;
+      input.gsc-input,
+      input[type="search"] {
+        width                   : 0 !important;
+        transition              : width 0.4s linear;
+      }
+     .icon {
+        background-image        : url('/Images/Icons/Search.png');
+      }
+    }
+    &.open {
+      background-color          : $palette-yellow;
+      transition                : width 0.25s linear 0s, background-color 0.25s linear 0s;
+      left                      : 0;
+      width                     : 100%;
+      @include breakpoint(large) {
+        left                    : auto;
+        width                   : auto;
+      }
+      input {
+        &::-webkit-input-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &::-moz-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &:-ms-input-placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &::placeholder {
+          color                 : rgb(169, 169, 169);
+          transition            : color 0.1s linear 0.25s;
+        }
+        &.gsc-input,
+        &[type="search"] {
+          width                 : rem-calc(216) !important;
+          transition            : width 0.4s linear;
+        }
+      }
+      .icon {
+        background-image        : url('/Images/Icons/Close.png');
+      }
+    }
+    div#___gcse_0,
+    div.input,
+    .buttons {
+      display                   : table-cell;
+      vertical-align            : middle;
+      height                    : 100%;
+    }
+    .gsc-control-searchbox-only,
+    div.input {
+      margin-top                : rem-calc(1);
+      padding-left              : rem-calc(40);
+    }
+    .buttons {
+      padding-top               : rem-calc(8);
+      padding-right             : rem-calc(32);
+      @include breakpoint(medium) {
+        padding-right           : rem-calc(40);
+      }
+      width                     : rem-calc(88);
+    }
+  }
+
+  // Buttons
+  .icon {
+    min-width                   : rem-calc(32);
+    width                       : rem-calc(32);
+    min-height                  : rem-calc(32);
+    background-position         : center center;
+    background-size             : contain;
+    background-repeat           : no-repeat;
+    background-color            : transparent;
+    cursor                      : pointer;
+  }
+
+}

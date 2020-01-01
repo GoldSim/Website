@@ -1,0 +1,4 @@
+User-agent: *
+Sitemap: https://www.goldsim.com/Sitemap/
+Disallow: /Web/Applications/ExampleApplications/Documents/
+Disallow: /Web/Applications/WhitePapers/Documents/

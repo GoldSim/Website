@@ -1,0 +1,11 @@
+﻿@{
+  string announcementArea       = this.ViewData.ContainsKey("AnnouncementArea") ? this.ViewData["AnnouncementArea"].ToString() : string.Empty;
+  string linkLabel              = this.ViewData.ContainsKey("LinkLabel") ? this.ViewData["LinkLabel"].ToString() : string.Empty;
+}
+
+<!-- Announcement -->
+<div id="FooterAnnouncement" data-closable class="alert-box announcement callout warning">
+  <i class="fa fa-bullhorn"></i>
+  GoldSim User Conference and Training: September 10-12, 2018.
+  <a href="/Topic/2272" onclick="trackEvent(this, '@announcementArea Announcement Link', 'Click', '@linkLabel'); return false;">Register Now</a>!
+</div>

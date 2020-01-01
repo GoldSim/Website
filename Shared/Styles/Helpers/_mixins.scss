@@ -1,0 +1,38 @@
+﻿//==============================================================================================
+// MIXINS
+//----------------------------------------------------------------------------------------------
+// Provides style definitions intended to be re-used throughout the style library via @include
+// directives.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// SPECIAL SCREEN SIZES / BREAKPOINTS
+//----------------------------------------------------------------------------------------------
+
+@mixin media-screen-wide-short($min-width: null, $max-height: null) {
+
+  // Use provided variables, if available
+  @if ($min-width and $max-height) {
+    @media screen and (min-width: #{$min-width}) and (max-height: #{$max-height}) {
+      @content;
+    }
+  }
+
+  // Otherwise use set defaults
+  @else {
+    @media screen and (min-width: 1024px) and (max-height: 864px) {
+      @content;
+    }
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------
+// PSEUDO-SELECTORS
+//----------------------------------------------------------------------------------------------
+
+@mixin comma-delimit {
+  content                       : ',';
+  display                       : inline-block;
+  margin-right                  : rem-calc(2);
+}

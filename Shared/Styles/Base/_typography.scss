@@ -1,0 +1,112 @@
+﻿//==============================================================================================
+// TYPOGRAPHY
+//----------------------------------------------------------------------------------------------
+// Overrides type-related settings such as default fonts, headings, and common text-related
+// styles, such as .error.
+//----------------------------------------------------------------------------------------------
+// NOTE: Font imports should be placed in the _fonts.scss file.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+// NOTE: Most typography settings can be found in the GoldSim overrides / settings file for
+// Foundation (/Shared/Styles/Overrides/_foundationSettings.scss, starting line 138).
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// DEFAULTS
+//----------------------------------------------------------------------------------------------
+body,
+p,
+td,
+ol,
+ul
+ {
+  font-size                     : rem-calc(16);
+  line-height                   : 1.4;
+  @include breakpoint(medium) {
+    font-size                   : $body-text-size;
+    line-height                 : $paragraph-lineheight;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// HEADINGS
+//----------------------------------------------------------------------------------------------
+h1,
+h2 {
+  margin-bottom                 : rem-calc(18);
+  @include breakpoint(medium) {
+    margin-bottom               : rem-calc(34);
+  }
+  &.link {
+    margin-bottom               : rem-calc(12);
+    font-weight                 : 600;
+  }
+  &.case-study {
+    padding-bottom              : rem-calc(16);
+  }
+}
+h1 {
+  @include media-screen-wide-short() {
+    font-size                   : rem-calc(28);
+  }
+  &.title {
+    font-size                   : rem-calc(26);
+    line-height                 : 1.4;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(48);
+      line-height               : 1.6;
+    }
+    @include media-screen-wide-short() {
+      font-size                 : rem-calc(36);
+    }
+  }
+}
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-bottom                 : 0;
+  font-weight                   : 700;
+}
+h3,
+h4,
+h5,
+h6 {
+  font-family                   : $body-font-family;
+}
+p {
+  ~ h1,
+  ~ h2 {
+    padding-top                 : rem-calc(15);
+  }
+  header & {
+    &.subtitle {
+      margin-top                : rem-calc(12);
+      margin-bottom             : 0;
+      font-family               : $header-font-family;
+      font-size                 : rem-calc(18);
+      line-height               : 108.5%;
+      color                     : $palette-grey-medium;
+      @include breakpoint(medium) {
+        font-size               : rem-calc(28);
+      }
+      @include media-screen-wide-short() {
+        font-size               : rem-calc(24);
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL CLASSES
+//----------------------------------------------------------------------------------------------
+
+// Italics
+.author,
+.footnote {
+  font-style                    : italic;
+}

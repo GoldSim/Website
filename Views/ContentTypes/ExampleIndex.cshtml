@@ -1,0 +1,49 @@
+﻿@model ExampleIndexTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+  var applications = Model.GetAllApplications();
+}
+
+@section Head {
+  <script type="application/ld+json">
+    {
+      "@@context":"http://schema.org",
+      "@@type":"ItemList",
+      "itemListElement":[
+        @for (var i = 0; i < applications.Count; i++) {
+          <text>
+            {
+              "@@type": "ListItem",
+              "position": @(i + 1),
+              "url": "https://www.goldsim.com@(applications[i].WebPath)"
+            } @(applications.Count.Equals(i+1)? "" : ",")
+          </text>
+        }
+      ]
+    }
+  </script>
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(Model.Body)
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+    <partial name="_CardList" model="@(new CardListViewModel(applications, "case-study"))" />
+  </section>
+
+}
+
+<!--
+  Content Type: Application List
+  View Location: ~/Views/ApplicationIndex/ApplicationIndex.cshtml
+-->

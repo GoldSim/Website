@@ -1,0 +1,44 @@
+﻿//==============================================================================================
+// QUOTES
+//----------------------------------------------------------------------------------------------
+// Defines styles for quote elements.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// GLOBAL
+//----------------------------------------------------------------------------------------------
+.quote {
+  font-size                     : rem-calc(30);
+  line-height                   : 1.333;
+  &.right,
+  &.left {
+    max-width                   : 45%;
+  }
+  &.right {
+    float                       : right;
+    margin-left                 : rem-calc(56);
+  }
+  &.left {
+    float                       : left;
+    margin-right                : rem-calc(56);
+    border-left-width           : 0;
+    border-right                : 2px solid $palette-grey-medium;
+  }
+  &.full {
+    margin                      : rem-calc(40) 0;
+    border-top                  : 2px solid $palette-grey-light;
+    border-bottom               : 2px solid $palette-grey-light;
+    border-left                 : 0 none transparent;
+    padding                     : rem-calc(36) 0;
+    font-family                 : $header-font-family;
+    font-size                   : rem-calc(48);
+    font-weight                 : 300;
+    line-height                 : 1.25;
+    color                       : $palette-yellow;
+  }
+  cite {
+    padding-top                 : rem-calc(24);
+    text-align                  : right;
+  }
+}
+

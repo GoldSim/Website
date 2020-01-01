@@ -1,0 +1,124 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
+    <ApplicationInsightsResourceId>/subscriptions/10c18df6-85c7-4893-919d-c0f008a74af9/resourcegroups/GoldSimWeb/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/10c18df6-85c7-4893-919d-c0f008a74af9/resourcegroups/GoldSimWeb/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <AssemblyTitle>GoldSim Website</AssemblyTitle>
+    <Company>GoldSim Technology Group</Company>
+    <Product>GoldSim Website</Product>
+    <Description>Models, helpers, and configuration for the GoldSim website.</Description>
+    <Copyright>©2020</Copyright>
+    <Authors>Ignia</Authors>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <ExcludeFoldersFromDeployment>wwwroot\Images\Courses</ExcludeFoldersFromDeployment>
+    <ExcludeFoldersFromDeployment>wwwroot\Images\Content</ExcludeFoldersFromDeployment>
+    <ExcludeFoldersFromDeployment>wwwroot\Help</ExcludeFoldersFromDeployment>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Braintree" Version="4.16.0" />
+    <PackageReference Include="EPPlus" Version="4.5.3.2" />
+    <PackageReference Include="OnTopic" Version="4.0.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.0.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.0.0" />
+    <PackageReference Include="OnTopic.Editor.AspNetCore" Version="4.0.0" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.8.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="3.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="Sendgrid" Version="9.12.0" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TypeScriptTarget>ES5</TypeScriptTarget>
+    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
+    <TypeScriptModuleKind />
+    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
+    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
+    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
+    <TypeScriptOutFile />
+    <TypeScriptOutDir />
+    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
+    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptSourceMap>True</TypeScriptSourceMap>
+    <TypeScriptMapRoot />
+    <TypeScriptSourceRoot />
+    <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="!Admin\**" />
+    <Compile Remove="Common\**" />
+    <Compile Remove="Forms\**" />
+    <Content Remove="wwwroot\Downloads\**" />
+    <Content Remove="wwwroot\Media\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Downloads</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\eNews</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Help</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\KnowledgeBase</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Media</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Webinars</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Content</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Courses</AbsolutePath>
+    </MsDeploySkipRules>
+    <MsDeploySkipRules Include="CustomSkipFolder">
+      <ObjectName>dirPath</ObjectName>
+      <AbsolutePath>wwwroot\\Images\\Newsletter</AbsolutePath>
+    </MsDeploySkipRules>
+  </ItemGroup>
+
+  <Target Name="AfterBuild">
+    <TransformXml Source="Web.config" Transform="Web.$(Configuration).config" Destination="$(OutputPath)\$(AssemblyName).config" />
+  </Target>
+
+</Project>

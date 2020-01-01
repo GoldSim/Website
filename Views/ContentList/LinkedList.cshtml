@@ -1,0 +1,67 @@
+﻿@model GoldSim.Web.Models.ViewModels.ContentListTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PageBodySection {
+
+  <section class="panel body">
+
+    @if (!String.IsNullOrEmpty(Model.Body)) {
+      <!-- Body Content -->
+      <article class="page body">
+        @Html.Raw(Model.Body)
+      </article>
+      <!-- /Body Content -->
+    }
+
+    @if (Model.Categories != null && Model.Categories.Count > 0) {
+      foreach (var category in Model.Categories.OrderBy(c => c)) {
+        <h1 id="@category.Key">@category.Title</h1>
+        <section id="Group-@category.Key" class="content list">
+          @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
+            WriteContentItem(contentItem, "h2");
+          }
+        </section>
+      }
+    }
+    else {
+      <section class="content list">
+        @foreach (var contentItem in Model.ContentItems) {
+          WriteContentItem(contentItem);
+        }
+      </section>
+    }
+
+  </section>
+
+}
+
+@{
+
+  void WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
+    <article>
+      <@element id="@contentItem.Key" class="link"><a href="@(contentItem.LearnMoreUrl?? new Uri("#"))" target="_blank">@contentItem.Title</a><@("/" + element)>
+      @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage?.ToString())) {
+        <a href="@(contentItem.LearnMoreUrl?? new Uri("#"))" target="_blank">
+          <!-- Thumbnail Image -->
+          <picture class="callout picture thumbnail small">
+            <source srcset="@contentItem.ThumbnailImage" />
+            <img src="@contentItem.ThumbnailImage" alt="@contentItem.Title">
+          </picture>
+          <!-- /Thumbnail Image -->
+        </a>
+      }
+      <div>
+        @Html.Raw(HttpUtility.HtmlDecode(contentItem.Description))
+      </div>
+    </article>
+  }
+}
+
+<!--
+  Content Type: Content List
+  View Type: Linked List
+  View Location: ~/Views/ContentList/LinkedList.cshtml
+-->

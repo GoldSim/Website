@@ -1,0 +1,75 @@
+﻿//==============================================================================================
+// CALLS TO ACTION
+//----------------------------------------------------------------------------------------------
+// Defines styles for the CTAs panel.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import "../../variables";
+@import "../../foundationSettings";
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+.panel.calls-to-action {
+  background-color              : rgba(255, 255, 255, 0.925);
+  .headline,
+  .button-group {
+    margin-bottom               : 0;
+  }
+  .headline {
+    display                     : inline-block;
+    padding-bottom              : rem-calc(12);
+    font-family                 : $header-font-family;
+    font-size                   : rem-calc(24);
+    font-weight                 : 300;
+    text-align                  : center;
+    @include breakpoint(large) {
+      padding-bottom            : 0;
+      font-size                 : rem-calc(32);
+      text-align                : left;
+    }
+    @include media-screen-wide-short() {
+      padding-top               : rem-calc(3);
+      font-size                 : rem-calc(24);
+    }
+  }
+  .button-group {
+    @include breakpoint(medium) {
+      -webkit-box-pack          : center;
+      -ms-flex-pack             : center;
+      justify-content           : center;
+    }
+    @include breakpoint(large) {
+      -webkit-box-pack          : start;
+      -ms-flex-pack             : start;
+      justify-content           : initial;
+    }
+    .button {
+      margin-bottom             : rem-calc(8);
+      @include breakpoint(medium) {
+        max-width               : rem-calc(320);
+      }
+      @include breakpoint(large) {
+        margin-right            : rem-calc(32);
+        margin-bottom           : 0;
+        max-width               : auto;
+      }
+      &:last-of-type {
+        margin-right            : 0;
+        margin-bottom           : 0;
+        @include breakpoint(medium) {
+          margin-bottom         : rem-calc(8);
+        }
+        @include breakpoint(large) {
+          margin-bottom         : 0;
+        }
+      }
+    }
+  }
+}

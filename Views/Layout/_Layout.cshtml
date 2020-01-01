@@ -1,0 +1,223 @@
+﻿@model PageTopicViewModel
+
+<!DOCTYPE html>
+<html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>@(Model.MetaTitle?? Model.Title?? Model.Key) - GoldSim</title>
+    <meta name="keywords" content="@Model.MetaKeywords" />
+    <meta name="description" content="@Model.MetaDescription" />
+    <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
+    <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
+    <link rel="canonical" href="https://www.goldsim.com/@Context.Request.Path.Value.ToLower().TrimStart('/')" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicons/favicon-16x16.png" />
+    <link rel="manifest" href="/Images/Favicons/manifest.json" />
+    <link rel="mask-icon" href="/Images/Favicons/safari-pinned-tab.svg" color="#000000" />
+    <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" asp-append-version="true" />
+    <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
+    <meta name="theme-color" content="#ffffff" />
+    @if (Model.NoIndex?? false) {
+      <meta name="robots" content="noindex">
+    }
+    <partial name="_Breadcrumbs" />
+    @RenderSection("Head", false)
+    <script>
+      /**
+       * Initialize Google Analytics
+       */
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-2082450-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <noscript id="DeferredStyles">
+      @RenderSection("DeferredStyles", false)
+    </noscript>
+    @Html.Raw(JavaScriptSnippet.FullScript)
+  </head>
+  <body vocab="http://schema.org/" typeof="WebPage">
+
+    @if (IsSectionDefined("CookiesNoticeSection")) {
+      @RenderSection("CookiesNoticeSection")
+    } else {
+      <partial name="_CookiesNotice" />
+    }
+
+    <!-- Site Header Area -->
+	  @if (IsSectionDefined("HeaderSection")) {
+      @RenderSection("HeaderSection")
+    }
+    else {
+      <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
+
+        @if (IsSectionDefined("TitleBarSection")) {
+          @RenderSection("TitleBarSection")
+        }
+        else {
+          <!-- (Small Screen) Navigation Toggle -->
+          <div class="title-bar-left menu">
+            <button class="menu-icon hide-for-large" type="button" data-open="PrimaryNavigationSmallScreen"></button>
+          </div>
+          <!-- /(Small Screen) Navigation Toggle -->
+
+          <!-- Logo -->
+          <div class="title-bar-middle logo centered">
+            <a href="/"><img src="/Images/Logo.svg" alt="GoldSim Technology Group" class="logo" /></a>
+          </div>
+
+          <!-- Site Search -->
+          <div class="title-bar-right search">
+           <partial name="_SearchBar" />
+          </div>
+          <!-- /Site Search -->
+        }
+      </header>
+
+      <!-- Navigation Menu -->
+      <vc:menu />
+
+    }
+    <!-- /Site Header Area -->
+
+    @if (IsSectionDefined("MainContentSection")) {
+      @RenderSection("MainContentSection")
+    }
+    else {
+
+      <!-- Main Site Content Area -->
+      <main id="MainContentArea" class="page content" role="main">
+
+        @if (IsSectionDefined("PageHeaderSection")) {
+          @RenderSection("PageHeaderSection")
+        }
+        else {
+
+          <!-- Page Header Area -->
+          <section id="PageHeaderSection">
+
+            @if (IsSectionDefined("ShortPageTitleSection")) {
+              @RenderSection("ShortPageTitleSection")
+            }
+
+            @if (IsSectionDefined("PageLevelNavigationSection")) {
+              @RenderSection("PageLevelNavigationSection")
+            }
+            else {
+              <vc:page-level-navigation />
+            }
+
+          </section>
+          <!-- /Page Header Area -->
+
+        }
+
+        <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
+
+          @if (IsSectionDefined("LongTitleSection")) {
+            @RenderSection("LongTitleSection")
+          }
+          else {
+            <!-- Long Title (Subtitle) -->
+            <header class="grid-x">
+              @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
+                <h2 class="category title">@ViewBag.Context</h2>
+              }
+              <h1 class="page title long cell">
+                @(Model.ContentType.Equals("PageGroup")? "Overview" : Model.Title)
+              </h1>
+              @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
+                <p class="subtitle">@Model.Subtitle</p>
+              }
+              @if (IsSectionDefined("PostTitleSection")) {
+                @RenderSection("PostTitleSection")
+              }
+            </header>
+            <!-- /Long Title (Subtitle) -->
+          }
+
+          <!-- Main Page Content -->
+          @if (IsSectionDefined("PageBodySection")) {
+            @RenderSection("PageBodySection")
+          }
+          else {
+            <div class="grid-container">
+              <div class="grid-x">
+                @RenderBody()
+              </div>
+            </div>
+          }
+          <!-- /Main Page Content -->
+
+        </article>
+      </main>
+      <!-- /Main Site Content Area -->
+    }
+
+    @if (IsSectionDefined("CallsToActionSection")) {
+      @RenderSection("CallsToActionSection")
+    } else {
+      <vc:calls-to-action />
+    }
+
+    @if (IsSectionDefined("AnnouncementSection")) {
+      @RenderSection("AnnouncementSection")
+    } else {
+      <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
+    }
+
+    @if (IsSectionDefined("FooterSection")) {
+      @RenderSection("FooterSection")
+    } else {
+      <vc:footer />
+    }
+
+    <!-- jQuery -->
+    <script src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
+    <!-- Foundation -->
+    <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
+    <!-- Headroom -->
+    <!-- <script src="/Shared/Scripts/Vendor/Headroom/headroom.min.js" async defer></script> -->
+
+    <script>
+      var loadDeferredStyles = function () {
+        var addStylesNode = document.getElementById("DeferredStyles");
+        var replacement = document.createElement("div");
+        replacement.innerHTML = addStylesNode.textContent;
+        document.body.appendChild(replacement)
+        addStylesNode.parentElement.removeChild(addStylesNode);
+      };
+      var raf = requestAnimationFrame || mozRequestAnimationFrame ||
+        webkitRequestAnimationFrame || msRequestAnimationFrame;
+      if (raf) raf(function () { window.setTimeout(loadDeferredStyles, 0); });
+      else window.addEventListener('load', loadDeferredStyles);
+    </script>
+
+    <script type="text/javascript">
+      var appInsights=window.appInsights||function(config) {
+        function i(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),r,f;y.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)i("track"+r.pop());return i("set"+s),i("clear"+s),i(h+a),i(c+a),i(h+v),i(c+v),i("flush"),config.disableExceptionTracking||(r="onerror",i("_"+r),f=e[r],e[r]=function(config,i,u,e,o){var s=f&&f(config,i,u,e,o);return s!==!0&&t["_"+r](config,i,u,e,o),s}),t
+        }({
+            instrumentationKey:"2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
+        });
+
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+    </script>
+
+    <script>
+      /**
+       * Initialize Foundation
+       */
+      $(document).foundation();
+    </script>
+    <script src="/Shared/Scripts/Scripts.js" async defer></script>
+    @RenderSection("Scripts", false)
+
+  </body>
+</html>
