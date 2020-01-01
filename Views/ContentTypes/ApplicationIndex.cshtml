@@ -47,7 +47,7 @@
 
           <!-- @category.Key Applications -->
           <div class="accordion-content" data-tab-content id="@category.Key">
-            @Html.Partial("_CardList", new CardListViewModel(category.Value, "application"))
+            <partial name="_CardList" model="@(new CardListViewModel(category.Value, "application"))" />
           </div>
           <!-- /@category.Key Applications -->
 
@@ -61,7 +61,7 @@
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Accordion.ScrollFix.js"></script>
+  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
 }
 
 <!--

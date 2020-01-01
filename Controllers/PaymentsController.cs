@@ -7,18 +7,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using System.Web.Mvc;
 using Braintree;
-using GoldSim.Web.Models;
-using Ignia.Topics;
-using Ignia.Topics.Mapping;
-using Ignia.Topics.Repositories;
-using Ignia.Topics.Web.Mvc;
-using Ignia.Topics.Web.Mvc.Controllers;
-using Decimal = System.Decimal;
+using GoldSim.Web.Models.Forms.BindingModels;
+using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Services;
+using Microsoft.AspNetCore.Mvc;
+using OnTopic;
+using OnTopic.AspNetCore.Mvc.Controllers;
+using OnTopic.Attributes;
+using OnTopic.Mapping;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 
@@ -35,6 +35,7 @@ namespace GoldSim.Web.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private     readonly        ITopicMappingService            _topicMappingService            = null;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
+    private     readonly        ISmtpService                    _smtpService                    = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -45,12 +46,11 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public PaymentsController(
       ITopicRepository topicRepository,
-      ITopicRoutingService topicRoutingService,
       ITopicMappingService topicMappingService,
-      IBraintreeConfiguration braintreeConfiguration
+      IBraintreeConfiguration braintreeConfiguration,
+      ISmtpService smtpService
     ) : base(
       topicRepository,
-      topicRoutingService,
       topicMappingService
     ) {
 
@@ -59,6 +59,7 @@ namespace GoldSim.Web.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicMappingService      = topicMappingService;
       _braintreeConfiguration   = braintreeConfiguration;
+      _smtpService              = smtpService;
 
     }
 
@@ -79,14 +80,15 @@ namespace GoldSim.Web.Controllers {
     };
 
     /*==========================================================================================================================
-    | GET: INDEX (VIEW TOPIC)
+    | GET VIEW MODEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides access to a view associated with the current topic's Content Type, if appropriate, view (as defined by the
-    ///   query string or topic's view.
+    ///   Constructs a new <see cref="PaymentsTopicViewModel"/> based on the <see cref="TopicController.CurrentTopic"/> and,
+    ///   optionally, a <see cref="PaymentFormBindingModel"/>.
     /// </summary>
-    /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    public async override Task<ActionResult> IndexAsync(string path) {
+    /// <returns>A fully mapped <see cref="PaymentsTopicViewModel"/>.</returns>
+    [HttpGet]
+    public async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -97,24 +99,37 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+
+      viewModel.BindingModel    = bindingModel;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topicViewModel != null) {
-        topicViewModel.ClientToken = clientToken;
+      if (viewModel != null) {
+        viewModel.ClientToken = clientToken;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
+      return viewModel;
 
     }
 
     /*==========================================================================================================================
-    | POST: CREATE
+    | GET: INDEX (VIEW TOPIC)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides access to a view associated with the current topic's Content Type, if appropriate, view (as defined by the
+    ///   query string or topic's view.
+    /// </summary>
+    /// <returns>A view associated with the requested topic's Content Type and view.</returns>
+    [HttpGet]
+    public async override Task<IActionResult> IndexAsync(string path) => TopicView(await GetViewModel());
+
+    /*==========================================================================================================================
+    | POST: PROCESS PAYMENT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides payments form processing
@@ -122,163 +137,215 @@ namespace GoldSim.Web.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<ActionResult> IndexAsync() {
+    public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
+      | Validate binding model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
-      var topicViewResult       = new TopicViewResult(topicViewModel, CurrentTopic.ContentType, CurrentTopic.View);
-      var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = braintreeGateway.ClientToken.Generate();
-      string cardholderName     = Request["cardholderName"];
-      string customerEmail      = Request["customerEmail"];
-      string companyName        = Request["company"];
-      string invoiceNumber      = Request["invoice"];
-      string emailSubjectPrefix = "GoldSim Payments: Credit Card Payment for Invoice ";
-      StringBuilder emailBody   = new StringBuilder("");
-      Decimal amount;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Pass client token to model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (topicViewModel != null) {
-        topicViewModel.ClientToken = clientToken;
-      }
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Verify payment amount format
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      try {
-        amount                  = Convert.ToDecimal(Request["amount"]);
-      }
-      catch (FormatException e) {
-        topicViewModel.IsValid  = false;
-        topicViewModel.ErrorMessages.Add("AmountFormat", CurrentTopic.Attributes.GetValue("AmountErrorMessage"));
-        return topicViewResult;
+      if (!ModelState.IsValid) {
+        return TopicView(await GetViewModel(bindingModel));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble and send Braintree transaction
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var nonce                 = Request["paymentMethodNonce"];
+      var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var request               = new TransactionRequest {
-        Amount                  = amount,
-        PurchaseOrderNumber     = Request["invoice"],
-        PaymentMethodNonce      = nonce,
+        Amount                  = (decimal)bindingModel.InvoiceAmount,
+        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(),
+        PaymentMethodNonce      = bindingModel.PaymentMethodNonce,
         CustomFields            = new Dictionary<string, string> {
-          { "cardholder"        , cardholderName },
-          { "email"             , customerEmail },
-          { "company"           , companyName },
-          { "invoice"           , invoiceNumber }
+          { "cardholder"        , bindingModel.CardholderName },
+          { "email"             , bindingModel.Email },
+          { "company"           , bindingModel.Organization },
+          { "invoice"           , bindingModel.InvoiceNumber.ToString() }
         },
         Options                 = new TransactionOptionsRequest {
           SubmitForSettlement   = true
         }
       };
+      var result                = braintreeGateway.Transaction.Sale(request);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      await SendEmailReceipt(result, bindingModel);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Handle success
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (result.IsSuccess()) {
+        var invoice = GetInvoice(bindingModel.InvoiceNumber);
+        invoice.Attributes.SetDateTime("DatePaid", DateTime.Now);
+        TopicRepository.Save(invoice);
+        return Redirect("/Web/Purchase/PaymentConfirmation");
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return to view to display ModelState errors
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return TopicView(await GetViewModel(bindingModel));
+
+    }
+
+    /*==========================================================================================================================
+    | FUNCTION: SEND EMAIL RECEIPT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Sends an email receipt to GoldSim providing a record of the transaction.
+    /// </summary>
+    private async Task SendEmailReceipt(Result<Transaction> result, PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MailMessage notificationEmail             = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
-      emailBody.AppendLine();
-      emailBody.AppendLine();
-      emailBody.Append("Transaction details:");
-      emailBody.AppendLine();
-      emailBody.Append(" - Cardholder Name: "   + cardholderName);
-      emailBody.AppendLine();
-      emailBody.Append(" - Customer Email: "    + customerEmail);
-      emailBody.AppendLine();
-      emailBody.Append(" - Company Name: "      + companyName);
-      emailBody.AppendLine();
-      emailBody.Append(" - Invoice Number: "    + invoiceNumber);
-      emailBody.AppendLine();
-      emailBody.Append(" - Amount: "            + "$" + amount);
-      emailBody.AppendLine();
+      var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
+      var emailBody             = new StringBuilder("");
+      var transaction           = result.Target?? result.Transaction;
+      var creditCard            = transaction?.CreditCard;
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Process transaction result
+      | Apply common attributes
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Result<Transaction> result                = braintreeGateway.Transaction.Sale(request);
-      Transaction transaction                   = null;
-      if (result.Target != null) {
-        transaction                             = result.Target;
+      emailBody.AppendLine();
+      emailBody.AppendLine("Transaction details:");
+      emailBody.AppendLine(" - Cardholder Name: "               + bindingModel.CardholderName);
+      emailBody.AppendLine(" - Customer Email: "                + bindingModel.Email);
+      emailBody.AppendLine(" - Company Name: "                  + bindingModel.Organization);
+      emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
+      emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
+      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ creditCard?.LastFour?? "Not Available");
+      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType?.ToString()?? "Not Available");
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Process successful result
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
+        notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+        emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
+        notificationEmail.Body = emailBody.ToString();
+        await _smtpService.SendAsync(notificationEmail);
+        return;
       }
-      else if (result.Transaction != null) {
-        transaction                             = result.Transaction;
-      }
 
-      if (result.IsSuccess()) {
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Process unsuccessful result
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
 
-        // Add (subject and body) details to notification email based on transaction details
-        if (transaction != null) {
+      if (transaction != null) {
+        var status = transaction.ProcessorResponseText;
 
-          if (transaction.Status != null) {
-            if (TransactionSuccessStatuses.Contains(transaction.Status)) {
-              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Successful";
-            }
-            else {
-              notificationEmail.Subject           = emailSubjectPrefix + invoiceNumber + " Failed";
-            }
-          }
-
-          emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
-          emailBody.Append(" - Credit Card (Last Four Digits): " + transaction.CreditCard.LastFour);
-          emailBody.AppendLine();
-          emailBody.Append(" - Card Type: " + transaction.CreditCard.CardType.ToString());
-          emailBody.AppendLine();
-
+        if (String.IsNullOrEmpty(status)) {
+          status = transaction.Status.ToString();
         }
 
-        // Set notification email body and send email
-        notificationEmail.Body                  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
-
-        // Redirect to confirmation view
-        return Redirect("/Web/Purchase/PaymentConfirmation");
-
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
       }
       else {
-
-        // Add (subject and body) details to notification email based on transaction details
-        notificationEmail.Subject               = emailSubjectPrefix + invoiceNumber + " Failed";
-        if (transaction != null) {
-          var status                            = (!String.IsNullOrEmpty(transaction.ProcessorResponseText) ? transaction.ProcessorResponseText : transaction.Status.ToString());
-
-          emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
-          emailBody.Append(" - Credit Card (Last Four Digits): " + (transaction.CreditCard?.LastFour ?? "Not Available"));
-          emailBody.AppendLine();
-        }
-        else {
-          emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
-        }
-
-        // Display general error message
-        topicViewModel.ErrorMessages.Add("TransactionStatus", "Your transaction was unsuccessful. Please correct any errors with your submission or contact <a href=\"mailto:software@goldsim.com\">GoldSim</a> (<a href=\"tel:1-425-295-7985\">+1 (425) 295-6985</a>) for assistance.");
-
-        // Display transaction message returned from Braintree
-        if (!String.IsNullOrEmpty(result.Message)) {
-          topicViewModel.ErrorMessages.Add("TransactionMessage", "Payment Status: " + result.Message);
-          emailBody.Append(" - Transaction Result: " + result.Message);
-          emailBody.AppendLine();
-        }
-
-        // Display any specific error messages returned from Braintree
-        foreach (ValidationError error in result.Errors.DeepAll()) {
-          topicViewModel.ErrorMessages.Add(error.Code.ToString(), "Error: " + error.Message);
-          emailBody.Append(" - Error: " + error.Message);
-          emailBody.AppendLine();
-        }
-
-        // Set notification email body and send email
-        notificationEmail.Body  = emailBody.ToString();
-        new SmtpClient().Send(notificationEmail);
-
-        // Return form view with error messages
-        return topicViewResult;
+        emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
       }
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Process errors
+      \-----------------------------------------------------------------------------------------------------------------------*/
+
+      // Display general error message
+      ModelState.AddModelError(
+        "Transaction",
+        "Your transaction was unsuccessful. Please correct any errors with your submission or contact GoldSim at " +
+        "software@goldsim.com or +1 (425)295-6985 for assistance."
+      );
+
+      // Display transaction message returned from Braintree
+      if (!String.IsNullOrEmpty(result.Message)) {
+        ModelState.AddModelError("Transaction", "Payment Status: " + result.Message);
+        emailBody.AppendLine(" - Transaction Result: " + result.Message);
+      }
+
+      // Display any specific error messages returned from Braintree
+      foreach (var error in result.Errors.DeepAll()) {
+        ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
+        emailBody.AppendLine(" - Error: " + error.Message);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Send email
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      notificationEmail.Body = emailBody.ToString();
+      await _smtpService.SendAsync(notificationEmail);
+
     }
+
+    /*==========================================================================================================================
+    | ACTION: VERIFY INVOICE NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number, ensures the values matches a valid <see cref="InvoiceTopicViewModel"/>.
+    /// </summary>
+    /// <remarks>
+    ///   The purpose of this function is exclusively to validate whether or not an invoice number is valid. If the supplied
+    ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
+    ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
+    /// </remarks>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyInvoiceNumber(
+      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
+    ) {
+      if (invoiceNumber == null) return Json(data: true);
+      var existingInvoice = GetInvoice(invoiceNumber);
+      if (existingInvoice == null) {
+        return Json(
+          $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
+          $"If it is confirmed to be correct, contact GoldSim."
+        );
+      }
+      return Json(data: true);
+    }
+
+    /*==========================================================================================================================
+    | ACTION: VERIFY INVOICE AMOUNT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This is separated from <see cref="VerifyInvoiceNumber(int?)"/> so that we can return a distinct error for the
+    ///   <c>InvoiceNumber</c> and <c>InvoiceAmount</c>. To achieve this, the <see cref="VerifyInvoiceAmount(int?, double?)"/>
+    ///   action ignores errors that are picked up by the <see cref="VerifyInvoiceNumber(int?)"/>. That said, the methods are,
+    ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
+    ///   <c>InvoiceAmount</c>.
+    /// </remarks>
+    [HttpGet, HttpPost]
+    public IActionResult VerifyInvoiceAmount(
+      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
+      [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
+    ) {
+      var existingInvoice = GetInvoice(invoiceNumber);
+      var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
+      if (existingInvoice == null || existingAmount == null) return Json(data: true);
+      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
+        return Json(
+          $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
+          $"Please recheck the amount owed. If it is confirmed to be correct, contact GoldSim."
+        );
+      }
+      return Json(data: true);
+    }
+
+    /*==========================================================================================================================
+    | FUNCTION: GET INVOICE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an invoice number, retrieves a corresponding topic.
+    /// </summary>
+    private Topic GetInvoice(int? invoiceNumber = null) {
+      if (invoiceNumber == null) return null;
+      var invoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
+      return invoice;
+    }
+
 
   } // Class
 

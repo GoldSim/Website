@@ -1,11 +1,12 @@
-﻿@using System.Configuration;
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @{
   ViewBag.Title = "Search";
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
 @section Head {
-  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.min.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" />
 }
 
 @section PageBodySection {
@@ -45,8 +46,8 @@
      * Establish Bing Search API variables
      */
     var
-      apiKey                    = '@ConfigurationManager.AppSettings["BingSearchPrimaryApiKey"]',
-      customConfig              = '@ConfigurationManager.AppSettings["BingSearchCustomConfigID"]',
+      apiKey                    = '@Configuration["BingSearch:PrimaryApiKey"]',
+      customConfig              = '@Configuration["BingSearch:CustomConfigID"]',
       searchQuery               = getQuerystringValue('SearchText'),
       baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
       totalResults              = 0;

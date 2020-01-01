@@ -23,7 +23,7 @@
       <div class="owl-carousel">
         @if (Model.ContentItems.Count > 0) {
           foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
-            @WriteContentItem(contentItem)
+            WriteContentItem(contentItem);
           }
         }
       </div>
@@ -139,14 +139,19 @@
   </script>
 }
 
-@helper WriteContentItem(SlideTopicViewModel contentItem) {
-  <article data-hash="@contentItem.Key" class="slide">
-    @Html.Raw(contentItem.Description)
-    @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl)) {
-      <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
-    }
-  </article>
+@{
+
+  void WriteContentItem(SlideTopicViewModel contentItem) {
+    <article data-hash="@contentItem.Key" class="slide">
+      @Html.Raw(contentItem.Description)
+      @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl?.ToString())) {
+        <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
+      }
+    </article>
+  }
+
 }
+
 <!--
   Content Type: Slideshow
   View Location: ~/Views/Slideshow/Slideshow.cshtml

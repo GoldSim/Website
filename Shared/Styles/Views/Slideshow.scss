@@ -127,9 +127,9 @@
     border-radius               : 50%;
     width                       : rem-calc(12);
     height                      : rem-calc(12);
-    background-color            : $palette-grey-light;
+    background-color            : $palette-grey-light !important;
     &.active {
-      background-color          : $palette-yellow;
+      background-color          : $palette-yellow  !important;
     }
   }
 }

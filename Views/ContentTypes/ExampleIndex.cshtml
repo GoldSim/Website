@@ -38,7 +38,7 @@
 @section PageBodySection {
 
   <section class="panel body">
-    @Html.Partial("_CardList", new CardListViewModel(applications, "case-study"))
+    <partial name="_CardList" model="@(new CardListViewModel(applications, "case-study"))" />
   </section>
 
 }

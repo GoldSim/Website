@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@model PageTopicViewModel
+
+<!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
   <head>
     <meta charset="UTF-8">
@@ -9,17 +11,20 @@
     <meta name="description" content="@Model.MetaDescription" />
     <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
     <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
-    <link rel="canonical" href="https://www.goldsim.com/@Request.Path.ToLower().TrimStart('/')" />
+    <link rel="canonical" href="https://www.goldsim.com/@Context.Request.Path.Value.ToLower().TrimStart('/')" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicons/favicon-16x16.png" />
     <link rel="manifest" href="/Images/Favicons/manifest.json" />
     <link rel="mask-icon" href="/Images/Favicons/safari-pinned-tab.svg" color="#000000" />
     <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" asp-append-version="true" />
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.min.css?@(DateTime.Now.ToString("yyyyMMddhh"))" />
-    @Html.Partial("_Breadcrumbs")
+    @if (Model.NoIndex?? false) {
+      <meta name="robots" content="noindex">
+    }
+    <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
     <script>
       /**
@@ -33,16 +38,16 @@
       ga('send', 'pageview');
     </script>
     <noscript id="DeferredStyles">
-      <link rel="stylesheet" type="text/css" href="/Shared/Styles/Vendor/FontAwesome/font-awesome.min.css" />
       @RenderSection("DeferredStyles", false)
     </noscript>
+    @Html.Raw(JavaScriptSnippet.FullScript)
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
     } else {
-      @Html.Partial("_CookiesNotice")
+      <partial name="_CookiesNotice" />
     }
 
     <!-- Site Header Area -->
@@ -69,14 +74,14 @@
 
           <!-- Site Search -->
           <div class="title-bar-right search">
-            @Html.Partial("_SearchBar")
+           <partial name="_SearchBar" />
           </div>
           <!-- /Site Search -->
         }
       </header>
 
       <!-- Navigation Menu -->
-      @Html.Action("Menu", "Layout")
+      <vc:menu />
 
     }
     <!-- /Site Header Area -->
@@ -105,7 +110,7 @@
               @RenderSection("PageLevelNavigationSection")
             }
             else {
-              @Html.Action("PageLevelNavigation", "Layout")
+              <vc:page-level-navigation />
             }
 
           </section>
@@ -158,23 +163,23 @@
     @if (IsSectionDefined("CallsToActionSection")) {
       @RenderSection("CallsToActionSection")
     } else {
-      @Html.Action("CallsToAction", "Layout")
+      <vc:calls-to-action />
     }
 
     @if (IsSectionDefined("AnnouncementSection")) {
       @RenderSection("AnnouncementSection")
     } else {
-      // @Html.Partial("_Announcement", null, new ViewDataDictionary { { "AnnouncementArea", "Footer" }, { "LinkLabel", "User Conference Overview" } })
+      <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
     }
 
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
     } else {
-      @Html.Action("Footer", "Layout")
+      <vc:footer />
     }
 
     <!-- jQuery -->
-    <script src="/Shared/Scripts/Vendor/jQuery/jquery-3.0.0.min.js"></script>
+    <script src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
     <!-- Foundation -->
     <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
     <!-- Headroom -->

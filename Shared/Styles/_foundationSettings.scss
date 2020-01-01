@@ -65,7 +65,7 @@
 //----------------------------------------------------------------------------------------------
 // IMPORT DEPENDENCIES
 //----------------------------------------------------------------------------------------------
-@import 'Vendor/ZURB/util/util';
+@import '../../node_modules/foundation-sites/scss/util/util';
 @import 'variables';
 
 //----------------------------------------------------------------------------------------------
@@ -79,7 +79,7 @@ $foundation-palette             : (
   primary       : $palette-yellow,                              // WAS #1779ba
   secondary     : $palette-grey-light,                          // WAS #767676
   success       : $palette-green,                               // WAS #3adb76
-  warning       : rgb(197, 145, 14),                          // WAS #ffae00
+  warning       : rgb(197, 145, 14),                            // WAS #ffae00
   alert         : $palette-red,                                 // WAS #cc4b37
 );
 $light-gray                     : $palette-grey-lighter;        // WAS #e6e6e6
@@ -524,8 +524,12 @@ $meter-fill-bad                 : $alert-color;
 // 25. Off-canvas
 //----------------------------------------------------------------------------------------------
 
-$offcanvas-size                 : 31.25rem;                     // WAS 250px
-$offcanvas-vertical-size        : 250px;
+$offcanvas-sizes                : (
+  small                         : 31.25rem,                     // WAS 250px
+);
+$offcanvas-vertical-sizes       : (
+  small                         : 250px,
+);
 $offcanvas-background           : $light-gray;
 $offcanvas-shadow               : 0 0 10px rgba($black, 0.7);
 $offcanvas-inner-shadow-size    : 20px;

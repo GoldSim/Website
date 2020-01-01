@@ -1,0 +1,20 @@
+﻿@model FormPageTopicViewModel<DemoFormBindingModel>
+
+@section PageBodySection {
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+
+      <partial name="_Contact" for="BindingModel" />
+      <partial name="_Requirements" for="BindingModel" />
+
+      @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
+
+      <partial name="_Referral" for="BindingModel" />
+
+      <input asp-for="BindingModel.AcceptTermsOfUse" type="hidden" value="true" />
+
+    </div>
+  </fieldset>
+
+}

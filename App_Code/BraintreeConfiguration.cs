@@ -4,9 +4,12 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Configuration;
 using Braintree;
-using Ignia.Topics;
+using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.Configuration;
+using OnTopic;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Repositories;
 
 namespace GoldSim.Web {
 
@@ -24,7 +27,9 @@ namespace GoldSim.Web {
     | PRIVATE FIELDS
     \-------------------------------------------------------------------------------------------------------------------------*/
     private                     IBraintreeGateway               _braintreeGateway               = null;
-    private readonly            ITopicRoutingService            _topicRoutingService            = null;
+    private readonly            ITopicRepository                _topicRepository;
+    private readonly            IConfiguration                  _configuration;
+    private readonly            RouteData                       _routeData;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,8 +38,10 @@ namespace GoldSim.Web {
     ///   Establishes a new instance of the <see cref="BraintreeConfiguration"/>, including any shared dependencies to be used
     ///   across instances of controllers.
     /// </summary>
-    public BraintreeConfiguration(ITopicRoutingService topicRoutingService) {
-      _topicRoutingService      = topicRoutingService;
+    public BraintreeConfiguration(ITopicRepository topicRepository, IConfiguration configuration, RouteData routeData) {
+      _topicRepository          = topicRepository;
+      _configuration            = configuration;
+      _routeData                = routeData;
     }
 
     /*==========================================================================================================================
@@ -52,19 +59,13 @@ namespace GoldSim.Web {
     ///   Instantiates the Braintree communication gateway, utilizing the appropriate Braintree environment and API credentials.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway CreateGateway() {
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Return the Braintree API gateway
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      return new BraintreeGateway(
+    public IBraintreeGateway CreateGateway() =>
+      new BraintreeGateway(
         Braintree.Environment.ParseEnvironment(Environment),
         GetConfigurationSetting(nameof(MerchantId), MerchantId),
         GetConfigurationSetting(nameof(PublicKey), PublicKey),
         GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
       );
-
-    }
 
     /*==========================================================================================================================
     | GET GATEWAY
@@ -75,14 +76,11 @@ namespace GoldSim.Web {
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
     public IBraintreeGateway GetGateway() {
-
       if (_braintreeGateway == null) {
         _braintreeGateway = CreateGateway();
       }
-
       return _braintreeGateway;
     }
-
 
     /*==========================================================================================================================
     | GET CONFIGURATION SETTING
@@ -101,16 +99,17 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var paymentsTopic         = _topicRoutingService.GetCurrentTopic();
+      var paymentsTopic         = _topicRepository.Load(_routeData);
       var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
-      var compositeVariable     = $"Braintree{environmentVariable}{variable}";
+      var compositeVariable     = $"Braintree:{environmentVariable}:{variable}";
+      var compositeAttributeKey = $"Braintree{environmentVariable}{variable}";
       var value                 = defaultValue;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get API credentials from Payments Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
-        value = paymentsTopic.Attributes.GetValue(compositeVariable);
+        value = paymentsTopic.Attributes.GetValue(compositeAttributeKey);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -124,7 +123,7 @@ namespace GoldSim.Web {
       | Get API credentials from App Settings
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
-        value = ConfigurationManager.AppSettings[compositeVariable];
+        value = _configuration.GetValue<string>(compositeVariable);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

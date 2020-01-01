@@ -1,0 +1,64 @@
+﻿@model NavigationViewModel<GoldSim.Web.Models.ViewModels.NavigationTopicViewModel>
+
+@if (Model.NavigationRoot.Children.Count > 0) {
+  <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
+    <button class="close-button" aria-label="Close menu" type="button" data-close>
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false">
+      <!-- data-submenu-toggle="true" -->
+      @foreach (var topic in Model.NavigationRoot.Children) {
+        @WriteMenu(topic, false);
+      }
+    </ul>
+  </nav>
+
+  <nav id="PrimaryNavigation" class="navigation primary grid-x show-for-large">
+    <div class="cell">
+      <ul class="menu dropdown align-center" data-dropdown-menu>
+        @foreach (var topic in Model.NavigationRoot.Children) {
+          @WriteMenu(topic, true);
+        }
+      </ul>
+    </div>
+  </nav>
+
+}
+
+@{
+
+  IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
+
+  IHtmlContent WriteMenu(GoldSim.Web.Models.ViewModels.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) => Body(
+
+  @<li>
+    <a
+      href="@(topic.Children.Count <= 2 || isDesktop? topic.WebPath : "#")"
+      class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")"
+      onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')"
+    >
+      @(topic.ShortTitle?? topic.Title?? topic.Key)
+    </a>
+
+    @if (topic.Children.Count > 2) {
+      <ul class="menu @(isDesktop? "dropdown" : "vertical") @(topic.IsSelected(Model.CurrentKey)? "is-active" : "") nested"@(isDesktop? " data-dropdown-menu" : "")>
+
+        @if (!isDesktop) {
+          <li>
+            <a
+              href="@topic.WebPath"
+              class="@(topic.UniqueKey.Equals(Model.CurrentKey)? "selected" : "")"
+              onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')"
+            >Overview</a>
+          </li>
+        }
+        @foreach (var childTopic in topic.Children) {
+          @WriteMenu(childTopic, isDesktop, indentLevel + 1);
+        }
+      </ul>
+    }
+  </li>
+
+  );
+
+}

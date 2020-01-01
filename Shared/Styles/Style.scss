@@ -6,6 +6,13 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
+// IMPORT SETTINGS
+//----------------------------------------------------------------------------------------------
+// NOTE: If changes must be made to foundationSettings, please document them inline.
+//----------------------------------------------------------------------------------------------
+@import 'foundationSettings';
+
+//----------------------------------------------------------------------------------------------
 // IMPORT VARIABLES
 //----------------------------------------------------------------------------------------------
 // NOTE: When possible, all changes should be made to variables. Only when that is not practical
@@ -16,7 +23,7 @@
 //----------------------------------------------------------------------------------------------
 // IMPORT EXTERNAL LIBRARIES
 //----------------------------------------------------------------------------------------------
-@import "Vendor/Zurb/foundation";
+@import "../../node_modules/foundation-sites/scss/foundation";
 // @include foundation-everything;
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;

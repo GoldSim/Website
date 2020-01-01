@@ -5,10 +5,7 @@
 node_modules/*
 
 # These are needed, however, they're generated so don't need/want to track
-css/app.css.map
-*.css.map
-css/app.min.css
-js/app.min.js
+wwwroot/Shared/**/*
 
 # User-specific files
 *.suo
@@ -360,7 +357,6 @@ typings/
 /bower_components
 **/*/.sass-cache
 *.sass-cache*
-gulpFile.js
 gulpSecrets.js
 
 # Custom
@@ -372,8 +368,8 @@ compilerconfig.json
 compilerconfig.json.defaults
 Common/Global/
 \!Admin/
-Images/Content/
+wwwroot/Images/Content/
 Downloads
-Images/Courses/
+wwwroot/Images/Courses/
 Help/
 Media/

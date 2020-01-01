@@ -1,0 +1,12 @@
+﻿@model Profile
+
+<span style="margin-top: 3rem;"></span>
+
+@Html.EditorFor(model => model.ReferralSource, "Select")
+@Html.EditorFor(model => model.ReferralDetails)
+
+<div class="cell">
+  <p class="instructions">Please provide additional details for other search engines, journal name, specific trade show, etc.</p>
+</div>
+
+<!-- View Location: ~/Views/Forms/_Referral.cshtml -->

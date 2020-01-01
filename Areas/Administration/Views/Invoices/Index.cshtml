@@ -1,0 +1,86 @@
+﻿@model InvoiceListViewModel
+
+@section Head {
+  <link href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" />
+  <link href="~/Shared/Styles/Views/Administration.css" rel="stylesheet" />
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="embedded pane body">
+    @Html.Raw(Model.Body)
+  </section>
+  <!-- Body Content -->
+
+}
+
+@section PageBodySection {
+
+  <section class="panel">
+
+    <form asp-action="Delete" method="post">
+
+      <!-- Actions (Delete) -->
+      <div class="actions top">
+        <a class="button large" href="@Url.Action("Edit")">New Invoice</a>
+        <button class="button large" onclick="if(!confirmDelete()) return false;">Delete Selected</button>
+      </div>
+      <!-- /Actions (Delete) -->
+
+      <!-- Edit Form -->
+      <div class="wide table-wrapper">
+
+        <table id="Records" class="table table-striped table-responsive table-highlight" data-provide="datatable" data-display-rows="10" data-info="false" data-search="false" data-length-change="false" data-paginate="true">
+          <thead>
+            <tr>
+              <th data-filterable="false" data-sortable="false"><input type="checkbox" name="selectAllRecords" value="1" id="SelectAllRecords" /></th>
+              <th data-filterable="true" data-sortable="true" class="sorting Header"><span class="Sort Label">Invoice Number</span></th>
+              <th data-filterable="true" data-sortable="true" class="sorting Header"><span class="Sort Label">Invoice Amount</span></th>
+              <th data-filterable="true" data-sortable="true" class="sorting Header"><span class="Sort Label">Paid?</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var invoice in Model.Invoices.OrderByDescending(m => m.InvoiceNumber)) {
+              <tr id="@Model.Key" class="record" data-href="@Url.Action("Edit", new { id=invoice.InvoiceNumber })">
+                <td class="js-no-click"><input type="checkbox" name="topics" value=@invoice.Id /></td>
+                <td>@invoice.InvoiceNumber</td>
+                <td>$@invoice.InvoiceAmount</td>
+                <td>@invoice.DatePaid?.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+
+        @if (Model.Invoices.Count == 0) {
+          <!-- Messages Area -->
+          <div id="MessagesArea" class="row Messages-Area">
+            <div id="NoRequestsAlert" class="alert alert-info" role="alert" Style="margin-top: 25px; font-size: 15px;">
+              There are currently no invoices entered into the system.
+            </div>
+          </div>
+          <!-- /Messages Area -->
+        }
+
+      </div>
+      <!-- /Edit Form -->
+
+    </form>
+  </section>
+}
+
+@section Scripts {
+  <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+  <script src="~/Shared/Scripts/Views/Administration.js"></script>
+  <script>
+    $('table[id*="Records"]').DataTable({
+      pageLength                  : 75,
+      //'paging'                  : false,
+      lengthMenu                  : [[10, 25, 50, -1], [10, 25, 50, "All"]],
+      order                       : [[1, 'desc']],
+      stateSave                   : false
+    });
+  </script>
+}
+
+@section CallsToActionSection {}

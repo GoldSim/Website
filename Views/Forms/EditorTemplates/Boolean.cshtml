@@ -1,0 +1,15 @@
+﻿@model Boolean
+
+@{
+  if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
+    cssClass = "medium-6";
+  }
+  ViewData.TryGetValue("style", out var style);
+}
+
+<div class="@cssClass cell checkbox" style=@style>
+  <input type="checkbox" asp-for="@Model" />
+  <label asp-for="@Model"></label>
+</div>
+
+<!-- View Location: ~/Views/Forms/EditorTemplates/Boolean.cshtml -->

@@ -9,9 +9,10 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
-// @import "../Vendor/RedCastor/awesome-foundation6-checkbox";
 @import '../foundationSettings';
 @import '../variables';
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/variables";
+@import "../../../node_modules/awesome-foundation6-checkbox/src/awesome-foundation6-checkbox";
 
 //----------------------------------------------------------------------------------------------
 // FIELDSET
@@ -160,17 +161,23 @@ span.radio {
 label {
   &.required {
     font-weight                 : 600;
+    &:before {
+      content                   : "*"
+    }
   }
 }
+
+.field-validation-error,
 .is-invalid-label,
-label.Error {
+label.error {
   font-weight                   : 600;
   color                         : $palette-red;
 }
+.input-validation-error,
 .is-invalid-input,
-input.Error,
-select.Error,
-textarea.Error {
+input.error,
+select.error,
+textarea.error {
   &:not(:focus) {
     border-color                : $palette-red;
     background-color            : $palette-white;
@@ -179,10 +186,13 @@ textarea.Error {
 .alert,
 .success {
   &.callout {
-    float                       : none;
+    float: none;
   }
+
   &.error-message,
-  &.success-message {
+  &.success-message,
+  &.validation-summary-valid,
+  &.validation-summary-errors {
     box-shadow                  : none;
     margin-left                 : 0;
     border                      : 0 none transparent;
@@ -192,21 +202,31 @@ textarea.Error {
     font-weight                 : 600;
     background-color            : $palette-white;
   }
-  &.error-message {
+
+  &.error-message,
+  &.validation-summary-errors {
     border-color                : $palette-red;
     color                       : $palette-red;
+
     ul {
       margin-top                : rem-calc(16);
+
       li {
         margin-bottom           : rem-calc(8);
       }
     }
   }
+
   &.success-message {
     border-color                : $palette-green;
     color                       : $palette-green;
   }
 }
+
+.callout + .callout {
+  margin-top                    : 0px;
+}
+
 span[id*="Validator"][style*="visibility:hidden"] {
   display                       : none;
 }
@@ -214,12 +234,19 @@ span[id*="Validator"][style*="visibility:hidden"] {
 //----------------------------------------------------------------------------------------------
 // SUPPORTING STYLES
 //----------------------------------------------------------------------------------------------
-.instructions {
+.instructions, .validation-instructions {
   font-size                     : rem-calc(16);
   font-style                    : italic;
   color                         : $palette-grey-medium;
-  &.error {
+
+  &.error, &.validation-summary-errors {
     color                       : $palette-red;
   }
 }
 
+.validation-summary-valid {
+  display                       : none;
+}
+.validation-summary-errors {
+  display                       : block;
+}
