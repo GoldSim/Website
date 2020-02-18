@@ -158,6 +158,11 @@ namespace GoldSim.Web {
 
         nameof(SitemapController) => new SitemapController(_topicRepository),
 
+        nameof(ErrorController) => new ErrorController(
+          _topicRepository,
+          _topicMappingService
+        ),
+
         nameof(PaymentsController) => new PaymentsController(
             _topicRepository,
             _topicMappingService,
