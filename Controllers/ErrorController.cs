@@ -72,6 +72,20 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
+    | ERROR: DISPATCH
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an error code, attempts to identify an appropriate topic and return a corresponding error page.
+    /// </summary>
+    [HttpGet]
+    public IActionResult Dispatch(HttpStatusCode statusCode) =>
+      statusCode switch {
+        HttpStatusCode.NotFound => Redirect("/Error/" + statusCode.ToString()),
+        HttpStatusCode.Unauthorized => Redirect("/Error/" + statusCode.ToString()),
+        _ => Content(statusCode.ToString())
+      };
+
+    /*==========================================================================================================================
     | ERROR: TRIGGER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
