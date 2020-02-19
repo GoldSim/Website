@@ -136,6 +136,7 @@ namespace GoldSim.Web {
       }
       else {
         app.UseExceptionHandler("/Error/InternalServer/");
+        app.UseStatusCodePagesWithReExecute("/Error/Dispatch/", "?statusCode={0}");
         app.UseHttpsRedirection();
         app.UseHsts();
       }
