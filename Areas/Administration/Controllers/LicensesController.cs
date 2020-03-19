@@ -26,7 +26,8 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService     _topicExportService     = null;
+    private     readonly        ITopicExportService             _topicExportService             = null;
+    private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -56,7 +57,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = TopicRepository.Load("Root:Administration:Licenses")?.Children;
+      var licenseRequestContainer       = TopicRepository.Load(_licenseRoot)?.Children;
       var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);

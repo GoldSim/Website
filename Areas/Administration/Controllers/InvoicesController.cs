@@ -30,6 +30,7 @@ namespace GoldSim.Web.Administration.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
+    private readonly            string                          _invoiceRoot                    = "Root:Administration:Invoices";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -131,8 +132,8 @@ namespace GoldSim.Web.Administration.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var parentTopic           = _topicRepository.Load($"Administration:Invoices");
-      var topic                 = _topicRepository.Load($"Administration:Invoices:{invoice.Key?? invoice.InvoiceNumber}");
+      var parentTopic           = _topicRepository.Load(_invoiceRoot);
+      var topic                 = _topicRepository.Load($"{_invoiceRoot}:{invoice.Key?? invoice.InvoiceNumber}");
 
       if (topic == null) {
         topic                   = TopicFactory.Create(invoice.InvoiceNumber.ToString(), "Invoice", parentTopic);
