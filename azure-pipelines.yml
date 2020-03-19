@@ -50,7 +50,7 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'GoldSim Web Azure Subscription(10c18df6-85c7-4893-919d-c0f008a74af9)'
+    azureSubscription: 'Azure Subscription'
     appType: 'webApp'
     WebAppName: 'GoldSimWebStaging'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
