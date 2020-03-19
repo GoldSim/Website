@@ -82,7 +82,13 @@ namespace GoldSim.Web.Controllers {
       | Delete topics
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var topicId in topics) {
+        if (topicId < 0) {
+          continue;
+        }
         var topic = TopicRepository.Load(topicId);
+        if (!topic.GetUniqueKey().StartsWith(_licenseRoot, StringComparison.InvariantCultureIgnoreCase)) {
+          continue;
+        }
         TopicRepository.Delete(topic);
       }
 
