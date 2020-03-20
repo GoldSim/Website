@@ -50,12 +50,13 @@ steps:
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
-    azureSubscription: 'GoldSim Web Azure Subscription(10c18df6-85c7-4893-919d-c0f008a74af9)'
+    azureSubscription: 'Azure Subscription'
     appType: 'webApp'
     WebAppName: 'GoldSimWebStaging'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     enableCustomDeployment: true
     DeploymentType: 'webDeploy'
     enableXmlTransform: false
-    enableXmlVariableSubstitution: true
-    RemoveAdditionalFilesFlag: false
+    enableXmlVariableSubstitution: false
+    RemoveAdditionalFilesFlag: true
+    AdditionalArguments: '-retryAttempts:6 -retryInterval:10000 -skip:objectName=dirPath,absolutePath=wwwroot\\Downloads -skip:objectName=dirPath,absolutePath=wwwroot\\eNews -skip:objectName=dirPath,absolutePath=wwwroot\\Help -skip:objectName=dirPath,absolutePath=wwwroot\\KnowledgeBase -skip:objectName=dirPath,absolutePath=wwwroot\\Media -skip:objectName=dirPath,absolutePath=wwwroot\\Webinars -skip:objectName=dirPath,absolutePath=wwwroot\\Images\\Content -skip:objectName=dirPath,absolutePath=wwwroot\\Images\\Courses -skip:objectName=dirPath,absolutePath=wwwroot\\Images\\Newsletter'
