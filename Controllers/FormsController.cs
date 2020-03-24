@@ -290,9 +290,9 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      subject                   = subject??     "GoldSim.com/Forms: " + CurrentTopic.Key;
-      recipient                 = recipient??   "Software@GoldSim.com";
-      sender                    = sender??      "Website@GoldSim.com";
+      subject                   ??= "GoldSim.com/Forms: " + CurrentTopic.Key;
+      recipient                 ??= "Software@GoldSim.com";
+      sender                    ??= "Website@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
@@ -324,7 +324,7 @@ namespace GoldSim.Web.Controllers {
       var subject               = webpage.ShortTitle?? webpage.Title?? webpage.Key?? "GoldSim Request";
       var request               = HttpContext.Request;
       var url                   = new Uri($"{request.Scheme}://{request.Host}{webpage.WebPath}");
-      sender                    = sender?? "Software@GoldSim.com";
+      sender                    ??= "Software@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble body
