@@ -396,19 +396,16 @@ namespace GoldSim.Web.Controllers {
       var       parentKey       = "Administration:Licenses";
       var       parentTopic     = TopicRepository.Load(parentKey);
 
-      if (parentTopic == null) {
-        throw new Exception($"The topic '{parentKey}' could not be found. A root topic to store forms to is required.");
-      }
-
       /*------------------------------------------------------------------------------------------------------------------------
       | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var       topic           = await _reverseMappingService.MapAsync(bindingModel);
+      var       errorMessage    = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent              = parentTopic;
+      topic.Parent              = parentTopic?? throw new Exception(errorMessage);
       topic.LastModified        = DateTime.Now;
 
       /*------------------------------------------------------------------------------------------------------------------------
