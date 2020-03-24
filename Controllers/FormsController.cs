@@ -466,13 +466,13 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     public static string ToTitleCase(string input) {
 
-      if (string.IsNullOrEmpty(input)) return input;
+      if (String.IsNullOrEmpty(input)) return input;
 
       var sb = new StringBuilder();
-      sb.Append(char.ToUpper(input[0]));
+      sb.Append(Char.ToUpper(input[0]));
 
       for(var i=1; i < input.Length; i++) {
-        if(char.IsUpper(input[i]) || char.IsDigit(input[i])) sb.Append(' ');
+        if(Char.IsUpper(input[i]) || Char.IsDigit(input[i])) sb.Append(' ');
         sb.Append(input[i]);
       }
 
