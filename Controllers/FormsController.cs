@@ -297,11 +297,11 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
-
-      mail.Subject              = subject;
-      mail.Body                 = GetEmailBody();
-      mail.IsBodyHtml           = true;
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+        Subject                 = subject,
+        Body                    = GetEmailBody(),
+        IsBodyHtml              = true
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -336,11 +336,11 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
-
-      mail.Subject              = subject;
-      mail.Body                 = pageContents;
-      mail.IsBodyHtml           = true;
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+        Subject                 = subject,
+        Body                    = pageContents,
+        IsBodyHtml              = true
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
