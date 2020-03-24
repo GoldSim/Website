@@ -107,8 +107,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Optionally send customer receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var coreContact = bindingModel as CoreContact;
-      if (viewModel.CustomerEmail != null && coreContact != null) {
+      if (viewModel.CustomerEmail != null && bindingModel is CoreContact coreContact) {
         await SendCustomerReceipt(viewModel.CustomerEmail, coreContact.Email, viewModel.EmailSender);
       }
 
