@@ -107,8 +107,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Optionally send customer receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var coreContact = bindingModel as CoreContact;
-      if (viewModel.CustomerEmail != null && coreContact != null) {
+      if (viewModel.CustomerEmail != null && bindingModel is CoreContact coreContact) {
         await SendCustomerReceipt(viewModel.CustomerEmail, coreContact.Email, viewModel.EmailSender);
       }
 
@@ -290,18 +289,18 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      subject                   = subject??     "GoldSim.com/Forms: " + CurrentTopic.Key;
-      recipient                 = recipient??   "Software@GoldSim.com";
-      sender                    = sender??      "Website@GoldSim.com";
+      subject                   ??= "GoldSim.com/Forms: " + CurrentTopic.Key;
+      recipient                 ??= "Software@GoldSim.com";
+      sender                    ??= "Website@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
-
-      mail.Subject              = subject;
-      mail.Body                 = GetEmailBody();
-      mail.IsBodyHtml           = true;
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+        Subject                 = subject,
+        Body                    = GetEmailBody(),
+        IsBodyHtml              = true
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -324,7 +323,7 @@ namespace GoldSim.Web.Controllers {
       var subject               = webpage.ShortTitle?? webpage.Title?? webpage.Key?? "GoldSim Request";
       var request               = HttpContext.Request;
       var url                   = new Uri($"{request.Scheme}://{request.Host}{webpage.WebPath}");
-      sender                    = sender?? "Software@GoldSim.com";
+      sender                    ??= "Software@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble body
@@ -336,11 +335,11 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient));
-
-      mail.Subject              = subject;
-      mail.Body                 = pageContents;
-      mail.IsBodyHtml           = true;
+      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+        Subject                 = subject,
+        Body                    = pageContents,
+        IsBodyHtml              = true
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -397,19 +396,16 @@ namespace GoldSim.Web.Controllers {
       var       parentKey       = "Administration:Licenses";
       var       parentTopic     = TopicRepository.Load(parentKey);
 
-      if (parentTopic == null) {
-        throw new Exception($"The topic '{parentKey}' could not be found. A root topic to store forms to is required.");
-      }
-
       /*------------------------------------------------------------------------------------------------------------------------
       | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var       topic           = await _reverseMappingService.MapAsync(bindingModel);
+      var       errorMessage    = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent              = parentTopic;
+      topic.Parent              = parentTopic?? throw new Exception(errorMessage);
       topic.LastModified        = DateTime.Now;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -466,13 +462,13 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     public static string ToTitleCase(string input) {
 
-      if (string.IsNullOrEmpty(input)) return input;
+      if (String.IsNullOrEmpty(input)) return input;
 
       var sb = new StringBuilder();
-      sb.Append(char.ToUpper(input[0]));
+      sb.Append(Char.ToUpper(input[0]));
 
       for(var i=1; i < input.Length; i++) {
-        if(char.IsUpper(input[i]) || char.IsDigit(input[i])) sb.Append(' ');
+        if(Char.IsUpper(input[i]) || Char.IsDigit(input[i])) sb.Append(' ');
         sb.Append(input[i]);
       }
 
