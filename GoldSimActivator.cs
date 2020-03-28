@@ -213,7 +213,7 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
 
       //Handle standard topic editor view components
-      if (_standardEditorComposer.IsEditorComponent(viewComponentType)) {
+      if (StandardEditorComposer.IsEditorComponent(viewComponentType)) {
         return _standardEditorComposer.ActivateEditorComponent(
           viewComponentType,
           _topicRepository
