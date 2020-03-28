@@ -26,7 +26,8 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService     _topicExportService     = null;
+    private     readonly        ITopicExportService             _topicExportService             = null;
+    private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -56,7 +57,7 @@ namespace GoldSim.Web.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = TopicRepository.Load("Root:Administration:Licenses")?.Children;
+      var licenseRequestContainer       = TopicRepository.Load(_licenseRoot)?.Children;
       var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);
@@ -81,7 +82,13 @@ namespace GoldSim.Web.Controllers {
       | Delete topics
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var topicId in topics) {
+        if (topicId < 0) {
+          continue;
+        }
         var topic = TopicRepository.Load(topicId);
+        if (!topic.GetUniqueKey().StartsWith(_licenseRoot, StringComparison.InvariantCultureIgnoreCase)) {
+          continue;
+        }
         TopicRepository.Delete(topic);
       }
 
