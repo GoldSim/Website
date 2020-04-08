@@ -140,6 +140,24 @@ namespace GoldSim.Web.Controllers {
     public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate invoice
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      // ### HACK JJC20200408: One might reasonably expect for the [Remote] model validation attribute to be validated as part
+      // of ModelState.IsValid, but it doesn't appear to be. As a result, it needs to be revalidated here.
+      var invoice = GetInvoice(bindingModel.InvoiceNumber);
+      var invoiceAmount = invoice.Attributes.GetInteger("InvoiceAmount", -1);
+      if (invoice == null) {
+        ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
+      }
+      else if (invoice.Attributes.GetInteger("InvoiceAmount", -1) != bindingModel.InvoiceAmount) {
+        ModelState.AddModelError(
+          "InvoiceAmount",
+          $"The invoice {bindingModel.InvoiceNumber} is correct, but doesn't match the expected invoice amount. Please " +
+          $"recheck the amount owed. If it is confirmed to be correct, contact GoldSim."
+        );
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Validate binding model
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!ModelState.IsValid) {
@@ -175,7 +193,6 @@ namespace GoldSim.Web.Controllers {
       | Handle success
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (result.IsSuccess()) {
-        var invoice = GetInvoice(bindingModel.InvoiceNumber);
         invoice.Attributes.SetDateTime("DatePaid", DateTime.Now);
         TopicRepository.Save(invoice);
         return Redirect("/Web/Purchase/PaymentConfirmation");
