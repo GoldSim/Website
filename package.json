@@ -39,7 +39,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "headroom.js": "^0.11.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jshint": "^2.11.0",
     "merge2": "^1.3.0",
     "owl.carousel": "^2.3.4",
