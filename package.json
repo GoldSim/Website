@@ -44,7 +44,8 @@
     "merge2": "^1.3.0",
     "owl.carousel": "^2.3.4",
     "scrollmagic": "^2.0.7",
-    "simple-pagination.js": "^1.6.0"
+    "simple-pagination.js": "^1.6.0",
+    "what-input": "^5.2.10"
   },
   "dependencies": {}
 }
