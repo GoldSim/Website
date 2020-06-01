@@ -145,11 +145,11 @@ namespace GoldSim.Web.Controllers {
       // ### HACK JJC20200408: One might reasonably expect for the [Remote] model validation attribute to be validated as part
       // of ModelState.IsValid, but it doesn't appear to be. As a result, it needs to be revalidated here.
       var invoice = GetInvoice(bindingModel.InvoiceNumber);
-      var invoiceAmount = invoice.Attributes.GetInteger("InvoiceAmount", -1);
+      Double.TryParse(invoice.Attributes.GetValue("InvoiceAmount", "-1"), out var invoiceAmount);
       if (invoice == null) {
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
-      else if (invoice.Attributes.GetInteger("InvoiceAmount", -1) != bindingModel.InvoiceAmount) {
+      else if (invoiceAmount != bindingModel.InvoiceAmount) {
         ModelState.AddModelError(
           "InvoiceAmount",
           $"The invoice {bindingModel.InvoiceNumber} is correct, but doesn't match the expected invoice amount. Please " +
