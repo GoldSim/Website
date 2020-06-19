@@ -54,6 +54,7 @@ namespace GoldSim.Web {
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService = null;
+    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService = null;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -106,15 +107,20 @@ namespace GoldSim.Web {
       _smtpService              = new SendGridSmtpService(sendGridClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICE
+      | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var service = new HierarchicalTopicMappingService<NavigationTopicViewModel>(
-        _topicRepository,
-        _topicMappingService
+      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<NavigationTopicViewModel>(
+          _topicRepository,
+          _topicMappingService
+        )
       );
 
-      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
-        service
+      _coursewareTopicMappingService = new CachedHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<TrackedNavigationTopicViewModel>(
+          _topicRepository,
+          _topicMappingService
+        )
       );
 
     }
@@ -242,6 +248,12 @@ namespace GoldSim.Web {
 
         nameof(FooterViewComponent)
           => new FooterViewComponent(_topicRepository, _hierarchicalTopicMappingService),
+
+        nameof(UnitListViewComponent)
+          => new UnitListViewComponent(_topicRepository, _coursewareTopicMappingService),
+
+        nameof(LessonListViewComponent)
+          => new LessonListViewComponent(_topicRepository, _coursewareTopicMappingService),
 
         _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
 
