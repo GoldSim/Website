@@ -1,0 +1,26 @@
+﻿@model LessonTopicViewModel
+
+@{
+  ViewBag.Title = Model.Title;
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section PageBodySection {
+
+  <div class="grid-container">
+    <vc:lesson-list />
+    <div class="grid-x">
+      <div>
+        <section class="panel body">
+          @Html.Raw(Model.Body)
+        </section>
+      </div>
+    </div>
+  </div>
+
+}
+
+<!--
+  Content Type: Lesson
+  View Location: ~/Views/ContentTypes/Lesson.cshtml
+-->
