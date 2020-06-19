@@ -1,0 +1,28 @@
+﻿@model NavigationViewModel<TrackedNavigationTopicViewModel>
+
+@if (Model.NavigationRoot != null) {
+
+  <!-- Unit Navigation -->
+  <nav role="navigation">
+    <div class="grid-container">
+      <div class="grid-x">
+        <ul>
+          @foreach (var topic in Model.NavigationRoot.Children) {
+            <li>
+              <a href="@topic.WebPath" class="@((topic.IsVisited != null)? (topic.IsVisited?? false)? "complete" : "started" : "")">
+                @(topic.ShortTitle?? topic.Title)
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /Unit Navigation -->
+
+}
+
+<!--
+  Content Type: NavigationViewModel<TrackedNavigationTopicViewModel>
+  View Location: ~/Views/Shared/Components/UnitList/Default.cshtml
+-->
