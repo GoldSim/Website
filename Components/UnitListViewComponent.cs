@@ -87,11 +87,29 @@ namespace GoldSim.Web.Components {
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Set current status
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
+        trackedNavigationViewModel.IsVisited = IsComplete(trackedNavigationViewModel.Key);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(navigationViewModel);
 
     }
+
+    /*==========================================================================================================================
+    | METHOD: IS COMPLETE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A helper method for determining if a given unit is completed.
+    /// </summary>
+    private bool? IsComplete(string key) =>
+      HttpContext.Request.Cookies.TryGetValue($"Status{key}", out var isComplete)?
+        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        null;
 
   } //Class
 } //Namespace

@@ -110,6 +110,17 @@ namespace GoldSim.Web.Components {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Write unit cookie
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      HttpContext.Response.Cookies.Append(
+        $"Status{CurrentTopic.Parent.Key}",
+        navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true).ToString(),
+        new Microsoft.AspNetCore.Http.CookieOptions() {
+          Path = CurrentTopic.Parent.Parent.GetWebPath()
+        }
+      );
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(navigationViewModel);
