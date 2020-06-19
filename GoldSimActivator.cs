@@ -163,6 +163,11 @@ namespace GoldSim.Web {
           _topicMappingService
         ),
 
+        nameof(CoursesController) => new CoursesController(
+          _topicRepository,
+          _topicMappingService
+        ),
+
         nameof(PaymentsController) => new PaymentsController(
             _topicRepository,
             _topicMappingService,

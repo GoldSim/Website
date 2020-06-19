@@ -186,6 +186,7 @@ namespace GoldSim.Web {
           pattern: "{controller}/{action=Index}/"
         );
         endpoints.MapTopicRoute("Web");
+        endpoints.MapTopicRoute("Courses", "Courses");
         endpoints.MapTopicRoute("Error", "Error");
         endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
