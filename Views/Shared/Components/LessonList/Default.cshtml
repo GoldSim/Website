@@ -1,0 +1,28 @@
+﻿@model NavigationViewModel<TrackedNavigationTopicViewModel>
+
+@if (Model.NavigationRoot != null) {
+
+  <!-- Left hand Navigation -->
+  <nav role="navigation" style="float: left">
+    <div class="grid-container">
+      <div class="grid-x">
+        <ul>
+          @foreach (var topic in Model.NavigationRoot.Children) {
+            <li>
+              <a href="@topic.WebPath" class="@((topic.IsVisited?? false)? "visited" : "")">
+                @(topic.ShortTitle?? topic.Title)
+              </a>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- /Left hand Navigation -->
+
+}
+
+<!--
+  Content Type: NavigationViewModel<TrackedNavigationTopicViewModel>
+  View Location: ~/Views/Shared/Components/LessonList/Default.cshtml
+-->
