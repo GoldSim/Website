@@ -88,11 +88,42 @@ namespace GoldSim.Web.Components {
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Write lesson cookie
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!IsVisited(CurrentTopic.Key)) {
+        HttpContext.Response.Cookies.Append(
+          $"Visited{CurrentTopic.Key}",
+          "1",
+          new Microsoft.AspNetCore.Http.CookieOptions() {
+            Path = CurrentTopic.Parent.GetWebPath()
+          }
+        );
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set visit status
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
+        trackedNavigationViewModel.IsVisited =
+          IsVisited(trackedNavigationViewModel.Key) ||
+          CurrentTopic.Key.Equals(trackedNavigationViewModel.Key, StringComparison.OrdinalIgnoreCase);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(navigationViewModel);
 
     }
+
+    /*==========================================================================================================================
+    | METHOD: IS VISITED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A helper method for determining if a given key has been previously visited.
+    /// </summary>
+    private bool IsVisited(string key) =>
+      HttpContext.Request.Cookies.TryGetValue($"Visited{key}", out _);
 
   } //Class
 } //Namespace
