@@ -5,6 +5,19 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
+@section LongTitleSection {
+  <!-- Long Title (Subtitle) -->
+  <header class="grid-x">
+    <h1 class="page title long cell">
+      Unit @Model.Unit.UnitNumber: @Model.Unit.Title
+    </h1>
+    @if (!String.IsNullOrWhiteSpace(Model.Unit.Subtitle)) {
+      <p class="subtitle">@Model.Unit.Subtitle</p>
+    }
+  </header>
+  <!-- /Long Title (Subtitle) -->
+}
+
 @section PageBodySection {
 
   <div class="grid-container">
