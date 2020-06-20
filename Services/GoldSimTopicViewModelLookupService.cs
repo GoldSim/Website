@@ -56,6 +56,7 @@ namespace GoldSim.Web {
       Add(typeof(TechnicalPaperTopicViewModel));
       Add(typeof(CourseTopicViewModel));
       Add(typeof(LessonTopicViewModel));
+      Add(typeof(UnitTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | License administration
