@@ -3,10 +3,10 @@
 @if (Model.NavigationRoot != null) {
 
   <!-- Unit Navigation -->
-  <nav role="navigation">
+  <nav role="navigation" class="unit-list">
     <div class="grid-container">
       <div class="grid-x">
-        <ul>
+        <ol>
           @foreach (var topic in Model.NavigationRoot.Children) {
             <li>
               <a href="@topic.WebPath" class="@((topic.IsVisited != null)? (topic.IsVisited?? false)? "complete" : "started" : "")">
@@ -14,7 +14,7 @@
               </a>
             </li>
           }
-        </ul>
+        </ol>
       </div>
     </div>
   </nav>

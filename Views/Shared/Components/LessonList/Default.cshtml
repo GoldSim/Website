@@ -3,10 +3,10 @@
 @if (Model.NavigationRoot != null) {
 
   <!-- Left hand Navigation -->
-  <nav role="navigation" style="float: left">
+  <nav role="navigation" class="lesson-list" style="float: left">
     <div class="grid-container">
       <div class="grid-x">
-        <ul>
+        <ol>
           @foreach (var topic in Model.NavigationRoot.Children) {
             <li>
               <a href="@topic.WebPath" class="@((topic.IsVisited?? false)? "visited" : "")">
@@ -14,7 +14,7 @@
               </a>
             </li>
           }
-        </ul>
+        </ol>
       </div>
     </div>
   </nav>

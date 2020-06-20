@@ -5,6 +5,21 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
+@section Head {
+  <style>
+    .lesson-list ol {
+      counter-reset: item;
+    }
+    .lesson-list ol li {
+      display: block;
+    }
+    .lesson-list ol li:before {
+      content: "@($"{Model.Unit.UnitNumber}.")" counters(item, ".") " ";
+      counter-increment: item;
+    }
+  </style>
+}
+
 @section LongTitleSection {
   <!-- Long Title (Subtitle) -->
   <header class="grid-x">
