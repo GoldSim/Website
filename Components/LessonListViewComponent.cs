@@ -104,9 +104,9 @@ namespace GoldSim.Web.Components {
       | Set visit status
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
-        trackedNavigationViewModel.IsVisited =
-          IsVisited(trackedNavigationViewModel.Key) ||
-          CurrentTopic.Key.Equals(trackedNavigationViewModel.Key, StringComparison.OrdinalIgnoreCase);
+        var isCurrent = CurrentTopic.Key.Equals(trackedNavigationViewModel.Key, StringComparison.OrdinalIgnoreCase);
+        var isVisited = IsVisited(trackedNavigationViewModel.Key);
+        trackedNavigationViewModel.IsVisited = isCurrent? true : isVisited? (bool?)true : null;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

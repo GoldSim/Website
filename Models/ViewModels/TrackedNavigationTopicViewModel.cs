@@ -26,5 +26,12 @@ namespace GoldSim.Web.Models.ViewModels {
     public Collection<TrackedNavigationTopicViewModel> Children { get; } = new Collection<TrackedNavigationTopicViewModel>();
     public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
 
+    public string GetCssClass() =>
+      IsVisited switch {
+        null => "is-unstarted far fa-circle",
+        false => "is-incomplete fas fa-adjust",
+        true => "is-complete fas fa-circle"
+      };
+
   } // Class
 } // Namespace

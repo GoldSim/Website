@@ -9,7 +9,8 @@
         <ol>
           @foreach (var topic in Model.NavigationRoot.Children) {
             <li>
-              <a href="@topic.WebPath" class="@((topic.IsVisited != null)? (topic.IsVisited?? false)? "complete" : "started" : "")">
+              <span class="@topic.GetCssClass()"></span>
+              <a href="@topic.WebPath">
                 @(topic.ShortTitle?? topic.Title)
               </a>
             </li>
