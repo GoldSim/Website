@@ -64,3 +64,19 @@ ul.modules-list {
     }
   }
 }
+
+//----------------------------------------------------------------------------------------------
+// TRACKED NAVIGATION
+//----------------------------------------------------------------------------------------------
+// Currently, this is used by the UnitList and LessonList view components for displaying user
+// progress tracking through the GoldSim courseware.
+//----------------------------------------------------------------------------------------------
+.track-progress {
+  li {
+    span {
+      color                     : $palette-yellow;
+      font-size                 : smaller;
+      padding-right             : 2px;
+    }
+  }
+}

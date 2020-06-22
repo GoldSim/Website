@@ -7,11 +7,6 @@
 
 @section Head {
   <style>
-    .lesson-list ol li span {
-      color: orange;
-      font-size: smaller;
-      padding-right: 2px;
-    }
     .lesson-list ol li:before {
       content: "@($"{Model.Unit.UnitNumber}.")" counters(item, ".") " ";
     }
