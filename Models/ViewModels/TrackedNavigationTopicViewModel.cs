@@ -28,9 +28,9 @@ namespace GoldSim.Web.Models.ViewModels {
 
     public string GetCssClass() =>
       IsVisited switch {
-        null => "unstarted far fa-circle",
-        false => "incomplete fas fa-adjust",
-        true => "complete fas fa-circle"
+        null => "unstarted",
+        false => "incomplete",
+        true => "complete"
       };
 
   } // Class

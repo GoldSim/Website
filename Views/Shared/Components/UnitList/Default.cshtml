@@ -8,8 +8,7 @@
       <div class="grid-x">
         <ol>
           @foreach (var topic in Model.NavigationRoot.Children) {
-            <li>
-              <span class="@topic.GetCssClass()"></span>
+            <li class="@topic.GetCssClass()">
               <a href="@topic.WebPath">
                 @(topic.ShortTitle?? topic.Title)
               </a>

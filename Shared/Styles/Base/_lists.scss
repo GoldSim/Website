@@ -73,10 +73,25 @@ ul.modules-list {
 //----------------------------------------------------------------------------------------------
 .track-progress {
   li {
-    span {
+
+    a:before {
+      @include fa-icon;
+      font-family               : 'Font Awesome 5 Free';
       color                     : $palette-yellow;
       font-size                 : smaller;
-      padding-right             : 2px;
     }
+
+    &.unstarted a:before {
+      content                   : fa-content($fa-var-circle);
+    }
+
+    &.incomplete a:before {
+      content                   : fa-content($fa-var-dot-circle);
+    }
+
+    &.complete a:before {
+      content                   : fa-content($fa-var-check-circle);
+    }
+
   }
 }
