@@ -96,13 +96,18 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      services.AddControllersWithViews()
+      var mvcBuilder = services.AddControllersWithViews()
 
         //Add OnTopic support
         .AddTopicSupport()
 
         //Add OnTopic editor support
         .AddTopicEditor();
+
+      //Conditionally add runtime compilation in development
+      if (HostingEnvironment.IsDevelopment()) {
+        mvcBuilder.AddRazorRuntimeCompilation();
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
