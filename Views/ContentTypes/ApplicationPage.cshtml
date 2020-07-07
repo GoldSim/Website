@@ -61,9 +61,7 @@
     }
 
     <!-- Body Content -->
-    <article class="page body">
-      @Html.Raw(Model.Body)
-    </article>
+    @Html.Raw(Model.Body)
     <!-- /Body Content -->
 
     @if (!String.IsNullOrEmpty(Model.ModelImage)) {

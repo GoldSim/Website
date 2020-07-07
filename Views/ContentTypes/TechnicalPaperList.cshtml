@@ -8,17 +8,15 @@
 
   <section class="panel body">
 
-    <article class="page body">
-      @Html.Raw(Model.Body)
-      @if (Model.FieldCategories.Count > 0) {
-        <h1>Categories</h1>
-        <ul>
-          @foreach (var fieldCategory in Model.FieldCategories) {
-            <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
-          }
-        </ul>
-      }
-    </article>
+    @Html.Raw(Model.Body)
+    @if (Model.FieldCategories.Count > 0) {
+      <h1>Categories</h1>
+      <ul>
+        @foreach (var fieldCategory in Model.FieldCategories) {
+          <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
+        }
+      </ul>
+    }
 
     @foreach (var fieldCategory in Model.FieldCategories) {
       <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
