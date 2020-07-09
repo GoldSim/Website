@@ -41,7 +41,7 @@ main {
       max-height                : initial;
     }
     @include media-screen-wide-short() {
-      h1.title.long {
+      h1.title.headline {
         font-size               : rem-calc(44);
       }
     }
@@ -544,7 +544,7 @@ main {
 
 // Typography
 h1.title {
-  &.short {
+  &.kicker {
     position                    : static;
     padding-bottom              : rem-calc(8);
     font-size                   : rem-calc(18);
@@ -557,7 +557,7 @@ h1.title {
       font-size                 : rem-calc(30);
     }
   }
-  &.long {
+  &.headline {
     margin-bottom               : rem-calc(44);
     color                       : $palette-white;
   }
