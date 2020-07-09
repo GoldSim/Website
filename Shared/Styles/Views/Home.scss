@@ -549,6 +549,7 @@ h1.title {
     padding-bottom              : rem-calc(8);
     font-size                   : rem-calc(18);
     color                       : $palette-grey-light;
+    margin                      : 0;
     @include breakpoint(medium) {
       font-size                 : rem-calc(21);
     }
