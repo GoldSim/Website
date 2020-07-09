@@ -129,7 +129,7 @@
               @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
                 <h2 class="category title">@ViewBag.Context</h2>
               }
-              <h1 class="title long cell">
+              <h1 class="title cell">
                 @(Model.ContentType.Equals("PageGroup")? "Overview" : Model.Title)
               </h1>
               @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
