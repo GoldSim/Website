@@ -125,9 +125,9 @@
           }
           else {
             <!-- Long Title (Subtitle) -->
-            <header class="grid-x">
+            <header>
               @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
-                <h2 class="category title">@ViewBag.Context</h2>
+                <h2 class="category title ">@ViewBag.Context</h2>
               }
               <h1 class="title">
                 @(Model.ContentType.Equals("PageGroup")? "Overview" : Model.Title)
@@ -136,7 +136,9 @@
                 <p class="subtitle">@Model.Subtitle</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
-                @RenderSection("PostTitleSection")
+                <div class="grid-x">
+                  @RenderSection("PostTitleSection")
+                </div>
               }
             </header>
             <!-- /Long Title (Subtitle) -->
