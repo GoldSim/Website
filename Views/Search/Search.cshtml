@@ -6,14 +6,14 @@
 }
 
 @section Head {
-  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" asp-append-version="true" />
 }
 
 @section PageBodySection {
   <section class="panel">
 
     <!-- Body Content -->
-    <article class="body search results">
+    <article class="search results">
       <form id="SearchResultSearchForm" action="/Web/Search/">
         <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
       </form>

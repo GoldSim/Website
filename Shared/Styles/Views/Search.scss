@@ -50,7 +50,7 @@
   }
   .pagination {
     margin-top                  : rem-calc(32);
-    margin-bottom               : 0;
+    margin-bottom               : rem-calc(32);
     ul {
       position                  : relative;
       left                      : rem-calc(-8);
