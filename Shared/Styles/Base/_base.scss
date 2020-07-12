@@ -72,7 +72,8 @@ article {
     .category.title {
       margin-bottom             : 0;
     }
-    ~ .embedded.body {
+    // Adjacent, out-of-panel body is not currently in use
+    ~ .body {
       margin-bottom             : rem-calc(48);
       padding                   : rem-calc(0 110);
     }
