@@ -10,9 +10,7 @@
 
   @if (!String.IsNullOrEmpty(Model.Body)) {
     <!-- Body Content -->
-    <article class="body">
-      @Html.Raw(Model.Body)
-    </article>
+    @Html.Raw(Model.Body)
     <!-- /Body Content -->
   }
 
