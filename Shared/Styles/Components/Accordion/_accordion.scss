@@ -27,7 +27,10 @@ section.panel.body {
 //----------------------------------------------------------------------------------------------
 // CORE
 //----------------------------------------------------------------------------------------------
-ul.accordion {
+section.accordion > ul,
+section.accordion > section > ul
+{
+  @include accordion-container;
   margin                        : 0;
   li {
     margin-bottom               : 0;

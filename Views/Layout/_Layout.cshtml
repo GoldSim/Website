@@ -92,7 +92,7 @@
     else {
 
       <!-- Main Site Content Area -->
-      <main id="MainContentArea" class="page content" role="main">
+      <main id="MainContentArea" role="main">
 
         @if (IsSectionDefined("PageHeaderSection")) {
           @RenderSection("PageHeaderSection")
@@ -125,18 +125,20 @@
           }
           else {
             <!-- Long Title (Subtitle) -->
-            <header class="grid-x">
+            <header>
               @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
-                <h2 class="category title">@ViewBag.Context</h2>
+                <h2 class="category title ">@ViewBag.Context</h2>
               }
-              <h1 class="page title long cell">
+              <h1 class="title">
                 @(Model.ContentType.Equals("PageGroup")? "Overview" : Model.Title)
               </h1>
               @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
                 <p class="subtitle">@Model.Subtitle</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
-                @RenderSection("PostTitleSection")
+                <div class="grid-x">
+                  @RenderSection("PostTitleSection")
+                </div>
               }
             </header>
             <!-- /Long Title (Subtitle) -->
@@ -147,10 +149,8 @@
             @RenderSection("PageBodySection")
           }
           else {
-            <div class="grid-container">
-              <div class="grid-x">
-                @RenderBody()
-              </div>
+            <div class="grid-x">
+              @RenderBody()
             </div>
           }
           <!-- /Main Page Content -->

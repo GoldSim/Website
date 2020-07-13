@@ -6,20 +6,18 @@
 }
 
 @section Head {
-  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" />
+  <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" asp-append-version="true" />
 }
 
 @section PageBodySection {
-  <section class="panel body">
+  <section class="panel">
 
     <!-- Body Content -->
-    <article class="page body search results">
-      <form id="SearchResultSearchForm" action="/Web/Search/">
-        <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
-      </form>
-      <div id="SearchResults"></div>
-      <div id="Pagination" class="pagination text-center"></div>
-    </article>
+    <form id="SearchResultSearchForm" action="/Web/Search/">
+      <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
+    </form>
+    <div id="SearchResults"></div>
+    <div id="Pagination" class="pagination text-center"></div>
     <!-- /Body Content -->
 
   </section>

@@ -6,20 +6,18 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
     @if (!String.IsNullOrEmpty(Model.Body)) {
       <!-- Body Content -->
-      <article class="page body">
-        @Html.Raw(Model.Body)
-      </article>
+      @Html.Raw(Model.Body)
       <!-- /Body Content -->
     }
 
     @if (Model.Categories != null && Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
-        <h1 id="@category.Key">@category.Title</h1>
         <section id="Group-@category.Key" class="content list">
+          <h1 id="@category.Key">@category.Title</h1>
           @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
             WriteContentItem(contentItem, "h2");
           }

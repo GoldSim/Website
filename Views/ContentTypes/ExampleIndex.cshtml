@@ -28,7 +28,7 @@
 @section PostTitleSection {
 
   <!-- Body Content -->
-  <section class="embedded pane body">
+  <section class="body">
     @Html.Raw(Model.Body)
   </section>
   <!-- Body Content -->
@@ -37,7 +37,7 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
     <partial name="_CardList" model="@(new CardListViewModel(applications, "case-study"))" />
   </section>
 
