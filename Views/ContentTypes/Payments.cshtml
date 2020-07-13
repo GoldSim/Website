@@ -11,10 +11,8 @@
 
   <section class="panel">
 
-    <div class="grid-container">
-      <div class="grid-x">
-        @Html.Raw(Model.Body)
-      </div>
+    <div class="grid-x">
+      @Html.Raw(Model.Body)
     </div>
 
     <form id="PaymentsForm" method="post" class="payments-form">
@@ -38,77 +36,75 @@
         </div>
       }
 
-      <div class="grid-container">
-        <div class="grid-x grid-margin-x">
+      <div class="grid-x grid-margin-x">
 
-          <!-- Customer -->
-          <div class="cell">
-            <label asp-for="BindingModel.CardholderName" class="required"></label>
-            <input asp-for="BindingModel.CardholderName" placeholder="Cardholder Name" />
-          </div>
-          <!-- /Customer -->
-          <!-- Company Name -->
-          <div class="medium-6 cell">
-            <label asp-for="BindingModel.Organization" class="required"></label>
-            <input asp-for="BindingModel.Organization" placeholder="Organization Name" />
-          </div>
-
-          <!-- Email Address -->
-          <div class="medium-6 cell">
-            <label asp-for="BindingModel.Email" class="required"></label>
-            <input asp-for="BindingModel.Email" placeholder="email@domain.com" />
-          </div>
-
-          <!-- Invoice Number -->
-          <div class="medium-6 cell">
-            <label asp-for="BindingModel.InvoiceNumber" class="required"></label>
-            <input asp-for="BindingModel.InvoiceNumber" type="number" placeholder="1111" />
-          </div>
-
-          <!-- Amount -->
-          <div class="medium-6 cell">
-            <label asp-for="BindingModel.InvoiceAmount" class="required"></label>
-            <label>
-              <span class="input-group">
-                <span class="input-group-label">$</span>
-                <input asp-for="BindingModel.InvoiceAmount" type="number" step="0.01" placeholder="1000" class="input-group-field" />
-              </span>
-            </label>
-          </div>
-
-          <!-- CC Number -->
-          <div class="medium-6 cell">
-            <label for="CardNumber" class="hosted-field-label required">
-              Card Number
-              <span id="CardNumber" class="hosted-field required"></span>
-            </label>
-          </div>
-
-          <!-- Expiration Month/Year -->
-          <div class="medium-4 cell">
-            <label for="Expiration" class="hosted-field-label required">Expiration</label>
-            <span id="ExpirationMonth" class="hosted-field padded required" style="margin-right: 0.9375rem; width: 24%;"></span>
-            <span id="ExpirationYear" class="hosted-field padded required" style="width: 67%; max-width: 67%"></span>
-          </div>
-
-          <!-- CVV Code -->
-          <div class="medium-2 cell">
-            <label for="Cvv" class="hosted-field-label required">
-              CVV
-              <span id="Cvv" class="hosted-field padded required"></span>
-            </label>
-          </div>
-
-          <input asp-for="BindingModel.PaymentMethodNonce" type="hidden" />
-
-          @Html.AntiForgeryToken()
-
-          <!-- Submit -->
-          <div class="cell">
-            <button type="button" disabled class="button large submit primary">Submit Payment</button>
-          </div>
-
+        <!-- Customer -->
+        <div class="cell">
+          <label asp-for="BindingModel.CardholderName" class="required"></label>
+          <input asp-for="BindingModel.CardholderName" placeholder="Cardholder Name" />
         </div>
+        <!-- /Customer -->
+        <!-- Company Name -->
+        <div class="medium-6 cell">
+          <label asp-for="BindingModel.Organization" class="required"></label>
+          <input asp-for="BindingModel.Organization" placeholder="Organization Name" />
+        </div>
+
+        <!-- Email Address -->
+        <div class="medium-6 cell">
+          <label asp-for="BindingModel.Email" class="required"></label>
+          <input asp-for="BindingModel.Email" placeholder="email@domain.com" />
+        </div>
+
+        <!-- Invoice Number -->
+        <div class="medium-6 cell">
+          <label asp-for="BindingModel.InvoiceNumber" class="required"></label>
+          <input asp-for="BindingModel.InvoiceNumber" type="number" placeholder="1111" />
+        </div>
+
+        <!-- Amount -->
+        <div class="medium-6 cell">
+          <label asp-for="BindingModel.InvoiceAmount" class="required"></label>
+          <label>
+            <span class="input-group">
+              <span class="input-group-label">$</span>
+              <input asp-for="BindingModel.InvoiceAmount" type="number" step="0.01" placeholder="1000" class="input-group-field" />
+            </span>
+          </label>
+        </div>
+
+        <!-- CC Number -->
+        <div class="medium-6 cell">
+          <label for="CardNumber" class="hosted-field-label required">
+            Card Number
+            <span id="CardNumber" class="hosted-field required"></span>
+          </label>
+        </div>
+
+        <!-- Expiration Month/Year -->
+        <div class="medium-4 cell">
+          <label for="Expiration" class="hosted-field-label required">Expiration</label>
+          <span id="ExpirationMonth" class="hosted-field padded required" style="margin-right: 0.9375rem; width: 24%;"></span>
+          <span id="ExpirationYear" class="hosted-field padded required" style="width: 67%; max-width: 67%"></span>
+        </div>
+
+        <!-- CVV Code -->
+        <div class="medium-2 cell">
+          <label for="Cvv" class="hosted-field-label required">
+            CVV
+            <span id="Cvv" class="hosted-field padded required"></span>
+          </label>
+        </div>
+
+        <input asp-for="BindingModel.PaymentMethodNonce" type="hidden" />
+
+        @Html.AntiForgeryToken()
+
+        <!-- Submit -->
+        <div class="cell">
+          <button type="button" disabled class="button large submit primary">Submit Payment</button>
+        </div>
+
       </div>
     </form>
 
