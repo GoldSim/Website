@@ -26,7 +26,7 @@
     padding-bottom              : rem-calc(64);
   }
 }
-.panel.body {
+.panel {
   margin-bottom                 : rem-calc(80);
   @include breakpoint(medium) {
     margin-bottom               : rem-calc(88);

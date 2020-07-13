@@ -41,7 +41,7 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
     @if (!String.IsNullOrEmpty(Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
@@ -61,9 +61,7 @@
     }
 
     <!-- Body Content -->
-    <article class="page body">
-      @Html.Raw(Model.Body)
-    </article>
+    @Html.Raw(Model.Body)
     <!-- /Body Content -->
 
     @if (!String.IsNullOrEmpty(Model.ModelImage)) {
