@@ -15,8 +15,8 @@
 
 @section LongTitleSection {
   <!-- Long Title (Subtitle) -->
-  <header class="grid-x">
-    <h1 class="page title long cell">
+  <header>
+    <h1 class="title">
       Unit @Model.Unit.UnitNumber: @Model.Unit.Title
     </h1>
     @if (!String.IsNullOrWhiteSpace(Model.Unit.Subtitle)) {
@@ -28,15 +28,11 @@
 
 @section PageBodySection {
 
-  <div class="grid-container">
-    <vc:lesson-list />
-    <div class="grid-x">
-      <div>
-        <section class="panel body">
-          @Html.Raw(Model.Body)
-        </section>
-      </div>
-    </div>
+  <vc:lesson-list />
+  <div class="grid-x">
+    <section class="panel">
+      @Html.Raw(Model.Body)
+    </section>
   </div>
 
 }

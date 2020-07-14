@@ -5,27 +5,19 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-@section PageBodySection {
+<div>
 
-  <div class="grid-container">
-    <div class="grid-x">
-      <div>
+  <section class="panel">
+    @Html.Raw(Model.Body)
+  </section>
 
-        <section class="panel body">
-          @Html.Raw(Model.Body)
-        </section>
+  <p />
 
-        <p />
+  <section class="panel">
+    <vc:unit-list />
+  </section>
 
-        <section class="panel">
-          <vc:unit-list />
-        </section>
-
-      </div>
-    </div>
-  </div>
-
-}
+</div>
 
 <!--
   Content Type: Course
