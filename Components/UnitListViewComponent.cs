@@ -4,6 +4,7 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using GoldSim.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -92,6 +93,17 @@ namespace GoldSim.Web.Components {
       foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
         trackedNavigationViewModel.IsVisited = IsComplete(trackedNavigationViewModel.Key);
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Write course cookie
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      HttpContext.Response.Cookies.Append(
+        $"Status{CurrentTopic.Key}",
+        navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true).ToString(),
+        new Microsoft.AspNetCore.Http.CookieOptions() {
+          Path = CurrentTopic.Parent.GetWebPath()
+        }
+      );
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
