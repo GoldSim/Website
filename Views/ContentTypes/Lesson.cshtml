@@ -28,8 +28,10 @@
 
 @section PageBodySection {
 
-  <vc:lesson-list />
   <div class="grid-x">
+    <nav class="cell hide-for-small-only medium-4 large-3">
+      <vc:lesson-list />
+    </nav>
     <section class="panel">
       @Html.Raw(Model.Body)
     </section>
