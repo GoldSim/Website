@@ -249,6 +249,9 @@ namespace GoldSim.Web {
         nameof(FooterViewComponent)
           => new FooterViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
+        nameof(CourseListViewComponent)
+          => new CourseListViewComponent(_topicRepository, _coursewareTopicMappingService),
+
         nameof(UnitListViewComponent)
           => new UnitListViewComponent(_topicRepository, _coursewareTopicMappingService),
 

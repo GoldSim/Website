@@ -1,0 +1,28 @@
+﻿@model NavigationViewModel<TrackedNavigationTopicViewModel>
+
+@if (Model.NavigationRoot != null) {
+
+  <!-- Course Navigation -->
+  <nav role="navigation" class="unit-list track-progress">
+    <div class="grid-container">
+      <div class="grid-x">
+        <ol>
+          @foreach (var topic in Model.NavigationRoot.Children) {
+            <li class="@topic.GetCssClass()">
+              <a href="@topic.WebPath">
+                @(topic.ShortTitle?? topic.Title)
+              </a>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+  </nav>
+  <!-- /Course Navigation -->
+
+}
+
+<!--
+  Content Type: NavigationViewModel<TrackedNavigationTopicViewModel>
+  View Location: ~/Views/Shared/Components/CourseList/Default.cshtml
+-->
