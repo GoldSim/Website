@@ -1,0 +1,25 @@
+﻿@model CourseListTopicViewModel
+
+@{
+  ViewBag.Title = Model.Title;
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+<div>
+
+  <section class="panel">
+    @Html.Raw(Model.Body)
+  </section>
+
+  <p />
+
+  <section class="panel">
+    <vc:course-list />
+  </section>
+
+</div>
+
+<!--
+  Content Type: CourseList
+  View Location: ~/Views/ContentTypes/CourseList.cshtml
+-->
