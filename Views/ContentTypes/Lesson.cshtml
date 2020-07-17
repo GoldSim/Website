@@ -5,14 +5,6 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-@section Head {
-  <style>
-    .lesson-list ol li:before {
-      content: "@($"{Model.Unit.UnitNumber}.")" counters(item, ".") " ";
-    }
-  </style>
-}
-
 @section LongTitleSection {
   <!-- Long Title (Subtitle) -->
   <header>

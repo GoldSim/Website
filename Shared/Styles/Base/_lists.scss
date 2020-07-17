@@ -83,6 +83,9 @@ ul.modules-list {
   ol {
     margin-left                 : 0px;
     margin-top                  : rem-calc(80);
+    li {
+      padding-left              : rem-calc(6);
+    }
   }
 
   .panel, li {
