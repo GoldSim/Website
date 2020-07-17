@@ -6,12 +6,12 @@
   <nav role="navigation" class="course-list track-progress">
     @foreach (var topic in Model.NavigationRoot.Children) {
       <section class="panel cell">
-        <h2>
+        <h1 class="@topic.GetCssClass()">
           <a href="@topic.WebPath">
             @(topic.ShortTitle?? topic.Title)
-           </a>
-        </h2>
-        @Html.Raw(@topic.Body)
+          </a>
+        </h1>
+        @Html.Raw(@topic.Abstract)
       </section>
       <p />
     }

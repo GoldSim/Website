@@ -22,6 +22,7 @@ namespace GoldSim.Web.Models.ViewModels {
   /// </remarks>
   public class TrackedNavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
+    public string Abstract { get; set; }
     public bool? IsVisited { get; set; } = null;
     public Collection<TrackedNavigationTopicViewModel> Children { get; } = new Collection<TrackedNavigationTopicViewModel>();
     public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
