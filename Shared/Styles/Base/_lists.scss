@@ -85,6 +85,13 @@ ul.modules-list {
     li {
       padding-left              : rem-calc(6);
     }
+    a {
+      color                     : $palette-black;
+      border-bottom             : 0px;
+    }
+    li.selected a {
+      border-bottom             : 2px solid $palette-yellow;
+    }
   }
 }
 
