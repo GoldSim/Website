@@ -79,6 +79,12 @@ ul.modules-list {
 // progress tracking through the GoldSim courseware.
 //----------------------------------------------------------------------------------------------
 .track-progress {
+
+  ol {
+    margin-left                 : 0px;
+    margin-top                  : rem-calc(80);
+  }
+
   .panel, li {
 
     a:before {
