@@ -5,19 +5,17 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
-<div>
+@section PostTitleSection {
 
-  <section class="panel">
+  <!-- Body Content -->
+  <section class="body">
     @Html.Raw(Model.Body)
   </section>
+  <!-- Body Content -->
 
-  <p />
+}
 
-  <section class="panel">
-    <vc:course-list />
-  </section>
-
-</div>
+<vc:course-list />
 
 <!--
   Content Type: CourseList

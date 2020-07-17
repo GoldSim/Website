@@ -79,7 +79,7 @@ ul.modules-list {
 // progress tracking through the GoldSim courseware.
 //----------------------------------------------------------------------------------------------
 .track-progress {
-  li {
+  .panel, li {
 
     a:before {
       @include fa-icon;
