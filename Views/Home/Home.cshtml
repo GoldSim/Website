@@ -296,17 +296,6 @@
 @section Scripts {
   <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
   <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js"></script>
-  <script>
-    function init() {
-      var deferredImages = document.getElementsByTagName('img');
-      for (var i = 0; i < deferredImages.length; i++) {
-        if (deferredImages[i].getAttribute('data-src')) {
-          deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
-        }
-      }
-    }
-    window.onload = init;
-  </script>
   <script src="~/Shared/Scripts/Views/Home.js" asp-append-version="true" defer></script>
 }
 

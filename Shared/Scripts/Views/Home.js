@@ -1,8 +1,30 @@
-﻿/**
- * (GOLDSIM WEB) HOME PAGE SCRIPTS
- * @file Provides functions that are unique to the homepage.
- * @namespace goldSimWeb
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/*==============================================================================================================================
+| METHOD: INIT
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Provides lazy loading for images so that the page can load quickly, with images being filled in after-the-fact. This is
+ * useful for the homepage given how long it is, and especially with the carousels, as those don't affect the initial user
+ * experience of the page.
  */
+function init() {
+  var deferredImages = document.getElementsByTagName('img');
+  for (var i = 0; i < deferredImages.length; i++) {
+    if (deferredImages[i].getAttribute('data-src')) {
+      deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
+    }
+  }
+}
+window.onload = init;
+
+/*==============================================================================================================================
+| JQUERY: WIRE UP ACTIONS
+\-----------------------------------------------------------------------------------------------------------------------------*/
 $(function() {
 
   /**
