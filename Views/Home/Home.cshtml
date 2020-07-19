@@ -382,6 +382,19 @@
             fallbackUrl         = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
             dashPlayer          = dashjs.MediaPlayer().create();
 
+          //Configure dashPlayer
+          dashPlayer.updateSettings({
+            'streaming'         : {
+              'retryAttemps'    : {
+                'MPD'           : 2,
+                'XLinkExpansion': 2,
+                'IndexSegment'  : 3,
+                'InitializationSegment': 3,
+                'BitstreamSwitchingSegment': 3
+              }
+            }
+          });
+
           // Only initialize DASH for supported browsers
           if (!(isIos && isSafari) && !isIe11) {
             dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
