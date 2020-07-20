@@ -37,11 +37,10 @@ function initVideo() {
   var
     manifestUrl                 = 'https://media.GoldSim.com/Videos/Home/GoldSim_Overview_dash.mpd',
     fallbackUrl                 = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
-    dashPlayer                  = dashjs.MediaPlayer().create()
+    dashPlayer                  = dashjs.MediaPlayer().create(),
     isSafari                    = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
-    isIos                       = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+    isIos                       = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
     isIe11                      = !!navigator.userAgent.match(/Trident\/7\./);
-    ;
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | CONFIGURE PLAYER
