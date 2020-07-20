@@ -154,20 +154,22 @@ $(function() {
     * Handle video playback based on Foundation Reveal events
     */
   $(document).on('open.zf.reveal', '[data-reveal]', function () {
-    if (isVideoLoaded === false) {
 
-      // Initialize video
-      initVideo();
-
-      // Toggle video loaded
-      isVideoLoaded = true;
-
-      // Track video play event
-      ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
-    }
-    else {
+    // Play, if already loaded
+    if (isVideoLoaded === true) {
       $('#IntroductionVideo')[0].play();
+      return;
     }
+
+    // Initialize video
+    initVideo();
+
+    // Toggle video loaded
+    isVideoLoaded = true;
+
+    // Track video play event
+    ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
+
   });
 
   /*----------------------------------------------------------------------------------------------------------------------------
