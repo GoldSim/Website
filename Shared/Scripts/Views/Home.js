@@ -23,6 +23,65 @@ function init() {
 window.onload = init;
 
 /*==============================================================================================================================
+| METHOD: INIT VIDEO
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Dynamically loads the MPEG-DASH video player upon request. This is done dynamically as we don't want the video to begin
+ * until the user clicks on the popup, as most users will just pass over it.
+ */
+function initVideo() {
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | DECLARE VARIABLES
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  var
+    manifestUrl                 = 'https://media.GoldSim.com/Videos/Home/GoldSim_Overview_dash.mpd',
+    fallbackUrl                 = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
+    dashPlayer                  = dashjs.MediaPlayer().create()
+    isSafari                    = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
+    isIos                       = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+    isIe11                      = !!navigator.userAgent.match(/Trident\/7\./);
+    ;
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | CONFIGURE PLAYER
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  dashPlayer.updateSettings({
+    'streaming'                 : {
+      'retryAttemps'            : {
+        'MPD'                   : 2,
+        'XLinkExpansion'        : 2,
+        'IndexSegment'          : 3,
+        'InitializationSegment' : 3,
+        'BitstreamSwitchingSegment': 3
+      },
+      'abr'                     : {
+        'autoSwitchBitrate'     : {
+          'audio'               : false,
+          'video'               : true
+        }
+      }
+    }
+  });
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | INITIALIZE PLAYER
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  if (!(isIos && isSafari) && !isIe11) {
+    dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
+  }
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | HANDLE UNSUPPORTED BROWSERS
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  else {
+    $('#IntroductionVideo source').attr('src', fallbackUrl);
+    $('#IntroductionVideo')[0].play();
+  }
+
+}
+
+/*==============================================================================================================================
 | JQUERY: WIRE UP ACTIONS
 \-----------------------------------------------------------------------------------------------------------------------------*/
 $(function() {
@@ -94,39 +153,9 @@ $(function() {
     */
   $(document).on('open.zf.reveal', '[data-reveal]', function () {
     if (isVideoLoaded === false) {
-      var
-        manifestUrl         = 'https://media.GoldSim.com/Videos/Home/GoldSim_Overview_dash.mpd',
-        fallbackUrl         = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
-        dashPlayer          = dashjs.MediaPlayer().create();
 
-      //Configure dashPlayer
-      dashPlayer.updateSettings({
-        'streaming'         : {
-          'retryAttemps'    : {
-            'MPD'           : 2,
-            'XLinkExpansion': 2,
-            'IndexSegment'  : 3,
-            'InitializationSegment': 3,
-            'BitstreamSwitchingSegment': 3
-          },
-          'abr'             : {
-            'autoSwitchBitrate': {
-              'audio'       : false,
-              'video'       : true
-            }
-          }
-        }
-      });
-
-      // Only initialize DASH for supported browsers
-      if (!(isIos && isSafari) && !isIe11) {
-        dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
-      }
-      // Otherwise, use fallback / original video
-      else {
-        $('#IntroductionVideo source').attr('src', fallbackUrl);
-        $('#IntroductionVideo')[0].play();
-      }
+      // Initialize video
+      initVideo();
 
       // Toggle video loaded
       isVideoLoaded = true;
