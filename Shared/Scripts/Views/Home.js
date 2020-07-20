@@ -86,51 +86,50 @@ function initVideo() {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 $(function() {
 
-  /**
-    * Establish variables
-    */
-  var
-    isVideoLoaded           = false,
-    introductionPanelPosition = ($('#Introduction').offset().top - 24),
-    isSafari                = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
-    isIos                   = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-    isIe11                  = !!navigator.userAgent.match(/Trident\/7\./);
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | ESTABLISH VARIABLES
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  var isVideoLoaded             = false;
+  var introductionPanelPosition = ($('#Introduction').offset().top - 24);
 
-  /**
-    * Handle splash screen arrow scroll click
-    */
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | HANDLE SCROLL CLICK
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $('img.arrow.scroll').click(function() {
     $('html,body').animate({
-      scrollTop: introductionPanelPosition
+      scrollTop                 : introductionPanelPosition
     }, 1000);
   });
 
-  /**
-    * Instantiate carousel for large and small screens
-    */
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | INITIALIZE CAROUSEL
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $('.owl-carousel.large').owlCarousel({
-    items: 1,
-    margin: 0,
-    autoHeight: true,
-    nav: true,
-    navText: [
+    items                       : 1,
+    margin                      : 0,
+    autoHeight                  : true,
+    nav                         : true,
+    navText                     : [
       '<i class="fa fa-caret-left"></i>',
       '<i class="fa fa-caret-right"></i>'
     ],
-    loop: false
+    loop                        : false
   });
   $('.owl-carousel.small').owlCarousel({
-    items: 1,
-    margin: 0,
-    autoHeight: false,
-    nav: true,
-    navText: [
+    items                       : 1,
+    margin                      : 0,
+    autoHeight                  : false,
+    nav                         : true,
+    navText                     : [
       '<i class="fa fa-caret-left"></i>',
       '<i class="fa fa-caret-right"></i>'
     ],
-    loop: false
+    loop                        : false
   });
 
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | CAROUSEL: HANDLE SCROLLING
+  \---------------------------------------------------------------------------------------------------------------------------*/
   /**
     * Handle toggling of carousel slide text / screenshot
     */
@@ -148,6 +147,9 @@ $(function() {
     $(this).toggleText('View Screenshot', 'View Description');
   });
 
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | INITIALIZE VIDEO
+  \---------------------------------------------------------------------------------------------------------------------------*/
   /**
     * Handle video playback based on Foundation Reveal events
     */
@@ -167,6 +169,10 @@ $(function() {
       $('#IntroductionVideo')[0].play();
     }
   });
+
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | CLOSE VIDEO
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).on('closed.zf.reveal', '[data-reveal]', function () {
     $('#IntroductionVideo')[0].pause();
   });
