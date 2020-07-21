@@ -25,17 +25,47 @@ CKEDITOR.editorConfig = function(config) {
   config.contentsCss            = '/Shared/Styles/Views/CkEditor.css';
   config.disableNativeSpellChecker = false;
   config.toolbar                = [
-    { name: 'document', items: [ 'Source' ] },
-    { name: 'clipboard', items: ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste' ] },
-    { name: 'blocks', items: [ 'ShowBlocks', 'RemoveFormat' ] },
-    { name: 'links', items: [ 'Link', 'Unlink', 'Anchor' ] },
-    { name: 'insert', items: [ 'Image', 'Table', 'HorizontalRule', 'SpecialChar' ] },
+    {
+      name                      : 'document',
+      items                     : ['Source']
+    },
+    {
+      name                      : 'clipboard',
+      items                     : ['Undo', 'Redo', '-', 'Cut', 'Copy', 'Paste']
+    },
+    {
+      name                      : 'blocks',
+      items                     : ['ShowBlocks', 'RemoveFormat']
+    },
+    {
+      name                      : 'links',
+      items                     : ['Link', 'Unlink', 'Anchor']
+    },
+    {
+      name                      : 'insert',
+      items                     : ['Image', 'Table', 'HorizontalRule', 'SpecialChar']
+    },
     '/',
-    { name: 'styles', items: ['Styles', 'Format'] },
-    { name: 'basicstyles', items: [ 'Bold', 'Italic', 'Strike', 'Subscript', 'Superscript' ] },
-    { name: 'position', items: [ 'JustifyLeft', 'JustifyCenter', 'JustifyRight' ] },
-    { name: 'paragraph', items: [ 'NumberedList', 'BulletedList', 'Outdent', 'Indent', '-', 'Blockquote' ] },
-    { name: 'tools', items: [ 'Find', 'Replace', 'SelectAll', 'Maximize' ] }
+    {
+      name                      : 'styles',
+      items                     : ['Format', 'Styles']
+    },
+    {
+      name                      : 'basicstyles',
+      items                     : ['Bold', 'Italic', 'Strike', 'Subscript', 'Superscript']
+    },
+    {
+      name                      : 'position',
+      items                     : ['JustifyLeft', 'JustifyCenter', 'JustifyRight']
+    },
+    {
+      name                      : 'paragraph',
+      items                     : ['NumberedList', 'BulletedList', 'Outdent', 'Indent', '-', 'Blockquote']
+    },
+    {
+      name                      : 'tools',
+      items                     : ['Find', 'Replace', 'SelectAll', 'Maximize']
+    }
   ];
   config.toolbarCanCollapse     = true;
   config.stylesCombo_stylesSet  = 'OnTopicStyleSet:/Shared/Scripts/Views/CkEditor/StylesSet.js';
