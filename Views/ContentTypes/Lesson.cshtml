@@ -8,6 +8,7 @@
 @section LongTitleSection {
   <!-- Long Title (Subtitle) -->
   <header>
+    <p class="category title">@Html.Raw(getBreadCrumbs(Model.Parent))</p>
     <h1 class="title">
       Unit @Model.Unit.UnitNumber: @Model.Unit.Title
     </h1>
@@ -32,7 +33,23 @@
 
 }
 
-<!--
-  Content Type: Lesson
-  View Location: ~/Views/ContentTypes/Lesson.cshtml
--->
+@{
+
+  string getBreadCrumbs(TopicViewModel topic) {
+    if (!(topic is PageTopicViewModel)) {
+      return "";
+    }
+    var pageTopic = topic as PageTopicViewModel;
+    var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
+    if (topic.Parent?.Parent != null) {
+      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
+    }
+    return output;
+  }
+
+}
+
+  <!--
+    Content Type: Lesson
+    View Location: ~/Views/ContentTypes/Lesson.cshtml
+  -->

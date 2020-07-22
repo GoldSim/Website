@@ -20,6 +20,7 @@ namespace GoldSim.Web.Models.ViewModels {
     | UNIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     [AttributeKey("Parent")]
+    [Follow(Relationships.Parents)]
     public UnitTopicViewModel Unit { get; set; }
 
   } // Class
