@@ -59,6 +59,13 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
     }
   },
   {
+    name                        : 'Help Reference',
+    element                     : 'aside',
+    attributes                  : {
+      'class'                   : 'help'
+    }
+  },
+  {
     name                        : 'Footnote',
     element                     : 'p',
     attributes                  : {
