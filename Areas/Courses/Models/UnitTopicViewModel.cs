@@ -5,15 +5,20 @@
 \=============================================================================================================================*/
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Courses.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: COURSE TOPIC
+  | VIEW MODEL: UNIT TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Course</c> topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Unit</c> topic.
   /// </summary>
-  public class CourseTopicViewModel: PageTopicViewModel {
+  public class UnitTopicViewModel: PageTopicViewModel {
+
+    /*==========================================================================================================================
+    | UNIT NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    public int UnitNumber { get; set; }
 
   } // Class
 } // Namespace

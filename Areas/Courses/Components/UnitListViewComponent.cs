@@ -14,7 +14,7 @@ using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Components {
+namespace GoldSim.Web.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: UNIT LIST VIEW COMPONENT

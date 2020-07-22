@@ -9,7 +9,7 @@ using OnTopic;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Components {
+namespace GoldSim.Web.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: COURSE LIST VIEW COMPONENT

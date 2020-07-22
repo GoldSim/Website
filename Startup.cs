@@ -186,12 +186,17 @@ namespace GoldSim.Web {
           pattern: "Administration/{controller}/{action=Index}/{id?}",
           defaults: new { area = "Administration" }
         ).RequireAuthorization();
+        endpoints.MapAreaControllerRoute(
+          name: "Courses",
+          areaName: "Courses",
+          pattern: "Courses/{*path}",
+          defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
+        );
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller}/{action=Index}/"
         );
         endpoints.MapTopicRoute("Web");
-        endpoints.MapTopicRoute("Courses", "Courses");
         endpoints.MapTopicRoute("Error", "Error");
         endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();

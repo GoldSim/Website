@@ -3,22 +3,25 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Courses.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: UNIT TOPIC
+  | VIEW MODEL: LESSON TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Unit</c> topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Lesson</c> topic.
   /// </summary>
-  public class UnitTopicViewModel: PageTopicViewModel {
+  public class LessonTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
-    | UNIT NUMBER
+    | UNIT
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public int UnitNumber { get; set; }
+    [AttributeKey("Parent")]
+    [Follow(Relationships.Parents)]
+    public UnitTopicViewModel Unit { get; set; }
 
   } // Class
 } // Namespace

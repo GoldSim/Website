@@ -5,14 +5,13 @@
 \=============================================================================================================================*/
 using System;
 using System.Linq;
-using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Courses.Controllers {
 
   /*============================================================================================================================
   | CLASS: COURSES CONTROLLER
@@ -20,6 +19,7 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides common processing for GoldSim courseware.
   /// </summary>
+  [Area("Courses")]
   public class CoursesController : TopicController {
 
     /*==========================================================================================================================
