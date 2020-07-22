@@ -66,6 +66,13 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
     }
   },
   {
+    name                        : 'Note',
+    element                     : 'blockquote',
+    attributes                  : {
+      'class'                   : 'note'
+    }
+  },
+  {
     name                        : 'Footnote',
     element                     : 'p',
     attributes                  : {

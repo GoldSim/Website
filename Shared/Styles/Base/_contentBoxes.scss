@@ -203,3 +203,18 @@ aside.help {
     margin-left                 : rem-calc(-44);
   }
 }
+
+blockquote.note {
+  display                       : block;
+  margin                        : rem-calc(16 44);
+  border-left                   : none;
+  &:before {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Free';
+    color                       : $palette-blue;
+    font-size                   : rem-calc(32);
+    content                     : fa-content($fa-var-comment-alt);
+    padding-right               : rem-calc(12);
+    margin-left                 : rem-calc(-44);
+  }
+}
