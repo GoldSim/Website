@@ -85,14 +85,20 @@ ul.modules-list {
     margin-right                : rem-calc(24);
     li {
       padding-left              : rem-calc(6);
+      font-size                 : rem-calc(17);
     }
-    a {
+    a, a:visited {
       color                     : $palette-black;
+      font-weight               : normal;
       border-bottom             : 0px;
+      &:hover {
+        border-bottom           : 2px solid $palette-yellow;
+      }
     }
     li.selected a {
-      border-bottom             : 2px solid $palette-yellow;
+      font-weight               : 600;
     }
+
   }
 }
 
