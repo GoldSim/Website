@@ -44,10 +44,15 @@ section.panel {
     margin-left                 : 0px;
     margin-top                  : rem-calc(60);
     margin-right                : rem-calc(24);
+    font-size                   : rem-calc(16);
     li {
       padding-left              : rem-calc(22);
       text-indent               : rem-calc(-16);
-      font-size                 : rem-calc(16);
+    }
+    @include breakpoint(medium down) {
+      padding-left              : rem-calc(8);
+      font-size                 : rem-calc(14);
+      list-style-type           : none;
     }
     a, a:visited {
       color                     : $palette-black;
