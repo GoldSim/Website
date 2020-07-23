@@ -8,6 +8,10 @@
   var title                     = (isLesson? $"Unit {unitNumber}: " : "") + topic.Title;
 }
 
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Courses.css" asp-append-version="true" />
+}
+
 @section HeaderSection {
 
   <!-- Site Header Area -->
