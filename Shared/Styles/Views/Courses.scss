@@ -32,7 +32,7 @@
 section.panel {
   padding                       : rem-calc(60 80);
   ol, p, td, ul {
-    font-size                   : rem-calc(17);
+    font-size                   : rem-calc(16);
   }
 }
 
@@ -47,7 +47,7 @@ section.panel {
     li {
       padding-left              : rem-calc(22);
       text-indent               : rem-calc(-16);
-      font-size                 : rem-calc(17);
+      font-size                 : rem-calc(16);
     }
     a, a:visited {
       color                     : $palette-black;
