@@ -13,12 +13,22 @@
 @import "../../../node_modules/@fortawesome/fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
+// PANEL
+//----------------------------------------------------------------------------------------------
+section.panel {
+  padding                       : rem-calc(60 80);
+  ol, p, td, ul {
+    font-size                   : rem-calc(17);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
 // TRACKED NAVIGATION
 //----------------------------------------------------------------------------------------------
 .lesson-list {
   ol {
     margin-left                 : 0px;
-    margin-top                  : rem-calc(80);
+    margin-top                  : rem-calc(60);
     margin-right                : rem-calc(24);
     li {
       padding-left              : rem-calc(22);
