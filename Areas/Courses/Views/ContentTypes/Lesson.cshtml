@@ -4,20 +4,6 @@
   ViewBag.Title = Model.Title;
 }
 
-@section LongTitleSection {
-  <!-- Long Title (Subtitle) -->
-  <header>
-    <p class="category title">@Html.Raw(getBreadCrumbs(Model.Parent.Parent))</p>
-    <h1 class="title">
-      Unit @Model.Unit.UnitNumber: @Model.Unit.Title
-    </h1>
-    @if (!String.IsNullOrWhiteSpace(Model.Unit.Subtitle)) {
-      <p class="subtitle">@Model.Unit.Subtitle</p>
-    }
-  </header>
-  <!-- /Long Title (Subtitle) -->
-}
-
 <nav class="cell hide-for-small-only medium-4 large-3">
   <vc:lesson-list />
 </nav>
@@ -26,22 +12,6 @@
   <h1>@Model.Title</h1>
   @Html.Raw(Model.Body)
 </section>
-
-@{
-
-  string getBreadCrumbs(TopicViewModel topic) {
-    if (!(topic is PageTopicViewModel)) {
-      return "";
-    }
-    var pageTopic = topic as PageTopicViewModel;
-    var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
-    if (topic.Parent?.Parent != null) {
-      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
-    }
-    return output;
-  }
-
-}
 
 <!--
   Content Type: Lesson

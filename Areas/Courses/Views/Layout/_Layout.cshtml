@@ -1,7 +1,11 @@
 ﻿@model PageTopicViewModel
 
 @{
-  Layout = "/Views/Layout/_Layout.cshtml";
+  Layout                        = "/Views/Layout/_Layout.cshtml";
+  var isLesson                  = Model.ContentType.Equals("Lesson", StringComparison.OrdinalIgnoreCase);
+  var topic                     = isLesson? (PageTopicViewModel)Model.Parent : Model;
+  var unitNumber                = isLesson? ((UnitTopicViewModel)topic).UnitNumber : 0;
+  var title                     = (isLesson? $"Unit {unitNumber}: " : "") + topic.Title;
 }
 
 @section HeaderSection {
@@ -34,14 +38,14 @@
     <!-- Long Title (Subtitle) -->
     <header>
       @if (!Model.ContentType.Equals("CourseList", StringComparison.OrdinalIgnoreCase)) {
-        <p class="category title"><a href="/Courses/">Courses</a>:</p>
+        <p class="category title">@Html.Raw(getBreadCrumbs(topic.Parent))</p>
       }
       @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
         <h2 class="category title">@ViewBag.Context</h2>
       }
-      <h1 class="title">@Model.Title</h1>
-      @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
-        <p class="subtitle">@Model.Subtitle</p>
+      <h1 class="title">@topic.Title</h1>
+      @if (!String.IsNullOrWhiteSpace(topic.Subtitle)) {
+        <p class="subtitle">@topic.Subtitle</p>
       }
       @if (IsSectionDefined("PostTitleSection")) {
         <div class="grid-x">
@@ -56,3 +60,19 @@
 @RenderBody()
 
 @section CallsToActionSection {}
+
+@{
+
+  string getBreadCrumbs(TopicViewModel topic) {
+    if (!(topic is PageTopicViewModel)) {
+      return "";
+    }
+    var pageTopic = topic as PageTopicViewModel;
+    var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
+    if (topic.Parent?.Parent != null) {
+      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
+    }
+    return output;
+  }
+
+}
