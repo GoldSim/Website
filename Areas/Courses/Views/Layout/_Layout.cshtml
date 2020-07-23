@@ -33,8 +33,11 @@
   else {
     <!-- Long Title (Subtitle) -->
     <header>
+      @if (!Model.ContentType.Equals("CourseList", StringComparison.OrdinalIgnoreCase)) {
+        <p class="category title"><a href="/Courses/">Courses</a>:</p>
+      }
       @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
-        <h2 class="category title ">@ViewBag.Context</h2>
+        <h2 class="category title">@ViewBag.Context</h2>
       }
       <h1 class="title">@Model.Title</h1>
       @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {

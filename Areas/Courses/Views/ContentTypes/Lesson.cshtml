@@ -7,7 +7,7 @@
 @section LongTitleSection {
   <!-- Long Title (Subtitle) -->
   <header>
-    <p class="category title">@Html.Raw(getBreadCrumbs(Model.Parent))</p>
+    <p class="category title">@Html.Raw(getBreadCrumbs(Model.Parent.Parent))</p>
     <h1 class="title">
       Unit @Model.Unit.UnitNumber: @Model.Unit.Title
     </h1>
