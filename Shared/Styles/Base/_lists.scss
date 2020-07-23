@@ -84,7 +84,8 @@ ul.modules-list {
     margin-top                  : rem-calc(80);
     margin-right                : rem-calc(24);
     li {
-      padding-left              : rem-calc(6);
+      padding-left              : rem-calc(22);
+      text-indent               : rem-calc(-16);
       font-size                 : rem-calc(17);
     }
     a, a:visited {
@@ -118,6 +119,7 @@ ul.modules-list {
       font-family               : 'Font Awesome 5 Free';
       color                     : $palette-yellow;
       font-size                 : smaller;
+      margin-left               : rem-calc(12);
     }
 
     &.unstarted a:before {
