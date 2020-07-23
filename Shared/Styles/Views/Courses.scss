@@ -57,6 +57,9 @@ section.panel {
         border-bottom           : 2px solid $palette-yellow;
       }
     }
+    a:before {
+      margin-left               : rem-calc(12);
+    }
     li.selected a {
       font-weight               : 600;
     }
@@ -80,7 +83,6 @@ section.panel {
       font-family               : 'Font Awesome 5 Free';
       color                     : $palette-yellow;
       font-size                 : smaller;
-      margin-left               : rem-calc(12);
     }
 
     &.unstarted a:before {
