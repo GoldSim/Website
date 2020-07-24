@@ -97,13 +97,21 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Write course cookie
       \-----------------------------------------------------------------------------------------------------------------------*/
-      HttpContext.Response.Cookies.Append(
-        $"Status{CurrentTopic.Key}",
-        navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true).ToString(),
-        new Microsoft.AspNetCore.Http.CookieOptions() {
-          Path = CurrentTopic.Parent.GetWebPath()
-        }
-      );
+      var isCourseNowComplete   = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true);
+      var wasCourseComplete     = IsComplete(CurrentTopic.Key);
+
+      if (isCourseNowComplete != wasCourseComplete) {
+        HttpContext.Response.Cookies.Append(
+          $"Status{CurrentTopic.Key}",
+          isCourseNowComplete.ToString(),
+          new Microsoft.AspNetCore.Http.CookieOptions() {
+            Path = CurrentTopic.Parent.GetWebPath()
+          }
+        );
+        navigationViewModel.TrackingEvents.Add(
+          new TrackingEventViewModel("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
+        );
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
