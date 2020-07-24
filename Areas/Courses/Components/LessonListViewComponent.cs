@@ -6,11 +6,11 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
-using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Repositories;
 
@@ -82,7 +82,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<TrackedNavigationTopicViewModel>() {
+      var navigationViewModel = new LessonListViewModel() {
         NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
         CurrentKey = CurrentTopic?.GetUniqueKey()?? HttpContext.Request.Path
       };

@@ -1,4 +1,4 @@
-﻿@model NavigationViewModel<TrackedNavigationTopicViewModel>
+﻿@model LessonListViewModel
 
 @if (Model.NavigationRoot != null) {
 
@@ -19,6 +19,8 @@
     </div>
   </nav>
   <!-- /Left hand Navigation -->
+
+  <partial name="_TrackEvents" for="TrackingEvents" />
 
 }
 

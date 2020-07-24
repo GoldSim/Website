@@ -1,4 +1,4 @@
-﻿@model NavigationViewModel<TrackedNavigationTopicViewModel>
+﻿@model UnitListViewModel
 
 @if (Model.NavigationRoot != null) {
 
@@ -19,6 +19,8 @@
     </div>
   </nav>
   <!-- /Unit Navigation -->
+
+  <partial name="_TrackEvents" for="TrackingEvents" />
 
 }
 
