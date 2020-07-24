@@ -112,13 +112,25 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Write unit cookie
       \-----------------------------------------------------------------------------------------------------------------------*/
-      HttpContext.Response.Cookies.Append(
-        $"Status{CurrentTopic.Parent.Key}",
-        navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true).ToString(),
-        new Microsoft.AspNetCore.Http.CookieOptions() {
-          Path = CurrentTopic.Parent.Parent.GetWebPath()
-        }
-      );
+      var isUnitNowComplete     = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true);
+      var wasUnitComplete       = IsUnitComplete();
+
+      if (isUnitNowComplete != wasUnitComplete) {
+        HttpContext.Response.Cookies.Append(
+          $"Status{CurrentTopic.Parent.Key}",
+          isUnitNowComplete.ToString(),
+          new Microsoft.AspNetCore.Http.CookieOptions() {
+            Path = CurrentTopic.Parent.Parent.GetWebPath()
+          }
+        );
+        navigationViewModel.TrackingEvents.Add(
+          new TrackingEventViewModel(
+            "Courses",
+            isUnitNowComplete? "EndUnit" : "StartUnit",
+            $"{CurrentTopic.Parent.Parent.Key}:{CurrentTopic.Parent.Key}"
+          )
+        );
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
@@ -135,6 +147,17 @@ namespace GoldSim.Web.Courses.Components {
     /// </summary>
     private bool IsVisited(string key) =>
       HttpContext.Request.Cookies.TryGetValue($"Visited{key}", out _);
+
+    /*==========================================================================================================================
+    | METHOD: IS UNIT COMPLETE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   A helper method for determining if the current unit is completed.
+    /// </summary>
+    private bool? IsUnitComplete() =>
+      HttpContext.Request.Cookies.TryGetValue($"Status{CurrentTopic.Parent.Key}", out var isComplete) ?
+        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        null;
 
   } //Class
 } //Namespace
