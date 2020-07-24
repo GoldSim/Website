@@ -260,6 +260,9 @@ namespace GoldSim.Web {
         nameof(LessonListViewComponent)
           => new LessonListViewComponent(_topicRepository, _coursewareTopicMappingService),
 
+        nameof(LessonPagingViewComponent)
+          => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
+
         _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
 
       };
