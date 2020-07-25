@@ -328,9 +328,9 @@ namespace GoldSim.Web.Controllers {
     ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
     /// </summary>
     /// <remarks>
-    ///   This is separated from <see cref="VerifyInvoiceNumber(int?)"/> so that we can return a distinct error for the
-    ///   <c>InvoiceNumber</c> and <c>InvoiceAmount</c>. To achieve this, the <see cref="VerifyInvoiceAmount(int?, double?)"/>
-    ///   action ignores errors that are picked up by the <see cref="VerifyInvoiceNumber(int?)"/>. That said, the methods are,
+    ///   This is separated from <see cref="VerifyInvoiceNumber(Int32?)"/> so that we can return a distinct error for the
+    ///   <c>InvoiceNumber</c> and <c>InvoiceAmount</c>. To achieve this, the <see cref="VerifyInvoiceAmount(Int32?, Double?)"/>
+    ///   action ignores errors that are picked up by the <see cref="VerifyInvoiceNumber(Int32?)"/>. That said, the methods are,
     ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
