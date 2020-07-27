@@ -94,7 +94,7 @@ namespace GoldSim.Web.Courses.Components {
       | Identify adjacent topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var adjacentTopic         = GetAdjacentTopic(CurrentTopic.Parent, CurrentTopic, moveNext);
-      var label                 = moveNext? "Next" : "Previous";
+      var label                 = moveNext? "Next Lesson" : "Previous Lesson";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Fallback to adjacent unit
@@ -103,7 +103,7 @@ namespace GoldSim.Web.Courses.Components {
         var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent.Parent, CurrentTopic.Parent, moveNext);
         if (adjacentUnit != null) {
           adjacentTopic         = moveNext? adjacentUnit.Children.FirstOrDefault() : adjacentUnit.Children.LastOrDefault();
-          label                 = label + " Unit";
+          label                 = moveNext? "Next Unit" : "Previous Unit";
         }
       }
 
