@@ -1,0 +1,8 @@
+﻿@model LessonPagingTopicViewModel
+
+<a class="button primary large @(Model.MoveNext? "right" : "left")" href="@Model.WebPath" title="@Model.Title">@Model.Label</a>
+
+<!--
+  Content Type: LessonPagingTopicViewModel
+  View Location: ~/Areas/Courses/Views/Shared/Components/LessonPaging/Default.cshtml
+-->

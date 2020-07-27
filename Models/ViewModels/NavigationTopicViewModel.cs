@@ -25,7 +25,5 @@ namespace GoldSim.Web.Models.ViewModels {
     public virtual Collection<NavigationTopicViewModel> Children { get; } = new Collection<NavigationTopicViewModel>();
     public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
 
-
   } // Class
-
 } // Namespace

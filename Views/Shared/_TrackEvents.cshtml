@@ -1,0 +1,14 @@
+﻿@model List<TrackingEventViewModel>
+
+<script>
+  @foreach (var trackingEvent in Model) {
+    <text>
+      ga('send', {
+        hitType                 : 'event',
+        eventCategory           : '@trackingEvent.Category',
+        eventAction             : '@trackingEvent.Action',
+        eventLabel              : '@trackingEvent.Label'
+      });
+    </text>
+  }
+</script>

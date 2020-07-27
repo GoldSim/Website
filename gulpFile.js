@@ -42,7 +42,7 @@ const files = {
                                     'Shared/Styles/Views/*.scss'
                                   ],
   js                            : 'Shared/Scripts/*.js',
-  jsViews                       : 'Shared/Scripts/Views/*.js'
+  jsViews                       : 'Shared/Scripts/Views/**/*.js'
 }
 
 /*==============================================================================================================================

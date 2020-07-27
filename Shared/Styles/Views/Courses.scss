@@ -1,0 +1,118 @@
+﻿//==============================================================================================
+// COURSES
+//----------------------------------------------------------------------------------------------
+// Represents styles which are specific to the GoldSim Courseware pages.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import "../variables";
+@import "../foundationSettings";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/_mixins.scss";
+@import "../../../node_modules/@fortawesome/fontawesome-free/scss/_variables.scss";
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+#MainContentArea {
+  article {
+    &:first-of-type,
+    &[itemprop="mainContentOfPage"] {
+      > header {
+        padding                 : rem-calc(0 80);
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// PANEL
+//----------------------------------------------------------------------------------------------
+section.panel {
+  padding                       : rem-calc(60 80);
+  ol, p, td, ul {
+    font-size                   : rem-calc(16);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// PAGING NAVIGATION
+//----------------------------------------------------------------------------------------------
+nav {
+  .button {
+    margin-top                  : rem-calc(28);
+    &.right {
+      float                     : right;
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// TRACKED NAVIGATION
+//----------------------------------------------------------------------------------------------
+.lesson-list {
+  ol {
+    margin-left                 : 0px;
+    margin-top                  : rem-calc(60);
+    margin-right                : rem-calc(24);
+    font-size                   : rem-calc(16);
+    li {
+      padding-left              : rem-calc(22);
+      text-indent               : rem-calc(-16);
+    }
+    @include breakpoint(medium down) {
+      padding-left              : rem-calc(8);
+      font-size                 : rem-calc(14);
+      list-style-type           : none;
+    }
+    a, a:visited {
+      color                     : $palette-black;
+      font-weight               : normal;
+      border-bottom             : 0px;
+      &:hover {
+        border-bottom           : 2px solid $palette-yellow;
+      }
+    }
+    a:before {
+      margin-left               : rem-calc(12);
+    }
+    li.selected a {
+      font-weight               : 600;
+    }
+
+  }
+}
+
+.unit-list {
+  ol {
+    margin-top                  : 0px;
+    margin-bottom               : 0px;
+  }
+}
+
+.track-progress {
+
+  .panel h1, li {
+
+    a:before {
+      @include fa-icon;
+      font-family               : 'Font Awesome 5 Free';
+      color                     : $palette-yellow;
+      font-size                 : smaller;
+    }
+
+    &.unstarted a:before {
+      content                   : fa-content($fa-var-circle);
+    }
+
+    &.incomplete a:before {
+      content                   : fa-content($fa-var-dot-circle);
+    }
+
+    &.complete a:before {
+      content                   : fa-content($fa-var-check-circle);
+    }
+
+  }
+}

@@ -1,0 +1,30 @@
+﻿@model LessonListViewModel
+
+@if (Model.NavigationRoot != null) {
+
+  <!-- Left hand Navigation -->
+  <nav role="navigation" class="lesson-list track-progress" style="float: left">
+    <div class="grid-container">
+      <div class="grid-x">
+        <ol>
+          @foreach (var topic in Model.NavigationRoot.Children) {
+            <li class="@topic.GetCssClass() @(topic.IsSelected(Model.CurrentKey)? "selected" : "")">
+              <a href="@topic.WebPath">
+                @(topic.ShortTitle?? topic.Title)
+              </a>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+  </nav>
+  <!-- /Left hand Navigation -->
+
+  <partial name="_TrackEvents" for="TrackingEvents" />
+
+}
+
+<!--
+  Content Type: NavigationViewModel<TrackedNavigationTopicViewModel>
+  View Location: ~/Areas/Courses/Views/Shared/Components/LessonList/Default.cshtml
+-->

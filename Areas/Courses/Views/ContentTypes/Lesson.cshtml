@@ -1,0 +1,25 @@
+﻿@model LessonTopicViewModel
+
+@{
+  ViewBag.Title = Model.Title;
+}
+
+<nav class="cell hide-for-small-only medium-2">
+  <vc:lesson-list />
+</nav>
+
+<section class="panel cell small-12 medium-10">
+  <h1>@Model.Title</h1>
+  @Html.Raw(Model.Body)
+
+  <nav>
+    <vc:lesson-paging move-next="false" />
+    <vc:lesson-paging move-next="true" />
+  </nav>
+
+</section>
+
+<!--
+  Content Type: Lesson
+  View Location: ~/Areas/Courses/Views/ContentTypes/Lesson.cshtml
+-->

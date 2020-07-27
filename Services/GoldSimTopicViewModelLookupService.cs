@@ -6,6 +6,7 @@
 using System;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
+using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Models.Forms.BindingModels;
 using GoldSim.Web.Models.ViewModels;
 using OnTopic.Editor.AspNetCore.Infrastructure;
@@ -54,6 +55,14 @@ namespace GoldSim.Web {
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Add GoldSim courseware specific view models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(CourseListTopicViewModel));
+      Add(typeof(CourseTopicViewModel));
+      Add(typeof(UnitTopicViewModel));
+      Add(typeof(LessonTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | License administration

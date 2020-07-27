@@ -1,0 +1,30 @@
+﻿@model UnitListViewModel
+
+@if (Model.NavigationRoot != null) {
+
+  <!-- Unit Navigation -->
+  <nav role="navigation" class="unit-list track-progress">
+    <div class="grid-container">
+      <div class="grid-x">
+        <ol>
+          @foreach (var topic in Model.NavigationRoot.Children) {
+            <li class="@topic.GetCssClass()">
+              <a href="@topic.WebPath">
+                @(topic.ShortTitle?? topic.Title)
+              </a>
+            </li>
+          }
+        </ol>
+      </div>
+    </div>
+  </nav>
+  <!-- /Unit Navigation -->
+
+  <partial name="_TrackEvents" for="TrackingEvents" />
+
+}
+
+<!--
+  Content Type: NavigationViewModel<TrackedNavigationTopicViewModel>
+  View Location: ~/Areas/Courses/Views/Shared/Components/UnitList/Default.cshtml
+-->

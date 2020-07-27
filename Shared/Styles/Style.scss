@@ -21,7 +21,7 @@
 @import "variables";
 
 //----------------------------------------------------------------------------------------------
-// IMPORT EXTERNAL LIBRARIES
+// IMPORT FOUNDATION LIBRARIES
 //----------------------------------------------------------------------------------------------
 @import "../../node_modules/foundation-sites/scss/foundation";
 // @include foundation-everything;
@@ -64,6 +64,12 @@
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 @include foundation-flex-classes;
+
+//----------------------------------------------------------------------------------------------
+// IMPORT FONT AWESOME LIBRARIES
+//----------------------------------------------------------------------------------------------
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/_mixins.scss";
+@import "../../node_modules/@fortawesome/fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
 // IMPORT OTHER MANIFESTS
