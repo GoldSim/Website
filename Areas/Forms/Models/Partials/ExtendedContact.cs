@@ -4,27 +4,38 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models.Partials {
 
   /*============================================================================================================================
-  | BINDING MODEL: REQUEST A DEMO FORM
+  | MODEL: EXTENDED CONTACT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
+  ///   Provides a strongly-typed data transfer object for representing an extended contact, which includes a <see
+  ///   cref="Address"/> on top of the normal <see cref="Contact"/> properties.
   /// </summary>
-  public class DemoFormBindingModel : ExtendedProfile {
+  public class ExtendedContact : Contact {
 
     /*==========================================================================================================================
-    | PROPERTY: OTHER TOOLS
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    ///   Initializes a new instances of a <see cref="ExtendedContact"/> object.
+    /// </summary>
+    public ExtendedContact() {
+      Address = new Address();
+    }
+
+    /*==========================================================================================================================
+    | PROPERTY: ADDRESS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the user's physical address.
     /// </summary>
     [Required]
-    [StringLength(1000)]
-    [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
-    public string OtherTools { get; set; }
+    [MapToParent]
+    public Address Address { get; }
 
   }
 

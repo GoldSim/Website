@@ -4,38 +4,38 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Forms.Models.Partials;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | MODEL: EXTENDED CONTACT
+  | BINDING MODEL: ACADEMIC FORM (STUDENT)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for representing an extended contact, which includes a <see
-  ///   cref="Address"/> on top of the normal <see cref="Contact"/> properties.
+  ///   Provides a strongly-typed binding model representing the student version of the academic form.
   /// </summary>
-  public class ExtendedContact : Contact {
+  public class StudentAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instances of a <see cref="ExtendedContact"/> object.
+    ///   Initializes a new instance of the <see cref="StudentAcademicFormBindingModel"/> object.
     /// </summary>
-    public ExtendedContact() {
-      Address = new Address();
+    public StudentAcademicFormBindingModel() {
+      Sponsor = new AcademicSponsor();
     }
 
     /*==========================================================================================================================
-    | PROPERTY: ADDRESS
+    | PROPERTY: SPONSOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's physical address.
+    ///   Gets or sets the academic sponsor of the student (usually their instructor or academic advisor).
     /// </summary>
-    [Required]
     [MapToParent]
-    public Address Address { get; }
+    [Display(Name="Student Sponsor")]
+    public AcademicSponsor Sponsor { get; }
 
   }
 

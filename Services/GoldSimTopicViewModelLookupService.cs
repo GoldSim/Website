@@ -7,7 +7,7 @@ using System;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
 using GoldSim.Web.Courses.Models;
-using GoldSim.Web.Models.Forms.BindingModels;
+using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Models.ViewModels;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 

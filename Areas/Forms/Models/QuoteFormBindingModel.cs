@@ -5,26 +5,26 @@
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | BINDING MODEL: ACADEMIC FORM (INSTRUCTOR)
+  | BINDING MODEL: QUOTE FORM
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the instructor version of the academic form.
+  ///   Provides a strongly-typed binding model representing the Request a Quote form.
   /// </summary>
-  public class InstructorAcademicFormBindingModel : AcademicFormBindingModel {
+  public class QuoteFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
-    | PROPERTY: WEB PAGE
+    | PROPERTY: FAX NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's faculty web page address.
+    ///   Gets or sets the fax number for the user (or their organization) so that the quote may be faxed to them.
     /// </summary>
-    [Url]
-    [StringLength(255)]
-    [Display(Name="Faculty Web Page")]
-    public string Webpage { get; set; }
+    [Phone]
+    [StringLength(50)]
+    [Display(Name="Fax")]
+    public string FaxNumber { get; set; }
 
   }
 

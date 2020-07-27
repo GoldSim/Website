@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using GoldSim.Web.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: PAYMENT FORM

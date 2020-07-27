@@ -3,69 +3,85 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Forms.Models.Partials;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | BINDING MODEL: PURCHASE FORM
+  | BINDING MODEL: PURCHASE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Purchase GoldSim form.
+  ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
+  ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
   /// </summary>
-  public class PurchaseFormBindingModel : PurchaseBindingModel {
+  public class PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="PurchaseFormBindingModel"/> object.
+    ///   Initializes a new instance of a <see cref="PurchaseBindingModel"/> object.
     /// </summary>
-    public PurchaseFormBindingModel() : base() {
-    //UserContact = new ExtendedContact();
-    //AccountsPayableContact = new ExtendedContact();
+    public PurchaseBindingModel() {
+      Modules = new ModuleSelection();
     }
 
     /*==========================================================================================================================
-    | PROPERTY: USER (CONTACT)
+    | PROPERTY: PRODUCT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's contact information.
+    ///   Gets or sets the product the user is interested in purchasing (or getting a quote for).
     /// </summary>
-    [MapToParent]
-    [Display(Name="Intended User Contact Information")]
-    public ExtendedContact UserContact { get; set; }
+    [StringLength(20)]
+    [Metadata("Products")]
+    public string Product { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: ACCOUNTS PAYABLE (contact)
+    | PROPERTY: LICENSE TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the contact information for the accounts payable department of the user's organization.
+    ///   Gets or sets what type of license the user wishes to purchase (e.g., stand-alone, leased, enterprise).
     /// </summary>
-    [MapToParent]
-    [Display(Name="Accounts Payable Contact Information")]
-    public ExtendedContact AccountsPayableContact { get; set; }
+    [Required]
+    [StringLength(30)]
+    [Display(Name="License Type")]
+    [Metadata("LicenseTypes")]
+    public string LicenseType { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: PURCHASE ORDER NUMBER
+    | PROPERTY: QUANTITY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the purchase order number for the purchase.
+    ///   Gets or sets the number of licenses the user wishes to purchase.
     /// </summary>
-    [StringLength(15)]
-    [Display(Name="Purchase Order Number")]
-    public string PurchaseOrderNumber { get; set; }
+    [Required]
+    [Range(1, 1000, ErrorMessage="At least one license is required.")]
+    [Display(Name="License Quantity")]
+    public int Quantity { get; set; } = 1;
 
     /*==========================================================================================================================
-    | PROPERTY: PURCHASE NOTES
+    | PROPERTY: INSTRUCTIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets any additional notes that the user wants to provide as part of their order.
+    ///   Gets or sets any additional instructions the user wants assessed as part of their quote or purchase.
     /// </summary>
     [StringLength(1000)]
-    [Display(Name="Purchase Notes")]
-    public string PurchaseNotes { get; set; }
+    [Display(Name="Additional Quote Instructions")]
+    public string Instructions { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: MODULES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the list of modules the user would like to purchase (or receive a quote for).
+    /// </summary>
+    [Required]
+    [Display(Name="Add-On Modules:")]
+    [MapToParent]
+    public ModuleSelection Modules { get; }
 
   }
 

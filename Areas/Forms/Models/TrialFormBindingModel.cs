@@ -4,59 +4,48 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Forms.Models.Partials;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | BINDING MODEL: ACADEMIC FORM
+  | BINDING MODEL: REQUEST A TRIAL FORM
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the academic form.
+  ///   Provides a strongly-typed binding model representing the Request a Trial form.
   /// </summary>
-  /// <remarks>
-  ///   There are actually two specific academic forms—the <see cref="StudentAcademicFormBindingModel"/> and the <see
-  ///   cref="InstructorAcademicFormBindingModel"/>—which this operates as a base class for.
-  /// </remarks>
-  public class AcademicFormBindingModel : ExtendedProfile {
+  public class TrialFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Instantiates a new instance of a <see cref="AcademicFormBindingModel"/> object.
+    ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
     /// </summary>
-    public AcademicFormBindingModel() {
-      Address = new Address();
+    public TrialFormBindingModel() {
     }
 
     /*==========================================================================================================================
-    | PROPERTY: ORGANIZATION
+    | PROPERTY: TRAINER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's organization or institution name.
+    ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
     /// </summary>
-    [Display(Name="Name of Institution")]
-    public override string Organization { get; set; }
+    [MapToParent]
+    [Display(Name="Trainer Contact Information")]
+    public CoreContact Trainer { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: ADDRESS
+    | PROPERTY: OTHER TOOLS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's address.
-    /// </summary>
-    [MapToParent(AttributePrefix="")]
-    public Address Address { get; }
-
-    /*==========================================================================================================================
-    | PROPERTY: DEPARTMENT
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets what department the user is associated with.
+    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
     /// </summary>
     [Required]
-    [StringLength(255)]
-    public string Department { get; set; }
+    [StringLength(1000)]
+    [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
+    public string OtherTools { get; set; }
 
   }
 

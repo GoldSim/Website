@@ -10,7 +10,7 @@ using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using Braintree;
-using GoldSim.Web.Models.Forms.BindingModels;
+using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Models.ViewModels;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;

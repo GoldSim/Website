@@ -4,75 +4,77 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Forms.Models.Partials;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | MODEL: PROFILE
+  | BINDING MODEL: TRAINING FORM
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for representing a profiled user. This extends <see cref="Contact"/> with
-  ///   basic profile information such as <see cref="AreaOfFocus"/>, <see cref="ProblemStatement"/>, and <see
-  ///   cref="ReferralSource"/>.
+  ///   Provides a strongly-typed binding model representing the Training Request form.
   /// </summary>
-  public class Profile : Contact {
+  public class TrainingFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
-    | PROPERTY: AREA OF FOCUS
+    | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the area that the user's area of focus, which helps determine how they intend to use GoldSim.
+    ///   Initializes a new instance of a <see cref="TrainingFormBindingModel"/> object.
     /// </summary>
-    [Required]
-    [StringLength(100)]
-    [Display(Name="Area of Focus")]
-    [Metadata("FocusArea")]
-    public string AreaOfFocus { get; set; }
+    public TrainingFormBindingModel() : base() {
+    }
 
     /*==========================================================================================================================
-    | PROPERTY: AREA OF FOCUS (OTHER)
+    | PROPERTY: FAX NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's custom area of focus, for cases where the out-of-the-box options aren't relevant.
+    ///   Gets or sets the fax number for the user (or their organization) so that the quote may be faxed to them.
     /// </summary>
-    [StringLength(255)]
-    [Display(Name="Other")]
-    public string AreaOfFocusOther { get; set; }
+    [Phone]
+    [StringLength(50)]
+    [Display(Name = "Fax")]
+    public string FaxNumber { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: PROBLEM STATEMENT
+    | PROPERTY: ACCOUNTS PAYABLE (CONTACT)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the problem that the user is hoping to solve by using GoldSim.
+    ///   Gets or sets the contact information for the accounts payable department of the user's organization.
     /// </summary>
-    [Required]
+    [MapToParent]
+    [Display(Name="Accounts Payable Contact Information")]
+    public ExtendedContact AccountsPayableContact { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: PURCHASE ORDER NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the purchase order number for the purchase.
+    /// </summary>
+    [StringLength(15)]
+    [Display(Name="Purchase Order Number")]
+    public string PurchaseOrderNumber { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: INSTRUCTIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets any additional instructions the user wants assessed as part of their training purchase.
+    /// </summary>
     [StringLength(1000)]
-    [Display(Name="What problem are you trying to solve?")]
-    public string ProblemStatement { get; set; }
+    [Display(Name = "Additional Instructions")]
+    public string Instructions { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: REFERRAL SOURCE
+    | PROPERTY: WITH PAPER RECEIPT?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets how the user came to hear about GoldSim (e.g., from a colleague, or via a Google search).
+    ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
     /// </summary>
-    [Required]
-    [StringLength(100)]
-    [Display(Name="How did you learn about GoldSim?")]
-    [Metadata("ReferralSource")]
-    public string ReferralSource { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: REFERRAL DETAILS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the user's explanation of how they came to hear about GoldSim, should they have additional detail to
-    ///   share.
-    /// </summary>
-    [StringLength(30)]
-    [Display(Name="Referral Details")]
-    public string ReferralDetails { get; set; }
+    [Display(Name = "I would prefer a paper invoice or receipt.")]
+    public bool WithPaperReceipt { get; set; }
 
   }
 

@@ -3,8 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using GoldSim.Web.Forms.Models.Partials;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: NEWSLETTER FORM

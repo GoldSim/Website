@@ -1,110 +1,97 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Models.ViewModels;
 using OnTopic.Mapping.Annotations;
+using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | BINDING MODEL: USER CONFERENCE REGISTRATION FORM
+  | CLASS: FORM PAGE VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the User Conference Registration form.
+  ///   A view model for rendering a form page.
   /// </summary>
-  public class UserConferenceFormBindingModel : ExtendedContact {
+  public class FormPageTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="UserConferenceFormBindingModel"/> object.
+    ///   Initializes a new instance of a <see cref="FormPageTopicViewModel"/> with appropriate dependencies.
     /// </summary>
-    public UserConferenceFormBindingModel() : base() {
-      TrainingTopics = new AdvancedTrainingTopicsSelection();
-    }
+    /// <returns>A <see cref="FormPageTopicViewModel"/>.</returns>
+    public FormPageTopicViewModel() {}
 
     /*==========================================================================================================================
-    | PROPERTY: FAX NUMBER
+    | FOLLOW-UP PAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the fax number for the user (or their organization) so that the quote may be faxed to them.
+    ///   References the <see cref="Topic.Id"/> of the page that should be redirected to upon completion.
     /// </summary>
-    [Phone]
-    [StringLength(50)]
-    [Display(Name = "Fax")]
-    public string FaxNumber { get; set; }
+    public int FollowUpPage { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: WILL SUBMIT POSTER?
+    | SUBMIT BUTTON LABEL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether the user intends to submit a poster for the conference's poster session.
+    ///   Defines the label to use for the submit button.
     /// </summary>
-    [Display(Name="I am interested in submitting a poster.")]
-    public bool WillSubmitPoster { get; set; }
+    public string SubmitButtonLabel { get; set; } = "Submit";
 
     /*==========================================================================================================================
-    | PROPERTY: PURCHASE ORDER NUMBER
+    | DISABLE EMAIL RECEIPT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the purchase order number that GoldSim should reference in the invoice for the registration.
+    ///   Optionally overrides the email receipt that is sent by default.
     /// </summary>
-    [StringLength(15)]
-    [Display(Name="Purchase Order Number")]
-    public string PurchaseOrderNumber { get; set; }
+    public bool DisableEmailReceipt { get; set; } = false;
 
     /*==========================================================================================================================
-    | PROPERTY: ADDITIONAL INSTRUCTIONS
+    | EMAIL SUBJECT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets any special instructions (such as dinner guests or dietary restrictions) needed to accomodate the
-    ///   attendee.
+    ///   Optionally overrides the subject of the email receipt.
     /// </summary>
-    [StringLength(1000)]
-    [Display(Name="Additional Instructions(e.g., interest in spouse / partner attending dinners)")]
-    public string AdditionalInstructions { get; set; }
+    public string EmailSubject { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: ADVANCED TRAINING TOPICS SELECTION
+    | EMAIL RECIPIENT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets what additional training topics the attendee is interested in, if any, as part of their training session.
+    ///   Optionally overrides the recipient of the email receipt.
     /// </summary>
-    [MapToParent]
-    [Display(Name="Advanced Training Topics")]
-    public AdvancedTrainingTopicsSelection TrainingTopics { get; }
+    public string EmailRecipient { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: APPLY STUDENT DISCOUNT?
+    | EMAIL SENDER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether the attendee is a student and, thus, should receive the student discount.
+    ///   Optionally overrides the sender of the email receipt.
     /// </summary>
-    [Display(Name="Apply student discount")]
-    public bool WithStudentDiscount { get; set; }
+    public string EmailSender { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: INCLUDE TRAINING?
+    | CUSTOMER EMAIL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether the attendee will be attending (and purchasing) the additional training portion of the
-    ///   conference.
+    ///   Optional link to a page that should be sent to the customer as a receipt.
     /// </summary>
-    [Display(Name="Basic Training and Conference(September 10 - 12): $1, 500")]
-    public bool IncludeTraining { get; set; }
+    [AttributeKey("CustomerEmailTopicId")]
+    public EmailTopicViewModel CustomerEmail { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: WITH PAPER RECEIPT?
+    | SAVE AS TOPIC?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
+    ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
+    ///   cref="OnTopic.Topic"/> in the configured <see cref="OnTopic.Repositories.ITopicrepository"/>.
     /// </summary>
-    [Display(Name="I would prefer a paper invoice or receipt.")]
-    public bool WithPaperReceipt { get; set; }
+    public bool SaveAsTopic { get; set; } = false;
 
-  }
+  } // Class
 
-}
+} // Namespace

@@ -4,58 +4,90 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Models;
+using Microsoft.AspNetCore.Mvc;
 
-namespace GoldSim.Web.Models.Forms {
+namespace GoldSim.Web.Forms.Models.Partials {
 
   /*============================================================================================================================
-  | MODEL: ACADEMIC SPONSOR
+  | MODEL: CORE CONTACT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for representing the contact information of an academic sponsor.
+  ///   Provides a strongly-typed data transfer object for representing the core contact information required of every request.
   /// </summary>
-  public class AcademicSponsor: Contact {
+  /// <remarks>
+  ///   Every form has, at its base, core contact information representing the <see cref="FirstName"/>, <see cref="LastName"/>,
+  ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
+  ///   nearly every form binding model used by GoldSim.
+  /// </remarks>
+  public class CoreContact: ITopicBindingModel {
+
+    /*==========================================================================================================================
+    | PROPERTY: KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the key for the topic, in the case this is saved to a topic.
+    /// </summary>
+    [DisableMapping]
+    [StringLength(255)]
+    public virtual string Key { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the content type for the topic in the case this is saved to a topic.
+    /// </summary>
+    [DisableMapping]
+    [StringLength(255)]
+    public virtual string ContentType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Display(Name="Sponsor First Name")]
-    public override string FirstName { get; set; }
+    /// <summary>
+    ///   Gets or sets the user's first name.
+    /// </summary>
+    [Required]
+    [StringLength(255)]
+    [Display(Name = "First Name")]
+    public virtual string FirstName { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: LAST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Display(Name="Sponsor Last Name")]
-    public override string LastName { get; set; }
+    /// <summary>
+    ///   Gets or sets the user's last name.
+    /// </summary>
+    [Required]
+    [StringLength(255)]
+    [Display(Name = "Last Name")]
+    public virtual string LastName { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Display(Name="Sponsor Department")]
-    public override string Organization { get; set; }
+    /// <summary>
+    ///   Gets or sets the user's organization or institution name.
+    /// </summary>
+    [Required]
+    [StringLength(255)]
+    [Display(Name = "Organization Name")]
+    public virtual string Organization { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Display(Name="Sponsor Email")]
-    public override string Email { get; set; }
+    /// <summary>
+    ///   Gets or sets the user's email address.
+    /// </summary>
+    [Required]
+    [EmailAddress]
+    [Display(Name = "Email Address")]
+    [Remote(action: "VerifyEmail", controller: "Forms")]
+    public virtual string Email { get; set; }
 
-    /*==========================================================================================================================
-    | PROPERTY: COUNTRY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Required(AllowEmptyStrings = true)]
-    public override string Country { get; set; } = "";
+  }
 
-    /*==========================================================================================================================
-    | PROPERTY: PHONE NUMBER
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Display(Name="Sponsor Phone Number")]
-    public override string PhoneNumber { get; set; }
-
-  } //Class
-} //Namespace
+}

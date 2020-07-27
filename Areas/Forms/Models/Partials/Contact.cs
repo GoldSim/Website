@@ -6,35 +6,42 @@
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models.Partials {
 
   /*============================================================================================================================
-  | BINDING MODEL: ACADEMIC FORM (STUDENT)
+  | MODEL: CONTACT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the student version of the academic form.
+  ///   Provides a strongly-typed data transfer object for representing the contact information for a user.
   /// </summary>
-  public class StudentAcademicFormBindingModel : AcademicFormBindingModel {
+  /// <remarks>
+  ///   The <see cref="Contact"/> class extends the <see cref="CoreContact"/> by adding <see cref="Contact.Country"/> and
+  ///   <see cref="Contact.PhoneNumber"/>. These fields are required for anything beyond informational requests.
+  /// </remarks>
+  public class Contact : CoreContact {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: COUNTRY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="StudentAcademicFormBindingModel"/> object.
+    ///   Gets or sets the country name.
     /// </summary>
-    public StudentAcademicFormBindingModel() {
-      Sponsor = new AcademicSponsor();
-    }
+    [Required]
+    [StringLength(75)]
+    [Metadata("Country")]
+    public virtual string Country { get; set; } = "United States of America";
 
     /*==========================================================================================================================
-    | PROPERTY: SPONSOR
+    | PROPERTY: PHONE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the academic sponsor of the student (usually their instructor or academic advisor).
+    ///   Gets or sets the user's phone number.
     /// </summary>
-    [MapToParent]
-    [Display(Name="Student Sponsor")]
-    public AcademicSponsor Sponsor { get; }
+    [Required]
+    [Phone]
+    [StringLength(50)]
+    [Display(Name="Telephone")]
+    public virtual string PhoneNumber { get; set; }
 
   }
 

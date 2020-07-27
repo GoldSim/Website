@@ -3,7 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Forms.BindingModels;
+using GoldSim.Web.Forms.Models;
 using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ViewModels {

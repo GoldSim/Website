@@ -3,84 +3,63 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.ComponentModel.DataAnnotations;
-using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models.Partials {
 
   /*============================================================================================================================
-  | BINDING MODEL: PURCHASE
+  | MODEL: MODULE SELECTION
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
-  ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
+  ///   Provides a strongly-typed data transfer object for representing a selection of GoldSim modules that the user might be
+  ///   interested in trying.
   /// </summary>
-  public class PurchaseBindingModel: ExtendedContact {
+  public class ModuleSelection {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: RELIABILITY MODULE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="PurchaseBindingModel"/> object.
+    ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
-    public PurchaseBindingModel() {
-      Modules = new ModuleSelection();
-    }
+    [Display(Name="Reliability Module")]
+    public bool Reliability { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: PRODUCT
+    | PROPERTY: RADIONUCLIDE TRANSPORT (RT) MODULE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the product the user is interested in purchasing (or getting a quote for).
+    ///   Gets or sets the user is interested in the Radionuclide Transport (RT) Module.
     /// </summary>
-    [StringLength(20)]
-    [Metadata("Products")]
-    public string Product { get; set; }
+    [Display(Name="Radionuclide Transport (RT) Module")]
+    public bool RadionuclideTransport { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: LICENSE TYPE
+    | PROPERTY: CONTAMINANT TRANSPORT (CT)MODULE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets what type of license the user wishes to purchase (e.g., stand-alone, leased, enterprise).
+    ///   Gets or sets the user is interested in the Contaminant Transport (CT) Module.
     /// </summary>
-    [Required]
-    [StringLength(30)]
-    [Display(Name="License Type")]
-    [Metadata("LicenseTypes")]
-    public string LicenseType { get; set; }
+    [Display(Name="Contaminant Transport (CT) Module")]
+    public bool ContaminantTransport { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: QUANTITY
+    | PROPERTY: DISTRIBUTED PROCESSING (DP-PLUS) MODULE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the number of licenses the user wishes to purchase.
+    ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
-    [Required]
-    [Range(1, 1000, ErrorMessage="At least one license is required.")]
-    [Display(Name="License Quantity")]
-    public int Quantity { get; set; } = 1;
+    [Display(Name="Distributed Processing (DP-Plus) Module")]
+    public bool DistributedProcessing { get; set; }
 
     /*==========================================================================================================================
-    | PROPERTY: INSTRUCTIONS
+    | PROPERTY: QUICK START PACKAGE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets any additional instructions the user wants assessed as part of their quote or purchase.
+    ///   Gets or sets the user is interested in the quick start package.
     /// </summary>
-    [StringLength(1000)]
-    [Display(Name="Additional Quote Instructions")]
-    public string Instructions { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: MODULES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the list of modules the user would like to purchase (or receive a quote for).
-    /// </summary>
-    [Required]
-    [Display(Name="Add-On Modules:")]
-    [MapToParent]
-    public ModuleSelection Modules { get; }
+    [Display(Name="Quick Start Package")]
+    public bool QuickStartPackage { get; set; }
 
   }
 

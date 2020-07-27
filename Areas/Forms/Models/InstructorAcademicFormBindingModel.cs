@@ -1,36 +1,31 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
+| Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using GoldSim.Web.Forms.Models.Partials;
+using System.ComponentModel.DataAnnotations;
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | CLASS: LICENSE REQUEST VIEW MODEL
+  | BINDING MODEL: ACADEMIC FORM (INSTRUCTOR)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   A view model for rendering a license request.
+  ///   Provides a strongly-typed binding model representing the instructor version of the academic form.
   /// </summary>
-  public class LicenseRequestTopicViewModel: CoreContact {
+  public class InstructorAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
-    | ID
+    | PROPERTY: WEB PAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The topic's unique identifier.
+    ///   Gets or sets the user's faculty web page address.
     /// </summary>
-    public int Id { get; set; }
+    [Url]
+    [StringLength(255)]
+    [Display(Name="Faculty Web Page")]
+    public string Webpage { get; set; }
 
-    /*==========================================================================================================================
-    | LAST MODIFIED
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The date the request was submitted.
-    /// </summary>
-    public DateTime LastModified { get; set; }
+  }
 
-  } // Class
-} // Namespace
+}

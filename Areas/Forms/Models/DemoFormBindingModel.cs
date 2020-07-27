@@ -4,27 +4,28 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.ComponentModel.DataAnnotations;
+using GoldSim.Web.Forms.Models.Partials;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models {
 
   /*============================================================================================================================
-  | BINDING MODEL: QUOTE FORM
+  | BINDING MODEL: REQUEST A DEMO FORM
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Request a Quote form.
+  ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
   /// </summary>
-  public class QuoteFormBindingModel : PurchaseBindingModel {
+  public class DemoFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
-    | PROPERTY: FAX NUMBER
+    | PROPERTY: OTHER TOOLS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the fax number for the user (or their organization) so that the quote may be faxed to them.
+    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
     /// </summary>
-    [Phone]
-    [StringLength(50)]
-    [Display(Name="Fax")]
-    public string FaxNumber { get; set; }
+    [Required]
+    [StringLength(1000)]
+    [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
+    public string OtherTools { get; set; }
 
   }
 

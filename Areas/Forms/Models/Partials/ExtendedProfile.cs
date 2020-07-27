@@ -3,48 +3,56 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Mapping.Annotations;
 
-namespace GoldSim.Web.Models.Forms.BindingModels {
+namespace GoldSim.Web.Forms.Models.Partials {
 
   /*============================================================================================================================
-  | BINDING MODEL: REQUEST A TRIAL FORM
+  | MODEL: EXTENDED PROFILE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Request a Trial form.
+  ///   Provides a strongly-typed data transfer object for representing an extended profile. In addition to properties from the
+  ///   <see cref="Profile"/> class, this also includes <see cref="Modules"/> the user may be interested in, as well as the
+  ///   required <see cref="AcceptTermsOfUse"/> boolean.
   /// </summary>
-  public class TrialFormBindingModel : ExtendedProfile {
+  public class ExtendedProfile : Profile {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
+    ///   Initializes a new instance of an <see cref="ExtendedProfile"/> object.
     /// </summary>
-    public TrialFormBindingModel() {
+    public ExtendedProfile() {
+      Modules = new ModuleSelection();
     }
 
     /*==========================================================================================================================
-    | PROPERTY: TRAINER
+    | PROPERTY: MODULES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
-    /// </summary>
-    [MapToParent]
-    [Display(Name="Trainer Contact Information")]
-    public CoreContact Trainer { get; set; }
-
-    /*==========================================================================================================================
-    | PROPERTY: OTHER TOOLS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    ///   Gets or sets the modules that the user has selected.
     /// </summary>
     [Required]
-    [StringLength(1000)]
-    [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
-    public string OtherTools { get; set; }
+    [Display(Name="I am also interested in:")]
+    [MapToParent]
+    public ModuleSelection Modules { get; }
+
+    /*==========================================================================================================================
+    | PROPERTY: ACCEPT TERMS OF USE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether or not the user has accepted the terms of user.
+    /// </summary>
+    /// <remarks>
+    ///   It is required that the user accept the terms of use, so this should always be set to true. By having it in the model,
+    ///   however, we're able to provide form validation and error messaging.
+    /// </remarks>
+    [Range(typeof(bool), "true", "true", ErrorMessage="The terms of service must be accepted.")]
+    [Display(Name="I agree to these terms of use. I also agree to receive the GoldSim newsletter.")]
+    public bool AcceptTermsOfUse { get; set; }
 
   }
 
