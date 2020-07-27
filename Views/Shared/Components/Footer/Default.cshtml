@@ -1,4 +1,4 @@
-﻿@model OnTopic.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.ViewModels.NavigationTopicViewModel>
+﻿@model FooterViewModel
 
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="site footer" role="contentinfo">
@@ -19,6 +19,9 @@
       <!-- /Company Information -->
       <!-- Terms / Privacy -->
       <div class="terms cell small-6 small-order-3 medium-3 medium-order-2 large-4">
+        @if (!Model.IsMainSite) {
+          <p class="link heading"><a href="/">GoldSim Website</a></p>
+        }
         <p class="link heading"><a href="http://blog.goldsim.com/">Blog</a></p>
         <p class="link heading"><a href="/Topic/857/">Site Terms</a></p>
         <p class="link heading"><a href="/Topic/4222/">Privacy Policy</a></p>
