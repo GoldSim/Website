@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using OnTopic;
 
-namespace GoldSim.Web {
+namespace GoldSim.Web.Administration.Services {
 
   /*============================================================================================================================
   | INTERFACE: TOPIC EXPORT SERVICE

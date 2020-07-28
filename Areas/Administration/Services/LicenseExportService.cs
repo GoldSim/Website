@@ -14,7 +14,7 @@ using OfficeOpenXml.Style;
 using OnTopic;
 using OnTopic.Attributes;
 
-namespace GoldSim.Web {
+namespace GoldSim.Web.Administration.Services {
 
   /*============================================================================================================================
   | CLASS: LICENSE EXPORT SERVICE

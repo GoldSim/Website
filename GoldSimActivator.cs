@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using GoldSim.Web.Administration.Controllers;
+using GoldSim.Web.Administration.Services;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
 using GoldSim.Web.Courses.Components;
@@ -12,6 +13,8 @@ using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Components;
 using GoldSim.Web.Models;
+using GoldSim.Web.Payments.Controllers;
+using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
