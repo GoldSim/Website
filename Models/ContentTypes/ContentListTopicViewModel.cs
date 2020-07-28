@@ -24,5 +24,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public bool IsIndexed { get; set; } = false;
 
   } // Class
-
 } // Namespace

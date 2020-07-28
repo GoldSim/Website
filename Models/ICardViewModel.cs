@@ -19,5 +19,4 @@ namespace GoldSim.Web.Models {
     string Title { get; }
 
   } // Interface
-
 } // Namespace

@@ -15,6 +15,5 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class FaqItemTopicViewModel: ContentItemTopicViewModel {
 
-
-  } //Class
-} //Namespace
+  } // Class
+} // Namespace

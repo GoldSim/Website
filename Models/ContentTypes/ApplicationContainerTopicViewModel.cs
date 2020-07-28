@@ -21,5 +21,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public string DisplayOrder { get; set; }
 
   } // Class
-
 } // Namespace

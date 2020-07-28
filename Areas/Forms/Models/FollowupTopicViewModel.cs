@@ -15,6 +15,5 @@ namespace GoldSim.Web.Forms.Models {
   /// </summary>
   public class FollowupTopicViewModel: PageTopicViewModel {
 
-
   } // Class
 } // Namespace

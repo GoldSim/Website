@@ -68,6 +68,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="ZIP/Postal Code")]
     public string PostalCode { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

@@ -80,5 +80,4 @@ namespace GoldSim.Web.Components {
     }
 
   } // Class
-
 } // Namespace

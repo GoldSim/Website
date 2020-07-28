@@ -59,6 +59,5 @@ namespace GoldSim.Web.Forms.Models {
     [StringLength(255)]
     public string Department { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

@@ -131,5 +131,4 @@ namespace GoldSim.Web.Forms.Components {
     }
 
   } // Class
-
 } // Namespace

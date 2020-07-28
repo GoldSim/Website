@@ -48,5 +48,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public string GetCategoryTitle(string category) => Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
 
   } // Class
-
 } // Namespace

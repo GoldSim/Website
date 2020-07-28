@@ -61,6 +61,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="Quick Start Package")]
     public bool QuickStartPackage { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

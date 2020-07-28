@@ -16,5 +16,4 @@ namespace GoldSim.Web.Models.ContentTypes {
   public class GlossaryItemTopicViewModel : ContentItemTopicViewModel {
 
   } // Class
-
 } // Namespace

@@ -16,5 +16,4 @@ namespace GoldSim.Web.Models.ContentTypes {
   public class SearchTopicViewModel : PageTopicViewModel {
 
   } // Class
-
 } // Namespace

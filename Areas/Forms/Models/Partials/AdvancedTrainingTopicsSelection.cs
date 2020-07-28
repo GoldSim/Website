@@ -71,6 +71,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="Other Topic(s) of Interest")]
     public string OtherDetails { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

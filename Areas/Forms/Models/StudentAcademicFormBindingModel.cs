@@ -37,6 +37,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="Student Sponsor")]
     public AcademicSponsor Sponsor { get; }
 
-  }
-
-}
+  } //Class
+} //Namespace

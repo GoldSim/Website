@@ -27,6 +27,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
     public string OtherTools { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

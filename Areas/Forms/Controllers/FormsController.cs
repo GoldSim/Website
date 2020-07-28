@@ -499,6 +499,5 @@ namespace GoldSim.Web.Controllers {
       return sb.ToString();
     }
 
-
   } // Class
 } // Namespace

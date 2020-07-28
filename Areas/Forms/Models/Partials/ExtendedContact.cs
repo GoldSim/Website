@@ -37,6 +37,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [MapToParent]
     public Address Address { get; }
 
-  }
-
-}
+  } //Class
+} //Namespace

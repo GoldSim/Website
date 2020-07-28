@@ -54,6 +54,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="I agree to these terms of use. I also agree to receive the GoldSim newsletter.")]
     public bool AcceptTermsOfUse { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

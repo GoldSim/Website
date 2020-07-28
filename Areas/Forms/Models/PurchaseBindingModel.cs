@@ -83,6 +83,5 @@ namespace GoldSim.Web.Forms.Models {
     [MapToParent]
     public ModuleSelection Modules { get; }
 
-  }
-
-}
+  } //Class
+} //Namespace

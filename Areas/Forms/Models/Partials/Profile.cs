@@ -74,6 +74,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="Referral Details")]
     public string ReferralDetails { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

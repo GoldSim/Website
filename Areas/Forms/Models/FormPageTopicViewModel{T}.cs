@@ -36,5 +36,4 @@ namespace GoldSim.Web.Forms.Models {
     public T BindingModel { get; }
 
   } // Class
-
 } // Namespace

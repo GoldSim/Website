@@ -93,5 +93,4 @@ namespace GoldSim.Web.Forms.Models {
     public bool SaveAsTopic { get; set; } = false;
 
   } // Class
-
 } // Namespace

@@ -134,5 +134,4 @@ namespace GoldSim.Web.Payments.Services {
     }
 
   } // Class
-
 } // Namespace

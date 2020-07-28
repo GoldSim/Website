@@ -102,5 +102,4 @@ namespace GoldSim.Web.Forms.Models {
     public string PaymentMethodNonce { get; set; }
 
   } //Class
-
 } //Namespace

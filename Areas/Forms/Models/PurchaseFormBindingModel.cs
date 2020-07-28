@@ -68,6 +68,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="Purchase Notes")]
     public string PurchaseNotes { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

@@ -106,6 +106,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="I would prefer a paper invoice or receipt.")]
     public bool WithPaperReceipt { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

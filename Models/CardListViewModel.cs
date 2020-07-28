@@ -44,6 +44,6 @@ namespace GoldSim.Web.Models {
     /// </summary>
     /// <returns>A CSS class name.</returns>
     public string ClassName { get; } = null;
-  } // Class
 
+  } // Class
 } // Namespace

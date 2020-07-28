@@ -63,6 +63,5 @@ namespace GoldSim.Web.Services {
 
     }
 
-  } // Interface
-
+  } // Class
 } // Namespace

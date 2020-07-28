@@ -26,6 +26,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="Fax")]
     public string FaxNumber { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

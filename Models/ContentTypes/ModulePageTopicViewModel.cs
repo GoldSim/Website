@@ -19,5 +19,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public string ThumbnailImage { get; set; }
 
   } // Class
-
 } // Namespace

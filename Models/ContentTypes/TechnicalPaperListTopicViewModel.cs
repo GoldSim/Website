@@ -31,5 +31,4 @@ namespace GoldSim.Web.Models.ContentTypes {
       );
 
   } // Class
-
 } // Namespace

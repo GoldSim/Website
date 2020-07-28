@@ -26,7 +26,5 @@ namespace GoldSim.Web.Models.ContentTypes {
     [Relationship("EngineeredSystemsExamples")]
     public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
 
-
   } // Class
-
 } // Namespace

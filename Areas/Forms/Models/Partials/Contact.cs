@@ -43,6 +43,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="Telephone")]
     public virtual string PhoneNumber { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

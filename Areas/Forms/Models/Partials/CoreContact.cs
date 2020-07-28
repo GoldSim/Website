@@ -88,6 +88,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Remote(action: "VerifyEmail", controller: "Forms")]
     public virtual string Email { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace

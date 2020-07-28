@@ -36,5 +36,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; set; }
 
   } // Class
-
 } // Namespace

@@ -26,6 +26,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="Faculty Web Page")]
     public string Webpage { get; set; }
 
-  }
-
-}
+  } //Class
+} //Namespace
