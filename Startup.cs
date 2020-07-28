@@ -189,7 +189,7 @@ namespace GoldSim.Web {
         endpoints.MapAreaControllerRoute(
           name: "Courses",
           areaName: "Courses",
-          pattern: "Courses/{*path}",
+          pattern: "Courses/{**path}",
           defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
         );
         endpoints.MapAreaControllerRoute(
