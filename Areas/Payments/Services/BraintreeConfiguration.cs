@@ -11,7 +11,7 @@ using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web {
+namespace GoldSim.Web.Payments.Services {
 
   /*============================================================================================================================
   | CLASS: BRAINTREE CONFIGURATION

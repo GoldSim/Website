@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.ComponentModel.DataAnnotations;
-using GoldSim.Web.Controllers;
+using GoldSim.Web.Payments.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Forms.Models {

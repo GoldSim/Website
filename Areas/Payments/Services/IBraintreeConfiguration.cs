@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using Braintree;
 
-namespace GoldSim.Web {
+namespace GoldSim.Web.Payments.Services {
 
   /*============================================================================================================================
   | INTERFACE: BRAINTREE CONFIGURATION
@@ -20,5 +20,4 @@ namespace GoldSim.Web {
     IBraintreeGateway GetGateway();
 
   } // Class
-
 } // Namespace

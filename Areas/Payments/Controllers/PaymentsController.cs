@@ -11,7 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Braintree;
 using GoldSim.Web.Forms.Models;
-using GoldSim.Web.Models.ContentTypes;
+using GoldSim.Web.Payments.Models;
+using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
@@ -20,7 +21,7 @@ using OnTopic.Attributes;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Payments.Controllers {
 
   /*============================================================================================================================
   | CLASS: PAYMENTS CONTROLLER
@@ -28,6 +29,7 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Provides access to the Payments page of the website, with Braintree Payments integration functionality.
   /// </summary>
+  [Area("Payments")]
   public class PaymentsController : TopicController {
 
     /*==========================================================================================================================
@@ -363,7 +365,5 @@ namespace GoldSim.Web.Controllers {
       return invoice;
     }
 
-
   } // Class
-
 } // Namespace

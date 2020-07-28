@@ -10,6 +10,7 @@ using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Models;
 using GoldSim.Web.Models.ContentTypes;
+using GoldSim.Web.Payments.Models;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 
 namespace GoldSim.Web {

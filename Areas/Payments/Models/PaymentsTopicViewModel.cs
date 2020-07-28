@@ -6,7 +6,7 @@
 using GoldSim.Web.Forms.Models;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ContentTypes {
+namespace GoldSim.Web.Payments.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: PAYMENTS TOPIC
@@ -30,5 +30,4 @@ namespace GoldSim.Web.Models.ContentTypes {
     public PaymentFormBindingModel BindingModel { get; set; }
 
   } // Class
-
 } // Namespace
