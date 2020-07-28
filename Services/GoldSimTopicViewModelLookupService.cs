@@ -10,6 +10,7 @@ using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Models;
 using GoldSim.Web.Models.ContentTypes;
+using GoldSim.Web.Models.ContentTypes.ContentItems;
 using GoldSim.Web.Payments.Models;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 
@@ -44,16 +45,20 @@ namespace GoldSim.Web {
       Add(typeof(EmailTopicViewModel));
       Add(typeof(ExampleApplicationTopicViewModel));
       Add(typeof(ExampleIndexTopicViewModel));
-      Add(typeof(FaqItemTopicViewModel));
       Add(typeof(FaqTopicViewModel));
       Add(typeof(FollowupTopicViewModel));
-      Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(GlossaryTopicViewModel));
       Add(typeof(HomeTopicViewModel));
       Add(typeof(ModulePageTopicViewModel));
       Add(typeof(PaymentsTopicViewModel));
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Add content item view models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(FaqItemTopicViewModel));
+      Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------

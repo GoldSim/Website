@@ -6,7 +6,7 @@
 using System;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ContentTypes {
+namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 
   /*============================================================================================================================
   | VIEW MODEL: TECHNICAL PAPER TOPIC

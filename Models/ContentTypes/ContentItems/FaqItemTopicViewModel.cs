@@ -5,15 +5,15 @@
 \=============================================================================================================================*/
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ContentTypes {
+namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 
   /*============================================================================================================================
-  | VIEW MODEL: GLOSSARY TOPIC
+  | VIEW MODEL: FAQ ITEM TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Glossary</c> topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>FAQItem</c> topic.
   /// </summary>
-  public class GlossaryItemTopicViewModel : ContentItemTopicViewModel {
+  public class FaqItemTopicViewModel: ContentItemTopicViewModel {
 
   } // Class
 } // Namespace
