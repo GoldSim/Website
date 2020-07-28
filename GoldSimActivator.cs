@@ -10,6 +10,7 @@ using GoldSim.Web.Controllers;
 using GoldSim.Web.Courses.Components;
 using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Forms.Components;
 using GoldSim.Web.Models;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Hosting;

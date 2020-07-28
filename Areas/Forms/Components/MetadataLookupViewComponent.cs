@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Linq;
-using GoldSim.Web.Models;
+using GoldSim.Web.Forms.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
@@ -14,7 +14,7 @@ using OnTopic.Collections;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Components {
+namespace GoldSim.Web.Forms.Components {
 
   /*============================================================================================================================
   | CLASS: METADATA LOOKUP VIEW COMPONENT
