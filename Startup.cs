@@ -3,8 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore;
 
 namespace GoldSim.Web {
 
