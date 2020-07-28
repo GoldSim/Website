@@ -192,13 +192,24 @@ namespace GoldSim.Web {
           pattern: "Courses/{*path}",
           defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
         );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{*path}",
+          defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{action=Index}",
+          defaults: new { controller = "Forms", rootTopic = "Forms" }
+        );
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller}/{action=Index}/"
         );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Error", "Error");
-        endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
         endpoints.MapControllerRoute(
           name: "LegacyRedirect",
