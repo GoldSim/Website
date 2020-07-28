@@ -202,7 +202,7 @@ namespace GoldSim.Web {
           name: "Forms",
           areaName: "Forms",
           pattern: "Forms/{action=Index}",
-          defaults: new { controller = "Forms", rootTopic = "Forms" }
+          defaults: new { controller = "Forms" }
         );
         endpoints.MapControllerRoute(
           name: "default",

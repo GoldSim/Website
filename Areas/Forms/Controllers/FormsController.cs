@@ -15,6 +15,7 @@ using GoldSim.Web.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
@@ -62,6 +63,28 @@ namespace GoldSim.Web.Controllers {
       _topicMappingService      = topicMappingService;
       _reverseMappingService    = reverseTopicMappingService;
       _smptService              = smtpService;
+    }
+
+    /*==========================================================================================================================
+    | FILTER: ACTION EXECUTING
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Executes prior to any action being called.
+    /// </summary>
+    public override void OnActionExecuting(ActionExecutingContext filterContext) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Removed controller route
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### HACK JJC20200727: Currently, the TopicRepository.Load(RouteData) extension method only supports looking up area
+      | topic paths of the form /{area}/{controller}/{action}/{path}. For the forms, this results in a path starting with e.g.
+      | /Forms/Forms/, thus failing to find the topic. To resolve this, OnTopic needs to be updated to also support path of the
+      | form /{area}/{action}/{path}. Until then, we can hack around this by removing the "controller" route data value. This is
+      | ugly, but it works since nothing else in the request pipeline (currently) depends upon this value. Long-term, though,
+      | this definitely needs to be fixed in the OnTopic product itself.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      RouteData?.Values.Remove("controller");
+
     }
 
     /*==========================================================================================================================
