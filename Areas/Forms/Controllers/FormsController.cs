@@ -32,6 +32,7 @@ namespace GoldSim.Web.Controllers {
   ///   Provides common processing for all GoldSim forms pages. Each form will be represented by a unique action on this
   ///   controller.
   /// </summary>
+  [Area("Forms")]
   public class FormsController : TopicController {
 
     /*==========================================================================================================================
