@@ -45,7 +45,6 @@ namespace GoldSim.Web {
       Add(typeof(FaqItemTopicViewModel));
       Add(typeof(FaqTopicViewModel));
       Add(typeof(FollowupTopicViewModel));
-      Add(typeof(FormPageTopicViewModel));
       Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(GlossaryTopicViewModel));
       Add(typeof(HomeTopicViewModel));
@@ -65,14 +64,19 @@ namespace GoldSim.Web {
       Add(typeof(LessonTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Form models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(FormPageTopicViewModel));
+      Add(typeof(TrialFormTopicViewModel));
+      Add(typeof(InstructorAcademicFormTopicViewModel));
+      Add(typeof(StudentAcademicFormTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | License administration
       \-----------------------------------------------------------------------------------------------------------------------*/
       Add(typeof(InvoiceTopicViewModel));
       Add(typeof(LicenseAdministrationTopicViewModel));
       Add(typeof(LicenseRequestTopicViewModel));
-      Add(typeof(TrialFormTopicViewModel));
-      Add(typeof(InstructorAcademicFormTopicViewModel));
-      Add(typeof(StudentAcademicFormTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia topics
