@@ -3,22 +3,21 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
-  | VIEW MODEL: PAGE GROUP TOPIC
+  | VIEW MODEL: MODULE PAGE TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a page group topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ModulePage</c>
+  ///   topic.
   /// </summary>
-  /// <remarks>
-  ///   There is already a centralized <see cref="OnTopic.ViewModels.PageGroupTopicViewModel"/>. It doesn't implement the
-  ///   necessary <see cref="ICardViewModel"/> interface needed for e.g. Modules to be treated as cards.
-  /// </remarks>
-  public class PageGroupTopicViewModel : OnTopic.ViewModels.PageGroupTopicViewModel, ICardViewModel {
+  public class ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     public string ThumbnailImage { get; set; }
 
   } // Class
+
 } // Namespace

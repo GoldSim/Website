@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Forms.Models.Partials;
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;

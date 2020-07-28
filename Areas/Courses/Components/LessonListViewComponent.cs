@@ -7,7 +7,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using GoldSim.Web.Courses.Models;
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;

@@ -1,62 +1,49 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System.Collections.Generic;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: TRACKING EVENT
+  | CLASS: CARD LIST VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
+  ///   A view model for rendering a list of card objects.
   /// </summary>
-  public class TrackingEventViewModel {
+  public class CardListViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Constructs a new instance of a <see cref="TrackingEventViewModel"/>.
+    ///   Initializes a new instance of a Card List View Model with appropriate dependencies.
     /// </summary>
-    public TrackingEventViewModel() {}
-
-    /// <summary>
-    ///   Constructs a new instance of a <see cref="TrackingEventViewModel"/> with predetermined values.
-    /// </summary>
-    /// <param name="category">The event category.</param>
-    /// <param name="action">The event action.</param>
-    /// <param name="label">The optional event label.</param>
-    public TrackingEventViewModel(string category, string action, string label = null) {
-      Category                  = category;
-      Action                    = action;
-      Label                     = label;
+    /// <returns>A card list view model.</returns>
+    public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
+      Cards                    = cards;
+      ClassName                = className;
     }
 
     /*==========================================================================================================================
-    | CATEGORY
+    | CARDS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The event category.
+    ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
-    public string Category { get; set; }
+    /// <returns>A <see cref="List{T}"/> of <see cref="OnTopic.Topic"/>, each representing a unique card.</returns>
+    public IEnumerable<ICardViewModel> Cards { get; } = null;
 
     /*==========================================================================================================================
-    | ACTION
+    | CLASS NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   The event action.
+    ///   Provides the (optional) CSS class to be associated with each card.
     /// </summary>
-    public string Action { get; set; }
-
-    /*==========================================================================================================================
-    | LABEL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   The event label.
-    /// </summary>
-    public string Label { get; set; }
-
+    /// <returns>A CSS class name.</returns>
+    public string ClassName { get; } = null;
   } // Class
+
 } // Namespace

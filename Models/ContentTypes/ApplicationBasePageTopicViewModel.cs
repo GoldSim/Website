@@ -8,7 +8,7 @@ using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
   | VIEW MODEL: APPLICATION BASE PAGE TOPIC

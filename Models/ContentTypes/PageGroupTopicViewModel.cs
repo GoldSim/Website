@@ -3,22 +3,22 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
-  | VIEW MODEL: METADATA LOOKUP
+  | VIEW MODEL: PAGE GROUP TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views related to the <see cref="MetadataLookupViewModel"/>.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a page group topic.
   /// </summary>
-  public class MetadataLookupViewModel {
+  /// <remarks>
+  ///   There is already a centralized <see cref="OnTopic.ViewModels.PageGroupTopicViewModel"/>. It doesn't implement the
+  ///   necessary <see cref="ICardViewModel"/> interface needed for e.g. Modules to be treated as cards.
+  /// </remarks>
+  public class PageGroupTopicViewModel : OnTopic.ViewModels.PageGroupTopicViewModel, ICardViewModel {
 
-    public SelectList Options { get; set; }
-    public string DefaultText { get; set; }
-    public string Value { get; set; }
-    public bool IsRequired { get; set; }
+    public string ThumbnailImage { get; set; }
 
   } // Class
 } // Namespace

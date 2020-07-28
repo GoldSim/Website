@@ -3,26 +3,26 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using OnTopic.AspNetCore.Mvc.Models;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: CONTENT LIST TOPIC
+  | VIEW MODEL: FOOTER
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a content list topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about the footer.
   /// </summary>
-  public class ContentListTopicViewModel : OnTopic.ViewModels.ContentListTopicViewModel {
+  public class FooterViewModel: NavigationViewModel<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
-    | IS INDEXED?
+    | IS MAIN SITE?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a flag determining whether or not the content list should be indexed.
+    ///   Flags whether the current site is part of the main <c>web</c> or is part of an alternate site, which may have a
+    ///   different navigation.
     /// </summary>
-    /// <returns>True if the content list should be indexed; false otherwise.</returns>
-    public bool IsIndexed { get; set; } = false;
+    public bool IsMainSite { get; set; }
 
   } // Class
-
 } // Namespace

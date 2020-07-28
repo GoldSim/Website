@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using OnTopic.Models;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: TRACKED NAVIGATION TOPIC

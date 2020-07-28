@@ -1,24 +1,23 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: DOCUMENT POINTER TOPIC
+  | INTERFACE: CARD VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>DocumentPointer</c> topic.
+  ///   Ensures that a <see cref="TopicViewModel"/> meets the base requirements for being treated as a card.
   /// </summary>
-  public class DocumentPointerTopicViewModel: ApplicationBasePageTopicViewModel {
+  public interface ICardViewModel {
 
-    public string DocumentType { get; set; }
-    public string Url { get; set; }
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
+    string ThumbnailImage { get; }
+    string WebPath { get; }
+    string Title { get; }
 
-  } // Class
+  } // Interface
 
 } // Namespace

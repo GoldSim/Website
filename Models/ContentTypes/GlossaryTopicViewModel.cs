@@ -3,22 +3,16 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
-  | VIEW MODEL: APPLICATION CONTAINER TOPIC
+  | VIEW MODEL: GLOSSARY TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
-  ///   topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a Glossary topic.
   /// </summary>
-  public class ApplicationContainerTopicViewModel : PageTopicViewModel {
-
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
-
-    public string DisplayOrder { get; set; }
+  public class GlossaryTopicViewModel : ContentListTopicViewModel {
 
   } // Class
 

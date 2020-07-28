@@ -5,18 +5,15 @@
 \=============================================================================================================================*/
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
-  | VIEW MODEL: MODULE PAGE TOPIC
+  | VIEW MODEL: SEARCH TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ModulePage</c>
-  ///   topic.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Search</c> topic.
   /// </summary>
-  public class ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
-
-    public string ThumbnailImage { get; set; }
+  public class SearchTopicViewModel : PageTopicViewModel {
 
   } // Class
 

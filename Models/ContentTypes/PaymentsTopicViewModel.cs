@@ -6,7 +6,7 @@
 using GoldSim.Web.Forms.Models;
 using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ViewModels {
+namespace GoldSim.Web.Models.ContentTypes {
 
   /*============================================================================================================================
   | VIEW MODEL: PAYMENTS TOPIC
