@@ -30,5 +30,4 @@ namespace GoldSim.Web.Services {
     Task SendAsync(MailMessage mailMessage);
 
   } // Interface
-
 } // Namespace

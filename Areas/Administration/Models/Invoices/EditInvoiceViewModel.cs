@@ -34,5 +34,4 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     public InvoiceTopicViewModel Invoice { get; set; }
 
   } // Class
-
 } // Namespace

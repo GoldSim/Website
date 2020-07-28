@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Courses.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.Mapping.Hierarchical;

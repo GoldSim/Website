@@ -3,8 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +14,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore;
 
 namespace GoldSim.Web {
 
@@ -175,22 +175,34 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
-        endpoints.MapControllerRoute(
+        endpoints.MapAreaControllerRoute(
           name: "Payments",
+          areaName: "Payments",
           pattern: "Web/Purchase/PayInvoice/",
           defaults: new { controller = "Payments", action = "Index", path = "Web/Purchase/PayInvoice" }
         );
         endpoints.MapAreaControllerRoute(
           name: "Administration",
           areaName: "Administration",
-          pattern: "Administration/{controller}/{action=Index}/{id?}",
-          defaults: new { area = "Administration" }
+          pattern: "Administration/{controller=Licenses}/{action=Index}/{id?}"
         ).RequireAuthorization();
         endpoints.MapAreaControllerRoute(
           name: "Courses",
           areaName: "Courses",
-          pattern: "Courses/{*path}",
+          pattern: "Courses/{**path}",
           defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{action}",
+          defaults: new { controller = "Forms" }
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{**path}",
+          defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
         );
         endpoints.MapControllerRoute(
           name: "default",
@@ -198,7 +210,6 @@ namespace GoldSim.Web {
         );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Error", "Error");
-        endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
         endpoints.MapControllerRoute(
           name: "LegacyRedirect",

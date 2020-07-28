@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.Generic;
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Models;
 using OnTopic.AspNetCore.Mvc.Models;
 
 namespace GoldSim.Web.Courses.Models {

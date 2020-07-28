@@ -1,0 +1,18 @@
+﻿@model FollowupTopicViewModel
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+}
+
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Page.css" />
+}
+
+<section class="panel">
+  @Html.Raw(Model.Body)
+</section>
+
+<!--
+  Content Type: Page
+  View Location: ~/Areas/Forms/Views/ContentTypes/Followup.cshtml
+-->

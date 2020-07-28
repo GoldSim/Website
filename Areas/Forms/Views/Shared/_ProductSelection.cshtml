@@ -1,0 +1,16 @@
+﻿@model PurchaseBindingModel
+
+@Html.EditorFor(model => model.Product, "Select")
+@Html.EditorFor(model => model.LicenseType, "Select")
+
+@Html.EditorFor(model => model.Quantity)
+
+<div class="medium-6 cell form-field">
+  <label>Add-on Modules:</label>
+  <partial name="_modules" for="Modules" />
+  <div class="medium-6 cell" style="margin-bottom: 1rem;">
+    @Html.EditorFor(model => model.Modules.QuickStartPackage)
+  </div>
+</div>
+
+<!-- View Location: ~/Areas/Forms/Views/Shared/_ProductSelection.cshtml -->

@@ -1,9 +1,0 @@
-﻿@model ExtendedContact
-
-<partial name="_CoreContact" for="@Model" />
-<partial name="_Address" for="@Model.Address" />
-
-@Html.EditorFor(model => model.Country, "Select")
-@Html.EditorFor(model => model.PhoneNumber, "String")
-
-<!-- View Location: ~/Views/Forms/Shared/_ExtendedContact.cshtml -->

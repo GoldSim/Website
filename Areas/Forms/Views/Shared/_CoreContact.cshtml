@@ -1,0 +1,9 @@
+﻿@model CoreContact
+
+@Html.EditorFor(model => model.FirstName)
+@Html.EditorFor(model => model.LastName)
+
+@Html.EditorFor(model => model.Organization)
+@Html.EditorFor(model => model.Email, "String")
+
+<!-- View Location: ~/Areas/Forms/Views/Shared/_CoreContact.cshtml -->

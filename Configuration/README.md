@@ -1,30 +1,22 @@
-Instructions
-============
+## Instructions
 
-Connection Strings
-------------------
-To connect to a database, create a `connectionStrings.config` with the following format:
-
+### Connection Strings
+To connect to a database locally, establish a `secrets.json` at e.g.:
 ```
-<?xml version="1.0"?>
-<connectionStrings>
-  <clear />
-  <add name="TopicsServer" connectionString="…" />
-  <add name="Membership" connectionString="…" />
-</connectionStrings>
+\Users\USERNAME\AppData\Roaming\Microsoft\UserSecrets\1db4df2e-af3f-456c-ac4a-b8861b0c21a9\secrets.js
 ```
 
-Then create a `connectionStrings.Debug.config` and `connectionStrings.Release.config` with the following format:
+Then add the connection string using the following format:
 
+```json
+{
+  "ConnectionStrings": {
+    "OnTopic": "CONNECTION_STRING"
+  }
+}
 ```
-<?xml version="1.0"?>
-<connectionStrings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
-  <add name="TopicsServer" connectionString="…" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
-  <add name="Membership" connectionString="…" xdt:Transform="SetAttributes" xdt:Locator="Match(name)" />
-</connectionStrings>
-```
-Database
---------
+
+### Database
 To import a `dacpac` file from Azure, go to the following folder in the Visual Studio installation directory:
 ```
 \Common7\IDE\Extensions\Microsoft\SQLDB\DAC\140

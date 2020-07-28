@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using GoldSim.Web.Models.Forms;
+using GoldSim.Web.Forms.Models.Partials;
 
 namespace GoldSim.Web.Administration.Models.Licenses {
 

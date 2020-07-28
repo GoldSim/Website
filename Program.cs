@@ -31,7 +31,10 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Responsible for bootstrapping the web application.
     /// </summary>
-    public static void Main(string[] args) => CreateHostBuilder(args).Build().Run();
+    public static void Main(string[] args) {
+      AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
+      CreateHostBuilder(args).Build().Run();
+    }
 
     /*==========================================================================================================================
     | METHOD: CREATE WEB HOST BUILDER

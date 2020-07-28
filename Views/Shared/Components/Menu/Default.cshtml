@@ -1,4 +1,4 @@
-﻿@model NavigationViewModel<GoldSim.Web.Models.ViewModels.NavigationTopicViewModel>
+﻿@model NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
 @if (Model.NavigationRoot.Children.Count > 0) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
@@ -29,7 +29,7 @@
 
   IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
 
-  IHtmlContent WriteMenu(GoldSim.Web.Models.ViewModels.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) => Body(
+  IHtmlContent WriteMenu(GoldSim.Web.Models.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) => Body(
 
   @<li>
     <a
@@ -62,3 +62,8 @@
   );
 
 }
+
+<!--
+  Content Type: NavigationViewModel<NavigationTopicViewModel>
+  View Location: ~/Views/Shared/Components/Menu/Default.cshtml
+-->
