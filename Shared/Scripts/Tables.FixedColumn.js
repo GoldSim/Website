@@ -6,6 +6,8 @@
 
 /**
  * FIXED-COLUMN TABLES SCRIPTS
+ * @file Allows the first column of a table to remain fixed while subsequent columns scroll. This permits wide table layouts
+ * while continuing to provide context.
  * @namespace goldSimWeb
  */
 (function (goldSimWeb, $, undefined) {

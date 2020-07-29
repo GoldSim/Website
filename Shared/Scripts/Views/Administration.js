@@ -6,6 +6,8 @@
 
 /**
  * ADMINISTRATION SCRIPTS
+ * @file A collection of scripts for use on the administration pages, mostly for handling record management. The types of
+ * records will vary by administrative section, but the basic interactions can be generalized.
  */
 $(function () {
 
@@ -52,8 +54,8 @@ $(function () {
   \---------------------------------------------------------------------------------------------------------------------------*/
 
   /**
-    * De-checks the "select all" checkbox in the event an individual row checkbox is toggled; also sets/resets the hidden
-    * field value of selected/checked records.
+    * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
+    * user is instead attempting to select a record via a checkbox. In that case, disable the link.
     */
   $('tr[data-href].record:not(td.js-no-click)').click(function() {
     window.location = $(this).attr("data-href");
@@ -67,7 +69,7 @@ $(function () {
 | METHOD: CONFIRM DELETE
 \-----------------------------------------------------------------------------------------------------------------------------*/
 /**
-  * Provide a warning and confirmation when user chooses to delete a Topic
+  * Provide a warning and confirmation when user chooses to delete a record.
   * @return {object} Confirmation prompt confirming the user's selection
   */
 function confirmDelete() {

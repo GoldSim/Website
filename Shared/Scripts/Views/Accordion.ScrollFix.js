@@ -1,4 +1,3 @@
-﻿(function (goldSimWeb, $, undefined) {
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
 | Client        GoldSim
@@ -7,6 +6,13 @@
 
 /**
  * ACCORDION: SCROLL FIX
+ * @file By default, when the accordion expands, it doesn't scroll the page. This can cause problem with longer accordion
+ * content, however, since any previous panels will collapse. As a result, the top of the panel that was just opened may not be
+ * visible—and, in fact, the entire panel may not even be visible in some extreme scenarios. To mitigate this, this script will
+ * automatically scroll to the top of the panel that was just opened. It does this by projecting where the top of the panel will
+ * be so that it can animate to that location in parallel to the accordion animation for toggling panel visibility. This is
+ * preferred to doing this sequentially, which would otherwise have the effect of slowing down the transition, or resulting in
+ * an abrupt jump at the end.
  */
 (function (goldSimWeb, $, undefined) {
 

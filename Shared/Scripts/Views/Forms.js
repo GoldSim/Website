@@ -6,6 +6,7 @@
 
 /**
  * FORM SCRIPTS
+ * @file A collection of scripts for use on the forms, mostly for handling special validation rules.
  */
 $(function () {
 
@@ -17,7 +18,7 @@ $(function () {
   | Module exclusivity
   \---------------------------------------------------------------------------------------------------------------------------*/
   /**
-    * Treate Radionuclide and Contaminant transport modules as exclusive selections
+    * Treat Radionuclide and Contaminant transport modules as exclusive selections
     */
   var rtCheckbox = $("#BindingModel_Modules_RadionuclideTransport");
   var ctCheckbox = $("#BindingModel_Modules_ContaminantTransport");
@@ -33,7 +34,9 @@ $(function () {
   | Enable checkbox validation
   \---------------------------------------------------------------------------------------------------------------------------*/
   /**
-    * Extend the range validator return a boolean
+    * By default, values of checkboxes are returned as strings. This makes them incompatible with validation rules requiring a
+    * true value, as provided for by server-side validation rules configured via jQuery Unobtrusive. This can be fixed by
+    * updating the validator to return a boolean value for checkbox elements.
     */
   //
   var defaultRangeValidator = $.validator.methods.range;

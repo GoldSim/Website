@@ -13,6 +13,10 @@
 /*==============================================================================================================================
 | FUNCTION: TRACK EVENT
 \-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+ * Provides a helper function for sending custom events to Google Analytics when clicking on a link. This provides for a slight
+ * (200ms) delete allowing the event to be fired prior to navigating to the next page.
+ */
 function trackEvent(link, category, action, label) {
   'use strict';
 
