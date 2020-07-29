@@ -31,7 +31,7 @@
 
   IHtmlContent WriteMenu(GoldSim.Web.Models.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) => Body(
 
-  @<li>
+  @<li @(topic.Children.Count > 2? "class=\".is-dropdown-submenu-parent\"" : "")>
     <a
       href="@(topic.Children.Count <= 2 || isDesktop? topic.WebPath : "#")"
       class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")"
