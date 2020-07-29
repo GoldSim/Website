@@ -1,23 +1,35 @@
-﻿/**
- * (BRAINTREE) PAYMENTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * BRAINTREE PAYMENTS
  * @file Defines inialization and Braintree Javascript SDK (v3) communication funcationality for the Braintree Hosted Fields
  * form.
  */
 
+/*==============================================================================================================================
+| FUNCTION: EXECUTE BRAINTREE
+\-----------------------------------------------------------------------------------------------------------------------------*/
+/**
+  * Initializes the Braintree functionality based on a client token.
+  */
 function executeBraintree(clientToken) {
 
-  /**
-   * Establish variables
-   */
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Establish variables
+  \---------------------------------------------------------------------------------------------------------------------------*/
   var
-    form        = document.querySelector('#PaymentsForm'),
-    submit      = document.querySelector('#PaymentsForm button[type="button"]');
+    form                        = document.querySelector('#PaymentsForm'),
+    submit                      = document.querySelector('#PaymentsForm button[type="button"]');
 
-  /**
-   * Initialize Braintree client instance
-   */
-  var clientInstance = braintree.client.create({
-    authorization: clientToken
+  /*----------------------------------------------------------------------------------------------------------------------------
+  | Initialize Braintree client
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  var clientInstance            = braintree.client.create({
+    authorization               : clientToken
   },
   function (clientError, clientInstance) {
 

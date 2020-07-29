@@ -1,4 +1,10 @@
-﻿/**
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
  * (GOLDSIM WEB) SEARCH BAR SCRIPTS
  * @file Defines functionality associated with the expanding search bar in the upper right of the GoldSim website.
  * @namespace goldSimWeb
@@ -6,6 +12,9 @@
 (function (goldSimWeb, $, undefined) {
   'use strict';
 
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).ready(function () {
 
     /**

@@ -4,86 +4,92 @@
 | Project       Website
 \=============================================================================================================================*/
 
-/*==============================================================================================================================
-| METHOD: INIT
-\-----------------------------------------------------------------------------------------------------------------------------*/
 /**
- * Provides lazy loading for images so that the page can load quickly, with images being filled in after-the-fact. This is
- * useful for the homepage given how long it is, and especially with the carousels, as those don't affect the initial user
- * experience of the page.
+ * HOME SCRIPTS
+ * @file A collection of scripts for wiring up events relevant to the homepage, such as opening the video in a modal window,
+ * playing the video, and wiring up the carousel.
  */
-function init() {
-  var deferredImages = document.getElementsByTagName('img');
-  for (var i = 0; i < deferredImages.length; i++) {
-    if (deferredImages[i].getAttribute('data-src')) {
-      deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
-    }
-  }
-}
-window.onload = init;
+$(function() {
 
-/*==============================================================================================================================
-| METHOD: INIT VIDEO
-\-----------------------------------------------------------------------------------------------------------------------------*/
-/**
- * Dynamically loads the MPEG-DASH video player upon request. This is done dynamically as we don't want the video to begin
- * until the user clicks on the popup, as most users will just pass over it.
- */
-function initVideo() {
-
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | DECLARE VARIABLES
+  /*============================================================================================================================
+  | FUNCTION: INIT
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var
-    manifestUrl                 = 'https://media.GoldSim.com/Videos/Home/GoldSim_Overview_dash.mpd',
-    fallbackUrl                 = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
-    dashPlayer                  = dashjs.MediaPlayer().create(),
-    isSafari                    = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
-    isIos                       = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-    isIe11                      = !!navigator.userAgent.match(/Trident\/7\./);
-
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | CONFIGURE PLAYER
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  dashPlayer.updateSettings({
-    'streaming'                 : {
-      'retryAttemps'            : {
-        'MPD'                   : 2,
-        'XLinkExpansion'        : 2,
-        'IndexSegment'          : 3,
-        'InitializationSegment' : 3,
-        'BitstreamSwitchingSegment': 3
-      },
-      'abr'                     : {
-        'autoSwitchBitrate'     : {
-          'audio'               : false,
-          'video'               : true
-        }
+  /**
+   * Provides lazy loading for images so that the page can load quickly, with images being filled in after-the-fact. This is
+   * useful for the homepage given how long it is, and especially with the carousels, as those don't affect the initial user
+   * experience of the page.
+   */
+  function init() {
+    var deferredImages = document.getElementsByTagName('img');
+    for (var i = 0; i < deferredImages.length; i++) {
+      if (deferredImages[i].getAttribute('data-src')) {
+        deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
       }
     }
-  });
+  }
+  window.onload = init;
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | INITIALIZE PLAYER
+  /*============================================================================================================================
+  | FUNCTION: INIT VIDEO
   \---------------------------------------------------------------------------------------------------------------------------*/
-  if (!(isIos && isSafari) && !isIe11) {
-    dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
+  /**
+   * Dynamically loads the MPEG-DASH video player upon request. This is done dynamically as we don't want the video to begin
+   * until the user clicks on the popup, as most users will just pass over it.
+   */
+  function initVideo() {
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | DECLARE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    var
+      manifestUrl               = 'https://media.GoldSim.com/Videos/Home/GoldSim_Overview_dash.mpd',
+      fallbackUrl               = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
+      dashPlayer                = dashjs.MediaPlayer().create(),
+      isSafari                  = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
+      isIos                     = /iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
+      isIe11                    = !!navigator.userAgent.match(/Trident\/7\./);
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | CONFIGURE PLAYER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    dashPlayer.updateSettings({
+      'streaming'               : {
+        'retryAttemps'          : {
+          'MPD'                 : 2,
+          'XLinkExpansion'      : 2,
+          'IndexSegment'        : 3,
+          'InitializationSegment' : 3,
+          'BitstreamSwitchingSegment': 3
+        },
+        'abr'                   : {
+          'autoSwitchBitrate'   : {
+            'audio'             : false,
+            'video'             : true
+          }
+        }
+      }
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | INITIALIZE PLAYER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    if (!(isIos && isSafari) && !isIe11) {
+      dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
+    }
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | HANDLE UNSUPPORTED BROWSERS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    else {
+      $('#IntroductionVideo source').attr('src', fallbackUrl);
+      $('#IntroductionVideo')[0].play();
+    }
+
   }
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | HANDLE UNSUPPORTED BROWSERS
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
-  else {
-    $('#IntroductionVideo source').attr('src', fallbackUrl);
-    $('#IntroductionVideo')[0].play();
-  }
-
-}
-
-/*==============================================================================================================================
-| JQUERY: WIRE UP ACTIONS
-\-----------------------------------------------------------------------------------------------------------------------------*/
-$(function() {
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | ESTABLISH VARIABLES

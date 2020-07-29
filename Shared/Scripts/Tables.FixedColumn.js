@@ -1,11 +1,21 @@
-﻿/**
- * (GOLDSIM WEB) FIXED-COLUMN TABLES SCRIPTS
- * @file Defines functionality associated with the expanding search bar in the upper right of the GoldSim website.
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * FIXED-COLUMN TABLES SCRIPTS
+ * @file Allows the first column of a table to remain fixed while subsequent columns scroll. This permits wide table layouts
+ * while continuing to provide context.
  * @namespace goldSimWeb
  */
 (function (goldSimWeb, $, undefined) {
   'use strict';
 
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).ready(function () {
     setFixedColumnTables();
     $(window).resize(function () {
@@ -13,6 +23,9 @@
     });
   });
 
+  /*============================================================================================================================
+  | FUNCTION: SET FIXED COLUMN TABLES
+  \---------------------------------------------------------------------------------------------------------------------------*/
   /**
    * Clone the first column of a table and position it on top of the original table, such that the original table slides
    * underneath the fixed first column.
