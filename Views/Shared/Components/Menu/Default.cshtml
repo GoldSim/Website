@@ -35,7 +35,7 @@
     <a
       href="@(topic.Children.Count <= 2 || isDesktop? topic.WebPath : "#")"
       class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")"
-      onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')"
+      data-indent-level="@indentLevel"
     >
       @(topic.ShortTitle?? topic.Title?? topic.Key)
     </a>
@@ -48,7 +48,7 @@
             <a
               href="@topic.WebPath"
               class="@(topic.UniqueKey.Equals(Model.CurrentKey)? "selected" : "")"
-              onclick="trackEvent(this, 'Navigation', 'Click', 'Tier @indentLevel: @topic.WebPath')"
+              data-indent-level="@indentLevel"
             >Overview</a>
           </li>
         }
