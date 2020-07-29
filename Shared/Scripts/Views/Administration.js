@@ -18,7 +18,7 @@ $(function () {
     * Finds all rows in the table and selects all checkboxes, depending on state of table header checkbox; also sets/resets
     * the hidden field value of selected/checked records
     */
-  $('#SelectAllRecords').change(function() {
+  var toggleAllRecords = function () {
 
     if (!$(this).is(':checked')) {
       $('tr.record input[type="checkbox"]').prop('checked', false);
@@ -29,7 +29,7 @@ $(function () {
       $(this).addClass('all-selected');
     }
 
-  });
+  };
 
   /*============================================================================================================================
   | FUNCTION: TOGGLE RECORD
@@ -38,7 +38,7 @@ $(function () {
     * De-checks the "select all" checkbox in the event an individual row checkbox is toggled; also sets/resets the hidden
     * field value of selected/checked records.
     */
-  $('tr.record td input[type="checkbox"]').change(function() {
+  var toggleRecord = function () {
 
     var $selectAllCheckbox = $('#SelectAllRecords');
 
@@ -48,10 +48,13 @@ $(function () {
     }
     $($selectAllCheckbox).toggleClass('all-selected');
 
-  });
+  };
+
   /*============================================================================================================================
   | JQUERY: WIRE UP ACTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
+  $('#SelectAllRecords').change(toggleAllRecords);
+  $('tr.record td input[type="checkbox"]').change(toggleRecord);
 
   /**
     * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
