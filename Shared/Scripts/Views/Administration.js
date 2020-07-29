@@ -1,5 +1,17 @@
-﻿$(function() {
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
 
+/**
+ * ADMINISTRATION SCRIPTS
+ */
+$(function () {
+
+  /*============================================================================================================================
+  | FUNCTION: TOGGLE ALL RECORDS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   /**
     * Finds all rows in the table and selects all checkboxes, depending on state of table header checkbox; also sets/resets
     * the hidden field value of selected/checked records
@@ -17,6 +29,9 @@
 
   });
 
+  /*============================================================================================================================
+  | FUNCTION: TOGGLE RECORD
+  \---------------------------------------------------------------------------------------------------------------------------*/
   /**
     * De-checks the "select all" checkbox in the event an individual row checkbox is toggled; also sets/resets the hidden
     * field value of selected/checked records.
@@ -32,6 +47,9 @@
     $($selectAllCheckbox).toggleClass('all-selected');
 
   });
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
 
   /**
     * De-checks the "select all" checkbox in the event an individual row checkbox is toggled; also sets/resets the hidden
@@ -45,6 +63,9 @@
 
 })(jQuery);
 
+/*==============================================================================================================================
+| METHOD: CONFIRM DELETE
+\-----------------------------------------------------------------------------------------------------------------------------*/
 /**
   * Provide a warning and confirmation when user chooses to delete a Topic
   * @return {object} Confirmation prompt confirming the user's selection

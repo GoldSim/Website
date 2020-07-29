@@ -1,5 +1,11 @@
-﻿/**
- * (GOLDSIM WEB) FILE ICONS SCRIPTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * FILE ICONS SCRIPTS
  * @file Defines functionality that appends (Font Awesome) file icons to button or text links pointing to files.
  * @namespace goldSimWeb
  */

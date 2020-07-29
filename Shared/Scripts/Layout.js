@@ -1,11 +1,20 @@
-﻿/**
- * (GOLDSIM WEB) LAYOUT SCRIPTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * LAYOUT SCRIPTS
  * @file Defines presentation-oriented functionality related layout concerns for the GoldSim website.
  * @namespace goldSimWeb
  */
 (function (goldSimWeb, $, undefined) {
   'use strict';
 
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).ready(function () {
 
     /**

@@ -1,8 +1,18 @@
-﻿/**
- * (GOLDSIM WEB) GOOGLE ANALYTICS EVENT TRACKING SCRIPTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * GOOGLE ANALYTICS EVENT TRACKING SCRIPTS
  * @file Centralizes the call to Google Analytics' "send" functionality for tracking a "hitType" of "event".
  * @namespace goldSimWeb
  */
+
+/*==============================================================================================================================
+| FUNCTION: TRACK EVENT
+\-----------------------------------------------------------------------------------------------------------------------------*/
 function trackEvent(link, category, action, label) {
   'use strict';
 

@@ -1,5 +1,11 @@
-﻿/**
- * (GOLDSIM WEB) IMAGES ZOOM SCRIPTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * IMAGES ZOOM SCRIPTS
  * @file Defines functionality and presentation elements needed for zooming in on an image on the GoldSim website.
  * @namespace goldSimWeb
  */

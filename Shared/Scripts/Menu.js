@@ -1,4 +1,10 @@
-﻿/**
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
  * (GOLDSIM WEB) MENU SCRIPTS
  * @file Defines functionality associated with the primary (desktop) navigation menu, the (mobile) hamburger menu, or the
  * (mobile) page-level navigation on the GoldSim website.
@@ -7,6 +13,9 @@
 (function (goldSimWeb, $, undefined) {
   'use strict';
 
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).ready(function () {
 
     /**
