@@ -24,6 +24,17 @@
     }
     <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
+    <script type="text/javascript" src="/Shared/Scripts/Vendor/ApplicationInsights/applicationinsights-web.min.js"></script>
+    <script type="text/javascript">
+      var snippet = {
+        config: {
+          instrumentationKey: "2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
+        }
+      };
+      var init = new Microsoft.ApplicationInsights.ApplicationInsights(snippet);
+      var appInsights = init.loadAppInsights();
+      appInsights.trackPageView();
+    </script>
     <script>
       /**
        * Initialize Google Analytics
@@ -38,7 +49,6 @@
     <noscript id="DeferredStyles">
       @RenderSection("DeferredStyles", false)
     </noscript>
-    @Html.Raw(JavaScriptSnippet.FullScript)
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 

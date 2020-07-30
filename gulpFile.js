@@ -53,6 +53,7 @@ const files = {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const dependencies = {
   'Scripts': {
+    'ApplicationInsights'       : 'node_modules/@microsoft/applicationinsights-web/dist/*.min.*',
     'DashJS'                    : 'node_modules/dashjs/dist/dash.all.*',
     'FlaviusMatis'              : 'node_modules/simple-pagination.js/*.js',
     'GreenSock'                 : [ 'node_modules/gsap/src/minified/**',
