@@ -32,22 +32,24 @@
   IHtmlContent WriteMenu(GoldSim.Web.Models.NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
 
     var isParentMenu            = topic.Children.Count > 2;
-    var isSubmenuParent         = isParentMenu? "class=\".is-dropdown-submenu-parent\"" : "";
     var targetUrl               = !isParentMenu || isDesktop? topic.WebPath : "#";
-    var isSelectedClass         = topic.IsSelected(Model.CurrentKey)? " class=\"selected\"" : "";
     var title                   = topic.ShortTitle?? topic.Title?? topic.Key;
-    var orientation             = isDesktop? "dropdown" : "vertical";
-    var isActive                = topic.IsSelected(Model.CurrentKey)? " is-active" : "";
-    var isDropdownMenu          = isDesktop? " data-dropdown-menu" : "";
-    var isChildSelected         = topic.UniqueKey.Equals(Model.CurrentKey)? " class=\"selected\"" : "";
+
+    var orientationAttribute    = isDesktop? "dropdown" : "vertical";
+    var dropdownMenuAttribute   = isDesktop? "data-dropdown-menu" : "";
+
+    var submenuParentClass      = isParentMenu? "is-dropdown-submenu-parent" : "";
+    var selectedClass           = topic.IsSelected(Model.CurrentKey)? "selected" : "";
+    var isActiveClass           = topic.IsSelected(Model.CurrentKey)? "is-active" : "";
+    var childSelectedClass      = topic.UniqueKey.Equals(Model.CurrentKey)? "selected" : "";
 
     return Body(
-      @<li @isSubmenuParent>
-        <a href="@targetUrl" @isSelectedClass data-indent-level="@indentLevel">@title</a>
+      @<li class="@submenuParentClass">
+        <a href="@targetUrl" class="@selectedClass" data-indent-level="@indentLevel">@title</a>
         @if (isParentMenu) {
-          <ul class="menu @orientation @isActive nested" @isDropdownMenu>
+          <ul class="menu @orientationAttribute @isActiveClass nested" @dropdownMenuAttribute>
             @if (!isDesktop) {
-              <li><a href="@topic.WebPath" @isChildSelected) data-indent-level="@indentLevel">Overview</a></li>
+              <li><a href="@topic.WebPath" class="@childSelectedClass" data-indent-level="@indentLevel">Overview</a></li>
             }
             @foreach (var childTopic in topic.Children) {
               @WriteMenu(childTopic, isDesktop, indentLevel + 1);
