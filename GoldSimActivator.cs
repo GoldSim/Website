@@ -12,6 +12,7 @@ using GoldSim.Web.Courses.Components;
 using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Components;
+using GoldSim.Web.Forms.Controllers;
 using GoldSim.Web.Models;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
