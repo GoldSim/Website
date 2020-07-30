@@ -150,7 +150,7 @@ namespace GoldSim.Web {
       | Enable downloads and cache headers
       \-----------------------------------------------------------------------------------------------------------------------*/
       var provider              = new FileExtensionContentTypeProvider();
-      const int duration        = 60*60*24*30;
+      const int duration        = 60*60*24*365*2;
 
       provider.Mappings[".webmanifest"]                         = "application/manifest+json";
       provider.Mappings[".exe"]                                 = "application/vnd.microsoft.portable-executable";
