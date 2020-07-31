@@ -104,7 +104,11 @@ function scssTask() {
     //.pipe(autoPrefixer({ browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'] }))
     //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
-    .pipe(sass())
+    .pipe(sass({
+      includePaths: [
+        './node_modules/foundation-sites/scss'
+      ]
+    }))
     .on("error", sass.logError)
     .pipe(postCss([
       autoPrefixer(),
