@@ -85,7 +85,6 @@ $cite-font-size                 : rem-calc(18);                 // WAS rem-calc(
 $button-padding                 : 0.75rem;                      // WAS 0.85em 1em
 $button-color                   : $body-font-color;             // WAS $white
 $button-radius                  : 3px;                          // WAS $global-radius
-$button-hollow-border-width     : 2px;                          // CHANGED 1px
 $button-sizes                   : (
   tiny                          : 0.6rem,
   small                         : 0.75rem,
@@ -93,7 +92,6 @@ $button-sizes                   : (
   large                         : 1.25rem,
   huge                          : rem-calc(24)                  // ADDED
 );
-$button-palette                 : map-merge($foundation-palette, (white: $palette-white)); // CHANGED $foundation-palette;
 
 //----------------------------------------------------------------------------------------------
 // 15. Close Button
@@ -107,8 +105,6 @@ $closebutton-color-hover        : $palette-yellow;              // WAS $black
 //----------------------------------------------------------------------------------------------
 
 $dropdownmenu-arrow-color       : $palette-white;               // WAS $anchor-color
-$dropdownmenu-background        : $white;                       // CHANGED null;
-$dropdownmenu-submenu-background: $dropdownmenu-background;     // CHANGED $white
 
 //----------------------------------------------------------------------------------------------
 // 20. Forms
