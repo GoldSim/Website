@@ -65,21 +65,12 @@ $header-styles                  : (
   ),
 );
 
-$code-color                     : $black;                       // MOVED to typography helpers
-$code-font-family               : $font-family-monospace;       // MOVED to typography helpers
-$code-font-weight               : $global-weight-normal;        // MOVED to typography helpers
-$code-background                : $light-gray;                  // MOVED to typography helpers
-$code-border                    : 1px solid $medium-gray;       // MOVED to typography helpers
-$code-padding                   : rem-calc(2 5 1);              // MOVED to typography helpers
 $enable-code-inline             : true;                         // NEW
 $anchor-color                   : $body-font-color;             // WAS $primary-color
 $hr-margin                      : rem-calc(32) auto;            // WAS rem-calc(20) auto
 $blockquote-color               : $palette-grey-medium;         // WAS $dark-gray
 $blockquote-padding             : rem-calc(0 0 16 30);          // WAS rem-calc(9 20 0 19)
 $blockquote-border              : 2px solid $palette-grey-medium; // WAS 1px solid $medium-gray
-$cite-font-size                 : rem-calc(18);                 // MOVED to typography helpers
-$cite-color                     : $palette-grey-medium;         // MOVED to typography helpers
-$cite-pseudo-content            : '\2014 \0020';                // MOVED to typography helpers
 $enable-cite-block              : true;                         // NEW
 
 //----------------------------------------------------------------------------------------------
@@ -88,13 +79,6 @@ $enable-cite-block              : true;                         // NEW
 
 $cite-color                     : $palette-grey-medium;         // WAS $dark-gray;
 $cite-font-size                 : rem-calc(18);                 // WAS rem-calc(13);
-$cite-pseudo-content            : '\2014 \0020';                // MOVED from base typography
-$code-color                     : $black;                       // MOVED from base typography
-$code-font-family               : $font-family-monospace;       // MOVED from base typography
-$code-font-weight               : $global-weight-normal;        // MOVED from base typography
-$code-background                : $light-gray;                  // MOVED from base typography
-$code-border                    : 1px solid $medium-gray;       // MOVED from base typography
-$code-padding                   : rem-calc(2 5 1);              // MOVED from base typography
 $code-block-padding             : 1rem;                         // NEW
 $code-block-margin-bottom       : 1.5rem;                       // NEW
 
