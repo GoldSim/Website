@@ -8,7 +8,6 @@
 // IMPORT DEPENDENCIES
 //----------------------------------------------------------------------------------------------
 @import '../../node_modules/foundation-sites/scss/util/util';
-@import '../../node_modules/foundation-sites/scss/settings/settings';
 @import 'variables';
 
 //----------------------------------------------------------------------------------------------
@@ -31,6 +30,7 @@ $white                          : $palette-white;               // WAS #fefefe
 $yellow                         : $palette-yellow;              // ADDED
 $body-font-color                : $text-color;                  // WAS $black
 $body-font-family               : 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
+$global-flexbox                 : true;                         // DEFAULT
 
 @include add-foundation-colors;
 
