@@ -24,7 +24,7 @@ using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
 using OnTopic.Repositories;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Forms.Controllers {
 
   /*============================================================================================================================
   | CLASS: FORMS CONTROLLER

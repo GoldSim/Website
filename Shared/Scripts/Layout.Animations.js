@@ -30,36 +30,4 @@
 
   });
 
-  /**
-   * Handles animation for #PrimaryNavigation and/or #SiteHeader (depending on screen size)
-   */
-
-  // Establish variables
-  var
-    headroomElement             = document.getElementById('PrimaryNavigation'),
-    $screenSize                 = $(window).width(),
-    $siteHeaderHeight           = $('#SiteHeader').outerHeight(),
-    $offset                     = $siteHeaderHeight;
-  if ($screenSize < 1024) {
-    headroomElement             = document.getElementById('SiteHeader');
-    $offset                     = 0;
-  }
-
-  // Instantiate Headroom
-  /*
-  var headroom = new Headroom(headroomElement, {
-    'offset'                    : $offset,
-    'tolerance'                 : {
-      up                        : 5,
-      down                      : 0
-    },
-    'classes'                   : {
-      'initial'                 : 'animated',
-      'pinned'                  : 'animated-pinned',
-      'unpinned'                : 'animated-unpinned'
-    }
-  });
-  */
-  // headroom.init();
-
 }(window.goldSimWeb = window.goldSimWeb || {}, jQuery));

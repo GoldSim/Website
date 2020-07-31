@@ -21,7 +21,7 @@
     /**
      * Work around need to double-click primary navigation parent links on touchscreen devices
      */
-    $('.is-dropdown-submenu-parent > a').on('click touchend', function (e) {
+    $('.is-dropdown-submenu-parent > a').on('click touchend', function(e) {
       var
         $clickedLink            = $(this),
         linkHref                = $clickedLink.attr('href');
@@ -31,9 +31,25 @@
     /**
      * Handle page-level navigation changes for small screens
      */
-    $('#PageNavigationSmallScreen select').change(function () {
+    $('#PageNavigationSmallScreen select').change(function() {
       var $newUrl               = $(this).val();
       window.location.href      = $newUrl;
+    });
+
+    /**
+     * Add custom click tracking events
+     */
+    $('nav.primary a').on('click', function (e) {
+      var indentLevel = $(this).data('indent-level');
+      var targetUrl = $(this).attr('href');
+      if (targetUrl !== '#') {
+        trackEvent(
+          this,
+          'Navigation',
+          'Click',
+          'Tier ' + indentLevel + ': ' + targetUrl
+        );
+      }
     });
 
   });

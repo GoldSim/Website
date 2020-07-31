@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
 
@@ -146,9 +147,10 @@ namespace GoldSim.Web {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Enable downloads
+      | Enable downloads and cache headers
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var provider = new FileExtensionContentTypeProvider();
+      var provider              = new FileExtensionContentTypeProvider();
+      const int duration        = 60*60*24*365*2;
 
       provider.Mappings[".webmanifest"]                         = "application/manifest+json";
       provider.Mappings[".exe"]                                 = "application/vnd.microsoft.portable-executable";
@@ -157,8 +159,12 @@ namespace GoldSim.Web {
       provider.Mappings[".mpd"]                                 = "application/dash+xml";
       provider.Mappings[".m4s"]                                 = "video/mp4";
 
-      var staticFileOptions = new StaticFileOptions { ContentTypeProvider = provider };
-
+      var staticFileOptions     = new StaticFileOptions {
+        ContentTypeProvider     = provider,
+        OnPrepareResponse       = context => {
+          context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + duration;
+        }
+      };
       app.UseStaticFiles(staticFileOptions);
 
       /*------------------------------------------------------------------------------------------------------------------------

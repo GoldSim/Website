@@ -54,7 +54,7 @@
       <div>
         @Html.Raw(HttpUtility.HtmlDecode(contentItem.Description))
         @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl?.ToString())) {
-          <p><a href="@contentItem.LearnMoreUrl" target="_blank">Learn More</a></p>
+          <p><a href="@contentItem.LearnMoreUrl" rel="noopener" target="_blank">Learn More</a></p>
         }
       </div>
     </article>
