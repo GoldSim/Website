@@ -247,8 +247,10 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
             @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
               <div class="medium-4 cell">
-                  <img src="/Images/Content/Product/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
                 <div class="card @applicationContainer.GetContainerKey().ToLower()" data-equalizer-watch>
+                  <picture>
+                    <img src="/Images/Content/Product/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
+                  </picture>
                   <div class="card-section">
                     <h2>@applicationContainer.GetContainerKey() <nobr>Systems Modeling</nobr></h2>
                     <ul id="@(applicationContainer.Key + "Applications")">
