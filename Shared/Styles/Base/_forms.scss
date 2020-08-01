@@ -1,0 +1,42 @@
+﻿//==============================================================================================
+// FORMS
+//----------------------------------------------------------------------------------------------
+// Defines global styles for form related elements, such as inputs.
+//----------------------------------------------------------------------------------------------
+// NOTE: This is only to be used for form elements used on across the sites. For styles that are
+// specific to actual form pages, the bulk of selectors are in the `Forms` view-specific style
+// sheet.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+@import '../foundationSettings';
+@import '../variables';
+
+//----------------------------------------------------------------------------------------------
+// INPUT
+//----------------------------------------------------------------------------------------------
+@include foundation-form-text
+
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='month'],
+[type='week'],
+[type='email'],
+[type='number'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='color'],
+textarea,
+select {
+  box-shadow                    : none;
+  &:active,
+  &:focus {
+    box-shadow                  : none;
+    border-color                : $palette-yellow;
+  }
+}
