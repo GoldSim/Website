@@ -20,11 +20,15 @@
     <div id="Pagination" class="pagination text-center"></div>
     <!-- /Body Content -->
 
+    <nav>
+      <a class="button primary large left" id="PreviousPage" href="#">Previous</a>
+      <a class="button primary large right" id="NextPage" href="#">Next</a>
+    </nav>
+
   </section>
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Vendor/FlaviusMatis/jquery.simplePagination.js"></script>
   <script>
     $(function () {
 
@@ -37,6 +41,14 @@
        * Build initial results set and pagination
        */
       getSearchResults();
+
+      $("nav a.button").on('click', function() {
+        event.preventDefault();
+        var pageNumber = Number($(this).data("page") || 1);
+        getSearchResults((pageNumber-1)*10);
+        window.location.hash = "Page" + pageNumber;
+      });
+
 
     });
 
@@ -103,21 +115,12 @@
       var
         pageSize                = 10,
         totalPages              = Math.ceil(totalResults / pageSize),
-        currentPageNumber       = (window.location.hash.length ? window.location.hash.substr(5) : 1);
+        currentPageNumber       = Number(window.location.hash.length? window.location.hash.substr(5) : 1),
+        nextPage                = $('#NextPage'),
+        previousPage            = $('#PreviousPage');
 
-      $('#Pagination').pagination('destroy');
-      $('#Pagination').pagination({
-        items                   : totalResults,
-        itemsOnPage             : pageSize,
-        currentPage             : currentPageNumber,
-        displayedPages          : 0,
-        edges                   : 0,
-        hrefTextPrefix          : '#Page',
-        onPageClick: function (pageNumber, event) {
-          getSearchResults(((pageNumber-1)*pageSize));
-        },
-        onInit: function() {}
-      });
+      previousPage.attr("disabled", currentPageNumber <= 1).data("page", currentPageNumber-1);
+      nextPage.attr("disabled", currentPageNumber >= totalPages).data("page", currentPageNumber+1);
 
     };
 
