@@ -9,24 +9,23 @@
   <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" asp-append-version="true" />
 }
 
-@section PageBodySection {
-  <section class="panel">
+<section class="panel">
 
-    <!-- Body Content -->
-    <form id="SearchResultSearchForm" action="/Web/Search/">
-      <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
-    </form>
-    <div id="SearchResults"></div>
-    <div id="Pagination" class="pagination text-center"></div>
-    <!-- /Body Content -->
+  <!-- Form -->
+  <form id="SearchResultSearchForm" action="/Web/Search/">
+    <input type="search" id="SearchResultsSearchQuery" name="SearchText" />
+  </form>
 
-    <nav>
-      <a class="button primary large left" id="PreviousPage" href="#">Previous</a>
-      <a class="button primary large right" id="NextPage" href="#">Next</a>
-    </nav>
+  <!-- Form -->
+  <div id="SearchResults"></div>
 
-  </section>
-}
+  <!-- Pagination -->
+  <nav>
+    <a class="button primary large left" id="PreviousPage" href="#">Previous</a>
+    <a class="button primary large right" id="NextPage" href="#">Next</a>
+  </nav>
+
+</section>
 
 @section Scripts {
   <script>
