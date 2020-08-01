@@ -1,5 +1,6 @@
 ﻿@using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
+
 @{
   ViewBag.Title = "Search";
   Layout = "~/Views/Layout/_Layout.cshtml";
@@ -28,111 +29,14 @@
 </section>
 
 @section Scripts {
+  <script src="/Shared/Scripts/Views/Search.js" defer asp-append-version="true"></script>
   <script>
     $(function () {
-
-      /**
-       * Pre-populate results page search input value
-       */
-      $('#SearchResultsSearchQuery').val(getQuerystringValue('SearchText'));
-
-      /**
-       * Build initial results set and pagination
-       */
-      getSearchResults();
-
-      $("nav a.button").on('click', function() {
-        event.preventDefault();
-        var pageNumber = Number($(this).data("page") || 1);
-        getSearchResults((pageNumber-1)*10);
-        window.location.hash = "Page" + pageNumber;
-      });
-
-
+      $("#SearchResults").bingSearch({
+        apiKey                  : '@Configuration["BingSearch:PrimaryApiKey"]',
+        customConfig            : '@Configuration["BingSearch:CustomConfigID"]'
+      })
     });
-
-    /**
-     * Establish Bing Search API variables
-     */
-    var
-      apiKey                    = '@Configuration["BingSearch:PrimaryApiKey"]',
-      customConfig              = '@Configuration["BingSearch:CustomConfigID"]',
-      searchQuery               = getQuerystringValue('SearchText'),
-      baseApiUrl                = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?q=' + encodeURIComponent(searchQuery) + '&customconfig=' + customConfig + '&responseFilter=Webpages&safesearch=Off',
-      totalResults              = 0;
-
-    /**
-      * Build a set of search results based on the offset/page requested
-      */
-    function getSearchResults(offset) {
-      offset                    = offset ? offset : 0;
-      $.ajax({
-        url                     : baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
-        headers                 : { 'Ocp-Apim-Subscription-Key': apiKey },
-        success                 : function (result, status, xhr) {
-          var searchResults     = result.webPages.value;
-
-          // Clear current results
-          $('#SearchResults').html('');
-
-          // Render search results
-          for (var i = 0; i < searchResults.length; i++) {
-            var
-              title             = searchResults[i].name,
-              url               = searchResults[i].url,
-              displayUrl        = searchResults[i].displayUrl,
-              snippet           = searchResults[i].snippet,
-              searchResult      = '<div class="result"><a href="' + url + '" class="title">' + title + '</a><br/><small>' + displayUrl + '</small><p>' + snippet + '</p></div>';
-            $('#SearchResults').append(searchResult);
-          }
-
-          // Make updated estimated matches available to pagination
-          updateTotalResults(result.webPages.totalEstimatedMatches);
-
-        }
-      });
-
-      // Render pagination
-      setTimeout(function () {
-        getSearchResultsPagination(totalResults);
-      }, 1500);
-
-    };
-
-    /**
-      * Update the total (search) results variable as the estimate changes
-      */
-    function updateTotalResults(estimatedMatches) {
-      totalResults              = estimatedMatches;
-    }
-
-    /**
-      * Build search results pagination links based on the total number of results
-      */
-    function getSearchResultsPagination(totalResults) {
-
-      var
-        pageSize                = 10,
-        totalPages              = Math.ceil(totalResults / pageSize),
-        currentPageNumber       = Number(window.location.hash.length? window.location.hash.substr(5) : 1),
-        nextPage                = $('#NextPage'),
-        previousPage            = $('#PreviousPage');
-
-      previousPage.attr("disabled", currentPageNumber <= 1).data("page", currentPageNumber-1);
-      nextPage.attr("disabled", currentPageNumber >= totalPages).data("page", currentPageNumber+1);
-
-    };
-
-    /**
-     * Determine and return the value for the requested querystring parameter
-     */
-    function getQuerystringValue(parameter) {
-      parameter = parameter.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-      var
-        regex = new RegExp('[\\?&]' + parameter + '=([^&#]*)'),
-        results = regex.exec(location.search);
-      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-    };
-
   </script>
+
 }
