@@ -28,5 +28,7 @@ namespace GoldSim.Web.Models.ContentTypes {
         _                       => "CT"
       };
 
+    public string GetContainerKey() => Key.Substring(0, Key.IndexOf("Systems"));
+
   } // Class
 } // Namespace
