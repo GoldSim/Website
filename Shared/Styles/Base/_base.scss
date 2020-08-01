@@ -24,39 +24,6 @@
 //----------------------------------------------------------------------------------------------
 // MAIN CONTENT AREA ELEMENTS
 //----------------------------------------------------------------------------------------------
-main {
-
-  // Page Header Area
-  > section > header {
-    background-color            : $palette-grey-dark;
-    background-size             : cover;
-    background-position         : center center;
-    background-repeat           : no-repeat;
-
-    .grid-container {
-      position                  : relative;
-      min-height                : 200px;
-      max-height                : 200px;
-    }
-
-  }
-
-}
-
-// Page-level navigation
-header.page-banner h1.title {
-  position                      : absolute;
-  bottom                        : 0;
-  margin                        : 0;
-  padding                       : rem-calc(0 32 88);
-  color                         : $palette-white;
-  @include breakpoint(medium) {
-    padding                     : rem-calc(0 40 20);
-  }
-  @include breakpoint(large) {
-    padding                     : rem-calc(0 0 20);
-  }
-}
 
 // Primary Page Content
 article {

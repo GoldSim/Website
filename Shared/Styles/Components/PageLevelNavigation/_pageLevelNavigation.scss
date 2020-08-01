@@ -1,0 +1,53 @@
+﻿//==============================================================================================
+// PAGE LEVEL NAVIGATION
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the page-level navigation.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+
+main {
+
+  // Page Header Area
+  > section > header {
+    background-color            : $palette-grey-dark;
+    background-size             : cover;
+    background-position         : center center;
+    background-repeat           : no-repeat;
+
+    .grid-container {
+      position                  : relative;
+      min-height                : 200px;
+      max-height                : 200px;
+    }
+
+  }
+
+}
+
+header.page-banner h1.title {
+  position                      : absolute;
+  bottom                        : 0;
+  margin                        : 0;
+  padding                       : rem-calc(0 32 88);
+  color                         : $palette-white;
+  @include breakpoint(medium) {
+    padding                     : rem-calc(0 40 20);
+  }
+  @include breakpoint(large) {
+    padding                     : rem-calc(0 0 20);
+  }
+}
