@@ -248,12 +248,15 @@
             @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
               <div class="medium-4 cell">
                 <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
-                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
-                  <ul id="@(applicationContainer.Key + "Applications")">
-                    @foreach (var application in applicationContainer.Children) {
-                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                    }
-                  </ul>
+                  <img src="/Images/Content/Product/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
+                  <div class="card-section">
+                    <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")) <nobr>Systems Modeling</nobr></h2>
+                    <ul id="@(applicationContainer.Key + "Applications")">
+                      @foreach (var application in applicationContainer.Children) {
+                        <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
+                      }
+                    </ul>
+                  </div>
                 </div>
               </div>
             }

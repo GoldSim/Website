@@ -423,22 +423,14 @@ main {
 .applications {
   .card {
     margin                      : rem-calc(0 36 14);
-    padding                     : rem-calc(166 0 0);
+    padding                     : rem-calc(0 0 0);
     background-size             : contain;
     background-position         : center top;
     background-repeat           : no-repeat;
-    @media screen and (min-width: 400px) and (max-width: 599px) {
-      padding                   : rem-calc(224 0 0);
-    }
     @include breakpoint(medium) {
       margin                    : 0;
-      padding                   : rem-calc(135 0 0);
-    }
-    @include breakpoint(large) {
-      padding                   : rem-calc(198 0 0);
     }
     &.environmental {
-      background-image          : url('/Images/Content/Product/CT/CT_400px.png');
       @include breakpoint(medium) {
         margin-right            : rem-calc(-16);
         margin-left             : rem-calc(16);
@@ -448,11 +440,7 @@ main {
         margin-left             : auto;
       }
     }
-    &.engineered {
-      background-image          : url('/Images/Content/Product/RL/RL_400px.png');
-    }
     &.business {
-      background-image          : url('/Images/Content/Product/FN/FN_400px.png');
       @include breakpoint(medium) {
         margin-right            : rem-calc(16);
         margin-left             : rem-calc(-16);
@@ -461,6 +449,9 @@ main {
         margin-right            : auto;
         margin-left             : auto;
       }
+    }
+    .card-section {
+      padding                   : 0px;
     }
     picture {
       overflow                  : hidden;

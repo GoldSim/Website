@@ -20,5 +20,13 @@ namespace GoldSim.Web.Models.ContentTypes {
 
     public string DisplayOrder { get; set; }
 
+    public string GetImageKey() =>
+      Key switch {
+        "EnvironmentalSystems"  => "CT",
+        "EngineeredSystems"     => "RL",
+        "BusinessSystems"       => "FN",
+        _                       => "CT"
+      };
+
   } // Class
 } // Namespace
