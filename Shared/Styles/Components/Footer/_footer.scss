@@ -1,0 +1,109 @@
+﻿//==============================================================================================
+// FOOTER
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the footer.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+
+.site.footer {
+  .heading,
+  dl dd,
+  i.fa,
+  i.fab {
+    font-size                   : rem-calc(20);
+    color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      color                     : $palette-grey-light;
+    }
+  }
+  .navigation {
+    a {
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom           : 1px solid $palette-grey-light;
+      }
+    }
+    p.heading {
+      margin-bottom             : 0;
+      + p.heading {
+        margin-top              : rem-calc(36);
+      }
+    }
+    ul {
+      @extend .no-list-style;
+      margin                    : 0;
+      li {
+        margin-top              : rem-calc(3);
+        margin-bottom           : 0;
+        padding-left            : 0;
+        line-height             : rem-calc(32);
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+          color                 : $palette-grey-medium;
+        }
+      }
+    }
+    dl {
+      margin-bottom             : 0;
+      &.emails {
+        margin-top              : rem-calc(52);
+        @include breakpoint(767px down) {
+          margin-top            : rem-calc(36);
+        }
+      }
+      dt {
+        position                : relative;
+        top                     : 0;
+        margin-bottom           : 0;
+        padding-right           : 0;
+        font-weight             : normal;
+        @include breakpoint(medium) {
+          top                   : rem-calc(4);
+        }
+      }
+      dd {
+        font-size               : rem-calc(16);
+        @include breakpoint(medium) {
+          font-size             : rem-calc(21);
+        }
+      }
+    }
+    .contact {
+      margin-bottom             : rem-calc(48);
+      border-bottom             : 1px solid rgb(152, 152, 152);
+      padding-bottom            : rem-calc(48);
+      @include breakpoint(medium) {
+        margin-bottom           : 0;
+        border-bottom           : 0 none transparent;
+        padding-bottom          : 0;
+      }
+    }
+  }
+  .social {
+    margin-bottom               : rem-calc(16);
+  }
+}
