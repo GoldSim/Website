@@ -448,7 +448,7 @@ main {
       }
     }
     .card-section {
-      padding                   : 0px;
+      padding                   : rem-calc(0 28);
     }
     picture {
       overflow                  : hidden;
@@ -470,7 +470,7 @@ main {
         line-height             : 1.4;
         a {
           display               : block;
-          padding               : rem-calc(16 28);
+          padding               : rem-calc(16 0);
           font-weight           : normal;
           border                : 0 none transparent;
           &:hover,
