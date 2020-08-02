@@ -21,9 +21,7 @@
 
 .site.footer {
   .heading,
-  dl dd,
-  i.fa,
-  i.fab {
+  dl dd  {
     font-size                   : rem-calc(20);
     color                       : $palette-grey-light;
     @include breakpoint(medium) {
@@ -103,7 +101,37 @@
       }
     }
   }
-  .social {
-    margin-bottom               : rem-calc(16);
+}
+
+//----------------------------------------------------------------------------------------------
+// SOCIAL ICONS
+//----------------------------------------------------------------------------------------------
+.social {
+  margin-bottom                 : rem-calc(16);
+  a:after {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Brands';
+    font-weight                 : 400;
+    font-size                   : rem-calc(20);
+    padding-right               : rem-calc(2);
+    padding-left                : rem-calc(5);
+    color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+  }
+  a[href*="linkedin"]:after {
+    content                     : fa-content($fa-var-linkedin)
+  }
+  a[href*="facebook"]:after {
+    content                     : fa-content($fa-var-facebook)
+  }
+  a[href*="twitter"]:after {
+    content                     : fa-content($fa-var-twitter)
+  }
+  a[href*="blog"]:after {
+    font-family                 : 'Font Awesome 5 Free';
+    font-weight                 : 900;
+    content                     : fa-content($fa-var-rss)
   }
 }
