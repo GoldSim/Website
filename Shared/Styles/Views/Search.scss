@@ -11,8 +11,8 @@
 // therefore, it is not necessary that it reimport shared styles. It may, however, need to
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
-@import "../variables";
-@import "../foundationSettings";
+@import "variables";
+@import "foundationSettings";
 
 //----------------------------------------------------------------------------------------------
 // CORE
@@ -151,143 +151,6 @@
     }
     .ellipse.clickable {
       cursor                    : pointer;
-    }
-  }
-}
-
-//----------------------------------------------------------------------------------------------
-// OVERRIDES
-//----------------------------------------------------------------------------------------------
-.gsc-results-wrapper-nooverlay {
-  table {
-    td {
-      background-color          : $palette-white;
-    }
-  }
-}
-.search.results {
-  .gsc-control-cse {
-    padding                     : 0;
-  }
-  .gsc-search-button {
-    display                     : inline-block !important;
-    margin                      : rem-calc(-1 0 0);
-    border-color                : $palette-white;
-    padding                     : 0;
-    min-width                   : 0;
-    width                       : rem-calc(36);
-    height                      : rem-calc(36);
-    background-color            : transparent;
-  }
-  .gsc-search-box {
-    border                      : 1px solid $palette-grey-light;
-  }
-  td.gsc-input {
-    padding-left                : rem-calc(8) !important;
-    width                       : 93.5%
-  }
-  .gsc-resultsHeader,
-  .gsc-refinementsArea {
-    display                     : none;
-  }
-  .gsc-above-wrapper-area {
-    border-bottom               : 0 none transparent;
-    .gsc-above-wrapper-area-container {
-      margin-bottom             : 0;
-    }
-  }
-  .gsc-result-info-container {
-    padding                     : 0;
-    .gsc-result-info {
-      font-family               : $body-font-family;
-      color                     : $palette-grey-dark;
-    }
-  }
-  .gsc-tabsArea {
-    margin-top                  : rem-calc(24);
-    border-color                : $palette-grey-light;
-    height                      : rem-calc(30);
-    .gsc-tabHeader {
-      height                    : rem-calc(30);
-      font-family               : $body-font-family;
-      font-size                 : rem-calc(14);
-      &.gsc-tabhInactive {
-        border-bottom-color     : $palette-grey-light;
-        background-color        : $palette-grey-lighter;
-      }
-      &.gsc-tabhActive {
-        border-color            : $palette-grey-light;
-        border-bottom-color     : $palette-white;
-      }
-    }
-  }
-  .gs-title,
-  .gs-url-top,
-  .gsc-table-result td {
-    font-family                 : $body-font-family;
-  }
-  .gs-title,
-  .gsc-table-result td {
-    font-size                   : rem-calc(18);
-  }
-  div.gs-title {
-    min-height                  : rem-calc(28);
-    a.gs-title {
-      font-size                 : rem-calc(18);
-      color                     : $palette-black;
-      text-decoration-color     : $palette-white !important;
-      &:hover,
-      &:focus,
-      &:active {
-        color                   : $palette-black;
-      }
-      b {
-        color                   : $palette-black;
-        text-decoration-color   : $palette-white !important;
-        &:hover,
-        &:focus,
-        &:active {
-          color                 : $palette-black;
-        }
-      }
-    }
-  }
-  table.gsc-table-result {
-    td {
-      padding                   : 0;
-    }
-  }
-  td.gsc-thumbnail {
-    padding-top                 : rem-calc(4);
-  }
-  .gsc-cursor-box {
-    margin                      : rem-calc(32 0 0);
-    .gsc-cursor-page {
-      display                   : inline-block;
-      padding-top               : rem-calc(2);
-      min-width                 : rem-calc(36);
-      min-height                : rem-calc(36);
-      text-align                : center;
-      font-family               : $body-font-family;
-      font-size                 : rem-calc(18);
-      color                     : $palette-black;
-      &:hover,
-      &:focus,
-      &:active {
-        text-decoration         : none;
-        font-weight             : bold;
-      }
-      &:hover {
-        background-color        : $palette-yellow;
-      }
-      &:focus,
-      &:active {
-        color                   : $palette-yellow;
-        background-color        : $palette-black;
-      }
-    }
-    .gsc-cursor-current-page {
-      background-color          : $palette-yellow;
     }
   }
 }

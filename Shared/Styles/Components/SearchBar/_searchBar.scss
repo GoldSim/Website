@@ -8,15 +8,6 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// IMPORTS
-//----------------------------------------------------------------------------------------------
-@import "../../variables";
-
-//----------------------------------------------------------------------------------------------
-// VARIABLES
-//----------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------
 // HELPERS
 //----------------------------------------------------------------------------------------------
 @keyframes fadeInBackground {
@@ -33,76 +24,6 @@
   }
   100% {
     background-color            : transparent;
-  }
-}
-
-//----------------------------------------------------------------------------------------------
-// OVERRIDES
-//----------------------------------------------------------------------------------------------
-// NOTE: These should be moved to a centralized _overrides.scss file. For discoverability,
-// however, the overrides are being placed here instead.
-//----------------------------------------------------------------------------------------------
-form.gsc-search-box.gsc-search-box-tools {
-  margin-bottom                 : 0;
-  font-size                     : rem-calc(30);
-  td.gsc-search-button,
-  td.gsc-clear-button,
-  td.gsib_b,
-  table.gsc-branding {
-    display                     : none;
-  }
-  table td {
-    border                      : 0 none transparent;
-    background-color            : transparent;
-  }
-  table.gsc-search-box {
-    margin-bottom               : 0;
-    padding-right               : 0;
-    tbody {
-      border                    : 0 none transparent;
-      background-color          : transparent;
-      tr {
-        border-bottom           : 0 none transparent;
-        background-color        : transparent;
-      }
-    }
-    .gsc-input > input:hover,
-    .gsc-input-box-hover,
-    .gsc-input-box-focus {
-      box-shadow                : none !important;
-    }
-    td.gsc-input {
-      border                    : 0 none transparent;
-      padding                   : 0;
-      background-color          : transparent;
-      .gsc-input-box {
-        border                  : 0 none transparent;
-        height                  : rem-calc(32);
-        background-color        : transparent;
-        table {
-          margin-bottom         : 0;
-          width                 : auto;
-          tbody {
-            border              : 0 none transparent;
-            background-color    : transparent;
-          }
-          td.gsib_a {
-            padding             : 0;
-          }
-        }
-        input.gsc-input {
-          font-size             : rem-calc(30);
-          line-height           : rem-calc(32);
-        }
-      }
-    }
-
-  }
-}
-
-table.gsc-completion-container {
-  td {
-    background-color            : $palette-white;
   }
 }
 
@@ -159,7 +80,6 @@ table.gsc-completion-container {
     &.closed {
       background-color          : transparent;
       transition                : background-color 0.2s linear 0.3s;
-      input.gsc-input,
       input[type="search"] {
         width                   : 0 !important;
         transition              : width 0.4s linear;
@@ -194,7 +114,6 @@ table.gsc-completion-container {
           color                 : rgb(169, 169, 169);
           transition            : color 0.1s linear 0.25s;
         }
-        &.gsc-input,
         &[type="search"] {
           width                 : rem-calc(216) !important;
           transition            : width 0.4s linear;
@@ -211,7 +130,6 @@ table.gsc-completion-container {
       vertical-align            : middle;
       height                    : 100%;
     }
-    .gsc-control-searchbox-only,
     div.input {
       margin-top                : rem-calc(1);
       padding-left              : rem-calc(40);

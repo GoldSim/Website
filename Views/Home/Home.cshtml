@@ -247,13 +247,18 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
             @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
               <div class="medium-4 cell">
-                <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
-                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
-                  <ul id="@(applicationContainer.Key + "Applications")">
-                    @foreach (var application in applicationContainer.Children) {
-                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                    }
-                  </ul>
+                <div class="card @applicationContainer.GetContainerKey().ToLower()" data-equalizer-watch>
+                  <picture>
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Content/Product/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
+                  </picture>
+                  <div class="card-section">
+                    <h2>@applicationContainer.GetContainerKey() <nobr>Systems Modeling</nobr></h2>
+                    <ul id="@(applicationContainer.Key + "Applications")">
+                      @foreach (var application in applicationContainer.Children) {
+                        <li><a href="@application.WebPath">@(application.ShortTitle?? application.Title) &raquo;</a></li>
+                      }
+                    </ul>
+                  </div>
                 </div>
               </div>
             }

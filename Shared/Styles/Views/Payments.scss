@@ -1,7 +1,7 @@
 ﻿//==============================================================================================
-// VIDEO (PAGE)
+// ACCORDION
 //----------------------------------------------------------------------------------------------
-// Represents styles specific to pages of Content Type "Video".
+// Represents styles specific to pages of Content Type "Accordion" and its child Content Types.
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
@@ -15,5 +15,32 @@
 @import "foundationSettings";
 
 //----------------------------------------------------------------------------------------------
-// CORE
+// BRAINTREE
 //----------------------------------------------------------------------------------------------
+.payments-form {
+  input {
+    &::placeholder {
+      color: rgb(133, 133, 133);
+    }
+  }
+}
+
+.hosted-field {
+  display: inline-block;
+  box-sizing: border-box;
+  margin: rem-calc(0 0 16);
+  border: 1px solid $palette-grey-light;
+  border-radius: 0;
+  padding: 0;
+  width: 100%;
+  height: rem-calc(39);
+
+  &.padded {
+    padding: rem-calc(0 8);
+  }
+
+  &:focus,
+  &.braintree-hosted-fields-focused {
+    border-color: $palette-yellow;
+  }
+}

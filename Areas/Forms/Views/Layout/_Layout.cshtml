@@ -4,6 +4,10 @@
   Layout = "/Views/Layout/_Layout.cshtml";
 }
 
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Form.css" asp-append-version="true" />
+}
+
 <section class="panel">
 
   @Html.Raw(Model.Body)

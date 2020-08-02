@@ -8,7 +8,7 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
-@import "../../../node_modules/foundation-sites/scss/util/mixins";
+@import "util/mixins";
 @import "fonts";
 @import "typography";
 @import "forms";
@@ -25,39 +25,6 @@
 //----------------------------------------------------------------------------------------------
 // MAIN CONTENT AREA ELEMENTS
 //----------------------------------------------------------------------------------------------
-main {
-
-  // Page Header Area
-  > section > header {
-    background-color            : $palette-grey-dark;
-    background-size             : cover;
-    background-position         : center center;
-    background-repeat           : no-repeat;
-
-    .grid-container {
-      position                  : relative;
-      min-height                : 200px;
-      max-height                : 200px;
-    }
-
-  }
-
-}
-
-// Page-level navigation
-header.page-banner h1.title {
-  position                      : absolute;
-  bottom                        : 0;
-  margin                        : 0;
-  padding                       : rem-calc(0 32 88);
-  color                         : $palette-white;
-  @include breakpoint(medium) {
-    padding                     : rem-calc(0 40 20);
-  }
-  @include breakpoint(large) {
-    padding                     : rem-calc(0 0 20);
-  }
-}
 
 // Primary Page Content
 article {
@@ -87,96 +54,4 @@ article {
 // Video elements
 video {
   width                         : 100%;
-}
-
-//----------------------------------------------------------------------------------------------
-// FOOTER ELEMENTS
-//----------------------------------------------------------------------------------------------
-.site.footer {
-  .heading,
-  dl dd,
-  i.fa,
-  i.fab {
-    font-size                   : rem-calc(20);
-    color                       : $palette-grey-light;
-    @include breakpoint(medium) {
-      font-size                 : rem-calc(21);
-    }
-    a,
-    a:hover,
-    a:focus,
-    a:active,
-    a:visited {
-      color                     : $palette-grey-light;
-    }
-  }
-  .navigation {
-    a {
-      &:hover,
-      &:focus,
-      &:active {
-        border-bottom           : 1px solid $palette-grey-light;
-      }
-    }
-    p.heading {
-      margin-bottom             : 0;
-      + p.heading {
-        margin-top              : rem-calc(36);
-      }
-    }
-    ul {
-      @extend .no-list-style;
-      margin                    : 0;
-      li {
-        margin-top              : rem-calc(3);
-        margin-bottom           : 0;
-        padding-left            : 0;
-        line-height             : rem-calc(32);
-        a,
-        a:hover,
-        a:focus,
-        a:active {
-          color                 : $palette-grey-medium;
-        }
-      }
-    }
-    dl {
-      margin-bottom             : 0;
-      &.emails {
-        margin-top              : rem-calc(52);
-        @include breakpoint(767px down) {
-          margin-top            : rem-calc(36);
-        }
-      }
-      dt {
-        position                : relative;
-        top                     : 0;
-        margin-bottom           : 0;
-        padding-right           : 0;
-        font-weight             : normal;
-        @include breakpoint(medium) {
-          top                   : rem-calc(4);
-        }
-      }
-      dd {
-        font-size               : rem-calc(16);
-        @include breakpoint(medium) {
-          font-size             : rem-calc(21);
-        }
-      }
-    }
-    .contact {
-      margin-bottom             : rem-calc(48);
-      border-bottom             : 1px solid rgb(152, 152, 152);
-      padding-bottom            : rem-calc(48);
-      @include breakpoint(medium) {
-        margin-bottom           : 0;
-        border-bottom           : 0 none transparent;
-        padding-bottom          : 0;
-      }
-    }
-  }
-  .social {
-    margin-bottom               : rem-calc(16);
-  }
 }

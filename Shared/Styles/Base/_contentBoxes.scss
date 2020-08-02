@@ -169,6 +169,9 @@
 //----------------------------------------------------------------------------------------------
 // FLOATED ELEMENTS
 //----------------------------------------------------------------------------------------------
+// These are used on e.g. the products landing page to display a list of paragraphs with
+// corresponding icons. The classes ensure that the text doesn't wrap underneath the icons.
+//----------------------------------------------------------------------------------------------
 .floated-layout {
   @include clearfix;
   &.left {

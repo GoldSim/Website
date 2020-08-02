@@ -5,10 +5,6 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// GLOBAL
-//----------------------------------------------------------------------------------------------
-
-//----------------------------------------------------------------------------------------------
 // FILE TYPES
 //----------------------------------------------------------------------------------------------
 a[href$=".pdf"],
@@ -21,32 +17,43 @@ a[href$=".pptx"],
 a[href$=".xls"],
 a[href$=".xlsx"] {
   line-height                   : 1.3;
-}
-a ~ i,
-a > i {
-  padding-right                 : rem-calc(2);
-  padding-left                  : rem-calc(5);
-}
-i {
-  &.fa-file-pdf-o {
-    color                       : rgb(229, 31, 0);
-  }
-  &.fa-download,
-  &.fa-file-archive-o {
-    color                       : $palette-black;
-  }
-  &.fa-file-word-o {
-    color                       : rgb(42, 86, 153);
-  }
-  &.fa-file-powerpoint-o {
-    color                       : rgb(209, 68, 36);
-  }
-  &.fa-file-excel-o {
-    color                       : rgb(32, 113, 68);
+  &:after {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Free';
+    font-weight                 : 900;
+    padding-right               : rem-calc(2);
+    padding-left                : rem-calc(5);
   }
 }
 
-a[href $=".gsm"] {
+a[href$=".gsm"]:after {
   padding                       : rem-calc(2 25 2 0);
   background                    : transparent url('/Images/Icons/Small/GSM.gif') no-repeat right center;
+}
+a[href$=".pdf"]:after {
+  content                       : fa-content($fa-var-file-pdf);
+  color                         : rgb(229, 31, 0);
+}
+a[href$=".exe"]:after {
+  content                       : fa-content($fa-var-download);
+  color                         : $palette-black;
+}
+a[href$=".zip"]:after {
+  content                       : fa-content($fa-var-file-archive);
+  color                         : $palette-black;
+}
+a[href$=".doc"]:after,
+a[href$=".docx"]:after {
+  content                       : fa-content($fa-var-file-word);
+  color                         : rgb(42, 86, 153);
+}
+a[href$=".ppt"]:after,
+a[href$=".pptx"]:after {
+  content                       : fa-content($fa-var-file-powerpoint);
+  color                         : rgb(209, 68, 36);
+}
+a[href$=".xls"]:after,
+a[href$=".xlsx"]:after {
+  content                       : fa-content($fa-var-file-excel);
+  color                         : rgb(32, 113, 68);
 }

@@ -1,0 +1,140 @@
+﻿//==============================================================================================
+// FOOTER
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the footer.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+
+.site.footer {
+  .heading,
+  dl dd  {
+    font-size                   : rem-calc(20);
+    color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+    a,
+    a:hover,
+    a:focus,
+    a:active,
+    a:visited {
+      color                     : $palette-grey-light;
+    }
+  }
+  .navigation {
+    a {
+      &:hover,
+      &:focus,
+      &:active {
+        border-bottom           : 1px solid $palette-grey-light;
+      }
+    }
+    p.heading {
+      margin-bottom             : 0;
+      + p.heading {
+        margin-top              : rem-calc(36);
+      }
+    }
+    ul {
+      @extend .no-list-style;
+      margin                    : 0;
+      li {
+        margin-top              : rem-calc(3);
+        margin-bottom           : 0;
+        padding-left            : 0;
+        line-height             : rem-calc(32);
+        a,
+        a:hover,
+        a:focus,
+        a:active {
+          color                 : $palette-grey-medium;
+        }
+      }
+    }
+    dl {
+      margin-bottom             : 0;
+      &.emails {
+        margin-top              : rem-calc(52);
+        @include breakpoint(767px down) {
+          margin-top            : rem-calc(36);
+        }
+      }
+      dt {
+        position                : relative;
+        top                     : 0;
+        margin-bottom           : 0;
+        padding-right           : 0;
+        font-weight             : normal;
+        @include breakpoint(medium) {
+          top                   : rem-calc(4);
+        }
+      }
+      dd {
+        font-size               : rem-calc(16);
+        @include breakpoint(medium) {
+          font-size             : rem-calc(21);
+        }
+      }
+    }
+    .contact {
+      margin-bottom             : rem-calc(48);
+      border-bottom             : 1px solid rgb(152, 152, 152);
+      padding-bottom            : rem-calc(48);
+      @include breakpoint(medium) {
+        margin-bottom           : 0;
+        border-bottom           : 0 none transparent;
+        padding-bottom          : 0;
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// SOCIAL ICONS
+//----------------------------------------------------------------------------------------------
+.social {
+  margin-bottom                 : rem-calc(16);
+  a:after {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Brands';
+    font-weight                 : 400;
+    font-size                   : rem-calc(20);
+    padding-right               : rem-calc(2);
+    padding-left                : rem-calc(5);
+    color                       : $palette-grey-light;
+    @include breakpoint(medium) {
+      font-size                 : rem-calc(21);
+    }
+  }
+  a[href*="linkedin"]:after {
+    content                     : fa-content($fa-var-linkedin);
+  }
+  a[href*="facebook"]:after {
+    content                     : fa-content($fa-var-facebook);
+  }
+  a[href*="twitter"]:after {
+    content                     : fa-content($fa-var-twitter);
+  }
+  a[href*="blog"]:after {
+    font-family                 : 'Font Awesome 5 Free';
+    font-weight                 : 900;
+    content                     : fa-content($fa-var-rss);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// COPYRIGHT ICON
+//----------------------------------------------------------------------------------------------
+.copyright small:before {
+  @include fa-icon;
+  font-family                   : 'Font Awesome 5 Free';
+  font-weight                   : 900;
+  padding-right                 : rem-calc(3);
+  content                       : fa-content($fa-var-copyright);
+}

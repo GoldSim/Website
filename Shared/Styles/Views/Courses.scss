@@ -7,10 +7,10 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
-@import "../variables";
-@import "../foundationSettings";
-@import "../../../node_modules/@fortawesome/fontawesome-free/scss/_mixins.scss";
-@import "../../../node_modules/@fortawesome/fontawesome-free/scss/_variables.scss";
+@import "variables";
+@import "foundationSettings";
+@import "fontawesome-free/scss/_mixins.scss";
+@import "fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
 // LAYOUT
@@ -33,18 +33,6 @@ section.panel {
   padding                       : rem-calc(60 80);
   ol, p, td, ul {
     font-size                   : rem-calc(16);
-  }
-}
-
-//----------------------------------------------------------------------------------------------
-// PAGING NAVIGATION
-//----------------------------------------------------------------------------------------------
-nav {
-  .button {
-    margin-top                  : rem-calc(28);
-    &.right {
-      float                     : right;
-    }
   }
 }
 

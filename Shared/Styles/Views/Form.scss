@@ -1,0 +1,252 @@
+﻿//==============================================================================================
+// FORM
+//----------------------------------------------------------------------------------------------
+// Represents styles specific to pages of Content Type "Form", or which otherwise utilize forms.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS
+//----------------------------------------------------------------------------------------------
+// NOTE: It is expected that this page will co-exist with the centralized stylesheet and,
+// therefore, it is not necessary that it reimport shared styles. It may, however, need to
+// import variables and helpers.
+//----------------------------------------------------------------------------------------------
+@import "foundationSettings";
+@import "variables";
+@import "foundation";
+@import "Helpers/helpers";
+@include foundation-forms;
+
+//----------------------------------------------------------------------------------------------
+// FIELDSET
+//----------------------------------------------------------------------------------------------
+fieldset {
+  legend {
+    margin-bottom               : rem-calc(18);
+    padding-top                 : rem-calc(34);
+    font-family                 : $header-font-family;
+    font-size                   : rem-calc(20);
+    font-weight                 : 600;
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// LABELS
+//----------------------------------------------------------------------------------------------
+label, .label {
+  font-size                     : $body-text-size;
+}
+
+//----------------------------------------------------------------------------------------------
+// INPUT
+//----------------------------------------------------------------------------------------------
+[type='text'],
+[type='password'],
+[type='date'],
+[type='datetime'],
+[type='datetime-local'],
+[type='month'],
+[type='week'],
+[type='email'],
+[type='number'],
+[type='search'],
+[type='tel'],
+[type='time'],
+[type='url'],
+[type='color'],
+textarea,
+select {
+  box-shadow                    : none;
+  &:active,
+  &:focus {
+    box-shadow                  : none;
+    border-color                : $palette-yellow;
+  }
+}
+
+input,
+button {
+  &:active,
+  &:focus {
+    box-shadow                  : none;
+  }
+  &:hover {
+  }
+  &.submit,
+  &[type='submit'] {
+    margin-top                  : rem-calc(32);
+    margin-bottom               : 0;
+  }
+}
+
+textarea {
+  min-height                    : rem-calc(128);
+}
+
+//----------------------------------------------------------------------------------------------
+// FANCY INPUTS (radio buttons, checkboxes)
+//----------------------------------------------------------------------------------------------
+.radio,
+.checkbox {
+  label {
+    height                      : auto !important;
+    line-height                 : rem-calc(20) !important;
+    &:before {
+      border                    : 2px solid $palette-grey-light !important;
+    }
+  }
+  input[type="radio"],
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        &:before {
+          border                : 2px solid $palette-black !important;
+        }
+      }
+    }
+  }
+}
+.radio {
+  label {
+    &:after {
+      top                       : 2px !important;
+      left                      : 2px !important;
+      width                     : 17px !important;
+      height                    : 17px !important;
+    }
+  }
+  input[type="radio"] {
+    &:checked {
+      + label:after {
+        background-color        : $palette-yellow;
+      }
+    }
+  }
+}
+span.radio {
+  display                       : block;
+}
+.checkbox {
+  padding-bottom                : rem-calc(20);
+  @include breakpoint(medium) {
+    padding-bottom              : rem-calc(10);
+  }
+  @include breakpoint(large) {
+    padding-bottom              : 0;
+  }
+  label {
+    &:after {
+      line-height               : 1.8 !important;
+      color                     : $palette-black !important;
+    }
+  }
+  input[type="checkbox"] {
+    &:checked {
+      + label {
+        &:before {
+          background-color      : $palette-yellow;
+        }
+      }
+    }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// BUTTONS
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// VALIDATION
+//----------------------------------------------------------------------------------------------
+label {
+  &.required {
+    font-weight                 : 600;
+    &:before {
+      content                   : "*"
+    }
+  }
+}
+
+.field-validation-error,
+.is-invalid-label,
+label.error {
+  font-weight                   : 600;
+  color                         : $palette-red;
+}
+.input-validation-error,
+.is-invalid-input,
+input.error,
+select.error,
+textarea.error {
+  &:not(:focus) {
+    border-color                : $palette-red;
+    background-color            : $palette-white;
+  }
+}
+.alert,
+.success {
+  &.callout {
+    float: none;
+  }
+
+  &.error-message,
+  &.success-message,
+  &.validation-summary-valid,
+  &.validation-summary-errors {
+    box-shadow                  : none;
+    margin-left                 : 0;
+    border                      : 0 none transparent;
+    border-left                 : 3px solid $palette-black;
+    padding                     : rem-calc(0 12);
+    line-height                 : 1.2;
+    font-weight                 : 600;
+    background-color            : $palette-white;
+  }
+
+  &.error-message,
+  &.validation-summary-errors {
+    border-color                : $palette-red;
+    color                       : $palette-red;
+
+    ul {
+      margin-top                : rem-calc(16);
+
+      li {
+        margin-bottom           : rem-calc(8);
+      }
+    }
+  }
+
+  &.success-message {
+    border-color                : $palette-green;
+    color                       : $palette-green;
+  }
+}
+
+.callout + .callout {
+  margin-top                    : 0px;
+}
+
+span[id*="Validator"][style*="visibility:hidden"] {
+  display                       : none;
+}
+
+//----------------------------------------------------------------------------------------------
+// SUPPORTING STYLES
+//----------------------------------------------------------------------------------------------
+.instructions, .validation-instructions {
+  font-size                     : rem-calc(16);
+  font-style                    : italic;
+  color                         : $palette-grey-medium;
+
+  &.error, &.validation-summary-errors {
+    color                       : $palette-red;
+  }
+}
+
+.validation-summary-valid {
+  display                       : none;
+}
+.validation-summary-errors {
+  display                       : block;
+}
