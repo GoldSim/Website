@@ -105,9 +105,9 @@ function scssTask() {
     .pipe(sourceMaps.init())
     .pipe(sass({
       includePaths: [
+        './Shared/Styles',
         './node_modules/foundation-sites/scss',
-        './node_modules/@fortawesome/fontawesome-free/scss',
-        './Shared/Styles'
+        './node_modules/@fortawesome'
       ]
     }))
     .on("error", sass.logError)
