@@ -99,13 +99,15 @@ else {
 | Compiles the SCSS files, including views, and moves them to the build directory.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 function scssTask() {
-  return src(files.scss, {base: 'Shared/Styles'})
+  return src(files.scss, { base: 'Shared/Styles' })
     //.pipe(autoPrefixer({ browsers: ['last 2 versions', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'] }))
     //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
     .pipe(sass({
       includePaths: [
-        './node_modules/foundation-sites/scss'
+        './node_modules/foundation-sites/scss',
+        './node_modules/@fortawesome/fontawesome-free/scss',
+        './Shared/Styles'
       ]
     }))
     .on("error", sass.logError)

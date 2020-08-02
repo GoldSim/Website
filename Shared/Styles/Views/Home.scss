@@ -11,9 +11,9 @@
 // therefore, it is not necessary that it reimport shared styles. It may, however, need to
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
-  @import "../variables";
-  @import "../foundationSettings";
-  @import "../Helpers/mixins";
+  @import "variables";
+  @import "foundationSettings";
+  @import "Helpers/mixins";
 
 //----------------------------------------------------------------------------------------------
 // LAYOUT

@@ -11,10 +11,10 @@
 // therefore, it is not necessary that it reimport shared styles. It may, however, need to
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
-@import "../foundationSettings";
-@import "../variables";
+@import "foundationSettings";
+@import "variables";
 @import "foundation";
-@import "../Helpers/helpers";
+@import "Helpers/helpers";
 @include foundation-forms;
 
 //----------------------------------------------------------------------------------------------

@@ -23,7 +23,7 @@
 //----------------------------------------------------------------------------------------------
 // IMPORT FOUNDATION LIBRARIES
 //----------------------------------------------------------------------------------------------
-@import "../../node_modules/foundation-sites/scss/foundation";
+@import "foundation";
 // @include foundation-everything;
 @include foundation-global-styles;
 @include foundation-xy-grid-classes;
@@ -64,12 +64,6 @@
 @include foundation-visibility-classes;
 @include foundation-float-classes;
 @include foundation-flex-classes;
-
-//----------------------------------------------------------------------------------------------
-// IMPORT FONT AWESOME LIBRARIES
-//----------------------------------------------------------------------------------------------
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/_mixins.scss";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
 // IMPORT OTHER MANIFESTS
