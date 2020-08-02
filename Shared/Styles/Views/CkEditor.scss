@@ -7,9 +7,9 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS (DEPENDENCIES)
 //----------------------------------------------------------------------------------------------
-@import "../variables";
-@import "../foundationSettings";
-@import "../Helpers/helpers";
+@import "variables";
+@import "foundationSettings";
+@import "Helpers/helpers";
 @import "foundation";
 @import "fontawesome";
 
@@ -31,15 +31,15 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS (STYLESHEETS)
 //----------------------------------------------------------------------------------------------
-@import "../Base/utilities";
-@import "../Base/typography";
-@import "../Base/links";
-@import "../Base/buttons";
-@import "../Base/contentBoxes";
-@import "../Base/images";
-@import "../Base/lists";
-@import "../Base/quotes";
-@import "../Base/tables";
+@import "Base/utilities";
+@import "Base/typography";
+@import "Base/links";
+@import "Base/buttons";
+@import "Base/contentBoxes";
+@import "Base/images";
+@import "Base/lists";
+@import "Base/quotes";
+@import "Base/tables";
 
 //----------------------------------------------------------------------------------------------
 // OVERRIDES
