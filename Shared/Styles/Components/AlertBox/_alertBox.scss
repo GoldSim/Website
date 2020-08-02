@@ -35,7 +35,12 @@
         text-decoration         : underline;
       }
     }
-    i.fa {
+    &:before {
+      @include fa-icon;
+      font-family               : 'Font Awesome 5 Free';
+      font-weight               : 900;
+      padding-right             : rem-calc(3);
+      content                   : fa-content($fa-var-bullhorn);
       position                  : relative;
       top                       : 3px;
       margin-right              : 6px;
