@@ -86,6 +86,11 @@ $button-sizes                   : (
   large                         : 1.25rem,
   huge                          : rem-calc(24)                  // ADDED
 );
+$button-palette                 : map-merge(                    // DEFAULT
+  $foundation-palette, (
+    white                       : $palette-white
+  )
+);
 
 //----------------------------------------------------------------------------------------------
 // 15. Close Button
