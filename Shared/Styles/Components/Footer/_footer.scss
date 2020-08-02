@@ -121,18 +121,18 @@
     }
   }
   a[href*="linkedin"]:after {
-    content                     : fa-content($fa-var-linkedin)
+    content                     : fa-content($fa-var-linkedin);
   }
   a[href*="facebook"]:after {
-    content                     : fa-content($fa-var-facebook)
+    content                     : fa-content($fa-var-facebook);
   }
   a[href*="twitter"]:after {
-    content                     : fa-content($fa-var-twitter)
+    content                     : fa-content($fa-var-twitter);
   }
   a[href*="blog"]:after {
     font-family                 : 'Font Awesome 5 Free';
     font-weight                 : 900;
-    content                     : fa-content($fa-var-rss)
+    content                     : fa-content($fa-var-rss);
   }
 }
 
@@ -141,8 +141,8 @@
 //----------------------------------------------------------------------------------------------
 .copyright small:before {
   @include fa-icon;
-    font-family                 : 'Font Awesome 5 Free';
+  font-family                   : 'Font Awesome 5 Free';
   font-weight                   : 900;
   padding-right                 : rem-calc(3);
-  content                       : fa-content($fa-var-copyright)
+  content                       : fa-content($fa-var-copyright);
 }
