@@ -8,7 +8,7 @@
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
-// COMMON
+// LAYOUT
 //----------------------------------------------------------------------------------------------
 
 main {
@@ -30,6 +30,10 @@ main {
 
 }
 
+//----------------------------------------------------------------------------------------------
+// TITLE
+//----------------------------------------------------------------------------------------------
+
 header.page-banner h1.title {
   position                      : absolute;
   bottom                        : 0;
@@ -41,5 +45,38 @@ header.page-banner h1.title {
   }
   @include breakpoint(large) {
     padding                     : rem-calc(0 0 20);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// NAVIGATION
+//----------------------------------------------------------------------------------------------
+
+nav.navigation {
+  &.page {
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    background-color            : $palette-white;
+    ul.menu {
+      li {
+        margin-bottom           : 0;
+        a {
+          border-bottom         : 2px solid transparent;
+          padding               : rem-calc(24 20 18);
+          font-weight           : normal;
+          color                 : $palette-grey-dark;
+          text-decoration       : none;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            border-color        : $palette-yellow;
+            color               : $palette-black;
+          }
+          &.selected {
+            font-weight         : 600;
+          }
+        }
+      }
+    }
   }
 }
