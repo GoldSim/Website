@@ -38,8 +38,8 @@ var     environment             = 'development',
 | be conditional based on the outputDir. As a result, they will likely be hardcoded into each task's dest() method.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const files = {
-  scss                          : [ 'Shared/Styles/Style.scss',
-                                    'Shared/Styles/Views/*.scss'
+  scss                          : [ 'Shared/Styles/**/*.scss',
+                                    'Shared/Styles/**/!*.scss'
                                   ],
   js                            : 'Shared/Scripts/*.js',
   jsViews                       : 'Shared/Scripts/Views/**/*.js'
