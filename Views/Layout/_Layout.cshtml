@@ -58,12 +58,13 @@
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
-    } else {
+    }
+    else {
       <partial name="_CookiesNotice" />
     }
 
     <!-- Site Header Area -->
-	  @if (IsSectionDefined("HeaderSection")) {
+    @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
     }
     else {
@@ -174,19 +175,22 @@
 
     @if (IsSectionDefined("CallsToActionSection")) {
       @RenderSection("CallsToActionSection")
-    } else {
+    }
+    else {
       <vc:calls-to-action />
     }
 
     @if (IsSectionDefined("AnnouncementSection")) {
       @RenderSection("AnnouncementSection")
-    } else {
+    }
+    else {
       <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
     }
 
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
-    } else {
+    }
+    else {
       <vc:footer />
     }
 
