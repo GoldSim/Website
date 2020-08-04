@@ -19,14 +19,18 @@ const   sass                    = require('gulp-sass'),
         cssNano                 = require("cssnano"),
         sourceMaps              = require("gulp-sourcemaps"),
         jshint                  = require('gulp-jshint'),
-        uglify                  = require('gulp-uglify');
+        uglify                  = require('gulp-uglify'),
+        rollup                  = require('gulp-better-rollup'),
+        nodeResolve             = require('@rollup/plugin-node-resolve'),
+        multiEntry              = require('@rollup/plugin-multi-entry');
 
 /*==============================================================================================================================
 | VARIABLES
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var     environment             = 'development',
         outputDir               = 'wwwroot',
-        isProduction            = false;
+        isProduction            = false,
+        cache;
 
 /*==============================================================================================================================
 | SOURCE FILE PATHS
@@ -41,7 +45,7 @@ const files = {
   scss                          : [ 'Shared/Styles/**/*.scss',
                                     'Shared/Styles/**/!*.scss'
                                   ],
-  js                            : 'Shared/Scripts/*.js',
+  js                            : 'Shared/Scripts/**/*.js',
   jsViews                       : 'Shared/Scripts/Views/**/*.js'
 }
 
@@ -126,11 +130,20 @@ function scssTask() {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 function jsTask() {
   return src(files.js, { base: 'Shared/Scripts' })
-    //.pipe(jshint('.jshintrc'))
+    .pipe(rollup({
+      plugins                   : [],
+      cache                     : cache,
+      output                    : {
+        sourcemap               : true,
+        format                  : 'iife',
+        globals                 : {
+          jquery                : '$'
+        }
+      }
+    }))
     .pipe(sourceMaps.init())
     .pipe(jshint())
     .pipe(jshint.reporter('default'))
-    .pipe(concat('Scripts.js'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
     .pipe(dest(outputDir + '/Shared/Scripts/'));
