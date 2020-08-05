@@ -64,48 +64,44 @@
 
 }
 
-@section Scripts {
-  <script>
-    $(document).ready(function () {
+@section InlineScript {
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish default state
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      $("#UserContactForm :input").prop("disabled", true);
-      $("#PurchaseOrderForm :input").prop("disabled", true);
-      $("#AccountsPayableForm :input").prop("disabled", true);
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Establish default state
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("#UserContactForm :input").prop("disabled", true);
+  $("#PurchaseOrderForm :input").prop("disabled", true);
+  $("#AccountsPayableForm :input").prop("disabled", true);
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle payment information
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      $("input[name='Licensee']").click(function () {
-        $("#UserContactForm :input").prop("disabled", $(this).val() == "Myself");
-      });
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Handle payment information
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("input[name='Licensee']").click(function () {
+    $("#UserContactForm :input").prop("disabled", $(this).val() == "Myself");
+  });
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle payment information
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      $("input[name='PaymentMethod']").click(function () {
-        var instructions = $("#PaymentInstructions");
-        var purchaseOrderForm = $("#PurchaseOrderForm :input").prop("disabled", true);
-        var accountsPayableForm = $("#AccountsPayableForm :input").prop("disabled", true);
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Handle payment information
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("input[name='PaymentMethod']").click(function () {
+    var instructions = $("#PaymentInstructions");
+    var purchaseOrderForm = $("#PurchaseOrderForm :input").prop("disabled", true);
+    var accountsPayableForm = $("#AccountsPayableForm :input").prop("disabled", true);
 
-        instructions.html("If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.");
-        switch ($(this).val()) {
-          case "Invoice":
-            purchaseOrderForm.prop("disabled", false);
-            break;
-          case "AccountsPayable":
-            purchaseOrderForm.prop("disabled", false);
-            accountsPayableForm.prop("disabled", false);
-            break;
-          case "CreditCard":
-            instructions.html("There is a 2.9% fee when paying by credit card (this is not greater than our cost of acceptance). We will send a URL for entering credit card information.");
-            break;
-        }
-        instructions.show();
-      });
+    instructions.html("If paying by invoice, Purchase Order and Accounts Payable information must be filled out below.");
+    switch ($(this).val()) {
+      case "Invoice":
+        purchaseOrderForm.prop("disabled", false);
+        break;
+      case "AccountsPayable":
+        purchaseOrderForm.prop("disabled", false);
+        accountsPayableForm.prop("disabled", false);
+        break;
+      case "CreditCard":
+        instructions.html("There is a 2.9% fee when paying by credit card (this is not greater than our cost of acceptance). We will send a URL for entering credit card information.");
+        break;
+    }
+    instructions.show();
+  });
 
-    });
-  </script>
 }

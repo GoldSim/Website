@@ -224,14 +224,20 @@
         appInsights.trackPageView();
     </script>
 
+    <script defer src="/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", false)
+
     <script>
       /**
-       * Initialize Foundation
-       */
-      $(document).foundation();
+        * Initialize Foundation and inline scripts
+        */
+      window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+          $(document).foundation();
+          @RenderSection("InlineScript", false)
+        })(jQuery);
+      });
     </script>
-    <script src="/Shared/Scripts/Scripts.js" defer asp-append-version="true"></script>
-    @RenderSection("Scripts", false)
 
   </body>
 </html>

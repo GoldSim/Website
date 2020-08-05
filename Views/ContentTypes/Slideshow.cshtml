@@ -42,11 +42,10 @@
 @section Scripts {
   <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
   <script src="~/Shared/Scripts/Views/Slideshow.js" asp-append-version="true"></script>
-  <script>
-    $(function() {
-      $('.owl-carousel').slideshow();
-    });
-  </script>
+}
+
+@section InlineScript {
+  $('.owl-carousel').slideshow();
 }
 
 @{

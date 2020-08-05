@@ -92,34 +92,30 @@
 
 }
 
-@section Scripts {
-  <script>
-    $(document).ready(function () {
+@section InlineScript {
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish default state
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var instructions = $("#PaymentInstructions");
-      var purchaseOrderForm = $("#@Html.IdFor(m => m.BindingModel.PurchaseOrderNumber)").prop("disabled", true);
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Establish default state
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  var instructions = $("#PaymentInstructions");
+  var purchaseOrderForm = $("#@Html.IdFor(m => m.BindingModel.PurchaseOrderNumber)").prop("disabled", true);
 
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Handle payment information
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      $("input[name='PaymentMethod']").click(function () {
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Handle payment information
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("input[name='PaymentMethod']").click(function () {
+    purchaseOrderForm.prop("disabled", true);
+    switch ($(this).val()) {
+      case "Invoice":
+        purchaseOrderForm.prop("disabled", false);
+        instructions.html("");
+        break;
+      case "CreditCard":
         purchaseOrderForm.prop("disabled", true);
-        switch ($(this).val()) {
-          case "Invoice":
-            purchaseOrderForm.prop("disabled", false);
-            instructions.html("");
-            break;
-          case "CreditCard":
-            purchaseOrderForm.prop("disabled", true);
-            instructions.html("If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.");
-            break;
-        }
-        instructions.show();
-      });
+        instructions.html("If paying by credit card, call 1-425-295-6985 (-8 hours GMT) or fax 1-425-642-8073 to complete transaction.");
+        break;
+    }
+    instructions.show();
+  });
 
-    });
-  </script>
 }
