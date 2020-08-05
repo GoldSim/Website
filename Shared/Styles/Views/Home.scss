@@ -15,6 +15,8 @@
 @import "foundationSettings";
 @import "foundation";
 @import "Helpers/mixins";
+@import "fontawesome-free/scss/_mixins.scss";
+@import "fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
 // FOUNDATION DEPENDENCIES
@@ -317,21 +319,29 @@ main {
         width                   : rem-calc(80);
       }
       &.disabled {
-        i.fa {
+        span {
           display               : none;
         }
       }
-      i.fa {
+      span {
         position                : absolute;
         top                     : 40%;
         font-size               : rem-calc(32);
         color                   : lighten($palette-black, 44.5%);       // #959595
       }
     }
+    button span:before {
+      @include fa-icon;
+      font-family               : 'Font Awesome 5 Free';
+      font-weight               : 900;
+    }
     .owl-prev {
       left                      : 0;
-      i.fa {
+      span.previous {
         left                    : rem-calc(4);
+        &:before                {
+          content               : fa-content($fa-var-caret-left);
+        }
         @include breakpoint(medium) {
           left                  : rem-calc(42);
         }
@@ -339,7 +349,10 @@ main {
     }
     .owl-next {
       right                     : 0;
-      i.fa {
+      span.next {
+        &:before                {
+          content               : fa-content($fa-var-caret-right);
+        }
         right                   : rem-calc(4);
         @include breakpoint(medium) {
           right                 : rem-calc(42);
