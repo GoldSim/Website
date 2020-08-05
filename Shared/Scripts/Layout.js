@@ -28,16 +28,6 @@
       $paneFullHeight           = ($window.height() - $siteHeader.height() - $primaryNavHeight);
 
     /**
-     * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
-     */
-    $('.js-full-height').each(function () {
-      var $this = $(this);
-      if ($window.width() > 768) {
-        $this.outerHeight($paneFullHeight);
-      }
-    });
-
-    /**
      * Handles the cookie consent notice:
      *  - checks for cookie setting to determine whether to display the notice;
      *  - removes the body spacing buffer CSS class when closing the fixed (at top) notice / alert box;
