@@ -64,9 +64,7 @@ const dependencies = {
     'ScrollMagic'               : [ 'node_modules/scrollmagic/scrollmagic/minified/**',
                                     'scrollmagic/scrollmagic/uncompressed/**'
                                   ],
-    'ZURB'                      : [ 'node_modules/foundation-sites/dist/js/foundation.js*',
-                                    'node_modules/foundation-sites/dist/js/foundation.min.*'
-                                  ]
+    'ZURB'                      : 'node_modules/foundation-sites/dist/js/**/*.min.*',
   },
   'Styles': {
     'OwlCarousel'               : 'node_modules/owl.carousel/dist/assets/*.*'
