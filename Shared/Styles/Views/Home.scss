@@ -187,7 +187,7 @@ main {
   // Applications
   &.applications {
     h2 {
-      margin                    : rem-calc(28) auto rem-calc(20);
+      margin                    : rem-calc(28) rem-calc(28) rem-calc(20);
       font-size                 : rem-calc(20);
       font-weight               : normal;
       text-align                : center;
@@ -447,7 +447,7 @@ main {
       }
     }
     .card-section {
-      padding                   : rem-calc(0 28);
+      padding                   : rem-calc(0);
     }
     picture {
       overflow                  : hidden;
@@ -469,7 +469,7 @@ main {
         line-height             : 1.4;
         a {
           display               : block;
-          padding               : rem-calc(16 0);
+          padding               : rem-calc(16 28);
           font-weight           : normal;
           border                : 0 none transparent;
           &:hover,
