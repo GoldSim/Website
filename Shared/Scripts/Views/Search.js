@@ -67,7 +67,7 @@
      * Locate user interface elements
      */
     this._nextButton            = $('#' + this.options.nextButton);
-    this._previousPage          = $('#' + this.options.previousButton);
+    this._previousButton        = $('#' + this.options.previousButton);
     this._searchBox             = $('#' + this.options.searchBox);
 
     /**
@@ -85,8 +85,8 @@
     /**
      * Establish click handlers for paging buttons
      */
-    if (this._backButton) {
-      this._backButton.on('click', this.pageResults.bind(this));
+    if (this._previousButton) {
+      this._previousButton.on('click', this.pageResults.bind(this));
     }
     if (this._nextButton) {
       this._nextButton.on('click', this.pageResults.bind(this));
@@ -186,8 +186,8 @@
     var currentPageNumber       = Number(window.location.hash.length ? window.location.hash.substr(5) : 1);
 
     //Set previous button
-    if (this._previousPage) {
-      this._previousPage.attr("disabled", currentPageNumber <= 1).data("page", currentPageNumber - 1);
+    if (this._previousButton) {
+      this._previousButton.attr("disabled", currentPageNumber <= 1).data("page", currentPageNumber - 1);
     }
 
     //Set next button
