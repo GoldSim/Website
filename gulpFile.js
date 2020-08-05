@@ -54,7 +54,7 @@ const files = {
 const dependencies = {
   'Scripts': {
     'ApplicationInsights'       : 'node_modules/@microsoft/applicationinsights-web/dist/*.min.*',
-    'DashJS'                    : 'node_modules/dashjs/dist/dash.all.*',
+    'DashJS'                    : 'node_modules/dashjs/dist/dash.mediaplayer.*',
     'GreenSock'                 : [ 'node_modules/gsap/src/minified/**',
                                     'node_modules/gsap/src/uncompressed/**'
                                   ],
