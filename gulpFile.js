@@ -104,6 +104,7 @@ function scssTask() {
     .pipe(sass({
       includePaths: [
         './Shared/Styles',
+        './node_modules',
         './node_modules/foundation-sites/scss',
         './node_modules/@fortawesome'
       ]

@@ -15,6 +15,7 @@
 @import "variables";
 @import "foundation";
 @import "Helpers/helpers";
+@import "awesome-foundation6-checkbox/src/awesome-foundation6-checkbox";
 
 //----------------------------------------------------------------------------------------------
 // FOUNDATION DEPENDENCIES
@@ -117,6 +118,7 @@ textarea {
       left                      : 2px !important;
       width                     : 17px !important;
       height                    : 17px !important;
+      font-weight               : 700;
     }
   }
   input[type="radio"] {
@@ -142,6 +144,7 @@ span.radio {
     &:after {
       line-height               : 1.8 !important;
       color                     : $palette-black !important;
+      font-weight               : 700;
     }
   }
   input[type="checkbox"] {
