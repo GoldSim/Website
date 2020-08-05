@@ -53,17 +53,21 @@
   /*============================================================================================================================
   | JQUERY: WIRE UP ACTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
-  $('#SelectAllRecords').change(toggleAllRecords);
-  $('tr.record td input[type="checkbox"]').change(toggleRecord);
+  $(document).ready(function() {
 
-  /**
-    * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
-    * user is instead attempting to select a record via a checkbox. In that case, disable the link.
-    */
-  $('tr[data-href].record:not(td.js-no-click)').click(function() {
-    window.location = $(this).attr("data-href");
-  }).find(".js-no-click").click(function(e) {
-    e.stopPropagation();
+    $('#SelectAllRecords').change(toggleAllRecords);
+    $('tr.record td input[type="checkbox"]').change(toggleRecord);
+
+    /**
+      * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
+      * user is instead attempting to select a record via a checkbox. In that case, disable the link.
+      */
+    $('tr[data-href].record:not(td.js-no-click)').click(function() {
+      window.location = $(this).attr("data-href");
+    }).find(".js-no-click").click(function(e) {
+      e.stopPropagation();
+    });
+
   });
 
 }(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));
