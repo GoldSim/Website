@@ -9,7 +9,7 @@
  * @file A collection of scripts for wiring up events relevant to the homepage, such as opening the video in a modal window,
  * playing the video, and wiring up the carousel.
  */
-$(function() {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | FUNCTION: INIT
@@ -184,4 +184,4 @@ $(function() {
     $('#IntroductionVideo')[0].pause();
   });
 
-});
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

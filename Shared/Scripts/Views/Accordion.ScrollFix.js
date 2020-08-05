@@ -14,7 +14,7 @@
  * preferred to doing this sequentially, which would otherwise have the effect of slowing down the transition, or resulting in
  * an abrupt jump at the end.
  */
-(function (goldSimWeb, $, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | Establish variables
@@ -57,4 +57,4 @@
     );
   });
 
-}(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

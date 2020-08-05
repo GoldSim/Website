@@ -9,7 +9,7 @@
  * @file A collection of scripts for use on the administration pages, mostly for handling record management. The types of
  * records will vary by administrative section, but the basic interactions can be generalized.
  */
-$(function () {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | FUNCTION: TOGGLE ALL RECORDS
@@ -66,7 +66,7 @@ $(function () {
     e.stopPropagation();
   });
 
-})(jQuery);
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));
 
 /*==============================================================================================================================
 | METHOD: CONFIRM DELETE

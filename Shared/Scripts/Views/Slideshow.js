@@ -8,7 +8,7 @@
  * SLIDESHOW
  * @file Object for initializing the slideshow carousel.
  */
-;(function($, window, document, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | ESTABLISH VARIABLES
@@ -162,4 +162,4 @@
     }
   };
 
-})(jQuery, window, document);
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

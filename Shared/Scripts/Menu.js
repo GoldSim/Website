@@ -10,7 +10,7 @@
  * (mobile) page-level navigation on the GoldSim website.
  * @namespace goldSimWeb
  */
-(function (goldSimWeb, $, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
   'use strict';
 
   /*============================================================================================================================
@@ -54,4 +54,4 @@
 
   });
 
-}(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

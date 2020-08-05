@@ -8,7 +8,7 @@
  * FORM SCRIPTS
  * @file A collection of scripts for use on the forms, mostly for handling special validation rules.
  */
-$(function () {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | JQUERY: WIRE UP ACTIONS
@@ -50,4 +50,4 @@ $(function () {
     }
   };
 
-});
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

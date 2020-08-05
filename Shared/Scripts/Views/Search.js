@@ -9,7 +9,7 @@
  * @file Object for retrieving search results from the Bing Search API, and also managing the paging buttons so users can
  * retrieve subsequent records.
  */
-;(function($, window, document, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | ESTABLISH VARIABLES
@@ -228,4 +228,4 @@
 
   };
 
-})(jQuery, window, document);
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

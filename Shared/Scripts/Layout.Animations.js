@@ -10,7 +10,7 @@
  * area Calls To Action panel.
  * @namespace goldSimWeb
  */
-(function (goldSimWeb, $, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
   'use strict';
 
   /*============================================================================================================================
@@ -30,4 +30,4 @@
 
   });
 
-}(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));
