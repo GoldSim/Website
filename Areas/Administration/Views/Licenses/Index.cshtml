@@ -76,17 +76,18 @@
 }
 
 @section Scripts {
-  <script src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
-  <script src="~/Shared/Scripts/Views/Administration.js"></script>
-  <script>
-    $('table[id*="Records"]').DataTable({
-      pageLength                  : 75,
-      //'paging'                  : false,
-      lengthMenu                  : [[10, 25, 50, -1], [10, 25, 50, "All"]],
-      order                       : [[4, 'asc']],
-      stateSave                   : false
-    });
-  </script>
+  <script defer src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Administration.js"></script>
+}
+
+@section InlineScript {
+  $('table[id*="Records"]').DataTable({
+    pageLength                  : 75,
+    //'paging'                  : false,
+    lengthMenu                  : [[10, 25, 50, -1], [10, 25, 50, "All"]],
+    order                       : [[4, 'asc']],
+    stateSave                   : false
+  });
 }
 
 @section CallsToActionSection {}

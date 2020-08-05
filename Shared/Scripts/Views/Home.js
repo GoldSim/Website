@@ -9,7 +9,7 @@
  * @file A collection of scripts for wiring up events relevant to the homepage, such as opening the video in a modal window,
  * playing the video, and wiring up the carousel.
  */
-$(function() {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | FUNCTION: INIT
@@ -90,98 +90,101 @@ $(function() {
   /*============================================================================================================================
   | JQUERY: WIRE UP ACTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
+  $(document).ready(function() {
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | ESTABLISH VARIABLES
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  var isVideoLoaded             = false;
-  var introductionPanelPosition = ($('#Introduction').offset().top - 24);
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | ESTABLISH VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    var isVideoLoaded           = false;
+    var introductionPanelPosition = ($('#Introduction').offset().top - 24);
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | HANDLE SCROLL CLICK
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  $('img.arrow.scroll').click(function() {
-    $('html,body').animate({
-      scrollTop                 : introductionPanelPosition
-    }, 1000);
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | HANDLE SCROLL CLICK
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    $('img.arrow.scroll').click(function() {
+      $('html,body').animate({
+        scrollTop               : introductionPanelPosition
+      }, 1000);
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | INITIALIZE CAROUSEL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    $('.owl-carousel.large').owlCarousel({
+      items                     : 1,
+      margin                    : 0,
+      autoHeight                : true,
+      nav                       : true,
+      navText                   : [
+        '<i class="fa fa-caret-left"></i>',
+        '<i class="fa fa-caret-right"></i>'
+      ],
+      loop                      : false
+    });
+    $('.owl-carousel.small').owlCarousel({
+      items                     : 1,
+      margin                    : 0,
+      autoHeight                : false,
+      nav                       : true,
+      navText                   : [
+        '<i class="fa fa-caret-left"></i>',
+        '<i class="fa fa-caret-right"></i>'
+      ],
+      loop                      : false
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | CAROUSEL: HANDLE SCROLLING
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /**
+      * Handle toggling of carousel slide text / screenshot
+      */
+    $.fn.toggleText = function (textOriginal, textToggled) {
+      if (this.text() == textOriginal) {
+        this.text(textToggled);
+      }
+      else {
+        this.text(textOriginal);
+      }
+      return this;
+    };
+    $('a.js-toggle-slide').click(function () {
+      $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
+      $(this).toggleText('View Screenshot', 'View Description');
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | INITIALIZE VIDEO
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /**
+      * Handle video playback based on Foundation Reveal events
+      */
+    $(document).on('open.zf.reveal', '[data-reveal]', function () {
+
+      // Play, if already loaded
+      if (isVideoLoaded === true) {
+        $('#IntroductionVideo')[0].play();
+        return;
+      }
+
+      // Initialize video
+      initVideo();
+
+      // Toggle video loaded
+      isVideoLoaded = true;
+
+      // Track video play event
+      ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
+
+    });
+
+    /*--------------------------------------------------------------------------------------------------------------------------
+    | CLOSE VIDEO
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    $(document).on('closed.zf.reveal', '[data-reveal]', function () {
+      $('#IntroductionVideo')[0].pause();
+    });
+
   });
 
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | INITIALIZE CAROUSEL
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  $('.owl-carousel.large').owlCarousel({
-    items                       : 1,
-    margin                      : 0,
-    autoHeight                  : true,
-    nav                         : true,
-    navText                     : [
-      '<i class="fa fa-caret-left"></i>',
-      '<i class="fa fa-caret-right"></i>'
-    ],
-    loop                        : false
-  });
-  $('.owl-carousel.small').owlCarousel({
-    items                       : 1,
-    margin                      : 0,
-    autoHeight                  : false,
-    nav                         : true,
-    navText                     : [
-      '<i class="fa fa-caret-left"></i>',
-      '<i class="fa fa-caret-right"></i>'
-    ],
-    loop                        : false
-  });
-
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | CAROUSEL: HANDLE SCROLLING
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  /**
-    * Handle toggling of carousel slide text / screenshot
-    */
-  $.fn.toggleText = function (textOriginal, textToggled) {
-    if (this.text() == textOriginal) {
-      this.text(textToggled);
-    }
-    else {
-      this.text(textOriginal);
-    }
-    return this;
-  };
-  $('a.js-toggle-slide').click(function () {
-    $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
-    $(this).toggleText('View Screenshot', 'View Description');
-  });
-
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | INITIALIZE VIDEO
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  /**
-    * Handle video playback based on Foundation Reveal events
-    */
-  $(document).on('open.zf.reveal', '[data-reveal]', function () {
-
-    // Play, if already loaded
-    if (isVideoLoaded === true) {
-      $('#IntroductionVideo')[0].play();
-      return;
-    }
-
-    // Initialize video
-    initVideo();
-
-    // Toggle video loaded
-    isVideoLoaded = true;
-
-    // Track video play event
-    ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
-
-  });
-
-  /*----------------------------------------------------------------------------------------------------------------------------
-  | CLOSE VIDEO
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  $(document).on('closed.zf.reveal', '[data-reveal]', function () {
-    $('#IntroductionVideo')[0].pause();
-  });
-
-});
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

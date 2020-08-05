@@ -121,18 +121,18 @@
   @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 
   <!-- Braintree -->
-  <script src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
-  <script src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
-  <script src="~/Shared/Scripts/Views/Payments.js" asp-append-version="true"></script>
-  <script src="~/Shared/Scripts/Views/Forms.js" asp-append-version="true"></script>
+  <script defer src="https://js.braintreegateway.com/web/3.39.0/js/client.min.js"></script>
+  <script defer src="https://js.braintreegateway.com/web/3.39.0/js/hosted-fields.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Payments.js" asp-append-version="true"></script>
+  <script defer src="~/Shared/Scripts/Views/Forms.js" asp-append-version="true"></script>
 
-  <script>
+}
 
-    /**
-      * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
-      */
-    executeBraintree("@Model.ClientToken");
+@section InlineScript {
 
-  </script>
+  /**
+    * Initializes the Braintree Javascript v3 SDK and dynamically creates the primary Braintree form fields.
+    */
+  executeBraintree("@Model.ClientToken");
 
 }

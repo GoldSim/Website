@@ -10,9 +10,9 @@
     <meta name="keywords" content="@Model.MetaKeywords" />
     <meta name="description" content="@Model.MetaDescription" />
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap">
-    <link rel="preload" href="/Shared/Fonts/Vendor/FontAwesome/fa-solid-900.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/Shared/Fonts/Vendor/FontAwesome/fa-regular-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/Shared/Fonts/Vendor/FontAwesome/fa-brands-400.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-regular-400.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-brands-400.woff2">
     <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" asp-append-version="true" />
     <link rel="canonical" href="https://www.goldsim.com/@Context.Request.Path.Value.TrimStart('/')" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
@@ -58,12 +58,13 @@
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
-    } else {
+    }
+    else {
       <partial name="_CookiesNotice" />
     }
 
     <!-- Site Header Area -->
-	  @if (IsSectionDefined("HeaderSection")) {
+    @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
     }
     else {
@@ -174,26 +175,43 @@
 
     @if (IsSectionDefined("CallsToActionSection")) {
       @RenderSection("CallsToActionSection")
-    } else {
+    }
+    else {
       <vc:calls-to-action />
     }
 
     @if (IsSectionDefined("AnnouncementSection")) {
       @RenderSection("AnnouncementSection")
-    } else {
+    }
+    else {
       <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
     }
 
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
-    } else {
+    }
+    else {
       <vc:footer />
     }
 
     <!-- jQuery -->
-    <script src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
+
     <!-- Foundation -->
-    <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.core.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.box.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.imageLoader.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.keyboard.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.mediaQuery.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.nest.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.touch.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.triggers.min.js"></script>
+
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordionMenu.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.dropdownMenu.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.equalizer.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.offcanvas.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.sticky.min.js"></script>
 
     <script>
       var loadDeferredStyles = function () {
@@ -209,25 +227,20 @@
       else window.addEventListener('load', loadDeferredStyles);
     </script>
 
-    <script type="text/javascript">
-      var appInsights=window.appInsights||function(config) {
-        function i(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),r,f;y.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)i("track"+r.pop());return i("set"+s),i("clear"+s),i(h+a),i(c+a),i(h+v),i(c+v),i("flush"),config.disableExceptionTracking||(r="onerror",i("_"+r),f=e[r],e[r]=function(config,i,u,e,o){var s=f&&f(config,i,u,e,o);return s!==!0&&t["_"+r](config,i,u,e,o),s}),t
-        }({
-            instrumentationKey:"2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
-        });
-
-        window.appInsights=appInsights;
-        appInsights.trackPageView();
-    </script>
+    <script defer src="/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", false)
 
     <script>
       /**
-       * Initialize Foundation
-       */
-      $(document).foundation();
+        * Initialize Foundation and inline scripts
+        */
+      window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+          $(document).foundation();
+          @RenderSection("InlineScript", false)
+        })(jQuery);
+      });
     </script>
-    <script src="/Shared/Scripts/Scripts.js" defer asp-append-version="true"></script>
-    @RenderSection("Scripts", false)
 
   </body>
 </html>

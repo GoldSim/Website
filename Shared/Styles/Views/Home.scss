@@ -11,9 +11,15 @@
 // therefore, it is not necessary that it reimport shared styles. It may, however, need to
 // import variables and helpers.
 //----------------------------------------------------------------------------------------------
-  @import "variables";
-  @import "foundationSettings";
-  @import "Helpers/mixins";
+@import "variables";
+@import "foundationSettings";
+@import "foundation";
+@import "Helpers/mixins";
+
+//----------------------------------------------------------------------------------------------
+// FOUNDATION DEPENDENCIES
+//----------------------------------------------------------------------------------------------
+@include foundation-reveal;
 
 //----------------------------------------------------------------------------------------------
 // LAYOUT
@@ -121,13 +127,6 @@ main {
   }
   > article {
     padding                     : rem-calc(80 0 32);
-  }
-  .header {
-    &.js-full-height {
-      @include breakpoint(large) {
-      //min-height              : rem-calc(790);
-      }
-    }
   }
   section[role="region"] {
     margin-bottom               : rem-calc(32);

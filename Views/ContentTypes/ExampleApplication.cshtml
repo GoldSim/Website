@@ -97,15 +97,13 @@
 
 }
 
-@section Scripts {
-  <script>
-    $(function () {
-      /**
-       * Add comma after metadata links
-       */
-      $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
-    });
-  </script>
+@section InlineScript {
+
+  /**
+    * Add comma after metadata links
+    */
+  $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
+
 }
 
 @{

@@ -29,14 +29,14 @@
 </section>
 
 @section Scripts {
-  <script src="/Shared/Scripts/Views/Search.js" defer asp-append-version="true"></script>
-  <script>
-    $(function () {
-      $("#SearchResults").bingSearch({
-        apiKey                  : '@Configuration["BingSearch:PrimaryApiKey"]',
-        customConfig            : '@Configuration["BingSearch:CustomConfigID"]'
-      })
-    });
-  </script>
+  <script defer src="/Shared/Scripts/Views/Search.js" asp-append-version="true"></script>
+}
+
+@section InlineScript {
+
+  $("#SearchResults").bingSearch({
+    apiKey                      : '@Configuration["BingSearch:PrimaryApiKey"]',
+    customConfig                : '@Configuration["BingSearch:CustomConfigID"]'
+  })
 
 }

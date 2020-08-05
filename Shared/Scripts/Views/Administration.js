@@ -9,7 +9,7 @@
  * @file A collection of scripts for use on the administration pages, mostly for handling record management. The types of
  * records will vary by administrative section, but the basic interactions can be generalized.
  */
-$(function () {
+;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | FUNCTION: TOGGLE ALL RECORDS
@@ -53,20 +53,24 @@ $(function () {
   /*============================================================================================================================
   | JQUERY: WIRE UP ACTIONS
   \---------------------------------------------------------------------------------------------------------------------------*/
-  $('#SelectAllRecords').change(toggleAllRecords);
-  $('tr.record td input[type="checkbox"]').change(toggleRecord);
+  $(document).ready(function() {
 
-  /**
-    * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
-    * user is instead attempting to select a record via a checkbox. In that case, disable the link.
-    */
-  $('tr[data-href].record:not(td.js-no-click)').click(function() {
-    window.location = $(this).attr("data-href");
-  }).find(".js-no-click").click(function(e) {
-    e.stopPropagation();
+    $('#SelectAllRecords').change(toggleAllRecords);
+    $('tr.record td input[type="checkbox"]').change(toggleRecord);
+
+    /**
+      * Sometimes, records will be clickable, allowing a user to e.g. drill down to a detail page. This should not happen if the
+      * user is instead attempting to select a record via a checkbox. In that case, disable the link.
+      */
+    $('tr[data-href].record:not(td.js-no-click)').click(function() {
+      window.location = $(this).attr("data-href");
+    }).find(".js-no-click").click(function(e) {
+      e.stopPropagation();
+    });
+
   });
 
-})(jQuery);
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));
 
 /*==============================================================================================================================
 | METHOD: CONFIRM DELETE
