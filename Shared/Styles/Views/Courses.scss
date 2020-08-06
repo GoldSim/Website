@@ -46,8 +46,8 @@ section.panel {
     margin-right                : rem-calc(24);
     font-size                   : rem-calc(16);
     li {
-      padding-left              : rem-calc(22);
-      text-indent               : rem-calc(-16);
+      padding-left              : rem-calc(20);
+      position                  : relative;
     }
     @include breakpoint(medium down) {
       padding-left              : rem-calc(8);
@@ -63,7 +63,9 @@ section.panel {
       }
     }
     a:before {
-      margin-left               : rem-calc(12);
+      position                  : absolute;
+      top                       : rem-calc(7);
+      left                      : rem-calc(1);
     }
     li.selected a {
       font-weight               : 600;
