@@ -1,0 +1,82 @@
+﻿//==============================================================================================
+// PAGE LEVEL NAVIGATION
+//----------------------------------------------------------------------------------------------
+// Defines styles associated with with the page-level navigation.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// LAYOUT
+//----------------------------------------------------------------------------------------------
+
+main {
+
+  // Page Header Area
+  > section > header {
+    background-color            : $palette-grey-dark;
+    background-size             : cover;
+    background-position         : center center;
+    background-repeat           : no-repeat;
+
+    .grid-container {
+      position                  : relative;
+      min-height                : 200px;
+      max-height                : 200px;
+    }
+
+  }
+
+}
+
+//----------------------------------------------------------------------------------------------
+// TITLE
+//----------------------------------------------------------------------------------------------
+
+header.page-banner h1.title {
+  position                      : absolute;
+  bottom                        : 0;
+  margin                        : 0;
+  padding                       : rem-calc(0 32 88);
+  color                         : $palette-white;
+  @include breakpoint(medium) {
+    padding                     : rem-calc(0 40 20);
+  }
+  @include breakpoint(large) {
+    padding                     : rem-calc(0 0 20);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// NAVIGATION
+//----------------------------------------------------------------------------------------------
+
+nav.navigation {
+  &.page {
+    box-shadow                  : 0 0 9px 2px rgba(0, 0, 0, 0.07);
+    background-color            : $palette-white;
+    ul.menu {
+      li {
+        margin-bottom           : 0;
+        a {
+          border-bottom         : 2px solid transparent;
+          padding               : rem-calc(24 20 18);
+          font-weight           : normal;
+          color                 : $palette-grey-dark;
+          text-decoration       : none;
+          &:hover,
+          &:focus,
+          &:active,
+          &.selected {
+            border-color        : $palette-yellow;
+            color               : $palette-black;
+          }
+          &.selected {
+            font-weight         : 600;
+          }
+        }
+      }
+    }
+  }
+}

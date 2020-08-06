@@ -3,13 +3,15 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Threading.Tasks;
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
-using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Repositories;
+using OnTopic.Querying;
+using System.Text;
 
 namespace GoldSim.Web.Components {
 
@@ -49,15 +51,18 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = TopicRepository.Load("Web:Company");
-      var currentTopic = CurrentTopic;
+      var navigationRootTopic   = TopicRepository.Load("Web:Company");
+      var uniqueKey             = CurrentTopic?.GetUniqueKey();
+      var isInWeb               = CurrentTopic?.GetUniqueKey().StartsWith("Root:Web", StringComparison.OrdinalIgnoreCase);
+      var navigationRoot        = CurrentTopic?.Attributes.GetValue("NavigationRoot", null, true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
-        CurrentKey = CurrentTopic?.GetUniqueKey()
+      var navigationViewModel   = new FooterViewModel() {
+        NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
+        CurrentKey              = uniqueKey,
+        IsMainSite              = navigationRoot?.Equals("Web", StringComparison.OrdinalIgnoreCase)?? isInWeb?? true
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -68,5 +73,4 @@ namespace GoldSim.Web.Components {
     }
 
   } // Class
-
 } // Namespace

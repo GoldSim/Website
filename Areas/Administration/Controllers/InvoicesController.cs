@@ -214,6 +214,5 @@ namespace GoldSim.Web.Administration.Controllers {
       return Json(data: true);
     }
 
-
   } // Class
 } // Namespace

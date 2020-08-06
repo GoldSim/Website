@@ -1,0 +1,72 @@
+﻿@model FormPageTopicViewModel<TrialFormBindingModel>
+
+@section PageBodySection {
+
+  <fieldset>
+    <div class="grid-x grid-margin-x">
+
+      <partial name="_Contact" for="BindingModel" />
+      <partial name="_Requirements" for="BindingModel" />
+
+      @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
+
+      <div class="cell">
+        <label>GoldSim Trials include the Financial, Reliability, Dashboard Authoring and Distributed Processing Modules.</label>
+      </div>
+      <div class="cell"><label>I am also interested in:</label></div>
+      <partial name="_TransportModules" for="BindingModel.Modules" />
+
+      <partial name="_Referral" for="BindingModel" />
+
+      <!-- Training Course Check -->
+      <div class="cell">
+        <div class="checkbox">
+          <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
+          <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
+        </div>
+      </div>
+
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Trainer Contact Information</legend>
+    <div class="grid-x grid-margin-x" id="TrainerContactForm">
+      <partial name="_CoreContact" for="BindingModel.Trainer" />
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Terms of Use</legend>
+    <div class="grid-x grid-margin-x">
+
+      <div class="cell">
+        <p>By checking the box below I agree to the following:</p>
+        <ol>
+          <li>I will only use this free Trial Version for the purpose of evaluating and/or testing the software or taking a GoldSim training course.</li>
+          <li>I will <em>not</em> use this free Trial Version for consulting or other commercial applications. If I require a temporary license for such purposes, I will <a href="mailto:support@goldsim.com">contact the GoldSim Technology Group</a>.</li>
+        </ol>
+      </div>
+
+      <partial name="_TermsOfUse" for="BindingModel" />
+
+    </div>
+  </fieldset>
+
+}
+
+@section InlineScript {
+
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Establish default state
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("#TrainerContactForm :input").prop("disabled", true);
+
+  /*------------------------------------------------------------------------------------------------------------------------
+  | Handle trainer form
+  \-----------------------------------------------------------------------------------------------------------------------*/
+  $("input[name='IsTrainingCourse']").click(function () {
+    $("#TrainerContactForm :input").prop("disabled", !$(this).is(":checked"));
+  });
+
+}

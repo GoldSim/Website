@@ -169,6 +169,9 @@
 //----------------------------------------------------------------------------------------------
 // FLOATED ELEMENTS
 //----------------------------------------------------------------------------------------------
+// These are used on e.g. the products landing page to display a list of paragraphs with
+// corresponding icons. The classes ensure that the text doesn't wrap underneath the icons.
+//----------------------------------------------------------------------------------------------
 .floated-layout {
   @include clearfix;
   &.left {
@@ -183,5 +186,45 @@
     picture + div {
       max-width                 : 75%;
     }
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// INLINE ELEMENTS
+//----------------------------------------------------------------------------------------------
+aside.help {
+  font-weight                   : bold;
+  display                       : block;
+  margin                        : rem-calc(16 44);
+  min-height                    : rem-calc(32);
+  &:before {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Free';
+    color                       : $palette-yellow;
+    font-size                   : rem-calc(32);
+    content                     : fa-content($fa-var-question-circle);
+    padding-right               : rem-calc(12);
+    margin-left                 : rem-calc(-44);
+    vertical-align              : middle;
+  }
+}
+
+blockquote.note {
+  display                       : block;
+  margin                        : rem-calc(0 44);
+  border-left                   : none;
+  min-height                    : rem-calc(32);
+  margin-inline-start           : rem-calc(0);
+  padding-left                  : rem-calc(44);
+  &:before {
+    @include fa-icon;
+    font-family                 : 'Font Awesome 5 Free';
+    color                       : $palette-blue;
+    font-size                   : rem-calc(32);
+    content                     : fa-content($fa-var-comment-alt);
+    padding-right               : rem-calc(12);
+    margin-left                 : rem-calc(-44);
+    position                    : relative;
+    top                         : rem-calc(14);
   }
 }

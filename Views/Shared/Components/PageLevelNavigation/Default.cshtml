@@ -1,4 +1,4 @@
-﻿@model OnTopic.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.ViewModels.NavigationTopicViewModel>
+﻿@model OnTopic.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
 @if (Model.NavigationRoot != null) {
 
@@ -17,7 +17,7 @@
   <header class="header page-banner">
     <div class="grid-container">
       <div class="grid-x">
-        <h1 class="title short cell">@Model.NavigationRoot.Title</h1>
+        <h1 class="title">@Model.NavigationRoot.Title</h1>
       </div>
       @if (Model.NavigationRoot.Children.Count > 0)
       {
@@ -67,3 +67,8 @@
   }
 
 }
+
+<!--
+  Content Type: NavigationViewModel<NavigationTopicViewModel>
+  View Location: ~/Views/Shared/Components/CallsToAction/Default.cshtml
+-->

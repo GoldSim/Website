@@ -43,7 +43,7 @@
     }
   </script>
 
-  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Home.css" />
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Home.css" asp-append-version="true" />
 }
 
 @section DeferredStyles {
@@ -66,10 +66,10 @@
             <div class="small-12 medium-8 medium-offset-2 centered">
 
               <!-- Short Title -->
-              <h1 class="page title short">@Model.Title</h1>
+              <h1 class="title kicker">@Model.Title</h1>
 
               <!-- Long Title (Subtitle) -->
-              <h1 class="page title long">@Model.Subtitle</h1>
+              <h1 class="title headline">@Model.Subtitle</h1>
 
               <!-- Video -->
               <div class="video wrapper">
@@ -247,13 +247,18 @@
           <div class="grid-x grid-margin-x" data-equalizer data-equalize-on="medium">
             @foreach (var applicationContainer in Model.Applications.OrderBy(vm => (Int32.Parse(vm.DisplayOrder)))) {
               <div class="medium-4 cell">
-                <div class="card @applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems")).ToLower()" data-equalizer-watch>
-                  <h2>@applicationContainer.Key.Substring(0, applicationContainer.Key.IndexOf("Systems"))<br />Systems Modeling</h2>
-                  <ul id="@(applicationContainer.Key + "Applications")">
-                    @foreach (var application in applicationContainer.Children) {
-                      <li><a href="@application.WebPath">@(application.ShortTitle ?? application.Title) &raquo;</a></li>
-                    }
-                  </ul>
+                <div class="card @applicationContainer.GetContainerKey().ToLower()" data-equalizer-watch>
+                  <picture>
+                    <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="/Images/Content/Product/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
+                  </picture>
+                  <div class="card-section">
+                    <h2>@applicationContainer.GetContainerKey() <nobr>Systems Modeling</nobr></h2>
+                    <ul id="@(applicationContainer.Key + "Applications")">
+                      @foreach (var application in applicationContainer.Children) {
+                        <li><a href="@application.WebPath">@(application.ShortTitle?? application.Title) &raquo;</a></li>
+                      }
+                    </ul>
+                  </div>
                 </div>
               </div>
             }
@@ -294,120 +299,11 @@
 @section AnnouncementSection {}
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
-  <script src="~/Shared/Scripts/Vendor/DashJS/dash.all.min.js"></script>
-  <script>
-    function init() {
-      var deferredImages = document.getElementsByTagName('img');
-      for (var i = 0; i < deferredImages.length; i++) {
-        if (deferredImages[i].getAttribute('data-src')) {
-          deferredImages[i].setAttribute('src', deferredImages[i].getAttribute('data-src'));
-        }
-      }
-    }
-    window.onload = init;
-  </script>
-  <script>
-    $(function() {
-
-      /**
-       * Establish variables
-       */
-      var
-        isVideoLoaded           = false,
-        introductionPanelPosition = ($('#Introduction').offset().top - 24),
-        isSafari                = !!navigator.userAgent.match(/Version\/[\d\.]+.*Safari/),
-        isIos                   = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
-        isIe11                  = !!navigator.userAgent.match(/Trident\/7\./);
-
-      /**
-       * Handle splash screen arrow scroll click
-       */
-      $('img.arrow.scroll').click(function() {
-        $('html,body').animate({
-          scrollTop: introductionPanelPosition
-        }, 1000);
-      });
-
-      /**
-       * Instantiate carousel for large and small screens
-       */
-      $('.owl-carousel.large').owlCarousel({
-        items: 1,
-        margin: 0,
-        autoHeight: true,
-        nav: true,
-        navText: [
-          '<i class="fa fa-caret-left"></i>',
-          '<i class="fa fa-caret-right"></i>'
-        ],
-        loop: false
-      });
-      $('.owl-carousel.small').owlCarousel({
-        items: 1,
-        margin: 0,
-        autoHeight: false,
-        nav: true,
-        navText: [
-          '<i class="fa fa-caret-left"></i>',
-          '<i class="fa fa-caret-right"></i>'
-        ],
-        loop: false
-      });
-
-      /**
-       * Handle toggling of carousel slide text / screenshot
-       */
-      $.fn.toggleText = function (textOriginal, textToggled) {
-        if (this.text() == textOriginal) {
-          this.text(textToggled);
-        }
-        else {
-          this.text(textOriginal);
-        }
-        return this;
-      };
-      $('a.js-toggle-slide').click(function () {
-        $(this).siblings('.description, .screenshot').toggleClass('is-hidden');
-        $(this).toggleText('View Screenshot', 'View Description');
-      });
-
-      /**
-       * Handle video playback based on Foundation Reveal events
-       */
-      $(document).on('open.zf.reveal', '[data-reveal]', function () {
-        if (isVideoLoaded === false) {
-          var
-            manifestUrl         = '/Media/Home/GoldSim_Overview_dash.mpd',
-            fallbackUrl         = 'https://31cac97e830ee523d21d-3991774b1862aed7fa3658c502b53d27.ssl.cf1.rackcdn.com/GoldSimm_Overview_082718.mp4',
-            dashPlayer          = dashjs.MediaPlayer().create();
-
-          // Only initialize DASH for supported browsers
-          if (!(isIos && isSafari) && !isIe11) {
-            dashPlayer.initialize(document.querySelector('#IntroductionVideo'), manifestUrl, true);
-          }
-          // Otherwise, use fallback / original video
-          else {
-            $('#IntroductionVideo source').attr('src', fallbackUrl);
-            $('#IntroductionVideo')[0].play();
-          }
-
-          // Toggle video loaded
-          isVideoLoaded = true;
-
-          // Track video play event
-          ga('send', 'event', 'Video', 'Play', 'Hompage Splash Video');
-        }
-        else {
-          $('#IntroductionVideo')[0].play();
-        }
-      });
-      $(document).on('closed.zf.reveal', '[data-reveal]', function () {
-        $('#IntroductionVideo')[0].pause();
-      });
-
-    });
-  </script>
+  <script defer src="~/Shared/Scripts/Vendor/OwlCarousel/owl.carousel.min.js"></script>
+  <script defer src="~/Shared/Scripts/Vendor/DashJS/dash.mediaplayer.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Home.js" asp-append-version="true"></script>
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.motion.min.js"></script>
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.reveal.min.js"></script>
 }
 
 <!-- View Location: ~/Home/Index.cshtml -->

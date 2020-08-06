@@ -6,8 +6,12 @@
 using System;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
-using GoldSim.Web.Models.Forms.BindingModels;
-using GoldSim.Web.Models.ViewModels;
+using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Forms.Models;
+using GoldSim.Web.Models;
+using GoldSim.Web.Models.ContentTypes;
+using GoldSim.Web.Models.ContentTypes.ContentItems;
+using GoldSim.Web.Payments.Models;
 using OnTopic.Editor.AspNetCore.Infrastructure;
 
 namespace GoldSim.Web {
@@ -31,7 +35,7 @@ namespace GoldSim.Web {
     internal GoldSimTopicViewModelLookupService() : base() {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Add GoldSim specific view models
+      | Add content type view models
       \-----------------------------------------------------------------------------------------------------------------------*/
       Add(typeof(ApplicationBasePageTopicViewModel));
       Add(typeof(ApplicationContainerTopicViewModel));
@@ -41,19 +45,38 @@ namespace GoldSim.Web {
       Add(typeof(EmailTopicViewModel));
       Add(typeof(ExampleApplicationTopicViewModel));
       Add(typeof(ExampleIndexTopicViewModel));
-      Add(typeof(FaqItemTopicViewModel));
       Add(typeof(FaqTopicViewModel));
       Add(typeof(FollowupTopicViewModel));
-      Add(typeof(FormPageTopicViewModel));
-      Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(GlossaryTopicViewModel));
       Add(typeof(HomeTopicViewModel));
       Add(typeof(ModulePageTopicViewModel));
       Add(typeof(PaymentsTopicViewModel));
-      Add(typeof(PaymentFormBindingModel));
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Add content item view models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(FaqItemTopicViewModel));
+      Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Add courseware specific view models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(CourseListTopicViewModel));
+      Add(typeof(CourseTopicViewModel));
+      Add(typeof(UnitTopicViewModel));
+      Add(typeof(LessonTopicViewModel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Form models
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Add(typeof(FormPageTopicViewModel));
+      Add(typeof(TrialFormTopicViewModel));
+      Add(typeof(InstructorAcademicFormTopicViewModel));
+      Add(typeof(StudentAcademicFormTopicViewModel));
+      Add(typeof(PaymentFormBindingModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | License administration
@@ -61,12 +84,9 @@ namespace GoldSim.Web {
       Add(typeof(InvoiceTopicViewModel));
       Add(typeof(LicenseAdministrationTopicViewModel));
       Add(typeof(LicenseRequestTopicViewModel));
-      Add(typeof(TrialFormTopicViewModel));
-      Add(typeof(InstructorAcademicFormTopicViewModel));
-      Add(typeof(StudentAcademicFormTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Override Ignia topics
+      | Override Ignia viw models
       \-----------------------------------------------------------------------------------------------------------------------*/
       Replace(typeof(ContentListTopicViewModel));
       Replace(typeof(NavigationTopicViewModel));

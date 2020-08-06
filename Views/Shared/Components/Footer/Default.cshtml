@@ -1,4 +1,4 @@
-﻿@model OnTopic.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.ViewModels.NavigationTopicViewModel>
+﻿@model FooterViewModel
 
 <!-- Site Footer Area -->
 <footer id="SiteFooter" class="site footer" role="contentinfo">
@@ -19,6 +19,9 @@
       <!-- /Company Information -->
       <!-- Terms / Privacy -->
       <div class="terms cell small-6 small-order-3 medium-3 medium-order-2 large-4">
+        @if (!Model.IsMainSite) {
+          <p class="link heading"><a href="/">GoldSim Website</a></p>
+        }
         <p class="link heading"><a href="http://blog.goldsim.com/">Blog</a></p>
         <p class="link heading"><a href="/Topic/857/">Site Terms</a></p>
         <p class="link heading"><a href="/Topic/4222/">Privacy Policy</a></p>
@@ -53,10 +56,10 @@
     <!-- Social Information -->
     <div class="grid-x grid-margin-x">
       <div class="social cell small-12 centered" itemscope itemtype="http://schema.org/Organization">
-        <a href="http://blog.goldsim.com/feeds/posts/default?alt=rss" target="_blank"><i class="fa fa-rss"></i></a>
-        <a itemprop="url" href="https://www.facebook.com/GoldSim-Technology-Group-643368432441444/" target="_blank"><i class="fab fa-facebook"></i></a>
-        <a itemprop="sameAs" href="https://twitter.com/goldsimsoftware" target="_blank"><i class="fab fa-twitter"></i></a>
-        <a itemprop="sameAs" href="https://www.linkedin.com/company/goldsim-technology-group-llc" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="http://blog.goldsim.com/feeds/posts/default?alt=rss" aria-label="Blog" rel="noopener" target="_blank"></a>
+        <a itemprop="url" href="https://www.facebook.com/GoldSim-Technology-Group-643368432441444/" aria-label="Facebook" rel="noopener" target="_blank"></a>
+        <a itemprop="sameAs" href="https://twitter.com/goldsimsoftware" aria-label="Twitter" rel="noopener" target="_blank"></a>
+        <a itemprop="sameAs" href="https://www.linkedin.com/company/goldsim-technology-group-llc" aria-label="LinkedIn" rel="noopener" target="_blank"></a>
       </div>
     </div>
     <!-- /Social Information -->
@@ -64,7 +67,7 @@
     <!-- Copyright Information -->
     <div class="grid-x grid-margin-x">
       <div class="copyright cell small-12 centered">
-        <small><span class="fa fa-copyright"></span> @DateTime.Now.Year GoldSim Technology Group</small>
+        <small>@DateTime.Now.Year GoldSim Technology Group</small>
       </div>
     </div>
     <!-- Copyright Information -->
@@ -72,3 +75,8 @@
   </div>
 </footer>
 <!-- /Site Footer Area -->
+
+<!--
+  Content Type: FooterViewModel
+  View Location: ~/Views/Shared/Components/Footer/Default.cshtml
+-->

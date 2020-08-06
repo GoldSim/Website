@@ -1,0 +1,85 @@
+﻿@model PageTopicViewModel
+
+@{
+  Layout                        = "/Views/Layout/_Layout.cshtml";
+  var isLesson                  = Model.ContentType.Equals("Lesson", StringComparison.OrdinalIgnoreCase);
+  var topic                     = isLesson? (PageTopicViewModel)Model.Parent : Model;
+  var unitNumber                = isLesson? ((UnitTopicViewModel)topic).UnitNumber : 0;
+  var title                     = (isLesson? $"Unit {unitNumber}: " : "") + topic.Title;
+}
+
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Courses.css" asp-append-version="true" />
+}
+
+@section HeaderSection {
+
+  <!-- Site Header Area -->
+  <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
+
+    <!-- Hide Navigation -->
+    <div class="title-bar-left menu"></div>
+
+    <!-- Logo -->
+    <div class="title-bar-middle logo centered">
+      <a href="/"><img src="/Images/Logo.svg" alt="GoldSim Technology Group" class="logo" /></a>
+    </div>
+
+    <!-- Site Search -->
+    <div class="title-bar-right search">
+      <partial name="_SearchBar" />
+    </div>
+    <!-- /Site Search -->
+
+  </header>
+  <!-- /Site Header Area -->
+
+}
+
+@section LongTitleSection {
+
+  @if (IsSectionDefined("LongTitleSection")) {
+    @RenderSection("LongTitleSection")
+  }
+  else {
+    <!-- Long Title (Subtitle) -->
+    <header>
+      @if (!Model.ContentType.Equals("CourseList", StringComparison.OrdinalIgnoreCase)) {
+        <p class="category title">@Html.Raw(getBreadCrumbs(topic.Parent))</p>
+      }
+      @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
+        <h2 class="category title">@ViewBag.Context</h2>
+      }
+      <h1 class="title">@topic.Title</h1>
+      @if (!String.IsNullOrWhiteSpace(topic.Subtitle)) {
+        <p class="subtitle">@topic.Subtitle</p>
+      }
+      @if (IsSectionDefined("PostTitleSection")) {
+        <div class="grid-x">
+          @RenderSection("PostTitleSection")
+        </div>
+      }
+    </header>
+    <!-- /Long Title (Subtitle) -->
+  }
+}
+
+@RenderBody()
+
+@section CallsToActionSection {}
+
+@{
+
+  string getBreadCrumbs(TopicViewModel topic) {
+    if (!(topic is PageTopicViewModel)) {
+      return "";
+    }
+    var pageTopic = topic as PageTopicViewModel;
+    var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
+    if (topic.Parent?.Parent != null) {
+      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
+    }
+    return output;
+  }
+
+}

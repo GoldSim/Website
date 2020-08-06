@@ -4,21 +4,23 @@
   Layout = "~/Views/Layout/_Layout.cshtml";
 }
 
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Components/Accordion/Accordion.css" asp-append-version="true" />
+}
+
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
-    <article class="page body">
-      @Html.Raw(Model.Body)
-      @if (Model.FieldCategories.Count > 0) {
-        <h1>Categories</h1>
-        <ul>
-          @foreach (var fieldCategory in Model.FieldCategories) {
-            <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
-          }
-        </ul>
-      }
-    </article>
+    @Html.Raw(Model.Body)
+    @if (Model.FieldCategories.Count > 0) {
+      <h1>Categories</h1>
+      <ul>
+        @foreach (var fieldCategory in Model.FieldCategories) {
+          <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
+        }
+      </ul>
+    }
 
     @foreach (var fieldCategory in Model.FieldCategories) {
       <h1 id="@fieldCategory.Key">@fieldCategory.Title</h1>
@@ -30,7 +32,8 @@
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
 }
 
 <!--

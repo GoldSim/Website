@@ -9,16 +9,23 @@
     <title>@(Model.MetaTitle?? Model.Title?? Model.Key) - GoldSim</title>
     <meta name="keywords" content="@Model.MetaKeywords" />
     <meta name="description" content="@Model.MetaDescription" />
-    <meta name="google-site-verification" content="EX0ea3_txOh2GJkZZs_sVxxpIg_Yk7RHYB_xOzCv4Qo" />
-    <meta name="msvalidate.01" content="502A7C1A613414AC1FCABAA10A8B17AA" />
-    <link rel="canonical" href="https://www.goldsim.com/@Context.Request.Path.Value.ToLower().TrimStart('/')" />
+    <link rel="preconnect" href="https://www.google-analytics.com">
+    <link rel="preconnect" href="https://stats.g.doubleclick.net">
+    <link rel="preconnect" href="https://dc.services.visualstudio.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="dns-prefetch" href="https://media.GoldSim.com">
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400&family=Source+Sans+Pro:ital,wght@0,400;0,600;0,700;1,400;1,700&display=swap">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-solid-900.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-regular-400.woff2">
+    <link rel="preload" as="font" type="font/woff2" crossorigin href="/Shared/Fonts/Vendor/FontAwesome/fa-brands-400.woff2">
+    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" asp-append-version="true" />
+    <link rel="canonical" href="https://www.goldsim.com/@Context.Request.Path.Value.TrimStart('/')" />
     <link rel="apple-touch-icon" sizes="180x180" href="/Images/Favicons/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/Images/Favicons/favicon-32x32.png" />
     <link rel="icon" type="image/png" sizes="16x16" href="/Images/Favicons/favicon-16x16.png" />
     <link rel="manifest" href="/Images/Favicons/site.webmanifest" />
     <link rel="mask-icon" href="/Images/Favicons/safari-pinned-tab.svg" color="#000000" />
     <link rel="shortcut icon" href="/Images/Favicons/favicon.ico" />
-    <link rel="stylesheet" type="text/css" href="/Shared/Styles/Style.css" asp-append-version="true" />
     <meta name="msapplication-config" content="/Images/Favicons/browserconfig.xml" />
     <meta name="theme-color" content="#ffffff" />
     @if (Model.NoIndex?? false) {
@@ -26,6 +33,17 @@
     }
     <partial name="_Breadcrumbs" />
     @RenderSection("Head", false)
+    <script type="text/javascript" src="/Shared/Scripts/Vendor/ApplicationInsights/applicationinsights-web.min.js"></script>
+    <script type="text/javascript">
+      var snippet = {
+        config: {
+          instrumentationKey: "2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
+        }
+      };
+      var init = new Microsoft.ApplicationInsights.ApplicationInsights(snippet);
+      var appInsights = init.loadAppInsights();
+      appInsights.trackPageView();
+    </script>
     <script>
       /**
        * Initialize Google Analytics
@@ -40,18 +58,18 @@
     <noscript id="DeferredStyles">
       @RenderSection("DeferredStyles", false)
     </noscript>
-    @Html.Raw(JavaScriptSnippet.FullScript)
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
       @RenderSection("CookiesNoticeSection")
-    } else {
+    }
+    else {
       <partial name="_CookiesNotice" />
     }
 
     <!-- Site Header Area -->
-	  @if (IsSectionDefined("HeaderSection")) {
+    @if (IsSectionDefined("HeaderSection")) {
       @RenderSection("HeaderSection")
     }
     else {
@@ -74,7 +92,7 @@
 
           <!-- Site Search -->
           <div class="title-bar-right search">
-           <partial name="_SearchBar" />
+            <partial name="_SearchBar" />
           </div>
           <!-- /Site Search -->
         }
@@ -92,7 +110,7 @@
     else {
 
       <!-- Main Site Content Area -->
-      <main id="MainContentArea" class="page content" role="main">
+      <main id="MainContentArea" role="main">
 
         @if (IsSectionDefined("PageHeaderSection")) {
           @RenderSection("PageHeaderSection")
@@ -125,18 +143,20 @@
           }
           else {
             <!-- Long Title (Subtitle) -->
-            <header class="grid-x">
+            <header>
               @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
-                <h2 class="category title">@ViewBag.Context</h2>
+                <h2 class="category title ">@ViewBag.Context</h2>
               }
-              <h1 class="page title long cell">
+              <h1 class="title">
                 @(Model.ContentType.Equals("PageGroup")? "Overview" : Model.Title)
               </h1>
               @if (!String.IsNullOrWhiteSpace(Model.Subtitle)) {
                 <p class="subtitle">@Model.Subtitle</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
-                @RenderSection("PostTitleSection")
+                <div class="grid-x">
+                  @RenderSection("PostTitleSection")
+                </div>
               }
             </header>
             <!-- /Long Title (Subtitle) -->
@@ -147,10 +167,8 @@
             @RenderSection("PageBodySection")
           }
           else {
-            <div class="grid-container">
-              <div class="grid-x">
-                @RenderBody()
-              </div>
+            <div class="grid-x">
+              @RenderBody()
             </div>
           }
           <!-- /Main Page Content -->
@@ -162,28 +180,43 @@
 
     @if (IsSectionDefined("CallsToActionSection")) {
       @RenderSection("CallsToActionSection")
-    } else {
+    }
+    else {
       <vc:calls-to-action />
     }
 
     @if (IsSectionDefined("AnnouncementSection")) {
       @RenderSection("AnnouncementSection")
-    } else {
+    }
+    else {
       <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "User Conference Overview"}})" --/>
     }
 
     @if (IsSectionDefined("FooterSection")) {
       @RenderSection("FooterSection")
-    } else {
+    }
+    else {
       <vc:footer />
     }
 
     <!-- jQuery -->
-    <script src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/jQuery/jquery.min.js"></script>
+
     <!-- Foundation -->
-    <script src="/Shared/Scripts/Vendor/ZURB/foundation.min.js"></script>
-    <!-- Headroom -->
-    <!-- <script src="/Shared/Scripts/Vendor/Headroom/headroom.min.js" async defer></script> -->
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.core.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.box.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.imageLoader.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.keyboard.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.mediaQuery.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.nest.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.touch.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.util.triggers.min.js"></script>
+
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordionMenu.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.dropdownMenu.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.equalizer.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.offcanvas.min.js"></script>
+    <script defer src="/Shared/Scripts/Vendor/ZURB/Plugins/foundation.sticky.min.js"></script>
 
     <script>
       var loadDeferredStyles = function () {
@@ -199,25 +232,20 @@
       else window.addEventListener('load', loadDeferredStyles);
     </script>
 
-    <script type="text/javascript">
-      var appInsights=window.appInsights||function(config) {
-        function i(config){t[config]=function(){var i=arguments;t.queue.push(function(){t[config].apply(t,i)})}}var t={config:config},u=document,e=window,o="script",s="AuthenticatedUserContext",h="start",c="stop",l="Track",a=l+"Event",v=l+"Page",y=u.createElement(o),r,f;y.src=config.url||"https://az416426.vo.msecnd.net/scripts/a/ai.0.js";u.getElementsByTagName(o)[0].parentNode.appendChild(y);try{t.cookie=u.cookie}catch(p){}for(t.queue=[],t.version="1.0",r=["Event","Exception","Metric","PageView","Trace","Dependency"];r.length;)i("track"+r.pop());return i("set"+s),i("clear"+s),i(h+a),i(c+a),i(h+v),i(c+v),i("flush"),config.disableExceptionTracking||(r="onerror",i("_"+r),f=e[r],e[r]=function(config,i,u,e,o){var s=f&&f(config,i,u,e,o);return s!==!0&&t["_"+r](config,i,u,e,o),s}),t
-        }({
-            instrumentationKey:"2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
-        });
-
-        window.appInsights=appInsights;
-        appInsights.trackPageView();
-    </script>
+    <script defer src="/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", false)
 
     <script>
       /**
-       * Initialize Foundation
-       */
-      $(document).foundation();
+        * Initialize Foundation and inline scripts
+        */
+      window.addEventListener('DOMContentLoaded', function() {
+        (function($) {
+          $(document).foundation();
+          @RenderSection("InlineScript", false)
+        })(jQuery);
+      });
     </script>
-    <script src="/Shared/Scripts/Scripts.js" async defer></script>
-    @RenderSection("Scripts", false)
 
   </body>
 </html>

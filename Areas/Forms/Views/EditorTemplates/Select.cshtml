@@ -1,0 +1,15 @@
+﻿@model String
+
+@{
+  if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
+    cssClass = "medium-6";
+  }
+  ViewData.TryGetValue("style", out var style);
+}
+
+<div class="@cssClass cell form-field select" style=@style>
+  <label asp-for="@Model" class="@(ViewData.ModelMetadata.IsRequired? "required" : "")"></label>
+  <vc:metadata-lookup asp-for=@Model html-field-prefix=@ViewData.TemplateInfo.HtmlFieldPrefix></vc:metadata-lookup>
+</div>
+
+<!-- View Location: ~/Areas/Forms/Views/EditorTemplates/Select.cshtml -->

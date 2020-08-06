@@ -1,0 +1,22 @@
+﻿@model CourseListTopicViewModel
+
+@{
+  ViewBag.Title = Model.Title;
+}
+
+@section PostTitleSection {
+
+  <!-- Body Content -->
+  <section class="body">
+    @Html.Raw(Model.Body)
+  </section>
+  <!-- Body Content -->
+
+}
+
+<vc:course-list />
+
+<!--
+  Content Type: CourseList
+  View Location: ~/Areas/Courses/Views/ContentTypes/CourseList.cshtml
+-->

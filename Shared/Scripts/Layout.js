@@ -1,11 +1,20 @@
-﻿/**
- * (GOLDSIM WEB) LAYOUT SCRIPTS
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        GoldSim
+| Project       Website
+\=============================================================================================================================*/
+
+/**
+ * LAYOUT SCRIPTS
  * @file Defines presentation-oriented functionality related layout concerns for the GoldSim website.
  * @namespace goldSimWeb
  */
-(function (goldSimWeb, $, undefined) {
+;(function(window, document, goldSimWeb, $, undefined) {
   'use strict';
 
+  /*============================================================================================================================
+  | JQUERY: WIRE UP ACTIONS
+  \---------------------------------------------------------------------------------------------------------------------------*/
   $(document).ready(function () {
 
     /**
@@ -17,16 +26,6 @@
       $screenSize               = $window.width(),
       $primaryNavHeight         = ($('#PrimaryNavigation').length ? $('#PrimaryNavigation').height() : 0),
       $paneFullHeight           = ($window.height() - $siteHeader.height() - $primaryNavHeight);
-
-    /**
-     * Set elements marked with class "js-full-height" to 100% of the viewport height, minus the top bar
-     */
-    $('.js-full-height').each(function () {
-      var $this = $(this);
-      if ($window.width() > 768) {
-        $this.outerHeight($paneFullHeight);
-      }
-    });
 
     /**
      * Handles the cookie consent notice:
@@ -60,4 +59,4 @@
 
   });
 
-}(window.goldSimWeb = window.goldSimWeb || {}, jQuery));
+}(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));

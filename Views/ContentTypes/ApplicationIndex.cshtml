@@ -5,6 +5,7 @@
 }
 
 @section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Components/Accordion/Accordion.css" asp-append-version="true" />
   <script type="application/ld+json">
     {
       "@@context":"http://schema.org",
@@ -27,7 +28,7 @@
 @section PostTitleSection {
 
   <!-- Body Content -->
-  <section class="embedded pane body">
+  <section class="body">
     @Html.Raw(Model.Body)
   </section>
   <!-- Body Content -->
@@ -61,7 +62,8 @@
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
 }
 
 <!--

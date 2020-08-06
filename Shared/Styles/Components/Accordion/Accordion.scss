@@ -1,0 +1,175 @@
+﻿//==============================================================================================
+// ACCORDION
+//----------------------------------------------------------------------------------------------
+// Defines or extends (Foundation) styles for accordion elements.
+//----------------------------------------------------------------------------------------------
+// NOTE: If this component requires its own helpers, they should be defined in a separate
+// _placeholders.scss, _mixins.scss, or _functions.scss file and imported here.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS (DEPENDENCIES)
+//----------------------------------------------------------------------------------------------
+@import "variables";
+@import "foundationSettings";
+@import "Helpers/helpers";
+@import "foundation";
+@include foundation-accordion;
+
+//----------------------------------------------------------------------------------------------
+// COMMON
+//----------------------------------------------------------------------------------------------
+section.panel.body {
+  ~ section.panel.accordion {
+    margin-top                  : rem-calc(48);
+  }
+}
+.panel.accordion.embedded {
+  margin-bottom                 : rem-calc(48);
+}
+
+//----------------------------------------------------------------------------------------------
+// CORE
+//----------------------------------------------------------------------------------------------
+section.accordion > ul,
+section.accordion > section > ul
+{
+  @include accordion-container;
+  margin                        : 0;
+  li {
+    margin-bottom               : 0;
+    border-bottom               : 1px solid $palette-grey-light;
+    padding-left                : 0;
+    &:last-child {
+      border-bottom             : 0 none transparent;
+    }
+    &.is-active {
+      > .accordion-title {
+        &:before {
+          content               : '▲';
+        }
+      }
+    }
+
+    &:last-child:not(.is-active) {
+      > .accordion-title {
+        border-bottom           : 0 none transparent;
+      }
+    }
+
+    .accordion-title,
+    .accordion-content {
+      border                    : 0 none transparent;
+      // FAQ-SPECIFIC
+      &.question,
+      &.answer {
+        position                : relative;
+        .marker {
+          display               : none;
+          position              : absolute;
+          left                  : rem-calc(68);
+          font-family           : $header-font-family;
+          font-size             : rem-calc(32);
+          line-height           : 0.9375;
+          font-weight           : 600;
+          color                 : $palette-yellow;
+          @include breakpoint(large) {
+            display             : inline-block;
+          }
+          + ul,
+          + ol {
+            margin-top          : rem-calc(-34);
+          }
+        }
+      }
+      &.question {
+        .marker {
+          top                   : rem-calc(32);
+
+        }
+      }
+      &.answer {
+        .marker {
+          position              : relative;
+          top                   : 0;
+          left                  : rem-calc(-37);
+        }
+        p {
+          &:first-of-type {
+            margin-top          : rem-calc(-34);
+          }
+        }
+      }
+    }
+    .accordion-title {
+      border-bottom             : 0 none transparent;
+      padding                   : rem-calc(30 32 22 32);
+      font-family               : $header-font-family;
+      font-size                 : rem-calc(32);
+      line-height               : 1.2;
+      font-weight               : 300;
+      color                     : $text-color;
+      @include breakpoint(large) {
+        padding                 : rem-calc(30 110 22 110);
+      }
+      &:before {
+        top                     : rem-calc(46);
+        right                   : rem-calc(32);
+        content                 : '▼';
+        font-size               : rem-calc(20);
+        color                   : $palette-grey-light;
+        @include breakpoint(large) {
+          right                 : rem-calc(48);
+        }
+      }
+      &:hover,
+      &:focus,
+      &:active,
+      &:visited {
+        color                   : $text-color !important;
+      }
+      &:hover,
+      &:focus,
+      &:active {
+        background-color        : transparent;
+      }
+    }
+    .accordion-content {
+      padding                   : rem-calc(20 32 44 32);
+      @include breakpoint(large) {
+        padding                 : rem-calc(20 110 44 110);
+      }
+      ul,
+      ol {
+        margin                  : rem-calc(32 0 48 20);
+        li {
+          border-bottom         : 0 none transparent;
+        }
+      }
+      > ul {
+        list-style-type         : disc;
+      }
+    }
+
+  }
+
+  &.embedded {
+    li {
+      background-color          : $palette-grey-lightest;
+      .accordion-title {
+        padding                 : rem-calc(18 90 18 18);
+        font-family             : $body-font-family;
+        font-size               : rem-calc(18);
+        font-weight             : 600;
+        &:before {
+          top                   : rem-calc(28);
+        }
+      }
+      .accordion-content {
+        padding                 : rem-calc(6 90 16 18);
+        background-color        : $palette-grey-lightest;
+      }
+    }
+  }
+
+}

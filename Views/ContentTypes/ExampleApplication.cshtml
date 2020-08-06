@@ -65,7 +65,7 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
     @if (!String.IsNullOrEmpty(Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
@@ -97,15 +97,13 @@
 
 }
 
-@section Scripts {
-  <script>
-    $(function () {
-      /**
-       * Add comma after metadata links
-       */
-      $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
-    });
-  </script>
+@section InlineScript {
+
+  /**
+    * Add comma after metadata links
+    */
+  $('.metadata a.comma.delimited:not(:last-of-type)').after(', ');
+
 }
 
 @{
@@ -139,7 +137,7 @@
       label = "Learn More";
     }
 
-    <a href="@downloadUrl" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
+    <a href="@downloadUrl" rel="noopener" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;\">
       @label
     </a>
 

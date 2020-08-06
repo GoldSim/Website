@@ -13,8 +13,17 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS
 //----------------------------------------------------------------------------------------------
-@import "Menu/menu";
-@import "SearchBar/searchBar";
 @import "AlertBox/alertBox";
 @import "CallsToAction/callsToAction";
-@import "Accordion/accordion";
+@import "Footer/footer";
+@import "Menu/menu";
+@import "PageLevelNavigation/pageLevelNavigation";
+@import "SearchBar/searchBar";
+
+//----------------------------------------------------------------------------------------------
+// STAND ALONE
+//----------------------------------------------------------------------------------------------
+// The following components are no longer included in the main style sheet export, and should
+// be included on individual templates on an as-needed basis.
+//----------------------------------------------------------------------------------------------
+//@import "Accordion/accordion";

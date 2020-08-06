@@ -6,6 +6,7 @@
 }
 
 @section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Components/Accordion/Accordion.css" asp-append-version="true" />
   <script type="application/ld+json">
     {
       "@@context": "http://schema.org",
@@ -41,7 +42,7 @@
 
 @section PageBodySection {
 
-  <section class="panel body">
+  <section class="panel">
 
     @if (!String.IsNullOrEmpty(Model.ThumbnailImage)) {
       <!-- Thumbnail Image -->
@@ -61,9 +62,7 @@
     }
 
     <!-- Body Content -->
-    <article class="page body">
-      @Html.Raw(Model.Body)
-    </article>
+    @Html.Raw(Model.Body)
     <!-- /Body Content -->
 
     @if (!String.IsNullOrEmpty(Model.ModelImage)) {
@@ -77,7 +76,7 @@
     @if (Model.ExampleApplications.Count > 0) {
       <!-- Related Case Studies -->
       <h1 id="Examples">Examples</h1>
-      <partial name="_CardList" model="@(new CardListViewModel(Model.ExampleApplications, "case-study"))" />
+      <partial name="_CardList" model="@(new CardListViewModel(Model.ExampleApplications.OrderByDescending(m => m.LastModified), "case-study"))" />
       <!-- /Related Case Studies -->
     }
 
@@ -93,7 +92,7 @@
       <h1 id="WhitePapers">White Papers</h1>
       <ul>
         @foreach (var paper in Model.WhitePapers) {
-          <li><a href="@paper.Url" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" target="_blank">@paper.Title</a></li>
+          <li><a href="@paper.Url" onclick="trackEvent(this, 'White Paper', 'Download', '@paper.Key'); return false;" rel="noopener" target="_blank">@paper.Title</a></li>
         }
       </ul>
       <!-- /Related White Papers -->
@@ -128,7 +127,8 @@
 }
 
 @section Scripts {
-  <script src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
 }
 
 <!--

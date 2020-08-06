@@ -10,7 +10,7 @@
           <p>@Html.Raw(paper.Publication) &ndash; @paper.PublicationDate.ToString("MMMM yyyy")</p>
           <p class="author">@Html.Raw(paper.Authors)</p>
           @Html.Raw(paper.Description)
-          <p><a href="@paper.LearnMoreUrl" target="_blank" onclick="trackEvent(this, 'Technical Paper', 'Download', '@paper.Key')">
+          <p><a href="@paper.LearnMoreUrl" rel="noopener" target="_blank" onclick="trackEvent(this, 'Technical Paper', 'Download', '@paper.Key')">
             @(!String.IsNullOrEmpty(paper.DownloadLabel)? paper.DownloadLabel : "Download")
           </a></p>
         </div>
@@ -19,3 +19,8 @@
   </ul>
 </section>
 <!-- /Related Technical Papers -->
+
+<!--
+  Content Type: IEnumberable<TechnicalPaperTopicViewModel>
+  View Location: ~/Views/Shared/_TechnicalPaperList.cshtml
+-->

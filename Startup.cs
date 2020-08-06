@@ -3,8 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.AspNetCore.Mvc;
-using OnTopic.Editor.AspNetCore;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
@@ -16,6 +14,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.Net.Http.Headers;
+using OnTopic.AspNetCore.Mvc;
+using OnTopic.Editor.AspNetCore;
 
 namespace GoldSim.Web {
 
@@ -96,13 +97,18 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
-      services.AddControllersWithViews()
+      var mvcBuilder = services.AddControllersWithViews()
 
         //Add OnTopic support
         .AddTopicSupport()
 
         //Add OnTopic editor support
         .AddTopicEditor();
+
+      //Conditionally add runtime compilation in development
+      if (HostingEnvironment.IsDevelopment()) {
+        mvcBuilder.AddRazorRuntimeCompilation();
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
@@ -141,9 +147,10 @@ namespace GoldSim.Web {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Enable downloads
+      | Enable downloads and cache headers
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var provider = new FileExtensionContentTypeProvider();
+      var provider              = new FileExtensionContentTypeProvider();
+      const int duration        = 60*60*24*365*2;
 
       provider.Mappings[".webmanifest"]                         = "application/manifest+json";
       provider.Mappings[".exe"]                                 = "application/vnd.microsoft.portable-executable";
@@ -152,8 +159,12 @@ namespace GoldSim.Web {
       provider.Mappings[".mpd"]                                 = "application/dash+xml";
       provider.Mappings[".m4s"]                                 = "video/mp4";
 
-      var staticFileOptions = new StaticFileOptions { ContentTypeProvider = provider };
-
+      var staticFileOptions     = new StaticFileOptions {
+        ContentTypeProvider     = provider,
+        OnPrepareResponse       = context => {
+          context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + duration;
+        }
+      };
       app.UseStaticFiles(staticFileOptions);
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -170,24 +181,41 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
         endpoints.MapTopicEditorRoute().RequireAuthorization();
-        endpoints.MapControllerRoute(
+        endpoints.MapAreaControllerRoute(
           name: "Payments",
+          areaName: "Payments",
           pattern: "Web/Purchase/PayInvoice/",
           defaults: new { controller = "Payments", action = "Index", path = "Web/Purchase/PayInvoice" }
         );
         endpoints.MapAreaControllerRoute(
           name: "Administration",
           areaName: "Administration",
-          pattern: "Administration/{controller}/{action=Index}/{id?}",
-          defaults: new { area = "Administration" }
+          pattern: "Administration/{controller=Licenses}/{action=Index}/{id?}"
         ).RequireAuthorization();
+        endpoints.MapAreaControllerRoute(
+          name: "Courses",
+          areaName: "Courses",
+          pattern: "Courses/{**path}",
+          defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{action}",
+          defaults: new { controller = "Forms" }
+        );
+        endpoints.MapAreaControllerRoute(
+          name: "Forms",
+          areaName: "Forms",
+          pattern: "Forms/{**path}",
+          defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
+        );
         endpoints.MapControllerRoute(
           name: "default",
           pattern: "{controller}/{action=Index}/"
         );
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Error", "Error");
-        endpoints.MapTopicRoute("Forms", "Forms");
         endpoints.MapTopicRedirect();
         endpoints.MapControllerRoute(
           name: "LegacyRedirect",
