@@ -116,8 +116,8 @@
       autoHeight                : true,
       nav                       : true,
       navText                   : [
-        '<i class="fa fa-caret-left"></i>',
-        '<i class="fa fa-caret-right"></i>'
+        '<span class="previous"></span>',
+        '<span class="next"></span>'
       ],
       loop                      : false
     });
@@ -127,8 +127,8 @@
       autoHeight                : false,
       nav                       : true,
       navText                   : [
-        '<i class="fa fa-caret-left"></i>',
-        '<i class="fa fa-caret-right"></i>'
+        '<span class="previous"></span>',
+        '<span class="next"></span>'
       ],
       loop                      : false
     });

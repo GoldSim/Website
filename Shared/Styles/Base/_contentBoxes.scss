@@ -196,6 +196,7 @@ aside.help {
   font-weight                   : bold;
   display                       : block;
   margin                        : rem-calc(16 44);
+  min-height                    : rem-calc(32);
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
@@ -204,13 +205,17 @@ aside.help {
     content                     : fa-content($fa-var-question-circle);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    vertical-align              : middle;
   }
 }
 
 blockquote.note {
   display                       : block;
-  margin                        : rem-calc(16 44);
+  margin                        : rem-calc(0 44);
   border-left                   : none;
+  min-height                    : rem-calc(32);
+  margin-inline-start           : rem-calc(0);
+  padding-left                  : rem-calc(44);
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
@@ -219,5 +224,7 @@ blockquote.note {
     content                     : fa-content($fa-var-comment-alt);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    position                    : relative;
+    top                         : rem-calc(14);
   }
 }

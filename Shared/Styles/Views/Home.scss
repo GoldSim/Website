@@ -15,6 +15,8 @@
 @import "foundationSettings";
 @import "foundation";
 @import "Helpers/mixins";
+@import "fontawesome-free/scss/_mixins.scss";
+@import "fontawesome-free/scss/_variables.scss";
 
 //----------------------------------------------------------------------------------------------
 // FOUNDATION DEPENDENCIES
@@ -35,10 +37,40 @@ main {
     position                    : relative;
     padding                     : rem-calc(48 36);
     box-shadow                  : inset 0 0 9px 2px rgba(32, 32, 32, 0.75);
-    background                  : $palette-black url('/Images/Home/Splash.Background.png') no-repeat center center;
+    background-position         : center center;
+    background-repeat           : no-repeat;
+    background-color            : $palette-black;
     background-size             : cover;
+    @include breakpoint(small) {
+      background-image          : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.640w.png');
+      @supports (background-image: url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.640w.webp')) {
+        background-image        : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.640w.webp')
+      }
+    }
+    @include breakpoint(medium) {
+      background-image          : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1024w.png');
+      @supports (background-image: url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1024w.webp')) {
+        background-image        : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1024w.webp')
+      }
+    }
     @include breakpoint(large) {
       padding                   : rem-calc(48 0 0);             // WAS rem-calc(80 0 0)
+      background-image          : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1366w.png');
+      @supports (background-image: url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1366w.webp')) {
+        background-image        : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1366w.webp')
+      }
+    }
+    @include breakpoint(1400px) {
+      background-image          : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1920w.png');
+      @supports (background-image: url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1920w.webp')) {
+        background-image        : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.1920w.webp')
+      }
+    }
+    @include breakpoint(2000px) {
+      background-image          : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.2500w.png');
+      @supports (background-image: url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.2500w.webp')) {
+        background-image        : url('https://media.GoldSim.com/Images/Home/Splash/Splash.Background.2500w.webp')
+      }
     }
     @include media-screen-wide-short() {
       padding                   : rem-calc(48 0 0);
@@ -187,7 +219,7 @@ main {
   // Applications
   &.applications {
     h2 {
-      margin                    : rem-calc(28) auto rem-calc(20);
+      margin                    : rem-calc(28) rem-calc(28) rem-calc(20);
       font-size                 : rem-calc(20);
       font-weight               : normal;
       text-align                : center;
@@ -317,21 +349,29 @@ main {
         width                   : rem-calc(80);
       }
       &.disabled {
-        i.fa {
+        span {
           display               : none;
         }
       }
-      i.fa {
+      span {
         position                : absolute;
         top                     : 40%;
         font-size               : rem-calc(32);
         color                   : lighten($palette-black, 44.5%);       // #959595
       }
     }
+    button span:before {
+      @include fa-icon;
+      font-family               : 'Font Awesome 5 Free';
+      font-weight               : 900;
+    }
     .owl-prev {
       left                      : 0;
-      i.fa {
+      span.previous {
         left                    : rem-calc(4);
+        &:before                {
+          content               : fa-content($fa-var-caret-left);
+        }
         @include breakpoint(medium) {
           left                  : rem-calc(42);
         }
@@ -339,7 +379,10 @@ main {
     }
     .owl-next {
       right                     : 0;
-      i.fa {
+      span.next {
+        &:before                {
+          content               : fa-content($fa-var-caret-right);
+        }
         right                   : rem-calc(4);
         @include breakpoint(medium) {
           right                 : rem-calc(42);
@@ -447,7 +490,7 @@ main {
       }
     }
     .card-section {
-      padding                   : rem-calc(0 28);
+      padding                   : rem-calc(0);
     }
     picture {
       overflow                  : hidden;
@@ -469,7 +512,7 @@ main {
         line-height             : 1.4;
         a {
           display               : block;
-          padding               : rem-calc(16 0);
+          padding               : rem-calc(16 28);
           font-weight           : normal;
           border                : 0 none transparent;
           &:hover,
