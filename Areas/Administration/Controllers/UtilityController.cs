@@ -86,6 +86,35 @@ namespace GoldSim.Web.Administration.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | ACTION: REPLACE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provided a search term and a replacement term, will find all instances of text in the OnTopic database and replace
+    ///   them.
+    /// </summary>
+    [HttpGet]
+    public IActionResult Replace(string searchText, string replaceText) {
+
+      var targetTopics          = GetMatchedTopics(searchText);
+      var results               = new List<Tuple<string, string, string>>();
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        foreach (var attribute in topic.Attributes) {
+          if (attribute.Value.Contains(searchText, StringComparison.OrdinalIgnoreCase)) {
+            var newValue        = attribute.Value.Replace(searchText, replaceText, StringComparison.OrdinalIgnoreCase);
+            topic.Attributes.SetValue(attribute.Key, newValue);
+            results.Add(new Tuple<string, string, string>(url, attribute.Key, newValue));
+          }
+        }
+        _topicRepository.Save(topic);
+      }
+
+      return Json(results);
+
+    }
+
 
   } // Class
 } // Namespace
