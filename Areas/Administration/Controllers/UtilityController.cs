@@ -48,6 +48,44 @@ namespace GoldSim.Web.Administration.Controllers {
       _hostingEnvironment       = hostingEnvironment;
     }
 
+    /*==========================================================================================================================
+    | GET MATCHED TOPICS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of topics that match the search critera.
+    /// </summary>
+    private ReadOnlyTopicCollection<Topic> GetMatchedTopics(string searchText) =>
+      _topicRepository.Load().FindAll(t => {
+        return t.Attributes.Any(a =>
+          a.Value.Contains(searchText, StringComparison.OrdinalIgnoreCase)
+        );
+      });
+
+    /*==========================================================================================================================
+    | ACTION: FIND
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provided a search term, will find all instances of text in the OnTopic database.
+    /// </summary>
+    [HttpGet]
+    public IActionResult Find(string searchText) {
+
+      var targetTopics          = GetMatchedTopics(searchText);
+      var results               = new List<Tuple<string, string, string>>();
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        foreach (var attribute in topic.Attributes) {
+          if (attribute.Value.Contains(searchText, StringComparison.OrdinalIgnoreCase)) {
+            results.Add(new Tuple<string, string, string>(url, attribute.Key, attribute.Value));
+          }
+        }
+      }
+
+      return Json(results);
+
+    }
+
 
   } // Class
 } // Namespace
