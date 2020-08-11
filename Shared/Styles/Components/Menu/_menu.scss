@@ -96,7 +96,6 @@ nav.navigation {
             > a {
               &:after {
                 content                 : '-';
-                top                     : rem-calc(4);
                 right                   : rem-calc(-11);
               }
             }
@@ -108,7 +107,7 @@ nav.navigation {
     // navigation items
     > .cell {
       > ul.menu {
-        > li[role="menuitem"] {
+        > li {
           padding-right         : rem-calc(88);
           @include media-screen-wide-short() {
             padding-right       : rem-calc(92);
