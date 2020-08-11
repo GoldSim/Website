@@ -207,6 +207,11 @@ namespace GoldSim.Web {
           _topicMappingService
         ),
 
+        nameof(UtilityController) => new UtilityController(
+          _topicRepository,
+          _webHostEnvironment
+        ),
+
         nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
