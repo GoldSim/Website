@@ -115,6 +115,17 @@ namespace GoldSim.Web.Administration.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | ACTION: RESAVE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Resaves all topics to ensure any schema changes are reflected in the persistence store.
+    /// </summary>
+    [HttpGet]
+    public IActionResult Resave() {
+      _topicRepository.Save(_topicRepository.Load(), true);
+      return Json(new object());
+    }
 
   } // Class
 } // Namespace
