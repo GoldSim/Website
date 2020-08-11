@@ -62,6 +62,22 @@ namespace GoldSim.Web.Administration.Controllers {
       });
 
     /*==========================================================================================================================
+    | GET ALL TOPICS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of all topics.
+    /// </summary>
+    private IEnumerable<Topic> GetAllTopics(Topic parentTopic = null) {
+      parentTopic ??= _topicRepository.Load();
+      foreach (var topic in parentTopic.Children) {
+        yield return topic;
+        foreach (var childTopic in GetAllTopics(topic)) {
+          yield return childTopic;
+        }
+      }
+    }
+
+    /*==========================================================================================================================
     | ACTION: FIND
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -104,6 +120,63 @@ namespace GoldSim.Web.Administration.Controllers {
         foreach (var attribute in topic.Attributes) {
           if (attribute.Value.Contains(searchText, StringComparison.OrdinalIgnoreCase)) {
             var newValue        = attribute.Value.Replace(searchText, replaceText, StringComparison.OrdinalIgnoreCase);
+            topic.Attributes.SetValue(attribute.Key, newValue);
+            results.Add(new Tuple<string, string, string>(url, attribute.Key, newValue));
+          }
+        }
+        _topicRepository.Save(topic);
+      }
+
+      return Json(results);
+
+    }
+
+    /*==========================================================================================================================
+    | CONSTANT: CONTENT FOLDERS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a hard-coded list of content directories that used to live on `www` but have now been moved to other servers—
+    ///   notably `media`. This helps identify legacy references, which currently rely on the redirect.
+    /// </summary>
+    private List<string> SearchTerms = new List<string>() {
+      "Downloads",
+      "eNews",
+      "FormImages",
+      "Help",
+      "Images/Content",
+      "Images/Courses",
+      "Images/Email",
+      "Images/Newsletter",
+      "KnowledgeBase",
+      "Media",
+      "Videos",
+      "Webinars"
+    };
+
+    /*==========================================================================================================================
+    | ACTION: UPDATE PATHS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Updates paths based on hard-coded values.
+    /// </summary>
+    [HttpGet]
+    public IActionResult UpdatePaths() {
+
+      var oldHostName           = "www.goldsim.com";
+      var targetHostName        = "media.GoldSim.com";
+      var targetTopics          = GetAllTopics();
+      var results               = new List<Tuple<string, string, string>>();
+
+      var searchTermString      = String.Join('|', SearchTerms.ToArray()).Replace(@"/", @"\/");
+      var searchPattern          = @$"(""|^)(http(?:s)?:\/\/(?:www.)?(?:{oldHostName}))?\/((?:({searchTermString}))\/[^""]*)(""|$)";
+      var replacementString     = $"$1https://{targetHostName}/$3$5";
+      var regularExpression     = new Regex(searchPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        foreach (var attribute in topic.Attributes.ToList()) {
+          if (regularExpression.IsMatch(attribute.Value)) {
+            var newValue        = regularExpression.Replace(attribute.Value, replacementString);
             topic.Attributes.SetValue(attribute.Key, newValue);
             results.Add(new Tuple<string, string, string>(url, attribute.Key, newValue));
           }
