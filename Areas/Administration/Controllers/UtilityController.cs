@@ -218,6 +218,60 @@ namespace GoldSim.Web.Administration.Controllers {
     }
 
     /*==========================================================================================================================
+    | ACTION: LINK REPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of all references to the media server within OnTopic.
+    /// </summary>
+    [HttpGet]
+    public IActionResult LinkReport() {
+
+      var targetTopics          = GetAllTopics();
+      var results               = new List<Tuple<string, string, string, string, bool>>();
+
+      var searchPattern          = @$"(?:href=""|^)((http(?:s)?:\/\/([^\/]*))?\/[^""]*)(?:""|$)";
+      var regularExpression     = new Regex(searchPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        foreach (var attribute in topic.Attributes.ToList()) {
+          foreach (Match match in regularExpression.Matches(attribute.Value)) {
+            var targetUrl       = match.Groups[1].Value?? "";
+            var exists          = false;
+            var type            = "External";
+            if (targetUrl.IndexOf('#') >= 0) {
+              targetUrl         = targetUrl.Substring(0, targetUrl.IndexOf('#'));
+            }
+            if (targetUrl.StartsWith("/Topic/", StringComparison.OrdinalIgnoreCase)) {
+              Int32.TryParse(targetUrl.Substring(7).Trim('/'), out var topicId);
+              exists            = targetTopics.Any(t => t.Id == topicId);
+              type              = "Topic (Redirect)";
+            }
+            else if (targetUrl.StartsWith("/", StringComparison.OrdinalIgnoreCase)) {
+              if (targetUrl.Contains(".", StringComparison.OrdinalIgnoreCase)) {
+                exists          = System.IO.File.Exists(_hostingEnvironment.WebRootPath + targetUrl.Replace("/", "\\", StringComparison.OrdinalIgnoreCase));
+                type            = "File (Local)";
+              }
+              else {
+                type            = "Topic (URL)";
+                try {
+                  exists        = _topicRepository.Load().GetByUniqueKey(targetUrl.Replace("/", ":").Trim(':')) != null;
+                }
+                catch (Exception) {
+                  exists        = false;
+                }
+              }
+            }
+            results.Add(new Tuple<string, string, string, string, bool>(url, attribute.Key, match.Groups[1].Value?? "", type, exists));
+          }
+        }
+      }
+
+      return Json(results);
+
+    }
+
+    /*==========================================================================================================================
     | ACTION: RESAVE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
