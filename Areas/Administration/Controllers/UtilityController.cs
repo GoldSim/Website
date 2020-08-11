@@ -189,6 +189,35 @@ namespace GoldSim.Web.Administration.Controllers {
     }
 
     /*==========================================================================================================================
+    | ACTION: MEDIA REPORT
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of all references to the media server within OnTopic.
+    /// </summary>
+    [HttpGet]
+    public IActionResult MediaReport() {
+
+      var targetTopics          = GetAllTopics();
+      var results               = new List<Tuple<string, string, string>>();
+
+      var searchTermString      = String.Join('|', SearchTerms.ToArray()).Replace(@"/", @"\/");
+      var searchPattern         = @$"https:\/\/media.GoldSim.com\/((?:({searchTermString}))\/[^""]*)";
+      var regularExpression     = new Regex(searchPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        foreach (var attribute in topic.Attributes.ToList()) {
+          foreach (Match match in regularExpression.Matches(attribute.Value)) {
+            results.Add(new Tuple<string, string, string>(url, attribute.Key, match.Value));
+          }
+        }
+      }
+
+      return Json(results);
+
+    }
+
+    /*==========================================================================================================================
     | ACTION: RESAVE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
