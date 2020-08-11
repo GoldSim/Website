@@ -107,7 +107,7 @@ nav.navigation {
     // navigation items
     > .cell {
       > ul.menu {
-        > li[role="menuitem"] {
+        > li {
           padding-right         : rem-calc(88);
           @include media-screen-wide-short() {
             padding-right       : rem-calc(92);
