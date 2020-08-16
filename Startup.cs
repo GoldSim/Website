@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.StaticFiles;
@@ -14,9 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
+
+using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
 namespace GoldSim.Web {
 
@@ -82,6 +84,8 @@ namespace GoldSim.Web {
       })
       .AddOpenIdConnect(options => {
         Configuration.GetSection("OpenIdConnect").Bind(options);
+        options.CorrelationCookie.SameSite = SameSiteMode.None;
+        options.SaveTokens = true;
         options.TokenValidationParameters = new TokenValidationParameters {
           NameClaimType = "name",
           ValidIssuers = new[] {
