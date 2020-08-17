@@ -228,15 +228,11 @@ namespace GoldSim.Web {
           pattern: "Forms/{**path}",
           defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
         );
-        endpoints.MapControllerRoute(
-          name: "default",
-          pattern: "{controller}/{action=Index}/"
-        );
-        endpoints.MapTopicRoute("Web");
-        endpoints.MapTopicRoute("Error", "Error");
-        endpoints.MapTopicRedirect();
 
         endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
+        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
+        endpoints.MapTopicRoute("Web");                         // Web/{**path}
+        endpoints.MapTopicRedirect();                           // Topic/{topicId}
         endpoints.MapControllers();
 
       });
