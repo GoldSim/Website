@@ -184,13 +184,27 @@ namespace GoldSim.Web {
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
-        endpoints.MapTopicEditorRoute().RequireAuthorization();
+
         endpoints.MapAreaControllerRoute(
-          name: "Payments",
-          areaName: "Payments",
-          pattern: "Web/Purchase/PayInvoice/",
-          defaults: new { controller = "Payments", action = "Index", path = "Web/Purchase/PayInvoice" }
+          name                  : "Payments",
+          areaName              : "Payments",
+          pattern               : "Web/Purchase/PayInvoice/",
+          defaults              : new {
+            controller          = "Payments",
+            action              = "Index",
+            path                = "Web/Purchase/PayInvoice"
+          }
         );
+
+        endpoints.MapControllerRoute(
+          name                  : "LegacyRedirect",
+          pattern               : "Page/{pageId}",
+          defaults              : new {
+            controller          = "LegacyRedirect",
+            action              = "Redirect"
+          }
+        );
+
         endpoints.MapAreaControllerRoute(
           name: "Administration",
           areaName: "Administration",
@@ -221,13 +235,12 @@ namespace GoldSim.Web {
         endpoints.MapTopicRoute("Web");
         endpoints.MapTopicRoute("Error", "Error");
         endpoints.MapTopicRedirect();
-        endpoints.MapControllerRoute(
-          name: "LegacyRedirect",
-          pattern: "Page/{pageId}",
-          defaults: new { controller = "LegacyRedirect", action = "Redirect" }
-        );
+
+        endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
         endpoints.MapControllers();
+
       });
+
     }
 
   } //Class
