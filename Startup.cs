@@ -211,26 +211,17 @@ namespace GoldSim.Web {
           pattern: "Administration/{controller=Licenses}/{action=Index}/{id?}"
         ).RequireAuthorization();
         endpoints.MapAreaControllerRoute(
-          name: "Courses",
-          areaName: "Courses",
-          pattern: "Courses/{**path}",
-          defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
-        );
-        endpoints.MapAreaControllerRoute(
           name: "Forms",
           areaName: "Forms",
           pattern: "Forms/{action}",
           defaults: new { controller = "Forms" }
         );
-        endpoints.MapAreaControllerRoute(
-          name: "Forms",
-          areaName: "Forms",
-          pattern: "Forms/{**path}",
-          defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
-        );
 
         endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
+
+        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
         endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
+
         endpoints.MapTopicRoute("Web");                         // Web/{**path}
         endpoints.MapTopicRedirect();                           // Topic/{topicId}
         endpoints.MapControllers();
