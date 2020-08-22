@@ -42,11 +42,6 @@
 
   <!-- Post Title -->
   <div class="medium-@(!String.IsNullOrEmpty(Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
-    @if (!String.IsNullOrEmpty(Model.Customer)) {
-      <strong>Client:</strong>
-      getCustomerLink(Model.Customer, Model.CustomerUrl);
-      <br/>
-    }
     @if(Model.Applications.Count > 0) {
       <strong>@((Model.Applications.Count == 1)? "Application" : "Applications"):</strong>
       foreach (var application in Model.Applications) {
@@ -99,15 +94,6 @@
 }
 
 @{
-
-  void getCustomerLink(string customerName, string customerUrl) {
-    if (!String.IsNullOrEmpty(customerUrl)) {
-      <a href="@customerUrl" target="blank"><strong>@customerName</strong></a>
-    }
-    else {
-      <strong>@customerName</strong>
-    }
-  }
 
   void downloadButton(string downloadUrl) {
 

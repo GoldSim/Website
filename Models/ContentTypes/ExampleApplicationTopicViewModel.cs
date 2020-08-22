@@ -16,8 +16,6 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
 
-    public string Customer { get; set; }
-    public string CustomerUrl { get; set; }
     public string DownloadUrl { get; set; }
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 
