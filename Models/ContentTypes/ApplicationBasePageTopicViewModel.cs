@@ -24,7 +24,6 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </remarks>
   public class ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
-    public string Abstract { get; set; }
     public string ThumbnailImage { get; set; }
     public string Category { get; set; }
     public string LearnMoreUrl { get; set; }

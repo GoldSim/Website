@@ -18,6 +18,8 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
 
+    public string Abstract { get; set; }
+
     public string ModelImage { get; set; }
 
     [DefaultValue("")]

@@ -33,7 +33,7 @@
           "url": "https://www.goldsim.com/Images/Logo.png"
         }
       },
-      "description": "@(Model.MetaDescription?? Model.Abstract)"
+      "description": "@(Model.MetaDescription)"
     }
   </script>
 }
@@ -74,14 +74,6 @@
         <img src="@Model.ThumbnailImage" alt="@Model.Title">
       </picture>
       <!-- /Thumbnail Image -->
-    }
-
-    @if (!String.IsNullOrEmpty(Model.Abstract)) {
-      <!-- Abstract -->
-      <!-- <h1>Abstract</h1> -->
-      <!-- Abstract Text -->
-      <p>@Html.Raw(Model.Abstract)</p>
-      <!-- /Abstract -->
     }
 
     @Html.Raw(Model.Body)
