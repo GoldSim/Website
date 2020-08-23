@@ -25,6 +25,11 @@ namespace GoldSim.Web.Models.ContentTypes {
     [DefaultValue("")]
     public string CompareTo { get; set; }
 
+    public string LearnMoreUrl { get; set; }
+
+    [DefaultValue("Learn More")]
+    public string LearnMoreLabel { get; set; }
+
     [Relationship(RelationshipType.Relationship)]
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; set; }
 

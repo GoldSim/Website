@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel;
 using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
@@ -26,10 +25,6 @@ namespace GoldSim.Web.Models.ContentTypes {
 
     public string ThumbnailImage { get; set; }
     public string Category { get; set; }
-    public string LearnMoreUrl { get; set; }
-
-    [DefaultValue("Learn More")]
-    public string LearnMoreLabel { get; set; }
 
     [Metadata("ApplicationCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }

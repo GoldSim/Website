@@ -73,13 +73,6 @@
 
     @Html.Raw(Model.Body)
 
-    @if (!String.IsNullOrEmpty(Model.LearnMoreUrl)) {
-      <h1>Learn More</h1>
-      <ul>
-        <li><a href="@Model.LearnMoreUrl">@Model.LearnMoreLabel</a></li>
-      </ul>
-    }
-
   </section>
 
 }
