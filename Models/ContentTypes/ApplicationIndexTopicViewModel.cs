@@ -24,13 +24,53 @@ namespace GoldSim.Web.Models.ContentTypes {
     bool                        _isFirst                        = true;
 
     /*==========================================================================================================================
-    | GENERIC PROPERTIES
+    | FILTERED DOCUMENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The type of document to be displayed in the index.
+    /// </summary>
+    /// <remarks>
+    ///   Indexed can, optionally, contain multiple document types—e.g., <see cref="ApplicationPageTopicViewModel"/>, <see
+    ///   cref="ExampleApplicationTopicViewModel"/>, &c. The <see cref="FilteredDocumentType"/> allows the current view to be
+    ///   filtered by one specific type.
+    /// </remarks>
     public string FilteredDocumentType { get; set; }
+
+    /*==========================================================================================================================
+    | CATEGORIES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Returns a list of <see cref="LookupListItemTopicViewModel"/>s, which represent the available categories to group the
+    ///   applications by.
+    /// </summary>
     [Metadata("ApplicationCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
+
+    /*==========================================================================================================================
+    | CATEGORY: ENVIRONMENTAL SYSTEMS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
+    ///   <see cref="ApplicationContainerTopicViewModel"/>.
+    /// </summary>
     public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
+
+    /*==========================================================================================================================
+    | CATEGORY: BUSINESS SYSTEMS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
+    ///   <see cref="ApplicationContainerTopicViewModel"/>.
+    /// </summary>
     public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
+
+    /*==========================================================================================================================
+    | CATEGORY: ENGINEERED SYSTEMS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
+    ///   <see cref="ApplicationContainerTopicViewModel"/>.
+    /// </summary>
     public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
 
     /*==========================================================================================================================

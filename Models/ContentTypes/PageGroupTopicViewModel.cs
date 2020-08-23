@@ -18,6 +18,18 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </remarks>
   public class PageGroupTopicViewModel : OnTopic.ViewModels.PageGroupTopicViewModel, ICardViewModel {
 
+    /*==========================================================================================================================
+    | THUMBNAIL IMAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the URL for a thumbnail image which will be used as part of a card layout, should a page be referenced as
+    ///   part of a relationship to another page.
+    /// </summary>
+    /// <remarks>
+    ///   While this can be used by any <see cref="PageGroupTopicViewModel"/>, it is specifically used as part of the <see cref=
+    ///   "ApplicationPageTopicViewModel"/> which provides a reference to module pages—all of which use the <see cref=
+    ///   "PageGroupTopicViewModel"/>.
+    /// </remarks>
     public string ThumbnailImage { get; set; }
 
   } // Class
