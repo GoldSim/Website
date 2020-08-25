@@ -41,19 +41,14 @@
 @section PostTitleSection {
 
   <!-- Post Title -->
-  <div class="medium-@(!String.IsNullOrEmpty(Model.DownloadUrl)? "8" : "12") cell align-middle metadata">
+  <p class="metadata">
     @if(Model.Applications.Count > 0) {
       <strong>@((Model.Applications.Count == 1)? "Application" : "Applications"):</strong>
       foreach (var application in Model.Applications) {
         <a href="@application.WebPath" class="comma delimited">@application.Title</a>
       }
     }
-  </div>
-  @if (!String.IsNullOrEmpty(Model.DownloadUrl)) {
-    <div class="medium-4 cell align-middle text-right metadata">
-      @{downloadButton(Model.DownloadUrl);}
-    </div>
-  }
+  </p>
   <!-- /Post Title -->
 
 }

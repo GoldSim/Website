@@ -17,14 +17,6 @@ namespace GoldSim.Web.Models.ContentTypes {
   public class ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
-    | DOWNLOAD URL
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides an optional URL to download e.g. an expanded, print-ready PDF version of the current example.
-    /// </summary>
-    public string DownloadUrl { get; set; }
-
-    /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

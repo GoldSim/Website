@@ -154,9 +154,7 @@
                 <p class="subtitle">@Model.Subtitle</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
-                <div class="grid-x">
-                  @RenderSection("PostTitleSection")
-                </div>
+                @RenderSection("PostTitleSection")
               }
             </header>
             <!-- /Long Title (Subtitle) -->
