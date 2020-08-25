@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
+using OnTopic.Attributes;
 using OnTopic.Collections;
 using OnTopic.Querying;
 using OnTopic.Repositories;
@@ -282,6 +283,51 @@ namespace GoldSim.Web.Administration.Controllers {
       _topicRepository.Save(_topicRepository.Load(), true);
       return Json(new object());
     }
+
+    /*==========================================================================================================================
+    | ACTION: BULK REPLACE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Makes a bulk replacement of all attributes in all topics based on search/replace pairs in the <see cref=
+    ///   "ReplacementDictionary"/>.
+    /// </summary>
+    [HttpGet]
+    public IActionResult BulkReplace() {
+
+      var targetTopics          = GetAllTopics();
+      var results               = new List<Tuple<string, string, string>>();
+
+      foreach (var topic in targetTopics) {
+        var url                 = topic.GetWebPath();
+        var isUpdated           = false;
+        foreach (var attribute in topic.Attributes.ToList()) {
+          var newValue          = attribute.Value;
+          foreach (var replacementTerm in ReplacementDictionary) {
+            newValue            = newValue.Replace(replacementTerm.Key, replacementTerm.Value, StringComparison.OrdinalIgnoreCase);
+          }
+          if (newValue != attribute.Value) {
+            topic.Attributes.SetValue(attribute.Key, newValue);
+            results.Add(new Tuple<string, string, string>(url, attribute.Key, newValue));
+            isUpdated = true;
+          }
+        }
+        if (isUpdated) {
+          _topicRepository.Save(topic);
+        }
+      }
+
+      return Json(results);
+
+    }
+
+    /*==========================================================================================================================
+    | ACTION: REPLACEMENT DICTIONARY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a replacement dictionary of key/value pairs to be used for the <see cref="BulkReplace"/> action.
+    /// </summary>
+    private Dictionary<string, string> ReplacementDictionary = new Dictionary<string, string>() {
+    };
 
   } // Class
 } // Namespace
