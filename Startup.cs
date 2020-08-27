@@ -196,6 +196,12 @@ namespace GoldSim.Web {
           }
         );
 
+        endpoints.MapAreaControllerRoute(
+          name                  : "Administration",
+          areaName              : "Administration",
+          pattern               : "Administration/{controller=Invoices}/{action=Index}/{id?}"
+        );
+
         endpoints.MapControllerRoute(
           name                  : "LegacyRedirect",
           pattern               : "Page/{pageId}",
