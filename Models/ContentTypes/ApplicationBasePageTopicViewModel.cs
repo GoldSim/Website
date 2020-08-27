@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel;
 using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
@@ -24,14 +23,37 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </remarks>
   public class ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
-    public string Abstract { get; set; }
+    /*==========================================================================================================================
+    | THUMBNAIL IMAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a thumbnail image to display in the card format. This is not usually displayed on the page itself.
+    /// </summary>
     public string ThumbnailImage { get; set; }
+
+    /*==========================================================================================================================
+    | CATEGORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the category key that the current topic is associated with (e.g., "EnvironmentalSystems").
+    /// </summary>
+    /// <remarks>
+    ///   This is typically used to optionally group a list of applications by category on an index page.
+    /// </remarks>
     public string Category { get; set; }
-    public string LearnMoreUrl { get; set; }
 
-    [DefaultValue("Learn More")]
-    public string LearnMoreLabel { get; set; }
 
+    /*==========================================================================================================================
+    | CATEGORIES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a full list of available categories. This will not change between applications.
+    /// </summary>
+    /// <remarks>
+    ///   The purpose of the categories lookup is to provide the <see cref="GetCategoryTitle(String)"/> method a way to lookup
+    ///   the friendly name of the current title based on the key name. This allows the label of the category to be changed at
+    ///   any time without needing to update the <see cref="Category"/> of each application.
+    /// </remarks>
     [Metadata("ApplicationCategories")]
     public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
 
