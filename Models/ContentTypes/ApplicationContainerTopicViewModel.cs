@@ -16,10 +16,34 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class ApplicationContainerTopicViewModel : PageTopicViewModel {
 
+    /*==========================================================================================================================
+    | CHILDREN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
+    /// </summary>
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
 
+    /*==========================================================================================================================
+    | DISPLAY ORDER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a mechanism to control sorting of the application containers on e.g. an index page.
+    /// </summary>
     public string DisplayOrder { get; set; }
 
+    /*==========================================================================================================================
+    | GET IMAGE KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Returns a key for the current category which can be used to lookup an appropriate image for the current category.
+    /// </summary>
+    /// <remarks>
+    ///   Each category of application uses an image associated with one of the modules. Since the image names can't be sourced
+    ///   based on the <see cref="TopicViewModel.Key"/>, this method provides a mapping between the application category key
+    ///   and the module key.
+    /// </remarks>
+    /// <returns></returns>
     public string GetImageKey() =>
       Key switch {
         "EnvironmentalSystems"  => "CT",
@@ -28,6 +52,14 @@ namespace GoldSim.Web.Models.ContentTypes {
         _                       => "CT"
       };
 
+    /*==========================================================================================================================
+    | GET CONTAINER KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   While the container keys end with <c>Systems</c> (e.g., <c>EnvironmentalSystems</c>, the category keys do not. This
+    ///   method simply strips <c>Systems</c> off the container key.
+    /// </summary>
+    /// <returns></returns>
     public string GetContainerKey() => Key.Substring(0, Key.IndexOf("Systems"));
 
   } // Class

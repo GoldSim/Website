@@ -16,6 +16,13 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
+    /*==========================================================================================================================
+    | THUMBNAIL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the URL for a thumbnail image which will be used as part of a card layout, when a module page is displayed
+    ///   on another page.
+    /// </summary>
     public string ThumbnailImage { get; set; }
 
   } // Class

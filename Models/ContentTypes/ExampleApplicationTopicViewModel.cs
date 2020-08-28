@@ -16,9 +16,13 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public class ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
 
-    public string Customer { get; set; }
-    public string CustomerUrl { get; set; }
-    public string DownloadUrl { get; set; }
+    /*==========================================================================================================================
+    | RELATIONSHIP: APPLICATIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="ExampleApplicationTopicViewModel"
+    ///   /> is associated with.
+    /// </summary>
     public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
 
   } // Class

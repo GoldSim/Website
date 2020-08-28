@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.StaticFiles;
@@ -14,9 +15,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.Net.Http.Headers;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
+
+using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
 namespace GoldSim.Web {
 
@@ -82,6 +84,8 @@ namespace GoldSim.Web {
       })
       .AddOpenIdConnect(options => {
         Configuration.GetSection("OpenIdConnect").Bind(options);
+        options.CorrelationCookie.SameSite = SameSiteMode.None;
+        options.SaveTokens = true;
         options.TokenValidationParameters = new TokenValidationParameters {
           NameClaimType = "name",
           ValidIssuers = new[] {
@@ -180,50 +184,46 @@ namespace GoldSim.Web {
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
       app.UseEndpoints(endpoints => {
-        endpoints.MapTopicEditorRoute().RequireAuthorization();
+
         endpoints.MapAreaControllerRoute(
-          name: "Payments",
-          areaName: "Payments",
-          pattern: "Web/Purchase/PayInvoice/",
-          defaults: new { controller = "Payments", action = "Index", path = "Web/Purchase/PayInvoice" }
+          name                  : "Payments",
+          areaName              : "Payments",
+          pattern               : "Web/Purchase/PayInvoice/",
+          defaults              : new {
+            controller          = "Payments",
+            action              = "Index",
+            path                = "Web/Purchase/PayInvoice"
+          }
         );
+
         endpoints.MapAreaControllerRoute(
-          name: "Administration",
-          areaName: "Administration",
-          pattern: "Administration/{controller=Licenses}/{action=Index}/{id?}"
-        ).RequireAuthorization();
-        endpoints.MapAreaControllerRoute(
-          name: "Courses",
-          areaName: "Courses",
-          pattern: "Courses/{**path}",
-          defaults: new { controller = "Courses", action = "Index", rootTopic = "Courses" }
+          name                  : "Administration",
+          areaName              : "Administration",
+          pattern               : "Administration/{controller=Invoices}/{action=Index}/{id?}"
         );
-        endpoints.MapAreaControllerRoute(
-          name: "Forms",
-          areaName: "Forms",
-          pattern: "Forms/{action}",
-          defaults: new { controller = "Forms" }
-        );
-        endpoints.MapAreaControllerRoute(
-          name: "Forms",
-          areaName: "Forms",
-          pattern: "Forms/{**path}",
-          defaults: new { controller = "Forms", action = "Index", rootTopic = "Forms" }
-        );
+
         endpoints.MapControllerRoute(
-          name: "default",
-          pattern: "{controller}/{action=Index}/"
+          name                  : "LegacyRedirect",
+          pattern               : "Page/{pageId}",
+          defaults              : new {
+            controller          = "LegacyRedirect",
+            action              = "Redirect"
+          }
         );
-        endpoints.MapTopicRoute("Web");
-        endpoints.MapTopicRoute("Error", "Error");
-        endpoints.MapTopicRedirect();
-        endpoints.MapControllerRoute(
-          name: "LegacyRedirect",
-          pattern: "Page/{pageId}",
-          defaults: new { controller = "LegacyRedirect", action = "Redirect" }
-        );
+
+        endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
+
+        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
+        endpoints.MapImplicitAreaControllerRoute();             // {area:exists}/{action=Index}
+        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
+        endpoints.MapDefaultAreaControllerRoute();              // {area:exists}/{controller}/{action=Index}/{id?}
+
+        endpoints.MapTopicRoute("Web");                         // Web/{**path}
+        endpoints.MapTopicRedirect();                           // Topic/{topicId}
         endpoints.MapControllers();
+
       });
+
     }
 
   } //Class
