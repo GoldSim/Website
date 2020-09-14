@@ -41,7 +41,6 @@ namespace GoldSim.Web {
       Add(typeof(ApplicationContainerTopicViewModel));
       Add(typeof(ApplicationIndexTopicViewModel));
       Add(typeof(ApplicationPageTopicViewModel));
-      Add(typeof(DocumentPointerTopicViewModel));
       Add(typeof(EmailTopicViewModel));
       Add(typeof(ExampleApplicationTopicViewModel));
       Add(typeof(ExampleIndexTopicViewModel));
@@ -53,6 +52,7 @@ namespace GoldSim.Web {
       Add(typeof(PaymentsTopicViewModel));
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
+      Add(typeof(WhitePaperListTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Add content item view models
@@ -60,6 +60,7 @@ namespace GoldSim.Web {
       Add(typeof(FaqItemTopicViewModel));
       Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
+      Add(typeof(WhitePaperTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Add courseware specific view models
