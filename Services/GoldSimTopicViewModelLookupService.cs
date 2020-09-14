@@ -41,7 +41,6 @@ namespace GoldSim.Web {
       Add(typeof(ApplicationContainerTopicViewModel));
       Add(typeof(ApplicationIndexTopicViewModel));
       Add(typeof(ApplicationPageTopicViewModel));
-      Add(typeof(DocumentPointerTopicViewModel));
       Add(typeof(EmailTopicViewModel));
       Add(typeof(ExampleApplicationTopicViewModel));
       Add(typeof(ExampleIndexTopicViewModel));
