@@ -233,6 +233,21 @@ namespace GoldSim.Web {
       var viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Establish dependencies
+      >-------------------------------------------------------------------------------------------------------------------------
+      | ### HACK JJC20200725: Typically, we use a singleton life cycle for the hierarchical navigation—and, indeed, we have one
+      | defined. During development, however, we'll be using a transient scoped dependency in order to avoid the caching
+      | implemented in the singleton version. Prior to deployment, we'll switch back to the singleton.
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var coursewareTopicMappingService = (IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>)null;
+      if (viewComponentType.Namespace.Contains("Courses", StringComparison.OrdinalIgnoreCase)) {
+        coursewareTopicMappingService = new HierarchicalTopicMappingService<TrackedNavigationTopicViewModel>(
+          _topicRepository,
+          _topicMappingService
+        );
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
       \-----------------------------------------------------------------------------------------------------------------------*/
 
@@ -263,13 +278,13 @@ namespace GoldSim.Web {
           => new FooterViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(CourseListViewComponent)
-          => new CourseListViewComponent(_topicRepository, _coursewareTopicMappingService),
+          => new CourseListViewComponent(_topicRepository, coursewareTopicMappingService),
 
         nameof(UnitListViewComponent)
-          => new UnitListViewComponent(_topicRepository, _coursewareTopicMappingService),
+          => new UnitListViewComponent(_topicRepository, coursewareTopicMappingService),
 
         nameof(LessonListViewComponent)
-          => new LessonListViewComponent(_topicRepository, _coursewareTopicMappingService),
+          => new LessonListViewComponent(_topicRepository, coursewareTopicMappingService),
 
         nameof(LessonPagingViewComponent)
           => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
@@ -291,7 +306,6 @@ namespace GoldSim.Web {
     ///   Responds to a request to release resources associated with a particular view component.
     /// </summary>
     public void Release(ViewComponentContext context, object viewComponent) { }
-
 
   } //Class
 } //Namespace
