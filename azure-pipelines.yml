@@ -52,7 +52,7 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'Azure Subscription'
     appType: 'webApp'
-    WebAppName: 'GoldSimWebStaging'
+    WebAppName: 'GoldSimWebTest'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
     enableCustomDeployment: true
     DeploymentType: 'webDeploy'
