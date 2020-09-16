@@ -69,14 +69,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="!Admin\**" />
-    <Compile Remove="Common\**" />
-    <Compile Remove="Forms\**" />
-    <Content Remove="wwwroot\Downloads\**" />
-    <Content Remove="wwwroot\Media\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
