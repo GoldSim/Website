@@ -69,57 +69,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="!Admin\**" />
-    <Compile Remove="Common\**" />
-    <Compile Remove="Forms\**" />
-    <Content Remove="wwwroot\Downloads\**" />
-    <Content Remove="wwwroot\Media\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Downloads</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\eNews</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Help</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\KnowledgeBase</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Media</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Webinars</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Images\\Content</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Images\\Courses</AbsolutePath>
-    </MsDeploySkipRules>
-    <MsDeploySkipRules Include="CustomSkipFolder">
-      <ObjectName>dirPath</ObjectName>
-      <AbsolutePath>wwwroot\\Images\\Newsletter</AbsolutePath>
-    </MsDeploySkipRules>
   </ItemGroup>
 
   <Target Name="AfterBuild">
