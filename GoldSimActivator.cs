@@ -34,6 +34,7 @@ using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Repositories;
+using PostmarkDotNet;
 using SendGrid;
 
 namespace GoldSim.Web {
@@ -109,10 +110,14 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var sendGridApiKey        = _configuration.GetValue<string>("SendGrid:ApiKey");
-      var sendGridClient        = new SendGridClient(sendGridApiKey);
+      //var sendGridApiKey      = _configuration.GetValue<string>("SendGrid:ApiKey");
+      //var sendGridClient      = new SendGridClient(sendGridApiKey);
+      //_smtpService            = new SendGridSmtpService(sendGridClient);
 
-      _smtpService              = new SendGridSmtpService(sendGridClient);
+      var postmarkApiKey        = _configuration.GetValue<string>("Postmark:ApiKey");
+      var postmarkClient        = new PostmarkClient(postmarkApiKey);
+
+      _smtpService              = new PostmarkSmtpService(postmarkClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
