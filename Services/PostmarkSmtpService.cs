@@ -50,9 +50,16 @@ namespace GoldSim.Web.Services {
         To                      = String.Join(", ", mailMessage.To.Select(x => x.Address)),
         From                    = mailMessage.From.Address,
         Subject                 = mailMessage.Subject,
-        HtmlBody                = mailMessage.Body,
         TrackOpens              = true
       };
+
+      // Conditionally set body
+      if (mailMessage.IsBodyHtml) {
+        message.HtmlBody        = mailMessage.Body;
+      }
+      else {
+        message.TextBody        = mailMessage.Body;
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
