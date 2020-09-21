@@ -50,6 +50,7 @@
       document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString() + ';path=/';
 
       // Handle body spacing buffer
+      $('#CookiesNotice').addClass('hidden');
       $('body').removeClass('has-notice');
 
     });
