@@ -42,12 +42,6 @@ body {
   @include breakpoint(medium) {
     padding-bottom              : rem-calc(428);
   }
-  &.has-notice {
-    padding-top                 : rem-calc(60);
-    @include breakpoint(767px down) {
-      padding-top               : rem-calc(136);
-    }
-  }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -261,18 +255,8 @@ body {
 //----------------------------------------------------------------------------------------------
 // COOKIES NOTICE
 //----------------------------------------------------------------------------------------------
-#CookiesNotice.hidden {
-  position                      : absolute;
-  display                       : block;
-  top                           : rem-calc(-60);
-  @include breakpoint(767px down) {
-    top                         : rem-calc(-136);
-  }
-}
-
-body,
 #CookiesNotice {
-  transition                    : all 1.0s ease;
+  position                      : relative;
 }
 
 //----------------------------------------------------------------------------------------------

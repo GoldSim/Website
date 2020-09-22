@@ -35,12 +35,10 @@
      */
     var cookiesConsentMatch     = document.cookie.match(new RegExp('(^| )CookiesConsent=([^;]+)'));
     if (cookiesConsentMatch && cookiesConsentMatch[2] === 'Agreed') {
-      $('#CookiesNotice').hide();
-      $('body').removeClass('has-notice');
+      $('#CookiesNotice').slideUp(500);
     }
     else {
-      $('#CookiesNotice').removeClass('hidden');
-      $('body').addClass('has-notice');
+      $('#CookiesNotice').slideDown(500, 'linear');
     }
     $('#CookiesNoticeCloseButton').click(function () {
       var expiryDate            = new Date();
@@ -50,8 +48,7 @@
       document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString() + ';path=/';
 
       // Handle body spacing buffer
-      $('#CookiesNotice').addClass('hidden');
-      $('body').removeClass('has-notice');
+      $('#CookiesNotice').slideUp(500);
 
     });
 
