@@ -42,9 +42,6 @@
 
     });
 
-    // ### HACK KLT 20170807: Temporary workaround for stylesheet prototype
-    $('</section>').prependTo($('.panel.body section.panel.accordion'));
-
   });
 
 }(window, document, window.goldSimWeb = window.goldSimWeb || {}, jQuery));
