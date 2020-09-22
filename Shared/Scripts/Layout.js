@@ -18,16 +18,6 @@
   $(document).ready(function () {
 
     /**
-     * Establish variables
-     */
-    var
-      $window                   = $(window),
-      $siteHeader               = $('header.site.header'),
-      $screenSize               = $window.width(),
-      $primaryNavHeight         = ($('#PrimaryNavigation').length ? $('#PrimaryNavigation').height() : 0),
-      $paneFullHeight           = ($window.height() - $siteHeader.height() - $primaryNavHeight);
-
-    /**
      * Handles the cookie consent notice:
      *  - checks for cookie setting to determine whether to display the notice;
      *  - removes the body spacing buffer CSS class when closing the fixed (at top) notice / alert box;
