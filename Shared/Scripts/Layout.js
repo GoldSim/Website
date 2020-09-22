@@ -37,7 +37,7 @@
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
       document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString() + ';path=/';
 
-      // Handle body spacing buffer
+      // Hides notice
       $('#CookiesNotice').slideUp(500);
 
     });
