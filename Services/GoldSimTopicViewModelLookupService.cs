@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
 using GoldSim.Web.Courses.Models;
@@ -89,19 +88,9 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia viw models
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Replace(typeof(ContentListTopicViewModel));
-      Replace(typeof(NavigationTopicViewModel));
-      Replace(typeof(PageGroupTopicViewModel));
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Function: Replace
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      void Replace(Type type) {
-        if (Contains(type.Name)) {
-          Remove(type.Name);
-        }
-        Add(type);
-      }
+      AddOrReplace(typeof(ContentListTopicViewModel));
+      AddOrReplace(typeof(NavigationTopicViewModel));
+      AddOrReplace(typeof(PageGroupTopicViewModel));
 
     }
 
