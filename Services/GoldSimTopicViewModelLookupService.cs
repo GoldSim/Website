@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
 using GoldSim.Web.Courses.Models;
@@ -41,7 +40,6 @@ namespace GoldSim.Web {
       Add(typeof(ApplicationContainerTopicViewModel));
       Add(typeof(ApplicationIndexTopicViewModel));
       Add(typeof(ApplicationPageTopicViewModel));
-      Add(typeof(DocumentPointerTopicViewModel));
       Add(typeof(EmailTopicViewModel));
       Add(typeof(ExampleApplicationTopicViewModel));
       Add(typeof(ExampleIndexTopicViewModel));
@@ -53,6 +51,7 @@ namespace GoldSim.Web {
       Add(typeof(PaymentsTopicViewModel));
       Add(typeof(SearchTopicViewModel));
       Add(typeof(TechnicalPaperListTopicViewModel));
+      Add(typeof(WhitePaperListTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Add content item view models
@@ -60,6 +59,7 @@ namespace GoldSim.Web {
       Add(typeof(FaqItemTopicViewModel));
       Add(typeof(GlossaryItemTopicViewModel));
       Add(typeof(TechnicalPaperTopicViewModel));
+      Add(typeof(WhitePaperTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Add courseware specific view models
@@ -88,19 +88,9 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia viw models
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Replace(typeof(ContentListTopicViewModel));
-      Replace(typeof(NavigationTopicViewModel));
-      Replace(typeof(PageGroupTopicViewModel));
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Function: Replace
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      void Replace(Type type) {
-        if (Contains(type.Name)) {
-          Remove(type.Name);
-        }
-        Add(type);
-      }
+      AddOrReplace(typeof(ContentListTopicViewModel));
+      AddOrReplace(typeof(NavigationTopicViewModel));
+      AddOrReplace(typeof(PageGroupTopicViewModel));
 
     }
 

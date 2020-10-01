@@ -15,7 +15,6 @@ using GoldSim.Web.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
@@ -293,7 +292,7 @@ namespace GoldSim.Web.Forms.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       subject                   ??= "GoldSim.com/Forms: " + CurrentTopic.Key;
       recipient                 ??= "Software@GoldSim.com";
-      sender                    ??= "Website@GoldSim.com";
+      sender                    ??= "Software@GoldSim.com";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email

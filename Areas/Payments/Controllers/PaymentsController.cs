@@ -218,7 +218,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var notificationEmail     = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
