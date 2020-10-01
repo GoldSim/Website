@@ -27,12 +27,12 @@
     <PackageReference Include="Braintree" Version="5.0.0" />
     <PackageReference Include="EPPlus" Version="4.5.3.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
-    <PackageReference Include="OnTopic" Version="4.4.0" />
-    <PackageReference Include="OnTopic.ViewModels" Version="4.4.0" />
-    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.4.0" />
-    <PackageReference Include="OnTopic.Data.Caching" Version="4.4.0" />
-    <PackageReference Include="OnTopic.Data.Sql" Version="4.4.0" />
     <PackageReference Include="OnTopic.Editor.AspNetCore" Version="4.4.0" />
+    <PackageReference Include="OnTopic" Version="4.5.0" />
+    <PackageReference Include="OnTopic.ViewModels" Version="4.5.0" />
+    <PackageReference Include="OnTopic.AspNetCore.Mvc" Version="4.5.0" />
+    <PackageReference Include="OnTopic.Data.Caching" Version="4.5.0" />
+    <PackageReference Include="OnTopic.Data.Sql" Version="4.5.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Server.IISIntegration" Version="2.2.1" />
