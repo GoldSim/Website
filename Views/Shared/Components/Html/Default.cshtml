@@ -28,22 +28,24 @@
 ></textarea>
 
 <script type="text/javascript">
-  (function ($) {
+  window.addEventListener('DOMContentLoaded', function () {
+    (function ($) {
 
-    var textareaId              = '@Html.IdFor(m => m.Value)';
+      var textareaId              = '@Html.IdFor(m => m.Value)';
 
-    $('[id*="EditorModal"]').on('shown.bs.modal', function(e) {
-      $('.Modal [id*="@Html.IdFor(m => m.Value)"]').attr('id', '@Html.IdFor(m => m.Value)_Modal');
-      console.log('new id: ' + $('[id*="@Html.IdFor(m => m.Value)"]').attr('id'));
-      textareaId = '@Html.IdFor(m => m.Value)_Modal';
+      $('[id*="EditorModal"]').on('shown.bs.modal', function(e) {
+        $('.Modal [id*="@Html.IdFor(m => m.Value)"]').attr('id', '@Html.IdFor(m => m.Value)_Modal');
+        console.log('new id: ' + $('[id*="@Html.IdFor(m => m.Value)"]').attr('id'));
+        textareaId = '@Html.IdFor(m => m.Value)_Modal';
+        setEditorInstance(textareaId);
+        console.log(textareaId);
+        return;
+      });
+
       setEditorInstance(textareaId);
-      console.log(textareaId);
-      return;
-    });
 
-    setEditorInstance(textareaId);
-
-  })(jQuery);
+    })(jQuery);
+  });
 
   function setEditorInstance(textareaId) {
     CKEDITOR.replace(textareaId, {
@@ -52,6 +54,7 @@
       customConfig              : '/Shared/Scripts/Views/CkEditor/CustomConfig.js'
     });
   }
+
 </script>
 
 <!--
