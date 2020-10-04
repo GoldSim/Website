@@ -23,13 +23,6 @@
      *  - removes the body spacing buffer CSS class when closing the fixed (at top) notice / alert box;
      *  - sets a cookie to prevent the alert from being shown again.
      */
-    var cookiesConsentMatch     = document.cookie.match(new RegExp('(^| )CookiesConsent=([^;]+)'));
-    if (cookiesConsentMatch && cookiesConsentMatch[2] === 'Agreed') {
-      $('#CookiesNotice').slideUp(500);
-    }
-    else {
-      $('#CookiesNotice').slideDown(500, 'linear');
-    }
     $('#CookiesNoticeCloseButton').click(function () {
       var expiryDate            = new Date();
 
