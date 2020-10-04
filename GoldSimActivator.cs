@@ -262,6 +262,9 @@ namespace GoldSim.Web {
       //Handle GoldSim-specific view components
       return viewComponentType.Name switch {
 
+        nameof(CookiesNoticeViewComponent)
+          => new CookiesNoticeViewComponent(),
+
         nameof(MetadataLookupViewComponent)
           => new MetadataLookupViewComponent(_topicRepository),
 
