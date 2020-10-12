@@ -124,15 +124,16 @@
               @RenderSection("ShortPageTitleSection")
             }
 
-            @if (IsSectionDefined("PageLevelNavigationSection")) {
-              @RenderSection("PageLevelNavigationSection")
-            }
-            else {
-              <vc:page-level-navigation />
-            }
-
           </section>
           <!-- /Page Header Area -->
+
+          @if (IsSectionDefined("PageLevelNavigationSection")) {
+            @RenderSection("PageLevelNavigationSection")
+          }
+          else {
+            <vc:page-level-navigation />
+          }
+
 
         }
 
