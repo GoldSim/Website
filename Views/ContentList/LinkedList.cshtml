@@ -14,6 +14,8 @@
       <!-- /Body Content -->
     }
 
+    <partial name="_TableOfContents" />
+
     @if (Model.Categories != null && Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="Group-@category.Key" class="content list">
@@ -34,6 +36,12 @@
 
   </section>
 
+}
+
+@section Scripts {
+  @if (Model.IsIndexed) {
+    <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.smoothScroll.min.js"></script>
+  }
 }
 
 @{

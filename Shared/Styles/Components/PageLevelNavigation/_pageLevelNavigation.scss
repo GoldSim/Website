@@ -11,21 +11,16 @@
 // LAYOUT
 //----------------------------------------------------------------------------------------------
 
-main {
+header.page-banner {
+  background-color              : $palette-grey-dark;
+  background-size               : cover;
+  background-position           : center center;
+  background-repeat             : no-repeat;
 
-  // Page Header Area
-  > section > header {
-    background-color            : $palette-grey-dark;
-    background-size             : cover;
-    background-position         : center center;
-    background-repeat           : no-repeat;
-
-    .grid-container {
-      position                  : relative;
-      min-height                : 200px;
-      max-height                : 200px;
-    }
-
+  .grid-container {
+    position                    : relative;
+    min-height                  : 200px;
+    max-height                  : 200px;
   }
 
 }
