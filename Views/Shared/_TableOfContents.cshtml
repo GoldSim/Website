@@ -2,8 +2,6 @@
 
 @if (Model.IsIndexed) {
   <aside class="contents">
-    <h1>Contents</h1>
-    <ul>
     <h1>@Model.IndexLabel</h1>
     <ul data-smooth-scroll data-offset="75">
       @if (Model.Categories != null && Model.Categories.Count > 0) {
