@@ -12,6 +12,12 @@
   @Html.Raw(Model.Body)
 </section>
 
+@section Scripts {
+  @if (Model.Body.Contains("data-smooth-scroll")) {
+    <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.smoothScroll.min.js"></script>
+  }
+}
+
 <!--
   Content Type: Page
   View Location: ~/Views/Page/Page.cshtml

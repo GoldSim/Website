@@ -38,6 +38,12 @@
 
 }
 
+@section Scripts {
+  @if (Model.IsIndexed) {
+    <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.smoothScroll.min.js"></script>
+  }
+}
+
 @{
 
   void WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {

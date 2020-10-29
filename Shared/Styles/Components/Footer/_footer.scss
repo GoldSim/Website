@@ -121,6 +121,9 @@
   a[href*="twitter"]:after {
     content                     : fa-content($fa-var-twitter);
   }
+  a[href*="youtube"]:after {
+    content                     : fa-content($fa-var-youtube);
+  }
   a[href*="blog"]:after {
     font-family                 : 'Font Awesome 5 Free';
     font-weight                 : 900;
