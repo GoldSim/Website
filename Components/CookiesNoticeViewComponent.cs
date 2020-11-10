@@ -1,63 +1,50 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
 | Client        GoldSim
-| Project       Website
+| Project       GoldSim Website
 \=============================================================================================================================*/
 using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using OnTopic.AspNetCore.Mvc.Controllers;
-using OnTopic.Mapping;
-using OnTopic.Repositories;
 
-namespace GoldSim.Web.Courses.Controllers {
+namespace GoldSim.Web.Courses.Components {
 
   /*============================================================================================================================
-  | CLASS: COURSES CONTROLLER
+  | CLASS: COOKIES NOTICE VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides common processing for GoldSim courseware.
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a cookie consent form, assuming the user hasn't already
+  ///   consented.
   /// </summary>
-  [Area("Courses")]
-  [Authorize]
-  public class CoursesController : TopicController {
+  public class CookiesNoticeViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of an <see cref="CoursesController"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="CourseListViewComponent"/> with necessary dependencies.
     /// </summary>
-    /// <returns>An <see cref="CoursesController"/> for loading OnTopic views.</returns>
-    public CoursesController(
-      ITopicRepository topicRepository,
-      ITopicMappingService topicMappingService
-    ) : base(
-      topicRepository,
-      topicMappingService
-    ) {}
+    public CookiesNoticeViewComponent() { }
 
     /*==========================================================================================================================
-    | GET: INDEX (VIEW TOPIC)
+    | METHOD: INVOKE (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    public async override Task<IActionResult> IndexAsync(string path) {
+    /// <summary>
+    ///   Provides the cookie consent notification for the current page, assuming the user hasn't already consented.
+    /// </summary>
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Handle redirect
+      | Get cookie
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (CurrentTopic.ContentType.Equals("Unit", StringComparison.OrdinalIgnoreCase)) {
-        return Redirect(CurrentTopic.Children.Where(t => t.IsVisible()).FirstOrDefault().GetWebPath());
-      }
+      HttpContext.Request.Cookies.TryGetValue("CookiesConsent", out var consentCookie);
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Call base logic
+      | Conditionally return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return await base.IndexAsync(path);
+      return String.IsNullOrWhiteSpace(consentCookie)? (IViewComponentResult) View() : Content("");
 
     }
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace

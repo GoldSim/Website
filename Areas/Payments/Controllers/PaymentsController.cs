@@ -146,8 +146,8 @@ namespace GoldSim.Web.Payments.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       // ### HACK JJC20200408: One might reasonably expect for the [Remote] model validation attribute to be validated as part
       // of ModelState.IsValid, but it doesn't appear to be. As a result, it needs to be revalidated here.
-      var invoice = GetInvoice(bindingModel.InvoiceNumber);
-      Double.TryParse(invoice.Attributes.GetValue("InvoiceAmount", "-1"), out var invoiceAmount);
+      var invoice               = GetInvoice(bindingModel.InvoiceNumber);
+      var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
       if (invoice == null) {
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
@@ -218,7 +218,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var notificationEmail     = new MailMessage(new MailAddress("admin@goldsim.com"), new MailAddress("admin@goldsim.com"));
+      var notificationEmail     = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
@@ -235,7 +235,7 @@ namespace GoldSim.Web.Payments.Controllers {
       emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
       emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
       emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ creditCard?.LastFour?? "Not Available");
-      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType?.ToString()?? "Not Available");
+      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType.ToString()?? "Not Available");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process successful result

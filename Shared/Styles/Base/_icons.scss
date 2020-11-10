@@ -57,3 +57,15 @@ a[href$=".xlsx"]:after {
   content                       : fa-content($fa-var-file-excel);
   color                         : rgb(32, 113, 68);
 }
+
+//----------------------------------------------------------------------------------------------
+// SITE REFERENCES
+//----------------------------------------------------------------------------------------------
+.youtube:before {
+  @include fa-icon;
+  font-family                   : 'Font Awesome 5 Brands';
+  font-weight                   : 400;
+  padding-right                 : rem-calc(2);
+  color                         : $palette-grey-light;
+  content                       : fa-content($fa-var-youtube);
+}

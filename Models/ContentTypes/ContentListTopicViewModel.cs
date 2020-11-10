@@ -21,7 +21,17 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a flag determining whether or not the content list should be indexed.
     /// </summary>
     /// <returns>True if the content list should be indexed; false otherwise.</returns>
-    public bool IsIndexed { get; set; } = false;
+    public bool IsIndexed { get; set; }
+
+    /*==========================================================================================================================
+    | INDEX LABEL
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Assuming <see cref="IsIndexed"/>, determines the label to display. Defaults to <i>Contents</i>.
+    /// </summary>
+    /// <returns>True if the content list should be indexed; false otherwise.</returns>
+    public string IndexLabel { get; set; } = "Contents";
+
 
   } // Class
 } // Namespace

@@ -15,7 +15,7 @@
     @Html.Raw(Model.Body)
     @if (Model.FieldCategories.Count > 0) {
       <h1>Categories</h1>
-      <ul>
+      <ul data-smooth-scroll data-offset="75">
         @foreach (var fieldCategory in Model.FieldCategories) {
           <li><a href="#@fieldCategory.Key">@fieldCategory.Title</a></li>
         }
@@ -32,6 +32,7 @@
 }
 
 @section Scripts {
+  <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.smoothScroll.min.js"></script>
   <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
   <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
 }

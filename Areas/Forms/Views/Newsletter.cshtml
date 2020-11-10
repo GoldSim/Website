@@ -5,6 +5,15 @@
   <fieldset>
     <div class="grid-x grid-margin-x">
       <partial name="_CoreContact" for="BindingModel" />
+      @Html.EditorFor(model => model.BindingModel.Country, "Select")
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend>Subscribe to…</legend>
+    <div class="grid-x grid-margin-x">
+      @Html.EditorFor(model => model.BindingModel.IncludeNewsletter, new { cssClass = "medium-12" })
+      @Html.EditorFor(model => model.BindingModel.IncludeWebinar, new { cssClass = "medium-12" })
     </div>
   </fieldset>
 

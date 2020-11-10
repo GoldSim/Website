@@ -81,36 +81,7 @@
 
 }
 
-@{
-
-  void downloadButton(string downloadUrl) {
-
-    string label                = "Download";
-    string downloadName         = "";
-
-    if (!String.IsNullOrEmpty(downloadUrl)) {
-      string url                = downloadUrl;
-      if (url.IndexOf("/") >= 0) {
-        url                     = url.Substring(url.LastIndexOf("/") + 1);
-      }
-      if (url.ToLower().EndsWith(".pdf")) {
-        url                     = url.Substring(0, url.ToLower().IndexOf(".pdf"));
-      }
-      downloadName              = url;
-    }
-
-    if (!downloadUrl.EndsWith(".pdf", StringComparison.CurrentCultureIgnoreCase)) {
-      label = "Learn More";
-    }
-
-    <a href="@downloadUrl" rel="noopener" target="_blank" class="button large" onclick="trackEvent(this, 'Case Studies' , 'Download' , 'Case Studies: @downloadName');return false;">
-      @label
-    </a>
-
-  }
-
-}
 <!--
   Content Type: Case Study
-  View Location: ~/Views/CaseStudy/CaseStudy.cshtml
+  View Location: ~/Views/ContentTypes/ExampleApplication.cshtml
 -->

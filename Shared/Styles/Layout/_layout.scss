@@ -42,12 +42,6 @@ body {
   @include breakpoint(medium) {
     padding-bottom              : rem-calc(428);
   }
-  &.has-notice {
-    padding-top                 : rem-calc(60);
-    @include breakpoint(767px down) {
-      padding-top               : rem-calc(136);
-    }
-  }
 }
 
 //----------------------------------------------------------------------------------------------
@@ -121,77 +115,10 @@ body {
   }
 }
 
-// Header / Navigation Animation Settings
-@mixin slide-down-animation ($position: fixed, $top0: -75px, $top100: 0) {
-  0% {
-    position                    : $position;
-    top                         : $top0;
-  }
-  100% {
-    top                         : $top100;
-  }
-}
-@-webkit-keyframes slideDown {
-  @include slide-down-animation;
-}
-@-moz-keyframes slideDown {
-  @include slide-down-animation;
-}
-@-o-keyframes slideDown {
-  @include slide-down-animation;
-}
-@keyframes slideDown {
-  @include slide-down-animation;
-}
-@mixin slide-up-animation ($top0: 0, $top100: -75px) {
-  0% {
-    top                         : $top0;
-  }
-  100% {
-    top                         : $top100;
-  }
-}
-@-webkit-keyframes slideUp {
-  @include slide-up-animation;
-}
-@-moz-keyframes slideUp {
-  @include slide-up-animation;
-}
-@-o-keyframes slideUp {
-  @include slide-up-animation;
-}
-@keyframes slideUp {
-  @include slide-up-animation;
-}
-
-// Header / Navigation Animation Supporting Styles
-#SiteHeader,
-#PrimaryNavigation {
-  &.animated,
-  &.headroom {
-    will-change                 : transform, top, position;
-    transition                  : position 600ms linear, top 600ms linear, transform 600ms linear;
-    animation-duration          : 600ms;
-  }
-  &.animated-pinned {
-    animation-name              : slideDown;
-    z-index                     : 99;
-    transform                   : translateY(0);
-    position                    : fixed;
-    top                         : 0;
-    &.headroom--top {
-      position                  : relative;
-      top                       : 1px;
-    }
-  }
-  &.animated-unpinned {
-    animation-name              : slideUp;
-    position                    : relative;
-  }
-}
 #PrimaryNavigation {
   z-index                       : 99;
-  position                      : relative;
+  position                      : sticky;
+  top                           : 0;
   right                         : 0;
   left                          : 0;
 }
@@ -256,6 +183,13 @@ body {
       }
     }
   }
+}
+
+//----------------------------------------------------------------------------------------------
+// COOKIES NOTICE
+//----------------------------------------------------------------------------------------------
+#CookiesNotice {
+  position                      : relative;
 }
 
 //----------------------------------------------------------------------------------------------
