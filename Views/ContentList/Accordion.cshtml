@@ -29,7 +29,7 @@
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="@category.Key">
           <h2>@category.Title</h2>
-          <ul data-accordion data-allow-all-closed="true" data-deep-link="true">
+          <ul data-accordion data-allow-all-closed="true" data-deep-link="true" data-deep-link-smudge="true">
             @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
               WriteContentItem(contentItem, viewType);
             }
@@ -51,7 +51,7 @@
 
 @section Scripts {
   <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
-  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js" asp-append-version="true"></script>
 }
 
 @{
