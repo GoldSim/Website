@@ -2,7 +2,7 @@
 
 <!-- Related Technical Papers -->
 <section class="panel accordion embedded">
-  <ul class="accordion embedded" data-accordion data-allow-all-closed="true" data-deep-link="true" data-deep-link-smudge="true">
+  <ul class="accordion embedded" data-accordion data-allow-all-closed="true" data-deep-link="true">
     @foreach (var paper in Model) {
       <li class="accordion-item" data-accordion-item>
         <a class="accordion-title" href="#@paper.Key">@Html.Raw(paper.Title)</a>
