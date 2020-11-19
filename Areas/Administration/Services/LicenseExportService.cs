@@ -65,7 +65,7 @@ namespace GoldSim.Web.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
-        var licenseRequestData = GetLicenseRequestData(licenseRequests);
+        using var licenseRequestData = GetLicenseRequestData(licenseRequests);
         worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
 
         /*----------------------------------------------------------------------------------------------------------------------

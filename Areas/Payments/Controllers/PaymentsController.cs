@@ -218,7 +218,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var notificationEmail     = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
+      using var mail            = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
@@ -241,17 +241,17 @@ namespace GoldSim.Web.Payments.Controllers {
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
-        notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+        mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
-        notificationEmail.Body = emailBody.ToString();
-        await _smtpService.SendAsync(notificationEmail);
+        mail.Body = emailBody.ToString();
+        await _smtpService.SendAsync(mail);
         return;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process unsuccessful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
+      mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
 
       if (transaction != null) {
         var status = transaction.ProcessorResponseText;
@@ -292,8 +292,8 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      notificationEmail.Body = emailBody.ToString();
-      await _smtpService.SendAsync(notificationEmail);
+      mail.Body = emailBody.ToString();
+      await _smtpService.SendAsync(mail);
 
     }
 

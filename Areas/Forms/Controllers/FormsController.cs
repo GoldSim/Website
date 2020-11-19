@@ -297,7 +297,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
         Subject                 = subject,
         Body                    = GetEmailBody(),
         IsBodyHtml              = true
@@ -329,14 +329,14 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble body
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var client                = new HttpClient();
+      using var client          = new HttpClient();
       var response              = await client.GetAsync(url);
       var pageContents          = await response.Content.ReadAsStringAsync();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var mail                  = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
         Subject                 = subject,
         Body                    = pageContents,
         IsBodyHtml              = true
