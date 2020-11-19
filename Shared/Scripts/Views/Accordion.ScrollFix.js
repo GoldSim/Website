@@ -28,6 +28,7 @@
     var _previousAccordionItem  = null;
     var _previousHeight         = 0;
     var _previousTop            = window.innerHeight;
+    var _headerHeight           = $("#PrimaryNavigation").height();
 
     /*--------------------------------------------------------------------------------------------------------------------------
     | Initialize variables on open
@@ -53,10 +54,10 @@
       if (_previousAccordion && _previousTop < top && _previousAccordion.has(accordionItem).length) {
         offset                  = _previousHeight;
       }
-      $('html,body').animate({ scrollTop: top - offset }, 'fast');
+      $('html,body').animate({ scrollTop: top - offset - _headerHeight}, 'fast');
       setTimeout(
         function () {
-          $('html,body').animate({ scrollTop: top - offset }, 'fast');
+          $('html,body').animate({ scrollTop: top - offset - _headerHeight}, 'fast');
         },
         200
       );
