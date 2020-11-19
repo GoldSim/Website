@@ -70,7 +70,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
     [Relationship(RelationshipType.Relationship)]
-    public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; set; }
+    public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: EXAMPLE APPLICATIONS
@@ -78,8 +78,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
-    public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; set; }
+    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: WHITE PAPERS
@@ -87,8 +87,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
-    public TopicViewModelCollection<WhitePaperTopicViewModel> WhitePapers { get; set; }
+    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<WhitePaperTopicViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: TECHNICAL PAPERS
@@ -96,8 +96,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="TechnicalPaperTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type=RelationshipType.IncomingRelationship)]
-    public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; set; }
+    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
 
   } // Class
 } // Namespace

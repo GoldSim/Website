@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="WhitePaperTopicViewModel"/>
     ///   is associated with.
     /// </summary>
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
+    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; } = new();
 
   } // Class
 } // Namespace

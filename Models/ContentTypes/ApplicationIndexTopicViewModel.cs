@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   applications by.
     /// </summary>
     [Metadata("ApplicationCategories")]
-    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; set; }
+    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -71,7 +71,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
+    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
