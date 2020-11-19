@@ -5,6 +5,7 @@
     <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <ApplicationInsightsResourceId>/subscriptions/10c18df6-85c7-4893-919d-c0f008a74af9/resourcegroups/GoldSimWeb/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/10c18df6-85c7-4893-919d-c0f008a74af9/resourcegroups/GoldSimWeb/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
