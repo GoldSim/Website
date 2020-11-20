@@ -13,6 +13,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OnTopic;
 using OnTopic.Attributes;
+using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Administration.Services {
 
@@ -53,6 +54,14 @@ namespace GoldSim.Web.Administration.Services {
     /// <returns>The memory stream representing the spreadsheet.</returns>
     public MemoryStream Export(IEnumerable<Topic> licenseRequests) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(licenseRequests, nameof(licenseRequests));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Assemble Excel
+      \-----------------------------------------------------------------------------------------------------------------------*/
       MemoryStream memoryStream;
 
       using (var excelPackage = new ExcelPackage()) {

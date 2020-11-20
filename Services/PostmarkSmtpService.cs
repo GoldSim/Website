@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using OnTopic.Internal.Diagnostics;
 using PostmarkDotNet;
 
 namespace GoldSim.Web.Services {
@@ -42,6 +43,11 @@ namespace GoldSim.Web.Services {
     ///   Sends the <see cref="MailMessage"/> via SendGrid.
     /// </summary>
     public async Task SendAsync(MailMessage mailMessage) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(mailMessage, nameof(mailMessage));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email

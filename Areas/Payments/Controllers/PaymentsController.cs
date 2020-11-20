@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Attributes;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
@@ -147,6 +148,7 @@ namespace GoldSim.Web.Payments.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       // ### HACK JJC20200408: One might reasonably expect for the [Remote] model validation attribute to be validated as part
       // of ModelState.IsValid, but it doesn't appear to be. As a result, it needs to be revalidated here.
+      Contract.Requires(bindingModel, nameof(bindingModel));
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
       if (invoice == null) {

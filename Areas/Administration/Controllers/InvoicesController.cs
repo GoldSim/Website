@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.Attributes;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
@@ -106,6 +107,7 @@ namespace GoldSim.Web.Administration.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
       \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(invoice, nameof(invoice));
       if (!ModelState.IsValid) {
         var viewModel = await CreateEditViewModel(invoice).ConfigureAwait(true);
         return View(viewModel);
@@ -169,6 +171,11 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     [HttpPost, HttpGet]
     public IActionResult Delete(int[] topics) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(topics, nameof(topics));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Delete topics
