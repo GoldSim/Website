@@ -28,11 +28,11 @@
       </div>
     </fieldset>
 
-    @if (Model.Invoice?.Id != null) {
+    @if (Model.Invoice?.Id is not null) {
       <fieldset>
         <div class="grid-x grid-margin-x">
           <div class="cell form-field">
-            <input name="Invoice.DatePaid" id="DatePaid" type="checkbox" checked=@(Model.Invoice?.DatePaid != null) value="@(Model.Invoice?.DatePaid?? DateTime.Now)" />
+            <input name="Invoice.DatePaid" id="DatePaid" type="checkbox" checked=@(Model.Invoice?.DatePaid is not null) value="@(Model.Invoice?.DatePaid?? DateTime.Now)" />
             <label for="DatePaid">The invoice has been paid</label>
           </div>
         </div>
@@ -45,7 +45,7 @@
       <div class="medium-6 cell text-left">
         <input type="submit" value="Submit" class="submit button large primary" />
       </div>
-      @if (Model.Invoice?.Id != null) {
+      @if (Model.Invoice?.Id is not null) {
         <div class="medium-6 cell text-right">
           <a href=@Url.Action("Delete", new { topics = Model.Invoice?.Id }) style="margin-top: 2rem" onclick="if(!confirmDelete()) return false;" class="submit button large secondary">Delete</a>
         </div>

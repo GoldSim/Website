@@ -107,7 +107,7 @@ namespace GoldSim.Web.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate metadata
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (metadataAttribute == null) {
+      if (metadataAttribute is null) {
         throw new InvalidOperationException(
           $"The {aspFor.Metadata.PropertyName} must be decorated with the [Metadata()] attribute."
         );

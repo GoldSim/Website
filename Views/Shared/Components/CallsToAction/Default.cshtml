@@ -16,7 +16,7 @@
 
   void callsToActionContents() {
 
-    string currentNavigationRoot  = (Model.NavigationRoot != null ? Model.NavigationRoot.Key.ToLower() : "");
+    string currentNavigationRoot  = (Model.NavigationRoot is not null ? Model.NavigationRoot.Key.ToLower() : "");
     string callToActionType       = "general";
     if (currentNavigationRoot.Equals("purchase")) {
       callToActionType            = "purchase";
