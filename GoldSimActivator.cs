@@ -105,7 +105,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | INITIALIZE EDITOR COMPOSER
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _standardEditorComposer   = new StandardEditorComposer(_topicRepository, _webHostEnvironment);
+      _standardEditorComposer   = new(_topicRepository, _webHostEnvironment);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT

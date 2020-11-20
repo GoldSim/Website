@@ -18,17 +18,6 @@ namespace GoldSim.Web.Forms.Models {
   public class PurchaseFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="PurchaseFormBindingModel"/> object.
-    /// </summary>
-    public PurchaseFormBindingModel() : base() {
-    //UserContact = new ExtendedContact();
-    //AccountsPayableContact = new ExtendedContact();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: USER (CONTACT)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

@@ -14,7 +14,6 @@ using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Editor.AspNetCore;
 
@@ -86,7 +85,7 @@ namespace GoldSim.Web {
         Configuration.GetSection("OpenIdConnect").Bind(options);
         options.CorrelationCookie.SameSite = SameSiteMode.None;
         options.SaveTokens = true;
-        options.TokenValidationParameters = new TokenValidationParameters {
+        options.TokenValidationParameters = new() {
           NameClaimType = "name",
           ValidIssuers = new[] {
             //Ignia users

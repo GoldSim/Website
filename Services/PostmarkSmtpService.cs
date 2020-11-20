@@ -52,7 +52,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      PostmarkMessage message   = new PostmarkMessage {
+      var message               = new PostmarkMessage {
         To                      = String.Join(", ", mailMessage.To.Select(x => x.Address)),
         From                    = mailMessage.From.Address,
         Subject                 = mailMessage.Subject,

@@ -40,7 +40,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   Provides a list of nested <see cref="NavigationTopicViewModel"/> topics.
     /// </summary>
-    public virtual Collection<NavigationTopicViewModel> Children { get; } = new Collection<NavigationTopicViewModel>();
+    public virtual Collection<NavigationTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | IS SELECTED?

@@ -69,7 +69,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     private async Task<EditInvoiceViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
       await CreateEditViewModel(
-        invoiceNumber == null? null : await GetInvoiceViewModel(invoiceNumber?? 0).ConfigureAwait(true)
+        invoiceNumber is null? null : await GetInvoiceViewModel(invoiceNumber?? 0).ConfigureAwait(true)
       ).ConfigureAwait(true);
 
     private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
@@ -140,7 +140,7 @@ namespace GoldSim.Web.Administration.Controllers {
       var parentTopic           = _topicRepository.Load(_invoiceRoot);
       var topic                 = _topicRepository.Load($"{_invoiceRoot}:{invoice.Key?? invoice.InvoiceNumber}");
 
-      if (topic == null) {
+      if (topic is null) {
         topic                   = TopicFactory.Create(
           invoice.InvoiceNumber.ToString(CultureInfo.InvariantCulture),
           "Invoice",
@@ -218,10 +218,10 @@ namespace GoldSim.Web.Administration.Controllers {
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null
     ) {
-      if (invoiceNumber == null) return Json(data: true);
+      if (invoiceNumber is null) return Json(data: true);
       if (invoiceNumber == key) return Json(data: true);
       var existingInvoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
-      if (existingInvoice != null) {
+      if (existingInvoice is not null) {
         var invoiceAmount = existingInvoice.Attributes.GetValue("InvoiceAmount");
         return Json($"The invoice number {invoiceNumber} has already been entered, with the amount {invoiceAmount}");
       }
