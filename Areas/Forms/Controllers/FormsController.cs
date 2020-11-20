@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Mail;
@@ -397,7 +398,7 @@ namespace GoldSim.Web.Forms.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       bindingModel.ContentType  = bindingModel.GetType().Name.Replace("BindingModel", "");
-      bindingModel.Key          = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss");
+      bindingModel.Key          = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
@@ -447,7 +448,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel"))) {
+      foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel", StringComparison.OrdinalIgnoreCase))) {
         var fieldName = field.Replace("_", ".").Replace("BindingModel.", "");
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
         if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
@@ -474,7 +475,7 @@ namespace GoldSim.Web.Forms.Controllers {
       if (String.IsNullOrEmpty(input)) return input;
 
       var sb = new StringBuilder();
-      sb.Append(Char.ToUpper(input[0]));
+      sb.Append(Char.ToUpper(input[0], CultureInfo.InvariantCulture));
 
       for(var i=1; i < input.Length; i++) {
         if(Char.IsUpper(input[i]) || Char.IsDigit(input[i])) sb.Append(' ');

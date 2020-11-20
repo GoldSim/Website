@@ -3,6 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System.Globalization;
 using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -78,7 +79,7 @@ namespace GoldSim.Web.Controllers {
     ///   Triggers a runtime exception for the purposes of testing error responses.
     /// </summary>
     [HttpGet]
-    public IActionResult Trigger(int divisor = 0) => Content((5/divisor).ToString());
+    public IActionResult Trigger(int divisor = 0) => Content((5/divisor).ToString(CultureInfo.InvariantCulture));
 
   } // Class
 } // Namespace

@@ -49,7 +49,8 @@ namespace GoldSim.Web.Models {
     ///   A simple helper function to determine if the current <see cref="NavigationTopicViewModel"/> is part of the currently
     ///   selected topic's path.
     /// </summary>
-    public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
+    public bool IsSelected(string uniqueKey) =>
+      $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase) ?? false;
 
   } // Class
 } // Namespace

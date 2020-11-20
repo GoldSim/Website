@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -175,13 +176,13 @@ namespace GoldSim.Web.Payments.Controllers {
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var request               = new TransactionRequest {
         Amount                  = (decimal)bindingModel.InvoiceAmount,
-        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(),
+        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture),
         PaymentMethodNonce      = bindingModel.PaymentMethodNonce,
         CustomFields            = new Dictionary<string, string> {
           { "cardholder"        , bindingModel.CardholderName },
           { "email"             , bindingModel.Email },
           { "company"           , bindingModel.Organization },
-          { "invoice"           , bindingModel.InvoiceNumber.ToString() }
+          { "invoice"           , bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture) }
         },
         Options                 = new TransactionOptionsRequest {
           SubmitForSettlement   = true
@@ -245,7 +246,10 @@ namespace GoldSim.Web.Payments.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
         mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
-        emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
+        emailBody.Insert(
+          0,
+          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ")
+        );
         mail.Body = emailBody.ToString();
         await _smtpService.SendAsync(mail).ConfigureAwait(true);
         return;
@@ -263,7 +267,7 @@ namespace GoldSim.Web.Payments.Controllers {
           status = transaction.Status.ToString();
         }
 
-        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " "));
       }
       else {
         emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");

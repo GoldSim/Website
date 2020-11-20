@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using GoldSim.Web.Administration.Models.Invoices;
 using Microsoft.AspNetCore.Authorization;
@@ -140,17 +141,21 @@ namespace GoldSim.Web.Administration.Controllers {
       var topic                 = _topicRepository.Load($"{_invoiceRoot}:{invoice.Key?? invoice.InvoiceNumber}");
 
       if (topic == null) {
-        topic                   = TopicFactory.Create(invoice.InvoiceNumber.ToString(), "Invoice", parentTopic);
+        topic                   = TopicFactory.Create(
+          invoice.InvoiceNumber.ToString(CultureInfo.InvariantCulture),
+          "Invoice",
+          parentTopic
+        );
       }
       else if (invoice.Key != invoice.InvoiceNumber) {
-        topic.Key = invoice.InvoiceNumber.ToString();
+        topic.Key = invoice.InvoiceNumber.ToString(CultureInfo.InvariantCulture);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set attributes
       \-----------------------------------------------------------------------------------------------------------------------*/
       topic.Attributes.SetInteger("InvoiceNumber", invoice.InvoiceNumber);
-      topic.Attributes.SetValue("InvoiceAmount", invoice.InvoiceAmount.ToString());
+      topic.Attributes.SetValue("InvoiceAmount", invoice.InvoiceAmount.ToString(CultureInfo.InvariantCulture));
       topic.Attributes.SetValue("DatePaid", invoice.DatePaid.ToString());
       topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity.Name?? "System");
       topic.LastModified = DateTime.Now;

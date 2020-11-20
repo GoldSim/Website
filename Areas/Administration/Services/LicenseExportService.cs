@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
@@ -221,7 +222,7 @@ namespace GoldSim.Web.Administration.Services {
           licenseRequest.Attributes.GetValue("LastName", ""),
           licenseRequest.Attributes.GetValue("Organization", ""),
           requestType,
-          "Config_" + productOptionConfiguration.ToString(),
+          "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
           "TRUE",
           licenseRequest.Attributes.GetValue("Department", ""),
           address,
