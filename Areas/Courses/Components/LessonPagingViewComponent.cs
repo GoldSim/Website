@@ -74,7 +74,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <returns>The Topic associated with the current request.</returns>
     protected Topic CurrentTopic {
       get {
-        if (_currentTopic == null) {
+        if (_currentTopic is null) {
           _currentTopic = TopicRepository.Load(RouteData);
         }
         return _currentTopic;
@@ -99,9 +99,9 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Fallback to adjacent unit
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (adjacentTopic == null) {
+      if (adjacentTopic is null) {
         var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent.Parent, CurrentTopic.Parent, moveNext);
-        if (adjacentUnit != null) {
+        if (adjacentUnit is not null) {
           adjacentTopic         = moveNext? adjacentUnit.Children.FirstOrDefault() : adjacentUnit.Children.LastOrDefault();
           label                 = moveNext? "Next Unit" : "Previous Unit";
         }
@@ -110,7 +110,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Fallback to course
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (adjacentTopic == null) {
+      if (adjacentTopic is null) {
         adjacentTopic           = CurrentTopic.Parent.Parent;
         label                   = moveNext? "Finish Course" : "Return to Syllabus";
       }

@@ -54,7 +54,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Provide error handling
       \------------------------------------------------------------------------------------------------------------------------*/
-      if (topic == null) {
+      if (topic is null) {
         return NotFound("Invalid PageID.");
       }
 
@@ -74,7 +74,7 @@ namespace GoldSim.Web.Controllers {
       }
       foreach (var topic in rootTopic.Children) {
         var returnTopic = FindTopicWithAttribute(topic, attributeName, attributeValue);
-        if (returnTopic != null) return returnTopic;
+        if (returnTopic is not null) return returnTopic;
       }
       return null;
     }

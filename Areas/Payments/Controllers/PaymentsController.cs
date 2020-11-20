@@ -109,7 +109,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Pass client token to model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (viewModel != null) {
+      if (viewModel is not null) {
         viewModel.ClientToken = clientToken;
       }
 
@@ -151,7 +151,7 @@ namespace GoldSim.Web.Payments.Controllers {
       Contract.Requires(bindingModel, nameof(bindingModel));
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
-      if (invoice == null) {
+      if (invoice is null) {
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
       else if (invoiceAmount != bindingModel.InvoiceAmount) {
@@ -243,7 +243,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
+      if (result.IsSuccess() && transaction is not null && TransactionSuccessStatuses.Contains(transaction.Status)) {
         mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
@@ -259,7 +259,7 @@ namespace GoldSim.Web.Payments.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
 
-      if (transaction != null) {
+      if (transaction is not null) {
         var status = transaction.ProcessorResponseText;
 
         if (String.IsNullOrEmpty(status)) {
@@ -318,9 +318,9 @@ namespace GoldSim.Web.Payments.Controllers {
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
-      if (invoiceNumber == null) return Json(data: true);
+      if (invoiceNumber is null) return Json(data: true);
       var existingInvoice = GetInvoice(invoiceNumber);
-      if (existingInvoice == null) {
+      if (existingInvoice is null) {
         return Json(
           $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
           $"If it is confirmed to be correct, contact GoldSim."
@@ -349,7 +349,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ) {
       var existingInvoice = GetInvoice(invoiceNumber);
       var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
-      if (existingInvoice == null || existingAmount == null) return Json(data: true);
+      if (existingInvoice is null || existingAmount is null) return Json(data: true);
       if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
         return Json(
           $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
@@ -366,7 +366,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   Given an invoice number, retrieves a corresponding topic.
     /// </summary>
     private Topic GetInvoice(int? invoiceNumber = null) {
-      if (invoiceNumber == null) return null;
+      if (invoiceNumber is null) return null;
       var invoice = TopicRepository.Load($"Administration:Invoices:{invoiceNumber}");
       return invoice;
     }

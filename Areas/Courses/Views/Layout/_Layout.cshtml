@@ -76,7 +76,7 @@
     }
     var pageTopic = topic as PageTopicViewModel;
     var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
-    if (topic.Parent?.Parent != null) {
+    if (topic.Parent?.Parent is not null) {
       output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
     }
     return output;

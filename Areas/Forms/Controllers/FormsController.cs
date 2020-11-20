@@ -109,7 +109,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Optionally send customer receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (viewModel.CustomerEmail != null && bindingModel is CoreContact coreContact) {
+      if (viewModel.CustomerEmail is not null && bindingModel is CoreContact coreContact) {
         await SendCustomerReceipt(viewModel.CustomerEmail, coreContact.Email, viewModel.EmailSender).ConfigureAwait(true);
       }
 
@@ -282,7 +282,7 @@ namespace GoldSim.Web.Forms.Controllers {
       if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
       var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
-      if (invalidDomain != null) {
+      if (invalidDomain is not null) {
         return Json($"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.");
       }
       return Json(data: true);
@@ -436,7 +436,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Check cache
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (_formValues != null) {
+      if (_formValues is not null) {
         return _formValues;
       }
 
