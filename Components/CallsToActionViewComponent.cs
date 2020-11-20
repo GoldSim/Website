@@ -68,7 +68,7 @@ namespace GoldSim.Web.Components {
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic),
+        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
         CurrentKey = CurrentTopic?.GetUniqueKey()
       };
 

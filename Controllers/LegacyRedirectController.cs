@@ -3,6 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.Repositories;
@@ -48,7 +49,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      var topic = FindTopicWithAttribute(_topicRepository.Load(), "PageID", pageId.ToString());
+      var topic = FindTopicWithAttribute(_topicRepository.Load(), "PageID", pageId.ToString(CultureInfo.InvariantCulture));
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Provide error handling

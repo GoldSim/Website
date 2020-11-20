@@ -38,7 +38,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the URL for the publication or journal that the technical paper was originally published in.
     /// </summary>
-    public string PublicationUrl { get; set; }
+    public Uri PublicationUrl { get; set; }
 
     /*==========================================================================================================================
     | PUBLICATION DATE
@@ -63,7 +63,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="TechnicalPaperTopicViewModel"/>
     ///   is associated with.
     /// </summary>
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; set; }
+    public TopicViewModelCollection<ApplicationPageTopicViewModel> Applications { get; } = new();
 
   } // Class
 } // Namespace

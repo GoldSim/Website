@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
@@ -22,7 +23,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
     /// </summary>
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; set; }
+    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | DISPLAY ORDER
@@ -60,7 +61,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   method simply strips <c>Systems</c> off the container key.
     /// </summary>
     /// <returns></returns>
-    public string GetContainerKey() => Key.Substring(0, Key.IndexOf("Systems"));
+    public string GetContainerKey() => Key.Substring(0, Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase));
 
   } // Class
 } // Namespace

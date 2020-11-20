@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
 using OnTopic.Collections;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Repositories;
 
@@ -61,6 +62,11 @@ namespace GoldSim.Web.Forms.Components {
       string htmlFieldPrefix
     )
     {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(aspFor, nameof(aspFor));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

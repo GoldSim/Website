@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
@@ -18,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Attributes;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
@@ -35,9 +37,9 @@ namespace GoldSim.Web.Payments.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicMappingService            _topicMappingService            = null;
-    private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
-    private     readonly        ISmtpService                    _smtpService                    = null;
+    private     readonly        ITopicMappingService            _topicMappingService;
+    private     readonly        IBraintreeConfiguration         _braintreeConfiguration;
+    private     readonly        ISmtpService                    _smtpService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -101,7 +103,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic).ConfigureAwait(true);
 
       viewModel.BindingModel    = bindingModel;
 
@@ -128,7 +130,8 @@ namespace GoldSim.Web.Payments.Controllers {
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpGet]
-    public async override Task<IActionResult> IndexAsync(string path) => TopicView(await GetViewModel());
+    public async override Task<IActionResult> IndexAsync(string path) =>
+      TopicView(await GetViewModel().ConfigureAwait(true));
 
     /*==========================================================================================================================
     | POST: PROCESS PAYMENT
@@ -146,6 +149,7 @@ namespace GoldSim.Web.Payments.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       // ### HACK JJC20200408: One might reasonably expect for the [Remote] model validation attribute to be validated as part
       // of ModelState.IsValid, but it doesn't appear to be. As a result, it needs to be revalidated here.
+      Contract.Requires(bindingModel, nameof(bindingModel));
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
       if (invoice == null) {
@@ -163,7 +167,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Validate binding model
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!ModelState.IsValid) {
-        return TopicView(await GetViewModel(bindingModel));
+        return TopicView(await GetViewModel(bindingModel).ConfigureAwait(true));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -172,13 +176,13 @@ namespace GoldSim.Web.Payments.Controllers {
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
       var request               = new TransactionRequest {
         Amount                  = (decimal)bindingModel.InvoiceAmount,
-        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(),
+        PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture),
         PaymentMethodNonce      = bindingModel.PaymentMethodNonce,
         CustomFields            = new Dictionary<string, string> {
           { "cardholder"        , bindingModel.CardholderName },
           { "email"             , bindingModel.Email },
           { "company"           , bindingModel.Organization },
-          { "invoice"           , bindingModel.InvoiceNumber.ToString() }
+          { "invoice"           , bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture) }
         },
         Options                 = new TransactionOptionsRequest {
           SubmitForSettlement   = true
@@ -189,7 +193,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      await SendEmailReceipt(result, bindingModel);
+      await SendEmailReceipt(result, bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle success
@@ -203,7 +207,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return to view to display ModelState errors
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return TopicView(await GetViewModel(bindingModel));
+      return TopicView(await GetViewModel(bindingModel).ConfigureAwait(true));
 
     }
 
@@ -218,7 +222,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var notificationEmail     = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
+      using var mail            = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
       var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
@@ -241,17 +245,20 @@ namespace GoldSim.Web.Payments.Controllers {
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (result.IsSuccess() && transaction != null && TransactionSuccessStatuses.Contains(transaction.Status)) {
-        notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
-        emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
-        notificationEmail.Body = emailBody.ToString();
-        await _smtpService.SendAsync(notificationEmail);
+        mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+        emailBody.Insert(
+          0,
+          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ")
+        );
+        mail.Body = emailBody.ToString();
+        await _smtpService.SendAsync(mail).ConfigureAwait(true);
         return;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process unsuccessful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      notificationEmail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
+      mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
 
       if (transaction != null) {
         var status = transaction.ProcessorResponseText;
@@ -260,7 +267,7 @@ namespace GoldSim.Web.Payments.Controllers {
           status = transaction.Status.ToString();
         }
 
-        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper().Replace("_", " "));
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " "));
       }
       else {
         emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
@@ -292,8 +299,8 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      notificationEmail.Body = emailBody.ToString();
-      await _smtpService.SendAsync(notificationEmail);
+      mail.Body = emailBody.ToString();
+      await _smtpService.SendAsync(mail).ConfigureAwait(true);
 
     }
 

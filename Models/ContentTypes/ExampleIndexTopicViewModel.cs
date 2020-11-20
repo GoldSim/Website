@@ -25,7 +25,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [Relationship("EnvironmentalExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; set; }
+    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [Relationship("BusinessExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; set; }
+    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [Relationship("EngineeredSystemsExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; set; }
+    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
 
   } // Class
 } // Namespace

@@ -6,6 +6,7 @@
 using System;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using OnTopic.Internal.Diagnostics;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 
@@ -44,6 +45,11 @@ namespace GoldSim.Web.Services {
     public async Task SendAsync(MailMessage mailMessage) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(mailMessage, nameof(mailMessage));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
       var message = new SendGridMessage();
@@ -59,7 +65,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      await _smptClient.SendEmailAsync(message);
+      await _smptClient.SendEmailAsync(message).ConfigureAwait(true);
 
     }
 

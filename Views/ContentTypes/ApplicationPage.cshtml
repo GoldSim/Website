@@ -73,7 +73,7 @@
       <!-- /Model Image -->
     }
 
-    @if (!String.IsNullOrEmpty(Model.CompareTo) || !String.IsNullOrEmpty(Model.LearnMoreUrl)) {
+    @if (!String.IsNullOrEmpty(Model.CompareTo) || !String.IsNullOrEmpty(Model.LearnMoreUrl?.ToString())) {
 
       <!-- Learn More -->
       <h1 id="LearnMore">Learn More</h1>
@@ -84,7 +84,7 @@
         else if (Model.CompareTo.EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
-        @if (!String.IsNullOrEmpty(Model.LearnMoreUrl)) {
+        @if (!String.IsNullOrEmpty(Model.LearnMoreUrl.ToString())) {
           <li><a href="@Model.LearnMoreUrl">@Model.LearnMoreLabel</a></li>
         }
       </ul>

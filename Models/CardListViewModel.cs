@@ -34,7 +34,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
     /// <returns>A <see cref="List{T}"/> of <see cref="OnTopic.Topic"/>, each representing a unique card.</returns>
-    public IEnumerable<ICardViewModel> Cards { get; } = null;
+    public IEnumerable<ICardViewModel> Cards { get; }
 
     /*==========================================================================================================================
     | CLASS NAME
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Models {
     ///   Provides the (optional) CSS class to be associated with each card.
     /// </summary>
     /// <returns>A CSS class name.</returns>
-    public string ClassName { get; } = null;
+    public string ClassName { get; }
 
   } // Class
 } // Namespace
