@@ -71,7 +71,7 @@
 @{
 
   string getBreadCrumbs(TopicViewModel topic) {
-    if (!(topic is PageTopicViewModel)) {
+    if (topic is not PageTopicViewModel) {
       return "";
     }
     var pageTopic = topic as PageTopicViewModel;
