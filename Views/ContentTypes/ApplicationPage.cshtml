@@ -84,7 +84,7 @@
         else if (Model.CompareTo.EndsWith("Excel")) {
           <li><a href="/Topic/614">Compare GoldSim</a> to spreadsheet modeling approaches</li>
         }
-        @if (!String.IsNullOrEmpty(Model.LearnMoreUrl.ToString())) {
+        @if (!String.IsNullOrEmpty(Model.LearnMoreUrl?.ToString())) {
           <li><a href="@Model.LearnMoreUrl">@Model.LearnMoreLabel</a></li>
         }
       </ul>
