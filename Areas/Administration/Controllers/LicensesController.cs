@@ -28,7 +28,7 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService             _topicExportService             = null;
+    private     readonly        ITopicExportService             _topicExportService;
     private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
 
     /*==========================================================================================================================

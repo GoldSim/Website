@@ -26,7 +26,7 @@ namespace GoldSim.Web.Payments.Services {
     /*==========================================================================================================================
     | PRIVATE FIELDS
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     IBraintreeGateway               _braintreeGateway               = null;
+    private                     IBraintreeGateway               _braintreeGateway;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IConfiguration                  _configuration;
     private readonly            RouteData                       _routeData;

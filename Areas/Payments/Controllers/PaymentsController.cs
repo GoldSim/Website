@@ -36,9 +36,9 @@ namespace GoldSim.Web.Payments.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicMappingService            _topicMappingService            = null;
-    private     readonly        IBraintreeConfiguration         _braintreeConfiguration         = null;
-    private     readonly        ISmtpService                    _smtpService                    = null;
+    private     readonly        ITopicMappingService            _topicMappingService;
+    private     readonly        IBraintreeConfiguration         _braintreeConfiguration;
+    private     readonly        ISmtpService                    _smtpService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR

@@ -48,7 +48,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Optionally overrides the email receipt that is sent by default.
     /// </summary>
-    public bool DisableEmailReceipt { get; set; } = false;
+    public bool DisableEmailReceipt { get; set; }
 
     /*==========================================================================================================================
     | EMAIL SUBJECT
@@ -90,7 +90,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
     ///   cref="OnTopic.Topic"/> in the configured <see cref="OnTopic.Repositories.ITopicrepository"/>.
     /// </summary>
-    public bool SaveAsTopic { get; set; } = false;
+    public bool SaveAsTopic { get; set; }
 
   } // Class
 } // Namespace
