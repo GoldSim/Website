@@ -16,6 +16,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   basic profile information such as <see cref="AreaOfFocus"/>, <see cref="ProblemStatement"/>, and <see
   ///   cref="ReferralSource"/>.
   /// </summary>
+  #pragma warning disable CA1724 // Type names should not match namespaces
   public class Profile : Contact {
 
     /*==========================================================================================================================
@@ -75,4 +76,6 @@ namespace GoldSim.Web.Forms.Models.Partials {
     public string ReferralDetails { get; set; }
 
   } //Class
+  #pragma warning restore CA1724 // Type names should not match namespaces
+
 } //Namespace

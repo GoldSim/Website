@@ -9,6 +9,7 @@ using GoldSim.Web.Administration.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
 
@@ -27,7 +28,7 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService             _topicExportService             = null;
+    private     readonly        ITopicExportService             _topicExportService;
     private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
 
     /*==========================================================================================================================
@@ -78,6 +79,11 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     [HttpPost]
     public IActionResult Delete(int[] topics) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(topics, nameof(topics));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Delete topics

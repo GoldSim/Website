@@ -25,7 +25,7 @@ namespace GoldSim.Web.Courses.Components {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Topic                           _currentTopic                   = null;
+    private                     Topic                           _currentTopic;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -118,7 +118,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Map adjacent topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await TopicMappingService.MapAsync<LessonPagingTopicViewModel>(adjacentTopic);
+      var topicViewModel        = await TopicMappingService.MapAsync<LessonPagingTopicViewModel>(adjacentTopic).ConfigureAwait(true);
       topicViewModel.Label      = label;
       topicViewModel.MoveNext   = moveNext;
 
@@ -139,7 +139,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <param name="rootTopic">The root topic from which to find the adjacent topic.</param>
     /// <param name="currentTopic">The current topic from among the siblings.</param>
     /// <param name="moveNext">Determines if the next or last sibling should be selected.</param>
-    private Topic GetAdjacentTopic(Topic rootTopic, Topic currentTopic, bool moveNext) {
+    private static Topic GetAdjacentTopic(Topic rootTopic, Topic currentTopic, bool moveNext) {
       var siblings              = rootTopic.Children;
       var lessonIndex            = siblings.IndexOf(currentTopic);
       var adjacentIndex         = lessonIndex + (moveNext? 1 : -1);

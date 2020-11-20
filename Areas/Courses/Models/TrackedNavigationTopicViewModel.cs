@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Collections.ObjectModel;
 using OnTopic.Models;
 using OnTopic.ViewModels;
@@ -23,9 +24,10 @@ namespace GoldSim.Web.Courses.Models {
   public class TrackedNavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
     public string Abstract { get; set; }
-    public bool? IsVisited { get; set; } = null;
-    public Collection<TrackedNavigationTopicViewModel> Children { get; } = new Collection<TrackedNavigationTopicViewModel>();
-    public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
+    public bool? IsVisited { get; set; }
+    public Collection<TrackedNavigationTopicViewModel> Children { get; } = new();
+    public bool IsSelected(string uniqueKey) =>
+      $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase) ?? false;
 
     public string GetCssClass() =>
       IsVisited switch {
