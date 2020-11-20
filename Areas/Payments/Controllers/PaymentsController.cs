@@ -101,7 +101,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic);
+      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic).ConfigureAwait(true);
 
       viewModel.BindingModel    = bindingModel;
 
@@ -128,7 +128,8 @@ namespace GoldSim.Web.Payments.Controllers {
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpGet]
-    public async override Task<IActionResult> IndexAsync(string path) => TopicView(await GetViewModel());
+    public async override Task<IActionResult> IndexAsync(string path) =>
+      TopicView(await GetViewModel().ConfigureAwait(true));
 
     /*==========================================================================================================================
     | POST: PROCESS PAYMENT
@@ -163,7 +164,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Validate binding model
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!ModelState.IsValid) {
-        return TopicView(await GetViewModel(bindingModel));
+        return TopicView(await GetViewModel(bindingModel).ConfigureAwait(true));
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -189,7 +190,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      await SendEmailReceipt(result, bindingModel);
+      await SendEmailReceipt(result, bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle success
@@ -203,7 +204,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return to view to display ModelState errors
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return TopicView(await GetViewModel(bindingModel));
+      return TopicView(await GetViewModel(bindingModel).ConfigureAwait(true));
 
     }
 
@@ -244,7 +245,7 @@ namespace GoldSim.Web.Payments.Controllers {
         mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(0, "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper().Replace("_", " "));
         mail.Body = emailBody.ToString();
-        await _smtpService.SendAsync(mail);
+        await _smtpService.SendAsync(mail).ConfigureAwait(true);
         return;
       }
 
@@ -293,7 +294,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
       mail.Body = emailBody.ToString();
-      await _smtpService.SendAsync(mail);
+      await _smtpService.SendAsync(mail).ConfigureAwait(true);
 
     }
 

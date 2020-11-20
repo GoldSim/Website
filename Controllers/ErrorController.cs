@@ -44,7 +44,7 @@ namespace GoldSim.Web.Controllers {
     [HttpGet]
     public async Task<IActionResult> NotFoundAsync() {
       HttpContext.Response.StatusCode = 404;
-      return await IndexAsync("NotFound");
+      return await IndexAsync("NotFound").ConfigureAwait(true);
     }
 
     /*==========================================================================================================================
@@ -56,7 +56,7 @@ namespace GoldSim.Web.Controllers {
     [HttpGet]
     public async Task<IActionResult> UnauthorizedAsync() {
       HttpContext.Response.StatusCode = 401;
-      return await IndexAsync("Unauthorized");
+      return await IndexAsync("Unauthorized").ConfigureAwait(true);
     }
 
     /*==========================================================================================================================
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Controllers {
     [HttpGet]
     public async Task<IActionResult> InternalServerAsync() {
       HttpContext.Response.StatusCode = 500;
-      return await IndexAsync("InternalServer");
+      return await IndexAsync("InternalServer").ConfigureAwait(true);
     }
 
     /*==========================================================================================================================

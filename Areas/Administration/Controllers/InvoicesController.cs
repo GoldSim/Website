@@ -55,7 +55,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     private async Task<InvoiceTopicViewModel> GetInvoiceViewModel(int invoiceNumber) {
       var invoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
-      var viewModel = await _topicMappingService.MapAsync<InvoiceTopicViewModel>(invoice);
+      var viewModel = await _topicMappingService.MapAsync<InvoiceTopicViewModel>(invoice).ConfigureAwait(true);
       return viewModel;
     }
 
@@ -66,11 +66,13 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   Constructs a new view model containing the
     /// </summary>
     private async Task<EditInvoiceViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
-      await CreateEditViewModel(invoiceNumber == null? null : await GetInvoiceViewModel(invoiceNumber?? 0));
+      await CreateEditViewModel(
+        invoiceNumber == null? null : await GetInvoiceViewModel(invoiceNumber?? 0).ConfigureAwait(true)
+      ).ConfigureAwait(true);
 
     private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
       var pageContent = _topicRepository.Load("Administration:Invoices:Edit");
-      var viewModel = await _topicMappingService.MapAsync<EditInvoiceViewModel>(pageContent);
+      var viewModel = await _topicMappingService.MapAsync<EditInvoiceViewModel>(pageContent).ConfigureAwait(true);
       viewModel.Invoice = invoice;
       return viewModel;
     }
@@ -85,7 +87,7 @@ namespace GoldSim.Web.Administration.Controllers {
     public async Task<IActionResult> IndexAsync() => View(
       await _topicMappingService.MapAsync<InvoiceListViewModel>(
         _topicRepository.Load("Administration:Invoices")
-      )
+      ).ConfigureAwait(true)
     );
 
     /*==========================================================================================================================
@@ -95,7 +97,7 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   Creates an invoice for a new purchase.
     /// </summary>
     [HttpGet]
-    public async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id));
+    public async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id).ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
@@ -105,7 +107,7 @@ namespace GoldSim.Web.Administration.Controllers {
       | Validate model
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!ModelState.IsValid) {
-        var viewModel = await CreateEditViewModel(invoice);
+        var viewModel = await CreateEditViewModel(invoice).ConfigureAwait(true);
         return View(viewModel);
       }
 

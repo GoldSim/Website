@@ -118,7 +118,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Map adjacent topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var topicViewModel        = await TopicMappingService.MapAsync<LessonPagingTopicViewModel>(adjacentTopic);
+      var topicViewModel        = await TopicMappingService.MapAsync<LessonPagingTopicViewModel>(adjacentTopic).ConfigureAwait(true);
       topicViewModel.Label      = label;
       topicViewModel.MoveNext   = moveNext;
 

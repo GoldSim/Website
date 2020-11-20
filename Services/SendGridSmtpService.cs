@@ -59,7 +59,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      await _smptClient.SendEmailAsync(message);
+      await _smptClient.SendEmailAsync(message).ConfigureAwait(true);
 
     }
 
