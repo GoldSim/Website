@@ -212,10 +212,10 @@ namespace GoldSim.Web {
 
         endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
 
-        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
         endpoints.MapImplicitAreaControllerRoute();             // {area:exists}/{action=Index}
-        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
         endpoints.MapDefaultAreaControllerRoute();              // {area:exists}/{controller}/{action=Index}/{id?}
+        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
+        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
 
         endpoints.MapTopicRoute("Web");                         // Web/{**path}
         endpoints.MapTopicRedirect();                           // Topic/{topicId}
