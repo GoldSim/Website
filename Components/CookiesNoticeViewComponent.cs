@@ -27,12 +27,12 @@ namespace GoldSim.Web.Courses.Components {
     public CookiesNoticeViewComponent() { }
 
     /*==========================================================================================================================
-    | METHOD: INVOKE (ASYNC)
+    | METHOD: INVOKE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides the cookie consent notification for the current page, assuming the user hasn't already consented.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync() {
+    public IViewComponentResult Invoke() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get cookie
