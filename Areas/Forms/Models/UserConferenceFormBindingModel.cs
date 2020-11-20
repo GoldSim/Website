@@ -18,16 +18,6 @@ namespace GoldSim.Web.Forms.Models {
   public class UserConferenceFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="UserConferenceFormBindingModel"/> object.
-    /// </summary>
-    public UserConferenceFormBindingModel() : base() {
-      TrainingTopics = new AdvancedTrainingTopicsSelection();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: FAX NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -76,7 +66,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Advanced Training Topics")]
-    public AdvancedTrainingTopicsSelection TrainingTopics { get; }
+    public AdvancedTrainingTopicsSelection TrainingTopics { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: APPLY STUDENT DISCOUNT?

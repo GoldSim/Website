@@ -18,16 +18,6 @@ namespace GoldSim.Web.Forms.Models.Partials {
   public class ExtendedContact : Contact {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instances of a <see cref="ExtendedContact"/> object.
-    /// </summary>
-    public ExtendedContact() {
-      Address = new Address();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: ADDRESS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -35,7 +25,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </summary>
     [Required]
     [MapToParent]
-    public Address Address { get; }
+    public Address Address { get; } = new();
 
   } //Class
 } //Namespace

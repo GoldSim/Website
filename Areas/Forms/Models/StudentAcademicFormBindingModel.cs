@@ -18,16 +18,6 @@ namespace GoldSim.Web.Forms.Models {
   public class StudentAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of the <see cref="StudentAcademicFormBindingModel"/> object.
-    /// </summary>
-    public StudentAcademicFormBindingModel() {
-      Sponsor = new AcademicSponsor();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: SPONSOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -35,7 +25,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Student Sponsor")]
-    public AcademicSponsor Sponsor { get; }
+    public AcademicSponsor Sponsor { get; } = new();
 
   } //Class
 } //Namespace

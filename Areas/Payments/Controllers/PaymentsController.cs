@@ -4,7 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Net.Mail;
@@ -178,13 +177,13 @@ namespace GoldSim.Web.Payments.Controllers {
         Amount                  = (decimal)bindingModel.InvoiceAmount,
         PurchaseOrderNumber     = bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture),
         PaymentMethodNonce      = bindingModel.PaymentMethodNonce,
-        CustomFields            = new Dictionary<string, string> {
+        CustomFields            = new() {
           { "cardholder"        , bindingModel.CardholderName },
           { "email"             , bindingModel.Email },
           { "company"           , bindingModel.Organization },
           { "invoice"           , bindingModel.InvoiceNumber.ToString(CultureInfo.InvariantCulture) }
         },
-        Options                 = new TransactionOptionsRequest {
+        Options                 = new() {
           SubmitForSettlement   = true
         }
       };
