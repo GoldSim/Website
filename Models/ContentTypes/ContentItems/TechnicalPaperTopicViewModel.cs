@@ -38,7 +38,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the URL for the publication or journal that the technical paper was originally published in.
     /// </summary>
-    public string PublicationUrl { get; set; }
+    public Uri PublicationUrl { get; set; }
 
     /*==========================================================================================================================
     | PUBLICATION DATE

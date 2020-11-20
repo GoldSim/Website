@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.ComponentModel;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
@@ -52,7 +53,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a URL for learning more about this application. This may point to a case study or white pager, for instance,
     ///   which the customer can download.
     /// </summary>
-    public string LearnMoreUrl { get; set; }
+    public Uri LearnMoreUrl { get; set; }
 
     /*==========================================================================================================================
     | LEARN MORE (LABEL)

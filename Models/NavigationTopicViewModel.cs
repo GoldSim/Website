@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Collections.ObjectModel;
 using GoldSim.Web.Components;
 using OnTopic.Models;
@@ -31,7 +32,7 @@ namespace GoldSim.Web.Models {
     /// <remarks>
     ///   This is primarily used by the <see cref="PageLevelNavigationViewComponent"/>.
     /// </remarks>
-    public string HeaderImageUrl { get; set; }
+    public Uri HeaderImageUrl { get; set; }
 
     /*==========================================================================================================================
     | CHILDREN
