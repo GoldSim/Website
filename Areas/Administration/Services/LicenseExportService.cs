@@ -123,7 +123,7 @@ namespace GoldSim.Web.Administration.Services {
     ///   Creates a DataTable with columns corresponding to Evaluation and Academic Request Attributes, fills the table with
     ///   pending License Request Topics data.
     /// </summary>
-    private DataTable GetLicenseRequestData(IEnumerable<Topic> licenseRequests) {
+    private static DataTable GetLicenseRequestData(IEnumerable<Topic> licenseRequests) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Establish DataTable
