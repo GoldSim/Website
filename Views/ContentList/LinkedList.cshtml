@@ -1,4 +1,4 @@
-﻿@model GoldSim.Web.Models.ContentTypes.ContentListTopicViewModel
+﻿@model ContentListTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
@@ -16,7 +16,7 @@
 
     <partial name="_TableOfContents" />
 
-    @if (Model.Categories != null && Model.Categories.Count > 0) {
+    @if (Model.Categories is not null && Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="Group-@category.Key" class="content list">
           <h1 id="@category.Key">@category.Title</h1>

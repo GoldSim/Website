@@ -1,6 +1,6 @@
 ﻿@model OnTopic.AspNetCore.Mvc.Models.NavigationViewModel<GoldSim.Web.Models.NavigationTopicViewModel>
 
-@if (Model.NavigationRoot != null) {
+@if (Model.NavigationRoot is not null) {
 
   <style>
     .page-banner {
@@ -37,7 +37,7 @@
   </header>
   <!-- /Page Title Area -->
 
-  if (Model.NavigationRoot != null && Model.NavigationRoot.Children.Count > 0) {
+  if (Model.NavigationRoot is not null && Model.NavigationRoot.Children.Count > 0) {
     <!-- Page Navigation Area -->
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
@@ -60,7 +60,7 @@
   | Gets the HeaderImageURL Attribute to combine with gradient CSS definitions
   \---------------------------------------------------------------------------------------------------------------------------*/
   string GetBannerImage() {
-    if (Model.NavigationRoot != null && !String.IsNullOrEmpty(Model.NavigationRoot.HeaderImageUrl)) {
+    if (Model.NavigationRoot is not null && !String.IsNullOrEmpty(Model.NavigationRoot.HeaderImageUrl?.ToString())) {
       return ", url(" + Model.NavigationRoot.HeaderImageUrl + ")";
     }
     return "";

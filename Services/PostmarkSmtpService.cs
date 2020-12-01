@@ -7,6 +7,7 @@ using System;
 using System.Linq;
 using System.Net.Mail;
 using System.Threading.Tasks;
+using OnTopic.Internal.Diagnostics;
 using PostmarkDotNet;
 
 namespace GoldSim.Web.Services {
@@ -44,9 +45,14 @@ namespace GoldSim.Web.Services {
     public async Task SendAsync(MailMessage mailMessage) {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(mailMessage, nameof(mailMessage));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      PostmarkMessage message   = new PostmarkMessage {
+      var message               = new PostmarkMessage {
         To                      = String.Join(", ", mailMessage.To.Select(x => x.Address)),
         From                    = mailMessage.From.Address,
         Subject                 = mailMessage.Subject,
@@ -64,7 +70,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var response              = await _smptClient.SendMessageAsync(message);
+      var response              = await _smptClient.SendMessageAsync(message).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response

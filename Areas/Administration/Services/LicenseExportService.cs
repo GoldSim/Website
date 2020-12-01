@@ -7,12 +7,14 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OnTopic;
 using OnTopic.Attributes;
+using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Administration.Services {
 
@@ -53,6 +55,14 @@ namespace GoldSim.Web.Administration.Services {
     /// <returns>The memory stream representing the spreadsheet.</returns>
     public MemoryStream Export(IEnumerable<Topic> licenseRequests) {
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(licenseRequests, nameof(licenseRequests));
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Assemble Excel
+      \-----------------------------------------------------------------------------------------------------------------------*/
       MemoryStream memoryStream;
 
       using (var excelPackage = new ExcelPackage()) {
@@ -65,7 +75,7 @@ namespace GoldSim.Web.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
-        var licenseRequestData = GetLicenseRequestData(licenseRequests);
+        using var licenseRequestData = GetLicenseRequestData(licenseRequests);
         worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
 
         /*----------------------------------------------------------------------------------------------------------------------
@@ -114,7 +124,7 @@ namespace GoldSim.Web.Administration.Services {
     ///   Creates a DataTable with columns corresponding to Evaluation and Academic Request Attributes, fills the table with
     ///   pending License Request Topics data.
     /// </summary>
-    private DataTable GetLicenseRequestData(IEnumerable<Topic> licenseRequests) {
+    private static DataTable GetLicenseRequestData(IEnumerable<Topic> licenseRequests) {
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Establish DataTable
@@ -212,7 +222,7 @@ namespace GoldSim.Web.Administration.Services {
           licenseRequest.Attributes.GetValue("LastName", ""),
           licenseRequest.Attributes.GetValue("Organization", ""),
           requestType,
-          "Config_" + productOptionConfiguration.ToString(),
+          "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
           "TRUE",
           licenseRequest.Attributes.GetValue("Department", ""),
           address,

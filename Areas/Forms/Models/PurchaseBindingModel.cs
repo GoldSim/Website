@@ -20,16 +20,6 @@ namespace GoldSim.Web.Forms.Models {
   public class PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a <see cref="PurchaseBindingModel"/> object.
-    /// </summary>
-    public PurchaseBindingModel() {
-      Modules = new ModuleSelection();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: PRODUCT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -81,7 +71,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [Display(Name="Add-On Modules:")]
     [MapToParent]
-    public ModuleSelection Modules { get; }
+    public ModuleSelection Modules { get; } = new();
 
   } //Class
 } //Namespace

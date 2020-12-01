@@ -22,16 +22,6 @@ namespace GoldSim.Web.Forms.Models {
   public class AcademicFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Instantiates a new instance of a <see cref="AcademicFormBindingModel"/> object.
-    /// </summary>
-    public AcademicFormBindingModel() {
-      Address = new Address();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -47,7 +37,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets the user's address.
     /// </summary>
     [MapToParent(AttributePrefix="")]
-    public Address Address { get; }
+    public Address Address { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DEPARTMENT

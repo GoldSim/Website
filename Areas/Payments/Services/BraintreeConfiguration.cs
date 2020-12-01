@@ -26,7 +26,7 @@ namespace GoldSim.Web.Payments.Services {
     /*==========================================================================================================================
     | PRIVATE FIELDS
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     IBraintreeGateway               _braintreeGateway               = null;
+    private                     IBraintreeGateway               _braintreeGateway;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IConfiguration                  _configuration;
     private readonly            RouteData                       _routeData;
@@ -76,7 +76,7 @@ namespace GoldSim.Web.Payments.Services {
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
     public IBraintreeGateway GetGateway() {
-      if (_braintreeGateway == null) {
+      if (_braintreeGateway is null) {
         _braintreeGateway = CreateGateway();
       }
       return _braintreeGateway;

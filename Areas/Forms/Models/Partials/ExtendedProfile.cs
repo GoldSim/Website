@@ -20,16 +20,6 @@ namespace GoldSim.Web.Forms.Models.Partials {
   public class ExtendedProfile : Profile {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of an <see cref="ExtendedProfile"/> object.
-    /// </summary>
-    public ExtendedProfile() {
-      Modules = new ModuleSelection();
-    }
-
-    /*==========================================================================================================================
     | PROPERTY: MODULES
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -38,7 +28,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [Display(Name="I am also interested in:")]
     [MapToParent]
-    public ModuleSelection Modules { get; }
+    public ModuleSelection Modules { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: ACCEPT TERMS OF USE

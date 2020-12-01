@@ -62,8 +62,8 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService = null;
-    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService = null;
+    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -105,7 +105,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | INITIALIZE EDITOR COMPOSER
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _standardEditorComposer   = new StandardEditorComposer(_topicRepository, _webHostEnvironment);
+      _standardEditorComposer   = new(_topicRepository, _webHostEnvironment);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
@@ -146,6 +146,11 @@ namespace GoldSim.Web {
     /// </summary>
     /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
     public object Create(ControllerContext context) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(context, nameof(context));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine controller type
@@ -226,6 +231,11 @@ namespace GoldSim.Web {
     /// </summary>
     /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
     public object Create(ViewComponentContext context) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(context, nameof(context));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine view component type

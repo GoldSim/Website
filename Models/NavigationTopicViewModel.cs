@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Collections.ObjectModel;
 using GoldSim.Web.Components;
 using OnTopic.Models;
@@ -31,7 +32,7 @@ namespace GoldSim.Web.Models {
     /// <remarks>
     ///   This is primarily used by the <see cref="PageLevelNavigationViewComponent"/>.
     /// </remarks>
-    public string HeaderImageUrl { get; set; }
+    public Uri HeaderImageUrl { get; set; }
 
     /*==========================================================================================================================
     | CHILDREN
@@ -39,7 +40,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   Provides a list of nested <see cref="NavigationTopicViewModel"/> topics.
     /// </summary>
-    public virtual Collection<NavigationTopicViewModel> Children { get; } = new Collection<NavigationTopicViewModel>();
+    public virtual Collection<NavigationTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | IS SELECTED?
@@ -48,7 +49,8 @@ namespace GoldSim.Web.Models {
     ///   A simple helper function to determine if the current <see cref="NavigationTopicViewModel"/> is part of the currently
     ///   selected topic's path.
     /// </summary>
-    public bool IsSelected(string uniqueKey) => $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:") ?? false;
+    public bool IsSelected(string uniqueKey) =>
+      $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase) ?? false;
 
   } // Class
 } // Namespace

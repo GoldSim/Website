@@ -1,4 +1,4 @@
-﻿@model GoldSim.Web.Models.ContentTypes.ContentListTopicViewModel
+﻿@model ContentListTopicViewModel
 
 @{
   Layout = "~/Views/Layout/_Layout.cshtml";
@@ -25,7 +25,7 @@
 @section PageBodySection {
 
   <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
-    @if (Model.Categories != null && Model.Categories.Count > 0) {
+    @if (Model.Categories is not null && Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="@category.Key">
           <h2>@category.Title</h2>
@@ -51,7 +51,7 @@
 
 @section Scripts {
   <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.accordion.min.js"></script>
-  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js"></script>
+  <script defer src="~/Shared/Scripts/Views/Accordion.ScrollFix.js" asp-append-version="true"></script>
 }
 
 @{

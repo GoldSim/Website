@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
 using OnTopic.Collections;
+using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Repositories;
 
@@ -63,6 +64,11 @@ namespace GoldSim.Web.Forms.Components {
     {
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Validate input
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      Contract.Requires(aspFor, nameof(aspFor));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       //### TODO JJC20191119: Ideally, these would be configured as optional parameters. Unfortunately, the tag helper approach
@@ -101,7 +107,7 @@ namespace GoldSim.Web.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate metadata
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (metadataAttribute == null) {
+      if (metadataAttribute is null) {
         throw new InvalidOperationException(
           $"The {aspFor.Metadata.PropertyName} must be decorated with the [Metadata()] attribute."
         );

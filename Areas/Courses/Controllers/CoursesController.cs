@@ -55,7 +55,7 @@ namespace GoldSim.Web.Courses.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Call base logic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return await base.IndexAsync(path);
+      return await base.IndexAsync(path).ConfigureAwait(true);
 
     }
 

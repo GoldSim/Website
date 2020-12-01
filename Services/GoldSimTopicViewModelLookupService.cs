@@ -86,9 +86,8 @@ namespace GoldSim.Web {
       Add(typeof(LicenseRequestTopicViewModel));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Override Ignia viw models
+      | Override Ignia view models
       \-----------------------------------------------------------------------------------------------------------------------*/
-      AddOrReplace(typeof(ContentListTopicViewModel));
       AddOrReplace(typeof(NavigationTopicViewModel));
       AddOrReplace(typeof(PageGroupTopicViewModel));
 
