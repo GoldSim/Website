@@ -204,7 +204,7 @@ namespace GoldSim.Web.Administration.Services {
         }
 
         bool requestedModules(params string[] moduleList)
-          => moduleList.All(m => licenseRequest.Attributes.GetBoolean($"Modules{m}", false) == true);
+          => moduleList.All(m => licenseRequest.Attributes.GetBoolean($"Modules{m}", false));
 
         //Define composite street address
         var street1 = licenseRequest.Attributes.GetValue("Street1", "");

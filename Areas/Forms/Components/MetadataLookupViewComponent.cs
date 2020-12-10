@@ -112,7 +112,7 @@ namespace GoldSim.Web.Forms.Components {
           $"The {aspFor.Metadata.PropertyName} must be decorated with the [Metadata()] attribute."
         );
       }
-      else if (metadataList.Count == 0) {
+      else if (metadataList.Count is 0) {
         throw new InvalidOperationException(
           $"The {aspFor.Metadata.PropertyName} is bound to the {metadataAttribute.Key} metadata, but the lookup list " +
           $"contains no topics."

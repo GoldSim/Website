@@ -24,7 +24,7 @@
 
 @section PageBodySection {
 
-  <section class="panel accordion@(viewType.Equals("faq") ? " faq " : "")">
+  <section class="panel accordion@(viewType is "faq" ? " faq " : "")">
     @if (Model.Categories is not null && Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="@category.Key">
@@ -57,9 +57,9 @@
 @{
 
   void WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
-    <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType.Equals("faq") ? "Question" : "ListItem")">
-      <a class="accordion-title@(viewType.Equals("faq")? " question" : "")" href="#@contentItem.Key">
-        @if (viewType.Equals("faq")) {
+    <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType is "faq" ? "Question" : "ListItem")">
+      <a class="accordion-title@(viewType is "faq"? " question" : "")" href="#@contentItem.Key">
+        @if (viewType is "faq") {
           <span class="marker">Q:</span>
           <span itemprop="name">@contentItem.Title</span>
         }
@@ -67,8 +67,8 @@
           @contentItem.Title
         }
       </a>
-      <div class="accordion-content@(viewType.Equals("faq") ? " answer" : "")" data-tab-content id="@contentItem.Key" @(viewType.Equals("faq") ? " itemprop=acceptedAnswer itemscope itemtype=http://schema.org/Answer" : "")>
-        @if (viewType.Equals("faq")) {
+      <div class="accordion-content@(viewType is "faq" ? " answer" : "")" data-tab-content id="@contentItem.Key" @(viewType is "faq" ? " itemprop=acceptedAnswer itemscope itemtype=http://schema.org/Answer" : "")>
+        @if (viewType is "faq") {
           <span class="marker">A:</span>
         }
         @Html.Raw(@contentItem.Description)
