@@ -415,7 +415,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent              = parentTopic?? throw new Exception(errorMessage);
+      topic.Parent              = parentTopic?? throw new InvalidOperationException(errorMessage);
       topic.LastModified        = DateTime.Now;
 
       /*------------------------------------------------------------------------------------------------------------------------
