@@ -247,7 +247,7 @@ namespace GoldSim.Web.Payments.Controllers {
         mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
-          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ")
+          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)
         );
         mail.Body = emailBody.ToString();
         await _smtpService.SendAsync(mail).ConfigureAwait(true);
@@ -266,7 +266,7 @@ namespace GoldSim.Web.Payments.Controllers {
           status = transaction.Status.ToString();
         }
 
-        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " "));
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal));
       }
       else {
         emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");

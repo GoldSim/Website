@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OnTopic.Mapping.Annotations;
@@ -83,8 +84,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) =>
-      Categories.Where(t => t.Key.Equals(category.Replace("Systems", ""))).FirstOrDefault()?.Title?? category;
+    public string GetCategoryTitle(string category) => Categories
+      .Where(t => t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal))
+      .FirstOrDefault()?.Title?? category;
 
     /*==========================================================================================================================
     | GET ALL APPLICATIONS

@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
@@ -67,7 +68,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) => Categories.Where(t => t.Key.Equals(category)).FirstOrDefault().Title;
+    public string GetCategoryTitle(string category) =>
+      Categories.Where(t => t.Key.Equals(category, StringComparison.Ordinal)).FirstOrDefault().Title;
 
   } // Class
 } // Namespace
