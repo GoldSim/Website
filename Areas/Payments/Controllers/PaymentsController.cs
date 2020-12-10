@@ -314,7 +314,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
@@ -342,7 +342,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyInvoiceAmount(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null

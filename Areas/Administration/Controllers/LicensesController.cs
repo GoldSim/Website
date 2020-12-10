@@ -79,6 +79,7 @@ namespace GoldSim.Web.Controllers {
     ///   Deletes selected licenses.
     /// </summary>
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------

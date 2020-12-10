@@ -277,7 +277,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
       if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
