@@ -53,12 +53,12 @@ namespace GoldSim.Web.Administration.Services {
     ///   library.
     /// </remarks>
     /// <returns>The memory stream representing the spreadsheet.</returns>
-    public MemoryStream Export(IEnumerable<Topic> licenseRequests) {
+    public MemoryStream Export(IEnumerable<Topic> topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Requires(licenseRequests, nameof(licenseRequests));
+      Contract.Requires(topics, nameof(topics));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble Excel
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
-        using var licenseRequestData = GetLicenseRequestData(licenseRequests);
+        using var licenseRequestData = GetLicenseRequestData(topics);
         worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
 
         /*----------------------------------------------------------------------------------------------------------------------
