@@ -350,7 +350,7 @@ namespace GoldSim.Web.Payments.Controllers {
       var existingInvoice = GetInvoice(invoiceNumber);
       var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
       if (existingInvoice is null || existingAmount is null) return Json(data: true);
-      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
+      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.OrdinalIgnoreCase)) {
         return Json(
           $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
           $"Please recheck the amount owed. If it is confirmed to be correct, contact GoldSim."
