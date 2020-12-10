@@ -54,6 +54,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides a downloadable file stream containing the Excel spreadsheet report for license request data.
     /// </summary>
+    [NonAction]
     public FileStreamResult Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
