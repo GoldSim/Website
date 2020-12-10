@@ -4,7 +4,7 @@
   <aside class="contents">
     <h1>@Model.IndexLabel</h1>
     <ul data-smooth-scroll data-offset="75">
-      @if (Model.Categories is not null and Model.Categories.Count > 0) {
+      @if (Model.Categories is not null && Model.Categories.Count > 0) {
         foreach (var category in Model.Categories.OrderBy(c => c)) {
           <li><a href="#@category.Key">@category.Title</a></li>
         }
