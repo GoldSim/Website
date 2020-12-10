@@ -3,7 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using GoldSim.Web.Models;
 using OnTopic.AspNetCore.Mvc.Models;
 
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Courses.Models {
     /// <summary>
     ///   Provides a list of events that should be tracked by Google Analytics.
     /// </summary>
-    public List<TrackingEventViewModel> TrackingEvents { get; } = new();
+    public Collection<TrackingEventViewModel> TrackingEvents { get; } = new();
 
   } // Class
 } // Namespace
