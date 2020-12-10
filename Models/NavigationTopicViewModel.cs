@@ -50,7 +50,7 @@ namespace GoldSim.Web.Models {
     ///   selected topic's path.
     /// </summary>
     public bool IsSelected(string uniqueKey) =>
-      $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase) ?? false;
+      $"{uniqueKey}:".StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase);
 
   } // Class
 } // Namespace

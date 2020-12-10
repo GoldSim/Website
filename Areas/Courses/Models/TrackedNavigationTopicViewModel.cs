@@ -27,7 +27,7 @@ namespace GoldSim.Web.Courses.Models {
     public bool? IsVisited { get; set; }
     public Collection<TrackedNavigationTopicViewModel> Children { get; } = new();
     public bool IsSelected(string uniqueKey) =>
-      $"{uniqueKey}:"?.StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase) ?? false;
+      $"{uniqueKey}:".StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase);
 
     public string GetCssClass() =>
       IsVisited switch {
