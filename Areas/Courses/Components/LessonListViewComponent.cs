@@ -112,7 +112,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Write unit cookie
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var isUnitNowComplete     = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true);
+      var isUnitNowComplete     = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited is true);
       var wasUnitComplete       = IsUnitComplete();
 
       if (isUnitNowComplete != wasUnitComplete) {

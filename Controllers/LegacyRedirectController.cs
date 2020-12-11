@@ -44,6 +44,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Redirect based on PageId.
     /// </summary>
+    [HttpGet]
     public IActionResult Redirect(int pageId) {
 
       /*-------------------------------------------------------------------------------------------------------------------------

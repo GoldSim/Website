@@ -247,7 +247,7 @@ namespace GoldSim.Web.Payments.Controllers {
         mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
-          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ")
+          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)
         );
         mail.Body = emailBody.ToString();
         await _smtpService.SendAsync(mail).ConfigureAwait(true);
@@ -266,7 +266,7 @@ namespace GoldSim.Web.Payments.Controllers {
           status = transaction.Status.ToString();
         }
 
-        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " "));
+        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal));
       }
       else {
         emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
@@ -314,7 +314,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
@@ -342,7 +342,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyInvoiceAmount(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
@@ -350,7 +350,7 @@ namespace GoldSim.Web.Payments.Controllers {
       var existingInvoice = GetInvoice(invoiceNumber);
       var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
       if (existingInvoice is null || existingAmount is null) return Json(data: true);
-      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.InvariantCultureIgnoreCase)) {
+      if (!existingAmount.Equals(invoiceAmount.ToString(), StringComparison.OrdinalIgnoreCase)) {
         return Json(
           $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
           $"Please recheck the amount owed. If it is confirmed to be correct, contact GoldSim."

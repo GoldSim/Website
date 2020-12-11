@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
     ///   Maps topics under the current container which can be converted to a <see cref="LicenseRequestTopicViewModel"/>.
     /// </summary>
     [AttributeKey("Children")]
-    public List<LicenseRequestTopicViewModel> Requests { get; } = new();
+    public Collection<LicenseRequestTopicViewModel> Requests { get; } = new();
 
   } // Class
 } // Namespace

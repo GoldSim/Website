@@ -43,7 +43,7 @@
   <!-- Post Title -->
   <p class="metadata">
     @if(Model.Applications.Count > 0) {
-      <strong>@((Model.Applications.Count == 1)? "Application" : "Applications"):</strong>
+      <strong>@((Model.Applications.Count is 1)? "Application" : "Applications"):</strong>
       foreach (var application in Model.Applications) {
         <a href="@application.WebPath" class="comma delimited">@application.Title</a>
       }

@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System;
 using System.Linq;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
@@ -37,8 +38,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
       new TopicViewModelCollection<TechnicalPaperTopicViewModel>(
         ContentItems
-          .Where(t => (t.Category ?? "")
-          .Equals(category))
+        .Where(t => (t.Category ?? "").Equals(category, StringComparison.Ordinal))
         .Cast<TechnicalPaperTopicViewModel>()
         .OrderByDescending(p => p.PublicationDate)
         .AsEnumerable()

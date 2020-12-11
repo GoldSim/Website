@@ -54,6 +54,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Provides a downloadable file stream containing the Excel spreadsheet report for license request data.
     /// </summary>
+    [HttpGet]
     public FileStreamResult Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -78,6 +79,7 @@ namespace GoldSim.Web.Controllers {
     ///   Deletes selected licenses.
     /// </summary>
     [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------

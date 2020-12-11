@@ -277,7 +277,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
       if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
@@ -375,7 +375,7 @@ namespace GoldSim.Web.Forms.Controllers {
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in GetFormValues()) {
-        var fieldName = ToTitleCase(field.Key.Replace(".", ": "));
+        var fieldName = ToTitleCase(field.Key.Replace(".", ": ", StringComparison.Ordinal));
         output.Append($"<b>{fieldName}:</b> {field.Value}<br />");
       }
 
@@ -397,7 +397,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      bindingModel.ContentType  = bindingModel.GetType().Name.Replace("BindingModel", "");
+      bindingModel.ContentType  = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
       bindingModel.Key          = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -415,7 +415,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      topic.Parent              = parentTopic?? throw new Exception(errorMessage);
+      topic.Parent              = parentTopic?? throw new InvalidOperationException(errorMessage);
       topic.LastModified        = DateTime.Now;
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -449,9 +449,9 @@ namespace GoldSim.Web.Forms.Controllers {
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel", StringComparison.OrdinalIgnoreCase))) {
-        var fieldName = field.Replace("_", ".").Replace("BindingModel.", "");
+        var fieldName = field.Replace("_", ".", StringComparison.Ordinal).Replace("BindingModel.", "", StringComparison.Ordinal);
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
-        if (fieldValues.Count > 1 && fieldValues[0].Equals("true")) {
+        if (fieldValues.Count > 1 && fieldValues[0] is "true") {
           fieldValues = fieldValues[0];
         }
         _formValues.Add(fieldName, fieldValues.ToString());

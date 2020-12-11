@@ -25,7 +25,7 @@
     var position                = Model.UniqueKey.Split(':').Length;
     var topic                   = Model;
 
-    while (topic != null) {
+    while (topic is not null) {
       var breadcrumbItem = "{ "
         + "  \"@type\": \"ListItem\", "
         + "  \"position\": " + (position--) + ", "

@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     ///   Provides a list of invoices currently available in the system.
     /// </summary>
     [Relationship(RelationshipType.Children)]
-    public List<InvoiceTopicViewModel> Invoices { get; } = new();
+    public Collection<InvoiceTopicViewModel> Invoices { get; } = new();
 
   } // Class
 } // Namespace

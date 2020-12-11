@@ -94,15 +94,15 @@ namespace GoldSim.Web.Payments.Services {
     ///   finally, the <see cref="ConfigurationManager.AppSettings"/>.
     /// </remarks>
     /// <returns>The configured value for the given variable.</returns>
-    public string GetConfigurationSetting(string variable, string defaultValue = null) {
+    public string GetConfigurationSetting(string setting, string defaultValue = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var paymentsTopic         = _topicRepository.Load(_routeData);
       var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
-      var compositeVariable     = $"Braintree:{environmentVariable}:{variable}";
-      var compositeAttributeKey = $"Braintree{environmentVariable}{variable}";
+      var compositeVariable     = $"Braintree:{environmentVariable}:{setting}";
+      var compositeAttributeKey = $"Braintree{environmentVariable}{setting}";
       var value                 = defaultValue;
 
       /*------------------------------------------------------------------------------------------------------------------------
