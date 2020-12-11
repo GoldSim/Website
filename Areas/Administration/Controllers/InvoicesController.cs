@@ -69,7 +69,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     private async Task<EditInvoiceViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
       await CreateEditViewModel(
-        invoiceNumber is null? null : await GetInvoiceViewModel(invoiceNumber?? 0).ConfigureAwait(true)
+        invoiceNumber is null? null : await GetInvoiceViewModel(invoiceNumber.Value).ConfigureAwait(true)
       ).ConfigureAwait(true);
 
     private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
