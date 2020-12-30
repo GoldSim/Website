@@ -43,6 +43,7 @@ namespace GoldSim.Web.Courses.Controllers {
     | GET: INDEX (VIEW TOPIC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
+    [HttpGet]
     public async override Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------

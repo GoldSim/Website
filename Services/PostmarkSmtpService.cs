@@ -75,7 +75,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (response.Status != PostmarkStatus.Success) {
+      if (response.Status is not PostmarkStatus.Success) {
         throw new SmtpException(response.Message);
       }
 

@@ -69,7 +69,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     private async Task<EditInvoiceViewModel> CreateEditViewModel(int? invoiceNumber = null) =>
       await CreateEditViewModel(
-        invoiceNumber is null? null : await GetInvoiceViewModel(invoiceNumber?? 0).ConfigureAwait(true)
+        invoiceNumber is null? null : await GetInvoiceViewModel(invoiceNumber.Value).ConfigureAwait(true)
       ).ConfigureAwait(true);
 
     private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
@@ -174,7 +174,8 @@ namespace GoldSim.Web.Administration.Controllers {
     /// <summary>
     ///   Deletes selected licenses.
     /// </summary>
-    [HttpPost, HttpGet]
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -213,7 +214,7 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   The <see cref="Topic.Id"/> is required for existing invoices, as they should still be considered unique if the value
     ///   has not been modified.
     /// </remarks>
-    [HttpGet, HttpPost]
+    [HttpGet]
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null

@@ -97,7 +97,7 @@ namespace GoldSim.Web.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Write course cookie
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var isCourseNowComplete   = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited == true);
+      var isCourseNowComplete   = navigationViewModel.NavigationRoot.Children.All(t => t.IsVisited is true);
       var wasCourseComplete     = IsComplete(CurrentTopic.Key);
 
       if (isCourseNowComplete != wasCourseComplete) {

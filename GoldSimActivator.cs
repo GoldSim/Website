@@ -221,7 +221,7 @@ namespace GoldSim.Web {
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
 
-      _ => throw new Exception($"Unknown controller {controllerType.Name}")
+      _ => throw new InvalidOperationException($"Unknown controller {controllerType.Name}")
 
       };
     }
@@ -302,7 +302,7 @@ namespace GoldSim.Web {
         nameof(LessonPagingViewComponent)
           => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
 
-        _ => throw new Exception($"Unknown view component {viewComponentType.Name}")
+        _ => throw new InvalidOperationException($"Unknown view component {viewComponentType.Name}")
 
       };
     }
