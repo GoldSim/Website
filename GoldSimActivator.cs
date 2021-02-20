@@ -30,10 +30,12 @@ using OnTopic.Data.Sql;
 using OnTopic.Editor.AspNetCore;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Repositories;
+using OnTopic.ViewModels;
 using PostmarkDotNet;
 using SendGrid;
 
@@ -97,7 +99,11 @@ namespace GoldSim.Web {
       | PRELOAD REPOSITORY
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new GoldSimTopicViewModelLookupService();
+      _typeLookupService        = new CompositeTypeLookupService(
+                                    new GoldSimTopicViewModelLookupService(),
+                                    new TopicViewModelLookupService(),
+                                    new DynamicTopicLookupService()
+                                  );
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
       _topicRepository.Load();
