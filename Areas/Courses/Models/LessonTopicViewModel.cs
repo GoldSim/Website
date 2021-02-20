@@ -20,7 +20,7 @@ namespace GoldSim.Web.Courses.Models {
     | UNIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     [AttributeKey("Parent")]
-    [Follow(Relationships.Parents)]
+    [Include(AssociationTypes.Parents)]
     public UnitTopicViewModel Unit { get; set; }
 
   } // Class

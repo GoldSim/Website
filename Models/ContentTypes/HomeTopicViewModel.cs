@@ -31,7 +31,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationContainerTopicViewModel"/>s, each of which contain a list of <see cref=
     ///   "ApplicationPageTopicViewModel"/>s to be displayed on the homepage.
     /// </summary>
-    [Follow(Relationships.Children)]
+    [Include(AssociationTypes.Children)]
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = new();
 
   } // Class
