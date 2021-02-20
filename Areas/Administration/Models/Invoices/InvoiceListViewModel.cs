@@ -32,7 +32,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     /// <summary>
     ///   Provides a list of invoices currently available in the system.
     /// </summary>
-    [Relationship(RelationshipType.Children)]
+    [Collection(CollectionType.Children)]
     public Collection<InvoiceTopicViewModel> Invoices { get; } = new();
 
   } // Class

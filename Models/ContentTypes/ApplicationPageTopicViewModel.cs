@@ -70,7 +70,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
-    [Relationship(RelationshipType.Relationship)]
+    [Collection(CollectionType.Relationship)]
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
@@ -88,7 +88,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<WhitePaperTopicViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
@@ -97,7 +97,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="TechnicalPaperTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
 
   } // Class
