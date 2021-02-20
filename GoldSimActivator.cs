@@ -22,12 +22,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
-using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Data.Caching;
 using OnTopic.Data.Sql;
-using OnTopic.Editor.AspNetCore;
+using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
@@ -37,7 +36,6 @@ using OnTopic.Mapping.Reverse;
 using OnTopic.Repositories;
 using OnTopic.ViewModels;
 using PostmarkDotNet;
-using SendGrid;
 
 namespace GoldSim.Web {
 
@@ -64,7 +62,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> _hierarchicalTopicMappingService;
     private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService;
 
     /*==========================================================================================================================
@@ -128,8 +126,8 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
-        new HierarchicalTopicMappingService<NavigationTopicViewModel>(
+      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
           _topicRepository,
           _topicMappingService
         )
