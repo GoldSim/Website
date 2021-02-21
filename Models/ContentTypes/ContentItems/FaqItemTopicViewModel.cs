@@ -3,7 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.ViewModels;
+using OnTopic.ViewModels.Items;
 
 namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 
