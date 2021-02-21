@@ -14,14 +14,14 @@ namespace GoldSim.Web.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Lesson</c> topic.
   /// </summary>
-  public class LessonTopicViewModel: PageTopicViewModel {
+  public record LessonTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | UNIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     [AttributeKey("Parent")]
     [Include(AssociationTypes.Parents)]
-    public UnitTopicViewModel Unit { get; set; }
+    public UnitTopicViewModel Unit { get; init; }
 
   } // Class
 } // Namespace

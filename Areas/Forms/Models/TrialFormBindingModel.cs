@@ -15,7 +15,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Trial form.
   /// </summary>
-  public class TrialFormBindingModel : ExtendedProfile {
+  public record TrialFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

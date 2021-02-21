@@ -15,7 +15,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Training Request form.
   /// </summary>
-  public class TrainingFormBindingModel : ExtendedContact {
+  public record TrainingFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

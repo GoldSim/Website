@@ -16,7 +16,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   There is already a centralized <see cref="OnTopic.ViewModels.PageGroupTopicViewModel"/>. It doesn't implement the
   ///   necessary <see cref="ICardViewModel"/> interface needed for e.g. Modules to be treated as cards.
   /// </remarks>
-  public class PageGroupTopicViewModel : OnTopic.ViewModels.PageGroupTopicViewModel, ICardViewModel {
+  public record PageGroupTopicViewModel : OnTopic.ViewModels.PageGroupTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   "ApplicationPageTopicViewModel"/> which provides a reference to module pages—all of which use the <see cref=
     ///   "PageGroupTopicViewModel"/>.
     /// </remarks>
-    public string ThumbnailImage { get; set; }
+    public string ThumbnailImage { get; init; }
 
   } // Class
 } // Namespace

@@ -17,7 +17,7 @@ namespace GoldSim.Web.Forms.Models {
   ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
   ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
   /// </summary>
-  public class PurchaseBindingModel: ExtendedContact {
+  public record PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: PRODUCT

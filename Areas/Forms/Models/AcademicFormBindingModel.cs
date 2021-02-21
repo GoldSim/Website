@@ -19,7 +19,7 @@ namespace GoldSim.Web.Forms.Models {
   ///   There are actually two specific academic forms—the <see cref="StudentAcademicFormBindingModel"/> and the <see
   ///   cref="InstructorAcademicFormBindingModel"/>—which this operates as a base class for.
   /// </remarks>
-  public class AcademicFormBindingModel : ExtendedProfile {
+  public record AcademicFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -28,7 +28,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets the user's organization or institution name.
     /// </summary>
     [Display(Name="Name of Institution")]
-    public override string Organization { get; set; }
+    public override string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [Required]
     [StringLength(255)]
-    public string Department { get; set; }
+    public string Department { get; init; }
 
   } //Class
 } //Namespace

@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
+using OnTopic.ViewModels.Collections;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -14,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Home</c> topic.
   /// </summary>
-  public class HomeTopicViewModel: PageTopicViewModel {
+  public record HomeTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | INTRODUCTION

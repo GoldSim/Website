@@ -15,7 +15,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   Provides a strongly-typed data transfer object for representing an extended contact, which includes a <see
   ///   cref="Address"/> on top of the normal <see cref="Contact"/> properties.
   /// </summary>
-  public class ExtendedContact : Contact {
+  public record ExtendedContact : Contact {
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS

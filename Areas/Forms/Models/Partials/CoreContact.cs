@@ -21,7 +21,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
   ///   nearly every form binding model used by GoldSim.
   /// </remarks>
-  public class CoreContact: ITopicBindingModel {
+  public record CoreContact: ITopicBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: KEY
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </summary>
     [DisableMapping]
     [StringLength(255)]
-    public virtual string Key { get; set; }
+    public virtual string Key { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: CONTENT TYPE
@@ -41,7 +41,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </summary>
     [DisableMapping]
     [StringLength(255)]
-    public virtual string ContentType { get; set; }
+    public virtual string ContentType { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
@@ -52,7 +52,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "First Name")]
-    public virtual string FirstName { get; set; }
+    public virtual string FirstName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: LAST NAME
@@ -63,7 +63,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "Last Name")]
-    public virtual string LastName { get; set; }
+    public virtual string LastName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -74,7 +74,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "Organization Name")]
-    public virtual string Organization { get; set; }
+    public virtual string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
@@ -86,7 +86,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [EmailAddress]
     [Display(Name = "Email Address")]
     [Remote(action: "VerifyEmail", controller: "Forms")]
-    public virtual string Email { get; set; }
+    public virtual string Email { get; init; }
 
   } //Class
 } //Namespace

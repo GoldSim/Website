@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ExampleApplicationIndex</c>
   ///   topic.
   /// </summary>
-  public class ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
+  public record ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
