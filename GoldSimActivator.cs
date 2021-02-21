@@ -100,7 +100,7 @@ namespace GoldSim.Web {
       _typeLookupService        = new CompositeTypeLookupService(
                                     new GoldSimTopicViewModelLookupService(),
                                     new TopicViewModelLookupService(),
-                                    new DynamicTopicLookupService()
+                                    new DynamicTopicViewModelLookupService()
                                   );
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
