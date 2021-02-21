@@ -16,6 +16,7 @@ using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic;
+using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Attributes;
 using OnTopic.Internal.Diagnostics;
@@ -102,16 +103,12 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = await _topicMappingService.MapAsync<PaymentsTopicViewModel>(CurrentTopic).ConfigureAwait(true);
+      var viewModel             = new PaymentsTopicViewModel {
+        ClientToken             = clientToken,
+        BindingModel            = bindingModel
+      };
 
-      viewModel.BindingModel    = bindingModel;
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Pass client token to model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      if (viewModel is not null) {
-        viewModel.ClientToken = clientToken;
-      }
+      viewModel                 = (PaymentsTopicViewModel)await _topicMappingService.MapAsync(CurrentTopic, viewModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return topic view
@@ -129,6 +126,7 @@ namespace GoldSim.Web.Payments.Controllers {
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpGet]
+    [ValidateTopic]
     public async override Task<IActionResult> IndexAsync(string path) =>
       TopicView(await GetViewModel().ConfigureAwait(true));
 
