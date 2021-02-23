@@ -41,7 +41,7 @@
     var submenuParentClass      = isParentMenu? "is-dropdown-submenu-parent" : "";
     var selectedClass           = topic.IsSelected(Model.CurrentWebPath)? "selected" : "";
     var isActiveClass           = topic.IsSelected(Model.CurrentWebPath)? "is-active" : "";
-    var childSelectedClass      = topic.UniqueKey.Equals(Model.CurrentWebPath)? "selected" : "";
+    var childSelectedClass      = topic.WebPath.Equals(Model.CurrentWebPath)? "selected" : "";
 
     return Body(
       @<li class="@submenuParentClass">
