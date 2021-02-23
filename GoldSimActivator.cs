@@ -13,7 +13,6 @@ using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Components;
 using GoldSim.Web.Forms.Controllers;
-using GoldSim.Web.Models;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
@@ -28,6 +27,7 @@ using OnTopic.Data.Caching;
 using OnTopic.Data.Sql;
 using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
+using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 using OnTopic.Mapping;
@@ -100,7 +100,7 @@ namespace GoldSim.Web {
       _typeLookupService        = new CompositeTypeLookupService(
                                     new GoldSimTopicViewModelLookupService(),
                                     new TopicViewModelLookupService(),
-                                    new DynamicTopicViewModelLookupService()
+                                    new EditorViewModelLookupService()
                                   );
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
