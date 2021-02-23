@@ -4,8 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using OnTopic.ViewModels.Collections;
-using OnTopic.ViewModels.Items;
+using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 

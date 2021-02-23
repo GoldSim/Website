@@ -8,7 +8,6 @@ using System.ComponentModel;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
-using OnTopic.ViewModels.Collections;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
