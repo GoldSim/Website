@@ -52,7 +52,7 @@ namespace GoldSim.Web.Components {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationRootTopic   = TopicRepository.Load("Web:Company");
-      var uniqueKey             = CurrentTopic?.GetUniqueKey();
+      var webPath               = CurrentTopic?.GetWebPath();
       var isInWeb               = CurrentTopic?.GetUniqueKey().StartsWith("Root:Web", StringComparison.OrdinalIgnoreCase);
       var navigationRoot        = CurrentTopic?.Attributes.GetValue("NavigationRoot", null, true);
 
@@ -61,7 +61,7 @@ namespace GoldSim.Web.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel   = new FooterViewModel() {
         NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
-        CurrentKey              = uniqueKey,
+        CurrentWebPath          = webPath,
         IsMainSite              = navigationRoot?.Equals("Web", StringComparison.OrdinalIgnoreCase)?? isInWeb?? true
       };
 

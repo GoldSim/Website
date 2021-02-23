@@ -25,7 +25,7 @@
         <nav id="PageNavigationSmallScreen" class="navigation page hide-for-medium" role="navigation">
           <select>
             @foreach (var topic in Model.NavigationRoot.Children) {
-              <option value="@topic.WebPath" selected="@(topic.IsSelected(Model.CurrentKey))">
+              <option value="@topic.WebPath" selected="@(topic.IsSelected(Model.CurrentWebPath))">
                 @(topic.ShortTitle?? topic.Title)
               </option>
             }
@@ -42,7 +42,7 @@
     <nav id="PageNavigation" class="navigation page show-for-medium" role="navigation">
       <ul class="menu align-center">
         @foreach (var topic in Model.NavigationRoot.Children) {
-          <li><a href="@topic.WebPath" class="@(topic.IsSelected(Model.CurrentKey)? "selected" : "")">
+          <li><a href="@topic.WebPath" class="@(topic.IsSelected(Model.CurrentWebPath)? "selected" : "")">
             @(topic.ShortTitle?? topic.Title)
           </a></li>
         }
