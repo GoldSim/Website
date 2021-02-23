@@ -63,7 +63,7 @@ namespace GoldSim.Web.Models {
     ///   selected topic's path.
     /// </summary>
     public bool IsSelected(string webPath) =>
-      $"{webPath}:".StartsWith($"{WebPath}:", StringComparison.OrdinalIgnoreCase);
+      $"{webPath}/".StartsWith($"{WebPath}", StringComparison.OrdinalIgnoreCase);
 
   } // Class
 } // Namespace
