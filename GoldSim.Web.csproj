@@ -34,7 +34,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="OnTopic.All" Version="5.0.0-beta.3" />
+    <PackageReference Include="OnTopic.All" Version="5.0.0-beta.4" />
     <PackageReference Include="OnTopic.Editor.AspNetCore" Version="5.0.0-beta.3" />
     <PackageReference Include="OnTopic.Editor.AspNetCore.Attributes" Version="5.0.0-beta.3" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.16.0" />
