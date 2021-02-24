@@ -208,6 +208,7 @@ aside.help {
     content                     : fa-content($fa-var-question-circle);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    float                       : left;
     vertical-align              : middle;
   }
 }
@@ -230,7 +231,8 @@ blockquote.note {
     content                     : fa-content($fa-var-comment-alt);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    float                       : left;
     position                    : relative;
-    top                         : rem-calc(14);
+    top                         : rem-calc(7);
   }
 }
