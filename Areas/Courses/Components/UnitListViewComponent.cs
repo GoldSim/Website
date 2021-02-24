@@ -105,7 +105,8 @@ namespace GoldSim.Web.Courses.Components {
           $"Status{CurrentTopic.Key}",
           isCourseNowComplete.ToString(),
           new Microsoft.AspNetCore.Http.CookieOptions() {
-            Path = CurrentTopic.Parent.GetWebPath()
+            Path                = CurrentTopic.Parent.GetWebPath(),
+            Expires             = DateTime.Now.AddYears(20)
           }
         );
         navigationViewModel.TrackingEvents.Add(

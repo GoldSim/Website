@@ -95,7 +95,8 @@ namespace GoldSim.Web.Courses.Components {
           $"Visited{CurrentTopic.Key}",
           "1",
           new Microsoft.AspNetCore.Http.CookieOptions() {
-            Path = CurrentTopic.Parent.GetWebPath()
+            Path                = CurrentTopic.Parent.GetWebPath(),
+            Expires             = DateTime.Now.AddYears(20)
           }
         );
       }
@@ -120,7 +121,8 @@ namespace GoldSim.Web.Courses.Components {
           $"Status{CurrentTopic.Parent.Key}",
           isUnitNowComplete.ToString(),
           new Microsoft.AspNetCore.Http.CookieOptions() {
-            Path = CurrentTopic.Parent.Parent.GetWebPath()
+            Path                = CurrentTopic.Parent.Parent.GetWebPath(),
+            Expires             = DateTime.Now.AddYears(20)
           }
         );
         navigationViewModel.TrackingEvents.Add(
