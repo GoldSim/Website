@@ -17,7 +17,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   cref="ReferralSource"/>.
   /// </summary>
   #pragma warning disable CA1724 // Type names should not match namespaces
-  public class Profile : Contact {
+  public record Profile : Contact {
 
     /*==========================================================================================================================
     | PROPERTY: AREA OF FOCUS
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [StringLength(100)]
     [Display(Name="Area of Focus")]
     [Metadata("FocusArea")]
-    public string AreaOfFocus { get; set; }
+    public string AreaOfFocus { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: AREA OF FOCUS (OTHER)
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </summary>
     [StringLength(255)]
     [Display(Name="Other")]
-    public string AreaOfFocusOther { get; set; }
+    public string AreaOfFocusOther { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PROBLEM STATEMENT
@@ -50,7 +50,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [StringLength(1000)]
     [Display(Name="What problem are you trying to solve?")]
-    public string ProblemStatement { get; set; }
+    public string ProblemStatement { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: REFERRAL SOURCE
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [StringLength(100)]
     [Display(Name="How did you learn about GoldSim?")]
     [Metadata("ReferralSource")]
-    public string ReferralSource { get; set; }
+    public string ReferralSource { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: REFERRAL DETAILS
@@ -73,7 +73,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </summary>
     [StringLength(30)]
     [Display(Name="Referral Details")]
-    public string ReferralDetails { get; set; }
+    public string ReferralDetails { get; init; }
 
   } //Class
   #pragma warning restore CA1724 // Type names should not match namespaces

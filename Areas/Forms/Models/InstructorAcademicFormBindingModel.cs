@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the instructor version of the academic form.
   /// </summary>
-  public class InstructorAcademicFormBindingModel : AcademicFormBindingModel {
+  public record InstructorAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: WEB PAGE
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Forms.Models {
     [Url]
     [StringLength(255)]
     [Display(Name="Faculty Web Page")]
-    public string Webpage { get; set; }
+    public string Webpage { get; init; }
 
   } //Class
 } //Namespace

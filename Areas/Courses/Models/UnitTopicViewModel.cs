@@ -13,12 +13,12 @@ namespace GoldSim.Web.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Unit</c> topic.
   /// </summary>
-  public class UnitTopicViewModel: PageTopicViewModel {
+  public record UnitTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | UNIT NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public int UnitNumber { get; set; }
+    public int UnitNumber { get; init; }
 
   } // Class
 } // Namespace

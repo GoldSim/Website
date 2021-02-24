@@ -2,10 +2,12 @@
 
 @{
   Layout = "";
-  Model.IsIndexed = true;
+  var viewModel = Model with {
+    IsIndexed = true
+  };
 }
 
-<partial name="~/Views/ContentList/ContentList.cshtml" />
+<partial name="~/Views/ContentList/ContentList.cshtml" model=@viewModel />
 
 <!--
   Content Type: Content List

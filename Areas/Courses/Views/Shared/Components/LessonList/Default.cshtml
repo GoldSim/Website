@@ -8,7 +8,7 @@
       <div class="grid-x">
         <ol>
           @foreach (var topic in Model.NavigationRoot.Children) {
-            <li class="@topic.GetCssClass() @(topic.IsSelected(Model.CurrentKey)? "selected" : "")">
+            <li class="@topic.GetCssClass() @(topic.IsSelected(Model.CurrentWebPath)? "selected" : "")">
               <a href="@topic.WebPath">
                 @(topic.ShortTitle?? topic.Title)
               </a>

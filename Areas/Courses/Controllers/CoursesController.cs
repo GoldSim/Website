@@ -8,6 +8,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 using OnTopic.Repositories;
@@ -44,6 +45,7 @@ namespace GoldSim.Web.Courses.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [HttpGet]
+    [ValidateTopic]
     public async override Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------

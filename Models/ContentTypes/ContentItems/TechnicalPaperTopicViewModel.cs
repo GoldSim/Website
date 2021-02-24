@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>TechnicalPaper</c> topic.
   /// </summary>
-  public class TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
+  public record TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
 
     /*==========================================================================================================================
     | AUTHORS
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides a list of authors associated with the paper.
     /// </summary>
-    public string Authors { get; set; }
+    public string Authors { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the name of the publication or journal that the technical paper was originally published in.
     /// </summary>
-    public string Publication { get; set; }
+    public string Publication { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION (URL)
@@ -38,7 +38,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the URL for the publication or journal that the technical paper was originally published in.
     /// </summary>
-    public Uri PublicationUrl { get; set; }
+    public Uri PublicationUrl { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION DATE
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the date that the technical paper was originally published on.
     /// </summary>
-    public DateTime PublicationDate { get; set; }
+    public DateTime PublicationDate { get; init; }
 
     /*==========================================================================================================================
     | DOWNLOAD (LABEL)
@@ -54,7 +54,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides an optional label for the download link.
     /// </summary>
-    public string DownloadLabel { get; set; }
+    public string DownloadLabel { get; init; }
 
     /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS

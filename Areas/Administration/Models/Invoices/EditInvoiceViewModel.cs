@@ -13,7 +13,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
   /// <summary>
   ///   A view model for rendering an invoice form page.
   /// </summary>
-  public class EditInvoiceViewModel: PageTopicViewModel {
+  public record EditInvoiceViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     ///   Provides a reference to the actual <see cref="InvoiceTopicViewModel"/> that the invoice page is editing.
     /// </summary>
     /// <returns>The <typeparamref name="T"/> binding model.</returns>
-    public InvoiceTopicViewModel Invoice { get; set; }
+    public InvoiceTopicViewModel Invoice { get; init; }
 
   } // Class
 } // Namespace

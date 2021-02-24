@@ -4,10 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using System.Collections.ObjectModel;
 using GoldSim.Web.Components;
-using OnTopic.Models;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models {
 
@@ -21,7 +18,7 @@ namespace GoldSim.Web.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<NavigationTopicViewModel> {
+  public class NavigationTopicViewModel: CoreNavigationTopicViewModel<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | HEADER IMAGE (URL)
@@ -33,24 +30,6 @@ namespace GoldSim.Web.Models {
     ///   This is primarily used by the <see cref="PageLevelNavigationViewComponent"/>.
     /// </remarks>
     public Uri HeaderImageUrl { get; set; }
-
-    /*==========================================================================================================================
-    | CHILDREN
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of nested <see cref="NavigationTopicViewModel"/> topics.
-    /// </summary>
-    public virtual Collection<NavigationTopicViewModel> Children { get; } = new();
-
-    /*==========================================================================================================================
-    | IS SELECTED?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   A simple helper function to determine if the current <see cref="NavigationTopicViewModel"/> is part of the currently
-    ///   selected topic's path.
-    /// </summary>
-    public bool IsSelected(string uniqueKey) =>
-      $"{uniqueKey}:".StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase);
 
   } // Class
 } // Namespace

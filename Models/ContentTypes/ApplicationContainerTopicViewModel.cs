@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
   ///   topic.
   /// </summary>
-  public class ApplicationContainerTopicViewModel : PageTopicViewModel {
+  public record ApplicationContainerTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | CHILDREN
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a mechanism to control sorting of the application containers on e.g. an index page.
     /// </summary>
-    public string DisplayOrder { get; set; }
+    public string DisplayOrder { get; init; }
 
     /*==========================================================================================================================
     | GET IMAGE KEY

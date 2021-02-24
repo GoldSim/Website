@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about an <c>ExampleApplication</c>
   ///   topic.
   /// </summary>
-  public class ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
+  public record ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS

@@ -3,90 +3,67 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel.DataAnnotations;
-using OnTopic.Mapping.Annotations;
+using System;
+using System.Collections.ObjectModel;
 using OnTopic.Models;
-using Microsoft.AspNetCore.Mvc;
 
-namespace GoldSim.Web.Forms.Models.Partials {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | MODEL: CORE CONTACT
+  | VIEW MODEL: CORE NAVIGATION TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for representing the core contact information required of every request.
+  ///   Provides a strongly-typed base model for feeding views with information about the navigation.
   /// </summary>
   /// <remarks>
-  ///   Every form has, at its base, core contact information representing the <see cref="FirstName"/>, <see cref="LastName"/>,
-  ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
-  ///   nearly every form binding model used by GoldSim.
+  ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
+  ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public record CoreContact: ITopicBindingModel {
+  public abstract class CoreNavigationTopicViewModel<T>: INavigationTopicViewModel<T> where T: INavigationTopicViewModel<T> {
 
     /*==========================================================================================================================
-    | PROPERTY: KEY
+    | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the key for the topic, in the case this is saved to a topic.
-    /// </summary>
-    [DisableMapping]
-    [StringLength(255)]
-    public virtual string Key { get; init; }
+    /// <inheritdoc cref="OnTopic.ViewModels.TopicViewModel.Key" />
+    public string Key { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: CONTENT TYPE
+    | TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the content type for the topic in the case this is saved to a topic.
-    /// </summary>
-    [DisableMapping]
-    [StringLength(255)]
-    public virtual string ContentType { get; init; }
+    /// <inheritdoc />
+    public string Title { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: FIRST NAME
+    | SHORT TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's first name.
+    ///   Provides a short title to be used in the navigation, for cases where the normal title is too long.
     /// </summary>
-    [Required]
-    [StringLength(255)]
-    [Display(Name = "First Name")]
-    public virtual string FirstName { get; init; }
+    public string ShortTitle { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: LAST NAME
+    | WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the user's last name.
-    /// </summary>
-    [Required]
-    [StringLength(255)]
-    [Display(Name = "Last Name")]
-    public virtual string LastName { get; init; }
+    /// <inheritdoc />
+    public string WebPath { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: ORGANIZATION
+    | CHILDREN
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's organization or institution name.
+    ///   Provides a list of nested <see cref="NavigationTopicViewModel"/> topics.
     /// </summary>
-    [Required]
-    [StringLength(255)]
-    [Display(Name = "Organization Name")]
-    public virtual string Organization { get; init; }
+    public virtual Collection<T> Children { get; } = new();
 
     /*==========================================================================================================================
-    | PROPERTY: EMAIL ADDRESS
+    | IS SELECTED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's email address.
+    ///   A simple helper function to determine if the current <see cref="NavigationTopicViewModel"/> is part of the currently
+    ///   selected topic's path.
     /// </summary>
-    [Required]
-    [EmailAddress]
-    [Display(Name = "Email Address")]
-    [Remote(action: "VerifyEmail", controller: "Forms")]
-    public virtual string Email { get; init; }
+    public bool IsSelected(string webPath) =>
+      $"{webPath}/".StartsWith($"{WebPath}", StringComparison.OrdinalIgnoreCase);
 
-  } //Class
-} //Namespace
+  } // Class
+} // Namespace

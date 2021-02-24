@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ExampleApplicationIndex</c>
   ///   topic.
   /// </summary>
-  public class ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
+  public record ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [Relationship("EnvironmentalExamples")]
+    [Collection("EnvironmentalExamples")]
     public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [Relationship("BusinessExamples")]
+    [Collection("BusinessExamples")]
     public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [Relationship("EngineeredSystemsExamples")]
+    [Collection("EngineeredSystemsExamples")]
     public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
 
   } // Class

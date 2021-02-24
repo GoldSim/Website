@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Home</c> topic.
   /// </summary>
-  public class HomeTopicViewModel: PageTopicViewModel {
+  public record HomeTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | INTRODUCTION
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationContainerTopicViewModel"/>s, each of which contain a list of <see cref=
     ///   "ApplicationPageTopicViewModel"/>s to be displayed on the homepage.
     /// </summary>
-    [Follow(Relationships.Children)]
+    [Include(AssociationTypes.Children)]
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = new();
 
   } // Class

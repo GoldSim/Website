@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   to this view model. That said, it provides a base schema definition for e.g. <see cref="ApplicationPageTopicViewModel"/>
   ///   and <see cref="ExampleApplicationTopicViewModel"/>.
   /// </remarks>
-  public class ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+  public record ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a thumbnail image to display in the card format. This is not usually displayed on the page itself.
     /// </summary>
-    public string ThumbnailImage { get; set; }
+    public string ThumbnailImage { get; init; }
 
     /*==========================================================================================================================
     | CATEGORY
@@ -41,8 +41,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <remarks>
     ///   This is typically used to optionally group a list of applications by category on an index page.
     /// </remarks>
-    public string Category { get; set; }
-
+    public string Category { get; init; }
 
     /*==========================================================================================================================
     | CATEGORIES

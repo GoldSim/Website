@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Quote form.
   /// </summary>
-  public class QuoteFormBindingModel : PurchaseBindingModel {
+  public record QuoteFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: FAX NUMBER
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Forms.Models {
     [Phone]
     [StringLength(50)]
     [Display(Name="Fax")]
-    public string FaxNumber { get; set; }
+    public string FaxNumber { get; init; }
 
   } //Class
 } //Namespace

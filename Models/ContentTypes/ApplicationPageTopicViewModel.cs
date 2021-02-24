@@ -17,7 +17,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationPage</c> topic.
   /// </summary>
-  public class ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
+  public record ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
     | ABSTRACT
@@ -26,7 +26,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a brief description that summarizes the content of the page. Can optionally be used in indexes to provide a
     ///   synopsis.
     /// </summary>
-    public string Abstract { get; set; }
+    public string Abstract { get; init; }
 
     /*==========================================================================================================================
     | MODEL IMAGE
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a canonical screenshot of the model output. Other screenshots may be placed within the body, if appropriate.
     /// </summary>
-    public string ModelImage { get; set; }
+    public string ModelImage { get; init; }
 
     /*==========================================================================================================================
     | COMPARE TO…?
@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   to those options so that templates can provide canned text and a link to such comparisons.
     /// </summary>
     [DefaultValue("")]
-    public string CompareTo { get; set; }
+    public string CompareTo { get; init; }
 
     /*==========================================================================================================================
     | LEARN MORE (URL)
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a URL for learning more about this application. This may point to a case study or white pager, for instance,
     ///   which the customer can download.
     /// </summary>
-    public Uri LearnMoreUrl { get; set; }
+    public Uri LearnMoreUrl { get; init; }
 
     /*==========================================================================================================================
     | LEARN MORE (LABEL)
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Optionally sets the label for the <see cref="LearnMoreUrl"/>.
     /// </summary>
     [DefaultValue("Learn More")]
-    public string LearnMoreLabel { get; set; }
+    public string LearnMoreLabel { get; init; }
 
     /*==========================================================================================================================
     | RELATIONSHIP: MODELS
@@ -70,7 +70,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
-    [Relationship(RelationshipType.Relationship)]
+    [Collection(CollectionType.Relationship)]
     public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
@@ -88,7 +88,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<WhitePaperTopicViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
@@ -97,7 +97,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="TechnicalPaperTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [Relationship("Applications", Type = RelationshipType.IncomingRelationship)]
+    [Collection("Applications", Type = CollectionType.IncomingRelationship)]
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
 
   } // Class

@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>FAQItem</c> topic.
   /// </summary>
-  public class FaqItemTopicViewModel: ContentItemTopicViewModel {
+  public record FaqItemTopicViewModel: ContentItemTopicViewModel {
 
   } // Class
 } // Namespace
