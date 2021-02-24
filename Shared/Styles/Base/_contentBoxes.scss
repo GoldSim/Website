@@ -197,6 +197,9 @@ aside.help {
   display                       : block;
   margin                        : rem-calc(16 44);
   min-height                    : rem-calc(32);
+  p:last-child {
+    margin-bottom               : rem-calc(0);
+  }
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
@@ -216,6 +219,9 @@ blockquote.note {
   min-height                    : rem-calc(32);
   margin-inline-start           : rem-calc(0);
   padding-left                  : rem-calc(44);
+  p:last-child {
+    margin-bottom               : rem-calc(0);
+  }
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
