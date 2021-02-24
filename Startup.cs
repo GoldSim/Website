@@ -195,12 +195,6 @@ namespace GoldSim.Web {
           }
         );
 
-        endpoints.MapAreaControllerRoute(
-          name                  : "Administration",
-          areaName              : "Administration",
-          pattern               : "Administration/{controller=Invoices}/{action=Index}/{id?}"
-        );
-
         endpoints.MapControllerRoute(
           name                  : "LegacyRedirect",
           pattern               : "Page/{pageId}",
@@ -212,12 +206,12 @@ namespace GoldSim.Web {
 
         endpoints.MapTopicEditorRoute().RequireAuthorization(); // OnTopic/{action}/{**path}
 
-        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
         endpoints.MapImplicitAreaControllerRoute();             // {area:exists}/{action=Index}
-        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
         endpoints.MapDefaultAreaControllerRoute();              // {area:exists}/{controller}/{action=Index}/{id?}
+        endpoints.MapTopicAreaRoute();                          // {area:exists}/{**path}
+        endpoints.MapDefaultControllerRoute();                  // {controller=Home}/{action=Index}/{id?}
 
-        endpoints.MapTopicRoute("Web");                         // Web/{**path}
+        endpoints.MapTopicRoute("Web");                 // Web/{**path}
         endpoints.MapTopicRedirect();                           // Topic/{topicId}
         endpoints.MapControllers();
 
