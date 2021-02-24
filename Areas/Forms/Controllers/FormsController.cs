@@ -124,7 +124,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Redirect to configured follow-up page
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
+      return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage, area = "" });
 
     }
 
