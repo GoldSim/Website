@@ -197,6 +197,9 @@ aside.help {
   display                       : block;
   margin                        : rem-calc(16 44);
   min-height                    : rem-calc(32);
+  p:last-child {
+    margin-bottom               : rem-calc(0);
+  }
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
@@ -205,10 +208,12 @@ aside.help {
     content                     : fa-content($fa-var-question-circle);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    float                       : left;
     vertical-align              : middle;
   }
 }
 
+blockquote.stop,
 blockquote.note {
   display                       : block;
   margin                        : rem-calc(0 44);
@@ -216,6 +221,9 @@ blockquote.note {
   min-height                    : rem-calc(32);
   margin-inline-start           : rem-calc(0);
   padding-left                  : rem-calc(44);
+  p:last-child {
+    margin-bottom               : rem-calc(0);
+  }
   &:before {
     @include fa-icon;
     font-family                 : 'Font Awesome 5 Free';
@@ -224,7 +232,26 @@ blockquote.note {
     content                     : fa-content($fa-var-comment-alt);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
+    float                       : left;
     position                    : relative;
-    top                         : rem-calc(14);
+    top                         : rem-calc(7);
+  }
+}
+
+blockquote.stop {
+  color                         : $palette-red;
+  line-height                   : 1.8;
+  p {
+    color                       : $palette-grey-medium;
+    line-height                 : 1.6;
+  }
+  p:first-child {
+    color                       : $palette-red;
+    line-height                 : 1.8rem;
+  }
+  &:before {
+    color                       : $palette-red;
+    content                     : fa-content($fa-var-pause-circle);
+    top                         : 0px;
   }
 }
