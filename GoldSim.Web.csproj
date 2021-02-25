@@ -16,7 +16,7 @@
     <Description>Models, helpers, and configuration for the GoldSim website.</Description>
     <Copyright>©2021</Copyright>
     <Authors>Ignia</Authors>
-    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup>
