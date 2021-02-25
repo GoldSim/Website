@@ -213,6 +213,7 @@ aside.help {
   }
 }
 
+blockquote.stop,
 blockquote.note {
   display                       : block;
   margin                        : rem-calc(0 44);
@@ -234,5 +235,23 @@ blockquote.note {
     float                       : left;
     position                    : relative;
     top                         : rem-calc(7);
+  }
+}
+
+blockquote.stop {
+  color                         : $palette-red;
+  line-height                   : 1.8;
+  p {
+    color                       : $palette-grey-medium;
+    line-height                 : 1.6;
+  }
+  p:first-child {
+    color                       : $palette-red;
+    line-height                 : 1.8rem;
+  }
+  &:before {
+    color                       : $palette-red;
+    content                     : fa-content($fa-var-pause-circle);
+    top                         : 0px;
   }
 }
