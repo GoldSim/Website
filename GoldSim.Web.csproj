@@ -19,12 +19,6 @@
     <AssemblyVersion>5.0.0</AssemblyVersion>
   </PropertyGroup>
 
-  <PropertyGroup>
-    <ExcludeFoldersFromDeployment>wwwroot\Images\Courses</ExcludeFoldersFromDeployment>
-    <ExcludeFoldersFromDeployment>wwwroot\Images\Content</ExcludeFoldersFromDeployment>
-    <ExcludeFoldersFromDeployment>wwwroot\Help</ExcludeFoldersFromDeployment>
-  </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="Braintree" Version="5.3.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
