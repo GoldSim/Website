@@ -35,7 +35,7 @@
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",
     "gulp-jshint": "^2.1.0",
-    "gulp-postcss": "^8.0.0",
+    "gulp-postcss": "^9.0.0",
     "gulp-sass": "^4.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
