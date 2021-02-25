@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <TypeScriptToolsVersion>Latest</TypeScriptToolsVersion>
     <ApplicationInsightsResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
     <LangVersion>9.0</LangVersion>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -53,23 +53,6 @@
     <PackageReference Include="Postmark" Version="4.5.0" />
     <PackageReference Include="Sendgrid" Version="9.22.0" />
   </ItemGroup>
-
-  <PropertyGroup>
-    <TypeScriptTarget>ES5</TypeScriptTarget>
-    <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
-    <TypeScriptModuleKind />
-    <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
-    <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptRemoveComments>False</TypeScriptRemoveComments>
-    <TypeScriptOutFile />
-    <TypeScriptOutDir />
-    <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
-    <TypeScriptSourceMap>True</TypeScriptSourceMap>
-    <TypeScriptMapRoot />
-    <TypeScriptSourceRoot />
-    <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
-  </PropertyGroup>
 
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
