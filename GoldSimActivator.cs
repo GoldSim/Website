@@ -114,10 +114,6 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //var sendGridApiKey      = _configuration.GetValue<string>("SendGrid:ApiKey");
-      //var sendGridClient      = new SendGridClient(sendGridApiKey);
-      //_smtpService            = new SendGridSmtpService(sendGridClient);
-
       var postmarkApiKey        = _configuration.GetValue<string>("Postmark:ApiKey");
       var postmarkClient        = new PostmarkClient(postmarkApiKey);
 

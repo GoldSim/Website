@@ -16,7 +16,7 @@ namespace GoldSim.Web.Services {
   | CLASS: POSTMARK (SMTP SERVICE)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Given a <see cref="MailMessage", will send through the SendGrid SMTP service.
+  ///   Given a <see cref="MailMessage", will send through the Postmark SMTP service.
   /// </summary>
   public class PostmarkSmtpService: ISmtpService {
 
@@ -29,9 +29,9 @@ namespace GoldSim.Web.Services {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of the <see cref="SendGridSmtpService"/> with necessary dependencies.
+    ///   Initializes a new instance of the <see cref="PostmarkSmtpService"/> with necessary dependencies.
     /// </summary>
-    /// <returns>A new instance of the <see cref="SendGridSmtpService"/>.</returns>
+    /// <returns>A new instance of the <see cref="PostmarkSmtpService"/>.</returns>
     public PostmarkSmtpService(PostmarkClient postmarkClient) {
       _smptClient = postmarkClient?? throw new ArgumentNullException(nameof(postmarkClient));
     }
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Services {
     | SEND
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Sends the <see cref="MailMessage"/> via SendGrid.
+    ///   Sends the <see cref="MailMessage"/> via Postmark.
     /// </summary>
     public async Task SendAsync(MailMessage mailMessage) {
 
