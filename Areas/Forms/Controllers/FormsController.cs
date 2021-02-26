@@ -398,9 +398,11 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
       bindingModel              = bindingModel with {
-        ContentType             = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal),
-        Key                     = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
+        ContentType             = contentType,
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
