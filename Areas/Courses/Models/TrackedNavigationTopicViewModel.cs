@@ -3,10 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.ObjectModel;
-using OnTopic.Models;
-using OnTopic.ViewModels;
+using GoldSim.Web.Models;
 
 namespace GoldSim.Web.Courses.Models {
 
@@ -21,13 +18,11 @@ namespace GoldSim.Web.Courses.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class TrackedNavigationTopicViewModel: PageTopicViewModel, INavigationTopicViewModel<TrackedNavigationTopicViewModel> {
+  public class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
-    public string Abstract { get; set; }
+    public string Abstract { get; init; }
+
     public bool? IsVisited { get; set; }
-    public Collection<TrackedNavigationTopicViewModel> Children { get; } = new();
-    public bool IsSelected(string uniqueKey) =>
-      $"{uniqueKey}:".StartsWith($"{UniqueKey}:", StringComparison.OrdinalIgnoreCase);
 
     public string GetCssClass() =>
       IsVisited switch {

@@ -11,7 +11,7 @@ using GoldSim.Web.Models;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using GoldSim.Web.Payments.Models;
-using OnTopic.Editor.AspNetCore.Infrastructure;
+using OnTopic.Lookup;
 
 namespace GoldSim.Web {
 
@@ -22,7 +22,7 @@ namespace GoldSim.Web {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
-  public class GoldSimTopicViewModelLookupService : EditorViewModelLookupService {
+  public class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

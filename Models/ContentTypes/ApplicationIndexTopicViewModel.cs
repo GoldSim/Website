@@ -17,7 +17,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationIndex</c> topic.
   /// </summary>
-  public class ApplicationIndexTopicViewModel : PageTopicViewModel {
+  public record ApplicationIndexTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   cref="ExampleApplicationTopicViewModel"/>, &c. The <see cref="FilteredDocumentType"/> allows the current view to be
     ///   filtered by one specific type.
     /// </remarks>
-    public string FilteredDocumentType { get; set; }
+    public string FilteredDocumentType { get; init; }
 
     /*==========================================================================================================================
     | CATEGORIES

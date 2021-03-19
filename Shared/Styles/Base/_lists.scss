@@ -27,12 +27,22 @@ ol {
   ul,
   ol {
     margin-top                  : rem-calc(16);
+    margin-bottom               : rem-calc(16);
   }
 }
 
 ul {
   ul {
     list-style-type             : circle;
+  }
+}
+
+ol {
+  ol {
+    list-style-type             : lower-alpha;
+    ol {
+      list-style-type           : lower-roman;
+    }
   }
 }
 

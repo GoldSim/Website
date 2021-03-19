@@ -17,7 +17,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   <see cref="Profile"/> class, this also includes <see cref="Modules"/> the user may be interested in, as well as the
   ///   required <see cref="AcceptTermsOfUse"/> boolean.
   /// </summary>
-  public class ExtendedProfile : Profile {
+  public record ExtendedProfile : Profile {
 
     /*==========================================================================================================================
     | PROPERTY: MODULES
@@ -42,7 +42,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </remarks>
     [Range(typeof(bool), "true", "true", ErrorMessage="The terms of service must be accepted.")]
     [Display(Name="I agree to these terms of use. I also agree to receive the GoldSim newsletter.")]
-    public bool AcceptTermsOfUse { get; set; }
+    public bool AcceptTermsOfUse { get; init; }
 
   } //Class
 } //Namespace

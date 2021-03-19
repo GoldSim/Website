@@ -23,6 +23,7 @@ using OnTopic.Mapping;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
 using OnTopic.Repositories;
+using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Forms.Controllers {
 
@@ -88,7 +89,7 @@ namespace GoldSim.Web.Forms.Controllers {
     public async Task<IActionResult> ProcessForm<T>(
       T bindingModel,
       string requestType = ""
-    ) where T: class, ITopicBindingModel, new() {
+    ) where T: CoreContact, ITopicBindingModel, new() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -123,7 +124,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Redirect to configured follow-up page
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage });
+      return RedirectToAction("Redirect", "Redirect", new { topicId = viewModel.FollowUpPage, area = "" });
 
     }
 
@@ -392,13 +393,17 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Adds the form values to a new <see cref="Topic"/>, and saves it to the <see cref="ITopicRepository"/>.
     /// </summary>
-    private async Task SaveToTopic(ITopicBindingModel bindingModel) {
+    private async Task SaveToTopic(CoreContact bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      bindingModel.ContentType  = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
-      bindingModel.Key          = bindingModel.ContentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture);
+      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
+      bindingModel              = bindingModel with {
+        ContentType             = contentType,
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent

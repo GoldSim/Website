@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ModulePage</c>
   ///   topic.
   /// </summary>
-  public class ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+  public record ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | THUMBNAIL
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides the URL for a thumbnail image which will be used as part of a card layout, when a module page is displayed
     ///   on another page.
     /// </summary>
-    public string ThumbnailImage { get; set; }
+    public string ThumbnailImage { get; init; }
 
   } // Class
 } // Namespace

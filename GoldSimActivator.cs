@@ -13,7 +13,6 @@ using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Components;
 using GoldSim.Web.Forms.Controllers;
-using GoldSim.Web.Models;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
@@ -22,20 +21,21 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.Extensions.Configuration;
-using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Data.Caching;
 using OnTopic.Data.Sql;
-using OnTopic.Editor.AspNetCore;
+using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
+using OnTopic.Editor.AspNetCore.Infrastructure;
 using OnTopic.Internal.Diagnostics;
+using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Repositories;
+using OnTopic.ViewModels;
 using PostmarkDotNet;
-using SendGrid;
 
 namespace GoldSim.Web {
 
@@ -62,7 +62,7 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel> _hierarchicalTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> _hierarchicalTopicMappingService;
     private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService;
 
     /*==========================================================================================================================
@@ -97,7 +97,11 @@ namespace GoldSim.Web {
       | PRELOAD REPOSITORY
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new GoldSimTopicViewModelLookupService();
+      _typeLookupService        = new CompositeTypeLookupService(
+                                    new GoldSimTopicViewModelLookupService(),
+                                    new TopicViewModelLookupService(),
+                                    new EditorViewModelLookupService()
+                                  );
       _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
 
       _topicRepository.Load();
@@ -110,10 +114,6 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
       \-----------------------------------------------------------------------------------------------------------------------*/
-      //var sendGridApiKey      = _configuration.GetValue<string>("SendGrid:ApiKey");
-      //var sendGridClient      = new SendGridClient(sendGridApiKey);
-      //_smtpService            = new SendGridSmtpService(sendGridClient);
-
       var postmarkApiKey        = _configuration.GetValue<string>("Postmark:ApiKey");
       var postmarkClient        = new PostmarkClient(postmarkApiKey);
 
@@ -122,8 +122,8 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
-        new HierarchicalTopicMappingService<NavigationTopicViewModel>(
+      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
           _topicRepository,
           _topicMappingService
         )

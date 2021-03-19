@@ -84,7 +84,7 @@ namespace GoldSim.Web.Courses.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var navigationViewModel = new UnitListViewModel() {
         NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
-        CurrentKey = CurrentTopic?.GetUniqueKey()?? HttpContext.Request.Path
+        CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -105,7 +105,8 @@ namespace GoldSim.Web.Courses.Components {
           $"Status{CurrentTopic.Key}",
           isCourseNowComplete.ToString(),
           new Microsoft.AspNetCore.Http.CookieOptions() {
-            Path = CurrentTopic.Parent.GetWebPath()
+            Path                = CurrentTopic.Parent.GetWebPath(),
+            Expires             = DateTime.Now.AddYears(20)
           }
         );
         navigationViewModel.TrackingEvents.Add(

@@ -15,7 +15,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for the license reporting tool.
   /// </summary>
-  public class LicenseAdministrationTopicViewModel: PageTopicViewModel {
+  public record LicenseAdministrationTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | REQUESTS

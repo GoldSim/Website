@@ -15,7 +15,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the User Conference Registration form.
   /// </summary>
-  public class UserConferenceFormBindingModel : ExtendedContact {
+  public record UserConferenceFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: FAX NUMBER
@@ -26,7 +26,7 @@ namespace GoldSim.Web.Forms.Models {
     [Phone]
     [StringLength(50)]
     [Display(Name = "Fax")]
-    public string FaxNumber { get; set; }
+    public string FaxNumber { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: WILL SUBMIT POSTER?
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the user intends to submit a poster for the conference's poster session.
     /// </summary>
     [Display(Name="I am interested in submitting a poster.")]
-    public bool WillSubmitPoster { get; set; }
+    public bool WillSubmitPoster { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(15)]
     [Display(Name="Purchase Order Number")]
-    public string PurchaseOrderNumber { get; set; }
+    public string PurchaseOrderNumber { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDITIONAL INSTRUCTIONS
@@ -56,7 +56,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name="Additional Instructions(e.g., interest in spouse / partner attending dinners)")]
-    public string AdditionalInstructions { get; set; }
+    public string AdditionalInstructions { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADVANCED TRAINING TOPICS SELECTION
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the attendee is a student and, thus, should receive the student discount.
     /// </summary>
     [Display(Name="Apply student discount")]
-    public bool WithStudentDiscount { get; set; }
+    public bool WithStudentDiscount { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE TRAINING?
@@ -85,7 +85,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   conference.
     /// </summary>
     [Display(Name="Basic Training and Conference(September 10 - 12): $1, 500")]
-    public bool IncludeTraining { get; set; }
+    public bool IncludeTraining { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: WITH PAPER RECEIPT?
@@ -94,7 +94,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
     /// </summary>
     [Display(Name="I would prefer a paper invoice or receipt.")]
-    public bool WithPaperReceipt { get; set; }
+    public bool WithPaperReceipt { get; init; }
 
   } //Class
 } //Namespace

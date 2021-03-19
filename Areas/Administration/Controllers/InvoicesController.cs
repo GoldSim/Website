@@ -73,9 +73,11 @@ namespace GoldSim.Web.Administration.Controllers {
       ).ConfigureAwait(true);
 
     private async Task<EditInvoiceViewModel> CreateEditViewModel(InvoiceTopicViewModel invoice = null) {
-      var pageContent = _topicRepository.Load("Administration:Invoices:Edit");
-      var viewModel = await _topicMappingService.MapAsync<EditInvoiceViewModel>(pageContent).ConfigureAwait(true);
-      viewModel.Invoice = invoice;
+      var pageContent           = _topicRepository.Load("Administration:Invoices:Edit");
+      var viewModel             = new EditInvoiceViewModel {
+        Invoice                 = invoice
+      };
+      viewModel = (EditInvoiceViewModel)await _topicMappingService.MapAsync(pageContent, viewModel).ConfigureAwait(true);
       return viewModel;
     }
 

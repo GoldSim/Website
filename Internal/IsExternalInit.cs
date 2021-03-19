@@ -1,19 +1,19 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
-| Project       Website
+| Client        Ignia, LLC
+| Project       Topics Library
 \=============================================================================================================================*/
-using OnTopic.ViewModels;
 
-namespace GoldSim.Web.Models.ContentTypes {
+namespace System.Runtime.CompilerServices {
 
   /*============================================================================================================================
-  | VIEW MODEL: SEARCH TOPIC
+  | CLASS: IS EXTERNAL INIT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Search</c> topic.
+  ///   The <see cref="IsExternalInit"/> class is made available as part of the .NET 5.0 CLR in order to enable init accessors.
+  ///   As this is not available in .NET Standard, however, we must maintain this separate copy until we migrate to .NET 5.0.
   /// </summary>
-  public record SearchTopicViewModel : PageTopicViewModel {
+  internal static class IsExternalInit {
 
-  } // Class
-} // Namespace
+  } //Class
+} //Namespace
