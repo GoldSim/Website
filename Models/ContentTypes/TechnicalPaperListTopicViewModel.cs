@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   key.
     /// </summary>
     public TopicViewModelCollection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
-      new TopicViewModelCollection<TechnicalPaperTopicViewModel>(
+      new(
         ContentItems
         .Where(t => (t.Category ?? "").Equals(category, StringComparison.Ordinal))
         .Cast<TechnicalPaperTopicViewModel>()
