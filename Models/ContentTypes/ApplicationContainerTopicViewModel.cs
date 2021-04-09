@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
@@ -23,7 +24,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
     /// </summary>
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; } = new();
+    [MapAs(typeof(AssociatedTopicViewModel))]
+    public TopicViewModelCollection<AssociatedTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | DISPLAY ORDER
