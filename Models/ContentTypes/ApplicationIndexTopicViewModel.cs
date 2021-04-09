@@ -96,9 +96,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
     public TopicViewModelCollection<ApplicationBasePageTopicViewModel> GetAllApplications() =>
-      new TopicViewModelCollection<ApplicationBasePageTopicViewModel>(
-        EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList()
-      );
+      new(EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList());
 
     /*==========================================================================================================================
     | GET CATEGORIZED APPLICATIONS
