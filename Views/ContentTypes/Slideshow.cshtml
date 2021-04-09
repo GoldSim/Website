@@ -45,7 +45,9 @@
 }
 
 @section InlineScript {
-  $('.owl-carousel').slideshow();
+  $('.owl-carousel').slideshow({
+    slideTransition: '@Model.TransitionEffect'
+  });
 }
 
 @{
