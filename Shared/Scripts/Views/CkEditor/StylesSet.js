@@ -45,27 +45,6 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
   | Styles that are specific to GoldSim's stylesheet, and frequently used across pages
   \---------------------------------------------------------------------------------------------------------------------------*/
   {
-    name                        : 'Figure',
-    element                     : 'figure',
-    attributes                  : {
-      'class'                   : 'illustration full'
-    }
-  },
-  {
-    name                        : 'Figure w/out Border',
-    element                     : 'figure',
-    attributes                  : {
-      'class'                   : 'illustration full'
-    }
-  },
-  {
-    name                        : 'Help Reference',
-    element                     : 'aside',
-    attributes                  : {
-      'class'                   : 'help'
-    }
-  },
-  {
     name                        : 'Note',
     element                     : 'blockquote',
     attributes                  : {
@@ -77,6 +56,27 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
     element                     : 'blockquote',
     attributes                  : {
       'class'                   : 'stop'
+    }
+  },
+  {
+    name                        : 'Help Reference',
+    element                     : 'aside',
+    attributes                  : {
+      'class'                   : 'help'
+    }
+  },
+  {
+    name                        : 'Figure',
+    element                     : 'figure',
+    attributes                  : {
+      'class'                   : 'illustration full'
+    }
+  },
+  {
+    name                        : 'Figure w/out Border',
+    element                     : 'figure',
+    attributes                  : {
+      'class'                   : 'illustration full'
     }
   },
   {
