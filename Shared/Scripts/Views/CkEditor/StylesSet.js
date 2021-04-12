@@ -45,6 +45,13 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
   | Styles that are specific to GoldSim's stylesheet, and frequently used across pages
   \---------------------------------------------------------------------------------------------------------------------------*/
   {
+    name                        : 'Indented Text',
+    element                     : 'p',
+    attributes                  : {
+      'class'                   : 'indented'
+    }
+  },
+  {
     name                        : 'Note',
     element                     : 'blockquote',
     attributes                  : {
