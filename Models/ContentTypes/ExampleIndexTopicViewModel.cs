@@ -24,8 +24,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
     [Collection("EnvironmentalExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
+    public override TopicViewModelCollection<AssociatedTopicViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -34,8 +35,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
     [Collection("BusinessExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
+    public override TopicViewModelCollection<AssociatedTopicViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -44,8 +46,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
     [Collection("EngineeredSystemsExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
+    public override TopicViewModelCollection<AssociatedTopicViewModel> EngineeredSystems { get; } = new();
 
   } // Class
 } // Namespace

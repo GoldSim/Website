@@ -70,8 +70,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
     [Collection(CollectionType.Relationship)]
-    public TopicViewModelCollection<PageGroupTopicViewModel> Modules { get; } = new();
+    public TopicViewModelCollection<AssociatedTopicViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: EXAMPLE APPLICATIONS
@@ -79,8 +80,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
+    [FilterByContentType("ExampleApplication")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<ExampleApplicationTopicViewModel> ExampleApplications { get; } = new();
+    public TopicViewModelCollection<AssociatedTopicViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: WHITE PAPERS
@@ -88,8 +91,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
+    [MapAs(typeof(AssociatedTopicViewModel))]
+    [FilterByContentType("WhitePaper")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<WhitePaperTopicViewModel> WhitePapers { get; } = new();
+    public TopicViewModelCollection<AssociatedTopicViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: TECHNICAL PAPERS

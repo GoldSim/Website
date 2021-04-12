@@ -1,71 +1,73 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
+using OnTopic.Models;
 
-namespace GoldSim.Web.Models.ContentTypes.ContentItems {
+namespace GoldSim.Web.Models {
 
   /*============================================================================================================================
-  | VIEW MODEL: TECHNICAL PAPER TOPIC
+  | CLASS: ASSOCIATED TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>TechnicalPaper</c> topic.
+  ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  public record TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
+  public record AssociatedTopicViewModel: ICardViewModel, ICoreTopicViewModel, INavigableTopicViewModel {
 
     /*==========================================================================================================================
-    | AUTHORS
+    | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of authors associated with the paper.
-    /// </summary>
-    public string Authors { get; init; }
+    /// <inheritdoc/>
+    public string Key { get; init; }
 
     /*==========================================================================================================================
-    | PUBLICATION
+    | CONTENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the name of the publication or journal that the technical paper was originally published in.
-    /// </summary>
-    public string Publication { get; init; }
+    /// <inheritdoc/>
+    public string ContentType { get; init; }
 
     /*==========================================================================================================================
-    | PUBLICATION (URL)
+    | WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the URL for the publication or journal that the technical paper was originally published in.
-    /// </summary>
-    public Uri PublicationUrl { get; init; }
+    /// <inheritdoc/>
+    public string WebPath { get; init; }
 
     /*==========================================================================================================================
-    | PUBLICATION DATE
+    | TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the date that the technical paper was originally published on.
-    /// </summary>
-    public DateTime PublicationDate { get; init; }
+    /// <inheritdoc/>
+    public string Title { get; init; }
 
     /*==========================================================================================================================
-    | DOWNLOAD (LABEL)
+    | SHORT TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides an optional label for the download link.
-    /// </summary>
-    public string DownloadLabel { get; init; }
+    /// <inheritdoc/>
+    public string ShortTitle { get; init; }
 
     /*==========================================================================================================================
-    | RELATIONSHIP: APPLICATIONS
+    | THUMBNAIL IMAGE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc/>
+    public string ThumbnailImage { get; init; }
+
+    /*==========================================================================================================================
+    | LEARN MORE (URL)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="TechnicalPaperTopicViewModel"/>
-    ///   is associated with.
+    ///   Provides an optional link for the <see cref="AssociatedTopicViewModel"/>.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Applications { get; } = new();
+    public Uri LearnMoreUrl { get; init; }
 
-  } // Class
+    /*==========================================================================================================================
+    | LAST MODIFIED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the date that the <see cref="AssociatedTopicViewModel"/> was last modified.
+    /// </summary>
+    public DateTime LastModified { get; init; }
+
+
+  } // Interface
 } // Namespace
