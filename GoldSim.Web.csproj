@@ -24,8 +24,8 @@
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
     <PackageReference Include="Postmark" Version="4.5.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="OnTopic.All" Version="5.1.0-rc.1" />
-    <PackageReference Include="OnTopic.Editor.AspNetCore.All" Version="5.1.0-rc.2" />
+    <PackageReference Include="OnTopic.All" Version="5.1.0" />
+    <PackageReference Include="OnTopic.Editor.AspNetCore.All" Version="5.1.0" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.17.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="5.0.5" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.5" />
