@@ -16,23 +16,8 @@
 // LAYOUT
 //----------------------------------------------------------------------------------------------
 #MainContentArea {
-  article {
-    &:first-of-type,
-    &[itemprop="mainContentOfPage"] {
-      > header {
-        padding                 : rem-calc(0 80);
-      }
-    }
-  }
-}
-
-//----------------------------------------------------------------------------------------------
-// PANEL
-//----------------------------------------------------------------------------------------------
-section.panel {
-  padding                       : rem-calc(60 80);
-  ol, p, td, ul {
-    font-size                   : rem-calc(16);
+  > article.grid-container {
+    max-width                   : 1152px;
   }
 }
 
@@ -42,7 +27,7 @@ section.panel {
 .lesson-list {
   ol {
     margin-left                 : 0px;
-    margin-top                  : rem-calc(60);
+    margin-top                  : rem-calc(80);
     margin-right                : rem-calc(24);
     font-size                   : rem-calc(16);
     li {
