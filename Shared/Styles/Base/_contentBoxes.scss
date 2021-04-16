@@ -221,6 +221,9 @@ blockquote.note {
   min-height                    : rem-calc(32);
   margin-inline-start           : rem-calc(0);
   padding-left                  : rem-calc(44);
+  &, p {
+    color                       : $palette-blue;
+  }
   p:last-child {
     margin-bottom               : rem-calc(0);
   }
