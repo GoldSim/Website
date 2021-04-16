@@ -69,7 +69,8 @@ body {
 
   // (Foundation) Title Bar "Cells"
   div[class^="title-bar-"] {
-    width                       : 33%;
+    width                       : 50%;
+    white-space                 : nowrap;
   }
 
 }
