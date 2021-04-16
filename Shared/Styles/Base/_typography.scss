@@ -107,13 +107,17 @@ p {
 .logotype {
   display                       : inline-block;
   vertical-align                : middle;
-  margin-left                   : 8px;
-  margin-top                    : -5px;
+  margin-left                   : 5px;
   font-family                   : $header-font-family;
-  font-size                     : 2.75em;
+  font-size                     : 2.25em;
   line-height                   : 100%;
   font-weight                   : 600;
   letter-spacing                : -2px;
+  @include breakpoint(large) {
+    font-size                   : 2.75em;
+    margin-left                 : 8px;
+    margin-top                  : -5px;
+  }
 }
 
 //----------------------------------------------------------------------------------------------
