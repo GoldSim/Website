@@ -113,6 +113,9 @@ p {
   line-height                   : 100%;
   font-weight                   : 600;
   letter-spacing                : -2px;
+  @include breakpoint(550px down) {
+    display                     : none;
+  }
   @include breakpoint(large) {
     font-size                   : 2.75em;
     margin-left                 : 8px;
