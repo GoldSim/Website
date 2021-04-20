@@ -220,9 +220,6 @@ blockquote.note {
   border-left                   : none;
   min-height                    : rem-calc(32);
   margin-inline-start           : rem-calc(0);
-  &, p {
-    color                       : $palette-blue;
-  }
   padding                       : rem-calc(32 44);
   p:last-child {
     margin-bottom               : rem-calc(0);
@@ -238,6 +235,14 @@ blockquote.note {
     float                       : left;
     position                    : relative;
     top                         : rem-calc(7);
+  }
+}
+
+blockquote.note {
+  border-top                    : 2px solid $palette-blue;
+  border-bottom                 : 2px solid $palette-blue;
+  &, p {
+    color                       : $palette-grey-medium;
   }
 }
 
