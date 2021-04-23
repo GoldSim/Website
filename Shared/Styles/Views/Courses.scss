@@ -60,9 +60,12 @@
 }
 
 .unit-list {
-  ol {
-    margin-top                  : 0px;
-    margin-bottom               : 0px;
+  ul {
+    margin                      : 0px;
+    list-style-type             : none;
+    li {
+      padding-left              : 0px;
+    }
   }
 }
 

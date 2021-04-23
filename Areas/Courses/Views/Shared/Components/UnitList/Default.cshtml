@@ -6,7 +6,7 @@
   <nav role="navigation" class="unit-list track-progress">
     <div class="grid-container">
       <div class="grid-x">
-        <ol>
+        <ul>
           @foreach (var topic in Model.NavigationRoot.Children) {
             <li class="@topic.GetCssClass()">
               <a href="@topic.WebPath">
@@ -14,7 +14,7 @@
               </a>
             </li>
           }
-        </ol>
+        </ul>
       </div>
     </div>
   </nav>
