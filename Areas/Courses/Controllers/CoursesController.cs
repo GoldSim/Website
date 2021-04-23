@@ -22,7 +22,6 @@ namespace GoldSim.Web.Courses.Controllers {
   ///   Provides common processing for GoldSim courseware.
   /// </summary>
   [Area("Courses")]
-  [Authorize]
   public class CoursesController : TopicController {
 
     /*==========================================================================================================================
