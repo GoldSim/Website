@@ -68,8 +68,12 @@ body {
   }
 
   // (Foundation) Title Bar "Cells"
-  div[class^="title-bar-"] {
-    width                       : 33%;
+  .title-bar-left, .title-bar-right {
+    width                       : 25%;
+  }
+  .title-bar-middle {
+    width                       : 50%;
+    white-space                 : nowrap;
   }
 
 }
