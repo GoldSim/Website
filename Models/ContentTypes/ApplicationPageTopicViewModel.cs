@@ -92,10 +92,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(ContentItemAssociationViewModel))]
     [FilterByContentType("WhitePaper")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> WhitePapers { get; } = new();
+    public TopicViewModelCollection<ContentItemAssociationViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: TECHNICAL PAPERS
