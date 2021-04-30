@@ -4,9 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
-using GoldSim.Web.Models.Associations;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 
@@ -16,7 +13,31 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>TechnicalPaper</c> topic.
   /// </summary>
-  public record TechnicalPaperTopicViewModel: ContentItemTopicViewModel {
+  public record TechnicalPaperTopicViewModel {
+
+    /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the topic's <see cref="Key"/> attribute, the primary text identifier for the <see cref="Topic"/>.
+    /// </summary>
+    public string Key { get; init; }
+
+    /*==========================================================================================================================
+    | TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the Title attribute, which represents the friendly name of the topic.
+    /// </summary>
+    public string Title { get; init; }
+
+    /*==========================================================================================================================
+    | CATEGORY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the category that the content item should be grouped under.
+    /// </summary>
+    public string Category { get; init; }
 
     /*==========================================================================================================================
     | AUTHORS
@@ -51,12 +72,28 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     public DateTime PublicationDate { get; init; }
 
     /*==========================================================================================================================
+    | LEARN MORE (URL)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides an optional link for the <see cref="AssociatedTopicViewModel"/>.
+    /// </summary>
+    public Uri LearnMoreUrl { get; init; }
+
+    /*==========================================================================================================================
     | DOWNLOAD (LABEL)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides an optional label for the download link.
     /// </summary>
     public string DownloadLabel { get; init; }
+
+    /*==========================================================================================================================
+    | DESCRIPTION
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the description; this is effectively the body.
+    /// </summary>
+    public string Description { get; init; }
 
   } // Class
 } // Namespace
