@@ -21,5 +21,13 @@ namespace GoldSim.Web.Models.Associations {
     /// <inheritdoc/>
     public string ThumbnailImage { get; init; }
 
+    /*==========================================================================================================================
+    | LAST MODIFIED
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the date that the <see cref="AssociatedTopicViewModel"/> was last modified.
+    /// </summary>
+    public DateTime LastModified { get; init; }
+
   } // Interface
 } // Namespace

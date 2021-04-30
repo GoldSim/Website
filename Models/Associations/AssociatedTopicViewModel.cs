@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using OnTopic.Models;
 
 namespace GoldSim.Web.Models.Associations {
@@ -33,15 +32,6 @@ namespace GoldSim.Web.Models.Associations {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>
     public string ShortTitle { get; init; }
-
-    /*==========================================================================================================================
-    | LAST MODIFIED
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the date that the <see cref="AssociatedTopicViewModel"/> was last modified.
-    /// </summary>
-    public DateTime LastModified { get; init; }
-
 
   } // Interface
 } // Namespace
