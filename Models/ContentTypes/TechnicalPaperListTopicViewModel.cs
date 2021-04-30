@@ -17,7 +17,16 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a Technical Paper List topic.
   /// </summary>
-  public record TechnicalPaperListTopicViewModel : ContentListTopicViewModel {
+  public record TechnicalPaperListTopicViewModel : PageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONTENT ITEMS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="TechnicalPaperTopicViewModel"/> topics, representing the contents of the <see
+    ///   cref="TechnicalPaperTopicViewModel"/>.
+    /// </summary>
+    public TopicViewModelCollection<TechnicalPaperTopicViewModel> ContentItems { get; } = new();
 
     /*==========================================================================================================================
     | FIELD CATEGORIES
@@ -39,7 +48,6 @@ namespace GoldSim.Web.Models.ContentTypes {
       new(
         ContentItems
         .Where(t => (t.Category ?? "").Equals(category, StringComparison.Ordinal))
-        .Cast<TechnicalPaperTopicViewModel>()
         .OrderByDescending(p => p.PublicationDate)
         .AsEnumerable()
       );
