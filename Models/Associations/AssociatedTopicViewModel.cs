@@ -1,39 +1,37 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        Goldsim
+| Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
+using OnTopic.Models;
 
-namespace GoldSim.Web.Models.ContentTypes {
+namespace GoldSim.Web.Models.Associations {
 
   /*============================================================================================================================
-  | VIEW MODEL: HOME TOPIC
+  | CLASS: ASSOCIATED TOPIC VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Home</c> topic.
+  ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  public record HomeTopicViewModel: PageTopicViewModel {
+  public record AssociatedTopicViewModel: INavigableTopicViewModel {
 
     /*==========================================================================================================================
-    | INTRODUCTION
+    | WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the introductory text to display at the top of the page.
-    /// </summary>
-    public string Introduction { get; set; }
+    /// <inheritdoc/>
+    public string WebPath { get; init; }
 
     /*==========================================================================================================================
-    | RELATIONSHIP: APPLICATIONS
+    | TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of <see cref="ApplicationContainerTopicViewModel"/>s, each of which contain a list of <see cref=
-    ///   "ApplicationPageTopicViewModel"/>s to be displayed on the homepage.
-    /// </summary>
-    [Include(AssociationTypes.Children)]
-    [FilterByContentType("ApplicationContainer")]
-    public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = new();
+    /// <inheritdoc/>
+    public string Title { get; init; }
 
-  } // Class
+    /*==========================================================================================================================
+    | SHORT TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc/>
+    public string ShortTitle { get; init; }
+
+  } // Interface
 } // Namespace

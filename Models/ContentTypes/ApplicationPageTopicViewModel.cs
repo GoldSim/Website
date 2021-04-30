@@ -4,10 +4,11 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -70,9 +71,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [Collection(CollectionType.Relationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Modules { get; } = new();
+    public Collection<CardViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: EXAMPLE APPLICATIONS
@@ -80,10 +81,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [FilterByContentType("ExampleApplication")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> ExampleApplications { get; } = new();
+    public Collection<CardViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: WHITE PAPERS
@@ -91,10 +92,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any white papers associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(AssociatedContentItemViewModel))]
     [FilterByContentType("WhitePaper")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> WhitePapers { get; } = new();
+    public Collection<AssociatedContentItemViewModel> WhitePapers { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: TECHNICAL PAPERS
@@ -103,7 +104,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a reference to any <see cref="TechnicalPaperTopicViewModel"/>s associated with the current application.
     /// </summary>
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
+    public Collection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
 
   } // Class
 } // Namespace

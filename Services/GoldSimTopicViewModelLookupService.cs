@@ -89,7 +89,6 @@ namespace GoldSim.Web {
       | Override Ignia view models
       \-----------------------------------------------------------------------------------------------------------------------*/
       AddOrReplace(typeof(NavigationTopicViewModel));
-      AddOrReplace(typeof(PageGroupTopicViewModel));
 
     }
 

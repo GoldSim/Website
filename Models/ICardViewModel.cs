@@ -38,5 +38,13 @@ namespace GoldSim.Web.Models {
     /// </summary>
     string Title { get; }
 
+    /*==========================================================================================================================
+    | SHORT TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Optionally overrides the <see cref="Title"/> with a shorter title more appropriate for display on the card format.
+    /// </summary>
+    string ShortTitle { get; }
+
   } // Interface
 } // Namespace

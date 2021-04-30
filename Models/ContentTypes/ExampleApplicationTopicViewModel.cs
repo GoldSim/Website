@@ -3,8 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.Collections.ObjectModel;
+using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -25,7 +26,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   /> is associated with.
     /// </summary>
     [MapAs(typeof(AssociatedTopicViewModel))]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Applications { get; } = new();
+    public Collection<AssociatedTopicViewModel> Applications { get; } = new();
 
   } // Class
 } // Namespace
