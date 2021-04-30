@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
@@ -56,7 +57,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual TopicViewModelCollection<CardViewModel> EnvironmentalSystems { get; } = new();
+    public virtual Collection<CardViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -66,7 +67,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual TopicViewModelCollection<CardViewModel> BusinessSystems { get; } = new();
+    public virtual Collection<CardViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -76,7 +77,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual TopicViewModelCollection<CardViewModel> EngineeredSystems { get; } = new();
+    public virtual Collection<CardViewModel> EngineeredSystems { get; } = new();
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
@@ -99,7 +100,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a consolidated list of <i>all</i> applications from the corresponding properties.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    public TopicViewModelCollection<CardViewModel> GetAllApplications() =>
+    public Collection<CardViewModel> GetAllApplications() =>
       new(EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList());
 
     /*==========================================================================================================================
@@ -109,8 +110,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a dictionary of applications keyed by <see cref="Categories"/>.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    public Dictionary<string, TopicViewModelCollection<CardViewModel>> GetCategorizedApplications() {
-      var categorizedApplications = new Dictionary<string, TopicViewModelCollection<CardViewModel>> {
+    public Dictionary<string, Collection<CardViewModel>> GetCategorizedApplications() {
+      var categorizedApplications = new Dictionary<string, Collection<CardViewModel>> {
         { nameof(EnvironmentalSystems), EnvironmentalSystems },
         { nameof(BusinessSystems), BusinessSystems },
         { nameof(EngineeredSystems), EngineeredSystems }
