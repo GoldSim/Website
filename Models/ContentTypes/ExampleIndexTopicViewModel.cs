@@ -3,8 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.Collections.ObjectModel;
+using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -24,8 +25,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(CardViewModel))]
     [Collection("EnvironmentalExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
+    public override Collection<CardViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -34,8 +36,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(CardViewModel))]
     [Collection("BusinessExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
+    public override Collection<CardViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -44,8 +47,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
+    [MapAs(typeof(CardViewModel))]
     [Collection("EngineeredSystemsExamples")]
-    public override TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
+    public override Collection<CardViewModel> EngineeredSystems { get; } = new();
 
   } // Class
 } // Namespace

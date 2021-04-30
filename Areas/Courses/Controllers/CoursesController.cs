@@ -22,7 +22,6 @@ namespace GoldSim.Web.Courses.Controllers {
   ///   Provides common processing for GoldSim courseware.
   /// </summary>
   [Area("Courses")]
-  [Authorize]
   public class CoursesController : TopicController {
 
     /*==========================================================================================================================
@@ -44,7 +43,7 @@ namespace GoldSim.Web.Courses.Controllers {
     | GET: INDEX (VIEW TOPIC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async override Task<IActionResult> IndexAsync(string path) {
 

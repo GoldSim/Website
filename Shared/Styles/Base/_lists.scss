@@ -23,6 +23,11 @@ ol {
       display                   : block;
       margin                    : rem-calc(32) auto;
     }
+    br {
+      content                   : "";
+      display                   : block;
+      margin                    : rem-calc(16);
+    }
   }
   ul,
   ol {

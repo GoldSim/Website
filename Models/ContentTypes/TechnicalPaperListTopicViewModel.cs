@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
@@ -17,7 +18,16 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a Technical Paper List topic.
   /// </summary>
-  public record TechnicalPaperListTopicViewModel : ContentListTopicViewModel {
+  public record TechnicalPaperListTopicViewModel : PageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONTENT ITEMS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of <see cref="TechnicalPaperTopicViewModel"/> topics, representing the contents of the <see
+    ///   cref="TechnicalPaperTopicViewModel"/>.
+    /// </summary>
+    public Collection<TechnicalPaperTopicViewModel> ContentItems { get; } = new();
 
     /*==========================================================================================================================
     | FIELD CATEGORIES
@@ -26,7 +36,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of categories potential associated with each <see cref="TechnicalPaperTopicViewModel"/>.
     /// </summary>
     [Metadata("FieldCategories")]
-    public TopicViewModelCollection<LookupListItemTopicViewModel> FieldCategories { get; } = new();
+    public Collection<LookupListItemTopicViewModel> FieldCategories { get; } = new();
 
     /*==========================================================================================================================
     | GET TECHNICAL PAPERS
@@ -35,13 +45,12 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a helper function for retrieving a list of <see cref="TechnicalPaperTopicViewModel"/>s based on a category
     ///   key.
     /// </summary>
-    public TopicViewModelCollection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
-      new TopicViewModelCollection<TechnicalPaperTopicViewModel>(
+    public Collection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
+      new(
         ContentItems
         .Where(t => (t.Category ?? "").Equals(category, StringComparison.Ordinal))
-        .Cast<TechnicalPaperTopicViewModel>()
         .OrderByDescending(p => p.PublicationDate)
-        .AsEnumerable()
+        .ToList()
       );
 
   } // Class

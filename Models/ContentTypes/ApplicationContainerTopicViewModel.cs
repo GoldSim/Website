@@ -4,6 +4,10 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using System.Collections.ObjectModel;
+using GoldSim.Web.Models.Associations;
+using OnTopic.Mapping.Annotations;
+using OnTopic.Models;
 using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
@@ -15,7 +19,19 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
   ///   topic.
   /// </summary>
-  public record ApplicationContainerTopicViewModel : PageTopicViewModel {
+  public record ApplicationContainerTopicViewModel: ICoreTopicViewModel {
+
+    /*==========================================================================================================================
+    | KEY
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc/>
+    public string Key { get; init; }
+
+    /*==========================================================================================================================
+    | CONTENT TYPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc/>
+    public string ContentType { get; init; }
 
     /*==========================================================================================================================
     | CHILDREN
@@ -23,7 +39,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
     /// </summary>
-    public TopicViewModelCollection<ApplicationPageTopicViewModel> Children { get; } = new();
+    [MapAs(typeof(AssociatedTopicViewModel))]
+    public Collection<AssociatedTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | DISPLAY ORDER

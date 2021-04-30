@@ -134,7 +134,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request a trial of the product.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> TrialAsync() =>
       View(await CreateViewModel<TrialFormBindingModel>().ConfigureAwait(true));
@@ -150,7 +150,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request a demonstration of the product.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> DemoAsync() =>
       View(await CreateViewModel<DemoFormBindingModel>().ConfigureAwait(true));
@@ -166,7 +166,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request a quote for the product
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> QuoteAsync() =>
       View(await CreateViewModel<QuoteFormBindingModel>().ConfigureAwait(true));
@@ -182,7 +182,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request to purchase a license of the product
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> PurchaseAsync() =>
       View(await CreateViewModel<PurchaseFormBindingModel>().ConfigureAwait(true));
@@ -198,7 +198,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Signup for the GoldSim newsletter
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> NewsletterAsync() =>
       View(await CreateViewModel<NewsletterFormBindingModel>().ConfigureAwait(true));
@@ -214,7 +214,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request an academic license of the product for faculty.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> InstructorAcademicAsync()
       => View(await CreateViewModel<InstructorAcademicFormBindingModel>().ConfigureAwait(true));
@@ -230,7 +230,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request an academic license of the product for faculty.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> StudentAcademicAsync() =>
       View(await CreateViewModel<StudentAcademicFormBindingModel>().ConfigureAwait(true));
@@ -246,7 +246,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Request an academic license of the product for faculty.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> UserConferenceAsync() =>
       View(await CreateViewModel<UserConferenceFormBindingModel>().ConfigureAwait(true));
@@ -262,7 +262,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Signup for a training session with GoldSim.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async Task<IActionResult> TrainingAsync() =>
       View(await CreateViewModel<TrainingFormBindingModel>().ConfigureAwait(true));
@@ -278,7 +278,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
       if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;

@@ -5,7 +5,9 @@
 \=============================================================================================================================*/
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
+using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 
@@ -54,7 +56,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EnvironmentalSystems { get; } = new();
+    [MapAs(typeof(CardViewModel))]
+    public virtual Collection<CardViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -63,7 +66,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> BusinessSystems { get; } = new();
+    [MapAs(typeof(CardViewModel))]
+    public virtual Collection<CardViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -72,7 +76,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    public virtual TopicViewModelCollection<ApplicationBasePageTopicViewModel> EngineeredSystems { get; } = new();
+    [MapAs(typeof(CardViewModel))]
+    public virtual Collection<CardViewModel> EngineeredSystems { get; } = new();
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
@@ -95,10 +100,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a consolidated list of <i>all</i> applications from the corresponding properties.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    public TopicViewModelCollection<ApplicationBasePageTopicViewModel> GetAllApplications() =>
-      new TopicViewModelCollection<ApplicationBasePageTopicViewModel>(
-        EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList()
-      );
+    public Collection<CardViewModel> GetAllApplications() =>
+      new(EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList());
 
     /*==========================================================================================================================
     | GET CATEGORIZED APPLICATIONS
@@ -107,8 +110,8 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a dictionary of applications keyed by <see cref="Categories"/>.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    public Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>> GetCategorizedApplications() {
-      var categorizedApplications = new Dictionary<string, TopicViewModelCollection<ApplicationBasePageTopicViewModel>> {
+    public Dictionary<string, Collection<CardViewModel>> GetCategorizedApplications() {
+      var categorizedApplications = new Dictionary<string, Collection<CardViewModel>> {
         { nameof(EnvironmentalSystems), EnvironmentalSystems },
         { nameof(BusinessSystems), BusinessSystems },
         { nameof(EngineeredSystems), EngineeredSystems }

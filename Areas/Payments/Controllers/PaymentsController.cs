@@ -91,7 +91,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   optionally, a <see cref="PaymentFormBindingModel"/>.
     /// </summary>
     /// <returns>A fully mapped <see cref="PaymentsTopicViewModel"/>.</returns>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
