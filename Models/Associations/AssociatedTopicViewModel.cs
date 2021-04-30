@@ -14,19 +14,7 @@ namespace GoldSim.Web.Models.Associations {
   /// <summary>
   ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  public record AssociatedTopicViewModel: ICoreTopicViewModel, INavigableTopicViewModel {
-
-    /*==========================================================================================================================
-    | KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc/>
-    public string Key { get; init; }
-
-    /*==========================================================================================================================
-    | CONTENT TYPE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc/>
-    public string ContentType { get; init; }
+  public record AssociatedTopicViewModel: INavigableTopicViewModel {
 
     /*==========================================================================================================================
     | WEB PATH
