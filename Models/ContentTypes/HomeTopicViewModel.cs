@@ -32,6 +32,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   "ApplicationPageTopicViewModel"/>s to be displayed on the homepage.
     /// </summary>
     [Include(AssociationTypes.Children)]
+    [FilterByContentType("ApplicationContainer")]
     public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = new();
 
   } // Class
