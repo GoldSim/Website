@@ -6,7 +6,7 @@
 using System;
 using OnTopic.Models;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.Associations {
 
   /*============================================================================================================================
   | CLASS: ASSOCIATED TOPIC VIEW MODEL

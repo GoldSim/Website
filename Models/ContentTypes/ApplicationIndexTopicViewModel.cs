@@ -6,6 +6,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 

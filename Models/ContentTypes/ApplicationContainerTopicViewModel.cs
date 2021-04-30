@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System;
+using GoldSim.Web.Models.Associations;
 using OnTopic.Mapping.Annotations;
 using OnTopic.Models;
 using OnTopic.ViewModels;
