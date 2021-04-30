@@ -17,15 +17,5 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// </summary>
   public record WhitePaperTopicViewModel: ContentItemTopicViewModel {
 
-    /*==========================================================================================================================
-    | RELATIONSHIP: APPLICATIONS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="WhitePaperTopicViewModel"/>
-    ///   is associated with.
-    /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Applications { get; } = new();
-
   } // Class
 } // Namespace

@@ -58,15 +58,5 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// </summary>
     public string DownloadLabel { get; init; }
 
-    /*==========================================================================================================================
-    | RELATIONSHIP: APPLICATIONS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of <see cref="ApplicationPageTopicViewModel"/>s that this <see cref="TechnicalPaperTopicViewModel"/>
-    ///   is associated with.
-    /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Applications { get; } = new();
-
   } // Class
 } // Namespace
