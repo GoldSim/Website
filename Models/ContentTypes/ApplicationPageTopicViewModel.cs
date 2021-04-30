@@ -71,9 +71,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any module pages associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [Collection(CollectionType.Relationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> Modules { get; } = new();
+    public TopicViewModelCollection<CardViewModel> Modules { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: EXAMPLE APPLICATIONS
@@ -81,10 +81,10 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a reference to any <see cref="ExampleApplicationTopicViewModel"/>s associated with the current application.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [FilterByContentType("ExampleApplication")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public TopicViewModelCollection<AssociatedTopicViewModel> ExampleApplications { get; } = new();
+    public TopicViewModelCollection<CardViewModel> ExampleApplications { get; } = new();
 
     /*==========================================================================================================================
     | RELATIONSHIP: WHITE PAPERS

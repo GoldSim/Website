@@ -25,9 +25,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EnvironmentalSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [Collection("EnvironmentalExamples")]
-    public override TopicViewModelCollection<AssociatedTopicViewModel> EnvironmentalSystems { get; } = new();
+    public override TopicViewModelCollection<CardViewModel> EnvironmentalSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -36,9 +36,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>BusinessSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [Collection("BusinessExamples")]
-    public override TopicViewModelCollection<AssociatedTopicViewModel> BusinessSystems { get; } = new();
+    public override TopicViewModelCollection<CardViewModel> BusinessSystems { get; } = new();
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -47,9 +47,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="ApplicationBasePageTopicViewModel"/>s associated with the <c>EngineeredSystems</c>
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
-    [MapAs(typeof(AssociatedTopicViewModel))]
+    [MapAs(typeof(CardViewModel))]
     [Collection("EngineeredSystemsExamples")]
-    public override TopicViewModelCollection<AssociatedTopicViewModel> EngineeredSystems { get; } = new();
+    public override TopicViewModelCollection<CardViewModel> EngineeredSystems { get; } = new();
 
   } // Class
 } // Namespace
