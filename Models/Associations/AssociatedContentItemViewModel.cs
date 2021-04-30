@@ -9,13 +9,13 @@ using OnTopic.ViewModels;
 namespace GoldSim.Web.Models.Associations {
 
   /*============================================================================================================================
-  | CLASS: CONTENT ITEM ASSOCIATION TOPIC VIEW MODEL
+  | CLASS: ASSOCIATED CONTENT ITEM VIEW MODEL
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides a model for tracking associations to <see cref="ContentItemTopicViewModel"/>s. This model supports navigable
   ///   lists.
   /// </summary>
-  public record ContentItemAssociationViewModel: AssociatedTopicViewModel {
+  public record AssociatedContentItemViewModel: AssociatedTopicViewModel {
 
     /*==========================================================================================================================
     | KEY
