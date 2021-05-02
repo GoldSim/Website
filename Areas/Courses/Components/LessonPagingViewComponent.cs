@@ -143,7 +143,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <param name="moveNext">Determines if the next or last sibling should be selected.</param>
     private static Topic GetAdjacentTopic(Topic rootTopic, Topic currentTopic, bool moveNext) {
       var siblings              = rootTopic.Children;
-      var lessonIndex            = siblings.IndexOf(currentTopic);
+      var lessonIndex           = siblings.IndexOf(currentTopic);
       var adjacentIndex         = lessonIndex + (moveNext? 1 : -1);
       var noAdjacentTopic       = adjacentIndex < 0 || adjacentIndex >= siblings.Count;
       return noAdjacentTopic    ? null : siblings[adjacentIndex];
