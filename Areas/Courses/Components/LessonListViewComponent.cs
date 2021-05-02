@@ -94,7 +94,7 @@ namespace GoldSim.Web.Courses.Components {
         HttpContext.Response.Cookies.Append(
           $"Visited{CurrentTopic.Key}",
           "1",
-          new Microsoft.AspNetCore.Http.CookieOptions() {
+          new() {
             Path                = CurrentTopic.Parent.GetWebPath(),
             Expires             = DateTime.Now.AddYears(20)
           }
