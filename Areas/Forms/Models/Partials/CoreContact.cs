@@ -88,5 +88,14 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Remote(action: "VerifyEmail", controller: "Forms")]
     public virtual string Email { get; init; }
 
+    /*==========================================================================================================================
+    | PROPERTY: RECAPTCHA TOKEN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The response token provided by the reCAPTCHA client
+    /// </summary>
+    [DisableMapping]
+    public string RecaptchaToken { get; set; }
+
   } //Class
 } //Namespace
