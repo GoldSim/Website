@@ -15,6 +15,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using OnTopic.AspNetCore.Mvc;
+using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Editor.AspNetCore;
 
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
@@ -112,6 +113,11 @@ namespace GoldSim.Web {
       if (HostingEnvironment.IsDevelopment()) {
         mvcBuilder.AddRazorRuntimeCompilation();
       }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Configure: Sitemap
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      SitemapController.SkippedContentTypes.Add("Unit");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Register: Activators
