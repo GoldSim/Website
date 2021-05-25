@@ -56,6 +56,7 @@ namespace GoldSim.Web {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ISmtpService                    _smtpService;
+    private readonly            IRequestValidator               _requestValidator;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
 
@@ -89,6 +90,7 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
           _configuration        = configuration;
           _webHostEnvironment   = webHostEnvironment;
+          _requestValidator     = new RecaptchaValidator(configuration.GetValue<string>("reCaptcha:Secret"));
       var connectionString      = configuration.GetConnectionString("OnTopic");
       var sqlTopicRepository    = new SqlTopicRepository(connectionString);
       var cachedTopicRepository = new CachedTopicRepository(sqlTopicRepository);
