@@ -205,7 +205,8 @@ namespace GoldSim.Web {
           _topicRepository,
           _topicMappingService,
           new ReverseTopicMappingService(_topicRepository),
-          _smtpService
+          _smtpService,
+          _requestValidator
         ),
 
         nameof(LicensesController) => new LicensesController(
