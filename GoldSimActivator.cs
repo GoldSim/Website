@@ -198,7 +198,8 @@ namespace GoldSim.Web {
             _topicRepository,
             _topicMappingService,
             new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData),
-            _smtpService
+            _smtpService,
+            _requestValidator
           ),
 
         nameof(FormsController) => new FormsController(
