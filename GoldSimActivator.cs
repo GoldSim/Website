@@ -287,6 +287,9 @@ namespace GoldSim.Web {
         nameof(LessonPagingViewComponent)
           => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
 
+        nameof(RecaptchaViewComponent)
+          => new RecaptchaViewComponent(_configuration.GetValue<string>("reCaptcha:SiteKey")),
+
         _ => throw new InvalidOperationException($"Unknown view component {viewComponentType.Name}")
 
       };
