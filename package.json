@@ -25,7 +25,7 @@
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.3",
     "@microsoft/applicationinsights-web": "^2.6.2",
-    "autoprefixer": "^10.2.5",
+    "autoprefixer": "^10.2.6",
     "awesome-foundation6-checkbox": "^2.0.3",
     "cssnano": "^5.0.2",
     "dashjs": "^3.2.2",
