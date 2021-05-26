@@ -169,7 +169,7 @@ function executeBraintree(clientToken) {
           document.querySelector('#BindingModel_PaymentMethodNonce').value = payload.nonce;
 
           // Submit the form
-          form.submit();
+          $(form).submit();
 
         });
       }, false);

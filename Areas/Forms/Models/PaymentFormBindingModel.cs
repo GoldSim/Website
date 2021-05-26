@@ -101,5 +101,13 @@ namespace GoldSim.Web.Forms.Models {
     [Required(ErrorMessage="The credit card information is required.")]
     public string PaymentMethodNonce { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: RECAPTCHA TOKEN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The response token provided by the reCAPTCHA client
+    /// </summary>
+    public string RecaptchaToken { get; set; }
+
   } //Class
 } //Namespace

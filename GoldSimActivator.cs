@@ -56,6 +56,7 @@ namespace GoldSim.Web {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ISmtpService                    _smtpService;
+    private readonly            IRequestValidator               _requestValidator;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
 
@@ -89,6 +90,7 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
           _configuration        = configuration;
           _webHostEnvironment   = webHostEnvironment;
+          _requestValidator     = new RecaptchaValidator(configuration.GetValue<string>("reCaptcha:Secret"));
       var connectionString      = configuration.GetConnectionString("OnTopic");
       var sqlTopicRepository    = new SqlTopicRepository(connectionString);
       var cachedTopicRepository = new CachedTopicRepository(sqlTopicRepository);
@@ -196,14 +198,16 @@ namespace GoldSim.Web {
             _topicRepository,
             _topicMappingService,
             new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData),
-            _smtpService
+            _smtpService,
+            _requestValidator
           ),
 
         nameof(FormsController) => new FormsController(
           _topicRepository,
           _topicMappingService,
           new ReverseTopicMappingService(_topicRepository),
-          _smtpService
+          _smtpService,
+          _requestValidator
         ),
 
         nameof(LicensesController) => new LicensesController(
@@ -286,6 +290,9 @@ namespace GoldSim.Web {
 
         nameof(LessonPagingViewComponent)
           => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
+
+        nameof(RecaptchaViewComponent)
+          => new RecaptchaViewComponent(_configuration.GetValue<string>("reCaptcha:SiteKey")),
 
         _ => throw new InvalidOperationException($"Unknown view component {viewComponentType.Name}")
 

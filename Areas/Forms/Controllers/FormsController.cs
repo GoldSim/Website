@@ -23,7 +23,6 @@ using OnTopic.Mapping;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
 using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Forms.Controllers {
 
@@ -43,6 +42,7 @@ namespace GoldSim.Web.Forms.Controllers {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            IReverseTopicMappingService     _reverseMappingService;
     private readonly            ISmtpService                    _smptService;
+    private readonly            IRequestValidator               _requestValidator;
     private                     Dictionary<string, string>      _formValues;
 
     /*==========================================================================================================================
@@ -56,7 +56,8 @@ namespace GoldSim.Web.Forms.Controllers {
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
-      ISmtpService smtpService
+      ISmtpService smtpService,
+      IRequestValidator requestValidator
     ) : base(
       topicRepository,
       topicMappingService
@@ -64,6 +65,7 @@ namespace GoldSim.Web.Forms.Controllers {
       _topicMappingService      = topicMappingService;
       _reverseMappingService    = reverseTopicMappingService;
       _smptService              = smtpService;
+      _requestValidator         = requestValidator;
     }
 
     /*==========================================================================================================================
@@ -90,6 +92,13 @@ namespace GoldSim.Web.Forms.Controllers {
       T bindingModel,
       string requestType = ""
     ) where T: CoreContact, ITopicBindingModel, new() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate request
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+        ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model

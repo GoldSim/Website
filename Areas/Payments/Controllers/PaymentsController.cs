@@ -40,6 +40,7 @@ namespace GoldSim.Web.Payments.Controllers {
     private     readonly        ITopicMappingService            _topicMappingService;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration;
     private     readonly        ISmtpService                    _smtpService;
+    private     readonly        IRequestValidator               _requestValidator;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -49,10 +50,11 @@ namespace GoldSim.Web.Payments.Controllers {
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public PaymentsController(
-      ITopicRepository topicRepository,
-      ITopicMappingService topicMappingService,
-      IBraintreeConfiguration braintreeConfiguration,
-      ISmtpService smtpService
+      ITopicRepository          topicRepository,
+      ITopicMappingService      topicMappingService,
+      IBraintreeConfiguration   braintreeConfiguration,
+      ISmtpService              smtpService,
+      IRequestValidator         requestValidator
     ) : base(
       topicRepository,
       topicMappingService
@@ -64,6 +66,7 @@ namespace GoldSim.Web.Payments.Controllers {
       _topicMappingService      = topicMappingService;
       _braintreeConfiguration   = braintreeConfiguration;
       _smtpService              = smtpService;
+      _requestValidator         = requestValidator;
 
     }
 
@@ -140,6 +143,13 @@ namespace GoldSim.Web.Payments.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate request
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+        ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate invoice
