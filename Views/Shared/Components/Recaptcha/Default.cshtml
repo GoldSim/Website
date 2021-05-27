@@ -9,13 +9,16 @@
   window.addEventListener('DOMContentLoaded', function () {
     var $tokenField = $("#reCaptchaToken");
     var $form = $($tokenField.get(0).form);
+    var $button = $form.find("input[type='submit']");
     (function($) {
       grecaptcha.ready(function () {
+        $button.prop("disabled", false);
         $form.submit(function(event) {
           event.preventDefault();
           var form = this;
           $form.validate();
           if ($form.valid()) {
+            $button.prop("disabled", true);
             grecaptcha.execute('@Model.SiteKey', { action: '@Model.Action' }).then(function(token) {
               $tokenField.val(token);
               form.submit();
