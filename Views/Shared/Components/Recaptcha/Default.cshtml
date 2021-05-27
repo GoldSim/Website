@@ -16,7 +16,6 @@
         $form.submit(function(event) {
           event.preventDefault();
           var form = this;
-          $form.validate();
           if ($form.valid()) {
             $button.prop("disabled", true);
             grecaptcha.execute('@Model.SiteKey', { action: '@Model.Action' }).then(function(token) {
