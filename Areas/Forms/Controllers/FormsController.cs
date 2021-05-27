@@ -463,6 +463,9 @@ namespace GoldSim.Web.Forms.Controllers {
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel", StringComparison.OrdinalIgnoreCase))) {
+        if (field.EndsWith("RecaptchaToken", StringComparison.OrdinalIgnoreCase)) {
+          continue;
+        }
         var fieldName = field.Replace("_", ".", StringComparison.Ordinal).Replace("BindingModel.", "", StringComparison.Ordinal);
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
         if (fieldValues.Count > 1 && fieldValues[0] is "true") {
