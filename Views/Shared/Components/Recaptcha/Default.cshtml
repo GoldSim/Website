@@ -6,22 +6,22 @@
 <script src="https://www.google.com/recaptcha/api.js?render=@Model.SiteKey" defer></script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', function() {
+  window.addEventListener('DOMContentLoaded', function () {
+    var $tokenField = $("#reCaptchaToken");
+    var $form = $($tokenField.get(0).form);
     (function($) {
-      var tokenField = $("#reCaptchaToken");
-      var $form = $(tokenField.get(0).form);
-      $form.submit(function(event) {
-        event.preventDefault();
-        var form = this;
-        $form.validate();
-        if ($form.valid()) {
-          grecaptcha.ready(function() {
+      grecaptcha.ready(function () {
+        $form.submit(function(event) {
+          event.preventDefault();
+          var form = this;
+          $form.validate();
+          if ($form.valid()) {
             grecaptcha.execute('@Model.SiteKey', { action: '@Model.Action' }).then(function(token) {
-              tokenField.val(token);
+              $tokenField.val(token);
               form.submit();
             });
-          });
-        }
+          }
+        });
       });
     })(jQuery);
   });
