@@ -149,7 +149,7 @@ namespace GoldSim.Web {
       if (env.IsDevelopment()) {
         app.UseDeveloperExceptionPage();
       }
-      else {
+      else if (env.IsProduction()) {
         app.UseExceptionHandler("/Error/InternalServer/");
         app.UseHttpsRedirection();
         app.UseHsts();
