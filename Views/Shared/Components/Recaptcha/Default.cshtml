@@ -8,21 +8,26 @@
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     (function($) {
-      var tokenField = $("#reCaptchaToken");
-      var $form = $(tokenField.get(0).form);
-      $form.submit(function (event) {
-        event.preventDefault();
-        var form = this;
-        $form.validate();
-        if ($form.valid()) {
-          grecaptcha.ready(function () {
-            grecaptcha.execute('@Model.SiteKey', { action: '@Model.Action' }).then(function (token) {
-              tokenField.val(token);
+
+      var $tokenField           = $("#reCaptchaToken");
+      var $form                 = $($tokenField.get(0).form);
+      var $button               = $form.find("input[type='submit']");
+
+      grecaptcha.ready(function() {
+        $button.prop("disabled", false);
+        $form.submit(function(event) {
+          event.preventDefault();
+          var form = this;
+          if ($form.valid()) {
+            $button.prop("disabled", true);
+            grecaptcha.execute('@Model.SiteKey', { action: '@Model.Action' }).then(function(token) {
+              $tokenField.val(token);
               form.submit();
             });
-          });
-        }
+          }
+        });
       });
+
     })(jQuery);
   });
 </script>

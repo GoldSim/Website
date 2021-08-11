@@ -100,6 +100,10 @@ namespace GoldSim.Web.Forms.Controllers {
         ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
       }
 
+      if (!VerifyEmailDomain(bindingModel.Email, out var errorMessage)) {
+        ModelState.AddModelError("Email", errorMessage);
+      }
+
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
       \-----------------------------------------------------------------------------------------------------------------------*/
@@ -288,14 +292,24 @@ namespace GoldSim.Web.Forms.Controllers {
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
     [HttpGet, HttpHead]
-    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
-      if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
+    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) =>
+      VerifyEmailDomain(email, out var errorMessage)? Json(data: true) : Json(errorMessage);
+
+    /*==========================================================================================================================
+    | HELPER: VERIFY EMAIL DOMAIN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an email address, determines if it uses an invalid domain. If it does, returns an error message.
+    /// </summary>
+    private bool VerifyEmailDomain(string email, out string errorMessage) {
+      errorMessage = null;
+      if (String.IsNullOrWhiteSpace(email)) return true;
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
       var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
       if (invalidDomain is not null) {
-        return Json($"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.");
+        errorMessage = $"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.";
       }
-      return Json(data: true);
+      return invalidDomain is null;
     }
 
     /*==========================================================================================================================
@@ -411,7 +425,7 @@ namespace GoldSim.Web.Forms.Controllers {
 
       bindingModel              = bindingModel with {
         ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
