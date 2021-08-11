@@ -425,7 +425,7 @@ namespace GoldSim.Web.Forms.Controllers {
 
       bindingModel              = bindingModel with {
         ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
