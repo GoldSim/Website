@@ -6,12 +6,14 @@
 <script src="https://www.google.com/recaptcha/api.js?render=@Model.SiteKey" defer></script>
 
 <script>
-  window.addEventListener('DOMContentLoaded', function () {
-    var $tokenField = $("#reCaptchaToken");
-    var $form = $($tokenField.get(0).form);
-    var $button = $form.find("input[type='submit']");
+  window.addEventListener('DOMContentLoaded', function() {
     (function($) {
-      grecaptcha.ready(function () {
+
+      var $tokenField           = $("#reCaptchaToken");
+      var $form                 = $($tokenField.get(0).form);
+      var $button               = $form.find("input[type='submit']");
+
+      grecaptcha.ready(function() {
         $button.prop("disabled", false);
         $form.submit(function(event) {
           event.preventDefault();
@@ -25,6 +27,7 @@
           }
         });
       });
+
     })(jQuery);
   });
 </script>
