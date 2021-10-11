@@ -30,7 +30,7 @@
     "cssnano": "^5.0.8",
     "dashjs": "^4.1.0",
     "foundation-sites": "^6.6.3",
-    "gsap": "^3.7.1",
+    "gsap": "^3.8.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
     "gulp-if": "^3.0.0",
