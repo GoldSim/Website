@@ -400,7 +400,7 @@ namespace GoldSim.Web.Forms.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in GetFormValues()) {
         var fieldName = ToTitleCase(field.Key.Replace(".", ": ", StringComparison.Ordinal));
-        output.Append($"<b>{fieldName}:</b> {field.Value}<br />");
+        output.Append(CultureInfo.InvariantCulture, $"<b>{fieldName}:</b> {field.Value}<br />");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
