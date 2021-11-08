@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
     <AnalysisLevel>latest</AnalysisLevel>
