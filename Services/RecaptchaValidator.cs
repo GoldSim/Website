@@ -9,7 +9,6 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using GoldSim.Web.Models.Recaptcha;
-using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Services {
 
@@ -74,7 +73,7 @@ namespace GoldSim.Web.Services {
       var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
       var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(
         jsonResponse,
-        new() {
+        new JsonSerializerOptions() {
           PropertyNameCaseInsensitive = true
         }
       );
