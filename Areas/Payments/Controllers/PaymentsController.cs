@@ -101,7 +101,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = braintreeGateway.ClientToken.Generate();
+      var clientToken           = await braintreeGateway.ClientToken.GenerateAsync().ConfigureAwait(false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -195,7 +195,7 @@ namespace GoldSim.Web.Payments.Controllers {
           SubmitForSettlement   = true
         }
       };
-      var result                = braintreeGateway.Transaction.Sale(request);
+      var result                = await braintreeGateway.Transaction.SaleAsync(request).ConfigureAwait(false);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
