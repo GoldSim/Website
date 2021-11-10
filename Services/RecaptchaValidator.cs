@@ -55,7 +55,7 @@ namespace GoldSim.Web.Services {
       | Retrieve value
       \-----------------------------------------------------------------------------------------------------------------------*/
       var uri                   = new Uri($"{_serviceUrl}?secret={_secret}&response={requestToken}");
-      var httpResponse          = await _client.GetAsync(uri).ConfigureAwait(false);
+      var httpResponse          = await _client.GetAsync(uri).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response
@@ -67,7 +67,7 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate score
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+      var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(true);
       var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(
         jsonResponse,
         new JsonSerializerOptions() {

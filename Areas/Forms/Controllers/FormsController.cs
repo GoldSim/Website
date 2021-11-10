@@ -91,7 +91,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
         ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
       }
 

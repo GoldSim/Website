@@ -98,7 +98,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = await braintreeGateway.ClientToken.GenerateAsync().ConfigureAwait(false);
+      var clientToken           = await braintreeGateway.ClientToken.GenerateAsync().ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -144,7 +144,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
         ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
       }
 
@@ -192,7 +192,7 @@ namespace GoldSim.Web.Payments.Controllers {
           SubmitForSettlement   = true
         }
       };
-      var result                = await braintreeGateway.Transaction.SaleAsync(request).ConfigureAwait(false);
+      var result                = await braintreeGateway.Transaction.SaleAsync(request).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
