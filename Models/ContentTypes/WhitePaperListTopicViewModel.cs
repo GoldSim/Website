@@ -15,6 +15,5 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public record WhitePaperListTopicViewModel : ContentListTopicViewModel {
 
-
   } // Class
 } // Namespace
