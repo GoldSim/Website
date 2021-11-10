@@ -3,13 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using GoldSim.Web.Models.Recaptcha;
-using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Services {
 
@@ -59,7 +55,7 @@ namespace GoldSim.Web.Services {
       | Retrieve value
       \-----------------------------------------------------------------------------------------------------------------------*/
       var uri                   = new Uri($"{_serviceUrl}?secret={_secret}&response={requestToken}");
-      var httpResponse          = await _client.GetAsync(uri).ConfigureAwait(false);
+      var httpResponse          = await _client.GetAsync(uri).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response
@@ -71,10 +67,10 @@ namespace GoldSim.Web.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate score
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(false);
+      var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(true);
       var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(
         jsonResponse,
-        new() {
+        new JsonSerializerOptions() {
           PropertyNameCaseInsensitive = true
         }
       );

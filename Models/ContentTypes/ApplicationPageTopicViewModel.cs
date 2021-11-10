@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using GoldSim.Web.Models.Associations;

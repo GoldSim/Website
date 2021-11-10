@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Threading.Tasks;
 using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;

@@ -3,15 +3,11 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Threading.Tasks;
 using GoldSim.Web.Models;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Repositories;
-using OnTopic.Querying;
-using System.Text;
 
 namespace GoldSim.Web.Components {
 

@@ -3,9 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;

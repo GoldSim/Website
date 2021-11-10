@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.Generic;
 
 namespace GoldSim.Web.Models {
 

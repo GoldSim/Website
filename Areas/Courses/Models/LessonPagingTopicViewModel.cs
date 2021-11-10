@@ -25,6 +25,5 @@ namespace GoldSim.Web.Courses.Models {
     \-------------------------------------------------------------------------------------------------------------------------*/
     public bool MoveNext { get; init; }
 
-
   } // Class
 } // Namespace

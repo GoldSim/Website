@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.Associations {

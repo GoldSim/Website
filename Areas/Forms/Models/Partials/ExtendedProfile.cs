@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.ComponentModel.DataAnnotations;
 using OnTopic.Mapping.Annotations;
 

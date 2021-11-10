@@ -3,12 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using Braintree;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Payments.Models;
@@ -101,7 +98,7 @@ namespace GoldSim.Web.Payments.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = braintreeGateway.ClientToken.Generate();
+      var clientToken           = await braintreeGateway.ClientToken.GenerateAsync().ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -147,7 +144,7 @@ namespace GoldSim.Web.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
         ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
       }
 
@@ -195,7 +192,7 @@ namespace GoldSim.Web.Payments.Controllers {
           SubmitForSettlement   = true
         }
       };
-      var result                = braintreeGateway.Transaction.Sale(request);
+      var result                = await braintreeGateway.Transaction.SaleAsync(request).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email

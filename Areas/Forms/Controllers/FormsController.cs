@@ -3,14 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
@@ -96,7 +91,7 @@ namespace GoldSim.Web.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(false)) {
+      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
         ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
       }
 
@@ -400,7 +395,7 @@ namespace GoldSim.Web.Forms.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in GetFormValues()) {
         var fieldName = ToTitleCase(field.Key.Replace(".", ": ", StringComparison.Ordinal));
-        output.Append($"<b>{fieldName}:</b> {field.Value}<br />");
+        output.Append(CultureInfo.InvariantCulture, $"<b>{fieldName}:</b> {field.Value}<br />");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
