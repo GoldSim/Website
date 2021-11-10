@@ -91,8 +91,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   optionally, a <see cref="PaymentFormBindingModel"/>.
     /// </summary>
     /// <returns>A fully mapped <see cref="PaymentsTopicViewModel"/>.</returns>
-    [HttpGet, HttpHead]
-    public async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
+    private async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -125,7 +124,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async override Task<IActionResult> IndexAsync(string path) =>
       TopicView(await GetViewModel().ConfigureAwait(true));
@@ -319,7 +318,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
@@ -347,7 +346,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public IActionResult VerifyInvoiceAmount(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
