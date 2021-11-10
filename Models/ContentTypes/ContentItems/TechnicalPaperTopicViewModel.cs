@@ -3,7 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 
 namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 

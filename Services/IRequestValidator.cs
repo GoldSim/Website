@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System.Threading.Tasks;
 
 namespace GoldSim.Web.Services {
 

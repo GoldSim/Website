@@ -4,8 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Globalization;
-using System.Net;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;

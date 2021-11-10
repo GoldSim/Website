@@ -3,8 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Linq;
 using OnTopic.Mapping.Annotations;
 using OnTopic.ViewModels;
 

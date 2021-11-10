@@ -3,10 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using Braintree;
-using Microsoft.AspNetCore.Routing;
-using Microsoft.Extensions.Configuration;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Repositories;

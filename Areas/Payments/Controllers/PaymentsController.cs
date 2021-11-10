@@ -3,12 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using Braintree;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Payments.Models;

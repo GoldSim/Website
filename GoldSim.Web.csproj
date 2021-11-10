@@ -6,6 +6,7 @@
     <ApplicationInsightsAnnotationResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
   </PropertyGroup>
 

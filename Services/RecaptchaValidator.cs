@@ -3,11 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Net;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading.Tasks;
 using GoldSim.Web.Models.Recaptcha;
 
 namespace GoldSim.Web.Services {

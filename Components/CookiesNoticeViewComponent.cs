@@ -3,8 +3,6 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Courses.Components {
