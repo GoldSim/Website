@@ -8,35 +8,14 @@ using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using Microsoft.AspNetCore.StaticFiles;
+using GoldSim.Web;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Editor.AspNetCore;
 
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
-namespace GoldSim.Web {
-
-  /*============================================================================================================================
-  | CLASS: STARTUP
-  \---------------------------------------------------------------------------------------------------------------------------*/
-  /// <summary>
-  ///   Configures the application and sets up dependencies.
-  /// </summary>
-  public class Startup {
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Constructs a new instances of the <see cref="Startup"/> class. Accepts an <see cref="IConfiguration"/>.
-    /// </summary>
-    /// <param name="configuration">
-    ///   The shared <see cref="IConfiguration"/> dependency.
-    /// </param>
-    public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
-      Configuration = configuration;
-      HostingEnvironment = webHostEnvironment;
-    }
+    var builder = WebApplication.CreateBuilder(args);
 
     /*==========================================================================================================================
     | PROPERTY: CONFIGURATION
@@ -44,7 +23,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Provides a (public) reference to the application's <see cref="IConfiguration"/> service.
     /// </summary>
-    public IConfiguration Configuration { get; }
+    IConfiguration Configuration = builder.Configuration;
 
     /*==========================================================================================================================
     | PROPERTY: HOSTING ENVIRONMENT
@@ -52,7 +31,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Provides a (public) reference to the application's <see cref="IWebHostEnvironment"/> service.
     /// </summary>
-    public IWebHostEnvironment HostingEnvironment { get; }
+    IWebHostEnvironment HostingEnvironment = builder.Environment;
 
     /*==========================================================================================================================
     | METHOD: CONFIGURE SERVICES
@@ -60,7 +39,8 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Provides configuration of services. This method is called by the runtime to bootstrap the server configuration.
     /// </summary>
-    public void ConfigureServices(IServiceCollection services) {
+
+    var services = builder.Services;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Use the Microsoft Identity Platform for authentication
@@ -126,8 +106,6 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       services.AddApplicationInsightsTelemetry(Configuration);
 
-    }
-
     /*==========================================================================================================================
     | METHOD: CONFIGURE (APPLICATION)
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -135,7 +113,8 @@ namespace GoldSim.Web {
     ///   Provides configuration the application. This method is called by the runtime to bootstrap the application
     ///   configuration, including the HTTP pipeline.
     /// </summary>
-    public static void Configure(IApplicationBuilder app, IWebHostEnvironment env) {
+    var app = builder.Build();
+    var env = app.Environment;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: Error Pages
@@ -181,6 +160,9 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Configure: MVC
       \-----------------------------------------------------------------------------------------------------------------------*/
+
+      AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
+
       app.UseEndpoints(endpoints => {
 
         endpoints.MapAreaControllerRoute(
@@ -216,7 +198,8 @@ namespace GoldSim.Web {
 
       });
 
-    }
+      /*------------------------------------------------------------------------------------------------------------------------------
+      | Run application
+      \-----------------------------------------------------------------------------------------------------------------------------*/
 
-  } //Class
-} //Namespace
+      app.Run();
