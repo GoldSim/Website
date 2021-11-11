@@ -15,24 +15,6 @@ using OnTopic.Editor.AspNetCore;
 
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
-var builder = WebApplication.CreateBuilder(args);
-
-/*==============================================================================================================================
-| PROPERTY: CONFIGURATION
-\-----------------------------------------------------------------------------------------------------------------------------*/
-/// <summary>
-///   Provides a (public) reference to the application's <see cref="IConfiguration"/> service.
-/// </summary>
-IConfiguration Configuration = builder.Configuration;
-
-/*==============================================================================================================================
-| PROPERTY: HOSTING ENVIRONMENT
-\-----------------------------------------------------------------------------------------------------------------------------*/
-/// <summary>
-///   Provides a (public) reference to the application's <see cref="IWebHostEnvironment"/> service.
-/// </summary>
-IWebHostEnvironment HostingEnvironment = builder.Environment;
-
 /*==============================================================================================================================
 | METHOD: CONFIGURE SERVICES
 \-----------------------------------------------------------------------------------------------------------------------------*/
@@ -40,7 +22,7 @@ IWebHostEnvironment HostingEnvironment = builder.Environment;
 ///   Provides configuration of services. This method is called by the runtime to bootstrap the server configuration.
 /// </summary>
 
-var services = builder.Services;
+var builder = WebApplication.CreateBuilder(args);
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Use the Microsoft Identity Platform for authentication
@@ -51,13 +33,13 @@ var services = builder.Services;
 | the https://login.microsoftonline.com/{TenantId}/v2.0/.well-known/openid-configuration feed (where {TenantId} is e.g.
 | "GoldSim.com").
 \-----------------------------------------------------------------------------------------------------------------------------*/
-services.AddAuthentication(options => {
+builder.Services.AddAuthentication(options => {
   options.DefaultAuthenticateScheme = OpenIdConnectDefaults.AuthenticationScheme;
   options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
   options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
 })
 .AddOpenIdConnect(options => {
-  Configuration.GetSection("OpenIdConnect").Bind(options);
+  builder.Configuration.GetSection("OpenIdConnect").Bind(options);
   options.CorrelationCookie.SameSite = SameSiteMode.None;
   options.SaveTokens = true;
   options.TokenValidationParameters = new() {
@@ -75,7 +57,7 @@ services.AddAuthentication(options => {
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: MVC
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var mvcBuilder = services.AddControllersWithViews()
+var mvcBuilder = builder.Services.AddControllersWithViews()
 
   //Add OnTopic support
   .AddTopicSupport()
@@ -84,7 +66,7 @@ var mvcBuilder = services.AddControllersWithViews()
   .AddTopicEditor();
 
 //Conditionally add runtime compilation in development
-if (HostingEnvironment.IsDevelopment()) {
+if (builder.Environment.IsDevelopment()) {
   mvcBuilder.AddRazorRuntimeCompilation();
 }
 
@@ -96,15 +78,15 @@ SitemapController.SkippedContentTypes.Add("Unit");
 /*------------------------------------------------------------------------------------------------------------------------------
 | Register: Activators
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var activator = new GoldSimActivator(Configuration, HostingEnvironment);
+var activator = new GoldSimActivator(builder.Configuration, builder.Environment);
 
-services.AddSingleton<IControllerActivator>(activator);
-services.AddSingleton<IViewComponentActivator>(activator);
+builder.Services.AddSingleton<IControllerActivator>(activator);
+builder.Services.AddSingleton<IViewComponentActivator>(activator);
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure Application Insights
 \-----------------------------------------------------------------------------------------------------------------------------*/
-services.AddApplicationInsightsTelemetry(Configuration);
+builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
 
 /*==============================================================================================================================
 | METHOD: CONFIGURE (APPLICATION)
@@ -114,16 +96,14 @@ services.AddApplicationInsightsTelemetry(Configuration);
 ///   configuration, including the HTTP pipeline.
 /// </summary>
 var app = builder.Build();
-var env = app.Environment;
-var endpoints = app;
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Error Pages
 \-----------------------------------------------------------------------------------------------------------------------------*/
-if (env.IsDevelopment()) {
+if (app.Environment.IsDevelopment()) {
   app.UseDeveloperExceptionPage();
 }
-else if (env.IsProduction()) {
+else if (app.Environment.IsProduction()) {
   app.UseExceptionHandler("/Error/InternalServer/");
   app.UseHttpsRedirection();
   app.UseHsts();
@@ -164,7 +144,7 @@ app.UseCors("default");
 
 AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
 
-endpoints.MapAreaControllerRoute(
+app.MapAreaControllerRoute(
   name                          : "Payments",
   areaName                      : "Payments",
   pattern                       : "Web/Purchase/PayInvoice/",
@@ -175,7 +155,7 @@ endpoints.MapAreaControllerRoute(
   }
 );
 
-endpoints.MapControllerRoute(
+app.MapControllerRoute(
   name                          : "LegacyRedirect",
   pattern                       : "Page/{pageId}",
   defaults                      : new {
@@ -184,16 +164,16 @@ endpoints.MapControllerRoute(
   }
 );
 
-endpoints.MapTopicEditorRoute().RequireAuthorization();         // OnTopic/{action}/{**path}
+app.MapTopicEditorRoute().RequireAuthorization();               // OnTopic/{action}/{**path}
 
-endpoints.MapImplicitAreaControllerRoute();                     // {area:exists}/{action=Index}
-endpoints.MapDefaultAreaControllerRoute();                      // {area:exists}/{controller}/{action=Index}/{id?}
-endpoints.MapTopicAreaRoute();                                  // {area:exists}/{**path}
-endpoints.MapDefaultControllerRoute();                          // {controller=Home}/{action=Index}/{id?}
+app.MapImplicitAreaControllerRoute();                           // {area:exists}/{action=Index}
+app.MapDefaultAreaControllerRoute();                            // {area:exists}/{controller}/{action=Index}/{id?}
+app.MapTopicAreaRoute();                                        // {area:exists}/{**path}
+app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
-endpoints.MapTopicRoute("Web");                        // Web/{**path}
-endpoints.MapTopicRedirect();                                   // Topic/{topicId}
-endpoints.MapControllers();
+app.MapTopicRoute("Web");                              // Web/{**path}
+app.MapTopicRedirect();                                         // Topic/{topicId}
+app.MapControllers();
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Run application
