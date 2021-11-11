@@ -115,6 +115,7 @@ services.AddApplicationInsightsTelemetry(Configuration);
 /// </summary>
 var app = builder.Build();
 var env = app.Environment;
+var endpoints = app;
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Error Pages
@@ -163,40 +164,36 @@ app.UseCors("default");
 
 AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
 
-app.UseEndpoints(endpoints => {
+endpoints.MapAreaControllerRoute(
+  name                          : "Payments",
+  areaName                      : "Payments",
+  pattern                       : "Web/Purchase/PayInvoice/",
+  defaults                      : new {
+    controller                  = "Payments",
+    action                      = "Index",
+    path                        = "Web/Purchase/PayInvoice"
+  }
+);
 
-  endpoints.MapAreaControllerRoute(
-    name                        : "Payments",
-    areaName                    : "Payments",
-    pattern                     : "Web/Purchase/PayInvoice/",
-    defaults                    : new {
-      controller                = "Payments",
-      action                    = "Index",
-      path                      = "Web/Purchase/PayInvoice"
-    }
-  );
+endpoints.MapControllerRoute(
+  name                          : "LegacyRedirect",
+  pattern                       : "Page/{pageId}",
+  defaults                      : new {
+    controller                  = "LegacyRedirect",
+    action                      = "Redirect"
+  }
+);
 
-  endpoints.MapControllerRoute(
-    name                        : "LegacyRedirect",
-    pattern                     : "Page/{pageId}",
-    defaults                    : new {
-      controller                = "LegacyRedirect",
-      action                    = "Redirect"
-    }
-  );
+endpoints.MapTopicEditorRoute().RequireAuthorization();         // OnTopic/{action}/{**path}
 
-  endpoints.MapTopicEditorRoute().RequireAuthorization();       // OnTopic/{action}/{**path}
+endpoints.MapImplicitAreaControllerRoute();                     // {area:exists}/{action=Index}
+endpoints.MapDefaultAreaControllerRoute();                      // {area:exists}/{controller}/{action=Index}/{id?}
+endpoints.MapTopicAreaRoute();                                  // {area:exists}/{**path}
+endpoints.MapDefaultControllerRoute();                          // {controller=Home}/{action=Index}/{id?}
 
-  endpoints.MapImplicitAreaControllerRoute();                   // {area:exists}/{action=Index}
-  endpoints.MapDefaultAreaControllerRoute();                    // {area:exists}/{controller}/{action=Index}/{id?}
-  endpoints.MapTopicAreaRoute();                                // {area:exists}/{**path}
-  endpoints.MapDefaultControllerRoute();                        // {controller=Home}/{action=Index}/{id?}
-
-  endpoints.MapTopicRoute("Web");                       // Web/{**path}
-  endpoints.MapTopicRedirect();                                 // Topic/{topicId}
-  endpoints.MapControllers();
-
-});
+endpoints.MapTopicRoute("Web");                        // Web/{**path}
+endpoints.MapTopicRedirect();                                   // Topic/{topicId}
+endpoints.MapControllers();
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Run application
