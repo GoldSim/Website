@@ -16,16 +16,12 @@ using OnTopic.Editor.AspNetCore;
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
 /*==============================================================================================================================
-| METHOD: CONFIGURE SERVICES
+| ENABLE SERVICES
 \-----------------------------------------------------------------------------------------------------------------------------*/
-/// <summary>
-///   Provides configuration of services. This method is called by the runtime to bootstrap the server configuration.
-/// </summary>
-
 var builder = WebApplication.CreateBuilder(args);
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Use the Microsoft Identity Platform for authentication
+| Enable: Microsoft Identity Platform (for authentication)
 >-------------------------------------------------------------------------------------------------------------------------------
 | ### NOTE JJC20191122: OpenId only allows authentication against a single Azure AD tenant, or ALL Azure AD tenants. In
 | order to permit authentication against both Ignia (as the development partner) and GoldSim (as the primary user) we
@@ -55,7 +51,7 @@ builder.Services.AddAuthentication(options => {
 .AddCookie();
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Configure: MVC
+| Enable: MVC, OnTopic, and OnTopic Editor
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var mvcBuilder = builder.Services.AddControllersWithViews()
 
@@ -76,7 +72,7 @@ if (builder.Environment.IsDevelopment()) {
 SitemapController.SkippedContentTypes.Add("Unit");
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Register: Activators
+| Enable: Dependency Injection via Composition Root
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var activator = new GoldSimActivator(builder.Configuration, builder.Environment);
 
@@ -84,21 +80,18 @@ builder.Services.AddSingleton<IControllerActivator>(activator);
 builder.Services.AddSingleton<IViewComponentActivator>(activator);
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Configure Application Insights
+| Enable: Application Insights
 \-----------------------------------------------------------------------------------------------------------------------------*/
 builder.Services.AddApplicationInsightsTelemetry(builder.Configuration);
 
 /*==============================================================================================================================
-| METHOD: CONFIGURE (APPLICATION)
+| CONFIGURE: APPLICATION
 \-----------------------------------------------------------------------------------------------------------------------------*/
-/// <summary>
-///   Provides configuration the application. This method is called by the runtime to bootstrap the application
-///   configuration, including the HTTP pipeline.
-/// </summary>
+
 var app = builder.Build();
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Configure: Error Pages
+| Configure: Environment-specific features
 \-----------------------------------------------------------------------------------------------------------------------------*/
 if (app.Environment.IsDevelopment()) {
   app.UseDeveloperExceptionPage();
@@ -110,7 +103,7 @@ else if (app.Environment.IsProduction()) {
 }
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Enable downloads and cache headers
+| Configure: Statis file handling with downloads and cache headers
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var provider                    = new FileExtensionContentTypeProvider();
 const int duration              = 60*60*24*365*2;
@@ -131,7 +124,7 @@ var staticFileOptions           = new StaticFileOptions {
 app.UseStaticFiles(staticFileOptions);
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Configure: Server defaults
+| Configure: Default services
 \-----------------------------------------------------------------------------------------------------------------------------*/
 app.UseRouting();
 app.UseAuthentication();
@@ -139,7 +132,7 @@ app.UseAuthorization();
 app.UseCors("default");
 
 /*------------------------------------------------------------------------------------------------------------------------------
-| Configure: MVC
+| Configure: Routes
 \-----------------------------------------------------------------------------------------------------------------------------*/
 
 AppContext.SetSwitch("Microsoft.AspNetCore.Routing.UseCorrectCatchAllBehavior", true);
