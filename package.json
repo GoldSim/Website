@@ -24,12 +24,12 @@
   "homepage": "https://github.com/GoldSimSoftware/Website#readme",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
-    "@microsoft/applicationinsights-web": "^2.7.0",
-    "autoprefixer": "^10.3.7",
+    "@microsoft/applicationinsights-web": "^2.7.1",
+    "autoprefixer": "^10.4.0",
     "awesome-foundation6-checkbox": "^2.0.3",
-    "cssnano": "^5.0.8",
+    "cssnano": "^5.0.10",
     "dashjs": "^4.1.0",
-    "foundation-sites": "^6.7.3",
+    "foundation-sites": "^6.7.4",
     "gsap": "^3.8.0",
     "gulp": "^4.0.2",
     "gulp-concat": "^2.6.1",
@@ -44,7 +44,7 @@
     "merge2": "^1.4.1",
     "node-sass": "^6.0.1",
     "owl.carousel": "^2.3.4",
-    "postcss": "^8.3.9",
+    "postcss": "^8.3.11",
     "scrollmagic": "^2.0.8",
     "what-input": "^5.2.10"
   }
