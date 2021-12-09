@@ -159,7 +159,7 @@ app.MapDefaultAreaControllerRoute();                            // {area:exists}
 app.MapTopicAreaRoute();                                        // {area:exists}/{**path}
 app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
-app.MapTopicRoute("Web");                              // Web/{**path}
+app.MapTopicRoute(rootTopic: "Web");                            // Web/{**path}
 app.MapTopicRedirect();                                         // Topic/{topicId}
 app.MapControllers();
 
