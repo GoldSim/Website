@@ -3,12 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 
@@ -27,7 +24,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  public class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<NavigationTopicViewModel> {
+  public class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<Models.NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -38,7 +35,7 @@ namespace GoldSim.Web.Components {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public PageLevelNavigationViewComponent(
       ITopicRepository topicRepository,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRepository,
       hierarchicalTopicMappingService

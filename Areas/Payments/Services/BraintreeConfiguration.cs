@@ -6,7 +6,6 @@
 using Braintree;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Payments.Services {
 

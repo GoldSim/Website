@@ -3,9 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel.DataAnnotations;
 using GoldSim.Web.Payments.Controllers;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Forms.Models {
 

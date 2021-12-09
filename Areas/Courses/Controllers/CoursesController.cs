@@ -3,11 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Courses.Controllers {
 

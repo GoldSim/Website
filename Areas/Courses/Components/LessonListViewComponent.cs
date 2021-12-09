@@ -5,11 +5,9 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Courses.Components {
 

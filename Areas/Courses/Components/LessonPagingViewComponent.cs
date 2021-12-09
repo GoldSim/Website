@@ -4,11 +4,9 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using GoldSim.Web.Courses.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Mapping;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Courses.Components {
 

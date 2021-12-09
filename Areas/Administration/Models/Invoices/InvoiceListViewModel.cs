@@ -4,8 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Administration.Models.Invoices {
 

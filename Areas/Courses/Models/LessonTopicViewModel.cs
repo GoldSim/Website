@@ -3,8 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Courses.Models {
 

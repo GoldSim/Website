@@ -4,7 +4,6 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Recaptcha;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Courses.Components {
 

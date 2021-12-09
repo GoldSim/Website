@@ -11,14 +11,12 @@ using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Payments.Models;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Attributes;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Payments.Controllers {
 

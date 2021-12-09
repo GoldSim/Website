@@ -15,7 +15,6 @@ using GoldSim.Web.Forms.Controllers;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
 using OnTopic.AspNetCore.Mvc;
@@ -30,8 +29,6 @@ using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Mapping.Reverse;
-using OnTopic.Repositories;
-using OnTopic.ViewModels;
 using PostmarkDotNet;
 
 namespace GoldSim.Web {

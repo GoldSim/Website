@@ -4,10 +4,8 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 
@@ -18,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the footer of the site.
   /// </summary>
-  public class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  public class FooterViewComponent: NavigationTopicViewComponentBase<Models.NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -29,7 +27,7 @@ namespace GoldSim.Web.Components {
     /// <returns>A <see cref="FooterViewComponent"/>.</returns>
     public FooterViewComponent(
       ITopicRepository topicRepository,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRepository,
       hierarchicalTopicMappingService

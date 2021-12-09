@@ -7,7 +7,6 @@ using GoldSim.Web.Administration.Models.Invoices;
 using GoldSim.Web.Administration.Models.Licenses;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Models;
-using GoldSim.Web.Models;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
 using GoldSim.Web.Payments.Models;
@@ -88,7 +87,7 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | Override Ignia view models
       \-----------------------------------------------------------------------------------------------------------------------*/
-      AddOrReplace(typeof(NavigationTopicViewModel));
+      AddOrReplace(typeof(Models.NavigationTopicViewModel));
 
     }
 

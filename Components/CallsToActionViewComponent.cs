@@ -3,13 +3,10 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 
@@ -20,7 +17,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<Models.NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -31,7 +28,7 @@ namespace GoldSim.Web.Components {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public CallsToActionViewComponent(
       ITopicRepository topicRepository,
-      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRepository,
       hierarchicalTopicMappingService
@@ -66,7 +63,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
+      var navigationViewModel = new NavigationViewModel<Models.NavigationTopicViewModel>() {
         NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath = CurrentTopic?.GetWebPath()
       };

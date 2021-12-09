@@ -3,10 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.ComponentModel.DataAnnotations;
-using OnTopic.Mapping.Annotations;
 using OnTopic.Models;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Forms.Models.Partials {
 
