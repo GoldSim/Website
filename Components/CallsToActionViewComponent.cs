@@ -4,12 +4,10 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Components {
 

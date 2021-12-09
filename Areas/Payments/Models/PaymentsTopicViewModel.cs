@@ -4,7 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Forms.Models;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Payments.Models {
 

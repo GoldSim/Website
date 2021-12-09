@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 using GoldSim.Web.Models.Associations;
-using OnTopic.Mapping.Annotations;
 
 namespace GoldSim.Web.Models.ContentTypes {
 

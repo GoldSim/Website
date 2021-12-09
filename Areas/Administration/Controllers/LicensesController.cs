@@ -5,11 +5,9 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Administration.Services;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 

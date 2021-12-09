@@ -10,14 +10,12 @@ using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Forms.Controllers {
 
