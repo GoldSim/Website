@@ -188,7 +188,7 @@
       @RenderSection("AnnouncementSection")
     }
     else {
-      <partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "GoldSim 14 Release"}})" />
+      <!-- partial name="_Announcement" model="@(null)" view-data="@(new ViewDataDictionary(ViewData) {{"AnnouncementArea", "Footer"}, {"LinkLabel", "GoldSim 14 Release"}})" / -->
     }
 
     @if (IsSectionDefined("FooterSection")) {
