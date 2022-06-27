@@ -3,17 +3,11 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Linq;
 using GoldSim.Web.Forms.Models;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
 using OnTopic.Collections;
-using OnTopic.Internal.Diagnostics;
-using OnTopic.Mapping.Annotations;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Forms.Components {
 

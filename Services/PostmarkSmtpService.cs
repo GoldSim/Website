@@ -3,11 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Linq;
 using System.Net.Mail;
-using System.Threading.Tasks;
-using OnTopic.Internal.Diagnostics;
 using PostmarkDotNet;
 
 namespace GoldSim.Web.Services {

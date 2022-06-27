@@ -4,9 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Globalization;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Controllers {
 

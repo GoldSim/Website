@@ -3,10 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.ComponentModel.DataAnnotations;
 using GoldSim.Web.Payments.Controllers;
-using Microsoft.AspNetCore.Mvc;
 
 namespace GoldSim.Web.Forms.Models {
 
@@ -100,6 +97,14 @@ namespace GoldSim.Web.Forms.Models {
     /// </remarks>
     [Required(ErrorMessage="The credit card information is required.")]
     public string PaymentMethodNonce { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: RECAPTCHA TOKEN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The response token provided by the reCAPTCHA client
+    /// </summary>
+    public string RecaptchaToken { get; set; }
 
   } //Class
 } //Namespace

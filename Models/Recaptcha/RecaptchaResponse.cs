@@ -1,85 +1,70 @@
 ﻿/*==============================================================================================================================
 | Author        Ignia, LLC
-| Client        GoldSim
+| Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.Globalization;
-using System.Net;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using OnTopic.AspNetCore.Mvc.Controllers;
-using OnTopic.Mapping;
-using OnTopic.Repositories;
+using System.Collections.ObjectModel;
+using System.Text.Json.Serialization;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Models.Recaptcha {
 
   /*============================================================================================================================
-  | CLASS: ERROR CONTROLLER
+  | MODEL: RECAPTCHA RESPONSE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides common processing for all error pages.
+  ///   Provides a strongly-typed data transfer object for modeling the JSON response from reCAPTCHA.
   /// </summary>
-  public class ErrorController : TopicController {
+  public record RecaptchaResponse {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | HOSTNAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of an <see cref="ErrorController"/> with necessary dependencies.
+    ///   The site which solved the reCAPTCHA.
     /// </summary>
-    /// <returns>An <see cref="ErrorController"/> for loading OnTopic views.</returns>
-    public ErrorController(
-      ITopicRepository topicRepository,
-      ITopicMappingService topicMappingService
-    ) : base(
-      topicRepository,
-      topicMappingService
-    ) {}
+    public string Hostname { get; init; }
 
     /*==========================================================================================================================
-    | ERROR: NOT FOUND
+    | ACTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Handles 404 errors.
+    ///   The action which the reCAPTCHA was associated with.
     /// </summary>
-    [HttpGet]
-    public async Task<IActionResult> NotFoundAsync() {
-      HttpContext.Response.StatusCode = 404;
-      return await IndexAsync("NotFound").ConfigureAwait(true);
-    }
+    public string Action { get; init; }
 
     /*==========================================================================================================================
-    | ERROR: UNAUTHORIZED
+    | SUCCESS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Handles 401 errors.
+    ///   Determines if the request was successfully completed.
     /// </summary>
-    [HttpGet]
-    public async Task<IActionResult> UnauthorizedAsync() {
-      HttpContext.Response.StatusCode = 401;
-      return await IndexAsync("Unauthorized").ConfigureAwait(true);
-    }
+    public bool Success { get; init; }
 
     /*==========================================================================================================================
-    | ERROR: INTERNAL SERVER
+    | SCORE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Handles 500 errors.
+    ///   Provides the assessed score from the reCAPTCHA service.
     /// </summary>
-    [HttpGet]
-    public async Task<IActionResult> InternalServerAsync() {
-      HttpContext.Response.StatusCode = 500;
-      return await IndexAsync("InternalServer").ConfigureAwait(true);
-    }
+    public float Score { get; init; }
 
     /*==========================================================================================================================
-    | ERROR: TRIGGER
+    | TIMESTAMP
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Triggers a runtime exception for the purposes of testing error responses.
+    ///   Provides the challenge response timestap from the reCAPTCHA service.
     /// </summary>
-    [HttpGet]
-    public IActionResult Trigger(int divisor = 0) => Content((5/divisor).ToString(CultureInfo.InvariantCulture));
+    [JsonPropertyName("challenge_ts")]
+    public DateTime Timestamp { get; init; }
+
+    /*==========================================================================================================================
+    | ERROR CODES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of errors returned from the reCAPTCHA service, if appropriate.
+    /// </summary>
+    [JsonPropertyName("error-codes")]
+    public Collection<string> ErrorCodes { get; } = new();
 
   } // Class
 } // Namespace

@@ -3,16 +3,11 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using System;
-using System.Linq;
-using System.Threading.Tasks;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Models;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Courses.Components {
 
@@ -94,7 +89,7 @@ namespace GoldSim.Web.Courses.Components {
         HttpContext.Response.Cookies.Append(
           $"Visited{CurrentTopic.Key}",
           "1",
-          new Microsoft.AspNetCore.Http.CookieOptions() {
+          new() {
             Path                = CurrentTopic.Parent.GetWebPath(),
             Expires             = DateTime.Now.AddYears(20)
           }

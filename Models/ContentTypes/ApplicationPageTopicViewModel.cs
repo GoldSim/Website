@@ -3,12 +3,10 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
-using OnTopic.Mapping.Annotations;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -19,6 +17,27 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationPage</c> topic.
   /// </summary>
   public record ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationPageTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationPageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Abstract                  = attributes.GetValue(nameof(Abstract));
+      ModelImage                = attributes.GetValue(nameof(ModelImage));
+      CompareTo                 = attributes.GetValue(nameof(CompareTo));
+      LearnMoreUrl              = attributes.GetUri(nameof(LearnMoreUrl));
+      LearnMoreLabel            = attributes.GetValue(nameof(LearnMoreLabel))?? "Learn More";
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationPageTopicViewModel() { }
 
     /*==========================================================================================================================
     | ABSTRACT

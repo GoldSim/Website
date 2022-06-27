@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using GoldSim.Web.Administration.Controllers;
 using GoldSim.Web.Administration.Services;
 using GoldSim.Web.Components;
@@ -16,11 +15,8 @@ using GoldSim.Web.Forms.Controllers;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
-using Microsoft.Extensions.Configuration;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Data.Caching;
@@ -28,13 +24,10 @@ using OnTopic.Data.Sql;
 using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;
 using OnTopic.Mapping.Reverse;
-using OnTopic.Repositories;
-using OnTopic.ViewModels;
 using PostmarkDotNet;
 
 namespace GoldSim.Web {
@@ -56,6 +49,7 @@ namespace GoldSim.Web {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ISmtpService                    _smtpService;
+    private readonly            IRequestValidator               _requestValidator;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
 
@@ -89,6 +83,7 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
           _configuration        = configuration;
           _webHostEnvironment   = webHostEnvironment;
+          _requestValidator     = new RecaptchaValidator(configuration.GetValue<string>("reCaptcha:Secret"));
       var connectionString      = configuration.GetConnectionString("OnTopic");
       var sqlTopicRepository    = new SqlTopicRepository(connectionString);
       var cachedTopicRepository = new CachedTopicRepository(sqlTopicRepository);
@@ -176,6 +171,8 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       return controllerType.Name switch {
 
+        nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
+
         nameof(RedirectController) => new RedirectController(_topicRepository),
 
         nameof(LegacyRedirectController) => new LegacyRedirectController(_topicRepository),
@@ -196,14 +193,16 @@ namespace GoldSim.Web {
             _topicRepository,
             _topicMappingService,
             new BraintreeConfiguration(_topicRepository, _configuration, context.RouteData),
-            _smtpService
+            _smtpService,
+            _requestValidator
           ),
 
         nameof(FormsController) => new FormsController(
           _topicRepository,
           _topicMappingService,
           new ReverseTopicMappingService(_topicRepository),
-          _smtpService
+          _smtpService,
+          _requestValidator
         ),
 
         nameof(LicensesController) => new LicensesController(
@@ -216,8 +215,6 @@ namespace GoldSim.Web {
           _topicRepository,
           _topicMappingService
         ),
-
-        nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
 
@@ -241,21 +238,6 @@ namespace GoldSim.Web {
       | Determine view component type
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewComponentType = context.ViewComponentDescriptor.TypeInfo.AsType();
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Establish dependencies
-      >-------------------------------------------------------------------------------------------------------------------------
-      | ### HACK JJC20200725: Typically, we use a singleton life cycle for the hierarchical navigation—and, indeed, we have one
-      | defined. During development, however, we'll be using a transient scoped dependency in order to avoid the caching
-      | implemented in the singleton version. Prior to deployment, we'll switch back to the singleton.
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var coursewareTopicMappingService = (IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>)null;
-      if (viewComponentType.Namespace.Contains("Courses", StringComparison.OrdinalIgnoreCase)) {
-        coursewareTopicMappingService = new HierarchicalTopicMappingService<TrackedNavigationTopicViewModel>(
-          _topicRepository,
-          _topicMappingService
-        );
-      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Resolve
@@ -291,16 +273,19 @@ namespace GoldSim.Web {
           => new FooterViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(CourseListViewComponent)
-          => new CourseListViewComponent(_topicRepository, coursewareTopicMappingService),
+          => new CourseListViewComponent(_topicRepository, _coursewareTopicMappingService),
 
         nameof(UnitListViewComponent)
-          => new UnitListViewComponent(_topicRepository, coursewareTopicMappingService),
+          => new UnitListViewComponent(_topicRepository, _coursewareTopicMappingService),
 
         nameof(LessonListViewComponent)
-          => new LessonListViewComponent(_topicRepository, coursewareTopicMappingService),
+          => new LessonListViewComponent(_topicRepository, _coursewareTopicMappingService),
 
         nameof(LessonPagingViewComponent)
           => new LessonPagingViewComponent(_topicRepository, _topicMappingService),
+
+        nameof(RecaptchaViewComponent)
+          => new RecaptchaViewComponent(_configuration.GetValue<string>("reCaptcha:SiteKey")),
 
         _ => throw new InvalidOperationException($"Unknown view component {viewComponentType.Name}")
 

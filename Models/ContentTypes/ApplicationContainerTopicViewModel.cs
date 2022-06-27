@@ -3,12 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
 using GoldSim.Web.Models.Associations;
-using OnTopic.Mapping.Annotations;
 using OnTopic.Models;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -78,7 +75,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   method simply strips <c>Systems</c> off the container key.
     /// </summary>
     /// <returns></returns>
-    public string GetContainerKey() => Key.Substring(0, Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase));
+    public string GetContainerKey() => Key[..Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase)];
 
   } // Class
 } // Namespace

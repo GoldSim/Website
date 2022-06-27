@@ -3,27 +3,19 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Net.Http;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
-using OnTopic.Repositories;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Forms.Controllers {
 
@@ -43,6 +35,7 @@ namespace GoldSim.Web.Forms.Controllers {
     private readonly            ITopicMappingService            _topicMappingService;
     private readonly            IReverseTopicMappingService     _reverseMappingService;
     private readonly            ISmtpService                    _smptService;
+    private readonly            IRequestValidator               _requestValidator;
     private                     Dictionary<string, string>      _formValues;
 
     /*==========================================================================================================================
@@ -56,7 +49,8 @@ namespace GoldSim.Web.Forms.Controllers {
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
-      ISmtpService smtpService
+      ISmtpService smtpService,
+      IRequestValidator requestValidator
     ) : base(
       topicRepository,
       topicMappingService
@@ -64,6 +58,7 @@ namespace GoldSim.Web.Forms.Controllers {
       _topicMappingService      = topicMappingService;
       _reverseMappingService    = reverseTopicMappingService;
       _smptService              = smtpService;
+      _requestValidator         = requestValidator;
     }
 
     /*==========================================================================================================================
@@ -90,6 +85,17 @@ namespace GoldSim.Web.Forms.Controllers {
       T bindingModel,
       string requestType = ""
     ) where T: CoreContact, ITopicBindingModel, new() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate request
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!await _requestValidator.IsValid(CurrentTopic.Key, bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
+        ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
+      }
+
+      if (!VerifyEmailDomain(bindingModel.Email, out var errorMessage)) {
+        ModelState.AddModelError("Email", errorMessage);
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -279,14 +285,24 @@ namespace GoldSim.Web.Forms.Controllers {
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
     [HttpGet, HttpHead]
-    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) {
-      if (String.IsNullOrWhiteSpace(email)) return Json(data: true);
+    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) =>
+      VerifyEmailDomain(email, out var errorMessage)? Json(data: true) : Json(errorMessage);
+
+    /*==========================================================================================================================
+    | HELPER: VERIFY EMAIL DOMAIN
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Given an email address, determines if it uses an invalid domain. If it does, returns an error message.
+    /// </summary>
+    private bool VerifyEmailDomain(string email, out string errorMessage) {
+      errorMessage = null;
+      if (String.IsNullOrWhiteSpace(email)) return true;
       var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
       var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
       if (invalidDomain is not null) {
-        return Json($"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.");
+        errorMessage = $"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.";
       }
-      return Json(data: true);
+      return invalidDomain is null;
     }
 
     /*==========================================================================================================================
@@ -377,7 +393,7 @@ namespace GoldSim.Web.Forms.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in GetFormValues()) {
         var fieldName = ToTitleCase(field.Key.Replace(".", ": ", StringComparison.Ordinal));
-        output.Append($"<b>{fieldName}:</b> {field.Value}<br />");
+        output.Append(CultureInfo.InvariantCulture, $"<b>{fieldName}:</b> {field.Value}<br />");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -402,7 +418,7 @@ namespace GoldSim.Web.Forms.Controllers {
 
       bindingModel              = bindingModel with {
         ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmss", CultureInfo.InvariantCulture)
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -454,6 +470,9 @@ namespace GoldSim.Web.Forms.Controllers {
       | Loop over form values
       \-----------------------------------------------------------------------------------------------------------------------*/
       foreach (var field in HttpContext.Request.Form.Keys.Where(key => key.StartsWith("BindingModel", StringComparison.OrdinalIgnoreCase))) {
+        if (field.EndsWith("RecaptchaToken", StringComparison.OrdinalIgnoreCase)) {
+          continue;
+        }
         var fieldName = field.Replace("_", ".", StringComparison.Ordinal).Replace("BindingModel.", "", StringComparison.Ordinal);
         HttpContext.Request.Form.TryGetValue(field, out var fieldValues);
         if (fieldValues.Count > 1 && fieldValues[0] is "true") {

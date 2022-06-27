@@ -165,11 +165,14 @@ function executeBraintree(clientToken) {
             return;
           }
 
+          // Disable button to prevent resubmission
+          submit.setAttribute('disabled', '');
+
           // Set the payment nonce hidden field value
           document.querySelector('#BindingModel_PaymentMethodNonce').value = payload.nonce;
 
           // Submit the form
-          form.submit();
+          $(form).submit();
 
         });
       }, false);

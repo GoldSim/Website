@@ -3,12 +3,8 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -19,6 +15,20 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a Technical Paper List topic.
   /// </summary>
   public record TechnicalPaperListTopicViewModel : PageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TechnicalPaperListTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with no parameters.
+    /// </summary>
+    public TechnicalPaperListTopicViewModel() { }
 
     /*==========================================================================================================================
     | CONTENT ITEMS

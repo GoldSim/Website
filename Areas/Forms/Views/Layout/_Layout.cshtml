@@ -19,12 +19,15 @@
 
     <div class="grid-x grid-margin-x" style="margin-top: 1rem;">
       <div class="medium-6 cell text-left">
-        <input type="submit" value="@(Model.SubmitButtonLabel?? "Submit")" class="submit button large primary" />
+        <input type="submit" disabled value="@(Model.SubmitButtonLabel?? "Submit")" class="submit button large primary" />
       </div>
       <div class="medium-6 cell text-right">
         @RenderSection("CancelButton", required: false)
       </div>
     </div>
+
+    <!-- reCAPTCHA -->
+    <vc:recaptcha action="@Model.Key" />
 
     @RenderSection("EndOfForm", required: false)
 

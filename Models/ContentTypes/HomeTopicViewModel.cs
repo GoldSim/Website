@@ -3,8 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -15,6 +13,23 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Home</c> topic.
   /// </summary>
   public record HomeTopicViewModel: PageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="HomeTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public HomeTopicViewModel(AttributeDictionary attributes): base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Introduction = attributes.GetValue(nameof(Introduction));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="HomeTopicViewModel"/> with no parameters.
+    /// </summary>
+    public HomeTopicViewModel() { }
 
     /*==========================================================================================================================
     | INTRODUCTION

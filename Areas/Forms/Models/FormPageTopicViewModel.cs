@@ -4,8 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.ContentTypes;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Forms.Models {
 

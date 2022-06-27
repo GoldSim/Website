@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 using GoldSim.Web.Models.Associations;
-using OnTopic.Mapping.Annotations;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -17,6 +16,20 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   topic.
   /// </summary>
   public record ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ExampleApplicationTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ExampleApplicationTopicViewModel() { }
 
     /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS

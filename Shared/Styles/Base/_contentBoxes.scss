@@ -202,7 +202,7 @@ aside.help {
   }
   &:before {
     @include fa-icon;
-    font-family                 : 'Font Awesome 5 Free';
+    font-family                 : 'Font Awesome 6 Free';
     color                       : $palette-yellow;
     font-size                   : rem-calc(32);
     content                     : fa-content($fa-var-question-circle);
@@ -226,7 +226,7 @@ blockquote.note {
   }
   &:before {
     @include fa-icon;
-    font-family                 : 'Font Awesome 5 Free';
+    font-family                 : 'Font Awesome 6 Free';
     color                       : $palette-blue;
     font-size                   : rem-calc(32);
     content                     : fa-content($fa-var-comment-alt);

@@ -3,13 +3,8 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using GoldSim.Web.Models.Associations;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -25,6 +20,23 @@ namespace GoldSim.Web.Models.ContentTypes {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     bool                        _isFirst                        = true;
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      FilteredDocumentType      = attributes.GetValue(nameof(FilteredDocumentType));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationIndexTopicViewModel() { }
 
     /*==========================================================================================================================
     | FILTERED DOCUMENT TYPE

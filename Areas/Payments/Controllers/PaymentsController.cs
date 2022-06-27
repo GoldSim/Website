@@ -3,25 +3,18 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using System;
 using System.Globalization;
-using System.Linq;
 using System.Net.Mail;
 using System.Text;
-using System.Threading.Tasks;
 using Braintree;
 using GoldSim.Web.Forms.Models;
 using GoldSim.Web.Payments.Models;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
-using Microsoft.AspNetCore.Mvc;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
-using OnTopic.Attributes;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
-using OnTopic.Repositories;
 
 namespace GoldSim.Web.Payments.Controllers {
 
@@ -40,6 +33,7 @@ namespace GoldSim.Web.Payments.Controllers {
     private     readonly        ITopicMappingService            _topicMappingService;
     private     readonly        IBraintreeConfiguration         _braintreeConfiguration;
     private     readonly        ISmtpService                    _smtpService;
+    private     readonly        IRequestValidator               _requestValidator;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -49,10 +43,11 @@ namespace GoldSim.Web.Payments.Controllers {
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public PaymentsController(
-      ITopicRepository topicRepository,
-      ITopicMappingService topicMappingService,
-      IBraintreeConfiguration braintreeConfiguration,
-      ISmtpService smtpService
+      ITopicRepository          topicRepository,
+      ITopicMappingService      topicMappingService,
+      IBraintreeConfiguration   braintreeConfiguration,
+      ISmtpService              smtpService,
+      IRequestValidator         requestValidator
     ) : base(
       topicRepository,
       topicMappingService
@@ -64,6 +59,7 @@ namespace GoldSim.Web.Payments.Controllers {
       _topicMappingService      = topicMappingService;
       _braintreeConfiguration   = braintreeConfiguration;
       _smtpService              = smtpService;
+      _requestValidator         = requestValidator;
 
     }
 
@@ -91,14 +87,13 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   optionally, a <see cref="PaymentFormBindingModel"/>.
     /// </summary>
     /// <returns>A fully mapped <see cref="PaymentsTopicViewModel"/>.</returns>
-    [HttpGet, HttpHead]
-    public async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
+    private async Task<PaymentsTopicViewModel> GetViewModel(PaymentFormBindingModel bindingModel = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var braintreeGateway      = _braintreeConfiguration.GetGateway();
-      var clientToken           = braintreeGateway.ClientToken.Generate();
+      var clientToken           = await braintreeGateway.ClientToken.GenerateAsync().ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
@@ -125,7 +120,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   query string or topic's view.
     /// </summary>
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
-    [HttpGet]
+    [HttpGet, HttpHead]
     [ValidateTopic]
     public async override Task<IActionResult> IndexAsync(string path) =>
       TopicView(await GetViewModel().ConfigureAwait(true));
@@ -140,6 +135,13 @@ namespace GoldSim.Web.Payments.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Validate request
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      if (!await _requestValidator.IsValid("Payment", bindingModel?.RecaptchaToken).ConfigureAwait(true)) {
+        ModelState.AddModelError("reCaptcha", "This request was unsuccessful. Please contact GoldSim.");
+      }
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate invoice
@@ -185,7 +187,7 @@ namespace GoldSim.Web.Payments.Controllers {
           SubmitForSettlement   = true
         }
       };
-      var result                = braintreeGateway.Transaction.Sale(request);
+      var result                = await braintreeGateway.Transaction.SaleAsync(request).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -312,7 +314,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   <paramref name="invoiceNumber"/> is null then no error is returned; if the invoice number is required, then the
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
@@ -340,7 +342,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   by some necessity, redundant since we must first validate the <c>InvoiceNumber</c> before we can lookup the associated
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
-    [HttpGet]
+    [HttpGet, HttpHead]
     public IActionResult VerifyInvoiceAmount(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null

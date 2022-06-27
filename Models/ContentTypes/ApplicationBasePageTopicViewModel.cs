@@ -3,10 +3,6 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System;
-using System.Linq;
-using OnTopic.Mapping.Annotations;
-using OnTopic.ViewModels;
 
 namespace GoldSim.Web.Models.ContentTypes {
 
@@ -23,6 +19,24 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   and <see cref="ExampleApplicationTopicViewModel"/>.
   /// </remarks>
   public record ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationBasePageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      ThumbnailImage            = attributes.GetValue(nameof(ThumbnailImage));
+      Category                  = attributes.GetValue(nameof(Category));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationBasePageTopicViewModel() { }
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE
