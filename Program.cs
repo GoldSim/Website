@@ -160,6 +160,7 @@ app.MapTopicAreaRoute();                                        // {area:exists}
 app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
 app.MapTopicRoute(rootTopic: "Web");                            // Web/{**path}
+app.MapTopicRoute(rootTopic: "Error");                          // Error/{**path}
 app.MapTopicRedirect();                                         // Topic/{topicId}
 app.MapControllers();
 
