@@ -53,6 +53,11 @@ builder.Services.AddAuthentication(options => {
 .AddCookie();
 
 /*------------------------------------------------------------------------------------------------------------------------------
+| Enable: Output Caching
+\-----------------------------------------------------------------------------------------------------------------------------*/
+//builder.Services.AddResponseCaching();
+
+/*------------------------------------------------------------------------------------------------------------------------------
 | Enable: MVC, OnTopic, and OnTopic Editor
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var mvcBuilder = builder.Services.AddControllersWithViews()
@@ -94,11 +99,9 @@ var app = builder.Build();
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Environment-specific features
 \-----------------------------------------------------------------------------------------------------------------------------*/
-if (app.Environment.IsDevelopment()) {
-  app.UseDeveloperExceptionPage();
-}
-else if (app.Environment.IsProduction()) {
-  app.UseExceptionHandler("/Error/InternalServer/");
+if (app.Environment.IsProduction()) {
+  app.UseStatusCodePagesWithReExecute("/Error/{0}/");
+  app.UseExceptionHandler("/Error/500/");
   app.UseHttpsRedirection();
   app.UseHsts();
 }
@@ -107,7 +110,7 @@ else if (app.Environment.IsProduction()) {
 | Configure: Static file handling with downloads and cache headers
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var provider                    = new FileExtensionContentTypeProvider();
-const int duration              = 60*60*24*365*2;
+const int duration              = 60*60*24*365*2;               // 63072000 seconds; i.e., two years
 
 provider.Mappings[".webmanifest"]                           = "application/manifest+json";
 
@@ -126,6 +129,7 @@ app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
 app.UseCors("default");
+//app.UseResponseCaching();
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Routes
@@ -157,9 +161,12 @@ app.MapTopicEditorRoute().RequireAuthorization();               // OnTopic/{acti
 app.MapImplicitAreaControllerRoute();                           // {area:exists}/{action=Index}
 app.MapDefaultAreaControllerRoute();                            // {area:exists}/{controller}/{action=Index}/{id?}
 app.MapTopicAreaRoute();                                        // {area:exists}/{**path}
+
+app.MapTopicErrors(includeStaticFiles: false);                  // Error/{statusCode}
 app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
 app.MapTopicRoute(rootTopic: "Web");                            // Web/{**path}
+app.MapTopicRoute(rootTopic: "Error");                          // Error/{**path}
 app.MapTopicRedirect();                                         // Topic/{topicId}
 app.MapControllers();
 

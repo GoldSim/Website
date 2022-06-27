@@ -172,6 +172,8 @@ namespace GoldSim.Web {
       \-----------------------------------------------------------------------------------------------------------------------*/
       return controllerType.Name switch {
 
+        nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
+
         nameof(RedirectController) => new RedirectController(_topicRepository),
 
         nameof(LegacyRedirectController) => new LegacyRedirectController(_topicRepository),
@@ -214,8 +216,6 @@ namespace GoldSim.Web {
           _topicRepository,
           _topicMappingService
         ),
-
-        nameof(TopicController) => new TopicController(_topicRepository, _topicMappingService),
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
 
