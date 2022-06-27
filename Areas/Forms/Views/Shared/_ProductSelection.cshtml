@@ -16,17 +16,19 @@
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     (function($) {
+      var licenseTypeValue      = "";
       $("select[name='BindingModel.Product']").change(function() {
         var product             = $(this);
         var licenseType         = $("select[name='BindingModel.LicenseType']");
         var productValue        = product.children("option:selected").val();
-        var licenseTypeValue    = licenseType.children("option:selected").val();
         var nonResearchOptions  = licenseType.children("option[value!='Leased Standalone (1 year)']");
         if (productValue.includes("Research")) {
+          licenseTypeValue      = licenseType.children("option:selected").val();
           nonResearchOptions.hide();
           licenseType.val("Leased Standalone (1 year)");
         }
         else {
+          licenseType.val(licenseTypeValue);
           nonResearchOptions.show();
         }
       });
