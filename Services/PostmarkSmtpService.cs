@@ -4,7 +4,6 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Net.Mail;
-using OnTopic.Internal.Diagnostics;
 using PostmarkDotNet;
 
 namespace GoldSim.Web.Services {

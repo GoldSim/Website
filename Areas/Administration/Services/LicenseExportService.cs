@@ -9,7 +9,6 @@ using System.Globalization;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OnTopic;
-using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Administration.Services {
 

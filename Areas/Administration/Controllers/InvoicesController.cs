@@ -7,7 +7,6 @@ using System.Globalization;
 using GoldSim.Web.Administration.Models.Invoices;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 
 namespace GoldSim.Web.Administration.Controllers {

@@ -6,7 +6,6 @@
 using GoldSim.Web.Administration.Services;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic.AspNetCore.Mvc.Controllers;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 
 namespace GoldSim.Web.Controllers {

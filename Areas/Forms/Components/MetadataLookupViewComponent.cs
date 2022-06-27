@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
 using OnTopic.Collections;
-using OnTopic.Internal.Diagnostics;
 
 namespace GoldSim.Web.Forms.Components {
 
