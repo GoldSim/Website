@@ -16,6 +16,23 @@ namespace GoldSim.Web.Models.Associations {
   public record AssociatedTopicViewModel: INavigableTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="AssociatedTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public AssociatedTopicViewModel(AttributeDictionary attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      ShortTitle = attributes.GetValue(nameof(ShortTitle));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="AssociatedTopicViewModel"/> with no parameters.
+    /// </summary>
+    public AssociatedTopicViewModel() { }
+
+    /*==========================================================================================================================
     | WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>
