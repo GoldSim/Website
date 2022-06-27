@@ -157,6 +157,8 @@ app.MapTopicEditorRoute().RequireAuthorization();               // OnTopic/{acti
 app.MapImplicitAreaControllerRoute();                           // {area:exists}/{action=Index}
 app.MapDefaultAreaControllerRoute();                            // {area:exists}/{controller}/{action=Index}/{id?}
 app.MapTopicAreaRoute();                                        // {area:exists}/{**path}
+
+app.MapTopicErrors(includeStaticFiles: false);                  // Error/{statusCode}
 app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
 app.MapTopicRoute(rootTopic: "Web");                            // Web/{**path}
