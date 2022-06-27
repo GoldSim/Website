@@ -16,6 +16,23 @@ namespace GoldSim.Web.Models.Associations {
   public record AssociatedContentItemViewModel: AssociatedTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="AssociatedContentItemViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public AssociatedContentItemViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      LearnMoreUrl              = attributes.GetUri(nameof(LearnMoreUrl));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="AssociatedContentItemViewModel"/> with no parameters.
+    /// </summary>
+    public AssociatedContentItemViewModel() { }
+
+    /*==========================================================================================================================
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>
