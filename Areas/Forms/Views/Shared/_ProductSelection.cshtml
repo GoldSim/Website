@@ -21,17 +21,16 @@
         var product             = $(this);
         var licenseType         = $("select[name='BindingModel.LicenseType']");
         var productValue        = product.children("option:selected").val();
-        var nonResearchOptions  = licenseType.children("option[value!='Leased Standalone (1 year)']");
         if (productValue.includes("Research")) {
           licenseTypeValue      = licenseType.children("option:selected").val();
-          nonResearchOptions.hide();
+          licenseType.addClass("readonly");
           licenseType.val("Leased Standalone (1 year)");
         }
         else {
           if (licenseTypeValue != null) {
             licenseType.val(licenseTypeValue);
           }
-          nonResearchOptions.show();
+          licenseType.removeClass("readonly");
         }
       });
     })(jQuery);
