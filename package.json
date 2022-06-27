@@ -40,7 +40,7 @@
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
     "jquery": "^3.6.0",
-    "jshint": "^2.13.1",
+    "jshint": "^2.13.4",
     "merge2": "^1.4.1",
     "node-sass": "^6.0.1",
     "owl.carousel": "^2.3.4",
