@@ -126,6 +126,13 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
     attributes                  : {
       'class'                   : 'callout picture thumbnail small'
     }
-  }
+  },
+  {
+    name                        : 'Lookup',
+    element                     : 'table',
+    attributes                  : {
+      'class'                   : 'lookup'
+    }
+  },
 
 ]);
