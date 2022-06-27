@@ -146,7 +146,7 @@
             <!-- Long Title (Subtitle) -->
             <header>
               @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
-                <h2 class="category title ">@ViewBag.Context</h2>
+                <h2 class="category title">@ViewBag.Context</h2>
               }
               <h1 class="title">
                 @(Model.ContentType is "PageGroup"? "Overview" : Model.Title)
