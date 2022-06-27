@@ -21,20 +21,17 @@
         var licenseType         = $("select[name='BindingModel.LicenseType']");
         var productValue        = product.children("option:selected").val();
         var licenseTypeValue    = licenseType.children("option:selected").val();
-        var leasedOptions       = licenseType.children("option[value^='Leased']");
+        var nonResearchOptions  = licenseType.children("option[value!='Leased Standalone (1 year)']");
         if (productValue.includes("Research")) {
-          leasedOptions.hide();
-          if (licenseTypeValue.includes("Leased")) {
-            licenseType.val("");
-          }
+          nonResearchOptions.hide();
+          licenseType.val("Leased Standalone (1 year)");
         }
         else {
-          leasedOptions.show();
+          nonResearchOptions.show();
         }
       });
     })(jQuery);
   });
 </script>
-
 
 <!-- View Location: ~/Areas/Forms/Views/Shared/_ProductSelection.cshtml -->
