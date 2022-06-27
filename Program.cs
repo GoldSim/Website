@@ -95,6 +95,7 @@ var app = builder.Build();
 | Configure: Environment-specific features
 \-----------------------------------------------------------------------------------------------------------------------------*/
 if (app.Environment.IsProduction()) {
+  app.UseStatusCodePagesWithReExecute("/Error/{0}/");
   app.UseExceptionHandler("/Error/500/");
   app.UseHttpsRedirection();
   app.UseHsts();
