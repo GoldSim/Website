@@ -94,8 +94,8 @@ var app = builder.Build();
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Environment-specific features
 \-----------------------------------------------------------------------------------------------------------------------------*/
-  app.UseExceptionHandler("/Error/InternalServer/");
 if (app.Environment.IsProduction()) {
+  app.UseExceptionHandler("/Error/500/");
   app.UseHttpsRedirection();
   app.UseHsts();
 }
