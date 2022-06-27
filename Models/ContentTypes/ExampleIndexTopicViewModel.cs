@@ -18,6 +18,20 @@ namespace GoldSim.Web.Models.ContentTypes {
   public record ExampleIndexTopicViewModel: ApplicationIndexTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleIndexTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ExampleIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleIndexTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ExampleIndexTopicViewModel() { }
+
+    /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
