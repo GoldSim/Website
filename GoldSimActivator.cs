@@ -24,7 +24,6 @@ using OnTopic.Data.Sql;
 using OnTopic.Editor.AspNetCore.Attributes;
 using OnTopic.Editor.AspNetCore.Controllers;
 using OnTopic.Editor.AspNetCore.Infrastructure;
-using OnTopic.Internal.Diagnostics;
 using OnTopic.Lookup;
 using OnTopic.Mapping;
 using OnTopic.Mapping.Hierarchical;

@@ -14,7 +14,6 @@ using GoldSim.Web.Services;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
-using OnTopic.Attributes;
 using OnTopic.Internal.Diagnostics;
 using OnTopic.Mapping;
 
