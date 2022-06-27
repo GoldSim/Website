@@ -110,7 +110,7 @@ if (app.Environment.IsProduction()) {
 | Configure: Static file handling with downloads and cache headers
 \-----------------------------------------------------------------------------------------------------------------------------*/
 var provider                    = new FileExtensionContentTypeProvider();
-const int duration              = 60*60*24*365*2;
+const int duration              = 60*60*24*365*2;               // 63072000 seconds; i.e., two years
 
 provider.Mappings[".webmanifest"]                           = "application/manifest+json";
 
