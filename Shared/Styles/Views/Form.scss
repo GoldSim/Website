@@ -67,6 +67,10 @@ select {
     box-shadow                  : none;
     border-color                : $palette-yellow;
   }
+  &.readonly {
+    background-color            : $input-background-disabled;
+    pointer-events              : none;
+  }
 }
 
 input,
