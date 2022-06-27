@@ -21,6 +21,24 @@ namespace GoldSim.Web.Models.ContentTypes {
   public record ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationBasePageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      ThumbnailImage            = attributes.GetValue(nameof(ThumbnailImage));
+      Category                  = attributes.GetValue(nameof(Category));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationBasePageTopicViewModel() { }
+
+    /*==========================================================================================================================
     | THUMBNAIL IMAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
