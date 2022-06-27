@@ -15,6 +15,7 @@
 @import "foundationSettings";
 @import "foundation";
 @import "Helpers/mixins";
+@import "fontawesome-free/scss/_functions.scss";
 @import "fontawesome-free/scss/_mixins.scss";
 @import "fontawesome-free/scss/_variables.scss";
 
@@ -362,7 +363,7 @@ main {
     }
     button span:before {
       @include fa-icon;
-      font-family               : 'Font Awesome 5 Free';
+      font-family               : 'Font Awesome 6 Free';
       font-weight               : 900;
     }
     .owl-prev {
