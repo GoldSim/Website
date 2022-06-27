@@ -19,6 +19,27 @@ namespace GoldSim.Web.Models.ContentTypes {
   public record ApplicationPageTopicViewModel: ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationPageTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationPageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Abstract                  = attributes.GetValue(nameof(Abstract));
+      ModelImage                = attributes.GetValue(nameof(ModelImage));
+      CompareTo                 = attributes.GetValue(nameof(CompareTo));
+      LearnMoreUrl              = attributes.GetUri(nameof(LearnMoreUrl));
+      LearnMoreLabel            = attributes.GetValue(nameof(LearnMoreLabel))?? "Learn More";
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationPageTopicViewModel() { }
+
+    /*==========================================================================================================================
     | ABSTRACT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
