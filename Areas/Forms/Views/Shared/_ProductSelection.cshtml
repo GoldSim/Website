@@ -16,25 +16,25 @@
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     (function($) {
+      var licenseTypeValue      = null;
       $("select[name='BindingModel.Product']").change(function() {
         var product             = $(this);
         var licenseType         = $("select[name='BindingModel.LicenseType']");
         var productValue        = product.children("option:selected").val();
-        var licenseTypeValue    = licenseType.children("option:selected").val();
-        var leasedOptions       = licenseType.children("option[value^='Leased']");
         if (productValue.includes("Research")) {
-          leasedOptions.hide();
-          if (licenseTypeValue.includes("Leased")) {
-            licenseType.val("");
-          }
+          licenseTypeValue      = licenseType.children("option:selected").val();
+          licenseType.addClass("readonly");
+          licenseType.val("Leased Standalone (1 year)");
         }
         else {
-          leasedOptions.show();
+          if (licenseTypeValue != null) {
+            licenseType.val(licenseTypeValue);
+          }
+          licenseType.removeClass("readonly");
         }
       });
     })(jQuery);
   });
 </script>
-
 
 <!-- View Location: ~/Areas/Forms/Views/Shared/_ProductSelection.cshtml -->
