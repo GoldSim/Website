@@ -10,6 +10,7 @@
 global using System.ComponentModel.DataAnnotations;
 global using Microsoft.AspNetCore.Mvc;
 global using OnTopic.Attributes;
+global using OnTopic.Internal.Diagnostics;
 global using OnTopic.Mapping.Annotations;
 global using OnTopic.Repositories;
 global using OnTopic.ViewModels;
