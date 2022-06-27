@@ -102,7 +102,7 @@
   margin-bottom                 : rem-calc(16);
   a:after {
     @include fa-icon;
-    font-family                 : 'Font Awesome 5 Brands';
+    font-family                 : 'Font Awesome 6 Brands';
     font-weight                 : 400;
     font-size                   : rem-calc(20);
     padding-right               : rem-calc(2);
@@ -125,7 +125,7 @@
     content                     : fa-content($fa-var-youtube);
   }
   a[href*="blog"]:after {
-    font-family                 : 'Font Awesome 5 Free';
+    font-family                 : 'Font Awesome 6 Free';
     font-weight                 : 900;
     content                     : fa-content($fa-var-rss);
   }
@@ -136,7 +136,7 @@
 //----------------------------------------------------------------------------------------------
 .copyright small:before {
   @include fa-icon;
-  font-family                   : 'Font Awesome 5 Free';
+  font-family                   : 'Font Awesome 6 Free';
   font-weight                   : 900;
   padding-right                 : rem-calc(3);
   content                       : fa-content($fa-var-copyright);
