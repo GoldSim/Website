@@ -16,7 +16,7 @@
 <script>
   window.addEventListener('DOMContentLoaded', function() {
     (function($) {
-      var licenseTypeValue      = "";
+      var licenseTypeValue      = null;
       $("select[name='BindingModel.Product']").change(function() {
         var product             = $(this);
         var licenseType         = $("select[name='BindingModel.LicenseType']");
@@ -28,7 +28,9 @@
           licenseType.val("Leased Standalone (1 year)");
         }
         else {
-          licenseType.val(licenseTypeValue);
+          if (licenseTypeValue != null) {
+            licenseType.val(licenseTypeValue);
+          }
           nonResearchOptions.show();
         }
       });
