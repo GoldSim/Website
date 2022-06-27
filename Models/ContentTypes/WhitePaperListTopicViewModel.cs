@@ -14,5 +14,19 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// </summary>
   public record WhitePaperListTopicViewModel : ContentListTopicViewModel {
 
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="WhitePaperListTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public WhitePaperListTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="WhitePaperListTopicViewModel"/> with no parameters.
+    /// </summary>
+    public WhitePaperListTopicViewModel() { }
+
   } // Class
 } // Namespace

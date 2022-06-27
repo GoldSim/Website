@@ -18,6 +18,20 @@ namespace GoldSim.Web.Models.ContentTypes {
   public record ExampleApplicationTopicViewModel: ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ExampleApplicationTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ExampleApplicationTopicViewModel() { }
+
+    /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

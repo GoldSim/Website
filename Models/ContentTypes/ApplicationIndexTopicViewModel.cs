@@ -22,6 +22,23 @@ namespace GoldSim.Web.Models.ContentTypes {
     bool                        _isFirst                        = true;
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public ApplicationIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      FilteredDocumentType      = attributes.GetValue(nameof(FilteredDocumentType));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with no parameters.
+    /// </summary>
+    public ApplicationIndexTopicViewModel() { }
+
+    /*==========================================================================================================================
     | FILTERED DOCUMENT TYPE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

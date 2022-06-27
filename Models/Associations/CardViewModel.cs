@@ -15,6 +15,23 @@ namespace GoldSim.Web.Models.Associations {
   public record CardViewModel: AssociatedTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="CardViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public CardViewModel(AttributeDictionary attributes) : base(attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      ThumbnailImage            = attributes.GetValue(nameof(ThumbnailImage));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="CardViewModel"/> with no parameters.
+    /// </summary>
+    public CardViewModel() { }
+
+    /*==========================================================================================================================
     | THUMBNAIL IMAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>

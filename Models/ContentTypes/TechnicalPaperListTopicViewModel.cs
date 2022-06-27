@@ -17,6 +17,20 @@ namespace GoldSim.Web.Models.ContentTypes {
   public record TechnicalPaperListTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TechnicalPaperListTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with no parameters.
+    /// </summary>
+    public TechnicalPaperListTopicViewModel() { }
+
+    /*==========================================================================================================================
     | CONTENT ITEMS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>

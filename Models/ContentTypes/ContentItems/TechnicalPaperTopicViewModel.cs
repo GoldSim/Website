@@ -15,6 +15,30 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   public record TechnicalPaperTopicViewModel {
 
     /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
+    /// </summary>
+    /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
+    public TechnicalPaperTopicViewModel(AttributeDictionary attributes) {
+      Contract.Requires(attributes, nameof(attributes));
+      Category                  = attributes.GetValue(nameof(Category));
+      Authors                   = attributes.GetValue(nameof(Authors));
+      Publication               = attributes.GetValue(nameof(Publication));
+      PublicationUrl            = attributes.GetUri(nameof(PublicationUrl));
+      PublicationDate           = attributes.GetDateTime(nameof(PublicationDate))?? PublicationDate;
+      LearnMoreUrl              = attributes.GetUri(nameof(LearnMoreUrl));
+      DownloadLabel             = attributes.GetValue(nameof(DownloadLabel));
+      Description               = attributes.GetValue(nameof(Description));
+    }
+
+    /// <summary>
+    ///   Initializes a new <see cref="TechnicalPaperTopicViewModel"/> with no parameters.
+    /// </summary>
+    public TechnicalPaperTopicViewModel() { }
+
+    /*==========================================================================================================================
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
