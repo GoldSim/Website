@@ -23,7 +23,7 @@
   <ItemGroup>
     <PackageReference Include="Braintree" Version="5.14.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
-    <PackageReference Include="Postmark" Version="4.7.2" />
+    <PackageReference Include="Postmark" Version="4.7.5" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="OnTopic.All" Version="5.2.0" />
     <PackageReference Include="OnTopic.Editor.AspNetCore.All" Version="5.2.0" />
