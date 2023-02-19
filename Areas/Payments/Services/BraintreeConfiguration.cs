@@ -71,12 +71,7 @@ namespace GoldSim.Web.Payments.Services {
     ///   manually created.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway GetGateway() {
-      if (_braintreeGateway is null) {
-        _braintreeGateway = CreateGateway();
-      }
-      return _braintreeGateway;
-    }
+    public IBraintreeGateway GetGateway() => _braintreeGateway ??= CreateGateway();
 
     /*==========================================================================================================================
     | GET CONFIGURATION SETTING
