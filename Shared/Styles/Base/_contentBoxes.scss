@@ -213,8 +213,9 @@ aside.help {
   }
 }
 
+blockquote.note,
 blockquote.stop,
-blockquote.note {
+blockquote.warning {
   display                       : block;
   margin                        : rem-calc(32 0);
   border-left                   : none;
@@ -244,6 +245,20 @@ blockquote.note {
   padding                       : rem-calc(16 44);
   &, p {
     color                       : $palette-grey-medium;
+  }
+}
+
+blockquote.warning {
+  border-top                    : 2px solid $palette-yellow;
+  border-bottom                 : 2px solid $palette-yellow;
+  padding                       : rem-calc(16 44);
+  &, p {
+    color                       : $palette-grey-medium;
+  }
+  &:before {
+    font-weight                 : 900;
+    color                       : $palette-yellow;
+    content                     : fa-content($fa-var-triangle-exclamation);
   }
 }
 
