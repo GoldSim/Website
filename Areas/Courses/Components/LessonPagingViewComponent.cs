@@ -68,14 +68,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic {
-      get {
-        if (_currentTopic is null) {
-          _currentTopic = TopicRepository.Load(RouteData);
-        }
-        return _currentTopic;
-      }
-    }
+    protected Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
