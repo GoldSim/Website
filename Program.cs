@@ -165,10 +165,13 @@ app.MapTopicAreaRoute();                                        // {area:exists}
 app.MapTopicErrors(includeStaticFiles: false);                  // Error/{statusCode}
 app.MapDefaultControllerRoute();                                // {controller=Home}/{action=Index}/{id?}
 
+app.MapTopicRoute("Documentation").RequireAuthorization();      // Documentation/{**path}
+
 app.MapTopicRoute(rootTopic: "Web");                            // Web/{**path}
 app.MapTopicRoute(rootTopic: "Error");                          // Error/{**path}
 app.MapTopicRedirect();                                         // Topic/{topicId}
 app.MapControllers();
+
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Run application
