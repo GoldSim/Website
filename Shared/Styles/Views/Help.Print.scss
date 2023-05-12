@@ -1,0 +1,34 @@
+﻿//==============================================================================================
+// HELP STYLES (PRINT)
+//----------------------------------------------------------------------------------------------
+// Represents the base styles that apply to the print version of the GoldSim Documentation.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS (DEPENDENCIES)
+//----------------------------------------------------------------------------------------------
+@import "variables";
+@import "foundationSettings";
+@import "Helpers/helpers";
+@import "foundation";
+@import "fontawesome-free/scss/_functions.scss";
+@import "fontawesome-free/scss/_mixins.scss";
+@import "fontawesome-free/scss/_variables.scss";
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS (FOUNDATION)
+//----------------------------------------------------------------------------------------------
+//@include foundation-global-styles;
+//@include foundation-typography;
+@include foundation-callout;
+@include foundation-table;
+@include foundation-float-classes;
+
+//----------------------------------------------------------------------------------------------
+// IMPORTS (STYLESHEETS)
+//----------------------------------------------------------------------------------------------
+@import "Base/utilities";
+@import "Base/contentBoxes";
+@import "Base/images";
+@import "Base/quotes";
+@import "Base/tables";
