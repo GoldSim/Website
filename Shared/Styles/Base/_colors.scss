@@ -1,0 +1,22 @@
+﻿//==============================================================================================
+// COLORS
+//----------------------------------------------------------------------------------------------
+// Defines variables for the site palette that can be easily used in other styles.
+//==============================================================================================
+
+//----------------------------------------------------------------------------------------------
+// VARIABLES
+//----------------------------------------------------------------------------------------------
+:root {
+  --black                       : #{$palette-black};
+  --white                       : #{$palette-white};
+  --grey-dark                   : #{$palette-grey-dark};
+  --grey-medium                 : #{$palette-grey-medium};
+  --grey-light                  : #{$palette-grey-light};
+  --grey-lighter                : #{$palette-grey-lighter};
+  --grey-lightest               : #{$palette-grey-lightest};
+  --yellow                      : #{$palette-yellow};
+  --green                       : #{$palette-green};
+  --red                         : #{$palette-red};
+  --blue                        : #{$palette-blue};
+}

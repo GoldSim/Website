@@ -13,17 +13,17 @@
 //----------------------------------------------------------------------------------------------
 
 // Base / palette colors
-$palette-black                  : rgb(32, 32, 32);            // #202020
-$palette-white                  : rgb(255, 255, 255);         // #FFFFFF
-$palette-grey-dark              : rgb(102, 102, 102);         // #666666
-$palette-grey-medium            : rgb(153, 153, 153);         // #999999
-$palette-grey-light             : rgb(204, 204, 204);         // #CCCCCC
-$palette-grey-lighter           : rgb(227, 227, 227);         // #E3E3E3
-$palette-grey-lightest          : rgb(243, 243, 243);         // #F3F3F3
-$palette-yellow                 : rgb(254, 193, 13);          // #FEC10D
-$palette-green                  : rgb(102, 174, 61);          // #66AE3D
-$palette-red                    : rgb(235, 93, 98);           // #EB5D62
-$palette-blue                   : rgb(0, 173, 239);           // #00ADEF
+$palette-black                  : rgb(32, 32, 32);              // #202020
+$palette-white                  : rgb(255, 255, 255);           // #FFFFFF
+$palette-grey-dark              : rgb(102, 102, 102);           // #666666
+$palette-grey-medium            : rgb(153, 153, 153);           // #999999
+$palette-grey-light             : rgb(204, 204, 204);           // #CCCCCC
+$palette-grey-lighter           : rgb(227, 227, 227);           // #E3E3E3
+$palette-grey-lightest          : rgb(243, 243, 243);           // #F3F3F3
+$palette-yellow                 : rgb(254, 193, 13);            // #FEC10D
+$palette-green                  : rgb(102, 174, 61);            // #66AE3D
+$palette-red                    : rgb(235, 93, 98);             // #EB5D62
+$palette-blue                   : rgb(0, 173, 239);             // #00ADEF
 
 // Text
 $text-color                     : $palette-black;

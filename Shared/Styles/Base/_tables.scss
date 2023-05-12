@@ -41,7 +41,7 @@ table {
   }
   td {
     vertical-align              : top;
-    background-color            : rgb(239, 239, 239);         // #EFEFEF
+    background-color            : rgb(239, 239, 239);           // #EFEFEF
     &.highlight {
       background-color          : $palette-grey-light;
     }
@@ -112,5 +112,15 @@ table.lookup {
   th,
   td {
     padding                     : rem-calc(8 9);
+  }
+}
+
+//----------------------------------------------------------------------------------------------
+// INDEX
+//----------------------------------------------------------------------------------------------
+table.index {
+  th,
+  td {
+    padding                     : rem-calc(4 5);
   }
 }

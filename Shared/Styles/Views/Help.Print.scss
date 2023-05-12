@@ -1,8 +1,7 @@
 ﻿//==============================================================================================
-// BASE STYLE
+// HELP STYLES (PRINT)
 //----------------------------------------------------------------------------------------------
-// Represents the base styles that apply to the inner page of any GoldSim site. This includes
-// fonts, headers, links, content boxes, quotes, and tables.
+// Represents the base styles that apply to the print version of the GoldSim Documentation.
 //==============================================================================================
 
 //----------------------------------------------------------------------------------------------
@@ -19,8 +18,8 @@
 //----------------------------------------------------------------------------------------------
 // IMPORTS (FOUNDATION)
 //----------------------------------------------------------------------------------------------
-@include foundation-global-styles;
-@include foundation-typography;
+//@include foundation-global-styles;
+//@include foundation-typography;
 @include foundation-callout;
 @include foundation-table;
 @include foundation-float-classes;
@@ -29,14 +28,7 @@
 // IMPORTS (STYLESHEETS)
 //----------------------------------------------------------------------------------------------
 @import "Base/utilities";
-@import "Base/colors";
-@import "Base/fonts";
-@import "Base/typography";
-@import "Base/links";
-@import "Base/icons";
-@import "Base/buttons";
 @import "Base/contentBoxes";
 @import "Base/images";
-@import "Base/lists";
 @import "Base/quotes";
 @import "Base/tables";
