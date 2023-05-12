@@ -11,7 +11,7 @@
 //----------------------------------------------------------------------------------------------
 // CONTENT AREA
 //----------------------------------------------------------------------------------------------
-.editor, main {
+.editor, main, div[role=main], .breadcrumbs {
   a {
     border-bottom               : 2px solid $palette-yellow;
     padding-bottom              : 1px;
