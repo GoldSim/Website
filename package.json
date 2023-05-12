@@ -39,7 +39,7 @@
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-uglify": "^3.0.2",
-    "jquery": "^3.6.3",
+    "jquery": "^3.7.0",
     "jshint": "^2.13.6",
     "merge2": "^1.4.1",
     "node-sass": "^8.0.0",
