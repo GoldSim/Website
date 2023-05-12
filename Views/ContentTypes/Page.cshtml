@@ -13,7 +13,7 @@
 </section>
 
 @section Scripts {
-  @if (Model.Body.Contains("data-smooth-scroll")) {
+  @if (Model.Body?.Contains("data-smooth-scroll")?? false) {
     <script defer src="~/Shared/Scripts/Vendor/ZURB/Plugins/foundation.smoothScroll.min.js"></script>
   }
 }
