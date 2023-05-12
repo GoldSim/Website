@@ -24,7 +24,7 @@
   "homepage": "https://github.com/GoldSimSoftware/Website#readme",
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^6.4.0",
-    "@microsoft/applicationinsights-web": "^2.8.10",
+    "@microsoft/applicationinsights-web": "^3.0.1",
     "autoprefixer": "^10.4.13",
     "awesome-foundation6-checkbox": "^2.0.3",
     "cssnano": "^5.1.15",
