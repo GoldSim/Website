@@ -126,3 +126,24 @@ table.index {
     padding                     : rem-calc(4 5);
   }
 }
+
+//----------------------------------------------------------------------------------------------
+// DEFINITION LISTS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// While not technically a table, this is placed under the table section since it displays more
+// like a table than a list.
+//----------------------------------------------------------------------------------------------
+dl {
+  display                       : grid;
+  grid-template-columns         : max-content auto;
+}
+
+dl dt {
+  grid-column-start             : 1;
+  padding-right                 : rem-calc(18);
+  font-weight                   : normal;
+}
+
+dl dd {
+  grid-column-start             : 2;
+}
