@@ -21,6 +21,7 @@
 }
 table {
   border                        : 0 none transparent;
+  page-break-inside             : avoid;
   th,
   td {
     border                      : 4px solid $palette-white;
@@ -64,6 +65,7 @@ table {
     }
   }
   tr {
+    page-break-inside           : avoid;
     td:first-child,
     th:first-child {
       border-left-width         : 0;
@@ -123,4 +125,25 @@ table.index {
   td {
     padding                     : rem-calc(4 5);
   }
+}
+
+//----------------------------------------------------------------------------------------------
+// DEFINITION LISTS
+// - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+// While not technically a table, this is placed under the table section since it displays more
+// like a table than a list.
+//----------------------------------------------------------------------------------------------
+dl {
+  display                       : grid;
+  grid-template-columns         : max-content auto;
+}
+
+dl dt {
+  grid-column-start             : 1;
+  padding-right                 : rem-calc(18);
+  font-weight                   : normal;
+}
+
+dl dd {
+  grid-column-start             : 2;
 }
