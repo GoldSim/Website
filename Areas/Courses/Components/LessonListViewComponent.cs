@@ -3,6 +3,7 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
+using System.Globalization;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Models;
 using OnTopic;
@@ -125,6 +126,13 @@ namespace GoldSim.Web.Courses.Components {
             "Courses",
             isUnitNowComplete? "EndUnit" : "StartUnit",
             $"{CurrentTopic.Parent.Parent.Key}:{CurrentTopic.Parent.Key}"
+          )
+        );
+        navigationViewModel.CourseTrackingEvents.Add(
+          new UnitTrackingEventViewModel(
+            isUnitNowComplete? "unit_end" : "unit_start",
+            CurrentTopic.Parent.Parent.Key,
+            Convert.ToInt32(CurrentTopic.Parent.Key.Replace("Unit", "", StringComparison.OrdinalIgnoreCase), NumberFormatInfo.InvariantInfo)
           )
         );
       }

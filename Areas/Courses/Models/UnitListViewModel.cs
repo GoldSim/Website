@@ -22,9 +22,17 @@ namespace GoldSim.Web.Courses.Models {
     | TRACKING EVENTS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a list of events that should be tracked by Google Analytics.
+    ///   Provides a list of events that should be tracked by Google Universal Analytics.
     /// </summary>
     public Collection<TrackingEventViewModel> TrackingEvents { get; } = new();
+
+    /*==========================================================================================================================
+    | COURSE TRACKING EVENTS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of events that should be tracked by Google Analytics 4.
+    /// </summary>
+    public Collection<CourseTrackingEventViewModel> CourseTrackingEvents { get; } = new();
 
   } // Class
 } // Namespace

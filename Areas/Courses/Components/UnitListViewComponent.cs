@@ -107,6 +107,9 @@ namespace GoldSim.Web.Courses.Components {
         navigationViewModel.TrackingEvents.Add(
           new TrackingEventViewModel("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
         );
+        navigationViewModel.CourseTrackingEvents.Add(
+          new CourseTrackingEventViewModel(isCourseNowComplete? "course_end" : "course_start", CurrentTopic.Key)
+        );
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
