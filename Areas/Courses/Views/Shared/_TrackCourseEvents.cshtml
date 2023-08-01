@@ -1,0 +1,21 @@
+﻿@model Collection<CourseTrackingEventViewModel>
+
+<script>
+  @foreach (var trackingEvent in Model) {
+    <text>
+      gtag('event', '@trackingEvent.EventName', {
+        'course_name': '@trackingEvent.CourseName'
+        @if(trackingEvent is UnitTrackingEventViewModel) {
+          <text>
+            ,'unit_number': '@(((UnitTrackingEventViewModel)trackingEvent).UnitNumber)'
+          </text>
+        }
+      });
+    </text>
+  }
+</script>
+
+<!--
+  Content Type: Collection<CourseTrackingEventViewModel>
+  View Location: ~/Areas/Courses/Views/Shared/_TrackCourseEvents.cshtml
+-->
