@@ -50,6 +50,13 @@ namespace GoldSim.Web.Components {
     public IViewComponentResult Invoke() {
 
       return Content("");
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var homepage              = TopicRepository.Load("Web:Home");
+      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+      var announcementUrl       = homepage.Attributes.GetValue("AnnouncementUrl");
+
 
     }
 
