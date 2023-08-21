@@ -68,6 +68,14 @@ namespace GoldSim.Web.Components {
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Determine anchor
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var homepage              = TopicRepository.Load("Web:Home");
+      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+
+      ViewData.Add("HasAnnouncement", String.IsNullOrWhiteSpace(announcementLabel));
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view
       \-----------------------------------------------------------------------------------------------------------------------*/
       return View(navigationViewModel);
