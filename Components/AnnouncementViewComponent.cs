@@ -49,7 +49,6 @@ namespace GoldSim.Web.Components {
     /// </remarks>
     public IViewComponentResult Invoke() {
 
-      return Content("");
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
@@ -65,6 +64,10 @@ namespace GoldSim.Web.Components {
         WebPath                 = announcementUrl
       };
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Conditionally return view
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : (IViewComponentResult)View(viewModel);
 
     }
 
