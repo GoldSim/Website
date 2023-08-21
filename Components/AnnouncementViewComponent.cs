@@ -57,6 +57,14 @@ namespace GoldSim.Web.Components {
       var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
       var announcementUrl       = homepage.Attributes.GetValue("AnnouncementUrl");
 
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var viewModel             = new AssociatedTopicViewModel() {
+        Title                   = announcementLabel,
+        WebPath                 = announcementUrl
+      };
+
 
     }
 
