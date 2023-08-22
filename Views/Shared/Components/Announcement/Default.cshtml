@@ -1,9 +1,9 @@
-﻿@model GoldSim.Web.Models.Associations.AssociatedTopicViewModel
+﻿@model AnnouncementViewModel
 
 <!-- Announcement -->
 <div id="SiteAnnouncement" data-closable class="alert-box announcement callout warning">
-  @Model.Title
-  <a href="@Model.WebPath">Learn more</a>.
+  @Model.Label
+  <a href="@Model.Url">Learn more</a>.
 </div>
 
 <!-- View Location: ~/Views/Shared/Components/Announcement/Default.cshtml -->

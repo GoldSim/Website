@@ -4,6 +4,7 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Associations;
+using GoldSim.Web.Models.Components;
 
 namespace GoldSim.Web.Components {
 
@@ -43,10 +44,6 @@ namespace GoldSim.Web.Components {
     /// <summary>
     ///   Renders a database.
     /// </summary>
-    /// <remarks>
-    ///   While it's not a perfect match, for simplicity this will reuse the existing <see cref="AssociatedTopicViewModel"/>,
-    ///   which is broadly compatible with the basic requirements for the <see cref="AnnouncementViewComponent"/> view.
-    /// </remarks>
     public IViewComponentResult Invoke() {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -54,14 +51,14 @@ namespace GoldSim.Web.Components {
       \-----------------------------------------------------------------------------------------------------------------------*/
       var homepage              = TopicRepository.Load("Web:Home");
       var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
-      var announcementUrl       = homepage.Attributes.GetValue("AnnouncementUrl");
+      var announcementUrl       = homepage.Attributes.GetUri("AnnouncementUrl");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new AssociatedTopicViewModel() {
-        Title                   = announcementLabel,
-        WebPath                 = announcementUrl
+      var viewModel             = new AnnouncementViewModel() {
+        Label                   = announcementLabel,
+        Url                     = announcementUrl
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
