@@ -12,6 +12,7 @@ using GoldSim.Web.Courses.Controllers;
 using GoldSim.Web.Courses.Models;
 using GoldSim.Web.Forms.Components;
 using GoldSim.Web.Forms.Controllers;
+using GoldSim.Web.Models.Components;
 using GoldSim.Web.Payments.Controllers;
 using GoldSim.Web.Payments.Services;
 using GoldSim.Web.Services;
@@ -56,8 +57,9 @@ namespace GoldSim.Web {
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> _hierarchicalTopicMappingService;
-    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> _coursewareTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel>         _hierarchicalTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<PageLevelNavigationTopicViewModel> _pageViewTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>  _coursewareTopicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -117,8 +119,15 @@ namespace GoldSim.Web {
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
-        new HierarchicalTopicMappingService<Models.NavigationTopicViewModel>(
+      _hierarchicalTopicMappingService = new CachedHierarchicalTopicMappingService<NavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<NavigationTopicViewModel>(
+          _topicRepository,
+          _topicMappingService
+        )
+      );
+
+      _pageViewTopicMappingService = new CachedHierarchicalTopicMappingService<PageLevelNavigationTopicViewModel>(
+        new HierarchicalTopicMappingService<PageLevelNavigationTopicViewModel>(
           _topicRepository,
           _topicMappingService
         )
@@ -267,7 +276,7 @@ namespace GoldSim.Web {
           => new MenuViewComponent(_topicRepository, _hierarchicalTopicMappingService),
 
         nameof(PageLevelNavigationViewComponent)
-          => new PageLevelNavigationViewComponent(_topicRepository, _hierarchicalTopicMappingService),
+          => new PageLevelNavigationViewComponent(_topicRepository, _pageViewTopicMappingService),
 
         nameof(CallsToActionViewComponent)
           => new CallsToActionViewComponent(_topicRepository, _hierarchicalTopicMappingService),
