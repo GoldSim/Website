@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Net;
 using System.Text.Json;
-using GoldSim.Web.Models.Recaptcha;
+using GoldSim.Web.Models.Components;
 
 namespace GoldSim.Web.Services {
 

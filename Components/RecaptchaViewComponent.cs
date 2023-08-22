@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Recaptcha;
+using GoldSim.Web.Models.Components;
 
 namespace GoldSim.Web.Courses.Components {
 
