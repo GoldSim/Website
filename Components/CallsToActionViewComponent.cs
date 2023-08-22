@@ -3,8 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using GoldSim.Web.Models.Components;
 using OnTopic.AspNetCore.Mvc.Components;
-using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 
 namespace GoldSim.Web.Components {
@@ -60,20 +60,19 @@ namespace GoldSim.Web.Components {
       Contract.Assume(CurrentTopic, $"The current topic could not be identified for the page-level navigation.");
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Construct view model
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<NavigationTopicViewModel>() {
-        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
-        CurrentWebPath = CurrentTopic?.GetWebPath()
-      };
-
-      /*------------------------------------------------------------------------------------------------------------------------
       | Determine anchor
       \-----------------------------------------------------------------------------------------------------------------------*/
       var homepage              = TopicRepository.Load("Web:Home");
       var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
 
-      ViewData.Add("HasAnnouncement", String.IsNullOrWhiteSpace(announcementLabel));
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Construct view model
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var navigationViewModel   = new CallsToActionViewModel() {
+        NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
+        CurrentWebPath          = CurrentTopic?.GetWebPath(),
+        HasAnnouncement         = String.IsNullOrWhiteSpace(announcementLabel)
+      };
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view

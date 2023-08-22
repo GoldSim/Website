@@ -1,7 +1,7 @@
-﻿@model NavigationViewModel<NavigationTopicViewModel>
+﻿@model CallsToActionViewModel
 
 @{
-  var anchorId = (bool)ViewData["HasAnnouncement"]? "SiteFooter" : "SiteAnnouncement";
+  var anchorId = Model.HasAnnouncement? "SiteFooter" : "SiteAnnouncement";
 }
 
 <!-- CTAs Area -->
