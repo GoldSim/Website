@@ -24,7 +24,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  public class MenuViewComponent : MenuViewComponentBase<Models.NavigationTopicViewModel> {
+  public class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Components {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public MenuViewComponent(
       ITopicRepository topicRepository,
-      IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRepository,
       hierarchicalTopicMappingService

@@ -5,10 +5,10 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Components;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.Components {
 
   /*============================================================================================================================
-  | VIEW MODEL: NAVIGATION TOPIC
+  | VIEW MODEL: PAGE-LEVEL NAVIGATION TOPIC
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about the navigation.
@@ -17,7 +17,7 @@ namespace GoldSim.Web.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class NavigationTopicViewModel: CoreNavigationTopicViewModel<NavigationTopicViewModel> {
+  public class PageLevelNavigationTopicViewModel: CoreNavigationTopicViewModel<PageLevelNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | HEADER IMAGE (URL)

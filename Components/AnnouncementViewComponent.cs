@@ -3,35 +3,40 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
+using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Components;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
-  | CLASS: RECAPTCHA VIEW COMPONENT
+  | CLASS: ANNOUNCEMENT VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Defines a <see cref="ViewComponent"/> which renders a script for embedding a reCAPTCHA component onto the page.
+  ///   Defines a <see cref="ViewComponent"/> which renders an announcement banner in a view.
   /// </summary>
-  public class RecaptchaViewComponent: ViewComponent {
+  public class AnnouncementViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="ReCaptchaViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="AnnouncementViewComponent"/> with necessary dependencies.
     /// </summary>
-    public RecaptchaViewComponent(string siteKey) {
-      SiteKey                   = siteKey;
+    public AnnouncementViewComponent(ITopicRepository topicRepository) {
+      TopicRepository           = topicRepository;
     }
 
     /*==========================================================================================================================
-    | SITE KEY
+    | TOPIC REPOSITORY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the sitekey used by the reCAPTCHA service.
+    ///   Provides a reference to the <see cref="ITopicRepository"/> in order to allow the relevant data to be retrieved from
+    ///   the <c>Web:Home</c> topic.
     /// </summary>
-    public string SiteKey { get; init; }
+    /// <returns>
+    ///   The <see cref="ITopicRepository"/>
+    /// </returns>
+    protected ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -39,20 +44,27 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Renders a database.
     /// </summary>
-    public IViewComponentResult Invoke(string action) {
+    public IViewComponentResult Invoke() {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var homepage              = TopicRepository.Load("Web:Home");
+      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+      var announcementUrl       = homepage.Attributes.GetUri("AnnouncementUrl");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new RecaptchaViewModel() {
-        SiteKey                 = SiteKey,
-        Action                  = action
+      var viewModel             = new AnnouncementViewModel() {
+        Label                   = announcementLabel,
+        Url                     = announcementUrl
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Return view
+      | Conditionally return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
+      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : (IViewComponentResult)View(viewModel);
 
     }
 

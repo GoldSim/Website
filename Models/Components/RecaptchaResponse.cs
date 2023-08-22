@@ -6,7 +6,7 @@
 using System.Collections.ObjectModel;
 using System.Text.Json.Serialization;
 
-namespace GoldSim.Web.Models.Recaptcha {
+namespace GoldSim.Web.Models.Components {
 
   /*============================================================================================================================
   | MODEL: RECAPTCHA RESPONSE

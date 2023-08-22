@@ -3,8 +3,8 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using GoldSim.Web.Models.Components;
 using OnTopic.AspNetCore.Mvc.Components;
-using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 
 namespace GoldSim.Web.Components {
@@ -16,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<Models.NavigationTopicViewModel> {
+  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -27,7 +27,7 @@ namespace GoldSim.Web.Components {
     /// <returns>A topic controller for loading OnTopic views.</returns>
     public CallsToActionViewComponent(
       ITopicRepository topicRepository,
-      IHierarchicalTopicMappingService<Models.NavigationTopicViewModel> hierarchicalTopicMappingService
+      IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
       topicRepository,
       hierarchicalTopicMappingService
@@ -60,11 +60,18 @@ namespace GoldSim.Web.Components {
       Contract.Assume(CurrentTopic, $"The current topic could not be identified for the page-level navigation.");
 
       /*------------------------------------------------------------------------------------------------------------------------
+      | Determine anchor
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var homepage              = TopicRepository.Load("Web:Home");
+      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+
+      /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new NavigationViewModel<Models.NavigationTopicViewModel>() {
-        NavigationRoot = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
-        CurrentWebPath = CurrentTopic?.GetWebPath()
+      var navigationViewModel   = new CallsToActionViewModel() {
+        NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
+        CurrentWebPath          = CurrentTopic?.GetWebPath(),
+        HasAnnouncement         = String.IsNullOrWhiteSpace(announcementLabel)
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
