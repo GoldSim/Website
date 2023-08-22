@@ -20,7 +20,7 @@
 
   void callsToActionContents() {
 
-    string currentNavigationRoot  = (Model.NavigationRoot is not null ? Model.NavigationRoot.Key.ToLower() : "");
+    string currentNavigationRoot  = (Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLower() : "");
     string callToActionType       = "general";
     if (currentNavigationRoot is "purchase") {
       callToActionType            = "purchase";

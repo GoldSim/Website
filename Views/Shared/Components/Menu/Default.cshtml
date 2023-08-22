@@ -33,7 +33,7 @@
 
     var isParentMenu            = topic.Children.Count > 2;
     var targetUrl               = !isParentMenu || isDesktop? topic.WebPath : "#";
-    var title                   = topic.ShortTitle?? topic.Title?? topic.Key;
+    var title                   = topic.ShortTitle?? topic.Title?? topic.WebPath.Substring(topic.WebPath.LastIndexOf(":"));
 
     var orientationAttribute    = isDesktop? "dropdown" : "vertical";
     var dropdownMenuAttribute   = isDesktop? "data-dropdown-menu" : "";
