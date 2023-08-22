@@ -6,7 +6,7 @@
 using System.Collections.ObjectModel;
 using OnTopic.Models;
 
-namespace GoldSim.Web.Models {
+namespace GoldSim.Web.Models.Components {
 
   /*============================================================================================================================
   | VIEW MODEL: CORE NAVIGATION TOPIC

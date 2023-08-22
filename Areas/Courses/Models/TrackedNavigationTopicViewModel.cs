@@ -3,7 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models;
+using GoldSim.Web.Models.Components;
 
 namespace GoldSim.Web.Courses.Models {
 
