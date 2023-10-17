@@ -64,7 +64,8 @@ table {
     }
   }
   tr {
-    page-break-inside           : avoid;
+    page-break-inside           : avoid;                        // Deprecated; also using break-inside
+    break-inside                : avoid;
     td:first-child,
     th:first-child {
       border-left-width         : 0;
