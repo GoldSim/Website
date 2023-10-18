@@ -30,7 +30,7 @@ a[href$=".gsm"]:after {
   padding                       : rem-calc(2 25 2 0);
   background                    : transparent url('/Images/Icons/Small/GSM.gif') no-repeat right center;
 }
-a[href$=".pdf"]:after {
+a[href*=".pdf"]:after {
   content                       : fa-content($fa-var-file-pdf);
   color                         : rgb(229, 31, 0);
 }
