@@ -79,7 +79,7 @@ namespace GoldSim.Web.Courses.Controllers {
       >-------------------------------------------------------------------------------------------------------------------------
       | If a course is marked as preview, restrict access to authenticated users.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (CurrentTopic.Attributes.GetBoolean("IsPreview", false, true) && !isAuthenticated) {
+      if (CurrentTopic is not null && CurrentTopic.Attributes.GetBoolean("IsPreview", false, true) && !isAuthenticated) {
         context.Result = new StatusCodeResult(401);
         return;
       }
