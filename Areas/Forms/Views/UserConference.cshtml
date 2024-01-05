@@ -14,6 +14,7 @@
     <legend>Oral Presentation or Poster Session</legend>
     <div class="grid-x grid-margin-x">
       @Html.EditorFor(model => model.BindingModel.WillSubmitPoster, new { cssClass="" })
+      @Html.EditorFor(model => model.BindingModel.PosterDescription, "TextArea")
       <div class="cell">
         <p style="margin-top: 1rem;">
           <em>We will follow up with instructions for submitting and presenting your poster at the conference.</em>

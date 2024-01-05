@@ -36,6 +36,15 @@ namespace GoldSim.Web.Forms.Models {
     public bool WillSubmitPoster { get; init; }
 
     /*==========================================================================================================================
+    | PROPERTY: POSTER DESCRIPTION
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a brief description of the poster for the conference's poster session.
+    /// </summary>
+    [Display(Name="Brief description of presentation/poster")]
+    public string PosterDescription { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
