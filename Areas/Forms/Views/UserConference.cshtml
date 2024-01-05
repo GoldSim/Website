@@ -62,8 +62,8 @@
          @Html.EditorFor(model => model.BindingModel.WithStudentDiscount)
       </div>
       <div class="cell radio">
-        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="User Conference Only" /> <label for="ConferenceOnly">User Conference Only (September 10-11): $1,250
-        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="Basic Training and Conference" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 9-11): $1,500
+        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="User Conference Only" /> <label for="ConferenceOnly">User Conference Only (September 10-11): <s style="Color: Red">$1,250</s> <strong>$950</strong> (if registered by April 30th)</label>
+        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="Basic Training and Conference" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 9-11): <s style="Color: Red">$1,500</s> <strong>$1,200</strong> (if registered by April 30th)</label>
         <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 9 and 10. Spouses/partners can also attend the two dinners for a modest fee.</span>
         <br /><span class="instructions"><strong><em>NOTE:</em> If you are only attending the conference (and not the Basic Training on September 9), you should still plan to arrive early enough on the 9th for the Dinner Cruise (which loads at 5:30PM).</strong></span>
       </div>
