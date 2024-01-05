@@ -32,7 +32,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Gets or sets whether the user intends to submit a poster for the conference's poster session.
     /// </summary>
-    [Display(Name="I am interested in submitting a poster.")]
+    [Display(Name="I am interested in submitting a poster or being considered for an oral presentation.")]
     public bool WillSubmitPoster { get; init; }
 
     /*==========================================================================================================================
