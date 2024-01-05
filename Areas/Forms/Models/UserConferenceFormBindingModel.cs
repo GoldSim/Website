@@ -81,7 +81,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Gets or sets whether the attendee is a student and, thus, should receive the student discount.
     /// </summary>
-    [Display(Name="Apply student discount")]
+    [Display(Name="Apply student discount (50%)")]
     public bool WithStudentDiscount { get; init; }
 
     /*==========================================================================================================================
