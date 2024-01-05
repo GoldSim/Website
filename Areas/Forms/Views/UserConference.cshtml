@@ -28,7 +28,7 @@
     <legend>Advanced Training Topics</legend>
     <div class="grid-x grid-margin-x">
       <div class="cell">
-        <p>The first day of the conference (September 11) will consist of two parallel sessions on advanced GoldSim applications and modeling techniques. Attendees will be able to move between the two sessions (each topic will last approximately 1 hour) in order to select the topics that best align with their interests. Topics will be based on attendee requests specified below:</p>
+        <p>The first day of the conference (September 10) will consist of two parallel sessions on advanced GoldSim applications and modeling techniques. Attendees will be able to move between the two sessions (each topic will last approximately 1 hour) in order to select the topics that best align with their interests. Topics will be based on attendee requests specified below:</p>
       </div>
 
       @Html.EditorFor(model => model.BindingModel.TrainingTopics.Scripts)
@@ -62,9 +62,9 @@
          @Html.EditorFor(model => model.BindingModel.WithStudentDiscount)
       </div>
       <div class="cell radio">
-        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="User Conference Only" /> <label for="ConferenceOnly">User Conference Only (September 11-12): $1,250</label>
-        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="Basic Training and Conference" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 10-12): $1,500</label>
-        <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 10 and 11. Spouses/partners can also attend the two dinners for a modest fee.</span>
+        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="User Conference Only" /> <label for="ConferenceOnly">User Conference Only (September 10-11): $1,250
+        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="Basic Training and Conference" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 9-11): $1,500
+        <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 9 and 10. Spouses/partners can also attend the two dinners for a modest fee.</span>
         <br /><span class="instructions"><strong><em>NOTE:</em> If you are only attending the conference (and not the Basic Training on September 9), you should still plan to arrive early enough on the 9th for the Dinner Cruise (which loads at 5:30PM).</strong></span>
       </div>
     </div>
