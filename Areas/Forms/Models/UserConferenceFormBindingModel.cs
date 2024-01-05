@@ -62,7 +62,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   attendee.
     /// </summary>
     [StringLength(1000)]
-    [Display(Name="Additional Instructions(e.g., interest in spouse / partner attending dinners)")]
+    [Display(Name="Additional Instructions (e.g., interest in spouse / partner attending dinners)")]
     public string AdditionalInstructions { get; init; }
 
     /*==========================================================================================================================
