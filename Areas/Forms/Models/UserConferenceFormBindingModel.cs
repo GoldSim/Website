@@ -66,14 +66,14 @@ namespace GoldSim.Web.Forms.Models {
     public string AdditionalInstructions { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: ADVANCED TRAINING TOPICS SELECTION
+    | PROPERTY: ADVANCED TRAINING TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets what additional training topics the attendee is interested in, if any, as part of their training session.
     /// </summary>
-    [MapToParent]
-    [Display(Name="Advanced Training Topics")]
-    public AdvancedTrainingTopicsSelection TrainingTopics { get; } = new();
+    [StringLength(255)]
+    [Display(Name="Topic(s) of Interest")]
+    public string AdvancedTrainingTopics { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: APPLY STUDENT DISCOUNT?
