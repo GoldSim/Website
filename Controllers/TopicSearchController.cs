@@ -55,6 +55,23 @@ namespace GoldSim.Web.Controllers {
         FindTopics(_topicRepository.Load(), query, results);
       }
 
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Assemble view model
+      \------------------------------------------------------------------------------------------------------------------------*/
+      var viewModel             = new TopicSearchViewModel() {
+        Id                      = -1,
+        WebPath                 = "/TopicSearch/",
+        UniqueKey               = "TopicSearch",
+        Key                     = "Root:TopicSearch",
+        Title                   = "Topic Search",
+        Query                   = query,
+        Results                 = new(results)
+      };
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Show results
+      \------------------------------------------------------------------------------------------------------------------------*/
+      return View(viewModel);
 
     }
 
