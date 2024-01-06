@@ -6,6 +6,7 @@
 using System.Text.RegularExpressions;
 using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
+using Microsoft.AspNetCore.Authorization;
 using OnTopic;
 
 namespace GoldSim.Web.Controllers {
@@ -16,6 +17,7 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Allows searching for topics containing particular search patterns based on Regular Expressions.
   /// </summary>
+  [Authorize]
   public class TopicSearchController : Controller {
 
     /*==========================================================================================================================
