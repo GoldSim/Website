@@ -100,11 +100,19 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
       'class'                   : 'footnote'
     }
   },
+  {
+    name                        : 'Equation',
+    element                     : 'span',
+    attributes                  : {
+      'class'                   : 'math-tex'
+    }
+  },
 
   /*----------------------------------------------------------------------------------------------------------------------------
   | CUSTOM OBJECT STYLES
   >-----------------------------------------------------------------------------------------------------------------------------
-  | Object styles require that the element be added to the page first. Once that's done, they
+  | Object styles require that the element be added to the page first. Once that's done, they will be displayed when that
+  | element is selected.
   \---------------------------------------------------------------------------------------------------------------------------*/
   {
     name                        : 'Callout Quote',

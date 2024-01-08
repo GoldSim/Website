@@ -14,6 +14,8 @@ For licensing, see LICENSE.html or http://ckeditor.com/license
 /**
  * Provides configuration settings for CKEditor.
  */
+CKEDITOR.plugins.addExternal('mathjax', 'https://cdn.ckeditor.com/4.14.0/standard-all/plugins/mathjax/', 'plugin.js');
+
 CKEDITOR.editorConfig = function(config) {
   config.removePlugins          = 'autosave';
   config.allowedContent         = true;
@@ -24,6 +26,8 @@ CKEDITOR.editorConfig = function(config) {
   config.shiftEnterMode         = CKEDITOR.ENTER_BR;
   config.contentsCss            = '/Shared/Styles/Views/CkEditor.css';
   config.disableNativeSpellChecker = false;
+  config.extraPlugins           = 'mathjax';
+  config.mathJaxLib             = '//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJax.js?config=TeX-AMS_HTML';
   config.toolbar                = [
     {
       name                      : 'document',

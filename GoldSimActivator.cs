@@ -227,7 +227,9 @@ namespace GoldSim.Web {
 
         nameof(EditorController) => new EditorController(_topicRepository, _topicMappingService),
 
-      _ => throw new InvalidOperationException($"Unknown controller {controllerType.Name}")
+        nameof(TopicSearchController) => new TopicSearchController(_topicRepository),
+
+        _ => throw new InvalidOperationException($"Unknown controller {controllerType.Name}")
 
       };
     }
