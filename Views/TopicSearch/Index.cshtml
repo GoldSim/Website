@@ -1,0 +1,42 @@
+﻿@model TopicSearchViewModel;
+
+@{
+  Layout = "~/Views/Layout/_Layout.cshtml";
+  ViewBag.Title = "Search Results";
+}
+<div>
+
+  <!-- Form -->
+  <section class="panel">
+    <p>Search for terms that appear in topics. If the term appears in any attribute in the topic, that topic will be returned below. Supports <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expressions</a>.</p>
+    <form id="SearchResultSearchForm" action="/TopicSearch/">
+      <input type="search" id="Query" name="Query" value="@Model.Query" />
+      <input class="button primary large" type="submit" value="Search" />
+    </form>
+  </section>
+
+  <p />
+
+  <!-- Results -->
+  @if (Model.Results.Count > 0) {
+    <section class="panel">
+      <div id="SearchResults">
+        <h1>Results</h1>
+        <ul>
+        @foreach (var topic in @Model.Results) {
+          <li><a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a></li>
+        }
+        </ul>
+      </div>
+    </section>
+  }
+
+</div>
+
+@section CallsToActionSection {}
+
+<!--
+  Controller: TopicSearch
+  Action: Search
+  View Location: ~/Views/TopicSearch/Index.cshtml
+-->
