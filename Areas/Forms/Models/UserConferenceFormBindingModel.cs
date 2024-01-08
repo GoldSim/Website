@@ -94,14 +94,5 @@ namespace GoldSim.Web.Forms.Models {
     [Display(Name="Basic Training and Conference(September 10-11): $1,500")]
     public bool IncludeTraining { get; init; }
 
-    /*==========================================================================================================================
-    | PROPERTY: WITH PAPER RECEIPT?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
-    /// </summary>
-    [Display(Name="I would prefer a paper invoice or receipt.")]
-    public bool WithPaperReceipt { get; init; }
-
   } //Class
 } //Namespace
