@@ -55,8 +55,8 @@
     <legend>Payment Information</legend>
     <div class="grid-x grid-margin-x">
       <div class="cell radio">
-        <input type="radio" name="PaymentMethod" value="CreditCard" id="CreditCard" /> <label for="CreditCard">Credit Card</label>
-        <br /><input type="radio" name="PaymentMethod" value="Invoice" id="Invoice" /> <label for="Invoice">Invoice Me</label>
+        <input asp-for="BindingModel.PaymentMethod" type="radio" value="CreditCard" id="CreditCard" /> <label for="CreditCard">Credit Card</label>
+        <br /><input asp-for="BindingModel.PaymentMethod" type="radio" value="Invoice" id="Invoice" /> <label for="Invoice">Invoice Me</label>
       </div>
       <div class="cell">
         <p id="PaymentInstructions" class="instructions"></p>

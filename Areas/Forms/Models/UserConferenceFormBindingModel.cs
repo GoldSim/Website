@@ -45,6 +45,15 @@ namespace GoldSim.Web.Forms.Models {
     public string PosterDescription { get; init; }
 
     /*==========================================================================================================================
+    | PROPERTY: PAYMENT METHOD
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether the attendee will be paying with a credit card or requesting a purchase order.
+    /// </summary>
+    [Display(Name="Payment Method")]
+    public string PaymentMethod { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
