@@ -32,8 +32,26 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Gets or sets whether the user intends to submit a poster for the conference's poster session.
     /// </summary>
-    [Display(Name="I am interested in submitting a poster.")]
+    [Display(Name="I am interested in submitting a poster or being considered for an oral presentation.")]
     public bool WillSubmitPoster { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: POSTER DESCRIPTION
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets a brief description of the poster for the conference's poster session.
+    /// </summary>
+    [Display(Name="Brief description of presentation/poster")]
+    public string PosterDescription { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: PAYMENT METHOD
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether the attendee will be paying with a credit card or requesting a purchase order.
+    /// </summary>
+    [Display(Name="Payment Method")]
+    public string PaymentMethod { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -53,18 +71,18 @@ namespace GoldSim.Web.Forms.Models {
     ///   attendee.
     /// </summary>
     [StringLength(1000)]
-    [Display(Name="Additional Instructions(e.g., interest in spouse / partner attending dinners)")]
+    [Display(Name="Additional Instructions (e.g., interest in spouse / partner attending dinners)")]
     public string AdditionalInstructions { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: ADVANCED TRAINING TOPICS SELECTION
+    | PROPERTY: ADVANCED TRAINING TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets what additional training topics the attendee is interested in, if any, as part of their training session.
     /// </summary>
-    [MapToParent]
-    [Display(Name="Advanced Training Topics")]
-    public AdvancedTrainingTopicsSelection TrainingTopics { get; } = new();
+    [StringLength(255)]
+    [Display(Name="Topic(s) of Interest")]
+    public string AdvancedTrainingTopics { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: APPLY STUDENT DISCOUNT?
@@ -72,7 +90,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Gets or sets whether the attendee is a student and, thus, should receive the student discount.
     /// </summary>
-    [Display(Name="Apply student discount")]
+    [Display(Name="Apply student discount (50%)")]
     public bool WithStudentDiscount { get; init; }
 
     /*==========================================================================================================================
@@ -82,17 +100,8 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the attendee will be attending (and purchasing) the additional training portion of the
     ///   conference.
     /// </summary>
-    [Display(Name="Basic Training and Conference(September 10 - 12): $1, 500")]
+    [Display(Name="Basic Training and Conference (September 10-11): $1,500")]
     public bool IncludeTraining { get; init; }
-
-    /*==========================================================================================================================
-    | PROPERTY: WITH PAPER RECEIPT?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
-    /// </summary>
-    [Display(Name="I would prefer a paper invoice or receipt.")]
-    public bool WithPaperReceipt { get; init; }
 
   } //Class
 } //Namespace

@@ -13,6 +13,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   Provides a strongly-typed data transfer object for representing a selection of advanced topics that an attendee might
   ///   wish to learn about at the GoldSim User Conference.
   /// </summary>
+  [Obsolete("This has been retired in preference for a single form field.", true)]
   public class AdvancedTrainingTopicsSelection {
 
     [Display(Name="Scripts and DLLs")]
