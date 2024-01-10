@@ -11,7 +11,7 @@
           <p class="author">@Html.Raw(paper.Authors)</p>
           @Html.Raw(paper.Description)
           <p><a href="@paper.LearnMoreUrl" rel="noopener" target="_blank" onclick="trackEvent(this, 'Technical Paper', 'Download', '@paper.Key')">
-            @(!String.IsNullOrEmpty(paper.DownloadLabel)? paper.DownloadLabel : "Download")
+            @(!String.IsNullOrEmpty(paper.DownloadLabel)? paper.DownloadLabel : "View Paper or Abstract")
           </a></p>
         </div>
       </li>
