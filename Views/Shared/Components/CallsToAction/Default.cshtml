@@ -22,10 +22,10 @@
 
     string currentNavigationRoot  = (Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLower() : "");
     string callToActionType       = "general";
-    if (currentNavigationRoot is "purchase") {
+    if (currentNavigationRoot is "/web/purchase/") {
       callToActionType            = "purchase";
     }
-    if (currentNavigationRoot is "customers") {
+    if (currentNavigationRoot is "/web/customers/") {
       callToActionType            = "customers";
     }
 
