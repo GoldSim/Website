@@ -91,7 +91,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the attendee will be attending (and purchasing) the additional training portion of the
     ///   conference.
     /// </summary>
-    [Display(Name="Basic Training and Conference(September 10-11): $1,500")]
+    [Display(Name="Basic Training and Conference (September 10-11): $1,500")]
     public bool IncludeTraining { get; init; }
 
   } //Class
