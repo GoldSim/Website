@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.ContentTypes;
+using OnTopic.Editor.AspNetCore.Models;
 
 namespace GoldSim.Web.Forms.Models {
 
@@ -30,7 +31,8 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   References the <see cref="Topic.Id"/> of the page that should be redirected to upon completion.
     /// </summary>
-    public int FollowUpPage { get; init; }
+    [MapAs(typeof(CoreTopicViewModel))]
+    public CoreTopicViewModel FollowUpPage { get; init; }
 
     /*==========================================================================================================================
     | SUBMIT BUTTON LABEL
