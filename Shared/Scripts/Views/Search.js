@@ -58,7 +58,7 @@
      * Set base query
      */
     this._searchQuery           = this.getQuerystringValue(this.options.queryStringParameter);
-    this._baseApiUrl            = 'https://api.cognitive.microsoft.com/bingcustomsearch/v7.0/search?q=' +
+    this._baseApiUrl            = 'https://api.bing.microsoft.com/v7.0/custom/search?q=' +
                                   encodeURIComponent(this._searchQuery) +
                                   '&customconfig=' + this.options.customConfig +
                                   '&responseFilter=Webpages&safesearch=Off';
