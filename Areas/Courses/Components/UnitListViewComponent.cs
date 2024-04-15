@@ -58,7 +58,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   name="navigationRootTopic"/>.
     /// </summary>
     protected async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
-      await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true);
+      await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic, validationDelegate: (t) => !t.Attributes.GetBoolean("IsPrivateBranch")).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)

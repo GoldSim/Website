@@ -60,7 +60,7 @@ namespace GoldSim.Web.Courses.Controllers {
     | EVENT HANDLER: ON ACTION EXECUTING
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Validates whether or not a given page should be displayed, based on the <code>IsPreview</code> attribute.
+    ///   Validates whether or not a given page should be displayed, based on the <code>IsPrivateBranch</code> attribute.
     /// </summary>
     public override void OnActionExecuting(ActionExecutingContext context) {
 
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Courses.Controllers {
       >-------------------------------------------------------------------------------------------------------------------------
       | If a course is marked as preview, restrict access to authenticated users.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (CurrentTopic is not null && CurrentTopic.Attributes.GetBoolean("IsPreview", false, true) && !isAuthenticated) {
+      if (CurrentTopic is not null && CurrentTopic.Attributes.GetBoolean("IsPrivateBranch", false, true) && !isAuthenticated) {
         context.Result = new StatusCodeResult(401);
         return;
       }
