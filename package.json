@@ -27,7 +27,7 @@
     "@microsoft/applicationinsights-web": "^3.1.2",
     "autoprefixer": "^10.4.19",
     "awesome-foundation6-checkbox": "^2.0.3",
-    "cssnano": "^6.0.1",
+    "cssnano": "^6.1.2",
     "dashjs": "^4.7.2",
     "foundation-sites": "^6.7.5",
     "gsap": "^3.12.2",
