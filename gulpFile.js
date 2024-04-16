@@ -55,15 +55,10 @@ const dependencies = {
   'Scripts': {
     'ApplicationInsights'       : 'node_modules/@microsoft/applicationinsights-web/dist/*.min.*',
     'DashJS'                    : 'node_modules/dashjs/dist/dash.mediaplayer.*',
-    'GreenSock'                 : [ 'node_modules/gsap/src/minified/**',
-                                    'node_modules/gsap/src/uncompressed/**'
-                                  ],
-    'Headroom'                  : 'node_modules/headroom.js/dist/**',
+    'GreenSock'                 : 'node_modules/gsap/dist/**',
     'jQuery'                    : 'node_modules/jquery/dist/*.*',
     'OwlCarousel'               : 'node_modules/owl.carousel/dist/*.js',
-    'ScrollMagic'               : [ 'node_modules/scrollmagic/scrollmagic/minified/**',
-                                    'scrollmagic/scrollmagic/uncompressed/**'
-                                  ],
+    'ScrollMagic'               : 'node_modules/scrollmagic/scrollmagic/minified/**',
     'ZURB'                      : 'node_modules/foundation-sites/dist/js/**/*.min.*',
   },
   'Styles': {
