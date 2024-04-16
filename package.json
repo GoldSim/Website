@@ -28,7 +28,7 @@
     "autoprefixer": "^10.4.19",
     "awesome-foundation6-checkbox": "^2.0.3",
     "cssnano": "^6.1.2",
-    "dashjs": "^4.7.2",
+    "dashjs": "^4.7.4",
     "foundation-sites": "^6.7.5",
     "gsap": "^3.12.2",
     "gulp": "^4.0.2",
