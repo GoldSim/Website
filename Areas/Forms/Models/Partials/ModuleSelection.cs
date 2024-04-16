@@ -51,14 +51,5 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Display(Name="Distributed Processing (DP-Plus) Module")]
     public bool DistributedProcessing { get; set; }
 
-    /*==========================================================================================================================
-    | PROPERTY: QUICK START PACKAGE?
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the user is interested in the quick start package.
-    /// </summary>
-    [Display(Name="Quick Start Package")]
-    public bool QuickStartPackage { get; set; }
-
   } //Class
 } //Namespace
