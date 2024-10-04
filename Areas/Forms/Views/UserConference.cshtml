@@ -17,7 +17,7 @@
       @Html.EditorFor(model => model.BindingModel.PosterDescription, "TextArea")
       <div class="cell">
         <p style="margin-top: 1rem;">
-          <span>If you are interested in presenting an oral presentation or a poster, please let us know.  We have a very limited number of time slots for oral presentations, and hence will need to select from the entries (selected presentations will tend to be general interest topics, while posters could, for example, be detailed case studies).  If you are not selected for a presentation, we will ask you to prepare a poster (our poster sessions are one of the most popular parts of the conference). In either case, we will follow up with instructions for preparing your presentation or poster at the conference.</span>
+          <span>If you are interested in presenting an oral presentation or a poster, please let us know <b>no later than June 15</b>. We have a very limited number of time slots for oral presentations, and hence will need to select from the entries. (Selected presentations will tend to be general interest topics, while posters could, for example, be detailed case studies.) If you are not selected for a presentation, we will ask you to prepare a poster. (Our poster sessions are one of the most popular parts of the conference.) In either case, we will follow up with instructions for preparing your presentation or poster at the conference.</span>
           <strong>Poster presenters will be entered into a drawing for a $500 Amazon gift certificate. Attendees will also vote on a Best Poster, with the winner receiving a $500 Amazon gift certificate.</strong>
         </p>
       </div>
@@ -43,8 +43,8 @@
          @Html.EditorFor(model => model.BindingModel.WithStudentDiscount)
       </div>
       <div class="cell radio">
-        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="False" /> <label for="ConferenceOnly">User Conference Only (September 10-11): <s style="Color: Red">$1,250</s> <strong>$950</strong> (if registered by April 30th)</label>
-        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="True" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 9-11): <s style="Color: Red">$1,500</s> <strong>$1,200</strong> (if registered by April 30th)</label>
+        <input asp-for="BindingModel.IncludeTraining" id="ConferenceOnly" type="radio" value="False" /> <label for="ConferenceOnly">User Conference Only (September 10-11): $1,250</label>
+        <br /><input asp-for="BindingModel.IncludeTraining" id="ConferenceAndTraining" type="radio" value="True" /> <label for="ConferenceAndTraining">Basic Training and Conference (September 9-11): $1,500</label>
         <br /><span class="instructions">Costs include breakfast and lunch each day, as well as dinner during the social events on the evenings of September 9 and 10. Spouses/partners can also attend the two dinners for a modest fee.</span>
         <br /><span class="instructions"><strong><em>NOTE:</em> If you are only attending the conference (and not the Basic Training on September 9), you should still plan to arrive early enough on the 9th for the Dinner Cruise (which loads at 5:30PM).</strong></span>
       </div>
@@ -68,6 +68,8 @@
       </div>
     </div>
   </fieldset>
+
+  <p><i><b>Cancellation Policy:</b> $100 cancellation fee if prior to July 9; no refund if cancelled after July 9.</i></p>
 
 }
 
