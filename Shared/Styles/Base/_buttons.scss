@@ -92,7 +92,7 @@ button {
   &.submit,
   &[type='submit'] {
     &:disabled {
-      @extend .button.secondary;
+      @extend .button, .secondary;
     }
   }
 }
