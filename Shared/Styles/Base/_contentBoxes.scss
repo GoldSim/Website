@@ -280,6 +280,15 @@ blockquote.stop {
   }
 }
 
+:is(.note):has(+ .note),
+:is(.stop):has(+ .stop),
+:is(.warning):has(+ .warning) {
+  border-bottom                 : 0px;
+  padding-bottom                : rem-calc(0);
+  margin-bottom                 : rem-calc(-16);
+}
+
+
 //----------------------------------------------------------------------------------------------
 // INDENTED CONTENT
 //----------------------------------------------------------------------------------------------
