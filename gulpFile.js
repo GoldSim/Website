@@ -97,6 +97,16 @@ function scssTask() {
     //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
     .pipe(sass({
+      sassOptions               : {
+        quietDeps               : true
+      },
+      silenceDeprecations: [
+        'color-functions',
+        'global-builtin',
+        'import',
+        'legacy-js-api',
+        'mixed-decls'
+      ],
       includePaths: [
         './Shared/Styles',
         './node_modules',
