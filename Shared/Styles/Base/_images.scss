@@ -12,9 +12,9 @@
 // LOGO
 //----------------------------------------------------------------------------------------------
 img.logo {
-  max-width                     : 152px;
+  max-width                     : 175px;
   @include breakpoint(large) {
-    max-width                   : 182px;
+    max-width                   : 200px;
   }
 }
 
