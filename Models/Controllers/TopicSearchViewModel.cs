@@ -23,7 +23,15 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the requested query, so it can be reapplied to the search box.
     /// </summary>
-    public string Query{ get; init; }
+    public string Query { get; init; }
+
+    /*==========================================================================================================================
+    | REPLACE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the optional replacement expression.
+    /// </summary>
+    public string Replace { get; init; }
 
     /*==========================================================================================================================
     | RESULTS
