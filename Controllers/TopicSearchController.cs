@@ -106,8 +106,8 @@ namespace GoldSim.Web.Controllers {
         if (Regex.IsMatch(attribute.Value, query, RegexOptions.Compiled | RegexOptions.IgnoreCase)) {
           results.Add(
             new() {
-               Title            = topic.Title?? topic.Key,
-               ShortTitle       = topic.Title?? topic.Key,
+               Title            = topic.Title,
+               ShortTitle       = topic.Title,
                WebPath          = topic.GetWebPath()
             }
           );
@@ -142,8 +142,8 @@ namespace GoldSim.Web.Controllers {
         if (Regex.IsMatch(attribute.Value, query, RegexOptions.Compiled | RegexOptions.IgnoreCase)) {
           results.Add(
             new() {
-              Title            = topic.Title?? topic.Key,
-              ShortTitle       = topic.Title?? topic.Key,
+              Title            = topic.Title,
+              ShortTitle       = topic.Title,
               WebPath          = topic.GetWebPath()
             }
           );
