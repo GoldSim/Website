@@ -18,6 +18,12 @@
   </section>
 
   <p />
+  
+  @if (Model.IsReplace) {
+    <blockquote class="Note">
+      @Model.Results.Count topics were successfully updated with the replacement expression.  
+    </blockquote>
+  }
 
   <!-- Results -->
   @if (Model.Results.Count > 0) {
