@@ -46,7 +46,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    public IActionResult Index(string button, string? query = null, string? replace = null) {
+    public IActionResult Index(string button, string query = null, string replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
