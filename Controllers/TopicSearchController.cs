@@ -32,7 +32,7 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic search controller for loading OnTopic results.</returns>
-    public TopicSearchController(ITopicRepository topicRepository) : base() {
+    public TopicSearchController(ITopicRepository topicRepository) {
       _topicRepository          = topicRepository;
     }
 
