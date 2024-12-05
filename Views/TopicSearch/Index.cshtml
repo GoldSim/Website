@@ -7,7 +7,13 @@
     <p>Search for terms that appear in topics. If the term appears in any attribute in the topic, that topic will be returned below. Supports <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expressions</a>.</p>
     <form id="SearchResultSearchForm" action="/TopicSearch/">
       <input type="search" id="Query" name="Query" value="@Model.Query" />
-      <input class="button primary large" type="submit" value="Search" />
+      @if (Model.Query is not null) {
+        <input type="text" id="Replace" name="Replace" value="@Model.Replace" />
+      }
+      <input class="button primary large" type="submit" name="Search" value="Search" />
+      @if (Model.Query is not null) {
+        <input class="button primary large alert" type="submit" name="Replace" value="Replace" />
+      }
     </form>
   </section>
 
