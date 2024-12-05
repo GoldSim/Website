@@ -111,5 +111,41 @@ namespace GoldSim.Web.Controllers {
 
     }
 
+    /*==========================================================================================================================
+    | REPLACE TOPICS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Recursively searches all topics in the <paramref name="topic"/> tree for the supplied <paramref name="query"/> and
+    ///   adds any results to the <paramref name="results"/> set. Replaces the references using the supplied <paramref
+    ///   name="replace"/> expression.
+    /// </summary>
+    /// <param name="topic">The <see cref="Topic"/> to search within.</param>
+    /// <param name="query">The search term to look for in each attribute.</param>
+    /// <param name="replace">The expression to replace all search results with.</param>
+    /// <param name="results">The collection of positive matches.</param>
+    [HttpGet]
+    private static void ReplaceTopics(Topic topic, string query, string replace, List<AssociatedTopicViewModel> results) {
+
+      // Search each attribute for the given query
+      foreach (var attribute in topic.Attributes) {
+        if (Regex.IsMatch(attribute.Value, query, RegexOptions.Compiled | RegexOptions.IgnoreCase)) {
+          results.Add(
+            new() {
+              Title            = topic.Title?? topic.Key,
+              ShortTitle       = topic.Title?? topic.Key,
+              WebPath          = topic.GetWebPath()
+            }
+          );
+          break;
+        }
+      }
+
+      // Recursively replace results for each child topic
+      foreach (var childTopic in topic.Children) {
+        ReplaceTopics(childTopic, query, replace, results);
+      }
+
+    }    
+    
   } // Class
 } // Namespace
