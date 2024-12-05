@@ -52,12 +52,13 @@ namespace GoldSim.Web.Controllers {
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
       var results = new List<AssociatedTopicViewModel>();
+      var isReplace = button.Equals("Replace", StringComparison.InvariantCulture);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(query)) {
-        if (!button.Equals("Replace", StringComparison.InvariantCulture)) {
+        if (isReplace) {
           ReplaceTopics(_topicRepository.Load(), query, replace, results);
         }
         else {
@@ -74,6 +75,7 @@ namespace GoldSim.Web.Controllers {
         UniqueKey               = "TopicSearch",
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
+        IsReplace               = isReplace,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results)
