@@ -42,8 +42,11 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Searches all topics in the supplied <see cref="_topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
+    /// <param name="button">The type of request being submitted; <code>Search</code> or <code>Replace</code>.</param>
+    /// <param name="query">The search term to look for in each attribute.</param>
+    /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    public IActionResult Index(string? query = null) {
+    public IActionResult Index(string button, string? query = null, string? replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
@@ -54,7 +57,12 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(query)) {
-        FindTopics(_topicRepository.Load(), query, results);
+        if (!button.Equals("Replace", StringComparison.InvariantCulture)) {
+          ReplaceTopics(_topicRepository.Load(), query, replace, results);
+        }
+        else {
+          FindTopics(_topicRepository.Load(), query, results);
+        }
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -67,6 +75,7 @@ namespace GoldSim.Web.Controllers {
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
         Query                   = query,
+        Replace                 = replace,
         Results                 = new(results)
       };
 
