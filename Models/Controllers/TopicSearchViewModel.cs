@@ -18,12 +18,12 @@ namespace GoldSim.Web.Models.Controllers {
   public record TopicSearchViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
-    | IS REPLACE?
+    | ACTION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines if the action was a search action.
+    ///   Determines the action requested.
     /// </summary>
-    public bool IsReplace { get; init; }
+    public TopicSearchAction Action { get; init; }
     
     /*==========================================================================================================================
     | QUERY
