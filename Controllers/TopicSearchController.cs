@@ -57,12 +57,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(query)) {
-        if (button is TopicSearchAction.ReplacePreview) {
-          ReplaceTopics(_topicRepository.Load(), query, replace, button, results);
-        }
-        else {
-          FindTopics(_topicRepository.Load(), query, results);
-        }
+        FindReplaceTopics(_topicRepository.Load(), query, replace, button, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -88,46 +83,13 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | FIND TOPICS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Recursively searches all topics in the <paramref name="topic"/> tree for the supplied <paramref name="query"/> and
-    ///   adds any results to the <paramref name="results"/> set.
-    /// </summary>
-    /// <param name="topic">The <see cref="Topic"/> to search within.</param>
-    /// <param name="query">The search term to look for in each attribute.</param>
-    /// <param name="results">The collection of positive matches.</param>
-    [HttpGet]
-    private static void FindTopics(Topic topic, string query, List<AssociatedTopicViewModel> results) {
-
-      // Search each attribute for the given query
-      foreach (var attribute in topic.Attributes) {
-        if (Regex.IsMatch(attribute.Value, query, RegexOptions.Compiled | RegexOptions.IgnoreCase)) {
-          results.Add(
-            new() {
-               Title            = topic.Title,
-               ShortTitle       = topic.Title,
-               WebPath          = topic.GetWebPath()
-            }
-          );
-          break;
-        }
-      }
-
-      // Recursively search each child topic
-      foreach (var childTopic in topic.Children) {
-        FindTopics(childTopic, query, results);
-      }
-
-    }
-
-    /*==========================================================================================================================
     | REPLACE TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Recursively searches all topics in the <paramref name="topic"/> tree for the supplied <paramref name="query"/> and
-    ///   adds any results to the <paramref name="results"/> set. Replaces the references using the supplied <paramref
-    ///   name="replace"/> expression.
+    ///   adds any results to the <paramref name="results"/> set. Optionally replaces the references using the <paramref
+    ///   name="replace"/> expression, if available, and if <paramref name="action"/> is set to <see
+    ///   cref="TopicSearchAction.ReplaceConfirm"/>.
     /// </summary>
     /// <param name="topic">The <see cref="Topic"/> to search within.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
@@ -135,7 +97,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [HttpGet]
-    private static void ReplaceTopics(
+    private static void FindReplaceTopics(
       Topic topic, 
       string query, 
       string replace, 
@@ -159,7 +121,7 @@ namespace GoldSim.Web.Controllers {
 
       // Recursively replace results for each child topic
       foreach (var childTopic in topic.Children) {
-        ReplaceTopics(childTopic, query, replace, action, results);
+        FindReplaceTopics(childTopic, query, replace, action, results);
       }
 
     }    
