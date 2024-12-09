@@ -46,20 +46,19 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    public IActionResult Index(string button, string query = null, string replace = null) {
+    public IActionResult Index(TopicSearchAction button, string query = null, string replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
       var results = new List<AssociatedTopicViewModel>();
-      var isReplace = button.Equals("Replace", StringComparison.InvariantCulture);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(query)) {
-        if (isReplace) {
-          ReplaceTopics(_topicRepository.Load(), query, replace, results);
+        if (button is TopicSearchAction.ReplacePreview) {
+          ReplaceTopics(_topicRepository.Load(), query, replace, button, results);
         }
         else {
           FindTopics(_topicRepository.Load(), query, results);
@@ -75,7 +74,7 @@ namespace GoldSim.Web.Controllers {
         UniqueKey               = "TopicSearch",
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
-        IsReplace               = isReplace,
+        Action                  = button,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results)
@@ -133,9 +132,16 @@ namespace GoldSim.Web.Controllers {
     /// <param name="topic">The <see cref="Topic"/> to search within.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The expression to replace all search results with.</param>
+    /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [HttpGet]
-    private static void ReplaceTopics(Topic topic, string query, string replace, List<AssociatedTopicViewModel> results) {
+    private static void ReplaceTopics(
+      Topic topic, 
+      string query, 
+      string replace, 
+      TopicSearchAction action, 
+      List<AssociatedTopicViewModel> results
+    ) {
 
       // Search each attribute for the given query
       foreach (var attribute in topic.Attributes) {
@@ -153,7 +159,7 @@ namespace GoldSim.Web.Controllers {
 
       // Recursively replace results for each child topic
       foreach (var childTopic in topic.Children) {
-        ReplaceTopics(childTopic, query, replace, results);
+        ReplaceTopics(childTopic, query, replace, action, results);
       }
 
     }    
