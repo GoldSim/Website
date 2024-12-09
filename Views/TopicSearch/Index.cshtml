@@ -7,20 +7,20 @@
     <p>Search for terms that appear in topics. If the term appears in any attribute in the topic, that topic will be returned below. Supports <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expressions</a>.</p>
     <form id="SearchResultSearchForm" action="/TopicSearch/">
       <input type="search" id="Query" name="Query" value="@Model.Query" />
-      @if (Model.Query is not null) {
-        <input type="text" id="Replace" name="Replace" value="@Model.Replace" />
+      @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
+        <input type="text" id="Replace" name="ReplacePreview" value="@Model.Replace" />
       }
       <input class="button primary large" type="submit" name="Search" value="Search" />
-      @if (Model.Query is not null) {
-        <input class="button primary large alert" type="submit" name="Replace" value="Replace" />
+      @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
+        <input class="button primary large suc" type="submit" name="ReplaceConfirm" value="Replace" />
       }
     </form>
   </section>
 
   <p />
-  
-  @if (Model.IsReplace) {
-    <blockquote class="Note">
+
+  @if (Model.Action is TopicSearchAction.ReplaceConfirm) {
+    <blockquote class="note">
       @Model.Results.Count topics were successfully updated with the replacement expression.  
     </blockquote>
   }
