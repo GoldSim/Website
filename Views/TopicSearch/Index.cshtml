@@ -14,11 +14,19 @@
       @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
         <input class="button primary large suc" type="submit" name="ReplaceConfirm" value="Replace" />
       }
+      @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
+        <input class="button primary large alert" type="submit" name="ReplaceConfirm" value="Replace" />
+      }
     </form>
   </section>
 
   <p />
 
+  @if (Model.Action is TopicSearchAction.ReplacePreview) {
+    <blockquote class="stop">
+      @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+    </blockquote>
+  }
   @if (Model.Action is TopicSearchAction.ReplaceConfirm) {
     <blockquote class="note">
       @Model.Results.Count topics were successfully updated with the replacement expression.  
