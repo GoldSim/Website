@@ -42,7 +42,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Searches all topics in the supplied <see cref="_topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
-    /// <param name="button">The type of request being submitted; <code>Search</code> or <code>Replace</code>.</param>
+    /// <param name="button">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
@@ -98,10 +98,10 @@ namespace GoldSim.Web.Controllers {
     /// <param name="results">The collection of positive matches.</param>
     [HttpGet]
     private static void FindReplaceTopics(
-      Topic topic, 
-      string query, 
-      string replace, 
-      TopicSearchAction action, 
+      Topic topic,
+      string query,
+      string replace,
+      TopicSearchAction action,
       List<AssociatedTopicViewModel> results
     ) {
 
@@ -124,7 +124,7 @@ namespace GoldSim.Web.Controllers {
         FindReplaceTopics(childTopic, query, replace, action, results);
       }
 
-    }    
-    
+    }
+
   } // Class
 } // Namespace

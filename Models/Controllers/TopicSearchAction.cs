@@ -37,5 +37,5 @@ public enum TopicSearchAction {
   ///   Confirmed reaction.
   /// </summary>
   ReplaceConfirm
-  
+
 }
