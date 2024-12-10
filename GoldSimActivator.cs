@@ -46,10 +46,10 @@ namespace GoldSim.Web {
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            IConfiguration                  _configuration;
-    private readonly            ITypeLookupService              _typeLookupService;
-    private readonly            ITopicMappingService            _topicMappingService;
-    private readonly            ITopicRepository                _topicRepository;
-    private readonly            ISmtpService                    _smtpService;
+    private readonly            CompositeTypeLookupService      _typeLookupService;
+    private readonly            TopicMappingService             _topicMappingService;
+    private readonly            CachedTopicRepository           _topicRepository;
+    private readonly            PostmarkSmtpService             _smtpService;
     private readonly            IRequestValidator               _requestValidator;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
