@@ -16,7 +16,7 @@ namespace GoldSim.Web.Courses.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about all sibling <c>Lesson</c>
   ///   topics.
   /// </summary>
-  internal class LessonListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
+  internal sealed class LessonListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | TRACKING EVENTS

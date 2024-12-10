@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Purchase GoldSim form.
   /// </summary>
-  internal record PurchaseFormBindingModel : PurchaseBindingModel {
+  internal sealed record PurchaseFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: USER (CONTACT)

@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.Controllers {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the <see cref="TopicSearchController"/>.
   /// </summary>
-  internal record TopicSearchViewModel: PageTopicViewModel {
+  internal sealed record TopicSearchViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | ACTION

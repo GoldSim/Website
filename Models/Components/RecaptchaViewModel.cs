@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the reCAPTCHA view component.
   /// </summary>
-  internal record RecaptchaViewModel {
+  internal sealed record RecaptchaViewModel {
 
     /*==========================================================================================================================
     | SITE KEY

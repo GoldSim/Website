@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  internal class LicensesController : TopicController {
+  internal sealed class LicensesController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

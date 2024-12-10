@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ModulePage</c>
   ///   topic.
   /// </summary>
-  internal record ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+  internal sealed record ModulePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

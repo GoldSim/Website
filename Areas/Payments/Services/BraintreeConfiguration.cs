@@ -17,7 +17,7 @@ namespace GoldSim.Web.Payments.Services {
   /// </summary>
   /// <remarks>
   ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>
-  internal class BraintreeConfiguration : IBraintreeConfiguration {
+  internal sealed class BraintreeConfiguration : IBraintreeConfiguration {
 
     /*==========================================================================================================================
     | PRIVATE FIELDS

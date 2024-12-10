@@ -27,7 +27,7 @@ namespace GoldSim.Web.Forms.Controllers {
   ///   controller.
   /// </summary>
   [Area("Forms")]
-  internal class FormsController : TopicController {
+  internal sealed class FormsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

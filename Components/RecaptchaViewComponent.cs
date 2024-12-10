@@ -13,7 +13,7 @@ namespace GoldSim.Web.Courses.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which renders a script for embedding a reCAPTCHA component onto the page.
   /// </summary>
-  internal class RecaptchaViewComponent: ViewComponent {
+  internal sealed class RecaptchaViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

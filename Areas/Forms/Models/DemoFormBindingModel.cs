@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
   /// </summary>
-  internal record DemoFormBindingModel : ExtendedProfile {
+  internal sealed record DemoFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS

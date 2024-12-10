@@ -12,7 +12,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for rendering a license request.
   /// </summary>
-  internal record TrialFormTopicViewModel: LicenseRequestTopicViewModel {
+  internal sealed record TrialFormTopicViewModel : LicenseRequestTopicViewModel {
 
   } // Class
 } // Namespace

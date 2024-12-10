@@ -16,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  internal class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  internal sealed class CallsToActionViewComponent : NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

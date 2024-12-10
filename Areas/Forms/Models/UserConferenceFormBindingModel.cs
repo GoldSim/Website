@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the User Conference Registration form.
   /// </summary>
-  internal record UserConferenceFormBindingModel : ExtendedContact {
+  internal sealed record UserConferenceFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: FAX NUMBER

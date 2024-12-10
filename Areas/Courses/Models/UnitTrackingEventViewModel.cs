@@ -12,7 +12,7 @@ namespace GoldSim.Web.Courses.Models {
   /// <summary>
   ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
   /// </summary>
-  internal class UnitTrackingEventViewModel: CourseTrackingEventViewModel {
+  internal sealed class UnitTrackingEventViewModel: CourseTrackingEventViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

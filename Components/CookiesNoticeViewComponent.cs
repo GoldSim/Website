@@ -13,7 +13,7 @@ namespace GoldSim.Web.Courses.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a cookie consent form, assuming the user hasn't already
   ///   consented.
   /// </summary>
-  internal class CookiesNoticeViewComponent: ViewComponent {
+  internal sealed class CookiesNoticeViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

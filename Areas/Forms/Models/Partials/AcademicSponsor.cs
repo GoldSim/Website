@@ -12,7 +12,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing the contact information of an academic sponsor.
   /// </summary>
-  internal record AcademicSponsor: Contact {
+  internal sealed record AcademicSponsor : Contact {
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME

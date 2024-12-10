@@ -19,7 +19,7 @@ namespace GoldSim.Web.Controllers {
   ///   Allows searching for topics containing particular search patterns based on Regular Expressions.
   /// </summary>
   [Authorize]
-  internal class TopicSearchController : Controller {
+  internal sealed class TopicSearchController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

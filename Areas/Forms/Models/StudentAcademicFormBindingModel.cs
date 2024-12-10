@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the student version of the academic form.
   /// </summary>
-  internal record StudentAcademicFormBindingModel : AcademicFormBindingModel {
+  internal sealed record StudentAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: SPONSOR

@@ -17,7 +17,7 @@ namespace GoldSim.Web.Models.Components {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  internal class PageLevelNavigationTopicViewModel: CoreNavigationTopicViewModel<PageLevelNavigationTopicViewModel> {
+  internal sealed class PageLevelNavigationTopicViewModel : CoreNavigationTopicViewModel<PageLevelNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | HEADER IMAGE (URL)

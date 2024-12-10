@@ -25,7 +25,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  internal class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<PageLevelNavigationTopicViewModel> {
+  internal sealed class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<PageLevelNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

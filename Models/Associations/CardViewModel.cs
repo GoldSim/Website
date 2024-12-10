@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Associations {
   /// <summary>
   ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  internal record CardViewModel: AssociatedTopicViewModel, ICardViewModel {
+  internal sealed record CardViewModel : AssociatedTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

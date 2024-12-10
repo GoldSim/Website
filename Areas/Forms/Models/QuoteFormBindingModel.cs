@@ -12,7 +12,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Quote form.
   /// </summary>
-  internal record QuoteFormBindingModel : PurchaseBindingModel {
+  internal sealed record QuoteFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: FAX NUMBER

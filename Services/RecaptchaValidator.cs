@@ -15,7 +15,7 @@ namespace GoldSim.Web.Services {
   /// <summary>
   ///   Validates that a given request is from a human.
   /// </summary>
-  internal class RecaptchaValidator: IRequestValidator {
+  internal sealed class RecaptchaValidator : IRequestValidator {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

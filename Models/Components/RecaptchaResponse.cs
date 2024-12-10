@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for modeling the JSON response from reCAPTCHA.
   /// </summary>
-  internal record RecaptchaResponse {
+  internal sealed record RecaptchaResponse {
 
     /*==========================================================================================================================
     | HOSTNAME

@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about the footer.
   /// </summary>
-  internal class FooterViewModel: NavigationViewModel<NavigationTopicViewModel> {
+  internal sealed class FooterViewModel : NavigationViewModel<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | IS MAIN SITE?

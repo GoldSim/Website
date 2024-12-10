@@ -24,7 +24,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  internal class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
+  internal sealed class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

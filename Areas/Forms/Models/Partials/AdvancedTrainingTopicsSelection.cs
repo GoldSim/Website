@@ -14,7 +14,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   wish to learn about at the GoldSim User Conference.
   /// </summary>
   [Obsolete("This has been retired in preference for a single form field.", true)]
-  internal class AdvancedTrainingTopicsSelection {
+  internal sealed class AdvancedTrainingTopicsSelection {
 
     [Display(Name="Scripts and DLLs")]
     internal bool Scripts { get; set; }

@@ -13,7 +13,7 @@ namespace GoldSim.Web.Payments.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Payments</c> topic.
   /// </summary>
-  internal record PaymentsTopicViewModel : PageTopicViewModel {
+  internal sealed record PaymentsTopicViewModel : PageTopicViewModel {
 
     internal bool? IsValid { get; init; }
     internal string ClientToken { get; init; }

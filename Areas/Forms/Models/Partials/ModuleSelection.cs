@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   Provides a strongly-typed data transfer object for representing a selection of GoldSim modules that the user might be
   ///   interested in trying.
   /// </summary>
-  internal class ModuleSelection {
+  internal sealed class ModuleSelection {
 
     /*==========================================================================================================================
     | PROPERTY: RELIABILITY MODULE?

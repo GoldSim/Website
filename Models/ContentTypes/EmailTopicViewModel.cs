@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing a customer email.
   /// </summary>
-  internal record EmailTopicViewModel: PageTopicViewModel {
+  internal sealed record EmailTopicViewModel : PageTopicViewModel {
 
   } // Class
 } // Namespace

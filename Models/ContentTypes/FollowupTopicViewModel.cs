@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing a follow-up to a form.
   /// </summary>
-  internal record FollowupTopicViewModel: PageTopicViewModel {
+  internal sealed record FollowupTopicViewModel : PageTopicViewModel {
 
   } // Class
 } // Namespace

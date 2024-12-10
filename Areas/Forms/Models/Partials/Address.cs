@@ -12,7 +12,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing street address.
   /// </summary>
-  internal class Address {
+  internal sealed class Address {
 
     /*==========================================================================================================================
     | PROPERTY: STREET (1)

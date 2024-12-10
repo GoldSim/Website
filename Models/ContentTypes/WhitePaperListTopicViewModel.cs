@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a White Paper List topic.
   /// </summary>
-  internal record WhitePaperListTopicViewModel : ContentListTopicViewModel {
+  internal sealed record WhitePaperListTopicViewModel : ContentListTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

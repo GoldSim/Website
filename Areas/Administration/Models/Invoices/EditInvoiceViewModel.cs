@@ -12,7 +12,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
   /// <summary>
   ///   A view model for rendering an invoice form page.
   /// </summary>
-  internal record EditInvoiceViewModel: PageTopicViewModel {
+  internal sealed record EditInvoiceViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

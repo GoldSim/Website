@@ -40,7 +40,7 @@ namespace GoldSim.Web {
   ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
   ///   Dependency Injection.
   /// </summary>
-  internal class GoldSimActivator : IControllerActivator, IViewComponentActivator {
+  internal sealed class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
     | PRIVATE INSTANCES

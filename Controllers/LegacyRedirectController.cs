@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   ///   cref="LegacyRedirectController"/> provides routing that looks up topics based on the legacy <c>PageId</c> and then
   ///   redirects to the new, friendly URL.
   /// </summary>
-  internal class LegacyRedirectController : Controller {
+  internal sealed class LegacyRedirectController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

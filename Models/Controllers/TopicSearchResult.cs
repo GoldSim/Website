@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.Controllers {
   ///   Provides a strongly-typed data transfer object for reporting an individual match discovered and returned via the <see
   ///   cref="TopicSearchController"/>.
   /// </summary>
-  internal record TopicSearchResult {
+  internal sealed record TopicSearchResult {
 
     /*==========================================================================================================================
     | ATTRIBUTE KEY

@@ -19,7 +19,7 @@ namespace GoldSim.Web.Administration.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  internal class InvoicesController : Controller {
+  internal sealed class InvoicesController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

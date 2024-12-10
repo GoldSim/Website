@@ -18,7 +18,7 @@ namespace GoldSim.Web.Forms.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a dropdown list of metadata from an <see
   ///   cref="ITopicRepository"/> based on attributes of a <see cref="ModelExpression"/>.
   /// </summary>
-  internal class MetadataLookupViewComponent: ViewComponent {
+  internal sealed class MetadataLookupViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES

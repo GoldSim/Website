@@ -18,7 +18,7 @@ namespace GoldSim.Web.Administration.Services {
   /// <summary>
   ///   Provides utility methods for assembling Excel spreadsheet reports for GoldSim data.
   /// </summary>
-  internal class LicenseExportService : ITopicExportService {
+  internal sealed class LicenseExportService : ITopicExportService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

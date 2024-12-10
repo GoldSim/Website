@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
   /// </summary>
-  internal class TrackingEventViewModel {
+  internal sealed class TrackingEventViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

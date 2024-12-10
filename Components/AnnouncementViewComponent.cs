@@ -14,7 +14,7 @@ namespace GoldSim.Web.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which renders an announcement banner in a view.
   /// </summary>
-  internal class AnnouncementViewComponent: ViewComponent {
+  internal class AnnouncementViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.Associations {
   ///   Provides a model for tracking associations to <see cref="ContentItemTopicViewModel"/>s. This model supports navigable
   ///   lists.
   /// </summary>
-  internal record AssociatedContentItemViewModel: AssociatedTopicViewModel {
+  internal sealed record AssociatedContentItemViewModel : AssociatedTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

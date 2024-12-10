@@ -25,7 +25,7 @@ namespace GoldSim.Web.Payments.Controllers {
   ///   Provides access to the Payments page of the website, with Braintree Payments integration functionality.
   /// </summary>
   [Area("Payments")]
-  internal class PaymentsController : TopicController {
+  internal sealed class PaymentsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
