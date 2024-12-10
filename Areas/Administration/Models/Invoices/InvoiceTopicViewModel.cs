@@ -12,7 +12,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing a customer invoice
   /// </summary>
-  internal class InvoiceTopicViewModel {
+  internal sealed class InvoiceTopicViewModel {
 
     /*==========================================================================================================================
     | ID
