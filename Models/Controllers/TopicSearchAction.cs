@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Controllers;
 /// <summary>
 ///   Determines the type of request being submitted.
 /// </summary>
-public enum TopicSearchAction {
+internal enum TopicSearchAction {
 
   /*==========================================================================================================================
   | SEARCH

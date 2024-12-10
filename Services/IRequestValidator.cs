@@ -12,7 +12,7 @@ namespace GoldSim.Web.Services {
   /// <summary>
   ///   Validates that a request is from a human, as determined by e.g. a CAPTCHA service.
   /// </summary>
-  public interface IRequestValidator {
+  internal interface IRequestValidator {
 
     /*==========================================================================================================================
     | IS VALID?

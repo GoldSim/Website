@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Purchase GoldSim form.
   /// </summary>
-  public record PurchaseFormBindingModel : PurchaseBindingModel {
+  internal record PurchaseFormBindingModel : PurchaseBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: USER (CONTACT)
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Intended User Contact Information")]
-    public ExtendedContact UserContact { get; init; }
+    internal ExtendedContact UserContact { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ACCOUNTS PAYABLE (contact)
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Accounts Payable Contact Information")]
-    public ExtendedContact AccountsPayableContact { get; init; }
+    internal ExtendedContact AccountsPayableContact { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(15)]
     [Display(Name="Purchase Order Number")]
-    public string PurchaseOrderNumber { get; init; }
+    internal string PurchaseOrderNumber { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE NOTES
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name="Purchase Notes")]
-    public string PurchaseNotes { get; init; }
+    internal string PurchaseNotes { get; init; }
 
   } //Class
 } //Namespace

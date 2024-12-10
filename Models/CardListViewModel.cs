@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   A view model for rendering a list of card objects.
   /// </summary>
-  public class CardListViewModel {
+  internal class CardListViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Models {
     ///   Initializes a new instance of a Card List View Model with appropriate dependencies.
     /// </summary>
     /// <returns>A card list view model.</returns>
-    public CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
+    internal CardListViewModel(IEnumerable<ICardViewModel> cards, string className="") {
       Cards                    = cards;
       ClassName                = className;
     }
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Models {
     ///   Provides a list of cards to be rendered as part of the card list.
     /// </summary>
     /// <returns>A <see cref="List{T}"/> of <see cref="OnTopic.Topic"/>, each representing a unique card.</returns>
-    public IEnumerable<ICardViewModel> Cards { get; }
+    internal IEnumerable<ICardViewModel> Cards { get; }
 
     /*==========================================================================================================================
     | CLASS NAME
@@ -42,7 +42,7 @@ namespace GoldSim.Web.Models {
     ///   Provides the (optional) CSS class to be associated with each card.
     /// </summary>
     /// <returns>A CSS class name.</returns>
-    public string ClassName { get; }
+    internal string ClassName { get; }
 
   } // Class
 } // Namespace

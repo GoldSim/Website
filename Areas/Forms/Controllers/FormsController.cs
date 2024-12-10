@@ -27,7 +27,7 @@ namespace GoldSim.Web.Forms.Controllers {
   ///   controller.
   /// </summary>
   [Area("Forms")]
-  public class FormsController : TopicController {
+  internal class FormsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Forms.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public FormsController(
+    internal FormsController(
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
@@ -81,7 +81,7 @@ namespace GoldSim.Web.Forms.Controllers {
     ///   Helper function to process a form postback request.
     /// </summary>
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> ProcessForm<T>(
+    internal async Task<IActionResult> ProcessForm<T>(
       T bindingModel,
       string requestType = ""
     ) where T: CoreContact, ITopicBindingModel, new() {
@@ -142,12 +142,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> TrialAsync() =>
+    internal async Task<IActionResult> TrialAsync() =>
       View(await CreateViewModel<TrialFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) =>
       await ProcessForm<TrialFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -158,12 +158,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> DemoAsync() =>
+    internal async Task<IActionResult> DemoAsync() =>
       View(await CreateViewModel<DemoFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) =>
       await ProcessForm<DemoFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -174,12 +174,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> QuoteAsync() =>
+    internal async Task<IActionResult> QuoteAsync() =>
       View(await CreateViewModel<QuoteFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) =>
       await ProcessForm<QuoteFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -190,12 +190,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> PurchaseAsync() =>
+    internal async Task<IActionResult> PurchaseAsync() =>
       View(await CreateViewModel<PurchaseFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
       await ProcessForm<PurchaseFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -206,7 +206,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> NewsletterAsync() =>
+    internal async Task<IActionResult> NewsletterAsync() =>
       View(await CreateViewModel<NewsletterFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
@@ -222,12 +222,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> InstructorAcademicAsync()
+    internal async Task<IActionResult> InstructorAcademicAsync()
       => View(await CreateViewModel<InstructorAcademicFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) =>
       await ProcessForm<InstructorAcademicFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -238,12 +238,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> StudentAcademicAsync() =>
+    internal async Task<IActionResult> StudentAcademicAsync() =>
       View(await CreateViewModel<StudentAcademicFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) =>
       await ProcessForm<StudentAcademicFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -254,12 +254,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> UserConferenceAsync() =>
+    internal async Task<IActionResult> UserConferenceAsync() =>
       View(await CreateViewModel<UserConferenceFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
       await ProcessForm<UserConferenceFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -270,12 +270,12 @@ namespace GoldSim.Web.Forms.Controllers {
     /// </summary>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async Task<IActionResult> TrainingAsync() =>
+    internal async Task<IActionResult> TrainingAsync() =>
       View(await CreateViewModel<TrainingFormBindingModel>().ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TrainingAsync(TrainingFormBindingModel bindingModel) =>
+    internal async Task<IActionResult> TrainingAsync(TrainingFormBindingModel bindingModel) =>
       await ProcessForm<TrainingFormBindingModel>(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -285,7 +285,7 @@ namespace GoldSim.Web.Forms.Controllers {
     ///   Given an email address, ensures that it doesn't contain any of the public email domains.
     /// </summary>
     [HttpGet, HttpHead]
-    public IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) =>
+    internal IActionResult VerifyEmail([Bind(Prefix="BindingModel.Email")] string email) =>
       VerifyEmailDomain(email, out var errorMessage)? Json(data: true) : Json(errorMessage);
 
     /*==========================================================================================================================
@@ -494,7 +494,7 @@ namespace GoldSim.Web.Forms.Controllers {
     /// <summary>
     ///   Given a string in PascalCase, will conert to Title Case.
     /// </summary>
-    public static string ToTitleCase(string input) {
+    internal static string ToTitleCase(string input) {
 
       if (String.IsNullOrEmpty(input)) return input;
 

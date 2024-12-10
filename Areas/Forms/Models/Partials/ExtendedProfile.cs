@@ -14,7 +14,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   <see cref="Profile"/> class, this also includes <see cref="Modules"/> the user may be interested in, as well as the
   ///   required <see cref="AcceptTermsOfUse"/> boolean.
   /// </summary>
-  public record ExtendedProfile : Profile {
+  internal record ExtendedProfile : Profile {
 
     /*==========================================================================================================================
     | PROPERTY: MODULES
@@ -25,7 +25,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [Display(Name="I am also interested in:")]
     [MapToParent]
-    public ModuleSelection Modules { get; } = new();
+    internal ModuleSelection Modules { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: ACCEPT TERMS OF USE
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     /// </remarks>
     [Range(typeof(bool), "true", "true", ErrorMessage="The terms of service must be accepted.")]
     [Display(Name="I agree to these terms of use. I also agree to receive the GoldSim newsletter.")]
-    public bool AcceptTermsOfUse { get; init; }
+    internal bool AcceptTermsOfUse { get; init; }
 
   } //Class
 } //Namespace

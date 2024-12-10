@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the student version of the academic form.
   /// </summary>
-  public record StudentAcademicFormBindingModel : AcademicFormBindingModel {
+  internal record StudentAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: SPONSOR
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Student Sponsor")]
-    public AcademicSponsor Sponsor { get; } = new();
+    internal AcademicSponsor Sponsor { get; } = new();
 
   } //Class
 } //Namespace

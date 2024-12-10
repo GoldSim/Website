@@ -16,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the footer of the site.
   /// </summary>
-  public class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  internal class FooterViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="FooterViewComponent"/> with necessary dependencies.
     /// </summary>
     /// <returns>A <see cref="FooterViewComponent"/>.</returns>
-    public FooterViewComponent(
+    internal FooterViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Components {
     /// <summary>
     ///   Provides the footer menu for the site.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync() {
+    internal async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

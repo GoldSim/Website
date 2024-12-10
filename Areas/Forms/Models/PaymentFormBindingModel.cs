@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the pay invoice form.
   /// </summary>
-  public class PaymentFormBindingModel {
+  internal class PaymentFormBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   Initializes a new instance of a <see cref="PaymentFormBindingModel"/> object.
     /// </summary>
-    public PaymentFormBindingModel() : base() {
+    internal PaymentFormBindingModel() : base() {
     }
 
     /*==========================================================================================================================
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [Required]
     [Display(Name="Cardholder Name")]
-    public string CardholderName { get; set; }
+    internal string CardholderName { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [StringLength(255)]
     [Display(Name = "Organization Name")]
-    public virtual string Organization { get; set; }
+    internal virtual string Organization { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
@@ -54,7 +54,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [EmailAddress]
     [Display(Name = "Email Address")]
-    public virtual string Email { get; set; }
+    internal virtual string Email { get; set; }
 
     /*==========================================================================================================================
     | INVOICE NUMBER
@@ -66,7 +66,7 @@ namespace GoldSim.Web.Forms.Models {
     [Range(1000, 99999)]
     [Display(Name="Invoice Number")]
     [Remote(nameof(PaymentsController.VerifyInvoiceNumber), "Payments")]
-    public int InvoiceNumber { get; set; }
+    internal int InvoiceNumber { get; set; }
 
     /*==========================================================================================================================
     | INVOICE AMOUNT
@@ -78,7 +78,7 @@ namespace GoldSim.Web.Forms.Models {
     [Range(1.00, 1000000.00)]
     [Display(Name = "Invoice Amount")]
     [Remote(nameof(PaymentsController.VerifyInvoiceAmount), "Payments", AdditionalFields=nameof(InvoiceNumber))]
-    public double InvoiceAmount { get; set; }
+    internal double InvoiceAmount { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PAYMENT METHOD NONCE
@@ -96,7 +96,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   script, but to be safe we're marking this field as required.
     /// </remarks>
     [Required(ErrorMessage="The credit card information is required.")]
-    public string PaymentMethodNonce { get; set; }
+    internal string PaymentMethodNonce { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: RECAPTCHA TOKEN
@@ -104,7 +104,7 @@ namespace GoldSim.Web.Forms.Models {
     /// <summary>
     ///   The response token provided by the reCAPTCHA client
     /// </summary>
-    public string RecaptchaToken { get; set; }
+    internal string RecaptchaToken { get; set; }
 
   } //Class
 } //Namespace

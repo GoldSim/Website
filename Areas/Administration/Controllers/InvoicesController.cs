@@ -19,7 +19,7 @@ namespace GoldSim.Web.Administration.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  public class InvoicesController : Controller {
+  internal class InvoicesController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   Initializes a new instance of a <see cref ="OrdersController"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public InvoicesController(
+    internal InvoicesController(
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService
     ) {
@@ -82,7 +82,7 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   Provides a list of invoices already entered on the system.
     /// </summary>
     [HttpGet]
-    public async Task<IActionResult> IndexAsync() => View(
+    internal async Task<IActionResult> IndexAsync() => View(
       await _topicMappingService.MapAsync<InvoiceListViewModel>(
         _topicRepository.Load("Administration:Invoices")
       ).ConfigureAwait(true)
@@ -95,11 +95,11 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   Creates an invoice for a new purchase.
     /// </summary>
     [HttpGet]
-    public async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id).ConfigureAwait(true));
+    internal async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id).ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> EditAsync(InvoiceTopicViewModel invoice) {
+    internal async Task<IActionResult> EditAsync(InvoiceTopicViewModel invoice) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -172,7 +172,7 @@ namespace GoldSim.Web.Administration.Controllers {
     /// </summary>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Delete(int[] topics) {
+    internal IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
@@ -211,7 +211,7 @@ namespace GoldSim.Web.Administration.Controllers {
     ///   has not been modified.
     /// </remarks>
     [HttpGet]
-    public IActionResult VerifyInvoiceNumber(
+    internal IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null
     ) {

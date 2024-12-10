@@ -22,7 +22,7 @@ namespace GoldSim.Web {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
-  public class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
+  internal class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

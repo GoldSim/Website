@@ -13,20 +13,20 @@ namespace GoldSim.Web.Payments.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Payments</c> topic.
   /// </summary>
-  public record PaymentsTopicViewModel : PageTopicViewModel {
+  internal record PaymentsTopicViewModel : PageTopicViewModel {
 
-    public bool? IsValid { get; init; }
-    public string ClientToken { get; init; }
-    public string ErrorMessagesIntroduction { get; init; }
-    public string AmountErrorMessage { get; init; }
-    public string EmptyFieldsErrorMessage { get; init; }
-    public string CreditCardNumberErrorMessage { get; init; }
-    public string ExpirationMonthErrorMessage { get; init; }
-    public string ExpirationYearErrorMessage { get; init; }
-    public string CvvErrorMessage { get; init; }
-    public string PostalCodeErrorMessage { get; init; }
-    public string ConfirmationMessageSuccess { get; init; }
-    public PaymentFormBindingModel BindingModel { get; init; }
+    internal bool? IsValid { get; init; }
+    internal string ClientToken { get; init; }
+    internal string ErrorMessagesIntroduction { get; init; }
+    internal string AmountErrorMessage { get; init; }
+    internal string EmptyFieldsErrorMessage { get; init; }
+    internal string CreditCardNumberErrorMessage { get; init; }
+    internal string ExpirationMonthErrorMessage { get; init; }
+    internal string ExpirationYearErrorMessage { get; init; }
+    internal string CvvErrorMessage { get; init; }
+    internal string PostalCodeErrorMessage { get; init; }
+    internal string ConfirmationMessageSuccess { get; init; }
+    internal PaymentFormBindingModel BindingModel { get; init; }
 
   } // Class
 } // Namespace

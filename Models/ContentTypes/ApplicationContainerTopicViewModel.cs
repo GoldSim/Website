@@ -16,7 +16,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationContainer</c>
   ///   topic.
   /// </summary>
-  public record ApplicationContainerTopicViewModel: ICoreTopicViewModel {
+  internal record ApplicationContainerTopicViewModel: ICoreTopicViewModel {
 
     /*==========================================================================================================================
     | KEY
@@ -37,7 +37,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
     /// </summary>
     [MapAs(typeof(AssociatedTopicViewModel))]
-    public Collection<AssociatedTopicViewModel> Children { get; } = new();
+    internal Collection<AssociatedTopicViewModel> Children { get; } = new();
 
     /*==========================================================================================================================
     | DISPLAY ORDER
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Provides a mechanism to control sorting of the application containers on e.g. an index page.
     /// </summary>
-    public string DisplayOrder { get; init; }
+    internal string DisplayOrder { get; init; }
 
     /*==========================================================================================================================
     | GET IMAGE KEY
@@ -59,7 +59,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   and the module key.
     /// </remarks>
     /// <returns></returns>
-    public string GetImageKey() =>
+    internal string GetImageKey() =>
       Key switch {
         "EnvironmentalSystems"  => "CT",
         "EngineeredSystems"     => "RL",
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   method simply strips <c>Systems</c> off the container key.
     /// </summary>
     /// <returns></returns>
-    public string GetContainerKey() => Key[..Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase)];
+    internal string GetContainerKey() => Key[..Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase)];
 
   } // Class
 } // Namespace

@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   Provides a strongly-typed data transfer object for representing a selection of GoldSim modules that the user might be
   ///   interested in trying.
   /// </summary>
-  public class ModuleSelection {
+  internal class ModuleSelection {
 
     /*==========================================================================================================================
     | PROPERTY: RELIABILITY MODULE?
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
     [Display(Name="Reliability Module")]
-    public bool Reliability { get; set; }
+    internal bool Reliability { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: RADIONUCLIDE TRANSPORT (RT) MODULE?
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     ///   Gets or sets the user is interested in the Radionuclide Transport (RT) Module.
     /// </summary>
     [Display(Name="Radionuclide Transport (RT) Module")]
-    public bool RadionuclideTransport { get; set; }
+    internal bool RadionuclideTransport { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: CONTAMINANT TRANSPORT (CT)MODULE?
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     ///   Gets or sets the user is interested in the Contaminant Transport (CT) Module.
     /// </summary>
     [Display(Name="Contaminant Transport (CT) Module")]
-    public bool ContaminantTransport { get; set; }
+    internal bool ContaminantTransport { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: DISTRIBUTED PROCESSING (DP-PLUS) MODULE?
@@ -49,7 +49,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     ///   Gets or sets the user is interested in the Reliability Module.
     /// </summary>
     [Display(Name="Distributed Processing (DP-Plus) Module")]
-    public bool DistributedProcessing { get; set; }
+    internal bool DistributedProcessing { get; set; }
 
   } //Class
 } //Namespace

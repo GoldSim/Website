@@ -18,13 +18,13 @@ namespace GoldSim.Web.Models.Components {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public abstract class CoreNavigationTopicViewModel<T>: INavigationTopicViewModel<T> where T: INavigationTopicViewModel<T> {
+  internal abstract class CoreNavigationTopicViewModel<T>: INavigationTopicViewModel<T> where T: INavigationTopicViewModel<T> {
 
     /*==========================================================================================================================
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc cref="OnTopic.ViewModels.TopicViewModel.Key" />
-    public string Key { get; init; }
+    internal string Key { get; init; }
 
     /*==========================================================================================================================
     | TITLE

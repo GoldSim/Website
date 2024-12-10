@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Trial form.
   /// </summary>
-  public record TrialFormBindingModel : ExtendedProfile {
+  internal record TrialFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Trainer Contact Information")]
-    public CoreContact Trainer { get; set; }
+    internal CoreContact Trainer { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [StringLength(1000)]
     [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
-    public string OtherTools { get; set; }
+    internal string OtherTools { get; set; }
 
   } //Class
 } //Namespace

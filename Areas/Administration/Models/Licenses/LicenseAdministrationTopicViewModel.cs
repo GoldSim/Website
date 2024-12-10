@@ -13,7 +13,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for the license reporting tool.
   /// </summary>
-  public record LicenseAdministrationTopicViewModel: PageTopicViewModel {
+  internal record LicenseAdministrationTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | REQUESTS
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
     ///   Maps topics under the current container which can be converted to a <see cref="LicenseRequestTopicViewModel"/>.
     /// </summary>
     [AttributeKey("Children")]
-    public Collection<LicenseRequestTopicViewModel> Requests { get; } = new();
+    internal Collection<LicenseRequestTopicViewModel> Requests { get; } = new();
 
   } // Class
 } // Namespace

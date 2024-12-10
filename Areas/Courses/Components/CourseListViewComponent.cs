@@ -21,7 +21,7 @@ namespace GoldSim.Web.Courses.Components {
   ///   by evaluating a cookie set by the <see cref="LessonListViewComponent"/> to conditionally set a property on the
   ///   corresponding <see cref="TrackedNavigationTopicViewModel"/>.
   /// </remarks>
-  public class CourseListViewComponent: UnitListViewComponent {
+  internal class CourseListViewComponent: UnitListViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="CourseListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public CourseListViewComponent(
+    internal CourseListViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(

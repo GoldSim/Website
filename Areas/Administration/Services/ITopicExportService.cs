@@ -14,7 +14,7 @@ namespace GoldSim.Web.Administration.Services {
   ///   Given a list of topics, will export in the format determined by the concrete implementation. Results will be returned
   ///   as a <see cref="MemoryStream"/>.
   /// </summary>
-  public interface ITopicExportService {
+  internal interface ITopicExportService {
 
     /*==========================================================================================================================
     | MIME TYPE

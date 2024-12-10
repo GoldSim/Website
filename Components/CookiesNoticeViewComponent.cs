@@ -13,7 +13,7 @@ namespace GoldSim.Web.Courses.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a cookie consent form, assuming the user hasn't already
   ///   consented.
   /// </summary>
-  public class CookiesNoticeViewComponent: ViewComponent {
+  internal class CookiesNoticeViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="CourseListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public CookiesNoticeViewComponent() { }
+    internal CookiesNoticeViewComponent() { }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Provides the cookie consent notification for the current page, assuming the user hasn't already consented.
     /// </summary>
-    public IViewComponentResult Invoke() {
+    internal IViewComponentResult Invoke() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get cookie

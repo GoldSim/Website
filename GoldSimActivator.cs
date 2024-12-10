@@ -40,7 +40,7 @@ namespace GoldSim.Web {
   ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
   ///   Dependency Injection.
   /// </summary>
-  public class GoldSimActivator : IControllerActivator, IViewComponentActivator {
+  internal class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
     | PRIVATE INSTANCES
@@ -72,7 +72,7 @@ namespace GoldSim.Web {
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
     ///   to all requests.
     /// </remarks>
-    public GoldSimActivator(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
+    internal GoldSimActivator(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify dependencies

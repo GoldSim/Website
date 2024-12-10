@@ -13,7 +13,7 @@ namespace GoldSim.Web.Courses.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which renders a script for embedding a reCAPTCHA component onto the page.
   /// </summary>
-  public class RecaptchaViewComponent: ViewComponent {
+  internal class RecaptchaViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="ReCaptchaViewComponent"/> with necessary dependencies.
     /// </summary>
-    public RecaptchaViewComponent(string siteKey) {
+    internal RecaptchaViewComponent(string siteKey) {
       SiteKey                   = siteKey;
     }
 
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Provides the sitekey used by the reCAPTCHA service.
     /// </summary>
-    public string SiteKey { get; init; }
+    internal string SiteKey { get; init; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Renders a database.
     /// </summary>
-    public IViewComponentResult Invoke(string action) {
+    internal IViewComponentResult Invoke(string action) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model

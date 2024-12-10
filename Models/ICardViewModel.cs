@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   Ensures that a <see cref="TopicViewModel"/> meets the base requirements for being treated as a card.
   /// </summary>
-  public interface ICardViewModel {
+  internal interface ICardViewModel {
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE

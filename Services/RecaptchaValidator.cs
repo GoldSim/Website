@@ -15,7 +15,7 @@ namespace GoldSim.Web.Services {
   /// <summary>
   ///   Validates that a given request is from a human.
   /// </summary>
-  public class RecaptchaValidator: IRequestValidator {
+  internal class RecaptchaValidator: IRequestValidator {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Services {
     ///   Initializes a new instance of the <see cref="RecaptchaValidator"/> with necessary dependencies.
     /// </summary>
     /// <returns>A new instance of the <see cref="RecaptchaValidator"/>.</returns>
-    public RecaptchaValidator(string secret) {
+    internal RecaptchaValidator(string secret) {
       _secret                   = secret?? throw new ArgumentNullException(nameof(secret));
       _serviceUrl               = "https://www.google.com/recaptcha/api/siteverify";
     }

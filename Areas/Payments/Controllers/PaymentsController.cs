@@ -25,7 +25,7 @@ namespace GoldSim.Web.Payments.Controllers {
   ///   Provides access to the Payments page of the website, with Braintree Payments integration functionality.
   /// </summary>
   [Area("Payments")]
-  public class PaymentsController : TopicController {
+  internal class PaymentsController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -42,7 +42,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public PaymentsController(
+    internal PaymentsController(
       ITopicRepository          topicRepository,
       ITopicMappingService      topicMappingService,
       IBraintreeConfiguration   braintreeConfiguration,
@@ -69,7 +69,7 @@ namespace GoldSim.Web.Payments.Controllers {
     /// <summary>
     ///   Defines a subset of Braintree transaction statuses, specifically associated with successful transactions.
     /// </summary>
-    public static readonly TransactionStatus[] TransactionSuccessStatuses = {
+    internal static readonly TransactionStatus[] TransactionSuccessStatuses = {
       TransactionStatus.AUTHORIZED,
       TransactionStatus.AUTHORIZING,
       TransactionStatus.SETTLED,
@@ -134,7 +134,7 @@ namespace GoldSim.Web.Payments.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
+    internal async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
@@ -315,7 +315,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
     [HttpGet, HttpHead]
-    public IActionResult VerifyInvoiceNumber(
+    internal IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
       if (invoiceNumber is null) return Json(data: true);
@@ -343,7 +343,7 @@ namespace GoldSim.Web.Payments.Controllers {
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
     [HttpGet, HttpHead]
-    public IActionResult VerifyInvoiceAmount(
+    internal IActionResult VerifyInvoiceAmount(
       [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
     ) {

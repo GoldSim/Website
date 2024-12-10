@@ -13,12 +13,12 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views related to the <see cref="MetadataLookupViewModel"/>.
   /// </summary>
-  public class MetadataLookupViewModel {
+  internal class MetadataLookupViewModel {
 
-    public SelectList Options { get; set; }
-    public string DefaultText { get; set; }
-    public string Value { get; set; }
-    public bool IsRequired { get; set; }
+    internal SelectList Options { get; set; }
+    internal string DefaultText { get; set; }
+    internal string Value { get; set; }
+    internal bool IsRequired { get; set; }
 
   } // Class
 } // Namespace

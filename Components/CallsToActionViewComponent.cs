@@ -16,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  public class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  internal class CallsToActionViewComponent: NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -25,7 +25,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public CallsToActionViewComponent(
+    internal CallsToActionViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Components {
     /// <summary>
     ///   Provides the calls-to-action for the current page, which may change based on the current context.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync() {
+    internal async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

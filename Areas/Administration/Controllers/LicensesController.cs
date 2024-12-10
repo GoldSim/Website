@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  public class LicensesController : TopicController {
+  internal class LicensesController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Initializes a new instance of a <see cref="LicensesController"/> with necessary dependencies.
     /// </summary>
-    public LicensesController(
+    internal LicensesController(
       ITopicRepository          topicRepository,
       ITopicMappingService      topicMappingService,
       ITopicExportService       topicExportService
@@ -50,7 +50,7 @@ namespace GoldSim.Web.Controllers {
     ///   Provides a downloadable file stream containing the Excel spreadsheet report for license request data.
     /// </summary>
     [HttpGet]
-    public FileStreamResult Export() {
+    internal FileStreamResult Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Delete(int[] topics) {
+    internal IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input

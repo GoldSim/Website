@@ -14,7 +14,7 @@ namespace GoldSim.Web.Services {
   /// <summary>
   ///   Given a <see cref="MailMessage", will send through the Postmark SMTP service.
   /// </summary>
-  public class PostmarkSmtpService: ISmtpService {
+  internal class PostmarkSmtpService: ISmtpService {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -28,7 +28,7 @@ namespace GoldSim.Web.Services {
     ///   Initializes a new instance of the <see cref="PostmarkSmtpService"/> with necessary dependencies.
     /// </summary>
     /// <returns>A new instance of the <see cref="PostmarkSmtpService"/>.</returns>
-    public PostmarkSmtpService(PostmarkClient postmarkClient) {
+    internal PostmarkSmtpService(PostmarkClient postmarkClient) {
       _smptClient = postmarkClient?? throw new ArgumentNullException(nameof(postmarkClient));
     }
 

@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.Controllers {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the <see cref="TopicSearchController"/>.
   /// </summary>
-  public record TopicSearchViewModel: PageTopicViewModel {
+  internal record TopicSearchViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | ACTION
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Determines the action requested.
     /// </summary>
-    public TopicSearchAction Action { get; init; }
+    internal TopicSearchAction Action { get; init; }
 
     /*==========================================================================================================================
     | QUERY
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the requested query, so it can be reapplied to the search box.
     /// </summary>
-    public string Query { get; init; }
+    internal string Query { get; init; }
 
     /*==========================================================================================================================
     | REPLACE
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the optional replacement expression.
     /// </summary>
-    public string Replace { get; init; }
+    internal string Replace { get; init; }
 
     /*==========================================================================================================================
     | RESULTS
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides a list of results from the query.
     /// </summary>
-    public ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
+    internal ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
 
   } // Class
 } // Namespace

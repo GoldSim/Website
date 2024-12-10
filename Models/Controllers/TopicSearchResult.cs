@@ -3,9 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using System.Collections.ObjectModel;
 using GoldSim.Web.Controllers;
-using GoldSim.Web.Models.Associations;
 
 namespace GoldSim.Web.Models.Controllers {
 
@@ -16,7 +14,7 @@ namespace GoldSim.Web.Models.Controllers {
   ///   Provides a strongly-typed data transfer object for reporting an individual match discovered and returned via the <see
   ///   cref="TopicSearchController"/>.
   /// </summary>
-  public record TopicSearchResult {
+  internal record TopicSearchResult {
 
     /*==========================================================================================================================
     | ATTRIBUTE KEY
@@ -24,7 +22,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   The key of the <see cref="AttributeRecord.Key"/> discovered.
     /// </summary>
-    public string AttributeKey { get; init; }
+    internal string AttributeKey { get; init; }
 
     /*==========================================================================================================================
     | MATCH
@@ -32,7 +30,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the string that matched the supplied query.
     /// </summary>
-    public string Match { get; init; }
+    internal string Match { get; init; }
 
     /*==========================================================================================================================
     | REPLACE RESULT
@@ -40,7 +38,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the result of the replacement expression, if provided.
     /// </summary>
-    public string RelaceResult { get; init; }
+    internal string RelaceResult { get; init; }
 
   } // Class
 } // Namespace

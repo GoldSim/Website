@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the reCAPTCHA view component.
   /// </summary>
-  public record RecaptchaViewModel {
+  internal record RecaptchaViewModel {
 
     /*==========================================================================================================================
     | SITE KEY
@@ -20,7 +20,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   Provides the sitekey used by the reCAPTCHA service.
     /// </summary>
-    public string SiteKey { get; init; }
+    internal string SiteKey { get; init; }
 
     /*==========================================================================================================================
     | FIELD NAME
@@ -28,7 +28,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   Provides the name for the hidden field to store the reCAPTCHA token in.
     /// </summary>
-    public string FieldName { get; init; } = "BindingModel.RecaptchaToken";
+    internal string FieldName { get; init; } = "BindingModel.RecaptchaToken";
 
     /*==========================================================================================================================
     | ACTION
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   Provides the action to be used for this specific reCAPTCHA call.
     /// </summary>
-    public string Action { get; init; }
+    internal string Action { get; init; }
 
   } // Class
 } // Namespace
