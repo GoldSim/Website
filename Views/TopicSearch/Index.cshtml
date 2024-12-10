@@ -56,10 +56,10 @@
             <ul>
               @foreach (var match in @Model.Results[topic]) {
                 @if (Model.Action is TopicSearchAction.Search) {
-                  <li><strong>@(match.Key):</strong> @match.Match </li>
+                  <li><strong>@(match.AttributeKey):</strong> @match.Match </li>
                 }
                 else {
-                  <li><strong>@(match.Key):</strong> <s>@match.Match</s> @match.Replace</li>
+                  <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
                 }
               }
             </ul>
