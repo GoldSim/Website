@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the pay invoice form.
   /// </summary>
-  internal class PaymentFormBindingModel {
+  internal sealed class PaymentFormBindingModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [StringLength(255)]
     [Display(Name = "Organization Name")]
-    internal virtual string Organization { get; set; }
+    internal string Organization { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
@@ -54,7 +54,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [EmailAddress]
     [Display(Name = "Email Address")]
-    internal virtual string Email { get; set; }
+    internal string Email { get; set; }
 
     /*==========================================================================================================================
     | INVOICE NUMBER
