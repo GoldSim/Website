@@ -51,7 +51,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
-      var results = new List<AssociatedTopicViewModel>();
+      var results               = new Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>>();
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
@@ -102,20 +102,32 @@ namespace GoldSim.Web.Controllers {
       string query,
       string replace,
       TopicSearchAction action,
-      List<AssociatedTopicViewModel> results
+      Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> results
     ) {
+
+      AssociatedTopicViewModel topicReference = null;
 
       // Search each attribute for the given query
       foreach (var attribute in topic.Attributes) {
-        if (Regex.IsMatch(attribute.Value, query, RegexOptions.Compiled | RegexOptions.IgnoreCase)) {
-          results.Add(
-            new() {
-              Title            = topic.Title,
-              ShortTitle       = topic.Title,
-              WebPath          = topic.GetWebPath()
-            }
-          );
-          break;
+        var matches             = Regex.Matches(attribute.Value, query, _options);
+        if (matches.Count > 0) {
+          topicReference        = topicReference?? new AssociatedTopicViewModel() {
+            Title               = topic.Title,
+            ShortTitle          = topic.Title,
+            WebPath             = topic.GetWebPath()
+          };
+          if (!results.TryGetValue(topicReference, out var attributeResults)) {
+            attributeResults    = new Collection<TopicSearchResult>();
+            results.Add(topicReference, attributeResults);
+          };
+          foreach (Match match in matches) {
+            attributeResults.Add(
+              new() {
+                Key             = attribute.Key,
+                Match           = match.Value,
+              }
+            );
+          }
         }
       }
 
