@@ -25,12 +25,12 @@
         <input type="text" id="Replace" name="ReplacePreview" value="@Model.Replace" />
         <label for="Replace">Replacement Expression</label>
       }
-      <input class="button primary large" type="submit" name="Search" value="Search" />
+      <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
       @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
-        <input class="button primary large suc" type="submit" name="ReplaceConfirm" value="Replace" />
+            <button class="button primary large success" type="submit" name="Action" value="ReplacePreview">Replace</button>
       }
       @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
-        <input class="button primary large alert" type="submit" name="ReplaceConfirm" value="Replace" />
+        <button class="button primary large alert" type="submit" name="Action" value="ReplaceConfirm">Replace</button>
       }
     </form>
 
