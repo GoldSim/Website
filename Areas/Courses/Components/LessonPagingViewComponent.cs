@@ -16,7 +16,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which provides access to next buttons for navigating between lessons.
   /// </summary>
-  internal class LessonPagingViewComponent: ViewComponent {
+  internal sealed class LessonPagingViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// <returns>
     ///   The <see cref="ITopicRepository"/> associated with the <see cref="LessonPagingViewComponent"/>.
     /// </returns>
-    protected ITopicRepository TopicRepository { get; }
+    internal ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | TOPIC MAPPING SERVICE
