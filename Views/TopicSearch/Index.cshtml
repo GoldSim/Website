@@ -50,8 +50,20 @@
       <div id="SearchResults">
         <h1>Results</h1>
         <ul>
-        @foreach (var topic in @Model.Results) {
-          <li><a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a></li>
+        @foreach (var topic in @Model.Results.Keys) {
+          <li>
+            <a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a>
+            <ul>
+              @foreach (var match in @Model.Results[topic]) {
+                @if (Model.Action is TopicSearchAction.Search) {
+                  <li><strong>@(match.Key):</strong> @match.Match </li>
+                }
+                else {
+                  <li><strong>@(match.Key):</strong> <s>@match.Match</s> @match.Replace</li>
+                }
+              }
+            </ul>
+          </li>
         }
         </ul>
       </div>
