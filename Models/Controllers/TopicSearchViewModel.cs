@@ -47,7 +47,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides a list of results from the query.
     /// </summary>
-    public ReadOnlyCollection<AssociatedTopicViewModel> Results { get; init; }
+    public ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
 
   } // Class
 } // Namespace
