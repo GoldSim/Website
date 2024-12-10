@@ -99,7 +99,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [HttpGet]
-    private static void FindReplaceTopics(
+    private void FindReplaceTopics(
       Topic topic,
       string query,
       string replace,
@@ -137,6 +137,10 @@ namespace GoldSim.Web.Controllers {
             topic.Attributes.SetValue(attribute.Key, result);
           }
         }
+      }
+
+      if (topicReference is not null && action is TopicSearchAction.ReplaceConfirm) {
+        _topicRepository.Save(topic);
       }
 
       // Recursively replace results for each child topic
