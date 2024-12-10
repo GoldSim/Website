@@ -39,7 +39,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   /> is associated with.
     /// </summary>
     [MapAs(typeof(AssociatedTopicViewModel))]
-    internal Collection<AssociatedTopicViewModel> Applications { get; } = new();
+    internal Collection<AssociatedTopicViewModel> Applications { get; } = [];
 
   } // Class
 } // Namespace

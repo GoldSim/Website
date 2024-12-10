@@ -22,7 +22,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
     ///   Maps topics under the current container which can be converted to a <see cref="LicenseRequestTopicViewModel"/>.
     /// </summary>
     [AttributeKey("Children")]
-    internal Collection<LicenseRequestTopicViewModel> Requests { get; } = new();
+    internal Collection<LicenseRequestTopicViewModel> Requests { get; } = [];
 
   } // Class
 } // Namespace

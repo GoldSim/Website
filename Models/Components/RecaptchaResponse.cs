@@ -64,7 +64,7 @@ namespace GoldSim.Web.Models.Components {
     ///   Provides a list of errors returned from the reCAPTCHA service, if appropriate.
     /// </summary>
     [JsonPropertyName("error-codes")]
-    internal Collection<string> ErrorCodes { get; } = new();
+    internal Collection<string> ErrorCodes { get; } = [];
 
   } // Class
 } // Namespace

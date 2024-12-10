@@ -69,7 +69,7 @@ namespace GoldSim.Web.Payments.Controllers {
     /// <summary>
     ///   Defines a subset of Braintree transaction statuses, specifically associated with successful transactions.
     /// </summary>
-    internal static readonly TransactionStatus[] TransactionSuccessStatuses = {
+    internal static readonly TransactionStatus[] TransactionSuccessStatuses = [
       TransactionStatus.AUTHORIZED,
       TransactionStatus.AUTHORIZING,
       TransactionStatus.SETTLED,
@@ -77,7 +77,7 @@ namespace GoldSim.Web.Payments.Controllers {
       TransactionStatus.SETTLEMENT_CONFIRMED,
       TransactionStatus.SETTLEMENT_PENDING,
       TransactionStatus.SUBMITTED_FOR_SETTLEMENT
-    };
+    ];
 
     /*==========================================================================================================================
     | GET VIEW MODEL
