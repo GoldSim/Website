@@ -67,7 +67,7 @@ namespace GoldSim.Web.Controllers {
     /*===========================================================================================================================
     | METHOD: FIND TOPIC WITH ATTRIBUTE
     \--------------------------------------------------------------------------------------------------------------------------*/
-    private Topic FindTopicWithAttribute(Topic rootTopic, string attributeName, string attributeValue) {
+    private static Topic FindTopicWithAttribute(Topic rootTopic, string attributeName, string attributeValue) {
       if (rootTopic.Attributes.GetValue(attributeName) == attributeValue) {
         return rootTopic;
       }
