@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Areas.Administration.Models.Licenses {
 
   /*============================================================================================================================
   | CLASS: TRIAL FORM VIEW MODEL

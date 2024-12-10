@@ -7,16 +7,16 @@ using System.Globalization;
 using System.Net.Mail;
 using System.Text;
 using Braintree;
-using GoldSim.Web.Forms.Models;
-using GoldSim.Web.Payments.Models;
-using GoldSim.Web.Payments.Services;
+using GoldSim.Web.Areas.Forms.Models;
+using GoldSim.Web.Areas.Payments.Models;
+using GoldSim.Web.Areas.Payments.Services;
 using GoldSim.Web.Services;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Payments.Controllers {
+namespace GoldSim.Web.Areas.Payments.Controllers {
 
   /*============================================================================================================================
   | CLASS: PAYMENTS CONTROLLER

@@ -7,7 +7,7 @@ using Braintree;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 
-namespace GoldSim.Web.Payments.Services {
+namespace GoldSim.Web.Areas.Payments.Services {
 
   /*============================================================================================================================
   | CLASS: BRAINTREE CONFIGURATION

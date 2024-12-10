@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using GoldSim.Web.Models;
 using OnTopic.AspNetCore.Mvc.Models;
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: LESSON LIST

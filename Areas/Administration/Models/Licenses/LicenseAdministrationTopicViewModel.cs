@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Areas.Administration.Models.Licenses {
 
   /*============================================================================================================================
   | CLASS: LICENSE ADMINISTRATION (VIEW MODEL)

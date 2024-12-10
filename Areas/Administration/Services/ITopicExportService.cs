@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic;
 
-namespace GoldSim.Web.Administration.Services {
+namespace GoldSim.Web.Areas.Administration.Services {
 
   /*============================================================================================================================
   | INTERFACE: TOPIC EXPORT SERVICE

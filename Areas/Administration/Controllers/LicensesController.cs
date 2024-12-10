@@ -3,7 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Administration.Services;
+using GoldSim.Web.Areas.Administration.Services;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;

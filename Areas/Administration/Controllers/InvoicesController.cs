@@ -4,12 +4,12 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Globalization;
-using GoldSim.Web.Administration.Models.Invoices;
+using GoldSim.Web.Areas.Administration.Models.Invoices;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Administration.Controllers {
+namespace GoldSim.Web.Areas.Administration.Controllers {
 
   /*============================================================================================================================
   | CLASS: INVOICES CONTROLLER

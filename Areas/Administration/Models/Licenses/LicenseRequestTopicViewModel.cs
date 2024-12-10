@@ -3,9 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Areas.Administration.Models.Licenses {
 
   /*============================================================================================================================
   | CLASS: LICENSE REQUEST VIEW MODEL

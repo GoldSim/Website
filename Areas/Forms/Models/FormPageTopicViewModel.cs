@@ -6,7 +6,7 @@
 using GoldSim.Web.Models.ContentTypes;
 using OnTopic.Editor.AspNetCore.Models;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | CLASS: FORM PAGE VIEW MODEL

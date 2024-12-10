@@ -4,7 +4,7 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: COOKIES NOTICE VIEW COMPONENT

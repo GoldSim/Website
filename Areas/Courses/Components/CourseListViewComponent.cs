@@ -3,11 +3,11 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Areas.Courses.Models;
 using OnTopic;
 using OnTopic.Mapping.Hierarchical;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: COURSE LIST VIEW COMPONENT

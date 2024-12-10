@@ -3,13 +3,13 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models;
+using GoldSim.Web.Areas.Forms.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
 using OnTopic.Collections;
 
-namespace GoldSim.Web.Forms.Components {
+namespace GoldSim.Web.Areas.Forms.Components {
 
   /*============================================================================================================================
   | CLASS: METADATA LOOKUP VIEW COMPONENT

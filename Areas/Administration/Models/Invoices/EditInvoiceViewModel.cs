@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Administration.Models.Invoices {
+namespace GoldSim.Web.Areas.Administration.Models.Invoices {
 
   /*============================================================================================================================
   | CLASS: EDIT INVOICE (VIEW MODEL)

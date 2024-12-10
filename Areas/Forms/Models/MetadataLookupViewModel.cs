@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: METADATA LOOKUP

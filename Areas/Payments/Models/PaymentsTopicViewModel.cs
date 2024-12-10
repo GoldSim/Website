@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models;
+using GoldSim.Web.Areas.Forms.Models;
 
-namespace GoldSim.Web.Payments.Models {
+namespace GoldSim.Web.Areas.Payments.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: PAYMENTS TOPIC

@@ -6,8 +6,8 @@
 using System.Globalization;
 using System.Net.Mail;
 using System.Text;
-using GoldSim.Web.Forms.Models;
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Services;
 using OnTopic;
@@ -17,7 +17,7 @@ using OnTopic.Mapping;
 using OnTopic.Mapping.Reverse;
 using OnTopic.Models;
 
-namespace GoldSim.Web.Forms.Controllers {
+namespace GoldSim.Web.Areas.Forms.Controllers {
 
   /*============================================================================================================================
   | CLASS: FORMS CONTROLLER

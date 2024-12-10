@@ -3,18 +3,18 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Administration.Controllers;
-using GoldSim.Web.Administration.Services;
+using GoldSim.Web.Areas.Administration.Controllers;
+using GoldSim.Web.Areas.Administration.Services;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
-using GoldSim.Web.Courses.Components;
-using GoldSim.Web.Courses.Controllers;
-using GoldSim.Web.Courses.Models;
-using GoldSim.Web.Forms.Components;
-using GoldSim.Web.Forms.Controllers;
+using GoldSim.Web.Areas.Courses.Components;
+using GoldSim.Web.Areas.Courses.Controllers;
+using GoldSim.Web.Areas.Courses.Models;
+using GoldSim.Web.Areas.Forms.Components;
+using GoldSim.Web.Areas.Forms.Controllers;
 using GoldSim.Web.Models.Components;
-using GoldSim.Web.Payments.Controllers;
-using GoldSim.Web.Payments.Services;
+using GoldSim.Web.Areas.Payments.Controllers;
+using GoldSim.Web.Areas.Payments.Services;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;

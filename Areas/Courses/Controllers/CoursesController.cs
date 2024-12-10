@@ -8,7 +8,7 @@ using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Courses.Controllers {
+namespace GoldSim.Web.Areas.Courses.Controllers {
 
   /*============================================================================================================================
   | CLASS: COURSES CONTROLLER

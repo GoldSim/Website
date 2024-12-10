@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: TRACKED NAVIGATION TOPIC

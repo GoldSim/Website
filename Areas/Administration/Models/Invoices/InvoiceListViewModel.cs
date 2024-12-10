@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 
-namespace GoldSim.Web.Administration.Models.Invoices {
+namespace GoldSim.Web.Areas.Administration.Models.Invoices {
 
   /*============================================================================================================================
   | CLASS: INVOICE LIST (VIEW MODEL)

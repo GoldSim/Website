@@ -3,12 +3,12 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Areas.Courses.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: LESSON PAGING VIEW COMPONENT
