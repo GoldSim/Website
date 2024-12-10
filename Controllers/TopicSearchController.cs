@@ -3,6 +3,7 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
+using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
@@ -24,6 +25,7 @@ namespace GoldSim.Web.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
+    private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -108,7 +110,7 @@ namespace GoldSim.Web.Controllers {
       AssociatedTopicViewModel topicReference = null;
 
       // Search each attribute for the given query
-      foreach (var attribute in topic.Attributes) {
+      foreach (var attribute in topic.Attributes.ToList()) {
         var matches             = Regex.Matches(attribute.Value, query, _options);
         if (matches.Count > 0) {
           topicReference        = topicReference?? new AssociatedTopicViewModel() {
@@ -121,12 +123,18 @@ namespace GoldSim.Web.Controllers {
             results.Add(topicReference, attributeResults);
           };
           foreach (Match match in matches) {
+            var result          = String.IsNullOrEmpty(replace)? null : match.Result(replace);
             attributeResults.Add(
               new() {
                 Key             = attribute.Key,
                 Match           = match.Value,
+                Replace         = result
               }
             );
+          }
+          if (action is TopicSearchAction.ReplaceConfirm) {
+            var result          = Regex.Replace(attribute.Value, query, replace, _options);
+            topic.Attributes.SetValue(attribute.Key, result);
           }
         }
       }
