@@ -126,7 +126,7 @@ namespace GoldSim.Web.Controllers {
             var result          = String.IsNullOrEmpty(replace)? null : match.Result(replace);
             attributeResults.Add(
               new() {
-                Key             = attribute.Key,
+                AttributeKey    = attribute.Key,
                 Match           = match.Value,
                 Replace         = result
               }

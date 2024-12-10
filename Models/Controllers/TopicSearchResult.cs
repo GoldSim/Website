@@ -19,12 +19,12 @@ namespace GoldSim.Web.Models.Controllers {
   public record TopicSearchResult {
 
     /*==========================================================================================================================
-    | KEY
+    | ATTRIBUTE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   The key of the <see cref="AttributeRecord.Key"/> discovered.
     /// </summary>
-    public string Key { get; init; }
+    public string AttributeKey { get; init; }
 
     /*==========================================================================================================================
     | MATCH
