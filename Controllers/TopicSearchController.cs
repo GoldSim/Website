@@ -42,11 +42,11 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Searches all topics in the supplied <see cref="_topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
-    /// <param name="button">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
+    /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    public IActionResult Index(TopicSearchAction button, string query = null, string replace = null) {
+    public IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
@@ -57,7 +57,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (!String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(_topicRepository.Load(), query, replace, button, results);
+        FindReplaceTopics(_topicRepository.Load(), query, replace, action, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -69,7 +69,7 @@ namespace GoldSim.Web.Controllers {
         UniqueKey               = "TopicSearch",
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
-        Action                  = button,
+        Action                  = action,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results)
