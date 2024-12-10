@@ -4,6 +4,18 @@
 
   <!-- Form -->
   <section class="panel">
+
+    @if (Model.Action is TopicSearchAction.ReplacePreview) {
+      <blockquote class="stop">
+        @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+      </blockquote>
+    }
+    @if (Model.Action is TopicSearchAction.ReplaceConfirm) {
+      <blockquote class="note">
+        @Model.Results.Count topics were successfully updated with the replacement expression.
+      </blockquote>
+    }
+
     <p>Search for terms that appear in topics. If the term appears in any attribute in the topic, that topic will be returned below. Supports <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expressions</a>.</p>
 
     <form id="SearchResultSearchForm" action="/TopicSearch/">
@@ -25,17 +37,6 @@
   </section>
 
   <p />
-
-  @if (Model.Action is TopicSearchAction.ReplacePreview) {
-    <blockquote class="stop">
-      @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
-    </blockquote>
-  }
-  @if (Model.Action is TopicSearchAction.ReplaceConfirm) {
-    <blockquote class="note">
-      @Model.Results.Count topics were successfully updated with the replacement expression.  
-    </blockquote>
-  }
 
   <!-- Results -->
   @if (Model.Results.Count > 0) {
