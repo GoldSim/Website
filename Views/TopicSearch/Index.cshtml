@@ -34,6 +34,12 @@
       }
     </form>
 
+    @if (Model.Query is not null && Model.Results.Count is 0) {
+      <blockquote class="stop">
+        No results were found for the search query.
+      </blockquote>
+    }
+
   </section>
 
   <p />
