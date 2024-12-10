@@ -128,7 +128,7 @@ namespace GoldSim.Web.Controllers {
               new() {
                 AttributeKey    = attribute.Key,
                 Match           = match.Value,
-                Replace         = result
+                RelaceResult    = result
               }
             );
           }

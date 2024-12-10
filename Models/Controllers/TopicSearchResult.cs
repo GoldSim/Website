@@ -35,12 +35,12 @@ namespace GoldSim.Web.Models.Controllers {
     public string Match { get; init; }
 
     /*==========================================================================================================================
-    | REPLACE
+    | REPLACE RESULT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Provides the result of the replacement expression, if provided.
     /// </summary>
-    public string Replace { get; init; }
+    public string RelaceResult { get; init; }
 
   } // Class
 } // Namespace
