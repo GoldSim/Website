@@ -10,44 +10,37 @@ using GoldSim.Web.Models.Associations;
 namespace GoldSim.Web.Models.Controllers {
 
   /*============================================================================================================================
-  | VIEW MODEL: TOPIC SEARCH
+  | VIEW MODEL: TOPIC SEARCH RESULT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for values associated with the <see cref="TopicSearchController"/>.
+  ///   Provides a strongly-typed data transfer object for reporting an individual match discovered and returned via the <see
+  ///   cref="TopicSearchController"/>.
   /// </summary>
-  public record TopicSearchViewModel: PageTopicViewModel {
+  public record TopicSearchResult {
 
     /*==========================================================================================================================
-    | ACTION
+    | ATTRIBUTE KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Determines the action requested.
+    ///   The key of the <see cref="AttributeRecord.Key"/> discovered.
     /// </summary>
-    public TopicSearchAction Action { get; init; }
+    public string AttributeKey { get; init; }
 
     /*==========================================================================================================================
-    | QUERY
+    | MATCH
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the requested query, so it can be reapplied to the search box.
+    ///   Provides the string that matched the supplied query.
     /// </summary>
-    public string Query { get; init; }
+    public string Match { get; init; }
 
     /*==========================================================================================================================
-    | REPLACE
+    | REPLACE RESULT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the optional replacement expression.
+    ///   Provides the result of the replacement expression, if provided.
     /// </summary>
-    public string Replace { get; init; }
-
-    /*==========================================================================================================================
-    | RESULTS
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a list of results from the query.
-    /// </summary>
-    public ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
+    public string RelaceResult { get; init; }
 
   } // Class
 } // Namespace

@@ -4,11 +4,42 @@
 
   <!-- Form -->
   <section class="panel">
+
+    @if (Model.Action is TopicSearchAction.ReplacePreview) {
+      <blockquote class="stop">
+        @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+      </blockquote>
+    }
+    @if (Model.Action is TopicSearchAction.ReplaceConfirm) {
+      <blockquote class="note">
+        @Model.Results.Count topics were successfully updated with the replacement expression.
+      </blockquote>
+    }
+
     <p>Search for terms that appear in topics. If the term appears in any attribute in the topic, that topic will be returned below. Supports <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">Regular Expressions</a>.</p>
+
     <form id="SearchResultSearchForm" action="/TopicSearch/">
+      <label for="Query">Search Query</label>
       <input type="search" id="Query" name="Query" value="@Model.Query" />
-      <input class="button primary large" type="submit" value="Search" />
+      @if (Model.Query is not null) {
+        <label for="Replace">Replacement Expression</label>
+        <input type="text" id="Replace" name="Replace" value="@Model.Replace" @(Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
+      }
+      <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
+      @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
+            <button class="button primary large success" type="submit" name="Action" value="ReplacePreview" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
+      }
+      @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
+        <button class="button primary large alert" type="submit" name="Action" value="ReplaceConfirm" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
+      }
     </form>
+
+    @if (Model.Query is not null && Model.Results.Count is 0) {
+      <blockquote class="stop">
+        No results were found for the search query.
+      </blockquote>
+    }
+
   </section>
 
   <p />
@@ -19,8 +50,20 @@
       <div id="SearchResults">
         <h1>Results</h1>
         <ul>
-        @foreach (var topic in @Model.Results) {
-          <li><a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a></li>
+        @foreach (var topic in @Model.Results.Keys) {
+          <li>
+            <a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a>
+            <ul>
+              @foreach (var match in @Model.Results[topic]) {
+                @if (Model.Action is TopicSearchAction.Search) {
+                  <li><strong>@(match.Key):</strong> @match.Match </li>
+                }
+                else {
+                  <li><strong>@(match.Key):</strong> <s>@match.Match</s> @match.Replace</li>
+                }
+              }
+            </ul>
+          </li>
         }
         </ul>
       </div>
