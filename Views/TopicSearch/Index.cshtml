@@ -21,9 +21,9 @@
     <form id="SearchResultSearchForm" action="/TopicSearch/">
       <label for="Query">Search Query</label>
       <input type="search" id="Query" name="Query" value="@Model.Query" />
-        <input type="text" id="Replace" name="ReplacePreview" value="@Model.Replace" />
       @if (Model.Query is not null) {
         <label for="Replace">Replacement Expression</label>
+        <input type="text" id="Replace" name="Replace" value="@Model.Replace" @(Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
       }
       <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
       @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
