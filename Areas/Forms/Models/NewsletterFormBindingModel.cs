@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the instructor version of the newsletter signup form.
   /// </summary>
-  internal record NewsletterFormBindingModel : CoreContact {
+  internal sealed record NewsletterFormBindingModel : CoreContact {
 
     /*==========================================================================================================================
     | PROPERTY: COUNTRY
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [StringLength(75)]
     [Metadata("Country")]
-    internal virtual string Country { get; init; } = "United States of America";
+    internal string Country { get; init; } = "United States of America";
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE NEWSLETTER?

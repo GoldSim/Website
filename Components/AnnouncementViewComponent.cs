@@ -3,7 +3,6 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Components;
 
 namespace GoldSim.Web.Components {
@@ -14,7 +13,7 @@ namespace GoldSim.Web.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which renders an announcement banner in a view.
   /// </summary>
-  internal class AnnouncementViewComponent : ViewComponent {
+  internal sealed class AnnouncementViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -36,7 +35,7 @@ namespace GoldSim.Web.Components {
     /// <returns>
     ///   The <see cref="ITopicRepository"/>
     /// </returns>
-    protected ITopicRepository TopicRepository { get; }
+    internal ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE

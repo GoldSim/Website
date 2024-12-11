@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   ///   by setting a cookie for each URL that the user accesses—and then using that cookie to conditionally set a property on
   ///   the corresponding <see cref="TrackedNavigationTopicViewModel"/>
   /// </remarks>
-  internal class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
+  internal sealed class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -49,7 +49,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// <remarks>
     ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
     /// </remarks>
-    protected Topic GetNavigationRoot() => CurrentTopic?.Parent;
+    internal Topic GetNavigationRoot() => CurrentTopic?.Parent;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
@@ -58,7 +58,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Maps a list of <see cref="TrackedNavigationTopicViewModel"/> instances based on the <paramref
     ///   name="navigationRootTopic"/>.
     /// </summary>
-    protected async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
+    internal async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
       await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true);
 
     /*==========================================================================================================================

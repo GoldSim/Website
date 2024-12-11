@@ -59,7 +59,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// <returns>
     ///   The <see cref="ITopicMappingService"/> associated with the <see cref="LessonPagingViewComponent"/>.
     /// </returns>
-    protected ITopicMappingService TopicMappingService { get; }
+    internal ITopicMappingService TopicMappingService { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
+    internal Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
