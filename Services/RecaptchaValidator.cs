@@ -23,6 +23,9 @@ namespace GoldSim.Web.Services {
     private readonly            string                          _secret;
     private readonly            string                          _serviceUrl;
     private static readonly     HttpClient                      _client                         = new();
+    private static readonly     JsonSerializerOptions           _options                        = new() {
+      PropertyNameCaseInsensitive = true
+    };
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -68,12 +71,7 @@ namespace GoldSim.Web.Services {
       | Validate score
       \-----------------------------------------------------------------------------------------------------------------------*/
       var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(true);
-      var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(
-        jsonResponse,
-        new JsonSerializerOptions() {
-          PropertyNameCaseInsensitive = true
-        }
-      );
+      var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(jsonResponse, _options);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response
