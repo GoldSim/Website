@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: COURSE TOPIC
@@ -12,7 +12,7 @@ namespace GoldSim.Web.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Course</c> topic.
   /// </summary>
-  public record CourseTopicViewModel: PageTopicViewModel {
+  internal sealed record CourseTopicViewModel : PageTopicViewModel {
 
   } // Class
 } // Namespace

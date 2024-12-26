@@ -3,18 +3,18 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Administration.Controllers;
-using GoldSim.Web.Administration.Services;
+using GoldSim.Web.Areas.Administration.Controllers;
+using GoldSim.Web.Areas.Administration.Services;
 using GoldSim.Web.Components;
 using GoldSim.Web.Controllers;
-using GoldSim.Web.Courses.Components;
-using GoldSim.Web.Courses.Controllers;
-using GoldSim.Web.Courses.Models;
-using GoldSim.Web.Forms.Components;
-using GoldSim.Web.Forms.Controllers;
+using GoldSim.Web.Areas.Courses.Components;
+using GoldSim.Web.Areas.Courses.Controllers;
+using GoldSim.Web.Areas.Courses.Models;
+using GoldSim.Web.Areas.Forms.Components;
+using GoldSim.Web.Areas.Forms.Controllers;
 using GoldSim.Web.Models.Components;
-using GoldSim.Web.Payments.Controllers;
-using GoldSim.Web.Payments.Services;
+using GoldSim.Web.Areas.Payments.Controllers;
+using GoldSim.Web.Areas.Payments.Services;
 using GoldSim.Web.Services;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.ViewComponents;
@@ -40,16 +40,16 @@ namespace GoldSim.Web {
   ///   Responsible for creating instances of factories in response to web requests. Represents the Composition Root for
   ///   Dependency Injection.
   /// </summary>
-  public class GoldSimActivator : IControllerActivator, IViewComponentActivator {
+  internal sealed class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            IConfiguration                  _configuration;
-    private readonly            ITypeLookupService              _typeLookupService;
-    private readonly            ITopicMappingService            _topicMappingService;
-    private readonly            ITopicRepository                _topicRepository;
-    private readonly            ISmtpService                    _smtpService;
+    private readonly            CompositeTypeLookupService      _typeLookupService;
+    private readonly            TopicMappingService             _topicMappingService;
+    private readonly            CachedTopicRepository           _topicRepository;
+    private readonly            PostmarkSmtpService             _smtpService;
     private readonly            IRequestValidator               _requestValidator;
     private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
@@ -72,7 +72,7 @@ namespace GoldSim.Web {
     ///   The constructor is responsible for establishing dependencies with the singleton lifestyle so that they are available
     ///   to all requests.
     /// </remarks>
-    public GoldSimActivator(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
+    internal GoldSimActivator(IConfiguration configuration, IWebHostEnvironment webHostEnvironment) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Verify dependencies

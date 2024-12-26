@@ -18,7 +18,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   to this view model. That said, it provides a base schema definition for e.g. <see cref="ApplicationPageTopicViewModel"/>
   ///   and <see cref="ExampleApplicationTopicViewModel"/>.
   /// </remarks>
-  public record ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
+  internal record ApplicationBasePageTopicViewModel : PageTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -27,7 +27,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    public ApplicationBasePageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+    internal ApplicationBasePageTopicViewModel(AttributeDictionary attributes) : base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       ThumbnailImage            = attributes.GetValue(nameof(ThumbnailImage));
       Category                  = attributes.GetValue(nameof(Category));
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Initializes a new <see cref="ApplicationBasePageTopicViewModel"/> with no parameters.
     /// </summary>
-    public ApplicationBasePageTopicViewModel() { }
+    internal ApplicationBasePageTopicViewModel() { }
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE
@@ -55,7 +55,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <remarks>
     ///   This is typically used to optionally group a list of applications by category on an index page.
     /// </remarks>
-    public string Category { get; init; }
+    internal string Category { get; init; }
 
     /*==========================================================================================================================
     | CATEGORIES
@@ -69,7 +69,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   any time without needing to update the <see cref="Category"/> of each application.
     /// </remarks>
     [Metadata("ApplicationCategories")]
-    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
+    internal TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
@@ -81,7 +81,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) =>
+    internal string GetCategoryTitle(string category) =>
       Categories.Where(t => t.Key.Equals(category, StringComparison.Ordinal)).FirstOrDefault().Title;
 
   } // Class

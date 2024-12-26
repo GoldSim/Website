@@ -10,7 +10,7 @@ using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OnTopic;
 
-namespace GoldSim.Web.Administration.Services {
+namespace GoldSim.Web.Areas.Administration.Services {
 
   /*============================================================================================================================
   | CLASS: LICENSE EXPORT SERVICE
@@ -18,12 +18,12 @@ namespace GoldSim.Web.Administration.Services {
   /// <summary>
   ///   Provides utility methods for assembling Excel spreadsheet reports for GoldSim data.
   /// </summary>
-  public class LicenseExportService : ITopicExportService {
+  internal sealed class LicenseExportService : ITopicExportService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public LicenseExportService() {
+    internal LicenseExportService() {
     }
 
     /*==========================================================================================================================

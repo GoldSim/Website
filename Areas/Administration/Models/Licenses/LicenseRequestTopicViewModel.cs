@@ -3,9 +3,9 @@
 | Client        GoldSim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Areas.Administration.Models.Licenses {
 
   /*============================================================================================================================
   | CLASS: LICENSE REQUEST VIEW MODEL
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for rendering a license request.
   /// </summary>
-  public record LicenseRequestTopicViewModel: CoreContact {
+  internal record LicenseRequestTopicViewModel: CoreContact {
 
     /*==========================================================================================================================
     | ID
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
     /// <summary>
     ///   The topic's unique identifier.
     /// </summary>
-    public int Id { get; init; }
+    internal int Id { get; init; }
 
     /*==========================================================================================================================
     | LAST MODIFIED
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
     /// <summary>
     ///   The date the request was submitted.
     /// </summary>
-    public DateTime LastModified { get; init; }
+    internal DateTime LastModified { get; init; }
 
   } // Class
 } // Namespace

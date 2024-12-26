@@ -24,7 +24,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  public class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
+  internal sealed class MenuViewComponent : MenuViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public MenuViewComponent(
+    internal MenuViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<NavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(

@@ -4,49 +4,49 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
-    /*============================================================================================================================
-    | VIEW MODEL: COURSE TRACKING EVENT
-    \---------------------------------------------------------------------------------------------------------------------------*/
+  /*============================================================================================================================
+  | VIEW MODEL: COURSE TRACKING EVENT
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  /// <summary>
+  ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
+  /// </summary>
+  internal class CourseTrackingEventViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
+    ///   Constructs a new instance of a <see cref="CourseTrackingEventViewModel"/>.
     /// </summary>
-    public class CourseTrackingEventViewModel {
+    internal  CourseTrackingEventViewModel() { }
 
-        /*==========================================================================================================================
-        | CONSTRUCTOR
-        \-------------------------------------------------------------------------------------------------------------------------*/
-        /// <summary>
-        ///   Constructs a new instance of a <see cref="CourseTrackingEventViewModel"/>.
-        /// </summary>
-        public CourseTrackingEventViewModel() { }
+    /// <summary>
+    ///   Constructs a new instance of a <see cref="CourseTrackingEventViewModel"/> with predetermined values.
+    /// </summary>
+    /// <param name="eventName">The event name.</param>
+    /// <param name="courseName">The course name.</param>
+    internal CourseTrackingEventViewModel(string eventName, string courseName) {
+      EventName                 = eventName;
+      CourseName                = courseName;
+    }
 
-        /// <summary>
-        ///   Constructs a new instance of a <see cref="CourseTrackingEventViewModel"/> with predetermined values.
-        /// </summary>
-        /// <param name="eventName">The event name.</param>
-        /// <param name="courseName">The course name.</param>
-        public CourseTrackingEventViewModel(string eventName, string courseName) {
-            EventName = eventName;
-            CourseName = courseName;
-        }
+    /*==========================================================================================================================
+    | EVENT NAME
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The event name.
+    /// </summary>
+    internal string EventName { get; set; }
 
-        /*==========================================================================================================================
-        | EVENT NAME
-        \-------------------------------------------------------------------------------------------------------------------------*/
-        /// <summary>
-        ///   The event name.
-        /// </summary>
-        public string EventName { get; set; }
-
-        /*==========================================================================================================================
-        | COURSE NAME
-        \-------------------------------------------------------------------------------------------------------------------------*/
-        /// <summary>
-        ///   The course name.
-        /// </summary>
-        public string CourseName { get; set; }
+    /*==========================================================================================================================
+    | COURSE NAME
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The course name.
+    /// </summary>
+    internal string CourseName { get; set; }
 
     } // Class
 } // Namespace

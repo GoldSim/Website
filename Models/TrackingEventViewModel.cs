@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
   /// </summary>
-  public class TrackingEventViewModel {
+  internal sealed class TrackingEventViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -20,7 +20,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   Constructs a new instance of a <see cref="TrackingEventViewModel"/>.
     /// </summary>
-    public TrackingEventViewModel() {}
+    internal TrackingEventViewModel() {}
 
     /// <summary>
     ///   Constructs a new instance of a <see cref="TrackingEventViewModel"/> with predetermined values.
@@ -28,7 +28,7 @@ namespace GoldSim.Web.Models {
     /// <param name="category">The event category.</param>
     /// <param name="action">The event action.</param>
     /// <param name="label">The optional event label.</param>
-    public TrackingEventViewModel(string category, string action, string label = null) {
+    internal TrackingEventViewModel(string category, string action, string label = null) {
       Category                  = category;
       Action                    = action;
       Label                     = label;
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   The event category.
     /// </summary>
-    public string Category { get; set; }
+    internal string Category { get; set; }
 
     /*==========================================================================================================================
     | ACTION
@@ -48,7 +48,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   The event action.
     /// </summary>
-    public string Action { get; set; }
+    internal string Action { get; set; }
 
     /*==========================================================================================================================
     | LABEL
@@ -56,7 +56,7 @@ namespace GoldSim.Web.Models {
     /// <summary>
     ///   The event label.
     /// </summary>
-    public string Label { get; set; }
+    internal string Label { get; set; }
 
   } // Class
 } // Namespace

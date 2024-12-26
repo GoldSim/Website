@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: ACADEMIC FORM (STUDENT)
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the student version of the academic form.
   /// </summary>
-  public record StudentAcademicFormBindingModel : AcademicFormBindingModel {
+  internal sealed record StudentAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: SPONSOR
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Student Sponsor")]
-    public AcademicSponsor Sponsor { get; } = new();
+    internal AcademicSponsor Sponsor { get; } = new();
 
   } //Class
 } //Namespace

@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   ///   cref="LegacyRedirectController"/> provides routing that looks up topics based on the legacy <c>PageId</c> and then
   ///   redirects to the new, friendly URL.
   /// </summary>
-  public class LegacyRedirectController : Controller {
+  internal sealed class LegacyRedirectController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public LegacyRedirectController(ITopicRepository topicRepository) : base() {
+    internal LegacyRedirectController(ITopicRepository topicRepository) : base() {
       _topicRepository          = topicRepository;
     }
 
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Controllers {
     ///   Redirect based on PageId.
     /// </summary>
     [HttpGet]
-    public IActionResult Redirect(int pageId) {
+    internal IActionResult Redirect(int pageId) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
@@ -67,7 +67,7 @@ namespace GoldSim.Web.Controllers {
     /*===========================================================================================================================
     | METHOD: FIND TOPIC WITH ATTRIBUTE
     \--------------------------------------------------------------------------------------------------------------------------*/
-    private Topic FindTopicWithAttribute(Topic rootTopic, string attributeName, string attributeValue) {
+    private static Topic FindTopicWithAttribute(Topic rootTopic, string attributeName, string attributeValue) {
       if (rootTopic.Attributes.GetValue(attributeName) == attributeValue) {
         return rootTopic;
       }

@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Forms.Models.Partials {
+namespace GoldSim.Web.Areas.Forms.Models.Partials {
 
   /*============================================================================================================================
   | MODEL: ACADEMIC SPONSOR
@@ -12,49 +12,49 @@ namespace GoldSim.Web.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing the contact information of an academic sponsor.
   /// </summary>
-  public record AcademicSponsor: Contact {
+  internal sealed record AcademicSponsor : Contact {
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Display(Name="Sponsor First Name")]
-    public override string FirstName { get; init; }
+    internal override string FirstName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: LAST NAME
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Display(Name="Sponsor Last Name")]
-    public override string LastName { get; init; }
+    internal override string LastName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Display(Name="Sponsor Department")]
-    public override string Organization { get; init; }
+    internal override string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Display(Name="Sponsor Email")]
-    public override string Email { get; init; }
+    internal override string Email { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: COUNTRY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Required(AllowEmptyStrings = true)]
-    public override string Country { get; init; } = "";
+    internal override string Country { get; init; } = "";
 
     /*==========================================================================================================================
     | PROPERTY: PHONE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc />
     [Display(Name="Sponsor Phone Number")]
-    public override string PhoneNumber { get; init; }
+    internal override string PhoneNumber { get; init; }
 
   } //Class
 } //Namespace

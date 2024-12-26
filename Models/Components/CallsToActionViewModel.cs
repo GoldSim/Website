@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.Components {
   ///   Provides a strongly-typed data transfer object for feeding views with information about the <see cref="
   ///   CallsToActionViewComponent"/>.
   /// </summary>
-  public class CallsToActionViewModel: NavigationViewModel<NavigationTopicViewModel> {
+  internal sealed class CallsToActionViewModel : NavigationViewModel<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | HAS ANNOUNCEMENT?
@@ -25,7 +25,7 @@ namespace GoldSim.Web.Models.Components {
     ///   by the <see cref="CallsToActionViewComponent"/> to anchor to the <see cref="AnnouncementViewComponent"/> instead of
     ///   the <see cref="FooterViewComponent"/>.
     /// </summary>
-    public bool HasAnnouncement { get; set; }
+    internal bool HasAnnouncement { get; set; }
 
   } // Class
 } // Namespace

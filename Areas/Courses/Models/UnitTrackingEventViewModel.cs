@@ -4,40 +4,40 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
-    /*============================================================================================================================
-    | VIEW MODEL: UNIT TRACKING EVENT
-    \---------------------------------------------------------------------------------------------------------------------------*/
+  /*============================================================================================================================
+  | VIEW MODEL: UNIT TRACKING EVENT
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  /// <summary>
+  ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
+  /// </summary>
+  internal sealed class UnitTrackingEventViewModel: CourseTrackingEventViewModel {
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides a data transfer object for relaying Google Analytics tracking events to the client.
+    ///   Constructs a new instance of a <see cref="UnitTrackingEventViewModel"/>.
     /// </summary>
-    public class UnitTrackingEventViewModel: CourseTrackingEventViewModel {
+    internal UnitTrackingEventViewModel() { }
 
-        /*==========================================================================================================================
-        | CONSTRUCTOR
-        \-------------------------------------------------------------------------------------------------------------------------*/
-        /// <summary>
-        ///   Constructs a new instance of a <see cref="UnitTrackingEventViewModel"/>.
-        /// </summary>
-        public UnitTrackingEventViewModel() { }
+    /// <inheritdoc cref="CourseTrackingEventViewModel" />
+    /// <summary>
+    ///   Constructs a new instance of a <see cref="UnitTrackingEventViewModel"/> with predetermined values.
+    /// </summary>
+    /// <param name="unitNumber">The unit number.</param>
+    internal  UnitTrackingEventViewModel(string eventName, string courseName, int unitNumber): base(eventName, courseName) {
+      UnitNumber = unitNumber;
+    }
 
-        /// <inheritdoc cref="CourseTrackingEventViewModel" />
-        /// <summary>
-        ///   Constructs a new instance of a <see cref="UnitTrackingEventViewModel"/> with predetermined values.
-        /// </summary>
-        /// <param name="unitNumber">The unit number.</param>
-        public UnitTrackingEventViewModel(string eventName, string courseName, int unitNumber): base(eventName, courseName) {
-          UnitNumber = unitNumber;
-        }
-
-        /*==========================================================================================================================
-        | UNIT NUMBER
-        \-------------------------------------------------------------------------------------------------------------------------*/
-        /// <summary>
-        ///   The unit number.
-        /// </summary>
-        public int UnitNumber { get; set; }
+    /*==========================================================================================================================
+    | UNIT NUMBER
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   The unit number.
+    /// </summary>
+    internal  int UnitNumber { get; set; }
 
     } // Class
 } // Namespace

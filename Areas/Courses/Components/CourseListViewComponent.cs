@@ -3,11 +3,11 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Areas.Courses.Models;
 using OnTopic;
 using OnTopic.Mapping.Hierarchical;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: COURSE LIST VIEW COMPONENT
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Courses.Components {
   ///   by evaluating a cookie set by the <see cref="LessonListViewComponent"/> to conditionally set a property on the
   ///   corresponding <see cref="TrackedNavigationTopicViewModel"/>.
   /// </remarks>
-  public class CourseListViewComponent: UnitListViewComponent {
+  internal sealed class CourseListViewComponent: UnitListViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="CourseListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public CourseListViewComponent(
+    internal CourseListViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(

@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using OnTopic.Models;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | CLASS: FORM PAGE VIEW MODEL {T}
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   A view model for rendering a form page with a strongly-typed binding model.
   /// </summary>
-  public record FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, ITopicBindingModel, new() {
+  internal sealed record FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, ITopicBindingModel, new() {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Initializes a new instance of a <see cref="FormPageTopicViewModel"/> with appropriate dependencies.
     /// </summary>
     /// <returns>A <see cref="FormPageTopicViewModel"/>.</returns>
-    public FormPageTopicViewModel(T bindingModel = null) {
+    internal FormPageTopicViewModel(T bindingModel = null) {
       BindingModel = bindingModel ?? new T();
     }
 
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Provides a reference to the binding model that should be used for the form itself.
     /// </summary>
     /// <returns>The <typeparamref name="T"/> binding model.</returns>
-    public T BindingModel { get; }
+    internal T BindingModel { get; }
 
   } // Class
 } // Namespace

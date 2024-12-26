@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: PURCHASE
@@ -14,7 +14,7 @@ namespace GoldSim.Web.Forms.Models {
   ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
   ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
   /// </summary>
-  public record PurchaseBindingModel: ExtendedContact {
+  internal record PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: PRODUCT
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(20)]
     [Metadata("Products")]
-    public string Product { get; set; }
+    internal string Product { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: LICENSE TYPE
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Forms.Models {
     [StringLength(30)]
     [Display(Name="License Type")]
     [Metadata("LicenseTypes")]
-    public string LicenseType { get; set; }
+    internal string LicenseType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: QUANTITY
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [Range(1, 1000, ErrorMessage="At least one license is required.")]
     [Display(Name="License Quantity")]
-    public int Quantity { get; set; } = 1;
+    internal int Quantity { get; set; } = 1;
 
     /*==========================================================================================================================
     | PROPERTY: INSTRUCTIONS
@@ -57,7 +57,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name="Additional Quote Instructions")]
-    public string Instructions { get; set; }
+    internal string Instructions { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: MODULES
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [Display(Name="Add-On Modules:")]
     [MapToParent]
-    public ModuleSelection Modules { get; } = new();
+    internal ModuleSelection Modules { get; } = new();
 
   } //Class
 } //Namespace

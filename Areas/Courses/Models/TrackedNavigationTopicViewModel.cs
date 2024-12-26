@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: TRACKED NAVIGATION TOPIC
@@ -18,13 +18,13 @@ namespace GoldSim.Web.Courses.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  public class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
+  internal sealed class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
-    public string Abstract { get; init; }
+    internal string Abstract { get; init; }
 
-    public bool? IsVisited { get; set; }
+    internal bool? IsVisited { get; set; }
 
-    public string GetCssClass() =>
+    internal string GetCssClass() =>
       IsVisited switch {
         null => "unstarted",
         false => "incomplete",

@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: UNIT TOPIC
@@ -12,12 +12,12 @@ namespace GoldSim.Web.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Unit</c> topic.
   /// </summary>
-  public record UnitTopicViewModel: PageTopicViewModel {
+  internal sealed record UnitTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | UNIT NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public int UnitNumber { get; init; }
+    internal int UnitNumber { get; init; }
 
   } // Class
 } // Namespace

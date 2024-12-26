@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: REQUEST A DEMO FORM
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
   /// </summary>
-  public record DemoFormBindingModel : ExtendedProfile {
+  internal sealed record DemoFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Forms.Models {
     [Required]
     [StringLength(1000)]
     [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
-    public string OtherTools { get; init; }
+    internal string OtherTools { get; init; }
 
   } //Class
 } //Namespace

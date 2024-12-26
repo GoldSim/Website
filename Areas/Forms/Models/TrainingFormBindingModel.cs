@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: TRAINING FORM
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Training Request form.
   /// </summary>
-  public record TrainingFormBindingModel : ExtendedContact {
+  internal sealed record TrainingFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Forms.Models {
     [Phone]
     [StringLength(50)]
     [Display(Name = "Fax")]
-    public string FaxNumber { get; set; }
+    internal string FaxNumber { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ACCOUNTS PAYABLE (CONTACT)
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Accounts Payable Contact Information")]
-    public ExtendedContact AccountsPayableContact { get; set; }
+    internal ExtendedContact AccountsPayableContact { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(15)]
     [Display(Name="Purchase Order Number")]
-    public string PurchaseOrderNumber { get; set; }
+    internal string PurchaseOrderNumber { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: INSTRUCTIONS
@@ -63,7 +63,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name = "Additional Instructions")]
-    public string Instructions { get; set; }
+    internal string Instructions { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: WITH PAPER RECEIPT?
@@ -72,7 +72,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
     /// </summary>
     [Display(Name = "I would prefer a paper invoice or receipt.")]
-    public bool WithPaperReceipt { get; set; }
+    internal bool WithPaperReceipt { get; set; }
 
   } //Class
 } //Namespace

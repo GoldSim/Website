@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: ACADEMIC FORM (INSTRUCTOR)
@@ -12,7 +12,7 @@ namespace GoldSim.Web.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the instructor version of the academic form.
   /// </summary>
-  public record InstructorAcademicFormBindingModel : AcademicFormBindingModel {
+  internal sealed record InstructorAcademicFormBindingModel : AcademicFormBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: WEB PAGE
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Forms.Models {
     [Url]
     [StringLength(255)]
     [Display(Name="Faculty Web Page")]
-    public string Webpage { get; init; }
+    internal string Webpage { get; init; }
 
   } //Class
 } //Namespace

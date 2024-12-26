@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for modeling the JSON response from reCAPTCHA.
   /// </summary>
-  public record RecaptchaResponse {
+  internal sealed record RecaptchaResponse {
 
     /*==========================================================================================================================
     | HOSTNAME
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   The site which solved the reCAPTCHA.
     /// </summary>
-    public string Hostname { get; init; }
+    internal string Hostname { get; init; }
 
     /*==========================================================================================================================
     | ACTION
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   The action which the reCAPTCHA was associated with.
     /// </summary>
-    public string Action { get; init; }
+    internal string Action { get; init; }
 
     /*==========================================================================================================================
     | SUCCESS
@@ -38,7 +38,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   Determines if the request was successfully completed.
     /// </summary>
-    public bool Success { get; init; }
+    internal bool Success { get; init; }
 
     /*==========================================================================================================================
     | SCORE
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.Components {
     /// <summary>
     ///   Provides the assessed score from the reCAPTCHA service.
     /// </summary>
-    public float Score { get; init; }
+    internal float Score { get; init; }
 
     /*==========================================================================================================================
     | TIMESTAMP
@@ -55,7 +55,7 @@ namespace GoldSim.Web.Models.Components {
     ///   Provides the challenge response timestap from the reCAPTCHA service.
     /// </summary>
     [JsonPropertyName("challenge_ts")]
-    public DateTime Timestamp { get; init; }
+    internal DateTime Timestamp { get; init; }
 
     /*==========================================================================================================================
     | ERROR CODES
@@ -64,7 +64,7 @@ namespace GoldSim.Web.Models.Components {
     ///   Provides a list of errors returned from the reCAPTCHA service, if appropriate.
     /// </summary>
     [JsonPropertyName("error-codes")]
-    public Collection<string> ErrorCodes { get; } = new();
+    internal Collection<string> ErrorCodes { get; } = [];
 
   } // Class
 } // Namespace

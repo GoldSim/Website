@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
 
-namespace GoldSim.Web.Administration.Models.Invoices {
+namespace GoldSim.Web.Areas.Administration.Models.Invoices {
 
   /*============================================================================================================================
   | CLASS: INVOICE LIST (VIEW MODEL)
@@ -13,7 +13,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
   /// <summary>
   ///   A view model for rendering a page containing a list of invoices.
   /// </summary>
-  public record InvoiceListViewModel: PageTopicViewModel {
+  internal sealed record InvoiceListViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     ///   Initializes a new instance of a <see cref="InvoiceListViewModel"/> with appropriate dependencies.
     /// </summary>
     /// <returns>A <see cref="InvoiceListViewModel"/>.</returns>
-    public InvoiceListViewModel() {}
+    internal InvoiceListViewModel() {}
 
     /*==========================================================================================================================
     | INVOICES
@@ -31,7 +31,7 @@ namespace GoldSim.Web.Administration.Models.Invoices {
     ///   Provides a list of invoices currently available in the system.
     /// </summary>
     [Collection(CollectionType.Children)]
-    public Collection<InvoiceTopicViewModel> Invoices { get; } = new();
+    internal Collection<InvoiceTopicViewModel> Invoices { get; } = [];
 
   } // Class
 } // Namespace

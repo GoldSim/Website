@@ -3,14 +3,14 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Administration.Models.Invoices;
-using GoldSim.Web.Administration.Models.Licenses;
-using GoldSim.Web.Courses.Models;
-using GoldSim.Web.Forms.Models;
+using GoldSim.Web.Areas.Administration.Models.Invoices;
+using GoldSim.Web.Areas.Administration.Models.Licenses;
+using GoldSim.Web.Areas.Courses.Models;
+using GoldSim.Web.Areas.Forms.Models;
 using GoldSim.Web.Models.Components;
 using GoldSim.Web.Models.ContentTypes;
 using GoldSim.Web.Models.ContentTypes.ContentItems;
-using GoldSim.Web.Payments.Models;
+using GoldSim.Web.Areas.Payments.Models;
 using OnTopic.Lookup;
 
 namespace GoldSim.Web {
@@ -22,7 +22,7 @@ namespace GoldSim.Web {
   ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
-  public class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
+  internal sealed class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

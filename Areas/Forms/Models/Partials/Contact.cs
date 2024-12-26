@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Forms.Models.Partials {
+namespace GoldSim.Web.Areas.Forms.Models.Partials {
 
   /*============================================================================================================================
   | MODEL: CONTACT
@@ -16,7 +16,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
   ///   The <see cref="Contact"/> class extends the <see cref="CoreContact"/> by adding <see cref="Contact.Country"/> and
   ///   <see cref="Contact.PhoneNumber"/>. These fields are required for anything beyond informational requests.
   /// </remarks>
-  public record Contact : CoreContact {
+  internal record Contact : CoreContact {
 
     /*==========================================================================================================================
     | PROPERTY: COUNTRY
@@ -27,7 +27,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Required]
     [StringLength(75)]
     [Metadata("Country")]
-    public virtual string Country { get; init; } = "United States of America";
+    internal virtual string Country { get; init; } = "United States of America";
 
     /*==========================================================================================================================
     | PROPERTY: PHONE NUMBER
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Forms.Models.Partials {
     [Phone]
     [StringLength(50)]
     [Display(Name="Telephone")]
-    public virtual string PhoneNumber { get; init; }
+    internal virtual string PhoneNumber { get; init; }
 
   } //Class
 } //Namespace

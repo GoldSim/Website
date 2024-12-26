@@ -25,7 +25,7 @@ namespace GoldSim.Web.Components {
   ///     cref="TopicController"/>.
   ///   </para>
   /// </remarks>
-  public class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<PageLevelNavigationTopicViewModel> {
+  internal sealed class PageLevelNavigationViewComponent : PageLevelNavigationViewComponentBase<PageLevelNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Components {
     ///   Initializes a new instance of a <see cref="MenuViewComponentBase{T}"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public PageLevelNavigationViewComponent(
+    internal PageLevelNavigationViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<PageLevelNavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(

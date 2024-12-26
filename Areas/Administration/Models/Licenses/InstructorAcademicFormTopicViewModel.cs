@@ -4,7 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Administration.Models.Licenses {
+namespace GoldSim.Web.Areas.Administration.Models.Licenses {
 
   /*============================================================================================================================
   | CLASS: INSTRUCTOR ACADEMIC FORM VIEW MODEL
@@ -12,7 +12,7 @@ namespace GoldSim.Web.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for rendering an academic licensing request.
   /// </summary>
-  public record InstructorAcademicFormTopicViewModel: LicenseRequestTopicViewModel {
+  internal sealed record InstructorAcademicFormTopicViewModel: LicenseRequestTopicViewModel {
 
   } // Class
 } // Namespace

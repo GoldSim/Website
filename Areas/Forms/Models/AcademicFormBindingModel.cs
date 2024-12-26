@@ -3,9 +3,9 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Forms.Models.Partials;
+using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.Models {
 
   /*============================================================================================================================
   | BINDING MODEL: ACADEMIC FORM
@@ -17,7 +17,7 @@ namespace GoldSim.Web.Forms.Models {
   ///   There are actually two specific academic forms—the <see cref="StudentAcademicFormBindingModel"/> and the <see
   ///   cref="InstructorAcademicFormBindingModel"/>—which this operates as a base class for.
   /// </remarks>
-  public record AcademicFormBindingModel : ExtendedProfile {
+  internal record AcademicFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -26,7 +26,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets the user's organization or institution name.
     /// </summary>
     [Display(Name="Name of Institution")]
-    public override string Organization { get; init; }
+    internal override string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Forms.Models {
     ///   Gets or sets the user's address.
     /// </summary>
     [MapToParent(AttributePrefix="")]
-    public Address Address { get; } = new();
+    internal Address Address { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DEPARTMENT
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Forms.Models {
     /// </summary>
     [Required]
     [StringLength(255)]
-    public string Department { get; init; }
+    internal string Department { get; init; }
 
   } //Class
 } //Namespace

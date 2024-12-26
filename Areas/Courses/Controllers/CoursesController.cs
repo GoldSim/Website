@@ -8,7 +8,7 @@ using OnTopic.AspNetCore.Mvc;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Courses.Controllers {
+namespace GoldSim.Web.Areas.Courses.Controllers {
 
   /*============================================================================================================================
   | CLASS: COURSES CONTROLLER
@@ -17,7 +17,7 @@ namespace GoldSim.Web.Courses.Controllers {
   ///   Provides common processing for GoldSim courseware.
   /// </summary>
   [Area("Courses")]
-  public class CoursesController : TopicController {
+  internal sealed class CoursesController : TopicController {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -26,7 +26,7 @@ namespace GoldSim.Web.Courses.Controllers {
     ///   Initializes a new instance of an <see cref="CoursesController"/> with necessary dependencies.
     /// </summary>
     /// <returns>An <see cref="CoursesController"/> for loading OnTopic views.</returns>
-    public CoursesController(
+    internal CoursesController(
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService
     ) : base(

@@ -3,12 +3,12 @@
 | Client        GoldSim
 | Project       GoldSim Website
 \=============================================================================================================================*/
-using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Areas.Courses.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: LESSON PAGING VIEW COMPONENT
@@ -16,7 +16,7 @@ namespace GoldSim.Web.Courses.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which provides access to next buttons for navigating between lessons.
   /// </summary>
-  public class LessonPagingViewComponent: ViewComponent {
+  internal sealed class LessonPagingViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="LessonPagingViewComponent"/> with necessary dependencies.
     /// </summary>
-    public LessonPagingViewComponent(
+    internal LessonPagingViewComponent(
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService
     ) {
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <returns>
     ///   The <see cref="ITopicRepository"/> associated with the <see cref="LessonPagingViewComponent"/>.
     /// </returns>
-    protected ITopicRepository TopicRepository { get; }
+    internal ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | TOPIC MAPPING SERVICE
@@ -59,7 +59,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <returns>
     ///   The <see cref="ITopicMappingService"/> associated with the <see cref="LessonPagingViewComponent"/>.
     /// </returns>
-    protected ITopicMappingService TopicMappingService { get; }
+    internal ITopicMappingService TopicMappingService { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    protected Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
+    internal Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
@@ -77,7 +77,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
     ///   page group.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync(bool moveNext) {
+    internal async Task<IViewComponentResult> InvokeAsync(bool moveNext) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify adjacent topic

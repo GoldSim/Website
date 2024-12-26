@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 using GoldSim.Web.Models;
 using OnTopic.AspNetCore.Mvc.Models;
 
-namespace GoldSim.Web.Courses.Models {
+namespace GoldSim.Web.Areas.Courses.Models {
 
   /*============================================================================================================================
   | VIEW MODEL: LESSON LIST
@@ -16,7 +16,7 @@ namespace GoldSim.Web.Courses.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about all sibling <c>Lesson</c>
   ///   topics.
   /// </summary>
-  public class LessonListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
+  internal sealed class LessonListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | TRACKING EVENTS
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Courses.Models {
     /// <summary>
     ///   Provides a list of events that should be tracked by Google Universal Analytics.
     /// </summary>
-    public Collection<TrackingEventViewModel> TrackingEvents { get; } = new();
+    internal Collection<TrackingEventViewModel> TrackingEvents { get; } = new();
 
     /*==========================================================================================================================
     | COURSE TRACKING EVENTS
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Courses.Models {
     /// <summary>
     ///   Provides a list of events that should be tracked by Google Analytics 4.
     /// </summary>
-    public Collection<CourseTrackingEventViewModel> CourseTrackingEvents { get; } = new();
+    internal Collection<CourseTrackingEventViewModel> CourseTrackingEvents { get; } = new();
 
   } // Class
 } // Namespace

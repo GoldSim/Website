@@ -15,7 +15,7 @@ namespace GoldSim.Web.Services {
   /// <summary>
   ///   Validates that a given request is from a human.
   /// </summary>
-  public class RecaptchaValidator: IRequestValidator {
+  internal sealed class RecaptchaValidator : IRequestValidator {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -23,6 +23,9 @@ namespace GoldSim.Web.Services {
     private readonly            string                          _secret;
     private readonly            string                          _serviceUrl;
     private static readonly     HttpClient                      _client                         = new();
+    private static readonly     JsonSerializerOptions           _options                        = new() {
+      PropertyNameCaseInsensitive = true
+    };
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -31,7 +34,7 @@ namespace GoldSim.Web.Services {
     ///   Initializes a new instance of the <see cref="RecaptchaValidator"/> with necessary dependencies.
     /// </summary>
     /// <returns>A new instance of the <see cref="RecaptchaValidator"/>.</returns>
-    public RecaptchaValidator(string secret) {
+    internal RecaptchaValidator(string secret) {
       _secret                   = secret?? throw new ArgumentNullException(nameof(secret));
       _serviceUrl               = "https://www.google.com/recaptcha/api/siteverify";
     }
@@ -68,12 +71,7 @@ namespace GoldSim.Web.Services {
       | Validate score
       \-----------------------------------------------------------------------------------------------------------------------*/
       var jsonResponse          = await httpResponse.Content.ReadAsStringAsync().ConfigureAwait(true);
-      var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(
-        jsonResponse,
-        new JsonSerializerOptions() {
-          PropertyNameCaseInsensitive = true
-        }
-      );
+      var recaptchaResponse     = JsonSerializer.Deserialize<RecaptchaResponse>(jsonResponse, _options);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate response

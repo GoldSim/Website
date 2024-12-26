@@ -4,13 +4,13 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using System.Globalization;
-using GoldSim.Web.Courses.Models;
+using GoldSim.Web.Areas.Courses.Models;
 using GoldSim.Web.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
 
-namespace GoldSim.Web.Courses.Components {
+namespace GoldSim.Web.Areas.Courses.Components {
 
   /*============================================================================================================================
   | CLASS: LESSON LIST VIEW COMPONENT
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Courses.Components {
   ///   by setting a cookie for each URL that the user accesses—and then using that cookie to conditionally set a property on
   ///   the corresponding <see cref="TrackedNavigationTopicViewModel"/>
   /// </remarks>
-  public class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
+  internal sealed class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <summary>
     ///   Initializes a new instance of a <see cref="LessonListViewComponent"/> with necessary dependencies.
     /// </summary>
-    public LessonListViewComponent(
+    internal LessonListViewComponent(
       ITopicRepository topicRepository,
       IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel> hierarchicalTopicMappingService
     ) : base(
@@ -49,7 +49,7 @@ namespace GoldSim.Web.Courses.Components {
     /// <remarks>
     ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
     /// </remarks>
-    protected Topic GetNavigationRoot() => CurrentTopic?.Parent;
+    internal Topic GetNavigationRoot() => CurrentTopic?.Parent;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
@@ -58,7 +58,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   Maps a list of <see cref="TrackedNavigationTopicViewModel"/> instances based on the <paramref
     ///   name="navigationRootTopic"/>.
     /// </summary>
-    protected async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
+    internal async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
       await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Courses.Components {
     ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
     ///   page group.
     /// </summary>
-    public async Task<IViewComponentResult> InvokeAsync() {
+    internal async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve root topic

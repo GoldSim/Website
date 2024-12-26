@@ -36,3 +36,4 @@ using System.Runtime.InteropServices;
 | Declare suppressions to code analysis rules that should be applied.
 \-----------------------------------------------------------------------------------------------------------------------------*/
 [assembly: SuppressMessage("Design", "CA1024:Use properties where appropriate", Justification = "Intentional design")]
+[assembly: SuppressMessage("Design", "CA1812", Justification = "Intentional design")]

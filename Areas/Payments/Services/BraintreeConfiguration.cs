@@ -7,7 +7,7 @@ using Braintree;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc;
 
-namespace GoldSim.Web.Payments.Services {
+namespace GoldSim.Web.Areas.Payments.Services {
 
   /*============================================================================================================================
   | CLASS: BRAINTREE CONFIGURATION
@@ -17,7 +17,7 @@ namespace GoldSim.Web.Payments.Services {
   /// </summary>
   /// <remarks>
   ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>
-  public class BraintreeConfiguration : IBraintreeConfiguration {
+  internal sealed class BraintreeConfiguration : IBraintreeConfiguration {
 
     /*==========================================================================================================================
     | PRIVATE FIELDS
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Payments.Services {
     ///   Establishes a new instance of the <see cref="BraintreeConfiguration"/>, including any shared dependencies to be used
     ///   across instances of controllers.
     /// </summary>
-    public BraintreeConfiguration(ITopicRepository topicRepository, IConfiguration configuration, RouteData routeData) {
+    internal BraintreeConfiguration(ITopicRepository topicRepository, IConfiguration configuration, RouteData routeData) {
       _topicRepository          = topicRepository;
       _configuration            = configuration;
       _routeData                = routeData;
@@ -43,10 +43,10 @@ namespace GoldSim.Web.Payments.Services {
     /*==========================================================================================================================
     | PUBLIC PROPERTIES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    public string Environment { get; set; } = "production";
-    public string MerchantId { get; set; }
-    public string PublicKey { get; set; }
-    public string PrivateKey { get; set; }
+    internal string Environment { get; set; } = "production";
+    internal string MerchantId { get; set; }
+    internal string PublicKey { get; set; }
+    internal string PrivateKey { get; set; }
 
     /*==========================================================================================================================
     | CREATE GATEWAY
