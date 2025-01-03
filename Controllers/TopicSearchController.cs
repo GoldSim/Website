@@ -48,7 +48,12 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    internal IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
+    internal IActionResult Index(
+      [FromQuery]TopicSearchAction action,
+      string scope = null,
+      string query = null,
+      string replace = null
+    ) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
@@ -72,6 +77,7 @@ namespace GoldSim.Web.Controllers {
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
         Action                  = action,
+        Scope                   = scope,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results)
