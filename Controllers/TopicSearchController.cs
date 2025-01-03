@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
@@ -91,6 +92,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="replace">The expression to replace all search results with.</param>
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
+    [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
     [HttpGet]
     public void FindReplaceTopics(
       Topic topic,
