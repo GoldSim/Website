@@ -26,10 +26,18 @@ namespace GoldSim.Web.Models.Controllers {
     internal TopicSearchAction Action { get; init; }
 
     /*==========================================================================================================================
+    | SCOPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the requested scope.
+    /// </summary>
+    internal string Scope { get; init; } = "/";
+
+    /*==========================================================================================================================
     | QUERY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the requested query, so it can be reapplied to the search box.
+    ///   Provides the requested query.
     /// </summary>
     internal string Query { get; init; }
 
