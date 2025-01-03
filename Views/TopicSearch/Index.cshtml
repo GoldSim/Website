@@ -20,6 +20,9 @@
 
     <form id="SearchResultSearchForm" action="/TopicSearch/">
 
+      <label for="Scope">Search Scope</label>
+      <input type="text" id="Scope" name="Scope" value="@Model.Scope" />
+
       <label for="Query">Search Query</label>
       <input type="search" id="Query" name="Query" value="@Model.Query" />
 
