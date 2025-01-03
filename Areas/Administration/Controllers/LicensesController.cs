@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Areas.Administration.Controllers {
 
   /*============================================================================================================================
   | CLASS: LICENSES CONTROLLER
