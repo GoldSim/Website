@@ -14,7 +14,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   ///   Provides a strongly-typed binding model representing the basic data model used by both the <see
   ///   cref="PurchaseFormBindingModel"/> as well as the <see cref="QuoteFormBindingModel"/>.
   /// </summary>
-  internal record PurchaseBindingModel: ExtendedContact {
+  public record PurchaseBindingModel: ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: PRODUCT
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(20)]
     [Metadata("Products")]
-    internal string Product { get; set; }
+    public string Product { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: LICENSE TYPE
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [StringLength(30)]
     [Display(Name="License Type")]
     [Metadata("LicenseTypes")]
-    internal string LicenseType { get; set; }
+    public string LicenseType { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: QUANTITY
@@ -47,7 +47,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [Range(1, 1000, ErrorMessage="At least one license is required.")]
     [Display(Name="License Quantity")]
-    internal int Quantity { get; set; } = 1;
+    public int Quantity { get; set; } = 1;
 
     /*==========================================================================================================================
     | PROPERTY: INSTRUCTIONS
@@ -57,7 +57,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name="Additional Quote Instructions")]
-    internal string Instructions { get; set; }
+    public string Instructions { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: MODULES
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [Display(Name="Add-On Modules:")]
     [MapToParent]
-    internal ModuleSelection Modules { get; } = new();
+    public ModuleSelection Modules { get; } = new();
 
   } //Class
 } //Namespace

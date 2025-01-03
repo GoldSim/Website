@@ -18,7 +18,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a dropdown list of metadata from an <see
   ///   cref="ITopicRepository"/> based on attributes of a <see cref="ModelExpression"/>.
   /// </summary>
-  internal sealed class MetadataLookupViewComponent : ViewComponent {
+  public sealed class MetadataLookupViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -51,7 +51,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
     /// <summary>
     ///   Provides a dropdown list of metadata associated with the bound property.
     /// </summary>
-    internal IViewComponentResult Invoke(
+    public IViewComponentResult Invoke(
       ModelExpression aspFor,
       string htmlFieldPrefix
     )

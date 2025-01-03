@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   ///   by setting a cookie for each URL that the user accesses—and then using that cookie to conditionally set a property on
   ///   the corresponding <see cref="TrackedNavigationTopicViewModel"/>
   /// </remarks>
-  internal sealed class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
+  public sealed class LessonListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -58,7 +58,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Maps a list of <see cref="TrackedNavigationTopicViewModel"/> instances based on the <paramref
     ///   name="navigationRootTopic"/>.
     /// </summary>
-    internal async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
+    public async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
       await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
     ///   page group.
     /// </summary>
-    internal async Task<IViewComponentResult> InvokeAsync() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve root topic

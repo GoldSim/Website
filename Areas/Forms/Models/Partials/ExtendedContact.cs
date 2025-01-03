@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   ///   Provides a strongly-typed data transfer object for representing an extended contact, which includes a <see
   ///   cref="Address"/> on top of the normal <see cref="Contact"/> properties.
   /// </summary>
-  internal record ExtendedContact : Contact {
+  public record ExtendedContact : Contact {
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     /// </summary>
     [Required]
     [MapToParent]
-    internal Address Address { get; } = new();
+    public Address Address { get; } = new();
 
   } //Class
 } //Namespace

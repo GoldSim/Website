@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the User Conference Registration form.
   /// </summary>
-  internal sealed record UserConferenceFormBindingModel : ExtendedContact {
+  public sealed record UserConferenceFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | PROPERTY: FAX NUMBER
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Phone]
     [StringLength(50)]
     [Display(Name = "Fax")]
-    internal string FaxNumber { get; init; }
+    public string FaxNumber { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: WILL SUBMIT POSTER?
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether the user intends to submit a poster for the conference's poster session.
     /// </summary>
     [Display(Name="I am interested in submitting a poster or being considered for an oral presentation.")]
-    internal bool WillSubmitPoster { get; init; }
+    public bool WillSubmitPoster { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: POSTER DESCRIPTION
@@ -42,7 +42,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets a brief description of the poster for the conference's poster session.
     /// </summary>
     [Display(Name="Brief description of presentation/poster")]
-    internal string PosterDescription { get; init; }
+    public string PosterDescription { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PAYMENT METHOD
@@ -51,7 +51,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether the attendee will be paying with a credit card or requesting a purchase order.
     /// </summary>
     [Display(Name="Payment Method")]
-    internal string PaymentMethod { get; init; }
+    public string PaymentMethod { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -61,7 +61,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(15)]
     [Display(Name="Purchase Order Number")]
-    internal string PurchaseOrderNumber { get; init; }
+    public string PurchaseOrderNumber { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDITIONAL INSTRUCTIONS
@@ -72,7 +72,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name="Additional Instructions (e.g., interest in spouse / partner attending dinners)")]
-    internal string AdditionalInstructions { get; init; }
+    public string AdditionalInstructions { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADVANCED TRAINING TOPICS
@@ -82,7 +82,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(255)]
     [Display(Name="Topic(s) of Interest")]
-    internal string AdvancedTrainingTopics { get; set; }
+    public string AdvancedTrainingTopics { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: APPLY STUDENT DISCOUNT?
@@ -91,7 +91,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether the attendee is a student and, thus, should receive the student discount.
     /// </summary>
     [Display(Name="Apply student discount (50%)")]
-    internal bool WithStudentDiscount { get; init; }
+    public bool WithStudentDiscount { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE TRAINING?
@@ -101,7 +101,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   conference.
     /// </summary>
     [Display(Name="Basic Training and Conference (September 10-11): $1,500")]
-    internal bool IncludeTraining { get; init; }
+    public bool IncludeTraining { get; init; }
 
   } //Class
 } //Namespace

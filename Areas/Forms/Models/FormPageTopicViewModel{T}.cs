@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   A view model for rendering a form page with a strongly-typed binding model.
   /// </summary>
-  internal sealed record FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, ITopicBindingModel, new() {
+  public sealed record FormPageTopicViewModel<T> : FormPageTopicViewModel where T : class, ITopicBindingModel, new() {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Initializes a new instance of a <see cref="FormPageTopicViewModel"/> with appropriate dependencies.
     /// </summary>
     /// <returns>A <see cref="FormPageTopicViewModel"/>.</returns>
-    internal FormPageTopicViewModel(T bindingModel = null) {
+    public FormPageTopicViewModel(T bindingModel = null) {
       BindingModel = bindingModel ?? new T();
     }
 
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Provides a reference to the binding model that should be used for the form itself.
     /// </summary>
     /// <returns>The <typeparamref name="T"/> binding model.</returns>
-    internal T BindingModel { get; }
+    public T BindingModel { get; }
 
   } // Class
 } // Namespace

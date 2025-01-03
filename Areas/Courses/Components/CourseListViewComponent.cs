@@ -21,7 +21,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   ///   by evaluating a cookie set by the <see cref="LessonListViewComponent"/> to conditionally set a property on the
   ///   corresponding <see cref="TrackedNavigationTopicViewModel"/>.
   /// </remarks>
-  internal sealed class CourseListViewComponent: UnitListViewComponent {
+  public sealed class CourseListViewComponent: UnitListViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
