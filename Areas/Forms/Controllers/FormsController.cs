@@ -100,7 +100,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel = await CreateViewModel<T>(bindingModel).ConfigureAwait(true);
+      var viewModel = await CreateViewModel(bindingModel).ConfigureAwait(true);
       if (!ModelState.IsValid) {
         return View(viewModel);
       }
@@ -148,7 +148,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> TrialAsync(TrialFormBindingModel bindingModel) =>
-      await ProcessForm<TrialFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: DEMO
@@ -164,7 +164,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> DemoAsync(DemoFormBindingModel bindingModel) =>
-      await ProcessForm<DemoFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: QUOTE
@@ -180,7 +180,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> QuoteAsync(QuoteFormBindingModel bindingModel) =>
-      await ProcessForm<QuoteFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: PURCHASE
@@ -196,7 +196,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
-      await ProcessForm<PurchaseFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: NEWSLETTER
@@ -212,7 +212,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel, string requestType = null) =>
-      await ProcessForm<NewsletterFormBindingModel>(bindingModel, requestType).ConfigureAwait(true);
+      await ProcessForm(bindingModel, requestType).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
@@ -228,7 +228,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> InstructorAcademicAsync(InstructorAcademicFormBindingModel bindingModel) =>
-      await ProcessForm<InstructorAcademicFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: ACADEMIC (STUDENT)
@@ -244,7 +244,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) =>
-      await ProcessForm<StudentAcademicFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: USER CONFERENCE
@@ -260,7 +260,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
-      await ProcessForm<UserConferenceFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | FORM: TRAINING
@@ -276,7 +276,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> TrainingAsync(TrainingFormBindingModel bindingModel) =>
-      await ProcessForm<TrainingFormBindingModel>(bindingModel).ConfigureAwait(true);
+      await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | ACTION: VERIFY EMAIL
