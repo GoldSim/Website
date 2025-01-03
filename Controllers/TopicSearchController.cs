@@ -119,7 +119,7 @@ namespace GoldSim.Web.Controllers {
             WebPath             = topic.GetWebPath()
           };
           if (!results.TryGetValue(topicReference, out var attributeResults)) {
-            attributeResults    = new Collection<TopicSearchResult>();
+            attributeResults    = [];
             results.Add(topicReference, attributeResults);
           };
           foreach (Match match in matches) {
