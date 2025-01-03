@@ -35,8 +35,8 @@ using System.Runtime.InteropServices;
 >===============================================================================================================================
 | Declare suppressions to code analysis rules that should be applied.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-[assembly: SuppressMessage("Design", "CA1024:Use properties where appropriate", Justification = "Intentional design")]
-[assembly: SuppressMessage("Design", "CA1812", Justification = "Intentional design")]
+[assembly: SuppressMessage("Design", "CA1024")]
+[assembly: SuppressMessage("Design", "CA1812")]
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Components")]
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Controllers")]
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Models")]
