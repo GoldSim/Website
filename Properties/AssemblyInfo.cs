@@ -37,3 +37,7 @@ using System.Runtime.InteropServices;
 \-----------------------------------------------------------------------------------------------------------------------------*/
 [assembly: SuppressMessage("Design", "CA1024:Use properties where appropriate", Justification = "Intentional design")]
 [assembly: SuppressMessage("Design", "CA1812", Justification = "Intentional design")]
+[assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Components")]
+[assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Controllers")]
+[assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Models")]
+[assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Areas")]
