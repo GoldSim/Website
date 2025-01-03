@@ -18,25 +18,18 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Allows searching for topics containing particular search patterns based on Regular Expressions.
   /// </summary>
+  /// <remarks>
+  ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
+  /// </remarks>
+  /// <returns>A topic search controller for loading OnTopic results.</returns>
   [Authorize]
-  public sealed class TopicSearchController : Controller {
+  public sealed class TopicSearchController(ITopicRepository topicRepository) : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicRepository                _topicRepository = topicRepository;
     private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
-    /// </summary>
-    /// <returns>A topic search controller for loading OnTopic results.</returns>
-    public TopicSearchController(ITopicRepository topicRepository) {
-      _topicRepository          = topicRepository;
-    }
 
     /*==========================================================================================================================
     | INDEX
