@@ -19,7 +19,7 @@ namespace GoldSim.Web.Controllers {
   ///   Allows searching for topics containing particular search patterns based on Regular Expressions.
   /// </summary>
   [Authorize]
-  internal sealed class TopicSearchController : Controller {
+  public sealed class TopicSearchController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic search controller for loading OnTopic results.</returns>
-    internal TopicSearchController(ITopicRepository topicRepository) {
+    public TopicSearchController(ITopicRepository topicRepository) {
       _topicRepository          = topicRepository;
     }
 
@@ -48,7 +48,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    internal IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
+    public IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
@@ -99,7 +99,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [HttpGet]
-    private void FindReplaceTopics(
+    public void FindReplaceTopics(
       Topic topic,
       string query,
       string replace,
