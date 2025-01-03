@@ -113,7 +113,7 @@ namespace GoldSim.Web.Controllers {
       foreach (var attribute in topic.Attributes.ToList()) {
         var matches             = Regex.Matches(attribute.Value, query, _options);
         if (matches.Count > 0) {
-          topicReference        = topicReference?? new AssociatedTopicViewModel() {
+          topicReference        ??= new AssociatedTopicViewModel() {
             Title               = topic.Title,
             ShortTitle          = topic.Title,
             WebPath             = topic.GetWebPath()
