@@ -48,7 +48,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [Include(AssociationTypes.Children)]
     [FilterByContentType("ApplicationContainer")]
-    public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = new();
+    public TopicViewModelCollection<ApplicationContainerTopicViewModel> Applications { get; } = [];
 
   } // Class
 } // Namespace

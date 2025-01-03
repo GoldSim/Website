@@ -37,7 +37,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="TechnicalPaperTopicViewModel"/> topics, representing the contents of the <see
     ///   cref="TechnicalPaperTopicViewModel"/>.
     /// </summary>
-    public Collection<TechnicalPaperTopicViewModel> ContentItems { get; } = new();
+    public Collection<TechnicalPaperTopicViewModel> ContentItems { get; } = [];
 
     /*==========================================================================================================================
     | FIELD CATEGORIES
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of categories potential associated with each <see cref="TechnicalPaperTopicViewModel"/>.
     /// </summary>
     [Metadata("FieldCategories")]
-    public Collection<LookupListItemTopicViewModel> FieldCategories { get; } = new();
+    public Collection<LookupListItemTopicViewModel> FieldCategories { get; } = [];
 
     /*==========================================================================================================================
     | GET TECHNICAL PAPERS

@@ -59,7 +59,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   applications by.
     /// </summary>
     [Metadata("ApplicationCategories")]
-    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
+    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
@@ -69,7 +69,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual Collection<CardViewModel> EnvironmentalSystems { get; } = new();
+    public virtual Collection<CardViewModel> EnvironmentalSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual Collection<CardViewModel> BusinessSystems { get; } = new();
+    public virtual Collection<CardViewModel> BusinessSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -89,7 +89,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    public virtual Collection<CardViewModel> EngineeredSystems { get; } = new();
+    public virtual Collection<CardViewModel> EngineeredSystems { get; } = [];
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE

@@ -37,7 +37,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a reference to all <see cref="ApplicationPageTopicViewModel"/> instances within the current container.
     /// </summary>
     [MapAs(typeof(AssociatedTopicViewModel))]
-    public Collection<AssociatedTopicViewModel> Children { get; } = new();
+    public Collection<AssociatedTopicViewModel> Children { get; } = [];
 
     /*==========================================================================================================================
     | DISPLAY ORDER

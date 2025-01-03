@@ -69,7 +69,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   any time without needing to update the <see cref="Category"/> of each application.
     /// </remarks>
     [Metadata("ApplicationCategories")]
-    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
+    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = [];
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE

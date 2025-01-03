@@ -40,7 +40,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("EnvironmentalExamples")]
-    public override Collection<CardViewModel> EnvironmentalSystems { get; } = new();
+    public override Collection<CardViewModel> EnvironmentalSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -51,7 +51,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("BusinessExamples")]
-    public override Collection<CardViewModel> BusinessSystems { get; } = new();
+    public override Collection<CardViewModel> BusinessSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("EngineeredSystemsExamples")]
-    public override Collection<CardViewModel> EngineeredSystems { get; } = new();
+    public override Collection<CardViewModel> EngineeredSystems { get; } = [];
 
   } // Class
 } // Namespace

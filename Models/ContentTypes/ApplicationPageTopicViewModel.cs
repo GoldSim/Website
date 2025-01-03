@@ -92,7 +92,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection(CollectionType.Relationship)]
-    public Collection<CardViewModel> Modules { get; } = new();
+    public Collection<CardViewModel> Modules { get; } = [];
 
     /*==========================================================================================================================
     | RELATIONSHIP: EXAMPLE APPLICATIONS
@@ -103,7 +103,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     [MapAs(typeof(CardViewModel))]
     [FilterByContentType("ExampleApplication")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public Collection<CardViewModel> ExampleApplications { get; } = new();
+    public Collection<CardViewModel> ExampleApplications { get; } = [];
 
     /*==========================================================================================================================
     | RELATIONSHIP: WHITE PAPERS
@@ -114,7 +114,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     [MapAs(typeof(AssociatedContentItemViewModel))]
     [FilterByContentType("WhitePaper")]
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public Collection<AssociatedContentItemViewModel> WhitePapers { get; } = new();
+    public Collection<AssociatedContentItemViewModel> WhitePapers { get; } = [];
 
     /*==========================================================================================================================
     | RELATIONSHIP: TECHNICAL PAPERS
@@ -123,7 +123,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a reference to any <see cref="TechnicalPaperTopicViewModel"/>s associated with the current application.
     /// </summary>
     [Collection("Applications", Type = CollectionType.IncomingRelationship)]
-    public Collection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = new();
+    public Collection<TechnicalPaperTopicViewModel> TechnicalPapers { get; } = [];
 
   } // Class
 } // Namespace
