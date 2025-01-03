@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>TechnicalPaper</c> topic.
   /// </summary>
-  internal sealed record TechnicalPaperTopicViewModel {
+  public sealed record TechnicalPaperTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     ///   Initializes a new <see cref="TechnicalPaperTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal TechnicalPaperTopicViewModel(AttributeDictionary attributes) {
+    public TechnicalPaperTopicViewModel(AttributeDictionary attributes) {
       Contract.Requires(attributes, nameof(attributes));
       Category                  = attributes.GetValue(nameof(Category));
       Authors                   = attributes.GetValue(nameof(Authors));
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Initializes a new <see cref="TechnicalPaperTopicViewModel"/> with no parameters.
     /// </summary>
-    internal TechnicalPaperTopicViewModel() { }
+    public TechnicalPaperTopicViewModel() { }
 
     /*==========================================================================================================================
     | KEY
@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Gets the topic's <see cref="Key"/> attribute, the primary text identifier for the <see cref="Topic"/>.
     /// </summary>
-    internal string Key { get; init; }
+    public string Key { get; init; }
 
     /*==========================================================================================================================
     | TITLE
@@ -52,7 +52,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Gets or sets the Title attribute, which represents the friendly name of the topic.
     /// </summary>
-    internal string Title { get; init; }
+    public string Title { get; init; }
 
     /*==========================================================================================================================
     | CATEGORY
@@ -60,7 +60,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Gets the category that the content item should be grouped under.
     /// </summary>
-    internal string Category { get; init; }
+    public string Category { get; init; }
 
     /*==========================================================================================================================
     | AUTHORS
@@ -68,7 +68,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides a list of authors associated with the paper.
     /// </summary>
-    internal string Authors { get; init; }
+    public string Authors { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION
@@ -76,7 +76,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the name of the internalation or journal that the technical paper was originally published in.
     /// </summary>
-    internal string Publication { get; init; }
+    public string Publication { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION (URL)
@@ -84,7 +84,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the URL for the internalation or journal that the technical paper was originally published in.
     /// </summary>
-    internal Uri PublicationUrl { get; init; }
+    public Uri PublicationUrl { get; init; }
 
     /*==========================================================================================================================
     | PUBLICATION DATE
@@ -92,7 +92,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides the date that the technical paper was originally published on.
     /// </summary>
-    internal DateTime PublicationDate { get; init; }
+    public DateTime PublicationDate { get; init; }
 
     /*==========================================================================================================================
     | LEARN MORE (URL)
@@ -100,7 +100,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides an optional link for the <see cref="AssociatedTopicViewModel"/>.
     /// </summary>
-    internal Uri LearnMoreUrl { get; init; }
+    public Uri LearnMoreUrl { get; init; }
 
     /*==========================================================================================================================
     | DOWNLOAD (LABEL)
@@ -108,7 +108,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Provides an optional label for the download link.
     /// </summary>
-    internal string DownloadLabel { get; init; }
+    public string DownloadLabel { get; init; }
 
     /*==========================================================================================================================
     | DESCRIPTION
@@ -116,7 +116,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     /// <summary>
     ///   Gets the description; this is effectively the body.
     /// </summary>
-    internal string Description { get; init; }
+    public string Description { get; init; }
 
   } // Class
 } // Namespace

@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Associations {
   /// <summary>
   ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  internal sealed record CardViewModel : AssociatedTopicViewModel, ICardViewModel {
+  public sealed record CardViewModel : AssociatedTopicViewModel, ICardViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Models.Associations {
     ///   Initializes a new <see cref="CardViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal CardViewModel(AttributeDictionary attributes) : base(attributes) {
+    public CardViewModel(AttributeDictionary attributes) : base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       ThumbnailImage            = attributes.GetValue(nameof(ThumbnailImage));
     }
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Models.Associations {
     /// <summary>
     ///   Initializes a new <see cref="CardViewModel"/> with no parameters.
     /// </summary>
-    internal CardViewModel() { }
+    public CardViewModel() { }
 
     /*==========================================================================================================================
     | THUMBNAIL IMAGE
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Models.Associations {
     /// <summary>
     ///   Provides the date that the <see cref="AssociatedTopicViewModel"/> was last modified.
     /// </summary>
-    internal DateTime LastModified { get; init; }
+    public DateTime LastModified { get; init; }
 
   } // Interface
 } // Namespace

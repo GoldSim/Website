@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about an <c>ExampleApplication</c>
   ///   topic.
   /// </summary>
-  internal sealed record ExampleApplicationTopicViewModel : ApplicationBasePageTopicViewModel {
+  public sealed record ExampleApplicationTopicViewModel : ApplicationBasePageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,12 +24,12 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal ExampleApplicationTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+    public ExampleApplicationTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
 
     /// <summary>
     ///   Initializes a new <see cref="ExampleApplicationTopicViewModel"/> with no parameters.
     /// </summary>
-    internal ExampleApplicationTopicViewModel() { }
+    public ExampleApplicationTopicViewModel() { }
 
     /*==========================================================================================================================
     | RELATIONSHIP: APPLICATIONS
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   /> is associated with.
     /// </summary>
     [MapAs(typeof(AssociatedTopicViewModel))]
-    internal Collection<AssociatedTopicViewModel> Applications { get; } = [];
+    public Collection<AssociatedTopicViewModel> Applications { get; } = [];
 
   } // Class
 } // Namespace
