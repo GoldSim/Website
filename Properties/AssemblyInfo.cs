@@ -41,3 +41,4 @@ using System.Runtime.InteropServices;
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Controllers")]
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Models")]
 [assembly: SuppressMessage("Maintainability", "CA1515", Scope = "NamespaceAndDescendants", Target = "~N:GoldSim.Web.Areas")]
+[assembly: SuppressMessage("Style", "IDE0305", Justification = "Aesthetic preference")]
