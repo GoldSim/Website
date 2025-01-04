@@ -16,7 +16,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which provides access to next buttons for navigating between lessons.
   /// </summary>
-  internal sealed class LessonPagingViewComponent: ViewComponent {
+  public sealed class LessonPagingViewComponent: ViewComponent {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -77,7 +77,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
     ///   page group.
     /// </summary>
-    internal async Task<IViewComponentResult> InvokeAsync(bool moveNext) {
+    public async Task<IViewComponentResult> InvokeAsync(bool moveNext) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Identify adjacent topic

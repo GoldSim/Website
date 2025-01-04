@@ -18,7 +18,7 @@ namespace GoldSim.Web.Services {
   ///   cref="MailMessage"/> class as a well-known data transfer object, so that implementation-specific versions needn't be
   ///   known to implementers, and to prevent the need to reinvent a model that is already built into the framework.
   /// </remarks>
-  internal interface ISmtpService {
+  public interface ISmtpService {
 
     /*==========================================================================================================================
     | SEND

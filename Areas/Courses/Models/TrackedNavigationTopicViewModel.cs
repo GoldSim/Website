@@ -18,13 +18,13 @@ namespace GoldSim.Web.Areas.Courses.Models {
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
   ///   constructed by the <see cref="LayoutController"/>.
   /// </remarks>
-  internal sealed class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
+  public sealed class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
-    internal string Abstract { get; init; }
+    public string Abstract { get; init; }
 
-    internal bool? IsVisited { get; set; }
+    public bool? IsVisited { get; set; }
 
-    internal string GetCssClass() =>
+    public string GetCssClass() =>
       IsVisited switch {
         null => "unstarted",
         false => "incomplete",

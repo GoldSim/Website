@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the instructor version of the newsletter signup form.
   /// </summary>
-  internal sealed record NewsletterFormBindingModel : CoreContact {
+  public sealed record NewsletterFormBindingModel : CoreContact {
 
     /*==========================================================================================================================
     | PROPERTY: COUNTRY
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [StringLength(75)]
     [Metadata("Country")]
-    internal string Country { get; init; } = "United States of America";
+    public string Country { get; init; } = "United States of America";
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE NEWSLETTER?
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether or not the user wishes to also subscribe to the newsletter.
     /// </summary>
     [Display(Name = "GoldSim Newsletter")]
-    internal bool IncludeNewsletter { get; init; } = true;
+    public bool IncludeNewsletter { get; init; } = true;
 
     /*==========================================================================================================================
     | PROPERTY: INCLUDE WEBINAR?
@@ -42,7 +42,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether or not the user wishes to also subscribe to the webinar mailing list.
     /// </summary>
     [Display(Name = "Webinar Email List")]
-    internal bool IncludeWebinar { get; init; }
+    public bool IncludeWebinar { get; init; }
 
   } //Class
 } //Namespace

@@ -17,7 +17,7 @@ namespace GoldSim.Web.Areas.Courses.Controllers {
   ///   Provides common processing for GoldSim courseware.
   /// </summary>
   [Area("Courses")]
-  internal sealed class CoursesController : TopicController {
+  public sealed class CoursesController : TopicController {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

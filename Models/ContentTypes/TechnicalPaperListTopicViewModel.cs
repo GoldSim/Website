@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a Technical Paper List topic.
   /// </summary>
-  internal sealed record TechnicalPaperListTopicViewModel : PageTopicViewModel {
+  public sealed record TechnicalPaperListTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -23,12 +23,12 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal TechnicalPaperListTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+    public TechnicalPaperListTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
 
     /// <summary>
     ///   Initializes a new <see cref="TechnicalPaperListTopicViewModel"/> with no parameters.
     /// </summary>
-    internal TechnicalPaperListTopicViewModel() { }
+    public TechnicalPaperListTopicViewModel() { }
 
     /*==========================================================================================================================
     | CONTENT ITEMS
@@ -37,7 +37,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of <see cref="TechnicalPaperTopicViewModel"/> topics, representing the contents of the <see
     ///   cref="TechnicalPaperTopicViewModel"/>.
     /// </summary>
-    internal Collection<TechnicalPaperTopicViewModel> ContentItems { get; } = new();
+    public Collection<TechnicalPaperTopicViewModel> ContentItems { get; } = [];
 
     /*==========================================================================================================================
     | FIELD CATEGORIES
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a list of categories potential associated with each <see cref="TechnicalPaperTopicViewModel"/>.
     /// </summary>
     [Metadata("FieldCategories")]
-    internal Collection<LookupListItemTopicViewModel> FieldCategories { get; } = new();
+    public Collection<LookupListItemTopicViewModel> FieldCategories { get; } = [];
 
     /*==========================================================================================================================
     | GET TECHNICAL PAPERS
@@ -55,7 +55,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Provides a helper function for retrieving a list of <see cref="TechnicalPaperTopicViewModel"/>s based on a category
     ///   key.
     /// </summary>
-    internal Collection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
+    public Collection<TechnicalPaperTopicViewModel> GetTechnicalPapers(string category) =>
       new(
         ContentItems
         .Where(t => (t.Category ?? "").Equals(category, StringComparison.Ordinal))

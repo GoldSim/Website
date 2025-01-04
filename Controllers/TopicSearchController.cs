@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.RegularExpressions;
 using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
@@ -18,25 +19,18 @@ namespace GoldSim.Web.Controllers {
   /// <summary>
   ///   Allows searching for topics containing particular search patterns based on Regular Expressions.
   /// </summary>
+  /// <remarks>
+  ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
+  /// </remarks>
+  /// <returns>A topic search controller for loading OnTopic results.</returns>
   [Authorize]
-  internal sealed class TopicSearchController : Controller {
+  public sealed class TopicSearchController(ITopicRepository topicRepository) : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicRepository                _topicRepository = topicRepository;
     private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
-
-    /*==========================================================================================================================
-    | CONSTRUCTOR
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Initializes a new instance of a Topic Search Controller with necessary dependencies.
-    /// </summary>
-    /// <returns>A topic search controller for loading OnTopic results.</returns>
-    internal TopicSearchController(ITopicRepository topicRepository) {
-      _topicRepository          = topicRepository;
-    }
 
     /*==========================================================================================================================
     | INDEX
@@ -48,7 +42,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    internal IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
+    public IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
@@ -98,8 +92,9 @@ namespace GoldSim.Web.Controllers {
     /// <param name="replace">The expression to replace all search results with.</param>
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
+    [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
     [HttpGet]
-    private void FindReplaceTopics(
+    public void FindReplaceTopics(
       Topic topic,
       string query,
       string replace,
@@ -113,13 +108,13 @@ namespace GoldSim.Web.Controllers {
       foreach (var attribute in topic.Attributes.ToList()) {
         var matches             = Regex.Matches(attribute.Value, query, _options);
         if (matches.Count > 0) {
-          topicReference        = topicReference?? new AssociatedTopicViewModel() {
+          topicReference        ??= new AssociatedTopicViewModel() {
             Title               = topic.Title,
             ShortTitle          = topic.Title,
             WebPath             = topic.GetWebPath()
           };
           if (!results.TryGetValue(topicReference, out var attributeResults)) {
-            attributeResults    = new Collection<TopicSearchResult>();
+            attributeResults    = [];
             results.Add(topicReference, attributeResults);
           };
           foreach (Match match in matches) {

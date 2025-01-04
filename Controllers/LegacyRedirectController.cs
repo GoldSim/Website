@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   ///   cref="LegacyRedirectController"/> provides routing that looks up topics based on the legacy <c>PageId</c> and then
   ///   redirects to the new, friendly URL.
   /// </summary>
-  internal sealed class LegacyRedirectController : Controller {
+  public sealed class LegacyRedirectController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Controllers {
     ///   Redirect based on PageId.
     /// </summary>
     [HttpGet]
-    internal IActionResult Redirect(int pageId) {
+    public IActionResult Redirect(int pageId) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.

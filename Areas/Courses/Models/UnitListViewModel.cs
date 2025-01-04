@@ -16,7 +16,7 @@ namespace GoldSim.Web.Areas.Courses.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about all child <c>Unit</c>
   ///   topics.
   /// </summary>
-  internal sealed class UnitListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
+  public sealed class UnitListViewModel: NavigationViewModel<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | TRACKING EVENTS
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Courses.Models {
     /// <summary>
     ///   Provides a list of events that should be tracked by Google Universal Analytics.
     /// </summary>
-    internal Collection<TrackingEventViewModel> TrackingEvents { get; } = new();
+    public Collection<TrackingEventViewModel> TrackingEvents { get; } = [];
 
     /*==========================================================================================================================
     | COURSE TRACKING EVENTS
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Areas.Courses.Models {
     /// <summary>
     ///   Provides a list of events that should be tracked by Google Analytics 4.
     /// </summary>
-    internal Collection<CourseTrackingEventViewModel> CourseTrackingEvents { get; } = new();
+    public Collection<CourseTrackingEventViewModel> CourseTrackingEvents { get; } = [];
 
   } // Class
 } // Namespace

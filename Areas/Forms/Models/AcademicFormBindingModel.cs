@@ -17,7 +17,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   ///   There are actually two specific academic forms—the <see cref="StudentAcademicFormBindingModel"/> and the <see
   ///   cref="InstructorAcademicFormBindingModel"/>—which this operates as a base class for.
   /// </remarks>
-  internal record AcademicFormBindingModel : ExtendedProfile {
+  public record AcademicFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -26,7 +26,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets the user's organization or institution name.
     /// </summary>
     [Display(Name="Name of Institution")]
-    internal override string Organization { get; init; }
+    public override string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ADDRESS
@@ -35,7 +35,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets the user's address.
     /// </summary>
     [MapToParent(AttributePrefix="")]
-    internal Address Address { get; } = new();
+    public Address Address { get; } = new();
 
     /*==========================================================================================================================
     | PROPERTY: DEPARTMENT
@@ -45,7 +45,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [Required]
     [StringLength(255)]
-    internal string Department { get; init; }
+    public string Department { get; init; }
 
   } //Class
 } //Namespace

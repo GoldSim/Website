@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for rendering a license request.
   /// </summary>
-  internal record LicenseRequestTopicViewModel: CoreContact {
+  public record LicenseRequestTopicViewModel: CoreContact {
 
     /*==========================================================================================================================
     | ID
@@ -21,7 +21,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Licenses {
     /// <summary>
     ///   The topic's unique identifier.
     /// </summary>
-    internal int Id { get; init; }
+    public int Id { get; init; }
 
     /*==========================================================================================================================
     | LAST MODIFIED
@@ -29,7 +29,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Licenses {
     /// <summary>
     ///   The date the request was submitted.
     /// </summary>
-    internal DateTime LastModified { get; init; }
+    public DateTime LastModified { get; init; }
 
   } // Class
 } // Namespace

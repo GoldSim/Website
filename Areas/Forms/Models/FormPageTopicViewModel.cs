@@ -14,7 +14,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   A view model for rendering a form page.
   /// </summary>
-  internal record FormPageTopicViewModel: PageTopicViewModel {
+  public record FormPageTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Initializes a new instance of a <see cref="FormPageTopicViewModel"/> with appropriate dependencies.
     /// </summary>
     /// <returns>A <see cref="FormPageTopicViewModel"/>.</returns>
-    internal FormPageTopicViewModel() {}
+    public FormPageTopicViewModel() {}
 
     /*==========================================================================================================================
     | FOLLOW-UP PAGE
@@ -32,7 +32,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   References the <see cref="Topic.Id"/> of the page that should be redirected to upon completion.
     /// </summary>
     [MapAs(typeof(CoreTopicViewModel))]
-    internal CoreTopicViewModel FollowUpPage { get; init; }
+    public CoreTopicViewModel FollowUpPage { get; init; }
 
     /*==========================================================================================================================
     | SUBMIT BUTTON LABEL
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Defines the label to use for the submit button.
     /// </summary>
-    internal string SubmitButtonLabel { get; init; } = "Submit";
+    public string SubmitButtonLabel { get; init; } = "Submit";
 
     /*==========================================================================================================================
     | DISABLE EMAIL RECEIPT
@@ -48,7 +48,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Optionally overrides the email receipt that is sent by default.
     /// </summary>
-    internal bool DisableEmailReceipt { get; init; }
+    public bool DisableEmailReceipt { get; init; }
 
     /*==========================================================================================================================
     | EMAIL SUBJECT
@@ -56,7 +56,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Optionally overrides the subject of the email receipt.
     /// </summary>
-    internal string EmailSubject { get; init; }
+    public string EmailSubject { get; init; }
 
     /*==========================================================================================================================
     | EMAIL RECIPIENT
@@ -64,7 +64,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Optionally overrides the recipient of the email receipt.
     /// </summary>
-    internal string EmailRecipient { get; init; }
+    public string EmailRecipient { get; init; }
 
     /*==========================================================================================================================
     | EMAIL SENDER
@@ -72,7 +72,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Optionally overrides the sender of the email receipt.
     /// </summary>
-    internal string EmailSender { get; init; }
+    public string EmailSender { get; init; }
 
     /*==========================================================================================================================
     | CUSTOMER EMAIL
@@ -81,7 +81,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Optional link to a page that should be sent to the customer as a receipt.
     /// </summary>
     [AttributeKey("CustomerEmailTopicId")]
-    internal EmailTopicViewModel CustomerEmail { get; init; }
+    public EmailTopicViewModel CustomerEmail { get; init; }
 
     /*==========================================================================================================================
     | SAVE AS TOPIC?
@@ -90,7 +90,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
     ///   cref="OnTopic.Topic"/> in the configured <see cref="OnTopic.Repositories.ITopicrepository"/>.
     /// </summary>
-    internal bool SaveAsTopic { get; init; }
+    public bool SaveAsTopic { get; init; }
 
   } // Class
 } // Namespace

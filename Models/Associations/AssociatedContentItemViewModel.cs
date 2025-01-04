@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.Associations {
   ///   Provides a model for tracking associations to <see cref="ContentItemTopicViewModel"/>s. This model supports navigable
   ///   lists.
   /// </summary>
-  internal sealed record AssociatedContentItemViewModel : AssociatedTopicViewModel {
+  public sealed record AssociatedContentItemViewModel : AssociatedTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.Associations {
     ///   Initializes a new <see cref="AssociatedContentItemViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal AssociatedContentItemViewModel(AttributeDictionary attributes) : base(attributes) {
+    public AssociatedContentItemViewModel(AttributeDictionary attributes) : base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       LearnMoreUrl              = attributes.GetUri(nameof(LearnMoreUrl));
     }
@@ -30,13 +30,13 @@ namespace GoldSim.Web.Models.Associations {
     /// <summary>
     ///   Initializes a new <see cref="AssociatedContentItemViewModel"/> with no parameters.
     /// </summary>
-    internal AssociatedContentItemViewModel() { }
+    public AssociatedContentItemViewModel() { }
 
     /*==========================================================================================================================
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <inheritdoc/>
-    internal string Key { get; init; }
+    public string Key { get; init; }
 
     /*==========================================================================================================================
     | LEARN MORE (URL)
@@ -44,7 +44,7 @@ namespace GoldSim.Web.Models.Associations {
     /// <summary>
     ///   Provides an optional link for the <see cref="AssociatedTopicViewModel"/>.
     /// </summary>
-    internal Uri LearnMoreUrl { get; init; }
+    public Uri LearnMoreUrl { get; init; }
 
   } // Interface
 } // Namespace
