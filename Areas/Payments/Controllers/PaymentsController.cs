@@ -316,10 +316,12 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// </remarks>
     [HttpGet, HttpHead]
     internal IActionResult VerifyInvoiceNumber(
-      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null
+      [Bind(Prefix = "BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
-      if (invoiceNumber is null) return Json(data: true);
-      var existingInvoice = GetInvoice(invoiceNumber);
+      if (invoiceNumber is null) {
+        return Json(data: true);
+      }
+      var existingInvoice       = GetInvoice(invoiceNumber);
       if (existingInvoice is null) {
         return Json(
           $"The invoice number {invoiceNumber} is not valid. Please recheck your invoice numer. " +
@@ -344,12 +346,14 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// </remarks>
     [HttpGet, HttpHead]
     internal IActionResult VerifyInvoiceAmount(
-      [Bind(Prefix="BindingModel.InvoiceNumber")] int? invoiceNumber = null,
-      [Bind(Prefix="BindingModel.InvoiceAmount")] double? invoiceAmount = null
+      [Bind(Prefix = "BindingModel.InvoiceNumber")] int? invoiceNumber = null,
+      [Bind(Prefix = "BindingModel.InvoiceAmount")] double? invoiceAmount = null
     ) {
-      var existingInvoice = GetInvoice(invoiceNumber);
-      var existingAmount = existingInvoice?.Attributes.GetValue("InvoiceAmount");
-      if (existingInvoice is null || existingAmount is null) return Json(data: true);
+      var existingInvoice       = GetInvoice(invoiceNumber);
+      var existingAmount        = existingInvoice?.Attributes.GetValue("InvoiceAmount");
+      if (existingInvoice is null || existingAmount is null) {
+        return Json(data: true);
+      }
       if (!existingAmount.Equals(invoiceAmount?.ToString(CultureInfo.InvariantCulture), StringComparison.OrdinalIgnoreCase)) {
         return Json(
           $"The invoice number {invoiceNumber} is correct, but doesn't match the expected invoice amount. " +
