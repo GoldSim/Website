@@ -42,7 +42,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    internal PaymentsController(
+    public PaymentsController(
       ITopicRepository          topicRepository,
       ITopicMappingService      topicMappingService,
       IBraintreeConfiguration   braintreeConfiguration,
@@ -134,7 +134,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    internal async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
+    public async Task<IActionResult> IndexAsync(PaymentFormBindingModel bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate request
@@ -315,7 +315,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     ///   view model should implement an e.g. <see cref="RequiredAttribute"/> to enforce that business logic.
     /// </remarks>
     [HttpGet, HttpHead]
-    internal IActionResult VerifyInvoiceNumber(
+    public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix = "BindingModel.InvoiceNumber")] int? invoiceNumber = null
     ) {
       if (invoiceNumber is null) {
@@ -345,7 +345,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     ///   <c>InvoiceAmount</c>.
     /// </remarks>
     [HttpGet, HttpHead]
-    internal IActionResult VerifyInvoiceAmount(
+    public IActionResult VerifyInvoiceAmount(
       [Bind(Prefix = "BindingModel.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix = "BindingModel.InvoiceAmount")] double? invoiceAmount = null
     ) {
