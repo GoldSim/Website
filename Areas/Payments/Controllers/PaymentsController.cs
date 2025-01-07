@@ -42,7 +42,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    public PaymentsController(
+    internal PaymentsController(
       ITopicRepository          topicRepository,
       ITopicMappingService      topicMappingService,
       IBraintreeConfiguration   braintreeConfiguration,
