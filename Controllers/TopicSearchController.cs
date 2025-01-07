@@ -100,8 +100,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
-    [HttpGet]
-    public void FindReplaceTopics(
+    private void FindReplaceTopics(
       Topic topic,
       string scope,
       string query,
