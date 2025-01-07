@@ -10,6 +10,7 @@ using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic;
+using OnTopic.Querying;
 
 namespace GoldSim.Web.Controllers {
 
@@ -55,10 +56,16 @@ namespace GoldSim.Web.Controllers {
       var results               = new Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>>();
 
       /*-------------------------------------------------------------------------------------------------------------------------
+      | Find scope
+      \------------------------------------------------------------------------------------------------------------------------*/
+      var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')?? "Root";
+      var scopedTopic           = _topicRepository.Load().GetByUniqueKey(uniqueKey);
+
+      /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(_topicRepository.Load(), scope, query, replace, action, results);
+      if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
+        FindReplaceTopics(scopedTopic, query, replace, action, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -94,7 +101,6 @@ namespace GoldSim.Web.Controllers {
     ///   cref="TopicSearchAction.ReplaceConfirm"/>.
     /// </summary>
     /// <param name="topic">The <see cref="Topic"/> to search within.</param>
-    /// <param name="query">The scope to search within the topic graph.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The expression to replace all search results with.</param>
     /// <param name="action">The action being performed.</param>
@@ -102,7 +108,6 @@ namespace GoldSim.Web.Controllers {
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
     private void FindReplaceTopics(
       Topic topic,
-      string scope,
       string query,
       string replace,
       TopicSearchAction action,
@@ -147,9 +152,7 @@ namespace GoldSim.Web.Controllers {
 
       // Recursively replace results for each child topic
       foreach (var childTopic in topic.Children) {
-        if (childTopic.GetWebPath().StartsWith(scope, StringComparison.OrdinalIgnoreCase)) {
-          FindReplaceTopics(childTopic, scope, query, replace, action, results);
-        }
+        FindReplaceTopics(childTopic, query, replace, action, results);
       }
 
     }
