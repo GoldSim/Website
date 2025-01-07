@@ -13,7 +13,7 @@ namespace GoldSim.Web.Components {
   /// <summary>
   ///   Defines a <see cref="ViewComponent"/> which renders an announcement banner in a view.
   /// </summary>
-  internal sealed class AnnouncementViewComponent : ViewComponent {
+  public sealed class AnnouncementViewComponent : ViewComponent {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Components {
     /// <summary>
     ///   Renders a database.
     /// </summary>
-    internal IViewComponentResult Invoke() {
+    public IViewComponentResult Invoke() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

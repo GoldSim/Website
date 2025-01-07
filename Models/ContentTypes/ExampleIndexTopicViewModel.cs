@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ExampleApplicationIndex</c>
   ///   topic.
   /// </summary>
-  internal sealed record ExampleIndexTopicViewModel : ApplicationIndexTopicViewModel {
+  public sealed record ExampleIndexTopicViewModel : ApplicationIndexTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -24,12 +24,12 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="ExampleIndexTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal ExampleIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+    public ExampleIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
 
     /// <summary>
     ///   Initializes a new <see cref="ExampleIndexTopicViewModel"/> with no parameters.
     /// </summary>
-    internal ExampleIndexTopicViewModel() { }
+    public ExampleIndexTopicViewModel() { }
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
@@ -40,7 +40,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("EnvironmentalExamples")]
-    internal override Collection<CardViewModel> EnvironmentalSystems { get; } = new();
+    public override Collection<CardViewModel> EnvironmentalSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -51,7 +51,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("BusinessExamples")]
-    internal override Collection<CardViewModel> BusinessSystems { get; } = new();
+    public override Collection<CardViewModel> BusinessSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -62,7 +62,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     [MapAs(typeof(CardViewModel))]
     [Collection("EngineeredSystemsExamples")]
-    internal override Collection<CardViewModel> EngineeredSystems { get; } = new();
+    public override Collection<CardViewModel> EngineeredSystems { get; } = [];
 
   } // Class
 } // Namespace

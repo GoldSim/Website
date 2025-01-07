@@ -12,7 +12,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing a customer invoice
   /// </summary>
-  internal sealed class InvoiceTopicViewModel {
+  public sealed class InvoiceTopicViewModel {
 
     /*==========================================================================================================================
     | ID
@@ -20,7 +20,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     /// <summary>
     ///   The unique identifier assigned by OnTopic for the entity.
     /// </summary>
-    internal int? Id { get; set; }
+    public int? Id { get; set; }
 
     /*==========================================================================================================================
     | KEY
@@ -34,7 +34,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     ///   previously saved invoice that's being edited). That can be used to provide conditional logic for existing invoices,
     ///   such as detecting renames.
     /// </remarks>
-    internal int? Key { get; set; }
+    public int? Key { get; set; }
 
     /*==========================================================================================================================
     | INVOICE NUMBER
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     [Range(0, 99999)]
     [Display(Name="Invoice Number")]
     [Remote("VerifyInvoiceNumber", "Invoices", AdditionalFields="Key")]
-    internal int InvoiceNumber { get; set; }
+    public int InvoiceNumber { get; set; }
 
     /*==========================================================================================================================
     | INVOICE AMOUNT
@@ -57,7 +57,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     [Required]
     [Range(0.00, 1000000.00)]
     [Display(Name = "Invoice Amount")]
-    internal double InvoiceAmount { get; set; }
+    public double InvoiceAmount { get; set; }
 
     /*==========================================================================================================================
     | DATE PAID
@@ -66,7 +66,7 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     ///   The date that the invoice was paid, if it has been paid.
     /// </summary>
     [Display(Name = "Date Paid")]
-    internal DateTime? DatePaid { get; set; } = null;
+    public DateTime? DatePaid { get; set; } = null;
 
   } // Class
 } // Namespace

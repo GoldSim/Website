@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>WhitePaper</c> topic.
   /// </summary>
-  internal sealed record WhitePaperTopicViewModel : ContentItemTopicViewModel {
+  public sealed record WhitePaperTopicViewModel : ContentItemTopicViewModel {
 
   } // Class
 } // Namespace

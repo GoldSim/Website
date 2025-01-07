@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.Mapping;
 
-namespace GoldSim.Web.Controllers {
+namespace GoldSim.Web.Areas.Administration.Controllers {
 
   /*============================================================================================================================
   | CLASS: LICENSES CONTROLLER
@@ -18,7 +18,7 @@ namespace GoldSim.Web.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  internal sealed class LicensesController : TopicController {
+  public sealed class LicensesController : TopicController {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -50,7 +50,7 @@ namespace GoldSim.Web.Controllers {
     ///   Provides a downloadable file stream containing the Excel spreadsheet report for license request data.
     /// </summary>
     [HttpGet]
-    internal FileStreamResult Export() {
+    public FileStreamResult Export() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    internal IActionResult Delete(int[] topics) {
+    public IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input

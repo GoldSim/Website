@@ -12,14 +12,14 @@ namespace GoldSim.Web.Areas.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Lesson</c> topic.
   /// </summary>
-  internal sealed record LessonTopicViewModel: PageTopicViewModel {
+  public sealed record LessonTopicViewModel: PageTopicViewModel {
 
     /*==========================================================================================================================
     | UNIT
     \-------------------------------------------------------------------------------------------------------------------------*/
     [AttributeKey("Parent")]
     [Include(AssociationTypes.Parents)]
-    internal UnitTopicViewModel Unit { get; init; }
+    public UnitTopicViewModel Unit { get; init; }
 
   } // Class
 } // Namespace

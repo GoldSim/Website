@@ -23,7 +23,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
   ///   by evaluating a cookie set by the <see cref="LessonListViewComponent"/> to conditionally set a property on the
   ///   corresponding <see cref="TrackedNavigationTopicViewModel"/>.
   /// </remarks>
-  internal class UnitListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
+  public class UnitListViewComponent: NavigationTopicViewComponentBase<TrackedNavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -67,7 +67,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides the pagel-level navigation menu for the current page, which exposes one tier of navigation from the nearest
     ///   page group.
     /// </summary>
-    internal async Task<IViewComponentResult> InvokeAsync() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve root topic

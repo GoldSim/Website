@@ -19,7 +19,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
   /// </summary>
   [Authorize]
   [Area("Administration")]
-  internal sealed class InvoicesController : Controller {
+  public sealed class InvoicesController : Controller {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -82,7 +82,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     ///   Provides a list of invoices already entered on the system.
     /// </summary>
     [HttpGet]
-    internal async Task<IActionResult> IndexAsync() => View(
+    public async Task<IActionResult> IndexAsync() => View(
       await _topicMappingService.MapAsync<InvoiceListViewModel>(
         _topicRepository.Load("Administration:Invoices")
       ).ConfigureAwait(true)
@@ -95,11 +95,11 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     ///   Creates an invoice for a new purchase.
     /// </summary>
     [HttpGet]
-    internal async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id).ConfigureAwait(true));
+    public async Task<IActionResult> EditAsync(int? id = null) => View(await CreateEditViewModel(id).ConfigureAwait(true));
 
     [HttpPost]
     [ValidateAntiForgeryToken]
-    internal async Task<IActionResult> EditAsync(InvoiceTopicViewModel invoice) {
+    public async Task<IActionResult> EditAsync(InvoiceTopicViewModel invoice) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate model
@@ -172,7 +172,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     /// </summary>
     [HttpPost]
     [ValidateAntiForgeryToken]
-    internal IActionResult Delete(int[] topics) {
+    public IActionResult Delete(int[] topics) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate input
@@ -211,7 +211,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     ///   has not been modified.
     /// </remarks>
     [HttpGet]
-    internal IActionResult VerifyInvoiceNumber(
+    public IActionResult VerifyInvoiceNumber(
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null
     ) {

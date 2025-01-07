@@ -12,7 +12,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing street address.
   /// </summary>
-  internal sealed class Address {
+  public sealed class Address {
 
     /*==========================================================================================================================
     | PROPERTY: STREET (1)
@@ -23,7 +23,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name="Address Line 1")]
-    internal string Street1 { get; set; }
+    public string Street1 { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: STREET (2)
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     /// </summary>
     [StringLength(255)]
     [Display(Name="Address Line 2")]
-    internal string Street2 { get; set; }
+    public string Street2 { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: CITY
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     /// </summary>
     [Required]
     [StringLength(255)]
-    internal string City { get; set; }
+    public string City { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PROVINCE
@@ -54,7 +54,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name="State/Province")]
-    internal string Province { get; set; }
+    public string Province { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: POSTAL CODE
@@ -65,7 +65,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(50)]
     [Display(Name="ZIP/Postal Code")]
-    internal string PostalCode { get; set; }
+    public string PostalCode { get; set; }
 
   } //Class
 } //Namespace

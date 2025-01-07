@@ -14,7 +14,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>ApplicationIndex</c> topic.
   /// </summary>
-  internal record ApplicationIndexTopicViewModel : PageTopicViewModel {
+  public record ApplicationIndexTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
@@ -28,7 +28,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal ApplicationIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) {
+    public ApplicationIndexTopicViewModel(AttributeDictionary attributes) : base(attributes) {
       Contract.Requires(attributes, nameof(attributes));
       FilteredDocumentType      = attributes.GetValue(nameof(FilteredDocumentType));
     }
@@ -36,7 +36,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// <summary>
     ///   Initializes a new <see cref="ApplicationIndexTopicViewModel"/> with no parameters.
     /// </summary>
-    internal ApplicationIndexTopicViewModel() { }
+    public ApplicationIndexTopicViewModel() { }
 
     /*==========================================================================================================================
     | FILTERED DOCUMENT TYPE
@@ -49,7 +49,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   cref="ExampleApplicationTopicViewModel"/>, &c. The <see cref="FilteredDocumentType"/> allows the current view to be
     ///   filtered by one specific type.
     /// </remarks>
-    internal string FilteredDocumentType { get; init; }
+    public string FilteredDocumentType { get; init; }
 
     /*==========================================================================================================================
     | CATEGORIES
@@ -59,7 +59,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   applications by.
     /// </summary>
     [Metadata("ApplicationCategories")]
-    internal TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = new();
+    public TopicViewModelCollection<LookupListItemTopicViewModel> Categories { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENVIRONMENTAL SYSTEMS
@@ -69,7 +69,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    internal virtual Collection<CardViewModel> EnvironmentalSystems { get; } = new();
+    public virtual Collection<CardViewModel> EnvironmentalSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: BUSINESS SYSTEMS
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    internal virtual Collection<CardViewModel> BusinessSystems { get; } = new();
+    public virtual Collection<CardViewModel> BusinessSystems { get; } = [];
 
     /*==========================================================================================================================
     | CATEGORY: ENGINEERED SYSTEMS
@@ -89,7 +89,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   <see cref="ApplicationContainerTopicViewModel"/>.
     /// </summary>
     [MapAs(typeof(CardViewModel))]
-    internal virtual Collection<CardViewModel> EngineeredSystems { get; } = new();
+    public virtual Collection<CardViewModel> EngineeredSystems { get; } = [];
 
     /*==========================================================================================================================
     | GET CATEGORY TITLE
@@ -101,7 +101,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    internal string GetCategoryTitle(string category) => Categories
+    public string GetCategoryTitle(string category) => Categories
       .Where(t => t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal))
       .FirstOrDefault()?.Title?? category;
 
@@ -112,7 +112,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a consolidated list of <i>all</i> applications from the corresponding properties.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    internal Collection<CardViewModel> GetAllApplications() =>
+    public Collection<CardViewModel> GetAllApplications() =>
       new(EnvironmentalSystems.Concat(BusinessSystems).Concat(EngineeredSystems).Distinct().ToList());
 
     /*==========================================================================================================================
@@ -122,7 +122,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Returns a dictionary of applications keyed by <see cref="Categories"/>.
     /// </summary>
     /// <returns>A consolidated list of applications.</returns>
-    internal Dictionary<string, Collection<CardViewModel>> GetCategorizedApplications() {
+    public Dictionary<string, Collection<CardViewModel>> GetCategorizedApplications() {
       var categorizedApplications = new Dictionary<string, Collection<CardViewModel>> {
         { nameof(EnvironmentalSystems), EnvironmentalSystems },
         { nameof(BusinessSystems), BusinessSystems },
@@ -139,7 +139,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   called.
     /// </summary>
     /// <returns></returns>
-    internal bool IsFirst() {
+    public bool IsFirst() {
       if (_isFirst) {
         _isFirst = false;
         return true;

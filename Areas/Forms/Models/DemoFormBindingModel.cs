@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
   /// </summary>
-  internal sealed record DemoFormBindingModel : ExtendedProfile {
+  public sealed record DemoFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS
@@ -24,7 +24,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [StringLength(1000)]
     [Display(Name="*What other risk analysis tools do you use, or are evaluating ?")]
-    internal string OtherTools { get; init; }
+    public string OtherTools { get; init; }
 
   } //Class
 } //Namespace

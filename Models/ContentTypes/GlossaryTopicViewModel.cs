@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a Glossary topic.
   /// </summary>
-  internal sealed record GlossaryTopicViewModel : ContentListTopicViewModel {
+  public sealed record GlossaryTopicViewModel : ContentListTopicViewModel {
 
   } // Class
 } // Namespace

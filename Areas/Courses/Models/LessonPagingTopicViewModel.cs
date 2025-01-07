@@ -12,27 +12,27 @@ namespace GoldSim.Web.Areas.Courses.Models {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for handling next/back paging buttons on the Lesson pages.
   /// </summary>
-  internal sealed record LessonPagingTopicViewModel {
+  public sealed record LessonPagingTopicViewModel {
 
     /*==========================================================================================================================
     | PROPERTY: TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    internal string Title { get; init; }
+    public string Title { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: WEB PATH
     \-------------------------------------------------------------------------------------------------------------------------*/
-    internal string WebPath { get; init; }
+    public string WebPath { get; init; }
 
     /*==========================================================================================================================
     | LABEL
     \-------------------------------------------------------------------------------------------------------------------------*/
-    internal string Label { get; init; }
+    public string Label { get; init; }
 
     /*==========================================================================================================================
     | MOVE NEXT?
     \-------------------------------------------------------------------------------------------------------------------------*/
-    internal bool MoveNext { get; init; }
+    public bool MoveNext { get; init; }
 
   } // Class
 } // Namespace

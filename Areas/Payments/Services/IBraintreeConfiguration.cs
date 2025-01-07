@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
   /// <summary>
   ///   Provides an interface for methods used to configure the Braintree payment gateway.
   /// </summary>
-  internal interface IBraintreeConfiguration {
+  public interface IBraintreeConfiguration {
 
     IBraintreeGateway CreateGateway();
     string GetConfigurationSetting(string setting, string defaultValue = null);

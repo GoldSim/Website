@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Training Request form.
   /// </summary>
-  internal sealed record TrainingFormBindingModel : ExtendedContact {
+  public sealed record TrainingFormBindingModel : ExtendedContact {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,7 +33,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Phone]
     [StringLength(50)]
     [Display(Name = "Fax")]
-    internal string FaxNumber { get; set; }
+    public string FaxNumber { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: ACCOUNTS PAYABLE (CONTACT)
@@ -43,7 +43,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [MapToParent]
     [Display(Name="Accounts Payable Contact Information")]
-    internal ExtendedContact AccountsPayableContact { get; set; }
+    public ExtendedContact AccountsPayableContact { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: PURCHASE ORDER NUMBER
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(15)]
     [Display(Name="Purchase Order Number")]
-    internal string PurchaseOrderNumber { get; set; }
+    public string PurchaseOrderNumber { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: INSTRUCTIONS
@@ -63,7 +63,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// </summary>
     [StringLength(1000)]
     [Display(Name = "Additional Instructions")]
-    internal string Instructions { get; set; }
+    public string Instructions { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: WITH PAPER RECEIPT?
@@ -72,7 +72,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets whether the attendee requires a paper receipt be delivered for accounting purposes.
     /// </summary>
     [Display(Name = "I would prefer a paper invoice or receipt.")]
-    internal bool WithPaperReceipt { get; set; }
+    public bool WithPaperReceipt { get; set; }
 
   } //Class
 } //Namespace

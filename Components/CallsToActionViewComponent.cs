@@ -16,7 +16,7 @@ namespace GoldSim.Web.Components {
   ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
-  internal sealed class CallsToActionViewComponent : NavigationTopicViewComponentBase<NavigationTopicViewModel> {
+  public sealed class CallsToActionViewComponent : NavigationTopicViewComponentBase<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -39,7 +39,7 @@ namespace GoldSim.Web.Components {
     /// <summary>
     ///   Provides the calls-to-action for the current page, which may change based on the current context.
     /// </summary>
-    internal async Task<IViewComponentResult> InvokeAsync() {
+    public async Task<IViewComponentResult> InvokeAsync() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables

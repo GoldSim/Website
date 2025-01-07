@@ -18,7 +18,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   ///   <see cref="Organization"/>, and <see cref="Email"/>. Thus the <see cref="CoreContact"/> represents the base class for
   ///   nearly every form binding model used by GoldSim.
   /// </remarks>
-  internal record CoreContact: ITopicBindingModel {
+  public record CoreContact: ITopicBindingModel {
 
     /*==========================================================================================================================
     | PROPERTY: KEY
@@ -49,7 +49,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "First Name")]
-    internal virtual string FirstName { get; init; }
+    public virtual string FirstName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: LAST NAME
@@ -60,7 +60,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "Last Name")]
-    internal virtual string LastName { get; init; }
+    public virtual string LastName { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: ORGANIZATION
@@ -71,7 +71,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(255)]
     [Display(Name = "Organization Name")]
-    internal virtual string Organization { get; init; }
+    public virtual string Organization { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: EMAIL ADDRESS
@@ -83,7 +83,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [EmailAddress]
     [Display(Name = "Email Address")]
     [Remote(action: "VerifyEmail", controller: "Forms")]
-    internal virtual string Email { get; init; }
+    public virtual string Email { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: RECAPTCHA TOKEN
@@ -92,7 +92,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     ///   The response token provided by the reCAPTCHA client
     /// </summary>
     [DisableMapping]
-    internal string RecaptchaToken { get; set; }
+    public string RecaptchaToken { get; set; }
 
   } //Class
 } //Namespace

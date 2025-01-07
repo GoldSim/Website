@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.Associations {
   /// <summary>
   ///   Provides a model for tracking associations to topics. This model supports both card formats as well as navigable lists.
   /// </summary>
-  internal record AssociatedTopicViewModel: INavigableTopicViewModel {
+  public record AssociatedTopicViewModel: INavigableTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.Associations {
     ///   Initializes a new <see cref="AssociatedTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal AssociatedTopicViewModel(AttributeDictionary attributes) {
+    public AssociatedTopicViewModel(AttributeDictionary attributes) {
       Contract.Requires(attributes, nameof(attributes));
       ShortTitle = attributes.GetValue(nameof(ShortTitle));
     }
@@ -30,7 +30,7 @@ namespace GoldSim.Web.Models.Associations {
     /// <summary>
     ///   Initializes a new <see cref="AssociatedTopicViewModel"/> with no parameters.
     /// </summary>
-    internal AssociatedTopicViewModel() { }
+    public AssociatedTopicViewModel() { }
 
     /*==========================================================================================================================
     | WEB PATH

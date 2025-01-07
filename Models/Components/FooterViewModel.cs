@@ -13,7 +13,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about the footer.
   /// </summary>
-  internal sealed class FooterViewModel : NavigationViewModel<NavigationTopicViewModel> {
+  public sealed class FooterViewModel : NavigationViewModel<NavigationTopicViewModel> {
 
     /*==========================================================================================================================
     | IS MAIN SITE?
@@ -22,7 +22,7 @@ namespace GoldSim.Web.Models.Components {
     ///   Flags whether the current site is part of the main <c>web</c> or is part of an alternate site, which may have a
     ///   different navigation.
     /// </summary>
-    internal bool IsMainSite { get; set; }
+    public bool IsMainSite { get; set; }
 
   } // Class
 } // Namespace

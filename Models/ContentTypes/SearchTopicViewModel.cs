@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.ContentTypes {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for feeding views with information about a <c>Search</c> topic.
   /// </summary>
-  internal sealed record SearchTopicViewModel : PageTopicViewModel {
+  public sealed record SearchTopicViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -21,12 +21,12 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   Initializes a new <see cref="SearchTopicViewModel"/> with an <paramref name="attributes"/> dictionary.
     /// </summary>
     /// <param name="attributes">An <see cref="AttributeDictionary"/> of attribute values.</param>
-    internal SearchTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
+    public SearchTopicViewModel(AttributeDictionary attributes) : base(attributes) { }
 
     /// <summary>
     ///   Initializes a new <see cref="FaqTopicViewModel"/> with no parameters.
     /// </summary>
-    internal SearchTopicViewModel() { }
+    public SearchTopicViewModel() { }
 
   } // Class
 } // Namespace
