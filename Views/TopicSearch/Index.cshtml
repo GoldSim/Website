@@ -43,9 +43,19 @@
 
     </form>
 
-    @if (Model.Query is not null && Model.Results.Count is 0) {
+    @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
+      if (Model.Results.Count is 0) {
+        <blockquote class="stop">
+          No results were found for the search query.
+        </blockquote>
+      }
+      else {
+        <blockquote class="note">
+          @Model.Results.Count topics were found for the search query.
+        </blockquote>
+      }
+    }
       <blockquote class="stop">
-        No results were found for the search query.
       </blockquote>
     }
 
