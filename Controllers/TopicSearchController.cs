@@ -45,7 +45,7 @@ namespace GoldSim.Web.Controllers {
     [HttpGet, HttpPost]
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
-      string scope = "/Web/",
+      string scope = "Web",
       string query = null,
       string replace = null
     ) {

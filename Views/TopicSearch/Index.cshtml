@@ -1,5 +1,9 @@
 ﻿@model TopicSearchViewModel;
 
+@section Head {
+  <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Form.css" asp-append-version="true" />
+}
+
 <div>
 
   <!-- Form -->
@@ -8,8 +12,10 @@
     <form id="SearchResultSearchForm" action="/TopicSearch/">
 
       <label class="form-field">
-        Scope
-        <input type="text" name="Scope" value="@Model.Scope" pattern="^/[A-Za-z0-9_\-\/]*$" />
+        <div class="input-group">
+          <span class="input-group-label">https://www.goldsim.com/</span>
+          <input class="input-group-field" type="text" id="Scope" name="Scope" value="@Model.Scope" pattern="^[A-Za-z0-9_\-\/]*$" />
+        </div>
       </label>
 
       <label class="form-field">
