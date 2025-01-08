@@ -92,7 +92,7 @@
                 <span>(@(pluralize("instance", Model.Results[topic].Count())) in @(pluralize("attribute", attributes.Count())))</span>
                 <ul>
                   @foreach (var attribute in attributes) {
-                    <li><strong>@(attribute.Key):</strong> @(pluralize("instances", attribute.Count))</li>
+                    <li><strong>@(attribute.Key):</strong> @(pluralize("instance", attribute.Count))</li>
                   }
                 </ul>
               }
@@ -101,7 +101,7 @@
               <ul>
                 @foreach (var match in Model.Results[topic]) {
                   if (Model.Action is TopicSearchAction.Search) {
-                    <li><strong>@(match.AttributeKey):</strong> @match.Match </li>
+                    <li><strong>@(match.AttributeKey):</strong> @match.Match</li>
                   }
                   else {
                     <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
