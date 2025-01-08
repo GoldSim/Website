@@ -59,6 +59,13 @@ CKEDITOR.stylesSet.add( 'OnTopicStyleSet', [
     }
   },
   {
+    name                        : 'Success',
+    element                     : 'blockquote',
+    attributes                  : {
+      'class'                   : 'success'
+    }
+  },
+  {
     name                        : 'Warning',
     element                     : 'blockquote',
     attributes                  : {

@@ -15,9 +15,6 @@ using OnTopic.Editor.AspNetCore;
 
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
-#pragma warning disable CA1812 // Avoid uninstantiated internal classes
-#pragma warning disable CA1852 // Seal internal types
-
 /*==============================================================================================================================
 | ENABLE SERVICES
 \-----------------------------------------------------------------------------------------------------------------------------*/
@@ -43,12 +40,12 @@ builder.Services.AddAuthentication(options => {
   options.SaveTokens = true;
   options.TokenValidationParameters = new() {
     NameClaimType = "name",
-    ValidIssuers = new[] {
+    ValidIssuers = [
       //Ignia users
       $"https://login.microsoftonline.com/10dcd9d4-80f7-47c8-ad5a-7efddcd5f868/v2.0",
       //GoldSim users
       $"https://login.microsoftonline.com/abfc6769-97de-4dc7-8284-0ecc2fac5cfc/v2.0"
-    }
+    ]
   };
 })
 .AddCookie();
@@ -178,6 +175,3 @@ app.MapControllers();
 | Run application
 \-----------------------------------------------------------------------------------------------------------------------------*/
 app.Run();
-
-#pragma warning restore CA1812 // Avoid uninstantiated internal classes
-#pragma warning restore CA1852 // Seal internal types

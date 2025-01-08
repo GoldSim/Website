@@ -10,6 +10,7 @@ using GoldSim.Web.Models.Associations;
 using GoldSim.Web.Models.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using OnTopic;
+using OnTopic.Querying;
 
 namespace GoldSim.Web.Controllers {
 
@@ -42,18 +43,51 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
-    public IActionResult Index([FromQuery]TopicSearchAction action, string query = null, string replace = null) {
+    [SuppressMessage("Security", "CA3012", Justification = "Internal tool, so source is trusted")]
+    public IActionResult Index(
+      [FromQuery]TopicSearchAction action,
+      string scope = "Web",
+      bool useRegEx = false,
+      string query = null,
+      string replace = null
+    ) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
       var results               = new Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>>();
+      var errors                = new Collection<string>();
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Find scope
+      \------------------------------------------------------------------------------------------------------------------------*/
+      var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')?? "Root";
+      var scopedTopic           = _topicRepository.Load().GetByUniqueKey(uniqueKey);
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Validate inputs
+      \------------------------------------------------------------------------------------------------------------------------*/
+
+      // Validate scope
+      if (scopedTopic is null) {
+        errors.Add($"No topic could be found at the scope. Please confirm the path.");
+      }
+
+      // Validate regular expression
+      if (useRegEx && query is not null) {
+        try {
+          _ = Regex.Match(String.Empty, query);
+        }
+        catch (ArgumentException) {
+          errors.Add($"The regular expression provided is not valid. Please check the syntax.");
+        }
+      }
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      if (!String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(_topicRepository.Load(), query, replace, action, results);
+      if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
+        FindReplaceTopics(scopedTopic, useRegEx? query : Regex.Escape(query), replace, action, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -66,9 +100,12 @@ namespace GoldSim.Web.Controllers {
         Key                     = "Root:TopicSearch",
         Title                   = "Topic Search",
         Action                  = action,
+        Scope                   = scope,
+        UseRegEx                = useRegEx,
         Query                   = query,
         Replace                 = replace,
-        Results                 = new(results)
+        Results                 = new(results),
+        Errors                  = new(errors)
       };
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -93,8 +130,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The action being performed.</param>
     /// <param name="results">The collection of positive matches.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
-    [HttpGet]
-    public void FindReplaceTopics(
+    private void FindReplaceTopics(
       Topic topic,
       string query,
       string replace,

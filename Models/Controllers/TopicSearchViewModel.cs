@@ -15,7 +15,7 @@ namespace GoldSim.Web.Models.Controllers {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the <see cref="TopicSearchController"/>.
   /// </summary>
-  internal sealed record TopicSearchViewModel : PageTopicViewModel {
+  public sealed record TopicSearchViewModel : PageTopicViewModel {
 
     /*==========================================================================================================================
     | ACTION
@@ -23,15 +23,31 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Determines the action requested.
     /// </summary>
-    internal TopicSearchAction Action { get; init; }
+    public TopicSearchAction Action { get; init; }
+
+    /*==========================================================================================================================
+    | SCOPE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides the requested scope.
+    /// </summary>
+    public string Scope { get; init; } = "/";
+
+    /*==========================================================================================================================
+    | USE REGULAR EXPRESSIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Determines if the <see cref="Query"/> and <see cref="Replace"/> should support regular expressions.
+    /// </summary>
+    public bool UseRegEx { get; init; }
 
     /*==========================================================================================================================
     | QUERY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Provides the requested query, so it can be reapplied to the search box.
+    ///   Provides the requested query.
     /// </summary>
-    internal string Query { get; init; }
+    public string Query { get; init; }
 
     /*==========================================================================================================================
     | REPLACE
@@ -39,7 +55,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides the optional replacement expression.
     /// </summary>
-    internal string Replace { get; init; }
+    public string Replace { get; init; }
 
     /*==========================================================================================================================
     | RESULTS
@@ -47,7 +63,15 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Provides a list of results from the query.
     /// </summary>
-    internal ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
+    public ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
+
+    /*==========================================================================================================================
+    | ERRORS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of errors from the query.
+    /// </summary>
+    public ReadOnlyCollection<string> Errors { get; init; }
 
   } // Class
 } // Namespace
