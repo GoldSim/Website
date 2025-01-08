@@ -46,6 +46,7 @@ namespace GoldSim.Web.Controllers {
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
       string scope = "Web",
+      bool useRegEx = false,
       string query = null,
       string replace = null
     ) {
@@ -65,7 +66,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(scopedTopic, query, replace, action, results);
+        FindReplaceTopics(scopedTopic, useRegEx? query : Regex.Escape(query), replace, action, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
