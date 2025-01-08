@@ -64,6 +64,15 @@ namespace GoldSim.Web.Controllers {
       var scopedTopic           = _topicRepository.Load().GetByUniqueKey(uniqueKey);
 
       /*-------------------------------------------------------------------------------------------------------------------------
+      | Validate inputs
+      \------------------------------------------------------------------------------------------------------------------------*/
+
+      // Validate scope
+      if (scopedTopic is null) {
+        errors.Add($"No topic could be found at the scope. Please confirm the path.");
+      }
+
+      /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
