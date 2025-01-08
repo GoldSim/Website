@@ -43,6 +43,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
+    [SuppressMessage("Security", "CA3012", Justification = "Internal tool, so source is trusted")]
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
       string scope = "Web",
@@ -70,6 +71,16 @@ namespace GoldSim.Web.Controllers {
       // Validate scope
       if (scopedTopic is null) {
         errors.Add($"No topic could be found at the scope. Please confirm the path.");
+      }
+
+      // Validate regular expression
+      if (useRegEx && query is not null) {
+        try {
+          _ = Regex.Match(String.Empty, query);
+        }
+        catch (ArgumentException) {
+          errors.Add($"The regular expression provided is not valid. Please check the syntax.");
+        }
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
