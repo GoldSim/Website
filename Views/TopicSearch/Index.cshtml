@@ -82,17 +82,28 @@
         <ul>
         @foreach (var topic in @Model.Results.Keys) {
           <li>
-            <ul>
-              @foreach (var match in @Model.Results[topic]) {
-                @if (Model.Action is TopicSearchAction.Search) {
-                  <li><strong>@(match.AttributeKey):</strong> @match.Match </li>
-                }
-                else {
-                  <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
-                }
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath</a>
+            @if (!Model.UseRegEx) {
+              var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { Key = g.Key, Count = g.Count()}).OrderBy(x => x.Count);
+                <ul>
+                  @foreach (var attribute in attributes) {
+                    <li><strong>@(attribute.Key):</strong> @(pluralize("instances", attribute.Count))</li>
+                  }
+                </ul>
               }
-            </ul>
+            }
+            else {
+              <ul>
+                @foreach (var match in Model.Results[topic]) {
+                  if (Model.Action is TopicSearchAction.Search) {
+                    <li><strong>@(match.AttributeKey):</strong> @match.Match </li>
+                  }
+                  else {
+                    <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
+                  }
+                }
+              </ul>
+            }
           </li>
         }
         </ul>
@@ -103,6 +114,10 @@
 </div>
 
 @section CallsToActionSection {}
+
+@{
+  string pluralize(string label, int count) => count + " " + label + (count > 1? "s" : "");
+}
 
 <!--
   Controller: TopicSearch
