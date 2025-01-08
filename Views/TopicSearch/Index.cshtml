@@ -82,7 +82,7 @@
         <ul>
         @foreach (var topic in @Model.Results.Keys) {
           <li>
-            <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath</a>
+            <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath.Replace(Model.Scope, "").Replace("//", "/")</a>
             @if (!Model.UseRegEx) {
               var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { Key = g.Key, Count = g.Count()}).OrderBy(x => x.Count);
               if (attributes.Count() is 1) {
