@@ -65,5 +65,13 @@ namespace GoldSim.Web.Models.Controllers {
     /// </summary>
     public ReadOnlyDictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> Results { get; init; }
 
+    /*==========================================================================================================================
+    | ERRORS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Provides a list of errors from the query.
+    /// </summary>
+    public ReadOnlyCollection<string> Errors { get; init; }
+
   } // Class
 } // Namespace

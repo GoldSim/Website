@@ -11,7 +11,14 @@
 
     @if (Model.Query is not null) {
       <div style="margin-top: -2rem;">
-        @if (Model.Action is TopicSearchAction.Search) {
+        @if (Model.Errors.Count > 0) {
+          @foreach(var error in Model.Errors) {
+            <blockquote class="stop">
+              @error
+            </blockquote>
+          }
+        }
+        else if (Model.Action is TopicSearchAction.Search) {
           if (Model.Results.Count is 0) {
             <blockquote class="stop">
               No results were found for the search query.

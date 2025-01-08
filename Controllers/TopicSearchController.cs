@@ -55,6 +55,7 @@ namespace GoldSim.Web.Controllers {
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
       var results               = new Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>>();
+      var errors                = new Collection<string>();
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find scope
@@ -65,7 +66,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
-      if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
+      if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
         FindReplaceTopics(scopedTopic, useRegEx? query : Regex.Escape(query), replace, action, results);
       }
 
@@ -83,7 +84,8 @@ namespace GoldSim.Web.Controllers {
         UseRegEx                = useRegEx,
         Query                   = query,
         Replace                 = replace,
-        Results                 = new(results)
+        Results                 = new(results),
+        Errors                  = new(errors)
       };
 
       /*-------------------------------------------------------------------------------------------------------------------------
