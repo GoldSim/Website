@@ -85,6 +85,7 @@
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath</a>
             @if (!Model.UseRegEx) {
               var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { Key = g.Key, Count = g.Count()}).OrderBy(x => x.Count);
+                <span>(@(pluralize("instance", Model.Results[topic].Count())) in @(pluralize("attribute", attributes.Count())))</span>
                 <ul>
                   @foreach (var attribute in attributes) {
                     <li><strong>@(attribute.Key):</strong> @(pluralize("instances", attribute.Count))</li>
