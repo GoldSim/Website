@@ -43,12 +43,12 @@ builder.Services.AddAuthentication(options => {
   options.SaveTokens = true;
   options.TokenValidationParameters = new() {
     NameClaimType = "name",
-    ValidIssuers = new[] {
+    ValidIssuers = [
       //Ignia users
       $"https://login.microsoftonline.com/10dcd9d4-80f7-47c8-ad5a-7efddcd5f868/v2.0",
       //GoldSim users
       $"https://login.microsoftonline.com/abfc6769-97de-4dc7-8284-0ecc2fac5cfc/v2.0"
-    }
+    ]
   };
 })
 .AddCookie();
