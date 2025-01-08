@@ -9,6 +9,33 @@
   <!-- Form -->
   <section class="panel">
 
+    @if (Model.Query is not null) {
+      <div style="margin-top: -2rem;">
+        @if (Model.Action is TopicSearchAction.Search) {
+          if (Model.Results.Count is 0) {
+            <blockquote class="stop">
+              No results were found for the search query.
+            </blockquote>
+          }
+          else {
+            <blockquote class="success">
+              @Model.Results.Count topics were found for the search query.
+            </blockquote>
+          }
+        }
+        else if (Model.Action is TopicSearchAction.ReplacePreview) {
+          <blockquote class="stop">
+            @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+          </blockquote>
+        }
+        else if (Model.Action is TopicSearchAction.ReplaceConfirm) {
+          <blockquote class="success">
+            @Model.Results.Count topics were successfully updated with the replacement expression.
+          </blockquote>
+        }
+      </div>
+    }
+
     <form id="SearchResultSearchForm" action="/TopicSearch/">
 
       <label class="form-field">
@@ -46,29 +73,6 @@
       }
 
     </form>
-
-    @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
-      if (Model.Results.Count is 0) {
-        <blockquote class="stop">
-          No results were found for the search query.
-        </blockquote>
-      }
-      else {
-        <blockquote class="note">
-          @Model.Results.Count topics were found for the search query.
-        </blockquote>
-      }
-    }
-    else if (Model.Action is TopicSearchAction.ReplacePreview) {
-      <blockquote class="stop">
-        @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
-      </blockquote>
-    }
-    else if (Model.Action is TopicSearchAction.ReplaceConfirm) {
-      <blockquote class="note">
-        @Model.Results.Count topics were successfully updated with the replacement expression.
-      </blockquote>
-    }
 
   </section>
 
