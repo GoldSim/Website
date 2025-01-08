@@ -80,6 +80,7 @@ namespace GoldSim.Web.Controllers {
         Title                   = "Topic Search",
         Action                  = action,
         Scope                   = scope,
+        UseRegEx                = useRegEx,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results)
