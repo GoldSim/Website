@@ -15,9 +15,6 @@ using OnTopic.Editor.AspNetCore;
 
 using HeaderNames = Microsoft.Net.Http.Headers.HeaderNames;
 
-#pragma warning disable CA1812 // Avoid uninstantiated internal classes
-#pragma warning disable CA1852 // Seal internal types
-
 /*==============================================================================================================================
 | ENABLE SERVICES
 \-----------------------------------------------------------------------------------------------------------------------------*/
@@ -178,6 +175,3 @@ app.MapControllers();
 | Run application
 \-----------------------------------------------------------------------------------------------------------------------------*/
 app.Run();
-
-#pragma warning restore CA1812 // Avoid uninstantiated internal classes
-#pragma warning restore CA1852 // Seal internal types
