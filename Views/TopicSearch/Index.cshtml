@@ -82,7 +82,6 @@
         <ul>
         @foreach (var topic in @Model.Results.Keys) {
           <li>
-            <a href="/OnTopic/Edit/@topic.WebPath">@topic.Title</a>
             <ul>
               @foreach (var match in @Model.Results[topic]) {
                 @if (Model.Action is TopicSearchAction.Search) {
@@ -91,6 +90,7 @@
                 else {
                   <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
                 }
+            <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath</a>
               }
             </ul>
           </li>
