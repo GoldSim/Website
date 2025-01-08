@@ -7,21 +7,27 @@
 
     <form id="SearchResultSearchForm" action="/TopicSearch/">
 
-      <label for="Scope">Search Scope</label>
-      <input type="text" id="Scope" name="Scope" value="@Model.Scope" pattern="^/[A-Za-z0-9_\-\/]*$" />
+      <label class="form-field">
+        Scope
+        <input type="text" name="Scope" value="@Model.Scope" pattern="^/[A-Za-z0-9_\-\/]*$" />
+      </label>
 
-      <label for="Query">Search Query</label>
-      <input type="search" id="Query" name="Query" value="@Model.Query" />
+      <label class="form-field">
+        Query
+        <input type="search" name="Query" value="@Model.Query" />
+      </label>
 
       @if (Model.Query is not null) {
-        <label for="Replace">Replacement Expression</label>
-        <input type="text" id="Replace" name="Replace" value="@Model.Replace" @(Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
+        <label class="form-field">
+          Replacement Expression
+          <input type="text" name="Replace" value="@Model.Replace" @(Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
+        </label>
       }
 
       <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
 
       @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
-            <button class="button primary large success" type="submit" name="Action" value="ReplacePreview" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
+        <button class="button primary large success" type="submit" name="Action" value="ReplacePreview" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
       }
 
       @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
