@@ -132,8 +132,10 @@ namespace GoldSim.Web.Areas.Administration.Services {
       licenseRequestData.Columns.Add("First Name", typeof(string));
       licenseRequestData.Columns.Add("Last Name", typeof(string));
       licenseRequestData.Columns.Add("Company Name", typeof(string));
-      licenseRequestData.Columns.Add("Product Option", typeof(string));
+      licenseRequestData.Columns.Add("Product", typeof(string));
       licenseRequestData.Columns.Add("Should Email?", typeof(string));
+      licenseRequestData.Columns.Add("Account ID", typeof(string));
+      licenseRequestData.Columns.Add("Expiration Date", typeof(string));
       licenseRequestData.Columns.Add("Free Type", typeof(string));
       licenseRequestData.Columns.Add("Department", typeof(string));
       licenseRequestData.Columns.Add("Address", typeof(string));
@@ -218,6 +220,8 @@ namespace GoldSim.Web.Areas.Administration.Services {
           requestType,
           "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
           "TRUE",
+          "",
+          "",
           requestType,
           licenseRequest.Attributes.GetValue("Department", ""),
           address,
