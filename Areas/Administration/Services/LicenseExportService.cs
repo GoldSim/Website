@@ -210,13 +210,9 @@ namespace GoldSim.Web.Areas.Administration.Services {
           => moduleList.All(m => request.Attributes.GetBoolean($"Modules{m}", false));
 
         //Define composite street address
-        var street1 = request.Attributes.GetValue("Street1", "");
-        var street2 = request.Attributes.GetValue("Street2", "");
-        var address = street1;
-
-        if (!String.IsNullOrWhiteSpace(street2)) {
-          address += $", {street2}";
-        }
+        var street1             = request.Attributes.GetValue("Street1", "");
+        var street2             = request.Attributes.GetValue("Street2", "");
+        var address             = street1 + (!String.IsNullOrWhiteSpace(street2)? $", {street2}" : "");
 
         // Add data row for each request
         requestData.Rows.Add(
