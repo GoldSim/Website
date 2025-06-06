@@ -82,7 +82,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
         headers.Style.Font.Bold = true;
         headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
         headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
-        headers.Style.WrapText = true;
+        headers.Style.WrapText = false;
 
         worksheet.View.FreezePanes(2, 1);
 
