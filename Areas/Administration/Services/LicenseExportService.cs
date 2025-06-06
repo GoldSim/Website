@@ -167,47 +167,22 @@ namespace GoldSim.Web.Areas.Administration.Services {
       \-------------------------------------------------------------------------------------------------------------------------*/
       foreach (var request in licenseRequests) {
 
-        // Set variable values
-        var requestType = request.ContentType.StartsWith("Trial", StringComparison.InvariantCultureIgnoreCase) ? "Trial" : "Academic";
-        var productOptionConfiguration  = 1;
+        // Determine type.
+        var isTrial             = request.ContentType.StartsWith("Trial", StringComparison.InvariantCultureIgnoreCase);
 
-        // Determine Product Option configuration
-        if (requestedModules("Reliability", "DistributedProcessing", "RadionuclideTransport")) {
-          productOptionConfiguration    = 12;
-        }
-        else if (requestedModules("Reliability", "DistributedProcessing", "ContaminantTransport")) {
-          productOptionConfiguration    = 11;
-        }
-        else if (requestedModules("Reliability", "RadionuclideTransport")) {
-          productOptionConfiguration    = 10;
-        }
-        else if (requestedModules("Reliability", "ContaminantTransport")) {
-          productOptionConfiguration    = 9;
-        }
-        else if (requestedModules("DistributedProcessing", "RadionuclideTransport")) {
-          productOptionConfiguration    = 8;
-        }
-        else if (requestedModules("DistributedProcessing", "ContaminantTransport")) {
-          productOptionConfiguration    = 7;
-        }
-        else if (requestedModules("DistributedProcessing", "Reliability")) {
-          productOptionConfiguration    = 6;
-        }
-        else if (requestedModules("RadionuclideTransport")) {
-          productOptionConfiguration    = 5;
-        }
-        else if (requestedModules("ContaminantTransport")) {
-          productOptionConfiguration    = 4;
-        }
-        else if (requestedModules("Reliability")) {
-          productOptionConfiguration    = 3;
-        }
-        else if (requestedModules("DistributedProcessing")) {
-          productOptionConfiguration    = 2;
-        }
+        // Determine part number.
+        var partNumber          = (isTrial? "LMTD-" : "ACAD-")
+                                + (requestedModule("DistributedProcessing")? "DP-" : "00-")
+                                + (requestedModule("Reliability")? "RL-" : "00-")
+                                + (
+                                    requestedModule("ContaminantTransport")? "CT-" :
+                                    requestedModule("RadionuclideTransport")? "RT-" :
+                                    "00-"
+                                  )
+                                + (isTrial? "V." : "A.")
+                                + "15.0";
 
-        bool requestedModules(params string[] moduleList)
-          => moduleList.All(m => request.Attributes.GetBoolean($"Modules{m}", false));
+        bool requestedModule(string module) => request.Attributes.GetBoolean($"Modules{module}");
 
         //Define composite street address
         var street1             = request.Attributes.GetValue("Street1", "");
@@ -220,11 +195,11 @@ namespace GoldSim.Web.Areas.Administration.Services {
           request.Attributes.GetValue("FirstName", ""),
           request.Attributes.GetValue("LastName", ""),
           request.Attributes.GetValue("Organization", ""),
-          "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
+          partNumber,
           "TRUE",
           "",
           "",
-          requestType,
+          isTrial? "Trial" : "Academic",
           request.Attributes.GetValue("Department", ""),
           address,
           request.Attributes.GetValue("City", ""),
