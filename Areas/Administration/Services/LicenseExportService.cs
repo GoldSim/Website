@@ -84,7 +84,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
         headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
         headers.Style.WrapText = false;
 
-        worksheet.View.FreezePanes(2, 1);
+        worksheet.View.FreezePanes(2, 2);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Set the font for the worksheet
