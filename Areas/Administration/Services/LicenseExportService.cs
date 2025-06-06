@@ -76,9 +76,10 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
-        var headerRowBackgroundColor = ColorTranslator.FromHtml("#404040");
+        var headerRowBackgroundColor = ColorTranslator.FromHtml("#d1d1d1");
 
-        headers.Style.Font.Color.SetColor(Color.White);
+        headers.Style.Font.Color.SetColor(Color.Black);
+        headers.Style.Font.Bold = true;
         headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
         headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
         headers.Style.WrapText = true;
@@ -88,8 +89,8 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Set the font for the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Tahoma";
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 10;
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Calibri";
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 11;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Auto-fit data rows to their contents
