@@ -99,8 +99,8 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Set column filters and give the Free Type column extra width to account for the filter
         \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells["E1:F1"].AutoFilter     = true;
         worksheet.Column(5).Width               = 12;
+        headers.AutoFilter      = true;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Apply the spreadsheet to the stream
@@ -110,6 +110,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
       }
 
       return memoryStream;
+
     }
 
     /*============================================================================================================================
