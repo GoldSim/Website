@@ -106,7 +106,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Apply the spreadsheet to the stream
         \---------------------------------------------------------------------------------------------------------------------*/
-        memoryStream = new MemoryStream(excelPackage.GetAsByteArray());
+        memoryStream            = new MemoryStream(excelPackage.GetAsByteArray());
 
       }
 
