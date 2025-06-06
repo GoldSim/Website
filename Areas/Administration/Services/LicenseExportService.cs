@@ -70,18 +70,19 @@ namespace GoldSim.Web.Areas.Administration.Services {
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
         using var licenseRequestData = GetLicenseRequestData(topics);
+        using var headers       = worksheet.Cells[1, 1, 1, licenseRequestData.Columns.Count];
         worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
         var headerRowBackgroundColor = ColorTranslator.FromHtml("#404040");
-        using (var cellRange = worksheet.Cells[1, 1, 1, 24]) {
-          cellRange.Style.Font.Color.SetColor(Color.White);
-          cellRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
-          cellRange.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
-          cellRange.Style.WrapText = true;
-        }
+
+        headers.Style.Font.Color.SetColor(Color.White);
+        headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
+        headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
+        headers.Style.WrapText = true;
+
         worksheet.View.FreezePanes(2, 1);
 
         /*----------------------------------------------------------------------------------------------------------------------
