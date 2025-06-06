@@ -64,7 +64,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Create the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        var worksheet = excelPackage.Workbook.Worksheets.Add("Working");
+        var worksheet = excelPackage.Workbook.Worksheets.Add("Entitlements");
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
