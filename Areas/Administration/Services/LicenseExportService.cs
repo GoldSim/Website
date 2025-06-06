@@ -219,7 +219,6 @@ namespace GoldSim.Web.Areas.Administration.Services {
           licenseRequest.Attributes.GetValue("FirstName", ""),
           licenseRequest.Attributes.GetValue("LastName", ""),
           licenseRequest.Attributes.GetValue("Organization", ""),
-          requestType,
           "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
           "TRUE",
           "",
