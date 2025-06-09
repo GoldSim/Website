@@ -64,31 +64,33 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Create the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        var worksheet = excelPackage.Workbook.Worksheets.Add("Working");
+        var worksheet = excelPackage.Workbook.Worksheets.Add("Entitlements");
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Get and load the data from the License Request DataTable
         \---------------------------------------------------------------------------------------------------------------------*/
-        using var licenseRequestData = GetLicenseRequestData(topics);
-        worksheet.Cells.LoadFromDataTable(licenseRequestData, true);
+        using var requests      = GetLicenseRequestData(topics);
+        using var headers       = worksheet.Cells[1, 1, 1, requests.Columns.Count];
+        worksheet.Cells.LoadFromDataTable(requests, true);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Format the column headers
         \---------------------------------------------------------------------------------------------------------------------*/
-        var headerRowBackgroundColor = ColorTranslator.FromHtml("#404040");
-        using (var cellRange = worksheet.Cells[1, 1, 1, 24]) {
-          cellRange.Style.Font.Color.SetColor(Color.White);
-          cellRange.Style.Fill.PatternType = ExcelFillStyle.Solid;
-          cellRange.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
-          cellRange.Style.WrapText = true;
-        }
-        worksheet.View.FreezePanes(2, 1);
+        var headerRowBackgroundColor = ColorTranslator.FromHtml("#d1d1d1");
+
+        headers.Style.Font.Color.SetColor(Color.Black);
+        headers.Style.Font.Bold = true;
+        headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
+        headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
+        headers.Style.WrapText = false;
+
+        worksheet.View.FreezePanes(2, 2);
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Set the font for the worksheet
         \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Tahoma";
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 10;
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Calibri";
+        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 11;
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Auto-fit data rows to their contents
@@ -98,17 +100,22 @@ namespace GoldSim.Web.Areas.Administration.Services {
         /*----------------------------------------------------------------------------------------------------------------------
         | Set column filters and give the Free Type column extra width to account for the filter
         \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells["E1:F1"].AutoFilter     = true;
-        worksheet.Column(5).Width               = 12;
+        headers.AutoFilter      = true;
+
+        for (var i = 1; i <= headers.Columns; i++) {
+          var column            = worksheet.Column(i);
+          column.Width          += 2;
+        }
 
         /*----------------------------------------------------------------------------------------------------------------------
         | Apply the spreadsheet to the stream
         \---------------------------------------------------------------------------------------------------------------------*/
-        memoryStream = new MemoryStream(excelPackage.GetAsByteArray());
+        memoryStream            = new MemoryStream(excelPackage.GetAsByteArray());
 
       }
 
       return memoryStream;
+
     }
 
     /*============================================================================================================================
@@ -123,118 +130,93 @@ namespace GoldSim.Web.Areas.Administration.Services {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Establish DataTable
       \-------------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestData = new DataTable();
+      var requestData           = new DataTable();
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Set up column headers
       \-------------------------------------------------------------------------------------------------------------------------*/
-      licenseRequestData.Columns.Add("Email Address", typeof(string));
-      licenseRequestData.Columns.Add("First Name", typeof(string));
-      licenseRequestData.Columns.Add("Last Name", typeof(string));
-      licenseRequestData.Columns.Add("Company Name", typeof(string));
-      licenseRequestData.Columns.Add("Free Type", typeof(string));
-      licenseRequestData.Columns.Add("Product Option", typeof(string));
-      licenseRequestData.Columns.Add("Should Email?", typeof(string));
-      licenseRequestData.Columns.Add("Department", typeof(string));
-      licenseRequestData.Columns.Add("Address", typeof(string));
-      licenseRequestData.Columns.Add("City", typeof(string));
-      licenseRequestData.Columns.Add("State", typeof(string));
-      licenseRequestData.Columns.Add("Postal", typeof(string));
-      licenseRequestData.Columns.Add("Country", typeof(string));
-      licenseRequestData.Columns.Add("Phone", typeof(string));
-      licenseRequestData.Columns.Add("Focus Area", typeof(string));
-      licenseRequestData.Columns.Add("Referral Source", typeof(string));
-      licenseRequestData.Columns.Add("Referral Details", typeof(string));
-      licenseRequestData.Columns.Add("Problem Description", typeof(string));
-      licenseRequestData.Columns.Add("Existing Tools Description", typeof(string));
-      licenseRequestData.Columns.Add("Sponsor First Name", typeof(string));
-      licenseRequestData.Columns.Add("Sponsor Last Name", typeof(string));
-      licenseRequestData.Columns.Add("Sponsor Department", typeof(string));
-      licenseRequestData.Columns.Add("Sponsor Email", typeof(string));
-      licenseRequestData.Columns.Add("Sponsor Phone", typeof(string));
+      requestData.Columns.Add("Email Address",                  typeof(string));
+      requestData.Columns.Add("First Name",                     typeof(string));
+      requestData.Columns.Add("Last Name",                      typeof(string));
+      requestData.Columns.Add("Company Name",                   typeof(string));
+      requestData.Columns.Add("Product",                        typeof(string));
+      requestData.Columns.Add("Should Email?",                  typeof(string));
+      requestData.Columns.Add("Account ID",                     typeof(string));
+      requestData.Columns.Add("Expiration Date",                typeof(string));
+      requestData.Columns.Add("Free Type",                      typeof(string));
+      requestData.Columns.Add("Department",                     typeof(string));
+      requestData.Columns.Add("Address",                        typeof(string));
+      requestData.Columns.Add("City",                           typeof(string));
+      requestData.Columns.Add("State",                          typeof(string));
+      requestData.Columns.Add("Postal",                         typeof(string));
+      requestData.Columns.Add("Country",                        typeof(string));
+      requestData.Columns.Add("Phone",                          typeof(string));
+      requestData.Columns.Add("Focus Area",                     typeof(string));
+      requestData.Columns.Add("Referral Source",                typeof(string));
+      requestData.Columns.Add("Referral Details",               typeof(string));
+      requestData.Columns.Add("Problem Description",            typeof(string));
+      requestData.Columns.Add("Existing Tools Description",     typeof(string));
+      requestData.Columns.Add("Sponsor First Name",             typeof(string));
+      requestData.Columns.Add("Sponsor Last Name",              typeof(string));
+      requestData.Columns.Add("Sponsor Department",             typeof(string));
+      requestData.Columns.Add("Sponsor Email",                  typeof(string));
+      requestData.Columns.Add("Sponsor Phone",                  typeof(string));
 
       /*--------------------------------------------------------------------------------------------------------------------------
       | Set row data
       \-------------------------------------------------------------------------------------------------------------------------*/
-      foreach (var licenseRequest in licenseRequests) {
+      foreach (var request in licenseRequests) {
 
-        // Set variable values
-        var requestType = licenseRequest.ContentType.StartsWith("Trial", StringComparison.InvariantCultureIgnoreCase) ? "Trial" : "Academic";
-        var productOptionConfiguration  = 1;
+        // Determine type.
+        var isTrial             = request.ContentType.StartsWith("Trial", StringComparison.InvariantCultureIgnoreCase);
 
-        // Determine Product Option configuration
-        if (requestedModules("Reliability", "DistributedProcessing", "RadionuclideTransport")) {
-          productOptionConfiguration    = 12;
-        }
-        else if (requestedModules("Reliability", "DistributedProcessing", "ContaminantTransport")) {
-          productOptionConfiguration    = 11;
-        }
-        else if (requestedModules("Reliability", "RadionuclideTransport")) {
-          productOptionConfiguration    = 10;
-        }
-        else if (requestedModules("Reliability", "ContaminantTransport")) {
-          productOptionConfiguration    = 9;
-        }
-        else if (requestedModules("DistributedProcessing", "RadionuclideTransport")) {
-          productOptionConfiguration    = 8;
-        }
-        else if (requestedModules("DistributedProcessing", "ContaminantTransport")) {
-          productOptionConfiguration    = 7;
-        }
-        else if (requestedModules("DistributedProcessing", "Reliability")) {
-          productOptionConfiguration    = 6;
-        }
-        else if (requestedModules("RadionuclideTransport")) {
-          productOptionConfiguration    = 5;
-        }
-        else if (requestedModules("ContaminantTransport")) {
-          productOptionConfiguration    = 4;
-        }
-        else if (requestedModules("Reliability")) {
-          productOptionConfiguration    = 3;
-        }
-        else if (requestedModules("DistributedProcessing")) {
-          productOptionConfiguration    = 2;
-        }
+        // Determine part number.
+        var partNumber          = (isTrial? "LMTD-" : "ACAD-")
+                                + (requestedModule("DistributedProcessing")? "DP-" : "00-")
+                                + (requestedModule("Reliability")? "RL-" : "00-")
+                                + (
+                                    requestedModule("ContaminantTransport")? "CT-" :
+                                    requestedModule("RadionuclideTransport")? "RT-" :
+                                    "00-"
+                                  )
+                                + (isTrial? "V." : "A.")
+                                + "15.0";
 
-        bool requestedModules(params string[] moduleList)
-          => moduleList.All(m => licenseRequest.Attributes.GetBoolean($"Modules{m}", false));
+        bool requestedModule(string module) => request.Attributes.GetBoolean($"Modules{module}");
 
         //Define composite street address
-        var street1 = licenseRequest.Attributes.GetValue("Street1", "");
-        var street2 = licenseRequest.Attributes.GetValue("Street2", "");
-        var address = street1;
-
-        if (!String.IsNullOrWhiteSpace(street2)) {
-          address += $", {street2}";
-        }
+        var street1             = request.Attributes.GetValue("Street1", "");
+        var street2             = request.Attributes.GetValue("Street2", "");
+        var address             = street1 + (!String.IsNullOrWhiteSpace(street2)? $", {street2}" : "");
 
         // Add data row for each request
-        licenseRequestData.Rows.Add(
-          licenseRequest.Attributes.GetValue("Email", ""),
-          licenseRequest.Attributes.GetValue("FirstName", ""),
-          licenseRequest.Attributes.GetValue("LastName", ""),
-          licenseRequest.Attributes.GetValue("Organization", ""),
-          requestType,
-          "Config_" + productOptionConfiguration.ToString(CultureInfo.InvariantCulture),
+        requestData.Rows.Add(
+          request.Attributes.GetValue("Email", ""),
+          request.Attributes.GetValue("FirstName", ""),
+          request.Attributes.GetValue("LastName", ""),
+          request.Attributes.GetValue("Organization", ""),
+          partNumber,
           "TRUE",
-          licenseRequest.Attributes.GetValue("Department", ""),
+          "",
+          "",
+          isTrial? "Trial" : "Academic",
+          request.Attributes.GetValue("Department", ""),
           address,
-          licenseRequest.Attributes.GetValue("City", ""),
-          licenseRequest.Attributes.GetValue("Province", ""),
-          licenseRequest.Attributes.GetValue("PostalCode", ""),
-          licenseRequest.Attributes.GetValue("Country", ""),
-          licenseRequest.Attributes.GetValue("PhoneNumber", ""),
-          licenseRequest.Attributes.GetValue("AreaOfFocus", ""),
-          licenseRequest.Attributes.GetValue("ReferralSource", ""),
-          licenseRequest.Attributes.GetValue("ReferralDetails", ""),
-          licenseRequest.Attributes.GetValue("ProblemStatement", ""),
-          licenseRequest.Attributes.GetValue("OtherTools", ""),
-          licenseRequest.Attributes.GetValue("SponsorFirstName", ""),
-          licenseRequest.Attributes.GetValue("SponsorLastName", ""),
-          licenseRequest.Attributes.GetValue("SponsorOrganization", ""),
-          licenseRequest.Attributes.GetValue("SponsorEmail", ""),
-          licenseRequest.Attributes.GetValue("SponsorPhoneNumber", "")
+          request.Attributes.GetValue("City", ""),
+          request.Attributes.GetValue("Province", ""),
+          request.Attributes.GetValue("PostalCode", ""),
+          request.Attributes.GetValue("Country", ""),
+          request.Attributes.GetValue("PhoneNumber", ""),
+          request.Attributes.GetValue("AreaOfFocus", ""),
+          request.Attributes.GetValue("ReferralSource", ""),
+          request.Attributes.GetValue("ReferralDetails", ""),
+          request.Attributes.GetValue("ProblemStatement", ""),
+          request.Attributes.GetValue("OtherTools", ""),
+          request.Attributes.GetValue("SponsorFirstName", ""),
+          request.Attributes.GetValue("SponsorLastName", ""),
+          request.Attributes.GetValue("SponsorOrganization", ""),
+          request.Attributes.GetValue("SponsorEmail", ""),
+          request.Attributes.GetValue("SponsorPhoneNumber", "")
         );
 
       }
@@ -242,7 +224,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Return DataTable
       \-------------------------------------------------------------------------------------------------------------------------*/
-      return licenseRequestData;
+      return requestData;
 
     }
 
