@@ -123,7 +123,6 @@
   Plugin.prototype.getSearchResults = function(offset) {
     offset                      = offset? offset : 0;
     $.ajax({
-      headers                   : { 'Ocp-Apim-Subscription-Key': this.options.apiKey },
       url                       : this._baseApiUrl + '&start=' + start,
       success                   : this.bindSearchResults.bind(this)
     });
