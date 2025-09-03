@@ -29,9 +29,9 @@
 
 @section InlineScript {
 
-    apiKey                      : '@Configuration["BingSearch:PrimaryApiKey"]',
-    customConfig                : '@Configuration["BingSearch:CustomConfigID"]'
   $("#SearchResults").googleSearch({
+    apiKey                      : '@Configuration["GoogleSearch:ApiKey"]',
+    customConfig                : '@Configuration["GoogleSearch:CustomConfig"]'
   })
 
 }
