@@ -58,10 +58,10 @@
      * Set base query
      */
     this._searchQuery           = this.getQuerystringValue(this.options.queryStringParameter);
-    this._baseApiUrl            = 'https://api.bing.microsoft.com/v7.0/custom/search?q=' +
-                                  encodeURIComponent(this._searchQuery) +
-                                  '&customconfig=' + this.options.customConfig +
-                                  '&responseFilter=Webpages&safesearch=Off';
+    this._baseApiUrl            = 'https://www.googleapis.com/customsearch/v1' +
+        '?key='                 + this.options.apiKey +
+        '&cx='                  + this.options.customConfig +
+        '&q='                   + encodeURIComponent(this._searchQuery);
 
     /**
      * Locate user interface elements
@@ -123,8 +123,8 @@
   Plugin.prototype.getSearchResults = function(offset) {
     offset                      = offset? offset : 0;
     $.ajax({
-      url                       : this._baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
       headers                   : { 'Ocp-Apim-Subscription-Key': this.options.apiKey },
+      url                       : this._baseApiUrl + '&start=' + start,
       success                   : this.bindSearchResults.bind(this)
     });
 
