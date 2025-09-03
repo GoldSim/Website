@@ -138,7 +138,7 @@
     */
   Plugin.prototype.bindSearchResults = function(result, status, xhr) {
 
-    var searchResults           = result.webPages.value;
+    var searchResults           = result.items || [];
 
     // Clear current results
     $(this.element).html('');
@@ -146,9 +146,9 @@
     // Render search results
     for (var i                  = 0; i < searchResults.length; i++) {
 
-      var title                 = searchResults[i].name;
-      var url                   = searchResults[i].url;
-      var displayUrl            = searchResults[i].displayUrl;
+      var title                 = searchResults[i].title;
+      var url                   = searchResults[i].link;
+      var displayUrl            = searchResults[i].displayLink;
       var snippet               = searchResults[i].snippet;
 
       var searchResult          =
@@ -163,7 +163,7 @@
     }
 
     // Make updated estimated matches available to pagination
-    this._totalResults          = result.webPages.totalEstimatedMatches;
+    this._totalResults          = parseInt(result.searchInformation.totalResults || "0", 10);
 
     // Render pagination
     setTimeout(function () {
