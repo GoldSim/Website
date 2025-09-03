@@ -215,7 +215,7 @@
   /**
    * Determine and return the value for the requested querystring parameter
    */
-  Plugin.prototype.pageResults = function() {
+  Plugin.prototype.pageResults = function(event) {
 
     event.preventDefault();
 
