@@ -147,10 +147,10 @@
     // Render search results
     for (var i                  = 0; i < searchResults.length; i++) {
 
-      var title                 = searchResults[i].title;
+      var title                 = searchResults[i].htmlTitle;
       var url                   = searchResults[i].link;
       var displayUrl            = searchResults[i].displayLink;
-      var snippet               = searchResults[i].snippet;
+      var snippet               = searchResults[i].htmlSnippet;
 
       var searchResult          =
         '<div class="result">' +
