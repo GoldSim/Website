@@ -5,23 +5,24 @@
 \=============================================================================================================================*/
 
 /**
- * BING SEARCH
- * @file Object for retrieving search results from the Bing Search API, and also managing the paging buttons so users can
- * retrieve subsequent records.
+ * GOOGLE SEARCH
+ * @file Object for retrieving search results from the Google Programmable Custom Search API, and also managing the paging
+ * buttons so users can retrieve subsequent records.
  */
 ;(function(window, document, goldSimWeb, $, undefined) {
 
   /*============================================================================================================================
   | ESTABLISH VARIABLES
   \---------------------------------------------------------------------------------------------------------------------------*/
-  var pluginName                = "bingSearch";
+  var pluginName                = "googleSearch";
   var defaults                  = {
     apiKey                      : null,
     customConfig                : null,
     queryStringParameter        : 'SearchText',
     previousButton              : 'PreviousPage',
     nextButton                  : 'NextPage',
-    searchBox                   : 'SearchResultsSearchQuery'
+    searchBox                   : 'SearchResultsSearchQuery',
+    pageSize                    : 10
   };
 
   /*============================================================================================================================
@@ -58,10 +59,10 @@
      * Set base query
      */
     this._searchQuery           = this.getQuerystringValue(this.options.queryStringParameter);
-    this._baseApiUrl            = 'https://api.bing.microsoft.com/v7.0/custom/search?q=' +
-                                  encodeURIComponent(this._searchQuery) +
-                                  '&customconfig=' + this.options.customConfig +
-                                  '&responseFilter=Webpages&safesearch=Off';
+    this._baseApiUrl            = 'https://www.googleapis.com/customsearch/v1' +
+        '?key='                 + this.options.apiKey +
+        '&cx='                  + this.options.customConfig +
+        '&q='                   + encodeURIComponent(this._searchQuery);
 
     /**
      * Locate user interface elements
@@ -123,8 +124,7 @@
   Plugin.prototype.getSearchResults = function(offset) {
     offset                      = offset? offset : 0;
     $.ajax({
-      url                       : this._baseApiUrl + '&count=10&offset=' + offset + '&textDecorations=true&textFormat=HTML',
-      headers                   : { 'Ocp-Apim-Subscription-Key': this.options.apiKey },
+      url                       : this._baseApiUrl + '&start=' + offset,
       success                   : this.bindSearchResults.bind(this)
     });
 
@@ -139,7 +139,7 @@
     */
   Plugin.prototype.bindSearchResults = function(result, status, xhr) {
 
-    var searchResults           = result.webPages.value;
+    var searchResults           = result.items || [];
 
     // Clear current results
     $(this.element).html('');
@@ -147,9 +147,9 @@
     // Render search results
     for (var i                  = 0; i < searchResults.length; i++) {
 
-      var title                 = searchResults[i].name;
-      var url                   = searchResults[i].url;
-      var displayUrl            = searchResults[i].displayUrl;
+      var title                 = searchResults[i].title;
+      var url                   = searchResults[i].link;
+      var displayUrl            = searchResults[i].displayLink;
       var snippet               = searchResults[i].snippet;
 
       var searchResult          =
@@ -164,7 +164,7 @@
     }
 
     // Make updated estimated matches available to pagination
-    this._totalResults          = result.webPages.totalEstimatedMatches;
+    this._totalResults          = parseInt(result.searchInformation.totalResults || "0", this.options.pageSize);
 
     // Render pagination
     setTimeout(function () {
@@ -181,8 +181,7 @@
     */
   Plugin.prototype.setPagination = function(totalResults) {
 
-    var pageSize                = 10;
-    var totalPages              = Math.ceil(totalResults / pageSize);
+    var totalPages              = Math.ceil(totalResults / this.options.pageSize);
     var currentPageNumber       = Number(window.location.hash.length ? window.location.hash.substr(5) : 1);
 
     //Set previous button
@@ -216,7 +215,7 @@
   /**
    * Determine and return the value for the requested querystring parameter
    */
-  Plugin.prototype.pageResults = function() {
+  Plugin.prototype.pageResults = function(event) {
 
     event.preventDefault();
 
@@ -224,7 +223,7 @@
     var pageNumber              = Number(source.data("page") || 1);
     window.location.hash        = "Page" + pageNumber;
 
-    this.getSearchResults((pageNumber-1)*10);
+    this.getSearchResults((pageNumber-1)*this.options.pageSize);
 
   };
 
