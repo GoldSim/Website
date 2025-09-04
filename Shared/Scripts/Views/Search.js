@@ -123,7 +123,7 @@
   Plugin.prototype.getSearchResults = function(offset) {
     offset                      = offset? offset : 0;
     $.ajax({
-      url                       : this._baseApiUrl + '&start=' + start,
+      url                       : this._baseApiUrl + '&start=' + offset,
       success                   : this.bindSearchResults.bind(this)
     });
 
