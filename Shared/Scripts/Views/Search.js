@@ -122,7 +122,7 @@
     * search results markup.
     */
   Plugin.prototype.getSearchResults = function(offset) {
-    offset                      = offset? offset : 0;
+    offset                      = offset? offset : 1;
     $.ajax({
       url                       : this._baseApiUrl + '&start=' + offset,
       success                   : this.bindSearchResults.bind(this)
@@ -223,7 +223,7 @@
     var pageNumber              = Number(source.data("page") || 1);
     window.location.hash        = "Page" + pageNumber;
 
-    this.getSearchResults((pageNumber-1)*this.options.pageSize);
+    this.getSearchResults((pageNumber-1)*this.options.pageSize+1);
 
   };
 
