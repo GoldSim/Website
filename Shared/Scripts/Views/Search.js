@@ -21,7 +21,8 @@
     queryStringParameter        : 'SearchText',
     previousButton              : 'PreviousPage',
     nextButton                  : 'NextPage',
-    searchBox                   : 'SearchResultsSearchQuery'
+    searchBox                   : 'SearchResultsSearchQuery',
+    pageSize                    : 10
   };
 
   /*============================================================================================================================
@@ -163,7 +164,7 @@
     }
 
     // Make updated estimated matches available to pagination
-    this._totalResults          = parseInt(result.searchInformation.totalResults || "0", 10);
+    this._totalResults          = parseInt(result.searchInformation.totalResults || "0", this.options.pageSize);
 
     // Render pagination
     setTimeout(function () {
@@ -180,8 +181,7 @@
     */
   Plugin.prototype.setPagination = function(totalResults) {
 
-    var pageSize                = 10;
-    var totalPages              = Math.ceil(totalResults / pageSize);
+    var totalPages              = Math.ceil(totalResults / this.options.pageSize);
     var currentPageNumber       = Number(window.location.hash.length ? window.location.hash.substr(5) : 1);
 
     //Set previous button
@@ -223,7 +223,7 @@
     var pageNumber              = Number(source.data("page") || 1);
     window.location.hash        = "Page" + pageNumber;
 
-    this.getSearchResults((pageNumber-1)*10);
+    this.getSearchResults((pageNumber-1)*this.options.pageSize);
 
   };
 
