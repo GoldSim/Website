@@ -1,5 +1,10 @@
-﻿<div class="search form closed">
-  <form id="SearchBarSearchForm" action="/Web/Search/">
+﻿@model PageTopicViewModel
+@{
+  var action                    = Model.WebPath.StartsWith("/Courses/", StringComparison.OrdinalIgnoreCase)? Model.WebPath[..Model.WebPath.IndexOf('/', "/Courses/".Length)] + "/Search" : "/Web/Search/";
+}
+
+<div class="search form closed">
+  <form id="SearchBarSearchForm" action="@action">
     <!-- Search Input -->
     <div class="input">
       <input type="search" id="SearchBarSearchQuery" name="SearchText" />
