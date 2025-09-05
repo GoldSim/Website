@@ -18,6 +18,7 @@
   var defaults                  = {
     apiKey                      : null,
     customConfig                : null,
+    scope                       : null,
     queryStringParameter        : 'SearchText',
     previousButton              : 'PreviousPage',
     nextButton                  : 'NextPage',
@@ -63,6 +64,10 @@
         '?key='                 + this.options.apiKey +
         '&cx='                  + this.options.customConfig +
         '&q='                   + encodeURIComponent(this._searchQuery);
+
+    if (this.options.scope) {
+      this._baseApiUrl          += " site:" + this.options.scope;
+    }
 
     /**
      * Locate user interface elements
