@@ -1,6 +1,9 @@
 ﻿@model PageTopicViewModel
 @{
-  var action                    = Model.WebPath.StartsWith("/Courses/", StringComparison.OrdinalIgnoreCase)? Model.WebPath[..Model.WebPath.IndexOf('/', "/Courses/".Length)] + "/Search" : "/Web/Search/";
+  var action                    = "/Web/Search/";
+  if (Model.WebPath.StartsWith("/Courses/", StringComparison.OrdinalIgnoreCase) && !Model.WebPath.Equals("/Courses/", StringComparison.OrdinalIgnoreCase)) {
+    action                      = Model.WebPath[..Model.WebPath.IndexOf('/', "/Courses/".Length)] + "/Search";
+  }
 }
 
 <div class="search form closed">
