@@ -18,6 +18,15 @@
     };
   </script>
   <script type="text/javascript" id="MathJax-script" async src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
+  @RenderSection("Head", required: false)
+}
+
+@section Scripts {
+  @RenderSection("Scripts", required: false)
+}
+
+@section InlineScript {
+  @RenderSection("InlineScript", required: false)
 }
 
 @section HeaderSection {
