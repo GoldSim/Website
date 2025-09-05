@@ -1,5 +1,13 @@
-﻿@using Microsoft.Extensions.Configuration
+﻿@using System.Text.Encodings.Web
+@using Microsoft.Extensions.Configuration
 @inject IConfiguration Configuration
+@model PageTopicViewModel
+
+@{
+  if (Model.Parent?.ContentType.Equals("Course")?? false) {
+    Layout = "~/Areas/Courses/Views/Layout/_Layout.cshtml";
+  }
+}
 
 @section Head {
   <link rel="stylesheet" href="~/Shared/Styles/Views/Search.css" type="text/css" media="all" asp-append-version="true" />
@@ -31,7 +39,10 @@
 
   $("#SearchResults").googleSearch({
     apiKey                      : '@Configuration["GoogleSearch:ApiKey"]',
-    customConfig                : '@Configuration["GoogleSearch:CustomConfig"]'
+    customConfig                : '@Configuration["GoogleSearch:CustomConfig"]',
+    @if (Model.Parent?.ContentType.Equals("Course")?? false) {
+      @:scope                   : '@UrlEncoder.Default.Encode($"https://www.goldsim.com{Model.Parent.WebPath}")'
+    }
   })
 
 }

@@ -18,6 +18,7 @@
   var defaults                  = {
     apiKey                      : null,
     customConfig                : null,
+    scope                       : null,
     queryStringParameter        : 'SearchText',
     previousButton              : 'PreviousPage',
     nextButton                  : 'NextPage',
@@ -63,6 +64,10 @@
         '?key='                 + this.options.apiKey +
         '&cx='                  + this.options.customConfig +
         '&q='                   + encodeURIComponent(this._searchQuery);
+
+    if (this.options.scope) {
+      this._baseApiUrl          += " site:" + this.options.scope;
+    }
 
     /**
      * Locate user interface elements
@@ -122,7 +127,7 @@
     * search results markup.
     */
   Plugin.prototype.getSearchResults = function(offset) {
-    offset                      = offset? offset : 0;
+    offset                      = offset? offset : 1;
     $.ajax({
       url                       : this._baseApiUrl + '&start=' + offset,
       success                   : this.bindSearchResults.bind(this)
@@ -147,10 +152,10 @@
     // Render search results
     for (var i                  = 0; i < searchResults.length; i++) {
 
-      var title                 = searchResults[i].title;
+      var title                 = searchResults[i].htmlTitle;
       var url                   = searchResults[i].link;
       var displayUrl            = searchResults[i].displayLink;
-      var snippet               = searchResults[i].snippet;
+      var snippet               = searchResults[i].htmlSnippet;
 
       var searchResult          =
         '<div class="result">' +
@@ -223,7 +228,7 @@
     var pageNumber              = Number(source.data("page") || 1);
     window.location.hash        = "Page" + pageNumber;
 
-    this.getSearchResults((pageNumber-1)*this.options.pageSize);
+    this.getSearchResults((pageNumber-1)*this.options.pageSize+1);
 
   };
 
