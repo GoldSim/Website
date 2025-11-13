@@ -40,7 +40,7 @@ namespace GoldSim.Web.Areas.Courses.Controllers {
     /// <inheritdoc />
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async override Task<IActionResult> IndexAsync(string path) {
+    public override async Task<IActionResult> IndexAsync(string path) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Handle redirect

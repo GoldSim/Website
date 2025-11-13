@@ -122,7 +122,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async override Task<IActionResult> IndexAsync(string path) =>
+    public override async Task<IActionResult> IndexAsync(string path) =>
       TopicView(await GetViewModel().ConfigureAwait(true));
 
     /*==========================================================================================================================
