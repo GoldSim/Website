@@ -93,7 +93,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
       \------------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new TopicSearchViewModel() {
+      var viewModel             = new TopicSearchViewModel {
         Id                      = -1,
         WebPath                 = "/TopicSearch/",
         UniqueKey               = "TopicSearch",
@@ -144,7 +144,7 @@ namespace GoldSim.Web.Controllers {
       foreach (var attribute in topic.Attributes.ToList()) {
         var matches             = Regex.Matches(attribute.Value, query, _options);
         if (matches.Count > 0) {
-          topicReference        ??= new AssociatedTopicViewModel() {
+          topicReference        ??= new() {
             Title               = topic.Title,
             ShortTitle          = topic.Title,
             WebPath             = topic.GetWebPath()

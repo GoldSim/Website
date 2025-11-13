@@ -117,7 +117,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Create view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new MetadataLookupViewModel() {
+      var model = new MetadataLookupViewModel {
         Options = selectList,
         DefaultText = defaultText,
         Value = aspFor.Model?.ToString(),

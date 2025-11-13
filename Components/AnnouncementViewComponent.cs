@@ -55,7 +55,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new AnnouncementViewModel() {
+      var viewModel             = new AnnouncementViewModel {
         Label                   = announcementLabel,
         Url                     = announcementUrl
       };

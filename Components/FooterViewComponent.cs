@@ -53,7 +53,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new FooterViewModel() {
+      var navigationViewModel   = new FooterViewModel {
         NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath          = webPath,
         IsMainSite              = navigationRoot?.Equals("Web", StringComparison.OrdinalIgnoreCase)?? isInWeb?? true

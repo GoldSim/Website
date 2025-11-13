@@ -44,7 +44,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new RecaptchaViewModel() {
+      var viewModel             = new RecaptchaViewModel {
         SiteKey                 = SiteKey,
         Action                  = action
       };

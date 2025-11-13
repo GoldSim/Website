@@ -77,7 +77,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new UnitListViewModel() {
+      var navigationViewModel = new UnitListViewModel {
         NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };

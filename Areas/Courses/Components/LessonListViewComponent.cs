@@ -78,7 +78,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new LessonListViewModel() {
+      var navigationViewModel = new LessonListViewModel {
         NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };
@@ -116,7 +116,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
         HttpContext.Response.Cookies.Append(
           $"Status{CurrentTopic.Parent.Key}",
           isUnitNowComplete.ToString(),
-          new Microsoft.AspNetCore.Http.CookieOptions() {
+          new() {
             Path                = CurrentTopic.Parent.Parent.GetWebPath(),
             Expires             = DateTime.Now.AddYears(20)
           }
