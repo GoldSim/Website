@@ -16,7 +16,7 @@
 
   <!-- Body Content -->
   <section class="body">
-    @Html.Raw(@Model.Body)
+    @Html.Raw(Model.Body)
   </section>
   <!-- Body Content -->
 
@@ -71,7 +71,7 @@
         @if (viewType is "faq") {
           <span class="marker">A:</span>
         }
-        @Html.Raw(@contentItem.Description)
+        @Html.Raw(contentItem.Description)
         @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl?.ToString())) {
           <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
         }
