@@ -18,29 +18,30 @@
             </blockquote>
           }
         }
-        else if (Model.Action is TopicSearchAction.Search) {
-          if (Model.Results.Count is 0) {
-            <blockquote class="stop">
-              No results were found for the search query.
-            </blockquote>
+        else
+          switch (Model.Action) {
+            case TopicSearchAction.Search when Model.Results.Count is 0:
+              <blockquote class="stop">
+                No results were found for the search query.
+              </blockquote>
+              break;
+            case TopicSearchAction.Search:
+              <blockquote class="success">
+                @Model.Results.Count topics were found for the search query.
+              </blockquote>
+              break;
+            case TopicSearchAction.ReplacePreview:
+              <blockquote class="stop">
+                @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+              </blockquote>
+              break;
+            case TopicSearchAction.ReplaceConfirm:
+              <blockquote class="success">
+                @Model.Results.Count topics were successfully updated with the replacement expression.
+              </blockquote>
+              break;
           }
-          else {
-            <blockquote class="success">
-              @Model.Results.Count topics were found for the search query.
-            </blockquote>
-          }
-        }
-        else if (Model.Action is TopicSearchAction.ReplacePreview) {
-          <blockquote class="stop">
-            @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
-          </blockquote>
-        }
-        else if (Model.Action is TopicSearchAction.ReplaceConfirm) {
-          <blockquote class="success">
-            @Model.Results.Count topics were successfully updated with the replacement expression.
-          </blockquote>
-        }
-      </div>
+  </div>
     }
 
     <form id="SearchResultSearchForm" action="/TopicSearch/">
