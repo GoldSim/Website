@@ -32,7 +32,7 @@ namespace GoldSim.Web.Controllers {
     ///   Initializes a new instance of a Topic Controller with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
-    internal LegacyRedirectController(ITopicRepository topicRepository) : base() {
+    internal LegacyRedirectController(ITopicRepository topicRepository) {
       _topicRepository          = topicRepository;
     }
 
