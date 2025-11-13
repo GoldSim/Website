@@ -30,7 +30,7 @@
       <meta name="robots" content="noindex">
     }
     <partial name="_Breadcrumbs" />
-    @RenderSection("Head", false)
+    @await RenderSectionAsync("Head", false)
     <script type="text/javascript" src="/Shared/Scripts/Vendor/ApplicationInsights/applicationinsights-web.min.js"></script>
     <script type="text/javascript">
       var snippet = {
@@ -62,13 +62,13 @@
       gtag('config', 'G-6DX068ZQ00');
     </script>
     <noscript id="DeferredStyles">
-      @RenderSection("DeferredStyles", false)
+      @await RenderSectionAsync("DeferredStyles", false)
     </noscript>
   </head>
   <body vocab="http://schema.org/" typeof="WebPage">
 
     @if (IsSectionDefined("CookiesNoticeSection")) {
-      @RenderSection("CookiesNoticeSection")
+      @await RenderSectionAsync("CookiesNoticeSection")
     }
     else {
       <vc:cookies-notice />
@@ -76,13 +76,13 @@
 
     <!-- Site Header Area -->
     @if (IsSectionDefined("HeaderSection")) {
-      @RenderSection("HeaderSection")
+      @await RenderSectionAsync("HeaderSection")
     }
     else {
       <header id="SiteHeader" class="site header title-bar" role="banner" vocab="http://schema.org" typeof="WPHeader">
 
         @if (IsSectionDefined("TitleBarSection")) {
-          @RenderSection("TitleBarSection")
+          @await RenderSectionAsync("TitleBarSection")
         }
         else {
           <!-- (Small Screen) Navigation Toggle -->
@@ -111,7 +111,7 @@
     <!-- /Site Header Area -->
 
     @if (IsSectionDefined("MainContentSection")) {
-      @RenderSection("MainContentSection")
+      @await RenderSectionAsync("MainContentSection")
     }
     else {
 
@@ -119,7 +119,7 @@
       <main id="MainContentArea" role="main">
 
         @if (IsSectionDefined("PageHeaderSection")) {
-          @RenderSection("PageHeaderSection")
+          @await RenderSectionAsync("PageHeaderSection")
         }
         else {
 
@@ -127,14 +127,14 @@
           <section id="PageHeaderSection">
 
             @if (IsSectionDefined("ShortPageTitleSection")) {
-              @RenderSection("ShortPageTitleSection")
+              @await RenderSectionAsync("ShortPageTitleSection")
             }
 
           </section>
           <!-- /Page Header Area -->
 
           @if (IsSectionDefined("PageLevelNavigationSection")) {
-            @RenderSection("PageLevelNavigationSection")
+            @await RenderSectionAsync("PageLevelNavigationSection")
           }
           else {
             <vc:page-level-navigation />
@@ -146,7 +146,7 @@
         <article itemscope itemtype="http://schema.org/WebPageElement" itemprop="mainContentOfPage" class="grid-container">
 
           @if (IsSectionDefined("LongTitleSection")) {
-            @RenderSection("LongTitleSection")
+            @await RenderSectionAsync("LongTitleSection")
           }
           else {
             <!-- Long Title (Subtitle) -->
@@ -161,7 +161,7 @@
                 <p class="subtitle">@Model.Subtitle</p>
               }
               @if (IsSectionDefined("PostTitleSection")) {
-                @RenderSection("PostTitleSection")
+                @await RenderSectionAsync("PostTitleSection")
               }
             </header>
             <!-- /Long Title (Subtitle) -->
@@ -169,7 +169,7 @@
 
           <!-- Main Page Content -->
           @if (IsSectionDefined("PageBodySection")) {
-            @RenderSection("PageBodySection")
+            @await RenderSectionAsync("PageBodySection")
           }
           else {
             <div class="grid-x">
@@ -184,21 +184,21 @@
     }
 
     @if (IsSectionDefined("CallsToActionSection")) {
-      @RenderSection("CallsToActionSection")
+      @await RenderSectionAsync("CallsToActionSection")
     }
     else {
       <vc:calls-to-action />
     }
 
     @if (IsSectionDefined("AnnouncementSection")) {
-      @RenderSection("AnnouncementSection")
+      @await RenderSectionAsync("AnnouncementSection")
     }
     else {
       <vc:announcement />
     }
 
     @if (IsSectionDefined("FooterSection")) {
-      @RenderSection("FooterSection")
+      @await RenderSectionAsync("FooterSection")
     }
     else {
       <vc:footer />
@@ -241,7 +241,7 @@
     </script>
 
     <script defer src="/Shared/Scripts/Scripts.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", false)
+    @await RenderSectionAsync("Scripts", false)
 
     <script>
       /**
@@ -250,7 +250,7 @@
       window.addEventListener('DOMContentLoaded', function() {
         (function($) {
           $(document).foundation();
-          @RenderSection("InlineScript", false)
+          @await RenderSectionAsync("InlineScript", false)
         })(jQuery);
       });
     </script>

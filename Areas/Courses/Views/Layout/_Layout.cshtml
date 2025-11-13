@@ -18,15 +18,15 @@
     };
   </script>
   <script type="text/javascript" id="MathJax-script" async src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  @RenderSection("Head", required: false)
+  @await RenderSectionAsync("Head", required: false)
 }
 
 @section Scripts {
-  @RenderSection("Scripts", required: false)
+  @await RenderSectionAsync("Scripts", required: false)
 }
 
 @section InlineScript {
-  @RenderSection("InlineScript", required: false)
+  @await RenderSectionAsync("InlineScript", required: false)
 }
 
 @section HeaderSection {
@@ -59,7 +59,7 @@
 @section LongTitleSection {
 
   @if (IsSectionDefined("LongTitleSection")) {
-    @RenderSection("LongTitleSection")
+    @await RenderSectionAsync("LongTitleSection")
   }
   else {
     <!-- Long Title (Subtitle) -->
@@ -76,8 +76,8 @@
       }
       @if (IsSectionDefined("PostTitleSection")) {
         <div class="grid-x">
-          @RenderSection("PostTitleSection")
-        </div>
+          @await RenderSectionAsync("PostTitleSection")
+  </div>
       }
     </header>
     <!-- /Long Title (Subtitle) -->
