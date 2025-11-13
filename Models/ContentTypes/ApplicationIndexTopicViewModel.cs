@@ -101,9 +101,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) => Categories
-      .Where(t => t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal))
-      .FirstOrDefault()?.Title?? category;
+    public string GetCategoryTitle(string category) => Categories.FirstOrDefault(t =>
+      t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal)
+    )?.Title?? category;
 
     /*==========================================================================================================================
     | GET ALL APPLICATIONS

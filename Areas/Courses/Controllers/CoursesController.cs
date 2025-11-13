@@ -46,7 +46,7 @@ namespace GoldSim.Web.Areas.Courses.Controllers {
       | Handle redirect
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (CurrentTopic.ContentType.Equals("Unit", StringComparison.OrdinalIgnoreCase)) {
-        return Redirect(CurrentTopic.Children.Where(t => t.IsVisible()).FirstOrDefault().GetWebPath());
+        return Redirect(CurrentTopic.Children.FirstOrDefault(t => t.IsVisible())?.GetWebPath());
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
