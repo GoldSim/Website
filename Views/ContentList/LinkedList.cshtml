@@ -21,7 +21,7 @@
         <section id="Group-@category.Key" class="content list">
           <h1 id="@category.Key">@category.Title</h1>
           @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-            WriteContentItem(contentItem, "h2");
+            writeContentItem(contentItem, "h2");
           }
         </section>
       }
@@ -29,7 +29,7 @@
     else {
       <section class="content list">
         @foreach (var contentItem in Model.ContentItems) {
-          WriteContentItem(contentItem);
+          writeContentItem(contentItem);
         }
       </section>
     }
@@ -46,7 +46,7 @@
 
 @{
 
-  void WriteContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
+  void writeContentItem(ContentItemTopicViewModel contentItem, string element = "h1") {
     <article>
       <@element id="@contentItem.Key" class="link"><a href="@contentItem.LearnMoreUrl" rel="noopener" target="_blank">@contentItem.Title</a><@("/" + element)>
       @if (!String.IsNullOrWhiteSpace(contentItem.ThumbnailImage?.ToString())) {

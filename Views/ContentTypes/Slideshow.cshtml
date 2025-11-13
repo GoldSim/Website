@@ -18,7 +18,7 @@
       <div class="owl-carousel">
         @if (Model.ContentItems.Count > 0) {
           foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
-            WriteContentItem(contentItem);
+            writeContentItem(contentItem);
           }
         }
       </div>
@@ -47,7 +47,7 @@
 
 @{
 
-  void WriteContentItem(SlideTopicViewModel contentItem) {
+  void writeContentItem(SlideTopicViewModel contentItem) {
     <article data-hash="@contentItem.Key" class="slide">
       @Html.Raw(contentItem.Description)
       @if (!String.IsNullOrWhiteSpace(contentItem.LearnMoreUrl?.ToString())) {

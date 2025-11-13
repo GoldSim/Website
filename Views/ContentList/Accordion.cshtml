@@ -31,7 +31,7 @@
           <h2>@category.Title</h2>
           <ul data-accordion data-allow-all-closed="true" data-deep-link="true">
             @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-              WriteContentItem(contentItem, viewType);
+              writeContentItem(contentItem, viewType);
             }
           </ul>
         </section>
@@ -40,7 +40,7 @@
     else {
       <ul data-accordion data-allow-all-closed="true" data-deep-link="true">
         @foreach (var contentItem in Model.ContentItems) {
-          WriteContentItem(contentItem, viewType);
+          writeContentItem(contentItem, viewType);
         }
       </ul>
     }
@@ -56,7 +56,7 @@
 
 @{
 
-  void WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
+  void writeContentItem(ContentItemTopicViewModel contentItem, string viewType) {
     <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType is "faq" ? "Question" : "ListItem")">
       <a class="accordion-title@(viewType is "faq"? " question" : "")" href="#@contentItem.Key">
         @if (viewType is "faq") {

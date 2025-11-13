@@ -8,7 +8,7 @@
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false">
       <!-- data-submenu-toggle="true" -->
       @foreach (var topic in Model.NavigationRoot.Children) {
-        @WriteMenu(topic, false)
+        @writeMenu(topic, false)
       }
     </ul>
   </nav>
@@ -17,7 +17,7 @@
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
         @foreach (var topic in Model.NavigationRoot.Children) {
-          @WriteMenu(topic, true)
+          @writeMenu(topic, true)
         }
       </ul>
     </div>
@@ -27,9 +27,9 @@
 
 @{
 
-  IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
+  IHtmlContent body(Func<object, IHtmlContent> body) => body(null);
 
-  IHtmlContent WriteMenu(NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
+  IHtmlContent writeMenu(NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
 
     var isParentMenu            = topic.Children.Count > 2;
     var targetUrl               = !isParentMenu || isDesktop? topic.WebPath : "#";
@@ -43,7 +43,7 @@
     var isActiveClass           = topic.IsSelected(Model.CurrentWebPath)? "is-active" : "";
     var childSelectedClass      = topic.WebPath.Equals(Model.CurrentWebPath)? "selected" : "";
 
-    return Body(
+    return body(
       @<li class="@submenuParentClass">
         <a href="@targetUrl" class="@selectedClass" data-indent-level="@indentLevel">@title</a>
         @if (isParentMenu) {
@@ -52,7 +52,7 @@
               <li><a href="@topic.WebPath" class="@childSelectedClass" data-indent-level="@indentLevel">Overview</a></li>
             }
             @foreach (var childTopic in topic.Children) {
-              @WriteMenu(childTopic, isDesktop, indentLevel + 1)
+              @writeMenu(childTopic, isDesktop, indentLevel + 1)
             }
           </ul>
         }
