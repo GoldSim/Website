@@ -8,7 +8,7 @@
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false">
       <!-- data-submenu-toggle="true" -->
       @foreach (var topic in Model.NavigationRoot.Children) {
-        @WriteMenu(topic, false);
+        @WriteMenu(topic, false)
       }
     </ul>
   </nav>
@@ -17,7 +17,7 @@
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
         @foreach (var topic in Model.NavigationRoot.Children) {
-          @WriteMenu(topic, true);
+          @WriteMenu(topic, true)
         }
       </ul>
     </div>
@@ -52,7 +52,7 @@
               <li><a href="@topic.WebPath" class="@childSelectedClass" data-indent-level="@indentLevel">Overview</a></li>
             }
             @foreach (var childTopic in topic.Children) {
-              @WriteMenu(childTopic, isDesktop, indentLevel + 1);
+              @WriteMenu(childTopic, isDesktop, indentLevel + 1)
             }
           </ul>
         }
