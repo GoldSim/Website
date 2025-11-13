@@ -16,7 +16,8 @@ namespace GoldSim.Web.Areas.Payments.Services {
   ///   Provides a strongly-typed data transfer object for communication with the Braintree Payment Gateway.
   /// </summary>
   /// <remarks>
-  ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>
+  ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>.
+  /// </remarks>
   internal sealed class BraintreeConfiguration : IBraintreeConfiguration {
 
     /*==========================================================================================================================

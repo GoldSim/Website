@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <remarks>
     ///   Indexed can, optionally, contain multiple document types—e.g., <see cref="ApplicationPageTopicViewModel"/>, <see
-    ///   cref="ExampleApplicationTopicViewModel"/>, &c. The <see cref="FilteredDocumentType"/> allows the current view to be
+    ///   cref="ExampleApplicationTopicViewModel"/>, etc. The <see cref="FilteredDocumentType"/> allows the current view to be
     ///   filtered by one specific type.
     /// </remarks>
     public string FilteredDocumentType { get; init; }
