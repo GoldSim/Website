@@ -103,7 +103,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
         var isCurrent = CurrentTopic.Key.Equals(trackedNavigationViewModel.Key, StringComparison.OrdinalIgnoreCase);
         var isVisited = IsVisited(trackedNavigationViewModel.Key);
-        trackedNavigationViewModel.IsVisited = isCurrent? true : isVisited? (bool?)true : null;
+        trackedNavigationViewModel.IsVisited = isCurrent? true : isVisited? true : null;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -161,7 +161,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// </summary>
     private bool? IsUnitComplete() =>
       HttpContext.Request.Cookies.TryGetValue($"Status{CurrentTopic.Parent.Key}", out var isComplete) ?
-        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
         null;
 
   } //Class

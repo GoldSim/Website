@@ -127,7 +127,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// </summary>
     private bool? IsComplete(string key) =>
       HttpContext.Request.Cookies.TryGetValue($"Status{key}", out var isComplete)?
-        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
         null;
 
   } //Class

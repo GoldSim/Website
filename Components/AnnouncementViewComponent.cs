@@ -63,7 +63,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Conditionally return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : (IViewComponentResult)View(viewModel);
+      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : View(viewModel);
 
     }
 

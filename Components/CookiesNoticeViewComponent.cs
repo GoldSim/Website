@@ -39,7 +39,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Conditionally return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return String.IsNullOrWhiteSpace(consentCookie)? (IViewComponentResult) View() : Content("");
+      return String.IsNullOrWhiteSpace(consentCookie)? View() : Content("");
 
     }
 
