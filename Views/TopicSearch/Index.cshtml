@@ -92,7 +92,7 @@
       <div id="SearchResults">
         <h1>Results</h1>
         <ul>
-        @foreach (var topic in @Model.Results.Keys) {
+        @foreach (var topic in Model.Results.Keys) {
           <li>
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath.Replace(Model.Scope, "").Replace("//", "/")</a>
             @if (!Model.UseRegEx) {
