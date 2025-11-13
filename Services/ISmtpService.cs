@@ -11,7 +11,7 @@ namespace GoldSim.Web.Services {
   | INTERFACE: SMTP SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Given a <see cref="MailMessage", will send through an SMTP service configured as part of a concrete implementation.
+  ///   Given a <see cref="MailMessage"/>, will send through an SMTP service configured as part of a concrete implementation.
   /// </summary>
   /// <remarks>
   ///   For simplicity and familiarity, the <see cref="ISmtpService"/> uses ASP.NET Core's out-of-the-box <see
