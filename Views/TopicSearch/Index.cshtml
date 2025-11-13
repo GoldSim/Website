@@ -96,7 +96,7 @@
           <li>
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath.Replace(Model.Scope, "").Replace("//", "/")</a>
             @if (!Model.UseRegEx) {
-              var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { Key = g.Key, Count = g.Count()}).OrderBy(x => x.Count).ToList();
+              var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { g.Key, Count = g.Count()}).OrderBy(x => x.Count).ToList();
               if (attributes.Count is 1) {
                 <span>(@(pluralize("instance", attributes.First().Count)) in <strong>@attributes.First().Key</strong>)</span>
               }
