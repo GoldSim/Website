@@ -70,7 +70,7 @@ namespace GoldSim.Web.Controllers {
 
       // Validate scope
       if (scopedTopic is null) {
-        errors.Add($"No topic could be found at the scope. Please confirm the path.");
+        errors.Add("No topic could be found at the scope. Please confirm the path.");
       }
 
       // Validate regular expression
@@ -79,7 +79,7 @@ namespace GoldSim.Web.Controllers {
           _ = Regex.Match(String.Empty, query);
         }
         catch (ArgumentException) {
-          errors.Add($"The regular expression provided is not valid. Please check the syntax.");
+          errors.Add("The regular expression provided is not valid. Please check the syntax.");
         }
       }
 
