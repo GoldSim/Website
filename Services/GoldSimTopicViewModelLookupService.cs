@@ -19,7 +19,7 @@ namespace GoldSim.Web {
   | CLASS: GOLDSIM TOPIC VIEW MODEL LOOKUP SERVICE
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a mapping between string and class names to be used when mapping <see cref="Topic"/> to a <see
+  ///   Provides a mapping between string and class names to be used when mapping <see cref="OnTopic.Topic"/> to a <see
   ///   cref="TopicViewModel"/> or derived class.
   /// </summary>
   internal sealed class GoldSimTopicViewModelLookupService : StaticTypeLookupService {
@@ -28,7 +28,7 @@ namespace GoldSim.Web {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Instantiates a new instance of the <see cref="GoldSimViewModelLookupService"/>.
+    ///   Instantiates a new instance of the GoldSimViewModelLookupService.
     /// </summary>
     /// <returns>A new instance of the <see cref="GoldSimViewModelLookupService"/>.</returns>
     internal GoldSimTopicViewModelLookupService() : base() {

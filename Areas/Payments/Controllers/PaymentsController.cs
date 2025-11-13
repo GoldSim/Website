@@ -307,7 +307,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     | ACTION: VERIFY INVOICE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an invoice number, ensures the values matches a valid <see cref="InvoiceTopicViewModel"/>.
+    ///   Given an invoice number, ensures the values matches a valid InvoiceTopicViewModel.
     /// </summary>
     /// <remarks>
     ///   The purpose of this function is exclusively to validate whether or not an invoice number is valid. If the supplied
@@ -335,7 +335,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     | ACTION: VERIFY INVOICE AMOUNT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    ///   Given an invoice number and amount, ensure the values match a valid InvoiceTopicViewModel.
     /// </summary>
     /// <remarks>
     ///   This is separated from <see cref="VerifyInvoiceNumber(Int32?)"/> so that we can return a distinct error for the

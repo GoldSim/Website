@@ -32,7 +32,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref ="OrdersController"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref ="InvoicesController"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     internal InvoicesController(

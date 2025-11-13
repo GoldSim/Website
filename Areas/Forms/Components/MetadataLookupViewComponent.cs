@@ -33,12 +33,13 @@ namespace GoldSim.Web.Areas.Forms.Components {
     /// </summary>
     /// <remarks>
     ///   While this implementation satisfies GoldSim's current requirements, it has a major design flaw that necessitates it
-    ///   be placed within a container with <c>for</c> or <c>asp-for</c>, such as <see cref="HtmlHelperEditorExtensions.
-    ///   EditorFor"/>. That's because the view is relying on the <see cref="ViewComponent.ViewData"/> to be populated as part
-    ///   of that process.  Ideally, this should be able to fill that information in on its own, but that mandates further
-    ///   exploration. Further, because objects in the view aren't being bound against the original property, they're not able
-    ///   to correctly wireup any validator attributes. That said, this isn't currently a show stopper as we're already nesting
-    ///   the call under an editor template and can compensate for validation on the server.
+    ///   be placed within a container with <c>for</c> or <c>asp-for</c>, such as <see
+    ///   cref="HtmlHelperEditorExtensions.EditorFor"/>. That's because the view is relying on the <see
+    ///   cref="ViewComponent.ViewData"/> to be populated as part of that process.  Ideally, this should be able to fill that
+    ///   information in on its own, but that mandates further exploration. Further, because objects in the view aren't being
+    ///   bound against the original property, they're not able to correctly wireup any validator attributes. That said, this
+    ///   isn't currently a show stopper as we're already nesting the call under an editor template and can compensate for
+    ///   validation on the server.
     /// </remarks>
     /// <returns>A <see cref="MetadataLookupViewComponent"/>.</returns>
     internal MetadataLookupViewComponent(ITopicRepository topicRepository) {

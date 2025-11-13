@@ -42,7 +42,7 @@ namespace GoldSim.Web.Models.ContentTypes.ContentItems {
     | KEY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the topic's <see cref="Key"/> attribute, the primary text identifier for the <see cref="Topic"/>.
+    ///   Gets the topic's <see cref="Key"/> attribute, the primary text identifier for the <see cref="OnTopic.Topic"/>.
     /// </summary>
     public string Key { get; init; }
 

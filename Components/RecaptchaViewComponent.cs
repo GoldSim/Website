@@ -19,7 +19,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="ReCaptchaViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a ReCaptchaViewComponent with necessary dependencies.
     /// </summary>
     internal RecaptchaViewComponent(string siteKey) {
       SiteKey                   = siteKey;

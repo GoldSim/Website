@@ -29,7 +29,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     | FOLLOW-UP PAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   References the <see cref="Topic.Id"/> of the page that should be redirected to upon completion.
+    ///   References the <see cref="OnTopic.Topic.Id"/> of the page that should be redirected to upon completion.
     /// </summary>
     [MapAs(typeof(CoreTopicViewModel))]
     public CoreTopicViewModel FollowUpPage { get; init; }

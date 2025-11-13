@@ -29,9 +29,9 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     ///   The unique identifier assigned to OnTopic for the particular invoice.
     /// </summary>
     /// <remarks>
-    ///   By convention, invoices are assigned the same <see cref="Topic.Key"/> as their <see cref="InvoiceNumber"/>. As such,
-    ///   the key will either be null (if it's a new invoice) or will be the original <see cref="InvoiceNumber"/> (if it's a
-    ///   previously saved invoice that's being edited). That can be used to provide conditional logic for existing invoices,
+    ///   By convention, invoices are assigned the same <see cref="OnTopic.Topic.Key"/> as their <see cref="InvoiceNumber"/>. As
+    ///   such, the key will either be null (if it's a new invoice) or will be the original <see cref="InvoiceNumber"/> (if it's
+    ///   a previously saved invoice that's being edited). That can be used to provide conditional logic for existing invoices,
     ///   such as detecting renames.
     /// </remarks>
     public int? Key { get; set; }

@@ -12,8 +12,8 @@ namespace GoldSim.Web.Models.Components {
   | VIEW MODEL: CALLS TO ACTION
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for feeding views with information about the <see cref="
-  ///   CallsToActionViewComponent"/>.
+  ///   Provides a strongly-typed data transfer object for feeding views with information about the <see
+  ///   cref="CallsToActionViewComponent"/>.
   /// </summary>
   internal sealed class CallsToActionViewModel : NavigationViewModel<NavigationTopicViewModel> {
 
