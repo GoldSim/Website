@@ -30,14 +30,13 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository = topicRepository;
     private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
 
     /*==========================================================================================================================
     | INDEX
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Searches all topics in the supplied <see cref="_topicRepository"/> for the <paramref name="query"/>, if provided.
+    ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
@@ -62,7 +61,7 @@ namespace GoldSim.Web.Controllers {
       | Find scope
       \------------------------------------------------------------------------------------------------------------------------*/
       var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')?? "Root";
-      var scopedTopic           = _topicRepository.Load().GetByUniqueKey(uniqueKey);
+      var scopedTopic           = topicRepository.Load().GetByUniqueKey(uniqueKey);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Validate inputs
@@ -171,7 +170,7 @@ namespace GoldSim.Web.Controllers {
       }
 
       if (topicReference is not null && action is TopicSearchAction.ReplaceConfirm) {
-        _topicRepository.Save(topic);
+        topicRepository.Save(topic);
       }
 
       // Recursively replace results for each child topic
