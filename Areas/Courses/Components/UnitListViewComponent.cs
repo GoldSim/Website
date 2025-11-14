@@ -4,7 +4,6 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using GoldSim.Web.Areas.Courses.Models;
-using GoldSim.Web.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
