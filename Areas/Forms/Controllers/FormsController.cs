@@ -323,7 +323,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+      using var mail            = new MailMessage(new MailAddress(sender), new(recipient)) {
         Subject                 = subject,
         Body                    = GetEmailBody(),
         IsBodyHtml              = true
@@ -362,7 +362,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
+      using var mail            = new MailMessage(new MailAddress(sender), new(recipient)) {
         Subject                 = subject,
         Body                    = pageContents,
         IsBodyHtml              = true
