@@ -40,6 +40,8 @@
                 @Model.Results.Count topics were successfully updated with the replacement expression.
               </blockquote>
               break;
+            default:
+              throw new ArgumentOutOfRangeException(Model.Action.ToString());
           }
   </div>
     }
