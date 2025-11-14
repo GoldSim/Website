@@ -13,6 +13,7 @@ resharper_unused_member_global_highlighting = none
 
 [Areas/**/*]
 resharper_mvc_partial_view_not_resolved_highlighting = none
+resharper_mvc_view_not_resolved_highlighting = none
 
 [**/*Email.cshtml]
 resharper_center_tag_is_obsolete_highlighting = none
