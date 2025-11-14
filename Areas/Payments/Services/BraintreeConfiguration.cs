@@ -45,10 +45,6 @@ namespace GoldSim.Web.Areas.Payments.Services {
     | PUBLIC PROPERTIES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private string Environment { get; set; } = "production";
-    private string MerchantId { get; set; }
-    private string PublicKey { get; set; }
-    private string PrivateKey { get; set; }
-
     /*==========================================================================================================================
     | CREATE GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -59,9 +55,9 @@ namespace GoldSim.Web.Areas.Payments.Services {
     public IBraintreeGateway CreateGateway() =>
       new BraintreeGateway(
         Braintree.Environment.ParseEnvironment(Environment),
-        GetConfigurationSetting(nameof(MerchantId), MerchantId),
-        GetConfigurationSetting(nameof(PublicKey), PublicKey),
-        GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
+        GetConfigurationSetting("MerchantId"),
+        GetConfigurationSetting("PublicKey"),
+        GetConfigurationSetting("PrivateKey")
       );
 
     /*==========================================================================================================================
