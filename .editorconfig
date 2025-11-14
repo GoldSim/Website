@@ -9,3 +9,4 @@ resharper_unused_auto_property_accessor_global_highlighting = none
 
 [**/*Email.cshtml]
 resharper_html_obsolete_highlighting = none
+resharper_center_tag_is_obsolete_highlighting = none
