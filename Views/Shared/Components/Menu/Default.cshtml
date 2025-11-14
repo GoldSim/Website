@@ -27,7 +27,7 @@
 
 @{
 
-  IHtmlContent body(Func<object, IHtmlContent> body) => body(null);
+  IHtmlContent body(Func<object, IHtmlContent> bodyValue) => bodyValue(null);
 
   IHtmlContent writeMenu(NavigationTopicViewModel topic, bool isDesktop, int indentLevel = 1) {
 

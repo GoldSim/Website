@@ -90,8 +90,8 @@
 
 @{
 
-  string getBreadCrumbs(TopicViewModel topic) {
-    if (topic is not PageTopicViewModel pageTopic) {
+  string getBreadCrumbs(TopicViewModel currentTopic) {
+    if (currentTopic is not PageTopicViewModel pageTopic) {
       return "";
     }
     var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
