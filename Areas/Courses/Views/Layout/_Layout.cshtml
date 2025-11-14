@@ -65,13 +65,13 @@
     <!-- Long Title (Subtitle) -->
     <header>
       @if (!Model.ContentType.Equals("CourseList", StringComparison.OrdinalIgnoreCase)) {
-        <p class="category title">@Html.Raw(getBreadCrumbs(topic.Parent))</p>
+        <p class="category title">@Html.Raw(getBreadCrumbs(topic?.Parent))</p>
       }
       @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
         <h2 class="category title">@ViewBag.Context</h2>
       }
-      <h1 class="title">@topic.Title</h1>
-      @if (!String.IsNullOrWhiteSpace(topic.Subtitle)) {
+      <h1 class="title">@topic?.Title</h1>
+      @if (!String.IsNullOrWhiteSpace(topic?.Subtitle)) {
         <p class="subtitle">@topic.Subtitle</p>
       }
       @if (IsSectionDefined("PostTitleSection")) {
