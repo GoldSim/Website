@@ -356,14 +356,14 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     | HELPER: SEND CUSTOMER RECEIPT (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Send an email to the customer containing the contents of a configured webpage.
+    ///   Send email to the customer containing the contents of a configured webpage.
     /// </summary>
     private async Task SendCustomerReceipt(EmailTopicViewModel webpage, string recipient, string sender = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var subject               = webpage.ShortTitle?? webpage.Title?? webpage.Key?? "GoldSim Request";
+      var subject               = webpage.ShortTitle?? webpage.Title;
       var request               = HttpContext.Request;
       var url                   = new Uri($"{request.Scheme}://{request.Host}{webpage.WebPath}");
       sender                    ??= "Software@GoldSim.com";
