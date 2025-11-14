@@ -96,7 +96,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Lookup metadata values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var metadataList          = _topicRepository.Load(metadataKey)?.Children?? new KeyedTopicCollection();
+      var metadataList          = _topicRepository.Load(metadataKey)?.Children?? [];
       var selectList            = new SelectList(metadataList, valueField, textField, aspFor.Model?.ToString());
 
       /*------------------------------------------------------------------------------------------------------------------------
