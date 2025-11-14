@@ -250,7 +250,7 @@
                     <img src="data:image/png;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" data-src="https://media.GoldSim.com/Images/Web/Products/@applicationContainer.GetImageKey()/@applicationContainer.GetImageKey()_400px.png" />
                   </picture>
                   <div class="card-section">
-                    <h2>@applicationContainer.GetContainerKey() <nobr>Systems Modeling</nobr></h2>
+                    <h2>@applicationContainer.GetContainerKey() <span class="no-break">Systems Modeling</span></h2>
                     <ul id="@(applicationContainer.Key + "Applications")">
                       @foreach (var application in applicationContainer.Children) {
                         <li><a href="@application.WebPath">@(application.ShortTitle?? application.Title) &raquo;</a></li>
