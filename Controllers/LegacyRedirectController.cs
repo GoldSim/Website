@@ -71,11 +71,11 @@ namespace GoldSim.Web.Controllers {
       if (rootTopic.Attributes.GetValue(attributeName) == attributeValue) {
         return rootTopic;
       }
-      foreach (var topic in rootTopic.Children) {
-        var returnTopic = FindTopicWithAttribute(topic, attributeName, attributeValue);
-        if (returnTopic is not null) return returnTopic;
-      }
-      return null;
+
+      return rootTopic.Children
+        .Select(topic => FindTopicWithAttribute(topic, attributeName, attributeValue))
+        .FirstOrDefault(returnTopic => returnTopic is not null);
+
     }
 
   } // Class
