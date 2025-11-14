@@ -13,7 +13,6 @@ namespace GoldSim.Web.Areas.Courses.Models {
   ///   Provides a strongly-typed data transfer object for feeding views with information about all <c>Course</c> topics
   ///   currently offered.
   /// </summary>
-  public sealed record CourseListTopicViewModel: PageTopicViewModel {
+  public sealed record CourseListTopicViewModel : PageTopicViewModel;
 
-  } // Class
 } // Namespace

@@ -12,7 +12,6 @@ namespace GoldSim.Web.Areas.Administration.Models.Licenses {
   /// <summary>
   ///   A view model for rendering an academic licensing request.
   /// </summary>
-  public sealed record StudentAcademicFormTopicViewModel : LicenseRequestTopicViewModel {
+  public sealed record StudentAcademicFormTopicViewModel : LicenseRequestTopicViewModel;
 
-  } // Class
 } // Namespace
