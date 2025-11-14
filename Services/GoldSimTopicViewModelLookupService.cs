@@ -28,9 +28,9 @@ namespace GoldSim.Web {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Instantiates a new instance of the GoldSimViewModelLookupService.
+    ///   Instantiates a new instance of the <see cref="GoldSimTopicViewModelLookupService"/>.
     /// </summary>
-    /// <returns>A new instance of the <see cref="GoldSimViewModelLookupService"/>.</returns>
+    /// <returns>A new instance of the <see cref="GoldSimTopicViewModelLookupService"/>.</returns>
     internal GoldSimTopicViewModelLookupService() : base() {
 
       /*------------------------------------------------------------------------------------------------------------------------
