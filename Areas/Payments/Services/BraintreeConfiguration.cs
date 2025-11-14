@@ -27,6 +27,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IConfiguration                  _configuration;
     private readonly            RouteData                       _routeData;
+    private readonly            string                          _environment                    = "production";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -42,10 +43,6 @@ namespace GoldSim.Web.Areas.Payments.Services {
     }
 
     /*==========================================================================================================================
-    | PUBLIC PROPERTIES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private string Environment { get; set; } = "production";
-    /*==========================================================================================================================
     | CREATE GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -54,7 +51,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
     /// <returns>The configured Braintree payments gateway.</returns>
     public IBraintreeGateway CreateGateway() =>
       new BraintreeGateway(
-        Braintree.Environment.ParseEnvironment(Environment),
+        Braintree.Environment.ParseEnvironment(_environment),
         GetConfigurationSetting("MerchantId"),
         GetConfigurationSetting("PublicKey"),
         GetConfigurationSetting("PrivateKey")
@@ -88,7 +85,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var paymentsTopic         = _topicRepository.Load(_routeData);
-      var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
+      var environmentVariable   = _environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
       var compositeVariable     = $"Braintree:{environmentVariable}:{setting}";
       var compositeAttributeKey = $"Braintree{environmentVariable}{setting}";
       var value                 = defaultValue;
