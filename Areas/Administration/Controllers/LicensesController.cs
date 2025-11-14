@@ -55,7 +55,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = TopicRepository.Load(_licenseRoot)?.Children;
+      var licenseRequestContainer       = CurrentTopic?.Children?? [];
       var validContentTypes             = new[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);
@@ -90,7 +90,11 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
           continue;
         }
         var topic = TopicRepository.Load(topicId);
-        if (!topic.GetUniqueKey().StartsWith(_licenseRoot, StringComparison.InvariantCultureIgnoreCase)) {
+        if (
+          CurrentTopic is null ||
+          topic is null ||
+          !topic.GetUniqueKey().StartsWith(CurrentTopic.GetWebPath(), StringComparison.InvariantCultureIgnoreCase)
+        ) {
           continue;
         }
         TopicRepository.Delete(topic);
