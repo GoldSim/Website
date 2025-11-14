@@ -237,8 +237,8 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       emailBody.AppendLine(" - Company Name: "                  + bindingModel.Organization);
       emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
       emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
-      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ creditCard?.LastFour?? "Not Available");
-      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType?? "Not Available");
+      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ (creditCard?.LastFour?? "Not Available"));
+      emailBody.AppendLine(" - Card Type: "                     + (creditCard?.CardType.ToString()?? "Not Available"));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process successful result
