@@ -1,0 +1,3 @@
+[**/*.cs]
+resharper_invert_if_highlighting = none
+
