@@ -6,3 +6,6 @@ resharper_property_can_be_made_init_only_global_highlighting = none
 resharper_unused_member_global_highlighting = none
 resharper_collection_never_updated_global_highlighting = none
 resharper_unused_auto_property_accessor_global_highlighting = none
+
+[**/*Email.cshtml]
+resharper_html_obsolete_highlighting = none
