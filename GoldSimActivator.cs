@@ -165,7 +165,7 @@ namespace GoldSim.Web {
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
       // Force controller recognition for specific Content Types
-      if (controllerType.Equals(typeof(TopicController))) {
+      if (controllerType == typeof(TopicController)) {
         controllerType = _topicRepository.Load(context.RouteData)?.ContentType switch {
           "Payments" => typeof(PaymentsController),
           _ => controllerType
