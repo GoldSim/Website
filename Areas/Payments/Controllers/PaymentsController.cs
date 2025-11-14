@@ -69,7 +69,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// <summary>
     ///   Defines a subset of Braintree transaction statuses, specifically associated with successful transactions.
     /// </summary>
-    private static readonly TransactionStatus[] TransactionSuccessStatuses = [
+    private static readonly TransactionStatus[] _transactionSuccessStatuses = [
       TransactionStatus.AUTHORIZED,
       TransactionStatus.AUTHORIZING,
       TransactionStatus.SETTLED,
@@ -243,7 +243,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (result.IsSuccess() && transaction is not null && TransactionSuccessStatuses.Contains(transaction.Status)) {
+      if (result.IsSuccess() && transaction is not null && _transactionSuccessStatuses.Contains(transaction.Status)) {
         mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
