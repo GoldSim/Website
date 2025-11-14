@@ -1,5 +1,6 @@
 [**/*.cs]
 resharper_invert_if_highlighting = none
+resharper_csharp_namespace_body = block_scoped
 
 [**/Models/**/*.cs]
 resharper_property_can_be_made_init_only_global_highlighting = none
