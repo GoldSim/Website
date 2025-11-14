@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 using OnTopic;
