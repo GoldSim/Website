@@ -45,7 +45,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Retrieves the root <see cref="Topic"/> from which to map the <see cref="TrackedNavigationTopicViewModel"/> objects.
     /// </summary>
     /// <remarks>
-    ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
+    ///   The navigation root in the case of the child navigation is simply the <see cref="Topic.Parent"/> of the current topic.
     /// </remarks>
     private Topic GetNavigationRoot() => CurrentTopic;
 

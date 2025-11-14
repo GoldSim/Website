@@ -88,7 +88,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Optionally allows the form's <see cref="FormPageTopicViewModel{T}.BindingModel" /> to be saved as a new <see
-    ///   cref="OnTopic.Topic"/> in the configured <see cref="OnTopic.Repositories.ITopicrepository"/>.
+    ///   cref="OnTopic.Topic"/> in the configured <see cref="ITopicRepository"/>.
     /// </summary>
     public bool SaveAsTopic { get; init; }
 

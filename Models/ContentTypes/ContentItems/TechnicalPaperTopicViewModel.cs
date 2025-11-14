@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using GoldSim.Web.Models.Associations;
 
 namespace GoldSim.Web.Models.ContentTypes.ContentItems {
 

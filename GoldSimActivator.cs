@@ -145,7 +145,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of controllers in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ControllerContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -231,7 +231,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of view components in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ViewComponentContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------

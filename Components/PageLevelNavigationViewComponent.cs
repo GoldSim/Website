@@ -5,6 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
 using OnTopic.AspNetCore.Mvc.Components;
+using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 

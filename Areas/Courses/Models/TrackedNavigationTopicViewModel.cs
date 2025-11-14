@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
+using OnTopic.AspNetCore.Mvc.Components;
 
 namespace GoldSim.Web.Areas.Courses.Models {
 
@@ -16,7 +17,7 @@ namespace GoldSim.Web.Areas.Courses.Models {
   /// </summary>
   /// <remarks>
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
-  ///   constructed by the <see cref="LayoutController"/>.
+  ///   constructed by the <see cref="NavigationTopicViewComponentBase{T}"/>.
   /// </remarks>
   public sealed class TrackedNavigationTopicViewModel: CoreNavigationTopicViewModel<TrackedNavigationTopicViewModel> {
 
