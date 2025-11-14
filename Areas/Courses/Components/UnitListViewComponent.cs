@@ -48,7 +48,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// <remarks>
     ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
     /// </remarks>
-    protected Topic GetNavigationRoot() => CurrentTopic;
+    private Topic GetNavigationRoot() => CurrentTopic;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
@@ -57,7 +57,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Maps a list of <see cref="TrackedNavigationTopicViewModel"/> instances based on the <paramref
     ///   name="navigationRootTopic"/>.
     /// </summary>
-    protected async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
+    private async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
       await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic, validationDelegate: t => !t.Attributes.GetBoolean("IsPrivateBranch")).ConfigureAwait(true);
 
     /*==========================================================================================================================
@@ -72,14 +72,14 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve root topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = GetNavigationRoot();
+      var navigationRootTopic   = GetNavigationRoot();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new UnitListViewModel {
-        NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
-        CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
+      var navigationViewModel   = new UnitListViewModel {
+        NavigationRoot          = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
+        CurrentWebPath          = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };
 
       /*------------------------------------------------------------------------------------------------------------------------

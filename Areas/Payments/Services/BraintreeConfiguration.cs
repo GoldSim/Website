@@ -44,10 +44,10 @@ namespace GoldSim.Web.Areas.Payments.Services {
     /*==========================================================================================================================
     | PUBLIC PROPERTIES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    internal string Environment { get; set; } = "production";
-    internal string MerchantId { get; set; }
-    internal string PublicKey { get; set; }
-    internal string PrivateKey { get; set; }
+    private string Environment { get; set; } = "production";
+    private string MerchantId { get; set; }
+    private string PublicKey { get; set; }
+    private string PrivateKey { get; set; }
 
     /*==========================================================================================================================
     | CREATE GATEWAY

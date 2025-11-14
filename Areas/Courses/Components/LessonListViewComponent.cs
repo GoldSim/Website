@@ -49,7 +49,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// <remarks>
     ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
     /// </remarks>
-    internal Topic GetNavigationRoot() => CurrentTopic?.Parent;
+    private Topic GetNavigationRoot() => CurrentTopic?.Parent;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
