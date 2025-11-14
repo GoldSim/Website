@@ -46,12 +46,10 @@ namespace GoldSim.Web {
     | PRIVATE INSTANCES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            IConfiguration                  _configuration;
-    private readonly            CompositeTypeLookupService      _typeLookupService;
     private readonly            TopicMappingService             _topicMappingService;
     private readonly            CachedTopicRepository           _topicRepository;
     private readonly            PostmarkSmtpService             _smtpService;
     private readonly            IRequestValidator               _requestValidator;
-    private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
 
     /*==========================================================================================================================
@@ -84,7 +82,6 @@ namespace GoldSim.Web {
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
           _configuration        = configuration;
-          _webHostEnvironment   = webHostEnvironment;
           _requestValidator     = new RecaptchaValidator(configuration.GetValue<string>("reCaptcha:Secret"));
       var connectionString      = configuration.GetConnectionString("OnTopic");
       var sqlTopicRepository    = new SqlTopicRepository(connectionString);
@@ -94,19 +91,19 @@ namespace GoldSim.Web {
       | PRELOAD REPOSITORY
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new CompositeTypeLookupService(
-                                    new GoldSimTopicViewModelLookupService(),
-                                    new TopicViewModelLookupService(),
-                                    new EditorViewModelLookupService()
-                                  );
-      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
+      var typeLookupService     = new CompositeTypeLookupService(
+        new GoldSimTopicViewModelLookupService(),
+        new TopicViewModelLookupService(),
+        new EditorViewModelLookupService()
+      );
+      _topicMappingService      = new(_topicRepository, typeLookupService);
 
       _topicRepository.Load();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INITIALIZE EDITOR COMPOSER
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _standardEditorComposer   = new(_topicRepository, _webHostEnvironment);
+      _standardEditorComposer   = new(_topicRepository, webHostEnvironment);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
