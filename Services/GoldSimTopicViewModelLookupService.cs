@@ -31,7 +31,7 @@ namespace GoldSim.Web {
     ///   Instantiates a new instance of the <see cref="GoldSimTopicViewModelLookupService"/>.
     /// </summary>
     /// <returns>A new instance of the <see cref="GoldSimTopicViewModelLookupService"/>.</returns>
-    internal GoldSimTopicViewModelLookupService() : base() {
+    internal GoldSimTopicViewModelLookupService() {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Add content type view models
