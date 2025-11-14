@@ -9,9 +9,9 @@
 
       <!-- Company Information -->
       <div class="company cell small-6 small-order-2 medium-3 medium-order-1 large-3">
-        <p class="list link heading"><a href="@Model.NavigationRoot.WebPath">@(Model.NavigationRoot.ShortTitle?? Model.NavigationRoot.Title)</a></p>
+        <p class="list link heading"><a href="@Model.NavigationRoot?.WebPath">@(Model.NavigationRoot?.ShortTitle?? Model.NavigationRoot?.Title)</a></p>
         <ul>
-          @foreach (var topic in Model.NavigationRoot.Children) {
+          @foreach (var topic in Model.NavigationRoot?.Children?? []) {
             <li><a href="@topic.WebPath" class="@(topic.IsSelected(Model.CurrentWebPath)? "selected" : "")">@(topic.ShortTitle?? topic.Title)</a></li>
           }
         </ul>

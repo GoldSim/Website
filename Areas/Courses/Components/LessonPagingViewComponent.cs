@@ -66,7 +66,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       | Fallback to adjacent unit
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (adjacentTopic is null) {
-        var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent.Parent, CurrentTopic.Parent, moveNext);
+        var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent!.Parent, CurrentTopic.Parent, moveNext);
         if (adjacentUnit is not null) {
           adjacentTopic         = moveNext? adjacentUnit.Children.FirstOrDefault() : adjacentUnit.Children.LastOrDefault();
           label                 = moveNext? "Next Unit" : "Previous Unit";

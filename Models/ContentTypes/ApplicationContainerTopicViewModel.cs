@@ -75,7 +75,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     ///   method simply strips <c>Systems</c> off the container key.
     /// </summary>
     /// <returns></returns>
-    public string GetContainerKey() => Key[..Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase)];
+    public string GetContainerKey() => Key![..Key.IndexOf("Systems", StringComparison.OrdinalIgnoreCase)];
 
   } // Class
 } // Namespace

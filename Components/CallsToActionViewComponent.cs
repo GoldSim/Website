@@ -63,7 +63,7 @@ namespace GoldSim.Web.Components {
       | Determine anchor
       \-----------------------------------------------------------------------------------------------------------------------*/
       var homepage              = TopicRepository.Load("Web:Home");
-      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+      var announcementLabel     = homepage?.Attributes.GetValue("AnnouncementLabel");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model

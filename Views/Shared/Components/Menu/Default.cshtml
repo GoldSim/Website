@@ -1,6 +1,6 @@
 ﻿@model NavigationViewModel<NavigationTopicViewModel>
 
-@if (Model.NavigationRoot.Children.Count > 0) {
+@if (Model.NavigationRoot?.Children.Count > 0) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>

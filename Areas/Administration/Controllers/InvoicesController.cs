@@ -153,7 +153,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       topic.Attributes.SetInteger("InvoiceNumber", invoice.InvoiceNumber);
       topic.Attributes.SetValue("InvoiceAmount", invoice.InvoiceAmount.ToString(CultureInfo.InvariantCulture));
       topic.Attributes.SetValue("DatePaid", invoice.DatePaid.ToString());
-      topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity.Name?? "System");
+      topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity?.Name?? "System");
       topic.LastModified = DateTime.Now;
       topic.IsHidden = true;
 
@@ -187,7 +187,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
           continue;
         }
         var topic = _topicRepository.Load(topicId);
-        if (!topic.GetUniqueKey().StartsWith(_invoiceRoot, StringComparison.InvariantCultureIgnoreCase)) {
+        if (topic is null || !topic.GetUniqueKey().StartsWith(_invoiceRoot, StringComparison.InvariantCultureIgnoreCase)) {
           continue;
         }
         _topicRepository.Delete(topic);

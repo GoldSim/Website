@@ -4,7 +4,7 @@
   Layout                        = "/Views/Layout/_Layout.cshtml";
   var isLesson                  = Model.ContentType.Equals("Lesson", StringComparison.OrdinalIgnoreCase);
   var topic                     = isLesson? (PageTopicViewModel)Model.Parent : Model;
-  var unitNumber                = isLesson? ((UnitTopicViewModel)topic).UnitNumber : 0;
+  var unitNumber                = isLesson? ((UnitTopicViewModel)topic)?.UnitNumber : 0;
   var title                     = (isLesson? $"Unit {unitNumber}: " : "") + topic.Title;
 }
 
