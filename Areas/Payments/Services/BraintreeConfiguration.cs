@@ -60,11 +60,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
     /*==========================================================================================================================
     | GET GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Looks up the currently configured Braintree payments gateway. If the gateway is not currently available, it is
-    ///   manually created.
-    /// </summary>
-    /// <returns>The configured Braintree payments gateway.</returns>
+    /// <inheritdoc />
     public IBraintreeGateway GetGateway() => _braintreeGateway ??= CreateGateway();
 
     /*==========================================================================================================================
