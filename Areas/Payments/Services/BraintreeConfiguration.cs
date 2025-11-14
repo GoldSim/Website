@@ -75,8 +75,8 @@ namespace GoldSim.Web.Areas.Payments.Services {
     ///   sources.
     /// </summary>
     /// <remarks>
-    ///   Fallback configuration sources include, in order, the <see cref="Topic"/>, the <see cref="Environment"/>, and,
-    ///   finally, the <see cref="ConfigurationManager.AppSettings"/>.
+    ///   Fallback configuration sources include, in order, the <see cref="Topic"/>, the <see cref="System.Environment"/>, and,
+    ///   finally, the application configuration (i.e., the <see cref="IConfiguration"/> provider).
     /// </remarks>
     /// <returns>The configured value for the given variable.</returns>
     public string GetConfigurationSetting(string setting, string defaultValue = null) {
@@ -105,7 +105,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Get API credentials from App Settings
+      | Get API credentials from the application configuration
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
         value = _configuration.GetValue<string>(compositeVariable);
