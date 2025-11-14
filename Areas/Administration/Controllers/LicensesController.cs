@@ -24,7 +24,6 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicExportService             _topicExportService;
-    private const               string                          _licenseRoot = "Root:Administration:Licenses";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -93,7 +92,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
         if (
           CurrentTopic is null ||
           topic is null ||
-          !topic.GetUniqueKey().StartsWith(CurrentTopic.GetWebPath(), StringComparison.InvariantCultureIgnoreCase)
+          !topic.GetUniqueKey().StartsWith(CurrentTopic.GetUniqueKey(), StringComparison.InvariantCultureIgnoreCase)
         ) {
           continue;
         }
