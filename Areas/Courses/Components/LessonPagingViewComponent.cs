@@ -19,11 +19,6 @@ namespace GoldSim.Web.Areas.Courses.Components {
   public sealed class LessonPagingViewComponent: ViewComponent {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Topic                           _currentTopic;
-
-    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -68,7 +63,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    internal Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
+    internal Topic CurrentTopic => field ??= TopicRepository.Load(RouteData);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
