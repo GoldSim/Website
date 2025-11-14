@@ -51,64 +51,58 @@ namespace GoldSim.Web.Areas.Administration.Services {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble Excel
       \-----------------------------------------------------------------------------------------------------------------------*/
-      MemoryStream memoryStream;
+      using var excelPackage    = new ExcelPackage();
 
-      using (var excelPackage = new ExcelPackage()) {
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Create the worksheet
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var worksheet             = excelPackage.Workbook.Worksheets.Add("Entitlements");
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Create the worksheet
-        \---------------------------------------------------------------------------------------------------------------------*/
-        var worksheet = excelPackage.Workbook.Worksheets.Add("Entitlements");
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Get and load the data from the License Request DataTable
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      using var requests        = GetLicenseRequestData(topics);
+      using var headers         = worksheet.Cells[1, 1, 1, requests.Columns.Count];
+      worksheet.Cells.LoadFromDataTable(requests, true);
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Get and load the data from the License Request DataTable
-        \---------------------------------------------------------------------------------------------------------------------*/
-        using var requests      = GetLicenseRequestData(topics);
-        using var headers       = worksheet.Cells[1, 1, 1, requests.Columns.Count];
-        worksheet.Cells.LoadFromDataTable(requests, true);
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Format the column headers
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var headerRowBackgroundColor = ColorTranslator.FromHtml("#d1d1d1");
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Format the column headers
-        \---------------------------------------------------------------------------------------------------------------------*/
-        var headerRowBackgroundColor = ColorTranslator.FromHtml("#d1d1d1");
+      headers.Style.Font.Color.SetColor(Color.Black);
+      headers.Style.Font.Bold = true;
+      headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
+      headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
+      headers.Style.WrapText = false;
 
-        headers.Style.Font.Color.SetColor(Color.Black);
-        headers.Style.Font.Bold = true;
-        headers.Style.Fill.PatternType = ExcelFillStyle.Solid;
-        headers.Style.Fill.BackgroundColor.SetColor(headerRowBackgroundColor);
-        headers.Style.WrapText = false;
+      worksheet.View.FreezePanes(2, 2);
 
-        worksheet.View.FreezePanes(2, 2);
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Set the font for the worksheet
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Calibri";
+      worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 11;
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Set the font for the worksheet
-        \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Name = "Calibri";
-        worksheet.Cells[worksheet.Dimension.Address].Style.Font.Size = 11;
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Auto-fit data rows to their contents
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Auto-fit data rows to their contents
-        \---------------------------------------------------------------------------------------------------------------------*/
-        worksheet.Cells[worksheet.Dimension.Address].AutoFitColumns();
+      /*----------------------------------------------------------------------------------------------------------------------
+      | Set column filters and give the Free Type column extra width to account for the filter
+      \---------------------------------------------------------------------------------------------------------------------*/
+      headers.AutoFilter        = true;
 
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Set column filters and give the Free Type column extra width to account for the filter
-        \---------------------------------------------------------------------------------------------------------------------*/
-        headers.AutoFilter      = true;
-
-        for (var i = 1; i <= headers.Columns; i++) {
-          var column            = worksheet.Column(i);
-          column.Width          += 2;
-        }
-
-        /*----------------------------------------------------------------------------------------------------------------------
-        | Apply the spreadsheet to the stream
-        \---------------------------------------------------------------------------------------------------------------------*/
-        memoryStream            = new MemoryStream(excelPackage.GetAsByteArray());
-
+      for (var i = 1; i <= headers.Columns; i++) {
+        var column              = worksheet.Column(i);
+        column.Width            += 2;
       }
 
-      return memoryStream;
+      /*----------------------------------------------------------------------------------------------------------------------
+      | Apply the spreadsheet to the stream
+      \---------------------------------------------------------------------------------------------------------------------*/
+      return new(excelPackage.GetAsByteArray());
 
     }
 
