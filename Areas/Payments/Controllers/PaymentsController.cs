@@ -151,7 +151,9 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       Contract.Requires(bindingModel, nameof(bindingModel));
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
+      // ReSharper disable once ConditionIsAlwaysTrueOrFalse
       if (invoice is null) {
+        // ReSharper disable once HeuristicUnreachableCode
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
       else if (invoiceAmount != bindingModel.InvoiceAmount) {
