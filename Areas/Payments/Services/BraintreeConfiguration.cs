@@ -49,8 +49,8 @@ namespace GoldSim.Web.Areas.Payments.Services {
     ///   Instantiates the Braintree communication gateway, utilizing the appropriate Braintree environment and API credentials.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway CreateGateway() =>
-      new BraintreeGateway(
+    private BraintreeGateway CreateGateway() =>
+      new(
         Braintree.Environment.ParseEnvironment(_environment),
         GetConfigurationSetting("MerchantId"),
         GetConfigurationSetting("PublicKey"),
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
     ///   finally, the application configuration (i.e., the <see cref="IConfiguration"/> provider).
     /// </remarks>
     /// <returns>The configured value for the given variable.</returns>
-    public string GetConfigurationSetting(string setting, string defaultValue = null) {
+    private string GetConfigurationSetting(string setting, string defaultValue = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
