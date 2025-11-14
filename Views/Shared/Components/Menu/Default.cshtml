@@ -29,7 +29,7 @@
 
   IHtmlContent body(Func<object, IHtmlContent> body) => body(null);
 
-  IHtmlContent writeMenu(NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
+  IHtmlContent writeMenu(NavigationTopicViewModel topic, bool isDesktop, int indentLevel = 1) {
 
     var isParentMenu            = topic.Children.Count > 2;
     var targetUrl               = !isParentMenu || isDesktop? topic.WebPath : "#";
