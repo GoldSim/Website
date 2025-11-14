@@ -27,7 +27,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IConfiguration                  _configuration;
     private readonly            RouteData                       _routeData;
-    private readonly            string                          _environment                    = "production";
+    private const               string                          _environment                    = "production";
 
     /*==========================================================================================================================
     | CONSTRUCTOR

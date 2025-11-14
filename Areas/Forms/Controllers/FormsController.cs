@@ -441,13 +441,13 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Validate Topic Parent
       \-----------------------------------------------------------------------------------------------------------------------*/
       const string parentKey    = "Administration:Licenses";
+      const string errorMessage = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
       var parentTopic           = TopicRepository.Load(parentKey);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       var topic                 = await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
-      var errorMessage          = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
