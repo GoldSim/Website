@@ -16,22 +16,19 @@ namespace GoldSim.Web.Components {
   public sealed class RecaptchaViewComponent : ViewComponent {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            string                          _siteKey;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a ReCaptchaViewComponent with necessary dependencies.
     /// </summary>
     internal RecaptchaViewComponent(string siteKey) {
-      SiteKey                   = siteKey;
+      _siteKey                  = siteKey;
     }
-
-    /*==========================================================================================================================
-    | SITE KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the sitekey used by the reCAPTCHA service.
-    /// </summary>
-    internal string SiteKey { get; init; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -45,7 +42,7 @@ namespace GoldSim.Web.Components {
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
       var viewModel             = new RecaptchaViewModel {
-        SiteKey                 = SiteKey,
+        SiteKey                 = _siteKey,
         Action                  = action
       };
 
