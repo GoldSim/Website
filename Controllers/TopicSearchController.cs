@@ -153,7 +153,7 @@ namespace GoldSim.Web.Controllers {
           if (!results.TryGetValue(topicReference, out var attributeResults)) {
             attributeResults    = [];
             results.Add(topicReference, attributeResults);
-          };
+          }
           foreach (Match match in matches) {
             var result          = String.IsNullOrEmpty(replace)? null : match.Result(replace);
             attributeResults.Add(
