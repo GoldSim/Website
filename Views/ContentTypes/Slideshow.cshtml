@@ -17,8 +17,8 @@
     <div class="carousel-wrapper">
       <div class="owl-carousel">
         @if (Model.ContentItems.Count > 0) {
-          foreach (SlideTopicViewModel contentItem in Model.ContentItems) {
-            writeContentItem(contentItem);
+          foreach (var contentItem in Model.ContentItems) {
+            writeContentItem((SlideTopicViewModel)contentItem);
           }
         }
       </div>
