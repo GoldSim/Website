@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
 
-namespace GoldSim.Web.Areas.Courses.Components {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
   | CLASS: RECAPTCHA VIEW COMPONENT

@@ -4,7 +4,7 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Areas.Courses.Components {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
   | CLASS: COOKIES NOTICE VIEW COMPONENT
@@ -19,7 +19,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="CourseListViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref="CookiesNoticeViewComponent"/> with necessary dependencies.
     /// </summary>
     internal CookiesNoticeViewComponent() { }
 
