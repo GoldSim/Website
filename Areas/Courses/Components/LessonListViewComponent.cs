@@ -122,7 +122,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
           }
         );
         navigationViewModel.TrackingEvents.Add(
-          new TrackingEventViewModel(
+          new(
             "Courses",
             isUnitNowComplete? "EndUnit" : "StartUnit",
             $"{CurrentTopic.Parent.Parent.Key}:{CurrentTopic.Parent.Key}"

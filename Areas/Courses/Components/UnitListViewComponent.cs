@@ -105,10 +105,10 @@ namespace GoldSim.Web.Areas.Courses.Components {
           }
         );
         navigationViewModel.TrackingEvents.Add(
-          new TrackingEventViewModel("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
+          new("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
         );
         navigationViewModel.CourseTrackingEvents.Add(
-          new CourseTrackingEventViewModel(isCourseNowComplete? "course_end" : "course_start", CurrentTopic.Key)
+          new(isCourseNowComplete? "course_end" : "course_start", CurrentTopic.Key)
         );
       }
 
