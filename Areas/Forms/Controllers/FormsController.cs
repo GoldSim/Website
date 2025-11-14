@@ -295,14 +295,30 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     ///   Given an email address, determines if it uses an invalid domain. If it does, returns an error message.
     /// </summary>
     private bool VerifyEmailDomain(string email, out string errorMessage) {
+
+      // Establish output variable
       errorMessage = null;
-      if (String.IsNullOrWhiteSpace(email)) return true;
-      var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
-      var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
+
+      // Validate input
+      if (String.IsNullOrWhiteSpace(email)) {
+        return true;
+      }
+
+      // Determine invalid domains
+      const string lookupPath   = "Root:Configuration:Metadata:GenericEmailDomains:LookupList";
+      var genericEmailDomains   = TopicRepository.Load(lookupPath)?.Children?? [];
+      var invalidDomain         = genericEmailDomains.FirstOrDefault(m =>
+        email.Contains(m.Title, StringComparison.OrdinalIgnoreCase)
+      );
+
+      // Set error message, if applicable
       if (invalidDomain is not null) {
         errorMessage = $"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.";
       }
+
+      // Return status
       return invalidDomain is null;
+
     }
 
     /*==========================================================================================================================
