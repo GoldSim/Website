@@ -170,8 +170,6 @@ namespace GoldSim.Web {
           case "Payments":
             controllerType      = typeof(PaymentsController);
             break;
-          default:
-            break;
         }
       }
 
