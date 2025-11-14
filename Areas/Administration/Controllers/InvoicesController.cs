@@ -215,8 +215,9 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null
     ) {
-      if (invoiceNumber is null) return Json(data: true);
-      if (invoiceNumber == key) return Json(data: true);
+      if (invoiceNumber is null || invoiceNumber == key) {
+        return Json(data: true);
+      }
       var existingInvoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
       if (existingInvoice is not null) {
         var invoiceAmount = existingInvoice.Attributes.GetValue("InvoiceAmount");
