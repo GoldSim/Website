@@ -64,14 +64,14 @@ namespace GoldSim.Web.Areas.Forms.Components {
       Contract.Requires(aspFor, nameof(aspFor));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
+      | Establish constants
       \-----------------------------------------------------------------------------------------------------------------------*/
       //### TODO JJC20191119: Ideally, these would be configured as optional parameters. Unfortunately, the tag helper approach
       //to calling view components doesn't (yet) support optional parameters. These should be reevaluated if that's fixed. For
       //now, it's not strictly required by current requirements that these be overwritten by the views.
-      var defaultText           = "Select one…";
-      var valueField            = nameof(Topic.Title);
-      var textField             = nameof(Topic.Title);
+      const string defaultText  = "Select one…";
+      const string valueField   = nameof(Topic.Title);
+      const string textField    = nameof(Topic.Title);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get metadata attribute

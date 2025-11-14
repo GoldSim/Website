@@ -23,8 +23,8 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService             _topicExportService;
-    private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
+    private readonly            ITopicExportService             _topicExportService;
+    private const               string                          _licenseRoot = "Root:Administration:Licenses";
 
     /*==========================================================================================================================
     | CONSTRUCTOR

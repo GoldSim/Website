@@ -26,7 +26,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
-    private readonly            string                          _invoiceRoot                    = "Root:Administration:Invoices";
+    private const               string                          _invoiceRoot = "Root:Administration:Invoices";
 
     /*==========================================================================================================================
     | CONSTRUCTOR

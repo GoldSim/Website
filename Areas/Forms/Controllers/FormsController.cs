@@ -424,7 +424,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var parentKey             = "Administration:Licenses";
+      const string parentKey    = "Administration:Licenses";
       var parentTopic           = TopicRepository.Load(parentKey);
 
       /*------------------------------------------------------------------------------------------------------------------------

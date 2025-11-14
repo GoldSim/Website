@@ -222,7 +222,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
       using var mail            = new MailMessage(new MailAddress("Software@GoldSim.com"), new("Admin@GoldSim.com"));
-      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
+      const string emailSubject = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
       var creditCard            = transaction?.CreditCard;
@@ -244,7 +244,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (result.IsSuccess() && transaction is not null && TransactionSuccessStatuses.Contains(transaction.Status)) {
-        mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+        mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
           "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)
@@ -257,7 +257,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process unsuccessful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
+      mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Failed";
 
       if (transaction is not null) {
         var status = transaction.ProcessorResponseText;
