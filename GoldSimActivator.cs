@@ -111,7 +111,7 @@ namespace GoldSim.Web {
       var postmarkApiKey        = _configuration.GetValue<string>("Postmark:ApiKey");
       var postmarkClient        = new PostmarkClient(postmarkApiKey);
 
-      _smtpService              = new PostmarkSmtpService(postmarkClient);
+      _smtpService              = new(postmarkClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
