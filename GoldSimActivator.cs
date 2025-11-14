@@ -43,7 +43,7 @@ namespace GoldSim.Web {
   internal sealed class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
-    | PRIVATE INSTANCES
+    | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            IConfiguration                  _configuration;
     private readonly            TopicMappingService             _topicMappingService;

@@ -21,7 +21,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
   internal sealed class BraintreeConfiguration : IBraintreeConfiguration {
 
     /*==========================================================================================================================
-    | PRIVATE FIELDS
+    | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private                     IBraintreeGateway               _braintreeGateway;
     private readonly            ITopicRepository                _topicRepository;
