@@ -56,7 +56,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var licenseRequestContainer       = TopicRepository.Load(_licenseRoot)?.Children;
-      var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
+      var validContentTypes             = new[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);
 
