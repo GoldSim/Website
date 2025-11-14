@@ -39,6 +39,8 @@ namespace GoldSim.Web.Controllers {
     ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
+    /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
+    /// <param name="useRegEx">Determines whether the search should support regular expressions; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
