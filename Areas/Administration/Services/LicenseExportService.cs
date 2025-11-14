@@ -159,17 +159,15 @@ namespace GoldSim.Web.Areas.Administration.Services {
 
         // Determine part number.
         var partNumber          = (isTrial? "LMTD-" : "ACAD-")
-                                + (requestedModule("DistributedProcessing")? "DP-" : "00-")
-                                + (requestedModule("Reliability")? "RL-" : "00-")
+                                + (requestedModule(request, "DistributedProcessing")? "DP-" : "00-")
+                                + (requestedModule(request, "Reliability")? "RL-" : "00-")
                                 + (
-                                    requestedModule("ContaminantTransport")? "CT-" :
-                                    requestedModule("RadionuclideTransport")? "RT-" :
+                                    requestedModule(request, "ContaminantTransport")? "CT-" :
+                                    requestedModule(request, "RadionuclideTransport")? "RT-" :
                                     "00-"
                                   )
                                 + (isTrial? "V." : "A.")
                                 + "15.0";
-
-        bool requestedModule(string module) => request.Attributes.GetBoolean($"Modules{module}");
 
         //Define composite street address
         var street1             = request.Attributes.GetValue("Street1", "");
@@ -212,6 +210,11 @@ namespace GoldSim.Web.Areas.Administration.Services {
       | Return DataTable
       \-------------------------------------------------------------------------------------------------------------------------*/
       return requestData;
+
+      /*--------------------------------------------------------------------------------------------------------------------------
+      | Local Functions
+      \-------------------------------------------------------------------------------------------------------------------------*/
+      bool requestedModule(Topic request, string module) => request.Attributes.GetBoolean($"Modules{module}");
 
     }
 
