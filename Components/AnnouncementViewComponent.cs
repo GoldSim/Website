@@ -42,8 +42,8 @@ namespace GoldSim.Web.Components {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var homepage              = _topicRepository.Load("Web:Home");
-      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
-      var announcementUrl       = homepage.Attributes.GetUri("AnnouncementUrl");
+      var announcementLabel     = homepage?.Attributes.GetValue("AnnouncementLabel");
+      var announcementUrl       = homepage?.Attributes.GetUri("AnnouncementUrl");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
