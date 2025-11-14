@@ -91,13 +91,12 @@
 @{
 
   string getBreadCrumbs(TopicViewModel topic) {
-    if (topic is not PageTopicViewModel) {
+    if (topic is not PageTopicViewModel pageTopic) {
       return "";
     }
-    var pageTopic = topic as PageTopicViewModel;
     var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
-    if (topic.Parent?.Parent is not null) {
-      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
+    if (pageTopic.Parent?.Parent is not null) {
+      output = getBreadCrumbs((PageTopicViewModel)pageTopic.Parent) + output;
     }
     return output;
   }

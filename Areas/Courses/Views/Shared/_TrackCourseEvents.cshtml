@@ -5,9 +5,9 @@
     <text>
       gtag('event', '@trackingEvent.EventName', {
         'course_name': '@trackingEvent.CourseName'
-        @if(trackingEvent is UnitTrackingEventViewModel) {
+        @if(trackingEvent is UnitTrackingEventViewModel model) {
           <text>
-            ,'unit_number': '@(((UnitTrackingEventViewModel)trackingEvent).UnitNumber)'
+            ,'unit_number': '@(model.UnitNumber)'
           </text>
         }
       });
