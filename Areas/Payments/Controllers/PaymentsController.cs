@@ -156,7 +156,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
         // ReSharper disable once HeuristicUnreachableCode
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
-      else if (invoiceAmount != bindingModel.InvoiceAmount) {
+      else if (Math.Abs(invoiceAmount - bindingModel.InvoiceAmount) > 1e-10) {
         ModelState.AddModelError(
           "InvoiceAmount",
           $"The invoice {bindingModel.InvoiceNumber} is correct, but doesn't match the expected invoice amount. Please " +
