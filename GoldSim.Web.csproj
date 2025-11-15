@@ -22,7 +22,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Braintree" Version="5.28.0" />
+    <PackageReference Include="Braintree" Version="5.36.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
     <PackageReference Include="Postmark" Version="5.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
