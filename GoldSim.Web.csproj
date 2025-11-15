@@ -24,6 +24,7 @@
   <ItemGroup>
     <PackageReference Include="Braintree" Version="5.36.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
     <PackageReference Include="Postmark" Version="5.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="OnTopic.All" Version="5.2.0" />
