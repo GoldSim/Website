@@ -63,7 +63,7 @@ namespace GoldSim.Web.Controllers {
       | Find scope
       \------------------------------------------------------------------------------------------------------------------------*/
       var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')?? "Root";
-      var scopedTopic           = topicRepository.Load().GetByUniqueKey(uniqueKey);
+      var scopedTopic           = topicRepository.Load()?.GetByUniqueKey(uniqueKey);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Validate inputs
