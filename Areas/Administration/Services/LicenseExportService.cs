@@ -214,7 +214,7 @@ namespace GoldSim.Web.Areas.Administration.Services {
       /*--------------------------------------------------------------------------------------------------------------------------
       | Local Functions
       \-------------------------------------------------------------------------------------------------------------------------*/
-      bool requestedModule(Topic request, string module) => request.Attributes.GetBoolean($"Modules{module}");
+      static bool requestedModule(Topic request, string module) => request.Attributes.GetBoolean($"Modules{module}");
 
     }
 
