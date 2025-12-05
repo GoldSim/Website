@@ -19,7 +19,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    bool                        _isFirst                        = true;
+    private bool                _isFirst                        = true;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -46,7 +46,7 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <remarks>
     ///   Indexed can, optionally, contain multiple document types—e.g., <see cref="ApplicationPageTopicViewModel"/>, <see
-    ///   cref="ExampleApplicationTopicViewModel"/>, &c. The <see cref="FilteredDocumentType"/> allows the current view to be
+    ///   cref="ExampleApplicationTopicViewModel"/>, etc. The <see cref="FilteredDocumentType"/> allows the current view to be
     ///   filtered by one specific type.
     /// </remarks>
     public string FilteredDocumentType { get; init; }
@@ -101,9 +101,9 @@ namespace GoldSim.Web.Models.ContentTypes {
     /// </summary>
     /// <param name="category"></param>
     /// <returns>The title corresponding to the category key.</returns>
-    public string GetCategoryTitle(string category) => Categories
-      .Where(t => t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal))
-      .FirstOrDefault()?.Title?? category;
+    public string GetCategoryTitle(string category) => Categories.FirstOrDefault(t =>
+      t.Key.Equals(category.Replace("Systems", "", StringComparison.Ordinal), StringComparison.Ordinal)
+    )?.Title?? category;
 
     /*==========================================================================================================================
     | GET ALL APPLICATIONS

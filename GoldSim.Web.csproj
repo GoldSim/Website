@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/bc406cfa-45c5-4d3a-8d6a-43a45cc9095a/resourceGroups/Production/providers/microsoft.insights/components/GoldSimWeb</ApplicationInsightsAnnotationResourceId>
     <AnalysisLevel>latest</AnalysisLevel>
     <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>1db4df2e-af3f-456c-ac4a-b8861b0c21a9</UserSecretsId>
+    <LangVersion>14</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -15,22 +16,23 @@
     <Company>GoldSim Technology Group</Company>
     <Product>GoldSim Website</Product>
     <Description>Models, helpers, and configuration for the GoldSim website.</Description>
-    <Copyright>©2021</Copyright>
+    <Copyright>©2025</Copyright>
     <Authors>Ignia</Authors>
-    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Braintree" Version="5.28.0" />
+    <PackageReference Include="Braintree" Version="5.36.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
     <PackageReference Include="Postmark" Version="5.2.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="OnTopic.All" Version="5.2.0" />
     <PackageReference Include="OnTopic.Editor.AspNetCore.All" Version="5.2.0" />
-    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.22.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.0" />
-    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="9.0.0">
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.23.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="10.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="10.0.0" />
+    <PackageReference Include="Microsoft.CodeAnalysis.NetAnalyzers" Version="10.0.100">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>

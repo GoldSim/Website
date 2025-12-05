@@ -295,14 +295,30 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     ///   Given an email address, determines if it uses an invalid domain. If it does, returns an error message.
     /// </summary>
     private bool VerifyEmailDomain(string email, out string errorMessage) {
+
+      // Establish output variable
       errorMessage = null;
-      if (String.IsNullOrWhiteSpace(email)) return true;
-      var domains = TopicRepository.Load("Root:Configuration:Metadata:GenericEmailDomains:LookupList").Children;
-      var invalidDomain = domains?.FirstOrDefault(m => email.Contains(m.Title, StringComparison.InvariantCultureIgnoreCase));
+
+      // Validate input
+      if (String.IsNullOrWhiteSpace(email)) {
+        return true;
+      }
+
+      // Determine invalid domains
+      const string lookupPath   = "Root:Configuration:Metadata:GenericEmailDomains:LookupList";
+      var genericEmailDomains   = TopicRepository.Load(lookupPath)?.Children?? [];
+      var invalidDomain         = genericEmailDomains.FirstOrDefault(m =>
+        email.Contains(m.Title, StringComparison.OrdinalIgnoreCase)
+      );
+
+      // Set error message, if applicable
       if (invalidDomain is not null) {
         errorMessage = $"Please use an email address with an institutional domain; '@{invalidDomain.Title}' is not valid.";
       }
+
+      // Return status
       return invalidDomain is null;
+
     }
 
     /*==========================================================================================================================
@@ -323,11 +339,11 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
-        Subject                 = subject,
-        Body                    = GetEmailBody(),
-        IsBodyHtml              = true
-      };
+      using var mail            = new MailMessage(new MailAddress(sender), new(recipient));
+
+      mail.Subject              = subject;
+      mail.Body                 = GetEmailBody();
+      mail.IsBodyHtml           = true;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -340,14 +356,14 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     | HELPER: SEND CUSTOMER RECEIPT (ASYNC)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Send an email to the customer containing the contents of a configured webpage.
+    ///   Send email to the customer containing the contents of a configured webpage.
     /// </summary>
     private async Task SendCustomerReceipt(EmailTopicViewModel webpage, string recipient, string sender = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var subject               = webpage.ShortTitle?? webpage.Title?? webpage.Key?? "GoldSim Request";
+      var subject               = webpage.ShortTitle?? webpage.Title;
       var request               = HttpContext.Request;
       var url                   = new Uri($"{request.Scheme}://{request.Host}{webpage.WebPath}");
       sender                    ??= "Software@GoldSim.com";
@@ -362,11 +378,11 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var mail            = new MailMessage(new MailAddress(sender), new MailAddress(recipient)) {
-        Subject                 = subject,
-        Body                    = pageContents,
-        IsBodyHtml              = true
-      };
+      using var mail            = new MailMessage(new MailAddress(sender), new(recipient));
+
+      mail.Subject              = subject;
+      mail.Body                 = pageContents;
+      mail.IsBodyHtml           = true;
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Send email
@@ -424,14 +440,14 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var       parentKey       = "Administration:Licenses";
-      var       parentTopic     = TopicRepository.Load(parentKey);
+      const string parentKey    = "Administration:Licenses";
+      const string errorMessage = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
+      var parentTopic           = TopicRepository.Load(parentKey);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var       topic           = await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
-      var       errorMessage    = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
+      var topic                 = await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values

@@ -1,10 +1,10 @@
 ﻿@model ContentListTopicViewModel
 
 @{
-  Layout = "~/Views/Layout/_Layout.cshtml";
 
-  string contentType = Model.ContentType.ToLower();
-  string viewType = contentType;
+  Layout                        = "~/Views/Layout/_Layout.cshtml";
+
+  var viewType                  = Model.ContentType.ToLower();
 
 }
 
@@ -16,7 +16,7 @@
 
   <!-- Body Content -->
   <section class="body">
-    @Html.Raw(@Model.Body)
+    @Html.Raw(Model.Body)
   </section>
   <!-- Body Content -->
 
@@ -25,13 +25,13 @@
 @section PageBodySection {
 
   <section class="panel accordion@(viewType is "faq" ? " faq " : "")">
-    @if (Model.Categories is not null && Model.Categories.Count > 0) {
+    @if (Model.Categories.Count > 0) {
       foreach (var category in Model.Categories.OrderBy(c => c)) {
         <section id="@category.Key">
           <h2>@category.Title</h2>
           <ul data-accordion data-allow-all-closed="true" data-deep-link="true">
-            @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category))) {
-              WriteContentItem(contentItem, viewType);
+            @foreach (var contentItem in Model.ContentItems.Where(t => t.Category.Equals(category.Key))) {
+              writeContentItem(contentItem);
             }
           </ul>
         </section>
@@ -40,7 +40,7 @@
     else {
       <ul data-accordion data-allow-all-closed="true" data-deep-link="true">
         @foreach (var contentItem in Model.ContentItems) {
-          WriteContentItem(contentItem, viewType);
+          writeContentItem(contentItem);
         }
       </ul>
     }
@@ -56,7 +56,7 @@
 
 @{
 
-  void WriteContentItem(ContentItemTopicViewModel contentItem, string viewType) {
+  void writeContentItem(ContentItemTopicViewModel contentItem) {
     <li class="accordion-item" data-accordion-item itemscope itemtype="http://schema.org/@(viewType is "faq" ? "Question" : "ListItem")">
       <a class="accordion-title@(viewType is "faq"? " question" : "")" href="#@contentItem.Key">
         @if (viewType is "faq") {
@@ -71,7 +71,7 @@
         @if (viewType is "faq") {
           <span class="marker">A:</span>
         }
-        @Html.Raw(@contentItem.Description)
+        @Html.Raw(contentItem.Description)
         @if (!String.IsNullOrEmpty(contentItem.LearnMoreUrl?.ToString())) {
           <p><strong><a href="@contentItem.LearnMoreUrl">Learn more</a></strong></p>
         }

@@ -5,7 +5,7 @@
 \=============================================================================================================================*/
 using GoldSim.Web.Models.Components;
 
-namespace GoldSim.Web.Areas.Courses.Components {
+namespace GoldSim.Web.Components {
 
   /*============================================================================================================================
   | CLASS: RECAPTCHA VIEW COMPONENT
@@ -16,22 +16,19 @@ namespace GoldSim.Web.Areas.Courses.Components {
   public sealed class RecaptchaViewComponent : ViewComponent {
 
     /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            string                          _siteKey;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="ReCaptchaViewComponent"/> with necessary dependencies.
+    ///   Initializes a new instance of a ReCaptchaViewComponent with necessary dependencies.
     /// </summary>
     internal RecaptchaViewComponent(string siteKey) {
-      SiteKey                   = siteKey;
+      _siteKey                  = siteKey;
     }
-
-    /*==========================================================================================================================
-    | SITE KEY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides the sitekey used by the reCAPTCHA service.
-    /// </summary>
-    internal string SiteKey { get; init; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -44,8 +41,8 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new RecaptchaViewModel() {
-        SiteKey                 = SiteKey,
+      var viewModel             = new RecaptchaViewModel {
+        SiteKey                 = _siteKey,
         Action                  = action
       };
 

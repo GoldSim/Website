@@ -4,7 +4,6 @@
 | Project       GoldSim Website
 \=============================================================================================================================*/
 using GoldSim.Web.Areas.Courses.Models;
-using GoldSim.Web.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
@@ -46,9 +45,9 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Retrieves the root <see cref="Topic"/> from which to map the <see cref="TrackedNavigationTopicViewModel"/> objects.
     /// </summary>
     /// <remarks>
-    ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
+    ///   The navigation root in the case of the child navigation is simply the <see cref="Topic.Parent"/> of the current topic.
     /// </remarks>
-    protected Topic GetNavigationRoot() => CurrentTopic;
+    private Topic GetNavigationRoot() => CurrentTopic;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
@@ -57,8 +56,8 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Maps a list of <see cref="TrackedNavigationTopicViewModel"/> instances based on the <paramref
     ///   name="navigationRootTopic"/>.
     /// </summary>
-    protected async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
-      await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic, validationDelegate: (t) => !t.Attributes.GetBoolean("IsPrivateBranch")).ConfigureAwait(true);
+    private async Task<TrackedNavigationTopicViewModel> MapNavigationTopicViewModels(Topic navigationRootTopic) =>
+      await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic, validationDelegate: t => !t.Attributes.GetBoolean("IsPrivateBranch")).ConfigureAwait(true);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
@@ -72,14 +71,14 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Retrieve root topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = GetNavigationRoot();
+      var navigationRootTopic   = GetNavigationRoot();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new UnitListViewModel() {
-        NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
-        CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
+      var navigationViewModel   = new UnitListViewModel {
+        NavigationRoot          = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
+        CurrentWebPath          = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -105,10 +104,10 @@ namespace GoldSim.Web.Areas.Courses.Components {
           }
         );
         navigationViewModel.TrackingEvents.Add(
-          new TrackingEventViewModel("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
+          new("Courses", isCourseNowComplete? "EndCourse" : "StartCourse", CurrentTopic.Key)
         );
         navigationViewModel.CourseTrackingEvents.Add(
-          new CourseTrackingEventViewModel(isCourseNowComplete? "course_end" : "course_start", CurrentTopic.Key)
+          new(isCourseNowComplete? "course_end" : "course_start", CurrentTopic.Key)
         );
       }
 
@@ -127,7 +126,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// </summary>
     private bool? IsComplete(string key) =>
       HttpContext.Request.Cookies.TryGetValue($"Status{key}", out var isComplete)?
-        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
         null;
 
   } //Class

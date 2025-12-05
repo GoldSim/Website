@@ -16,26 +16,19 @@ namespace GoldSim.Web.Components {
   public sealed class AnnouncementViewComponent : ViewComponent {
 
     /*==========================================================================================================================
+    | DEPENDENCIES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    private readonly            ITopicRepository                _topicRepository;
+
+    /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Initializes a new instance of a <see cref="AnnouncementViewComponent"/> with necessary dependencies.
     /// </summary>
     internal AnnouncementViewComponent(ITopicRepository topicRepository) {
-      TopicRepository           = topicRepository;
+      _topicRepository          = topicRepository;
     }
-
-    /*==========================================================================================================================
-    | TOPIC REPOSITORY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the <see cref="ITopicRepository"/> in order to allow the relevant data to be retrieved from
-    ///   the <c>Web:Home</c> topic.
-    /// </summary>
-    /// <returns>
-    ///   The <see cref="ITopicRepository"/>
-    /// </returns>
-    internal ITopicRepository TopicRepository { get; }
 
     /*==========================================================================================================================
     | METHOD: INVOKE
@@ -48,14 +41,14 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var homepage              = TopicRepository.Load("Web:Home");
-      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
-      var announcementUrl       = homepage.Attributes.GetUri("AnnouncementUrl");
+      var homepage              = _topicRepository.Load("Web:Home");
+      var announcementLabel     = homepage?.Attributes.GetValue("AnnouncementLabel");
+      var announcementUrl       = homepage?.Attributes.GetUri("AnnouncementUrl");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new AnnouncementViewModel() {
+      var viewModel             = new AnnouncementViewModel {
         Label                   = announcementLabel,
         Url                     = announcementUrl
       };
@@ -63,7 +56,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Conditionally return view
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : (IViewComponentResult)View(viewModel);
+      return String.IsNullOrWhiteSpace(announcementLabel) ? Content("") : View(viewModel);
 
     }
 

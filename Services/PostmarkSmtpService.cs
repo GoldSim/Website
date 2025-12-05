@@ -12,7 +12,7 @@ namespace GoldSim.Web.Services {
   | CLASS: POSTMARK (SMTP SERVICE)
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Given a <see cref="MailMessage", will send through the Postmark SMTP service.
+  ///   Given a <see cref="MailMessage"/>, will send through the Postmark SMTP service.
   /// </summary>
   internal sealed class PostmarkSmtpService : ISmtpService {
 

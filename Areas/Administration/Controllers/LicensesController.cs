@@ -23,8 +23,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private     readonly        ITopicExportService             _topicExportService;
-    private     readonly        string                          _licenseRoot                    = "Root:Administration:Licenses";
+    private readonly            ITopicExportService             _topicExportService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -55,8 +54,8 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var licenseRequestContainer       = TopicRepository.Load(_licenseRoot)?.Children;
-      var validContentTypes             = new string[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
+      var licenseRequestContainer       = CurrentTopic?.Children?? [];
+      var validContentTypes             = new[] { "TrialForm", "InstructorAcademicForm", "StudentAcademicForm"};
       var licenseRequests               = licenseRequestContainer.Where(topic => validContentTypes.Contains(topic.ContentType));
       var memoryStream                  = _topicExportService.Export(licenseRequests);
 
@@ -90,7 +89,11 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
           continue;
         }
         var topic = TopicRepository.Load(topicId);
-        if (!topic.GetUniqueKey().StartsWith(_licenseRoot, StringComparison.InvariantCultureIgnoreCase)) {
+        if (
+          CurrentTopic is null ||
+          topic is null ||
+          !topic.GetUniqueKey().StartsWith(CurrentTopic.GetUniqueKey(), StringComparison.InvariantCultureIgnoreCase)
+        ) {
           continue;
         }
         TopicRepository.Delete(topic);

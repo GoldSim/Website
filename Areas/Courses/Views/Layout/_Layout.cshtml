@@ -4,8 +4,6 @@
   Layout                        = "/Views/Layout/_Layout.cshtml";
   var isLesson                  = Model.ContentType.Equals("Lesson", StringComparison.OrdinalIgnoreCase);
   var topic                     = isLesson? (PageTopicViewModel)Model.Parent : Model;
-  var unitNumber                = isLesson? ((UnitTopicViewModel)topic).UnitNumber : 0;
-  var title                     = (isLesson? $"Unit {unitNumber}: " : "") + topic.Title;
 }
 
 @section Head {
@@ -18,15 +16,15 @@
     };
   </script>
   <script type="text/javascript" id="MathJax-script" async src="//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-  @RenderSection("Head", required: false)
+  @await RenderSectionAsync("Head", required: false)
 }
 
 @section Scripts {
-  @RenderSection("Scripts", required: false)
+  @await RenderSectionAsync("Scripts", required: false)
 }
 
 @section InlineScript {
-  @RenderSection("InlineScript", required: false)
+  @await RenderSectionAsync("InlineScript", required: false)
 }
 
 @section HeaderSection {
@@ -59,25 +57,25 @@
 @section LongTitleSection {
 
   @if (IsSectionDefined("LongTitleSection")) {
-    @RenderSection("LongTitleSection")
+    @await RenderSectionAsync("LongTitleSection")
   }
   else {
     <!-- Long Title (Subtitle) -->
     <header>
       @if (!Model.ContentType.Equals("CourseList", StringComparison.OrdinalIgnoreCase)) {
-        <p class="category title">@Html.Raw(getBreadCrumbs(topic.Parent))</p>
+        <p class="category title">@Html.Raw(getBreadCrumbs(topic?.Parent))</p>
       }
       @if (!string.IsNullOrWhiteSpace(ViewBag.Context)) {
         <h2 class="category title">@ViewBag.Context</h2>
       }
-      <h1 class="title">@topic.Title</h1>
-      @if (!String.IsNullOrWhiteSpace(topic.Subtitle)) {
+      <h1 class="title">@topic?.Title</h1>
+      @if (!String.IsNullOrWhiteSpace(topic?.Subtitle)) {
         <p class="subtitle">@topic.Subtitle</p>
       }
       @if (IsSectionDefined("PostTitleSection")) {
         <div class="grid-x">
-          @RenderSection("PostTitleSection")
-        </div>
+          @await RenderSectionAsync("PostTitleSection")
+  </div>
       }
     </header>
     <!-- /Long Title (Subtitle) -->
@@ -90,14 +88,13 @@
 
 @{
 
-  string getBreadCrumbs(TopicViewModel topic) {
-    if (topic is not PageTopicViewModel) {
+  string getBreadCrumbs(TopicViewModel currentTopic) {
+    if (currentTopic is not PageTopicViewModel pageTopic) {
       return "";
     }
-    var pageTopic = topic as PageTopicViewModel;
     var output = $"<a href=\"{pageTopic.WebPath}\">{pageTopic.ShortTitle?? pageTopic.Title}</a>: ";
-    if (topic.Parent?.Parent is not null) {
-      output = getBreadCrumbs((PageTopicViewModel)topic.Parent) + output;
+    if (pageTopic.Parent?.Parent is not null) {
+      output = getBreadCrumbs((PageTopicViewModel)pageTopic.Parent) + output;
     }
     return output;
   }

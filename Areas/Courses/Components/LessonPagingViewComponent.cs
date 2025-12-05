@@ -19,9 +19,10 @@ namespace GoldSim.Web.Areas.Courses.Components {
   public sealed class LessonPagingViewComponent: ViewComponent {
 
     /*==========================================================================================================================
-    | PRIVATE VARIABLES
+    | DEPENDENCIES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private                     Topic                           _currentTopic;
+    private readonly            ITopicRepository                _topicRepository;
+    private readonly            ITopicMappingService            _topicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -33,33 +34,9 @@ namespace GoldSim.Web.Areas.Courses.Components {
       ITopicRepository topicRepository,
       ITopicMappingService topicMappingService
     ) {
-      TopicRepository           = topicRepository;
-      TopicMappingService       = topicMappingService;
+      _topicRepository           = topicRepository;
+      _topicMappingService       = topicMappingService;
     }
-
-    /*==========================================================================================================================
-    | TOPIC REPOSITORY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the <see cref="ITopicRepository"/> in order to allow the current topic to be identified based
-    ///   on the route data.
-    /// </summary>
-    /// <returns>
-    ///   The <see cref="ITopicRepository"/> associated with the <see cref="LessonPagingViewComponent"/>.
-    /// </returns>
-    internal ITopicRepository TopicRepository { get; }
-
-    /*==========================================================================================================================
-    | TOPIC MAPPING SERVICE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Provides a reference to the <see cref="ITopicMappingService"/> in order to allow the target topic to be mapped to an
-    ///   appropriate view model.
-    /// </summary>
-    /// <returns>
-    ///   The <see cref="ITopicMappingService"/> associated with the <see cref="LessonPagingViewComponent"/>.
-    /// </returns>
-    internal ITopicMappingService TopicMappingService { get; }
 
     /*==========================================================================================================================
     | CURRENT TOPIC
@@ -68,7 +45,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Provides a reference to the current topic associated with the request.
     /// </summary>
     /// <returns>The Topic associated with the current request.</returns>
-    internal Topic CurrentTopic => _currentTopic ??= TopicRepository.Load(RouteData);
+    private Topic CurrentTopic => field ??= _topicRepository.Load(RouteData);
 
     /*==========================================================================================================================
     | METHOD: INVOKE (ASYNC)
@@ -89,7 +66,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       | Fallback to adjacent unit
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (adjacentTopic is null) {
-        var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent.Parent, CurrentTopic.Parent, moveNext);
+        var adjacentUnit        = GetAdjacentTopic(CurrentTopic.Parent!.Parent, CurrentTopic.Parent, moveNext);
         if (adjacentUnit is not null) {
           adjacentTopic         = moveNext? adjacentUnit.Children.FirstOrDefault() : adjacentUnit.Children.LastOrDefault();
           label                 = moveNext? "Next Unit" : "Previous Unit";
@@ -111,7 +88,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
         Label                   = label,
         MoveNext                = moveNext
       };
-      topicViewModel            = (LessonPagingTopicViewModel)await TopicMappingService.MapAsync(adjacentTopic, topicViewModel).ConfigureAwait(true);
+      topicViewModel            = (LessonPagingTopicViewModel)await _topicMappingService.MapAsync(adjacentTopic, topicViewModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the corresponding view

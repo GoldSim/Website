@@ -1,6 +1,6 @@
 ﻿@model MetadataLookupViewModel
 
-<select name="@ViewData.TemplateInfo.HtmlFieldPrefix" asp-items="Model.Options" required=@Model.IsRequired>
+<select name="@ViewData.TemplateInfo.HtmlFieldPrefix" asp-items="Model.Options" required="@Model.IsRequired">
   <option value="">@Model.DefaultText</option>
 </select>
 

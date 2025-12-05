@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using OnTopic.AspNetCore.Mvc.Components;
+using OnTopic.AspNetCore.Mvc.Controllers;
 using OnTopic.AspNetCore.Mvc.Models;
 using OnTopic.Mapping.Hierarchical;
 
@@ -13,7 +14,7 @@ namespace GoldSim.Web.Components {
   | CLASS: MENU VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <see cref="NavigationTopicViewModel"/>
   ///   instances.
   /// </summary>
   /// <remarks>

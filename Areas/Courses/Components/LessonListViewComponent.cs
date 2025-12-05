@@ -5,7 +5,6 @@
 \=============================================================================================================================*/
 using System.Globalization;
 using GoldSim.Web.Areas.Courses.Models;
-using GoldSim.Web.Models;
 using OnTopic;
 using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Mapping.Hierarchical;
@@ -47,9 +46,9 @@ namespace GoldSim.Web.Areas.Courses.Components {
     ///   Retrieves the root <see cref="Topic"/> from which to map the <see cref="TrackedNavigationTopicViewModel"/> objects.
     /// </summary>
     /// <remarks>
-    ///   The navigation root in the case of the child navigation is simply the <see cref="CurrentTopic.Parent"/>.
+    ///   The navigation root in the case of the child navigation is simply the <see cref="Topic.Parent"/> of the current topic.
     /// </remarks>
-    internal Topic GetNavigationRoot() => CurrentTopic?.Parent;
+    private Topic GetNavigationRoot() => CurrentTopic?.Parent;
 
     /*==========================================================================================================================
     | METHOD: MAP NAVIGATION TOPIC VIEW MODELS
@@ -78,7 +77,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel = new LessonListViewModel() {
+      var navigationViewModel = new LessonListViewModel {
         NavigationRoot = await MapNavigationTopicViewModels(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath = CurrentTopic?.GetWebPath()?? HttpContext.Request.Path
       };
@@ -103,7 +102,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
       foreach (var trackedNavigationViewModel in navigationViewModel.NavigationRoot.Children) {
         var isCurrent = CurrentTopic.Key.Equals(trackedNavigationViewModel.Key, StringComparison.OrdinalIgnoreCase);
         var isVisited = IsVisited(trackedNavigationViewModel.Key);
-        trackedNavigationViewModel.IsVisited = isCurrent? true : isVisited? (bool?)true : null;
+        trackedNavigationViewModel.IsVisited = isCurrent? true : isVisited? true : null;
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -116,13 +115,13 @@ namespace GoldSim.Web.Areas.Courses.Components {
         HttpContext.Response.Cookies.Append(
           $"Status{CurrentTopic.Parent.Key}",
           isUnitNowComplete.ToString(),
-          new Microsoft.AspNetCore.Http.CookieOptions() {
+          new() {
             Path                = CurrentTopic.Parent.Parent.GetWebPath(),
             Expires             = DateTime.Now.AddYears(20)
           }
         );
         navigationViewModel.TrackingEvents.Add(
-          new TrackingEventViewModel(
+          new(
             "Courses",
             isUnitNowComplete? "EndUnit" : "StartUnit",
             $"{CurrentTopic.Parent.Parent.Key}:{CurrentTopic.Parent.Key}"
@@ -161,7 +160,7 @@ namespace GoldSim.Web.Areas.Courses.Components {
     /// </summary>
     private bool? IsUnitComplete() =>
       HttpContext.Request.Cookies.TryGetValue($"Status{CurrentTopic.Parent.Key}", out var isComplete) ?
-        (bool?)isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
+        isComplete.Equals("True", StringComparison.OrdinalIgnoreCase) :
         null;
 
   } //Class

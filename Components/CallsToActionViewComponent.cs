@@ -13,7 +13,7 @@ namespace GoldSim.Web.Components {
   | CLASS: CALLS TO ACTION VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <see cref="NavigationTopicViewModel"/>
   ///   instances representing the nearest calls to action for a given page.
   /// </summary>
   public sealed class CallsToActionViewComponent : NavigationTopicViewComponentBase<NavigationTopicViewModel> {
@@ -51,26 +51,26 @@ namespace GoldSim.Web.Components {
       >-------------------------------------------------------------------------------------------------------------------------
       | The navigation root in the case of the main menu is the namespace; i.e., the first topic underneath the root.
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationRootTopic = HierarchicalTopicMappingService.GetHierarchicalRoot(currentTopic, 3, "Web");
+      var navigationRootTopic = HierarchicalTopicMappingService.GetHierarchicalRoot(currentTopic, 3);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate conditions
       \-----------------------------------------------------------------------------------------------------------------------*/
-      Contract.Assume(navigationRootTopic, $"The root topic could not be identified for the page-level navigation.");
-      Contract.Assume(CurrentTopic, $"The current topic could not be identified for the page-level navigation.");
+      Contract.Assume(navigationRootTopic, "The root topic could not be identified for the page-level navigation.");
+      Contract.Assume(CurrentTopic, "The current topic could not be identified for the page-level navigation.");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Determine anchor
       \-----------------------------------------------------------------------------------------------------------------------*/
       var homepage              = TopicRepository.Load("Web:Home");
-      var announcementLabel     = homepage.Attributes.GetValue("AnnouncementLabel");
+      var announcementLabel     = homepage?.Attributes.GetValue("AnnouncementLabel");
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new CallsToActionViewModel() {
+      var navigationViewModel   = new CallsToActionViewModel {
         NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
-        CurrentWebPath          = CurrentTopic?.GetWebPath(),
+        CurrentWebPath          = CurrentTopic?.GetWebPath()?? "",
         HasAnnouncement         = String.IsNullOrWhiteSpace(announcementLabel)
       };
 

@@ -18,7 +18,7 @@
   | Given the current Topic's WebPath, builds a set of JSON-LD BreadcrumbList ListItem strings, representing each of the
   | WebPath's parts (excluding "Web"), up to the current Topic.
   \---------------------------------------------------------------------------------------------------------------------------*/
-  public String GetBreadcrumbsItems() {
+  private string GetBreadcrumbsItems() {
     var breadcrumbsString       = "";
     var position                = Model.UniqueKey.Split(':').Length;
     var topic                   = Model;
@@ -26,7 +26,7 @@
     while (topic is not null) {
       var breadcrumbItem = "{ "
         + "  \"@type\": \"ListItem\", "
-        + "  \"position\": " + (position--) + ", "
+        + "  \"position\": " + position-- + ", "
         + "  \"item\": { "
         + "    \"@id\": \"https://www.GoldSim.com" + topic.WebPath + "\", "
         + "    \"name\": \"" + topic.Title + "\" "

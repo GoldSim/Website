@@ -26,13 +26,13 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            ITopicRepository                _topicRepository;
     private readonly            ITopicMappingService            _topicMappingService;
-    private readonly            string                          _invoiceRoot                    = "Root:Administration:Invoices";
+    private const               string                          _invoiceRoot = "Root:Administration:Invoices";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref ="OrdersController"/> with necessary dependencies.
+    ///   Initializes a new instance of a <see cref ="InvoicesController"/> with necessary dependencies.
     /// </summary>
     /// <returns>A topic controller for loading OnTopic views.</returns>
     internal InvoicesController(
@@ -152,8 +152,8 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       \-----------------------------------------------------------------------------------------------------------------------*/
       topic.Attributes.SetInteger("InvoiceNumber", invoice.InvoiceNumber);
       topic.Attributes.SetValue("InvoiceAmount", invoice.InvoiceAmount.ToString(CultureInfo.InvariantCulture));
-      topic.Attributes.SetValue("DatePaid", invoice.DatePaid.ToString());
-      topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity.Name?? "System");
+      topic.Attributes.SetValue("DatePaid", invoice.DatePaid?.ToString(CultureInfo.InvariantCulture));
+      topic.Attributes.SetValue("LastModifiedBy", HttpContext.User.Identity?.Name?? "System");
       topic.LastModified = DateTime.Now;
       topic.IsHidden = true;
 
@@ -187,7 +187,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
           continue;
         }
         var topic = _topicRepository.Load(topicId);
-        if (!topic.GetUniqueKey().StartsWith(_invoiceRoot, StringComparison.InvariantCultureIgnoreCase)) {
+        if (topic is null || !topic.GetUniqueKey().StartsWith(_invoiceRoot, StringComparison.InvariantCultureIgnoreCase)) {
           continue;
         }
         _topicRepository.Delete(topic);
@@ -215,8 +215,9 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       [Bind(Prefix="Invoice.InvoiceNumber")] int? invoiceNumber = null,
       [Bind(Prefix="Invoice.Key")] int? key = null
     ) {
-      if (invoiceNumber is null) return Json(data: true);
-      if (invoiceNumber == key) return Json(data: true);
+      if (invoiceNumber is null || invoiceNumber == key) {
+        return Json(data: true);
+      }
       var existingInvoice = _topicRepository.Load($"Administration:Invoices:{invoiceNumber}");
       if (existingInvoice is not null) {
         var invoiceAmount = existingInvoice.Attributes.GetValue("InvoiceAmount");

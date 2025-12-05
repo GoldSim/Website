@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using System.Collections.ObjectModel;
+using OnTopic.AspNetCore.Mvc.Components;
 using OnTopic.Models;
 
 namespace GoldSim.Web.Models.Components {
@@ -16,7 +17,7 @@ namespace GoldSim.Web.Models.Components {
   /// </summary>
   /// <remarks>
   ///   No topics are expected to have a <c>Navigation</c> content type. Instead, this view model is expected to be manually
-  ///   constructed by the <see cref="LayoutController"/>.
+  ///   constructed by the <see cref="NavigationTopicViewComponentBase{T}"/>.
   /// </remarks>
   public abstract class CoreNavigationTopicViewModel<T>: INavigationTopicViewModel<T> where T: INavigationTopicViewModel<T> {
 

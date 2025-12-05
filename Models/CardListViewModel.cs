@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models {
   /// <summary>
   ///   A view model for rendering a list of card objects.
   /// </summary>
-  internal sealed class CardListViewModel {
+  public sealed class CardListViewModel {
 
     /*==========================================================================================================================
     | CONSTRUCTOR

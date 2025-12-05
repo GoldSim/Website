@@ -13,7 +13,7 @@ namespace GoldSim.Web.Components {
   | CLASS: FOOTER VIEW COMPONENT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <typeparamref name="NavigationTopicViewModel"/>
+  ///   Defines a <see cref="ViewComponent"/> which provides access to a menu of <see cref="NavigationTopicViewModel"/>
   ///   instances representing the footer of the site.
   /// </summary>
   public sealed class FooterViewComponent : NavigationTopicViewComponentBase<NavigationTopicViewModel> {
@@ -53,7 +53,7 @@ namespace GoldSim.Web.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Construct view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var navigationViewModel   = new FooterViewModel() {
+      var navigationViewModel   = new FooterViewModel {
         NavigationRoot          = await HierarchicalTopicMappingService.GetRootViewModelAsync(navigationRootTopic).ConfigureAwait(true),
         CurrentWebPath          = webPath,
         IsMainSite              = navigationRoot?.Equals("Web", StringComparison.OrdinalIgnoreCase)?? isInWeb?? true

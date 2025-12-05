@@ -1,0 +1,20 @@
+[*]
+resharper_csharp_namespace_body = block_scoped
+resharper_invert_if_highlighting = none
+
+[**/Models/**/*.cs]
+resharper_auto_property_can_be_made_get_only_global_highlighting = none
+resharper_collection_never_updated_global_highlighting = none
+resharper_member_can_be_private_global_highlighting = none
+resharper_member_can_be_protected_global_highlighting = none
+resharper_property_can_be_made_init_only_global_highlighting = none
+resharper_unused_auto_property_accessor_global_highlighting = none
+resharper_unused_member_global_highlighting = none
+
+[Areas/**]
+resharper_mvc_partial_view_not_resolved_highlighting = none
+resharper_mvc_view_not_resolved_highlighting = none
+
+[**/*Email.cshtml]
+resharper_center_tag_is_obsolete_highlighting = none
+resharper_html_obsolete_highlighting = none

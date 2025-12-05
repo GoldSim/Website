@@ -30,16 +30,17 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            ITopicRepository                _topicRepository = topicRepository;
     private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
 
     /*==========================================================================================================================
     | INDEX
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Searches all topics in the supplied <see cref="_topicRepository"/> for the <paramref name="query"/>, if provided.
+    ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
+    /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
+    /// <param name="useRegEx">Determines whether the search should support regular expressions; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
@@ -61,8 +62,8 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find scope
       \------------------------------------------------------------------------------------------------------------------------*/
-      var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')?? "Root";
-      var scopedTopic           = _topicRepository.Load().GetByUniqueKey(uniqueKey);
+      var uniqueKey             = "Root:" + scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':');
+      var scopedTopic           = topicRepository.Load()?.GetByUniqueKey(uniqueKey);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Validate inputs
@@ -70,7 +71,7 @@ namespace GoldSim.Web.Controllers {
 
       // Validate scope
       if (scopedTopic is null) {
-        errors.Add($"No topic could be found at the scope. Please confirm the path.");
+        errors.Add("No topic could be found at the scope. Please confirm the path.");
       }
 
       // Validate regular expression
@@ -79,7 +80,7 @@ namespace GoldSim.Web.Controllers {
           _ = Regex.Match(String.Empty, query);
         }
         catch (ArgumentException) {
-          errors.Add($"The regular expression provided is not valid. Please check the syntax.");
+          errors.Add("The regular expression provided is not valid. Please check the syntax.");
         }
       }
 
@@ -93,7 +94,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
       \------------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new TopicSearchViewModel() {
+      var viewModel             = new TopicSearchViewModel {
         Id                      = -1,
         WebPath                 = "/TopicSearch/",
         UniqueKey               = "TopicSearch",
@@ -144,7 +145,7 @@ namespace GoldSim.Web.Controllers {
       foreach (var attribute in topic.Attributes.ToList()) {
         var matches             = Regex.Matches(attribute.Value, query, _options);
         if (matches.Count > 0) {
-          topicReference        ??= new AssociatedTopicViewModel() {
+          topicReference        ??= new() {
             Title               = topic.Title,
             ShortTitle          = topic.Title,
             WebPath             = topic.GetWebPath()
@@ -152,7 +153,7 @@ namespace GoldSim.Web.Controllers {
           if (!results.TryGetValue(topicReference, out var attributeResults)) {
             attributeResults    = [];
             results.Add(topicReference, attributeResults);
-          };
+          }
           foreach (Match match in matches) {
             var result          = String.IsNullOrEmpty(replace)? null : match.Result(replace);
             attributeResults.Add(
@@ -171,7 +172,7 @@ namespace GoldSim.Web.Controllers {
       }
 
       if (topicReference is not null && action is TopicSearchAction.ReplaceConfirm) {
-        _topicRepository.Save(topic);
+        topicRepository.Save(topic);
       }
 
       // Recursively replace results for each child topic

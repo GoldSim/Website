@@ -18,29 +18,32 @@
             </blockquote>
           }
         }
-        else if (Model.Action is TopicSearchAction.Search) {
-          if (Model.Results.Count is 0) {
-            <blockquote class="stop">
-              No results were found for the search query.
-            </blockquote>
+        else
+          switch (Model.Action) {
+            case TopicSearchAction.Search when Model.Results.Count is 0:
+              <blockquote class="stop">
+                No results were found for the search query.
+              </blockquote>
+              break;
+            case TopicSearchAction.Search:
+              <blockquote class="success">
+                @Model.Results.Count topics were found for the search query.
+              </blockquote>
+              break;
+            case TopicSearchAction.ReplacePreview:
+              <blockquote class="stop">
+                @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+              </blockquote>
+              break;
+            case TopicSearchAction.ReplaceConfirm:
+              <blockquote class="success">
+                @Model.Results.Count topics were successfully updated with the replacement expression.
+              </blockquote>
+              break;
+            default:
+              throw new ArgumentOutOfRangeException(Model.Action.ToString());
           }
-          else {
-            <blockquote class="success">
-              @Model.Results.Count topics were found for the search query.
-            </blockquote>
-          }
-        }
-        else if (Model.Action is TopicSearchAction.ReplacePreview) {
-          <blockquote class="stop">
-            @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
-          </blockquote>
-        }
-        else if (Model.Action is TopicSearchAction.ReplaceConfirm) {
-          <blockquote class="success">
-            @Model.Results.Count topics were successfully updated with the replacement expression.
-          </blockquote>
-        }
-      </div>
+  </div>
     }
 
     <form id="SearchResultSearchForm" action="/TopicSearch/">
@@ -91,16 +94,16 @@
       <div id="SearchResults">
         <h1>Results</h1>
         <ul>
-        @foreach (var topic in @Model.Results.Keys) {
+        @foreach (var topic in Model.Results.Keys) {
           <li>
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath.Replace(Model.Scope, "").Replace("//", "/")</a>
             @if (!Model.UseRegEx) {
-              var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { Key = g.Key, Count = g.Count()}).OrderBy(x => x.Count);
-              if (attributes.Count() is 1) {
+              var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { g.Key, Count = g.Count()}).OrderBy(x => x.Count).ToList();
+              if (attributes.Count is 1) {
                 <span>(@(pluralize("instance", attributes.First().Count)) in <strong>@attributes.First().Key</strong>)</span>
               }
               else {
-                <span>(@(pluralize("instance", Model.Results[topic].Count())) in @(pluralize("attribute", attributes.Count())))</span>
+                <span>(@(pluralize("instance", Model.Results[topic].Count)) in @(pluralize("attribute", attributes.Count)))</span>
                 <ul>
                   @foreach (var attribute in attributes) {
                     <li><strong>@(attribute.Key):</strong> @(pluralize("instance", attribute.Count))</li>
@@ -115,7 +118,7 @@
                     <li><strong>@(match.AttributeKey):</strong> @match.Match</li>
                   }
                   else {
-                    <li><strong>@(match.AttributeKey):</strong> <s>@match.Match</s> @match.RelaceResult</li>
+                    <li><strong>@(match.AttributeKey):</strong> <del>@match.Match</del> <ins>@match.RelaceResult</ins></li>
                   }
                 }
               </ul>

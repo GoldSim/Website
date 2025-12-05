@@ -12,7 +12,7 @@ namespace GoldSim.Web.Models.Components {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for values associated with the <see cref="AnnouncementViewModel"/>.
   /// </summary>
-  internal sealed record AnnouncementViewModel {
+  public sealed record AnnouncementViewModel {
 
     /*==========================================================================================================================
     | LABEL

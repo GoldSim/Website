@@ -26,6 +26,8 @@ namespace GoldSim.Web.Areas.Courses.Models {
     /// <summary>
     ///   Constructs a new instance of a <see cref="UnitTrackingEventViewModel"/> with predetermined values.
     /// </summary>
+    /// <param name="eventName">The name of the event to be tracked.</param>
+    /// <param name="courseName">The name of the course being tracked.</param>
     /// <param name="unitNumber">The unit number.</param>
     public UnitTrackingEventViewModel(string eventName, string courseName, int unitNumber): base(eventName, courseName) {
       UnitNumber = unitNumber;

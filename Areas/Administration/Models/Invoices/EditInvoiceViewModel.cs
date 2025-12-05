@@ -29,7 +29,6 @@ namespace GoldSim.Web.Areas.Administration.Models.Invoices {
     /// <summary>
     ///   Provides a reference to the actual <see cref="InvoiceTopicViewModel"/> that the invoice page is editing.
     /// </summary>
-    /// <returns>The <typeparamref name="T"/> binding model.</returns>
     public InvoiceTopicViewModel Invoice { get; init; }
 
   } // Class

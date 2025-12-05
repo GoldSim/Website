@@ -1,4 +1,4 @@
-﻿@model String
+﻿@model string
 
 @{
   if (!ViewData.TryGetValue("cssClass", out var cssClass)) {
@@ -7,7 +7,7 @@
   ViewData.TryGetValue("style", out var style);
 }
 
-<div class="@cssClass cell form-field" style=@style>
+<div class="@cssClass cell form-field" style="@style">
   <label asp-for="@Model" class="@(ViewData.ModelMetadata.IsRequired? "required" : "")"></label>
   <input asp-for="@Model" class="field" />
 </div>

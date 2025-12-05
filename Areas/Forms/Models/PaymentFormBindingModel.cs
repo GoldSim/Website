@@ -21,7 +21,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Initializes a new instance of a <see cref="PaymentFormBindingModel"/> object.
     /// </summary>
-    public PaymentFormBindingModel() : base() {
+    public PaymentFormBindingModel() {
     }
 
     /*==========================================================================================================================

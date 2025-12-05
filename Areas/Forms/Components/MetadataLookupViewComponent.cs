@@ -7,7 +7,6 @@ using GoldSim.Web.Areas.Forms.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
-using OnTopic.Collections;
 
 namespace GoldSim.Web.Areas.Forms.Components {
 
@@ -33,12 +32,12 @@ namespace GoldSim.Web.Areas.Forms.Components {
     /// </summary>
     /// <remarks>
     ///   While this implementation satisfies GoldSim's current requirements, it has a major design flaw that necessitates it
-    ///   be placed within a container with <c>for</c> or <c>asp-for</c>, such as <see cref="HtmlHelperEditorExtensions.
-    ///   EditorFor"/>. That's because the view is relying on the <see cref="ViewComponent.ViewData"/> to be populated as part
-    ///   of that process.  Ideally, this should be able to fill that information in on its own, but that mandates further
-    ///   exploration. Further, because objects in the view aren't being bound against the original property, they're not able
-    ///   to correctly wireup any validator attributes. That said, this isn't currently a show stopper as we're already nesting
-    ///   the call under an editor template and can compensate for validation on the server.
+    ///   be placed within a container with <c>for</c> or <c>asp-for</c>, such as e.g., EditorFor. That's because the view is
+    ///   relying on the <see cref="ViewComponent.ViewData"/> to be populated as part of that process.  Ideally, this should be
+    ///   able to fill that information in on its own, but that mandates further exploration. Further, because objects in the
+    ///   view aren't being bound against the original property, they're not able to correctly wireup any validator attributes.
+    ///   That said, this isn't currently a showstopper as we're already nesting the call under an editor template and can
+    ///   compensate for validation on the server.
     /// </remarks>
     /// <returns>A <see cref="MetadataLookupViewComponent"/>.</returns>
     internal MetadataLookupViewComponent(ITopicRepository topicRepository) {
@@ -63,14 +62,14 @@ namespace GoldSim.Web.Areas.Forms.Components {
       Contract.Requires(aspFor, nameof(aspFor));
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
+      | Establish constants
       \-----------------------------------------------------------------------------------------------------------------------*/
       //### TODO JJC20191119: Ideally, these would be configured as optional parameters. Unfortunately, the tag helper approach
       //to calling view components doesn't (yet) support optional parameters. These should be reevaluated if that's fixed. For
       //now, it's not strictly required by current requirements that these be overwritten by the views.
-      var defaultText           = "Select one…";
-      var valueField            = nameof(Topic.Title);
-      var textField             = nameof(Topic.Title);
+      const string defaultText  = "Select one…";
+      const string valueField   = nameof(Topic.Title);
+      const string textField    = nameof(Topic.Title);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Get metadata attribute
@@ -95,7 +94,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Lookup metadata values
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var metadataList          = _topicRepository.Load(metadataKey)?.Children?? new KeyedTopicCollection();
+      var metadataList          = _topicRepository.Load(metadataKey)?.Children?? [];
       var selectList            = new SelectList(metadataList, valueField, textField, aspFor.Model?.ToString());
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -106,7 +105,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
           $"The {aspFor.Metadata.PropertyName} must be decorated with the [Metadata()] attribute."
         );
       }
-      else if (metadataList.Count is 0) {
+      if (metadataList.Count is 0) {
         throw new InvalidOperationException(
           $"The {aspFor.Metadata.PropertyName} is bound to the {metadataAttribute.Key} metadata, but the lookup list " +
           $"contains no topics."
@@ -116,7 +115,7 @@ namespace GoldSim.Web.Areas.Forms.Components {
       /*------------------------------------------------------------------------------------------------------------------------
       | Create view model
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var model = new MetadataLookupViewModel() {
+      var model = new MetadataLookupViewModel {
         Options = selectList,
         DefaultText = defaultText,
         Value = aspFor.Model?.ToString(),

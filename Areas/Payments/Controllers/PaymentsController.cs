@@ -69,7 +69,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// <summary>
     ///   Defines a subset of Braintree transaction statuses, specifically associated with successful transactions.
     /// </summary>
-    internal static readonly TransactionStatus[] TransactionSuccessStatuses = [
+    private static readonly TransactionStatus[] _transactionSuccessStatuses = [
       TransactionStatus.AUTHORIZED,
       TransactionStatus.AUTHORIZING,
       TransactionStatus.SETTLED,
@@ -122,7 +122,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     /// <returns>A view associated with the requested topic's Content Type and view.</returns>
     [HttpGet, HttpHead]
     [ValidateTopic]
-    public async override Task<IActionResult> IndexAsync(string path) =>
+    public override async Task<IActionResult> IndexAsync(string path) =>
       TopicView(await GetViewModel().ConfigureAwait(true));
 
     /*==========================================================================================================================
@@ -151,10 +151,12 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       Contract.Requires(bindingModel, nameof(bindingModel));
       var invoice               = GetInvoice(bindingModel.InvoiceNumber);
       var invoiceAmount         = invoice.Attributes.GetDouble("InvoiceAmount", 1.00);
+      // ReSharper disable once ConditionIsAlwaysTrueOrFalse
       if (invoice is null) {
+        // ReSharper disable once HeuristicUnreachableCode
         ModelState.AddModelError("InvoiceAmount", $"The invoice #{bindingModel.InvoiceNumber} is not valid.");
       }
-      else if (invoiceAmount != bindingModel.InvoiceAmount) {
+      else if (Math.Abs(invoiceAmount - bindingModel.InvoiceAmount) > 1e-10) {
         ModelState.AddModelError(
           "InvoiceAmount",
           $"The invoice {bindingModel.InvoiceNumber} is correct, but doesn't match the expected invoice amount. Please " +
@@ -221,8 +223,8 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Set up notification email
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var mail            = new MailMessage(new MailAddress("Software@GoldSim.com"), new MailAddress("Admin@GoldSim.com"));
-      var emailSubjectPrefix    = "GoldSim Payments: Credit Card Payment for Invoice";
+      using var mail            = new MailMessage(new MailAddress("Software@GoldSim.com"), new("Admin@GoldSim.com"));
+      const string emailSubject = "GoldSim Payments: Credit Card Payment for Invoice";
       var emailBody             = new StringBuilder("");
       var transaction           = result.Target?? result.Transaction;
       var creditCard            = transaction?.CreditCard;
@@ -237,14 +239,14 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       emailBody.AppendLine(" - Company Name: "                  + bindingModel.Organization);
       emailBody.AppendLine(" - Invoice Number: "                + bindingModel.InvoiceNumber);
       emailBody.AppendLine(" - Amount: "                        + "$" + bindingModel.InvoiceAmount);
-      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ creditCard?.LastFour?? "Not Available");
-      emailBody.AppendLine(" - Card Type: "                     + creditCard?.CardType.ToString()?? "Not Available");
+      emailBody.AppendLine(" - Credit Card (Last Four Digits): "+ (creditCard?.LastFour?? "Not Available"));
+      emailBody.AppendLine(" - Card Type: "                     + (creditCard?.CardType.ToString()?? "Not Available"));
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Process successful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      if (result.IsSuccess() && transaction is not null && TransactionSuccessStatuses.Contains(transaction.Status)) {
-        mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Successful";
+      if (result.IsSuccess() && transaction is not null && _transactionSuccessStatuses.Contains(transaction.Status)) {
+        mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
           "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)
@@ -257,7 +259,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Process unsuccessful result
       \-----------------------------------------------------------------------------------------------------------------------*/
-      mail.Subject = $"{emailSubjectPrefix} {bindingModel.InvoiceNumber} Failed";
+      mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Failed";
 
       if (transaction is not null) {
         var status = transaction.ProcessorResponseText;
@@ -307,7 +309,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     | ACTION: VERIFY INVOICE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an invoice number, ensures the values matches a valid <see cref="InvoiceTopicViewModel"/>.
+    ///   Given an invoice number, ensures the values matches a valid InvoiceTopicViewModel.
     /// </summary>
     /// <remarks>
     ///   The purpose of this function is exclusively to validate whether or not an invoice number is valid. If the supplied
@@ -335,7 +337,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
     | ACTION: VERIFY INVOICE AMOUNT
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Given an invoice number and amount, ensure the values match a valid <see cref="InvoiceTopicViewModel"/>.
+    ///   Given an invoice number and amount, ensure the values match a valid InvoiceTopicViewModel.
     /// </summary>
     /// <remarks>
     ///   This is separated from <see cref="VerifyInvoiceNumber(Int32?)"/> so that we can return a distinct error for the

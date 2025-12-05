@@ -1,6 +1,6 @@
 ﻿@model NavigationViewModel<NavigationTopicViewModel>
 
-@if (Model.NavigationRoot.Children.Count > 0) {
+@if (Model.NavigationRoot?.Children.Count > 0) {
   <nav id="PrimaryNavigationSmallScreen" class="navigation primary off-canvas position-left hide-for-large" data-off-canvas data-transition="overlap" role="navigation" vocab="http://schema.org" typeof="SiteNavigationElement">
     <button class="close-button" aria-label="Close menu" type="button" data-close>
       <span aria-hidden="true">&times;</span>
@@ -8,7 +8,7 @@
     <ul class="vertical menu accordion-menu" data-accordion-menu data-multi-open="false">
       <!-- data-submenu-toggle="true" -->
       @foreach (var topic in Model.NavigationRoot.Children) {
-        @WriteMenu(topic, false);
+        @writeMenu(topic, false)
       }
     </ul>
   </nav>
@@ -17,7 +17,7 @@
     <div class="cell">
       <ul class="menu dropdown align-center" data-dropdown-menu>
         @foreach (var topic in Model.NavigationRoot.Children) {
-          @WriteMenu(topic, true);
+          @writeMenu(topic, true)
         }
       </ul>
     </div>
@@ -27,14 +27,13 @@
 
 @{
 
-  IHtmlContent Body(Func<object, IHtmlContent> body) => body(null);
+  IHtmlContent body(Func<object, IHtmlContent> bodyValue) => bodyValue(null);
 
-  IHtmlContent WriteMenu(NavigationTopicViewModel topic, bool isDesktop = true, int indentLevel = 1) {
+  IHtmlContent writeMenu(NavigationTopicViewModel topic, bool isDesktop, int indentLevel = 1) {
 
     var isParentMenu            = topic.Children.Count > 2;
     var targetUrl               = !isParentMenu || isDesktop? topic.WebPath : "#";
-    var title                   = topic.ShortTitle?? topic.Title?? topic.WebPath.Substring(topic.WebPath.LastIndexOf("/", topic.WebPath.Length-2)).Trim('/');
-
+    var title                   = topic.ShortTitle?? topic.Title;
     var orientationAttribute    = isDesktop? "dropdown" : "vertical";
     var dropdownMenuAttribute   = isDesktop? "data-dropdown-menu" : "";
 
@@ -43,7 +42,7 @@
     var isActiveClass           = topic.IsSelected(Model.CurrentWebPath)? "is-active" : "";
     var childSelectedClass      = topic.WebPath.Equals(Model.CurrentWebPath)? "selected" : "";
 
-    return Body(
+    return body(
       @<li class="@submenuParentClass">
         <a href="@targetUrl" class="@selectedClass" data-indent-level="@indentLevel">@title</a>
         @if (isParentMenu) {
@@ -52,7 +51,7 @@
               <li><a href="@topic.WebPath" class="@childSelectedClass" data-indent-level="@indentLevel">Overview</a></li>
             }
             @foreach (var childTopic in topic.Children) {
-              @WriteMenu(childTopic, isDesktop, indentLevel + 1);
+              @writeMenu(childTopic, isDesktop, indentLevel + 1)
             }
           </ul>
         }

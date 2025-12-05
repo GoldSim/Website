@@ -43,15 +43,13 @@ namespace GoldSim.Web {
   internal sealed class GoldSimActivator : IControllerActivator, IViewComponentActivator {
 
     /*==========================================================================================================================
-    | PRIVATE INSTANCES
+    | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            IConfiguration                  _configuration;
-    private readonly            CompositeTypeLookupService      _typeLookupService;
     private readonly            TopicMappingService             _topicMappingService;
     private readonly            CachedTopicRepository           _topicRepository;
     private readonly            PostmarkSmtpService             _smtpService;
     private readonly            IRequestValidator               _requestValidator;
-    private readonly            IWebHostEnvironment             _webHostEnvironment;
     private readonly            StandardEditorComposer          _standardEditorComposer;
 
     /*==========================================================================================================================
@@ -84,7 +82,6 @@ namespace GoldSim.Web {
       | SAVE STANDARD DEPENDENCIES
       \-----------------------------------------------------------------------------------------------------------------------*/
           _configuration        = configuration;
-          _webHostEnvironment   = webHostEnvironment;
           _requestValidator     = new RecaptchaValidator(configuration.GetValue<string>("reCaptcha:Secret"));
       var connectionString      = configuration.GetConnectionString("OnTopic");
       var sqlTopicRepository    = new SqlTopicRepository(connectionString);
@@ -94,19 +91,19 @@ namespace GoldSim.Web {
       | PRELOAD REPOSITORY
       \-----------------------------------------------------------------------------------------------------------------------*/
       _topicRepository          = cachedTopicRepository;
-      _typeLookupService        = new CompositeTypeLookupService(
-                                    new GoldSimTopicViewModelLookupService(),
-                                    new TopicViewModelLookupService(),
-                                    new EditorViewModelLookupService()
-                                  );
-      _topicMappingService      = new TopicMappingService(_topicRepository, _typeLookupService);
+      var typeLookupService     = new CompositeTypeLookupService(
+        new GoldSimTopicViewModelLookupService(),
+        new TopicViewModelLookupService(),
+        new EditorViewModelLookupService()
+      );
+      _topicMappingService      = new(_topicRepository, typeLookupService);
 
       _topicRepository.Load();
 
       /*------------------------------------------------------------------------------------------------------------------------
       | INITIALIZE EDITOR COMPOSER
       \-----------------------------------------------------------------------------------------------------------------------*/
-      _standardEditorComposer   = new(_topicRepository, _webHostEnvironment);
+      _standardEditorComposer   = new(_topicRepository, webHostEnvironment);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT SMTP CLIENT
@@ -114,7 +111,7 @@ namespace GoldSim.Web {
       var postmarkApiKey        = _configuration.GetValue<string>("Postmark:ApiKey");
       var postmarkClient        = new PostmarkClient(postmarkApiKey);
 
-      _smtpService              = new PostmarkSmtpService(postmarkClient);
+      _smtpService              = new(postmarkClient);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
@@ -148,7 +145,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of controllers in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ControllerContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -165,14 +162,11 @@ namespace GoldSim.Web {
       | Register
       \-----------------------------------------------------------------------------------------------------------------------*/
       // Force controller recognition for specific Content Types
-      if (controllerType.Equals(typeof(TopicController))) {
-        switch (_topicRepository.Load(context.RouteData)?.ContentType) {
-          case "Payments":
-            controllerType      = typeof(PaymentsController);
-            break;
-          default:
-            break;
-        }
+      if (controllerType == typeof(TopicController)) {
+        controllerType = _topicRepository.Load(context.RouteData)?.ContentType switch {
+          "Payments" => typeof(PaymentsController),
+          _ => controllerType
+        };
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -237,7 +231,7 @@ namespace GoldSim.Web {
     /// <summary>
     ///   Registers dependencies, and injects them into new instances of view components in response to each request.
     /// </summary>
-    /// <returns>A concrete instance of an <see cref="IController"/>.</returns>
+    /// <returns>A concrete instance of an <see cref="Controller"/>.</returns>
     public object Create(ViewComponentContext context) {
 
       /*------------------------------------------------------------------------------------------------------------------------

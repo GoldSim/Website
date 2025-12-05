@@ -5,7 +5,7 @@
 }
 
 <!-- CTAs Area -->
-<aside id="CallsToAction" class="calls-to-action panel off-screen" data-sticky data-stick-to="bottom" data-btm-anchor=@anchorId data-margin-bottom="0">
+<aside id="CallsToAction" class="calls-to-action panel off-screen" data-sticky data-stick-to="bottom" data-btm-anchor="@anchorId" data-margin-bottom="0">
   <div class="grid-container">
     <div class="grid-x grid-margin-x">
 
@@ -20,33 +20,39 @@
 
   void callsToActionContents() {
 
-    string currentNavigationRoot  = (Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLower() : "");
-    string callToActionType       = "general";
-    if (currentNavigationRoot is "/web/purchase/") {
-      callToActionType            = "purchase";
-    }
-    if (currentNavigationRoot is "/web/customers/") {
-      callToActionType            = "customers";
-    }
+    var currentNavigationRoot   = Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLower() : "";
+    var callToActionType = currentNavigationRoot switch {
+      "/web/purchase/" => "purchase",
+      "/web/customers/" => "customers",
+      _ => "general"
+    };
 
     <div class="show-for-large large-4 cell">
-      <span class="headline">@(callToActionType is "customers" ? "Need Support?" : (callToActionType is "purchase" ? "Ready to Buy?" : "See it in action"))</span>
+      <span class="headline">
+        @(callToActionType switch {
+          "customers" => "Need Support?",
+          "purchase" => "Ready to Buy?",
+          _ => "See it in action"
+        })
+      </span>
     </div>
 
     <div class="medium-12 large-8 cell">
       <div class="stacked-for-small button-group">
-        @if (callToActionType is "customers") {
-          <a href="https://support.goldsim.com/hc/en-us/requests/new" class="button large call-to-action support" onclick="trackEvent(this, 'CTA', 'Click', 'Support Request'); return false;">Submit a Request &raquo;</a>
-          <a href="https://support.goldsim.com/hc/en-us/community/topics" class="button large call-to-action forums" onclick="trackEvent(this, 'CTA', 'Click', 'Forums'); return false;">Visit Forums &raquo;</a>
-        }
-        else if (callToActionType is "purchase") {
-          <a href="/Forms/Quote/" class="button large call-to-action quote" onclick="trackEvent(this, 'CTA', 'Click', 'Quote Request'); return false;">Request a Quote &raquo;</a>
-          <a href="/Forms/Purchase/" class="button large call-to-action buy" onclick="trackEvent(this, 'CTA', 'Click', 'Purchase GoldSim'); return false;">Purchase GoldSim &raquo;</a>
-        }
-        else {
-          <a href="/Forms/Demo/" class="button large call-to-action demo" onclick="trackEvent(this, 'CTA', 'Click', 'Demo Request'); return false;">Request a Web Demo &raquo;</a>
-          <a href="/Forms/Trial/" class="button large call-to-action eval" onclick="trackEvent(this, 'CTA', 'Click', 'Trial Request'); return false;">Request a Trial Version &raquo;</a>
-        }
+        @switch (callToActionType) {
+          case "customers":
+            <a href="https://support.goldsim.com/hc/en-us/requests/new" class="button large call-to-action support" onclick="trackEvent(this, 'CTA', 'Click', 'Support Request'); return false;">Submit a Request &raquo;</a>
+            <a href="https://support.goldsim.com/hc/en-us/community/topics" class="button large call-to-action forums" onclick="trackEvent(this, 'CTA', 'Click', 'Forums'); return false;">Visit Forums &raquo;</a>
+            break;
+          case "purchase":
+            <a href="/Forms/Quote/" class="button large call-to-action quote" onclick="trackEvent(this, 'CTA', 'Click', 'Quote Request'); return false;">Request a Quote &raquo;</a>
+            <a href="/Forms/Purchase/" class="button large call-to-action buy" onclick="trackEvent(this, 'CTA', 'Click', 'Purchase GoldSim'); return false;">Purchase GoldSim &raquo;</a>
+            break;
+          default:
+            <a href="/Forms/Demo/" class="button large call-to-action demo" onclick="trackEvent(this, 'CTA', 'Click', 'Demo Request'); return false;">Request a Web Demo &raquo;</a>
+            <a href="/Forms/Trial/" class="button large call-to-action eval" onclick="trackEvent(this, 'CTA', 'Click', 'Trial Request'); return false;">Request a Trial Version &raquo;</a>
+            break;
+          }
       </div>
     </div>
   }

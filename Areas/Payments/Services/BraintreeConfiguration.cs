@@ -16,16 +16,18 @@ namespace GoldSim.Web.Areas.Payments.Services {
   ///   Provides a strongly-typed data transfer object for communication with the Braintree Payment Gateway.
   /// </summary>
   /// <remarks>
-  ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>
+  ///   Reference: <see href="https://www.braintreepayments.com/">https://www.braintreepayments.com/</see>.
+  /// </remarks>
   internal sealed class BraintreeConfiguration : IBraintreeConfiguration {
 
     /*==========================================================================================================================
-    | PRIVATE FIELDS
+    | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
     private                     IBraintreeGateway               _braintreeGateway;
     private readonly            ITopicRepository                _topicRepository;
     private readonly            IConfiguration                  _configuration;
     private readonly            RouteData                       _routeData;
+    private const               string                          _environment                    = "production";
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -41,36 +43,24 @@ namespace GoldSim.Web.Areas.Payments.Services {
     }
 
     /*==========================================================================================================================
-    | PUBLIC PROPERTIES
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    internal string Environment { get; set; } = "production";
-    internal string MerchantId { get; set; }
-    internal string PublicKey { get; set; }
-    internal string PrivateKey { get; set; }
-
-    /*==========================================================================================================================
     | CREATE GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Instantiates the Braintree communication gateway, utilizing the appropriate Braintree environment and API credentials.
     /// </summary>
     /// <returns>The configured Braintree payments gateway.</returns>
-    public IBraintreeGateway CreateGateway() =>
-      new BraintreeGateway(
-        Braintree.Environment.ParseEnvironment(Environment),
-        GetConfigurationSetting(nameof(MerchantId), MerchantId),
-        GetConfigurationSetting(nameof(PublicKey), PublicKey),
-        GetConfigurationSetting(nameof(PrivateKey), PrivateKey)
+    private BraintreeGateway CreateGateway() =>
+      new(
+        Braintree.Environment.ParseEnvironment(_environment),
+        GetConfigurationSetting("MerchantId"),
+        GetConfigurationSetting("PublicKey"),
+        GetConfigurationSetting("PrivateKey")
       );
 
     /*==========================================================================================================================
     | GET GATEWAY
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Looks up the currently configured Braintree payments gateway. If the gateway is not currently available, it is
-    ///   manually created.
-    /// </summary>
-    /// <returns>The configured Braintree payments gateway.</returns>
+    /// <inheritdoc />
     public IBraintreeGateway GetGateway() => _braintreeGateway ??= CreateGateway();
 
     /*==========================================================================================================================
@@ -81,17 +71,17 @@ namespace GoldSim.Web.Areas.Payments.Services {
     ///   sources.
     /// </summary>
     /// <remarks>
-    ///   Fallback configuration sources include, in order, the <see cref="Topic"/>, the <see cref="Environment"/>, and,
-    ///   finally, the <see cref="ConfigurationManager.AppSettings"/>.
+    ///   Fallback configuration sources include, in order, the <see cref="Topic"/>, the <see cref="System.Environment"/>, and,
+    ///   finally, the application configuration (i.e., the <see cref="IConfiguration"/> provider).
     /// </remarks>
     /// <returns>The configured value for the given variable.</returns>
-    public string GetConfigurationSetting(string setting, string defaultValue = null) {
+    private string GetConfigurationSetting(string setting, string defaultValue = null) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var paymentsTopic         = _topicRepository.Load(_routeData);
-      var environmentVariable   = Environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
+      var environmentVariable   = _environment.Equals("sandbox", StringComparison.OrdinalIgnoreCase) ? "Development" : "Production";
       var compositeVariable     = $"Braintree:{environmentVariable}:{setting}";
       var compositeAttributeKey = $"Braintree{environmentVariable}{setting}";
       var value                 = defaultValue;
@@ -111,7 +101,7 @@ namespace GoldSim.Web.Areas.Payments.Services {
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Get API credentials from App Settings
+      | Get API credentials from the application configuration
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (String.IsNullOrEmpty(value)) {
         value = _configuration.GetValue<string>(compositeVariable);
