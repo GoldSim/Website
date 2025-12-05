@@ -16,9 +16,9 @@
     <Company>GoldSim Technology Group</Company>
     <Product>GoldSim Website</Product>
     <Description>Models, helpers, and configuration for the GoldSim website.</Description>
-    <Copyright>©2021</Copyright>
+    <Copyright>©2025</Copyright>
     <Authors>Ignia</Authors>
-    <AssemblyVersion>5.0.0</AssemblyVersion>
+    <AssemblyVersion>5.1.0</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
