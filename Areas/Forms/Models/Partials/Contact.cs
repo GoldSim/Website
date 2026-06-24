@@ -19,6 +19,21 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   public record Contact : CoreContact {
 
     /*==========================================================================================================================
+    | PROPERTY: PROVINCE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the province (or state in America).
+    /// </summary>
+    /// <remarks>
+    ///   This is also supplied by the <see cref="Address"/> via e.g., <see cref="ExtendedContact"/>, where it is
+    ///   required. It is included here to provide support for the <see cref="DemoFormBindingModel"/> and <see cref=
+    ///   "TrialFormBindingModel"/> forms.
+    /// </remarks>
+    [StringLength(255)]
+    [Display(Name="State/Province")]
+    public string Province { get; set; }
+
+    /*==========================================================================================================================
     | PROPERTY: COUNTRY
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
