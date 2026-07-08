@@ -29,6 +29,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     ///   required. It is included here to provide support for the <see cref="DemoFormBindingModel"/> and <see cref=
     ///   "TrialFormBindingModel"/> forms.
     /// </remarks>
+    [DisableMapping]
     [StringLength(255)]
     [Display(Name="State/Province")]
     public string Province { get; set; }
