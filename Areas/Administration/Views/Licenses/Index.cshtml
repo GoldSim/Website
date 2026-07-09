@@ -45,7 +45,7 @@
             @foreach (var request in Model.Requests) {
               <tr id="@Model.Key" class="record">
                 <td><input type="checkbox" name="topics" value=@request.Id /></td>
-                <td>@request.FirstName @request.LastName</td>
+                <td><a href="@($"/OnTopic/Edit{request.WebPath}")">@request.FirstName @request.LastName</a></td>
                 <td>@request.Organization</td>
                 <td>@request.GetType().Name.Replace("FormTopicViewModel", "")</td>
                 <td>@request.LastModified.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
