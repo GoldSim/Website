@@ -231,22 +231,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
-    | FORM: TRAINING
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Signup for a training session with GoldSim.
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> TrainingAsync() =>
-      View(await CreateViewModel<TrainingFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TrainingAsync(TrainingFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
     | ACTION: VERIFY EMAIL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
