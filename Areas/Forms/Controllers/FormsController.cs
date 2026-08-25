@@ -199,22 +199,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
-    | FORM: NEWSLETTER
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Signup for the GoldSim newsletter
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> NewsletterAsync() =>
-      View(await CreateViewModel<NewsletterFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel, string requestType = null) =>
-      await ProcessForm(bindingModel, requestType).ConfigureAwait(true);
-
-    /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
