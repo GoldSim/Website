@@ -32,7 +32,6 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Gets or sets what type of license the user wishes to purchase (e.g., stand-alone, leased, enterprise).
     /// </summary>
-    [Required]
     [StringLength(30)]
     [Display(Name="License Type")]
     [Metadata("LicenseTypes")]
