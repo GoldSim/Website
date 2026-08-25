@@ -183,22 +183,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
-    | FORM: PURCHASE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Request to purchase a license of the product
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> PurchaseAsync() =>
-      View(await CreateViewModel<PurchaseFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
