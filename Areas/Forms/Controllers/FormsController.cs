@@ -215,22 +215,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
-    | FORM: USER CONFERENCE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Request an academic license of the product for faculty.
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> UserConferenceAsync() =>
-      View(await CreateViewModel<UserConferenceFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
     | ACTION: VERIFY EMAIL
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
