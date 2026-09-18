@@ -23,9 +23,18 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     | PROPERTY: IS SUCCESSFUL?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets whether the sync attempt completed successfully.
+    ///   Gets whether the sync attempt completed successfully. <c>false</c> when <see cref="IsSkipped"/> is <c>true</c>.
     /// </summary>
     public required bool        IsSuccessful                    { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS SKIPPED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets whether the sync attempt was skipped because HubSpot sync isn't configured (e.g., no access token). Distinct from
+    ///   <see cref="IsSuccessful"/> being <c>false</c>, since a skipped sync isn't a failure to diagnose.
+    /// </summary>
+    public required bool        IsSkipped                       { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: HUBSPOT CONTACT ID
@@ -40,8 +49,8 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     | PROPERTY: ERROR MESSAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets a diagnostic message describing why the sync attempt failed. Set only when <see cref="IsSuccessful"/> is
-    ///   <c>false</c>.
+    ///   Gets a diagnostic message describing why the sync attempt failed. Set only when both <see cref="IsSuccessful"/> and
+    ///   <see cref="IsSkipped"/> are <c>false</c>.
     /// </summary>
     public string               ErrorMessage                    { get; init; }
 
