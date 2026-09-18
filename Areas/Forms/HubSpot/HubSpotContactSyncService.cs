@@ -25,26 +25,21 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
   public sealed class HubSpotContactSyncService : IHubSpotContactSyncService {
 
     /*==========================================================================================================================
-    | CONSTANT: HTTP CLIENT NAME
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets the name of the <see cref="HttpClient"/>, registered via <see cref="IHttpClientFactory"/>, that this service
-    ///   resolves. The registered client is expected to have its base address set to HubSpot's API root.
-    /// </summary>
-    public const string         HttpClientName                  = "HubSpot";
-
-    /*==========================================================================================================================
     | CONSTANT: REQUEST URI
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the relative URI of HubSpot's CRM v3 contacts batch "upsert" endpoint.
+    ///   Gets the relative URI of HubSpot's CRM v3 contacts batch "upsert" endpoint, relative to
+    ///   <see cref="HttpClient.BaseAddress"/>.
     /// </summary>
     private const string        _requestUri                     = "crm/v3/objects/contacts/batch/upsert";
 
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly            IHttpClientFactory              _httpClientFactory;
+    //### TODO JJC20260918: Switch to a named client resolved via IHttpClientFactory once the site adopts .NET's DI container.
+    // For now, this follows the same long-lived, manually constructed HttpClient pattern already used elsewhere, since the
+    // controller activator that constructs this service runs before the DI container is built.
+    private readonly            HttpClient                      _httpClient;
     private readonly            IHubSpotPayloadBuilder          _payloadBuilder;
     private readonly            string                          _accessToken;
 
@@ -54,22 +49,22 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     /// <summary>
     ///   Establishes a new instance of a <see cref="HubSpotContactSyncService"/>.
     /// </summary>
-    /// <param name="httpClientFactory">The <see cref="IHttpClientFactory"/> used to resolve the named HubSpot client.</param>
+    /// <param name="httpClient">The <see cref="HttpClient"/>, with its base address set to HubSpot's API root.</param>
     /// <param name="payloadBuilder">The <see cref="IHubSpotPayloadBuilder"/> used to translate topics into payloads.</param>
     /// <param name="configuration">The <see cref="IConfiguration"/> that the HubSpot access token is read from.</param>
     public HubSpotContactSyncService(
-      IHttpClientFactory httpClientFactory,
+      HttpClient httpClient,
       IHubSpotPayloadBuilder payloadBuilder,
       IConfiguration configuration
     ) {
 
       // Validate parameters
-      Contract.Requires(httpClientFactory, nameof(httpClientFactory));
+      Contract.Requires(httpClient, nameof(httpClient));
       Contract.Requires(payloadBuilder, nameof(payloadBuilder));
       Contract.Requires(configuration, nameof(configuration));
 
       // Set local values
-      _httpClientFactory        = httpClientFactory;
+      _httpClient               = httpClient;
       _payloadBuilder           = payloadBuilder;
       _accessToken              = configuration.GetValue<string>("HubSpot:AccessToken");
 
@@ -120,8 +115,7 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
         };
 
         // Send request
-        var client              = _httpClientFactory.CreateClient(HttpClientName);
-        using var response      = await client.SendAsync(request).ConfigureAwait(true);
+        using var response      = await _httpClient.SendAsync(request).ConfigureAwait(true);
         var responseBody        = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
         // Report failure, including the response body, for a non-2xx response
