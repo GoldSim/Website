@@ -136,7 +136,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Optionally save as topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (viewModel.SaveAsTopic) {
-        await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
+        _ = await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -372,7 +372,8 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     /// <summary>
     ///   Adds the form values to a new <see cref="Topic"/>, and saves it to the <see cref="ITopicRepository"/>.
     /// </summary>
-    private async Task SaveToTopic(CoreContact bindingModel) {
+    /// <returns>The <see cref="Topic"/> that was mapped and saved.</returns>
+    private async Task<Topic> SaveToTopic(CoreContact bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
@@ -406,6 +407,11 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Save form Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       TopicRepository.Save(topic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return topic;
 
     }
 
