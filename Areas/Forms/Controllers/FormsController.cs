@@ -38,6 +38,11 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     private readonly            IRequestValidator               _requestValidator;
     private                     Dictionary<string, string>      _formValues;
 
+    //### TODO JJC20260918: Switch to a named client resolved via IHttpClientFactory once the site adopts .NET's DI container.
+    // For now, this follows the same long-lived, manually constructed HttpClient pattern already used elsewhere, since the
+    // controller activator that constructs this service runs before the DI container is built.
+    private static readonly     HttpClient                      _client                         = new();
+
     /*==========================================================================================================================
     | CONSTRUCTOR
     \-------------------------------------------------------------------------------------------------------------------------*/
@@ -307,8 +312,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble body
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var client          = new HttpClient();
-      var response              = await client.GetAsync(url).ConfigureAwait(true);
+      var response              = await _client.GetAsync(url).ConfigureAwait(true);
       var pageContents          = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
