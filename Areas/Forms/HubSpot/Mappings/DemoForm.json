@@ -1,0 +1,45 @@
+{
+  "formIdentifier": "DemoForm",
+  "fields": [
+    {
+      "sourceAttribute": "FirstName",
+      "hubSpotProperty": "firstname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "LastName",
+      "hubSpotProperty": "lastname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Organization",
+      "hubSpotProperty": "company",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Email",
+      "hubSpotProperty": "email",
+      "hubSpotType": "string",
+      "isRequired": true,
+      "isUniqueKey": true
+    },
+    {
+      "sourceAttribute": "PhoneNumber",
+      "hubSpotProperty": "phone",
+      "hubSpotType": "string"
+    },
+    {
+      "constantValue": "User",
+      "hubSpotProperty": "goldsim_contact_type",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "constantValue": "GoldSim",
+      "hubSpotProperty": "datacor_product",
+      "hubSpotType": "enumerationSet"
+    }
+  ]
+}
