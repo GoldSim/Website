@@ -6,6 +6,7 @@
 using System.Globalization;
 using System.Net.Mail;
 using System.Text;
+using GoldSim.Web.Areas.Forms.HubSpot;
 using GoldSim.Web.Areas.Forms.Models;
 using GoldSim.Web.Areas.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
@@ -36,6 +37,8 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     private readonly            IReverseTopicMappingService     _reverseMappingService;
     private readonly            ISmtpService                    _smptService;
     private readonly            IRequestValidator               _requestValidator;
+    private readonly            IHubSpotMappingRegistry         _hubSpotMappingRegistry;
+    private readonly            IHubSpotContactSyncService      _hubSpotContactSyncService;
     private                     Dictionary<string, string>      _formValues;
 
     //### TODO JJC20260918: Switch to a named client resolved via IHttpClientFactory once the site adopts .NET's DI container.
@@ -55,7 +58,9 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
       ISmtpService smtpService,
-      IRequestValidator requestValidator
+      IRequestValidator requestValidator,
+      IHubSpotMappingRegistry hubSpotMappingRegistry,
+      IHubSpotContactSyncService hubSpotContactSyncService
     ) : base(
       topicRepository,
       topicMappingService
@@ -64,6 +69,8 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       _reverseMappingService    = reverseTopicMappingService;
       _smptService              = smtpService;
       _requestValidator         = requestValidator;
+      _hubSpotMappingRegistry   = hubSpotMappingRegistry;
+      _hubSpotContactSyncService = hubSpotContactSyncService;
     }
 
     /*==========================================================================================================================
