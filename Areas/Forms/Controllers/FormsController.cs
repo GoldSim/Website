@@ -135,8 +135,21 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Optionally save as topic
       \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic savedTopic          = null;
+
       if (viewModel.SaveAsTopic) {
-        _ = await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
+        savedTopic              = await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Optionally sync to HubSpot
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var formIdentifier        = typeof(T).Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
+      if (_hubSpotMappingRegistry.TryGetManifest(formIdentifier, out var manifest)) {
+        var hubSpotTopic        = savedTopic??
+          await _reverseMappingService.MapAsync(viewModel.BindingModel).ConfigureAwait(true);
+        _ = await _hubSpotContactSyncService.SyncAsync(hubSpotTopic, manifest).ConfigureAwait(true);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
