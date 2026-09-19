@@ -147,8 +147,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       var formIdentifier        = typeof(T).Name.Replace("BindingModel", "", StringComparison.Ordinal);
 
       if (_hubSpotMappingRegistry.TryGetManifest(formIdentifier, out var manifest)) {
-        var hubSpotTopic        = savedTopic??
-          await _reverseMappingService.MapAsync(viewModel.BindingModel).ConfigureAwait(true);
+        var hubSpotTopic        = savedTopic?? await MapToTopic(viewModel.BindingModel).ConfigureAwait(true);
         _ = await _hubSpotContactSyncService.SyncAsync(hubSpotTopic, manifest).ConfigureAwait(true);
       }
 
@@ -389,14 +388,9 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     private async Task<Topic> SaveToTopic(CoreContact bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
+      | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
-
-      bindingModel              = bindingModel with {
-        ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
-      };
+      var topic                 = await MapToTopic(bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
@@ -404,11 +398,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       const string parentKey    = "Administration:Licenses";
       const string errorMessage = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
       var parentTopic           = TopicRepository.Load(parentKey);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Map binding model to new topic
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic                 = await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
@@ -425,6 +414,36 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Return topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       return topic;
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: MAP TO TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Maps a <paramref name="bindingModel"/> to a new <see cref="Topic"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This first populating <see cref="CoreContact.ContentType"/> and <see cref="CoreContact.Key"/>, since <see cref=
+    ///   "IReverseTopicMappingService"/> requires both, and neither is otherwise set on the binding model.
+    /// </remarks>
+    /// <returns>The mapped, unsaved <see cref="Topic"/>.</returns>
+    private async Task<Topic> MapToTopic(CoreContact bindingModel) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
+      bindingModel              = bindingModel with {
+        ContentType             = contentType,
+        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
+      };
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Map binding model to new topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
 
     }
 
