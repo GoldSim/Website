@@ -27,7 +27,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     [Required]
     [StringLength(75)]
     [Metadata("Country")]
-    public virtual string Country { get; init; } = "United States of America";
+    public virtual string Country { get; init; } = "United States";
 
     /*==========================================================================================================================
     | PROPERTY: PHONE NUMBER
