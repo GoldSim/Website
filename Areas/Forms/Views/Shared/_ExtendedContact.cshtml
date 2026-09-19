@@ -1,9 +1,9 @@
 ﻿@model QuoteFormBindingModel
 
 <partial name="_CoreContact" for="@Model" />
-<partial name="_Address" for="@Model.Address" />
 
-@Html.EditorFor(model => model.Country, "Select")
 @Html.EditorFor(model => model.PhoneNumber, "String")
+@Html.EditorFor(model => model.Country, "Select", new { cssClass = "small-12" })
+<partial name="_Address" for="@Model.Address" />
 
 <!-- View Location: ~/Areas/Forms/Views/Shared/_ExtendedContact.cshtml -->
