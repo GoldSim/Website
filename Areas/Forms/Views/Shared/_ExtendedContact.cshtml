@@ -3,6 +3,7 @@
 <partial name="_CoreContact" for="@Model" />
 
 @Html.EditorFor(model => model.PhoneNumber, "String")
+@Html.EditorFor(model => model.FaxNumber, "String")
 @Html.EditorFor(model => model.Country, "Select", new { cssClass = "small-12" })
 <partial name="_Address" for="@Model.Address" />
 
