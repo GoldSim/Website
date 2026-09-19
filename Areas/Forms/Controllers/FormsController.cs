@@ -183,38 +183,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================
-    | FORM: PURCHASE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Request to purchase a license of the product
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> PurchaseAsync() =>
-      View(await CreateViewModel<PurchaseFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> PurchaseAsync(PurchaseFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
-    | FORM: NEWSLETTER
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Signup for the GoldSim newsletter
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> NewsletterAsync() =>
-      View(await CreateViewModel<NewsletterFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> NewsletterAsync(NewsletterFormBindingModel bindingModel, string requestType = null) =>
-      await ProcessForm(bindingModel, requestType).ConfigureAwait(true);
-
-    /*==========================================================================================================================
     | FORM: ACADEMIC (INSTRUCTOR)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
@@ -244,38 +212,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     [HttpPost]
     [ValidateAntiForgeryToken]
     public async Task<IActionResult> StudentAcademicAsync(StudentAcademicFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
-    | FORM: USER CONFERENCE
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Request an academic license of the product for faculty.
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> UserConferenceAsync() =>
-      View(await CreateViewModel<UserConferenceFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> UserConferenceAsync(UserConferenceFormBindingModel bindingModel) =>
-      await ProcessForm(bindingModel).ConfigureAwait(true);
-
-    /*==========================================================================================================================
-    | FORM: TRAINING
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Signup for a training session with GoldSim.
-    /// </summary>
-    [HttpGet, HttpHead]
-    [ValidateTopic]
-    public async Task<IActionResult> TrainingAsync() =>
-      View(await CreateViewModel<TrainingFormBindingModel>().ConfigureAwait(true));
-
-    [HttpPost]
-    [ValidateAntiForgeryToken]
-    public async Task<IActionResult> TrainingAsync(TrainingFormBindingModel bindingModel) =>
       await ProcessForm(bindingModel).ConfigureAwait(true);
 
     /*==========================================================================================================================

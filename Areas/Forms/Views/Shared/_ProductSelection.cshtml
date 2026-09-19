@@ -1,7 +1,7 @@
-﻿@model PurchaseBindingModel
+﻿@model QuoteFormBindingModel
 
 @Html.EditorFor(model => model.Product, "Select")
-@Html.EditorFor(model => model.LicenseType, "Select")
+@* @Html.EditorFor(model => model.LicenseType, "Select") *@
 
 @Html.EditorFor(model => model.Quantity)
 
@@ -18,6 +18,9 @@
         var product             = $(this);
         var licenseType         = $("select[name='BindingModel.LicenseType']");
         var productValue        = product.children("option:selected").val();
+        if (licenseType.length === 0) {
+          return;
+        }
         if (productValue.includes("Research")) {
           licenseTypeValue      = licenseType.children("option:selected").val();
           licenseType.addClass("readonly");
