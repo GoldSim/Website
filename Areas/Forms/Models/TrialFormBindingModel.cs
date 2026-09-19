@@ -36,6 +36,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Required]
     [StringLength(255)]
     [Display(Name="State/Province")]
+    [Metadata("State")]
     public string Province { get; set; }
 
     /*==========================================================================================================================
