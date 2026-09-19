@@ -47,6 +47,16 @@
       "hubSpotType": "string"
     },
     {
+      "sourceAttribute": "Province",
+      "hubSpotProperty": "state",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Country",
+      "hubSpotProperty": "country",
+      "hubSpotType": "string"
+    },
+    {
       "constantValue": "Trainer",
       "hubSpotProperty": "goldsim_contact_type",
       "hubSpotType": "enumeration"
