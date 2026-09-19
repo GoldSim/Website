@@ -6,8 +6,9 @@
     <div class="grid-x grid-margin-x">
 
       <partial name="_Contact" for="BindingModel" />
-      @Html.EditorFor(model => model.BindingModel.Province)
       <partial name="_ContactLocation" for="BindingModel" />
+      @Html.EditorFor(model => model.BindingModel.Province, "Select", new { cssClass = "medium-6 state-lookup is-hidden" })
+      @Html.EditorFor(model => model.BindingModel.Province, new { cssClass = "medium-6 province-input" })
       <partial name="_Requirements" for="BindingModel" />
 
       @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
