@@ -6,6 +6,7 @@
 using System.Globalization;
 using System.Net.Mail;
 using System.Text;
+using GoldSim.Web.Areas.Forms.HubSpot;
 using GoldSim.Web.Areas.Forms.Models;
 using GoldSim.Web.Areas.Forms.Models.Partials;
 using GoldSim.Web.Models.ContentTypes;
@@ -36,7 +37,14 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     private readonly            IReverseTopicMappingService     _reverseMappingService;
     private readonly            ISmtpService                    _smptService;
     private readonly            IRequestValidator               _requestValidator;
+    private readonly            IHubSpotMappingRegistry         _hubSpotMappingRegistry;
+    private readonly            IHubSpotContactSyncService      _hubSpotContactSyncService;
     private                     Dictionary<string, string>      _formValues;
+
+    //### TODO JJC20260918: Switch to a named client resolved via IHttpClientFactory once the site adopts .NET's DI container.
+    // For now, this follows the same long-lived, manually constructed HttpClient pattern already used elsewhere, since the
+    // controller activator that constructs this service runs before the DI container is built.
+    private static readonly     HttpClient                      _client                         = new();
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -50,7 +58,9 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       ITopicMappingService topicMappingService,
       IReverseTopicMappingService reverseTopicMappingService,
       ISmtpService smtpService,
-      IRequestValidator requestValidator
+      IRequestValidator requestValidator,
+      IHubSpotMappingRegistry hubSpotMappingRegistry,
+      IHubSpotContactSyncService hubSpotContactSyncService
     ) : base(
       topicRepository,
       topicMappingService
@@ -59,6 +69,8 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       _reverseMappingService    = reverseTopicMappingService;
       _smptService              = smtpService;
       _requestValidator         = requestValidator;
+      _hubSpotMappingRegistry   = hubSpotMappingRegistry;
+      _hubSpotContactSyncService = hubSpotContactSyncService;
     }
 
     /*==========================================================================================================================
@@ -109,7 +121,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Optionally send internal receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.DisableEmailReceipt) {
-        var subject = (viewModel.EmailSubject + " " + requestType).Trim();
+        var subject = $"{viewModel.EmailSubject} {requestType}".Trim();
         await SendInternalReceipt(subject, viewModel.EmailRecipient, viewModel.EmailSender).ConfigureAwait(true);
       }
 
@@ -123,8 +135,20 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Optionally save as topic
       \-----------------------------------------------------------------------------------------------------------------------*/
+      Topic savedTopic          = null;
+
       if (viewModel.SaveAsTopic) {
-        await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
+        savedTopic              = await SaveToTopic(viewModel.BindingModel).ConfigureAwait(true);
+      }
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Optionally sync to HubSpot
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var formIdentifier        = typeof(T).Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
+      if (_hubSpotMappingRegistry.TryGetManifest(formIdentifier, out var manifest)) {
+        var hubSpotTopic        = savedTopic?? await MapToTopic(viewModel.BindingModel).ConfigureAwait(true);
+        _ = await _hubSpotContactSyncService.SyncAsync(hubSpotTopic, manifest).ConfigureAwait(true);
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -268,7 +292,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      subject                   ??= "GoldSim.com/Forms: " + CurrentTopic.Key;
+      subject                   ??= $"GoldSim.com/Forms: {CurrentTopic.Key}";
       recipient                 ??= "Software@GoldSim.com";
       sender                    ??= "Software@GoldSim.com";
 
@@ -307,8 +331,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Assemble body
       \-----------------------------------------------------------------------------------------------------------------------*/
-      using var client          = new HttpClient();
-      var response              = await client.GetAsync(url).ConfigureAwait(true);
+      var response              = await _client.GetAsync(url).ConfigureAwait(true);
       var pageContents          = await response.Content.ReadAsStringAsync().ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
@@ -361,17 +384,13 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     /// <summary>
     ///   Adds the form values to a new <see cref="Topic"/>, and saves it to the <see cref="ITopicRepository"/>.
     /// </summary>
-    private async Task SaveToTopic(CoreContact bindingModel) {
+    /// <returns>The <see cref="Topic"/> that was mapped and saved.</returns>
+    private async Task<Topic> SaveToTopic(CoreContact bindingModel) {
 
       /*------------------------------------------------------------------------------------------------------------------------
-      | Establish variables
+      | Map binding model to new topic
       \-----------------------------------------------------------------------------------------------------------------------*/
-      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
-
-      bindingModel              = bindingModel with {
-        ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
-      };
+      var topic                 = await MapToTopic(bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Validate Topic Parent
@@ -379,11 +398,6 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       const string parentKey    = "Administration:Licenses";
       const string errorMessage = $"The topic '{parentKey}' could not be found. A root topic to store forms to is required.";
       var parentTopic           = TopicRepository.Load(parentKey);
-
-      /*------------------------------------------------------------------------------------------------------------------------
-      | Map binding model to new topic
-      \-----------------------------------------------------------------------------------------------------------------------*/
-      var topic                 = await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | Set Topic values
@@ -395,6 +409,41 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Save form Topic
       \-----------------------------------------------------------------------------------------------------------------------*/
       TopicRepository.Save(topic);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Return topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return topic;
+
+    }
+
+    /*==========================================================================================================================
+    | HELPER: MAP TO TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Maps a <paramref name="bindingModel"/> to a new <see cref="Topic"/>.
+    /// </summary>
+    /// <remarks>
+    ///   This first populating <see cref="CoreContact.ContentType"/> and <see cref="CoreContact.Key"/>, since <see cref=
+    ///   "IReverseTopicMappingService"/> requires both, and neither is otherwise set on the binding model.
+    /// </remarks>
+    /// <returns>The mapped, unsaved <see cref="Topic"/>.</returns>
+    private async Task<Topic> MapToTopic(CoreContact bindingModel) {
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Establish variables
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
+
+      bindingModel              = bindingModel with {
+        ContentType             = contentType,
+        Key                     = $"{contentType}_{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}"
+      };
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | Map binding model to new topic
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      return await _reverseMappingService.MapAsync(bindingModel).ConfigureAwait(true);
 
     }
 

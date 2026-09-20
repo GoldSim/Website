@@ -4,7 +4,8 @@
 @Html.EditorFor(model => model.Street2, new { cssClass = "" })
 
 @Html.EditorFor(model => model.City)
-@Html.EditorFor(model => model.Province, new { cssClass = "small-6 medium-3" })
+@Html.EditorFor(model => model.Province, "Select", new { cssClass = "small-6 medium-3 state-lookup is-hidden" })
+@Html.EditorFor(model => model.Province, new { cssClass = "small-6 medium-3 province-input" })
 @Html.EditorFor(model => model.PostalCode, new { cssClass = "small-6 medium-3" })
 
 <!-- View Location: ~/Areas/Forms/Views/Shared/_Address.cshtml -->

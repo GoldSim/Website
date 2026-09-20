@@ -75,7 +75,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     ///   Gets or sets the user's physical address.
     /// </summary>
     [Required]
-    [MapToParent]
+    [MapToParent(AttributePrefix="")]
     public Address Address { get; } = new();
 
     /*==========================================================================================================================

@@ -3,62 +3,56 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
-using GoldSim.Web.Areas.Forms.Models.Partials;
 
-namespace GoldSim.Web.Areas.Forms.Models {
+namespace GoldSim.Web.Areas.Forms.HubSpot {
 
   /*============================================================================================================================
-  | BINDING MODEL: REQUEST A TRIAL FORM
+  | MODEL: HUBSPOT SYNC RESULT
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed binding model representing the Request a Trial form.
+  ///   Provides the outcome of a single HubSpot contact sync attempt.
   /// </summary>
-  public sealed record TrialFormBindingModel : ExtendedProfile {
+  /// <remarks>
+  ///   The HubSpot sync should never throw an exception, since the form will otherwise still e.g., send an email to GoldSim
+  ///   and/or write a topic to OnTopic, This type instead conveys success or failure, and any diagnostic information, so
+  ///   callers can log or otherwise handle failures without interrupting the form submission.
+  /// </remarks>
+  public sealed record HubSpotSyncResult {
 
     /*==========================================================================================================================
-    | CONSTRUCTOR
+    | PROPERTY: IS SUCCESSFUL?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Initializes a new instance of a <see cref="TrialFormBindingModel"/> object.
+    ///   Gets whether the sync attempt completed successfully. <c>false</c> when <see cref="IsSkipped"/> is <c>true</c>.
     /// </summary>
-    public TrialFormBindingModel() {
-    }
+    public required bool        IsSuccessful                    { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: PROVINCE
+    | PROPERTY: IS SKIPPED?
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the province (or state in America).
+    ///   Gets whether the sync attempt was skipped because HubSpot sync isn't configured (e.g., no access token). Distinct from
+    ///   <see cref="IsSuccessful"/> being <c>false</c>, since a skipped sync isn't a failure to diagnose.
     /// </summary>
-    /// <remarks>
-    ///   This cannot be defined on <see cref="Contact"/> because that causes a conflict with <see cref="Address.Province"/>.
-    /// </remarks>
-    [Required]
-    [StringLength(255)]
-    [Display(Name="State/Province")]
-    [Metadata("State")]
-    public string Province { get; set; }
+    public required bool        IsSkipped                       { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: TRAINER
+    | PROPERTY: HUBSPOT CONTACT ID
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Optional. Gets or sets the contact information for the user's training provider, if applicable.
+    ///   Gets the identifier of the HubSpot contact that was created or updated. Set only when <see cref="IsSuccessful"/> is
+    ///   <c>true</c>.
     /// </summary>
-    [MapToParent]
-    [Display(Name="Trainer Contact Information")]
-    public CoreContact Trainer { get; set; }
+    public string               HubSpotContactId                { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: OTHER TOOLS
+    | PROPERTY: ERROR MESSAGE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    ///   Gets a diagnostic message describing why the sync attempt failed. Set only when both <see cref="IsSuccessful"/> and
+    ///   <see cref="IsSkipped"/> are <c>false</c>.
     /// </summary>
-    [Required]
-    [StringLength(1000)]
-    [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
-    public string OtherTools { get; set; }
+    public string               ErrorMessage                    { get; init; }
 
   } //Class
 } //Namespace

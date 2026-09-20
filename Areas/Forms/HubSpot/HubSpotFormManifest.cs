@@ -4,42 +4,40 @@
 | Project       Website
 \=============================================================================================================================*/
 
-namespace GoldSim.Web.Areas.Forms.Models.Partials {
+namespace GoldSim.Web.Areas.Forms.HubSpot {
 
   /*============================================================================================================================
-  | MODEL: CONTACT
+  | MODEL: HUBSPOT FORM MANIFEST
   \---------------------------------------------------------------------------------------------------------------------------*/
   /// <summary>
-  ///   Provides a strongly-typed data transfer object for representing the contact information for a user.
+  ///   Provides a strongly typed representation of a HubSpot form manifest, deserialized from a mapping file, describing how a
+  ///   single form's binding model maps to a HubSpot contact.
   /// </summary>
-  /// <remarks>
-  ///   The <see cref="Contact"/> class extends the <see cref="CoreContact"/> by adding <see cref="Contact.Country"/> and
-  ///   <see cref="Contact.PhoneNumber"/>. These fields are required for anything beyond informational requests.
-  /// </remarks>
-  public record Contact : CoreContact {
+  public sealed record HubSpotFormManifest {
 
     /*==========================================================================================================================
-    | PROPERTY: COUNTRY
+    | PROPERTY: FORM IDENTIFIER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the country name.
+    ///   Gets the identifier of the form that this manifest applies to (e.g., <c>TrialForm</c>).
     /// </summary>
-    [Required]
-    [StringLength(75)]
-    [Metadata("Country")]
-    public virtual string Country { get; init; } = "United States";
+    public required string      FormIdentifier                  { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: PHONE NUMBER
+    | PROPERTY: FIELDS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the user's phone number.
+    ///   Gets the collection of field mappings that make up this manifest.
     /// </summary>
-    [Required]
-    [Phone]
-    [StringLength(50)]
-    [Display(Name="Telephone")]
-    public virtual string PhoneNumber { get; init; }
+    public required IReadOnlyList<HubSpotFieldMapping> Fields   { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: UNIQUE KEY FIELD
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the field mapping used to determine whether a HubSpot contact should be created or updated.
+    /// </summary>
+    public HubSpotFieldMapping  UniqueKeyField                  => Fields.Single(f => f.IsUniqueKey);
 
   } //Class
 } //Namespace

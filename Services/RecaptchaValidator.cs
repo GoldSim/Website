@@ -22,6 +22,10 @@ namespace GoldSim.Web.Services {
     \-------------------------------------------------------------------------------------------------------------------------*/
     private readonly            string                          _secret;
     private readonly            string                          _serviceUrl;
+
+    //### TODO JJC20260918: Switch to a named client resolved via IHttpClientFactory once the site adopts .NET's DI container.
+    // For now, this follows the same long-lived, manually constructed HttpClient pattern already used elsewhere, since the
+    // controller activator that constructs this service runs before the DI container is built.
     private static readonly     HttpClient                      _client                         = new();
     private static readonly     JsonSerializerOptions           _options                        = new() {
       PropertyNameCaseInsensitive = true

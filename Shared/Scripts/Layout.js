@@ -28,7 +28,7 @@
 
       // Set display cookie
       expiryDate.setFullYear(expiryDate.getFullYear() + 1);
-      document.cookie           = 'CookiesConsent=Agreed;expires=' + expiryDate.toGMTString() + ';path=/';
+      document.cookie           = `CookiesConsent=Agreed;expires=${expiryDate.toGMTString()};path=/`;
 
       // Hides notice
       $('#CookiesNotice').slideUp(500);

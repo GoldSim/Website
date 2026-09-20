@@ -12,6 +12,7 @@ using GoldSim.Web.Areas.Courses.Controllers;
 using GoldSim.Web.Areas.Courses.Models;
 using GoldSim.Web.Areas.Forms.Components;
 using GoldSim.Web.Areas.Forms.Controllers;
+using GoldSim.Web.Areas.Forms.HubSpot;
 using GoldSim.Web.Models.Components;
 using GoldSim.Web.Areas.Payments.Controllers;
 using GoldSim.Web.Areas.Payments.Services;
@@ -51,13 +52,15 @@ namespace GoldSim.Web {
     private readonly            PostmarkSmtpService             _smtpService;
     private readonly            IRequestValidator               _requestValidator;
     private readonly            StandardEditorComposer          _standardEditorComposer;
+    private readonly            IHubSpotMappingRegistry         _hubSpotMappingRegistry;
+    private readonly            IHubSpotContactSyncService      _hubSpotContactSyncService;
 
     /*==========================================================================================================================
     | HIERARCHICAL TOPIC MAPPING SERVICE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel>         _hierarchicalTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<NavigationTopicViewModel>          _hierarchicalTopicMappingService;
     private readonly IHierarchicalTopicMappingService<PageLevelNavigationTopicViewModel> _pageViewTopicMappingService;
-    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>  _coursewareTopicMappingService;
+    private readonly IHierarchicalTopicMappingService<TrackedNavigationTopicViewModel>   _coursewareTopicMappingService;
 
     /*==========================================================================================================================
     | CONSTRUCTOR
@@ -112,6 +115,17 @@ namespace GoldSim.Web {
       var postmarkClient        = new PostmarkClient(postmarkApiKey);
 
       _smtpService              = new(postmarkClient);
+
+      /*------------------------------------------------------------------------------------------------------------------------
+      | CONSTRUCT HUBSPOT SYNC SERVICE
+      \-----------------------------------------------------------------------------------------------------------------------*/
+      var hubSpotHttpClient     = new HttpClient {
+        BaseAddress             = new("https://api.hubapi.com")
+      };
+      var hubSpotPayloadBuilder = new HubSpotPayloadBuilder();
+
+      _hubSpotMappingRegistry   = new HubSpotMappingRegistry(webHostEnvironment);
+      _hubSpotContactSyncService = new HubSpotContactSyncService(hubSpotHttpClient, hubSpotPayloadBuilder, _configuration);
 
       /*------------------------------------------------------------------------------------------------------------------------
       | CONSTRUCT HIERARCHICAL TOPIC MAPPING SERVICES
@@ -205,7 +219,9 @@ namespace GoldSim.Web {
           _topicMappingService,
           new ReverseTopicMappingService(_topicRepository),
           _smtpService,
-          _requestValidator
+          _requestValidator,
+          _hubSpotMappingRegistry,
+          _hubSpotContactSyncService
         ),
 
         nameof(LicensesController) => new LicensesController(
