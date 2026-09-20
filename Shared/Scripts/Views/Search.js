@@ -66,15 +66,15 @@
         '&q='                   + encodeURIComponent(this._searchQuery);
 
     if (this.options.scope) {
-      this._baseApiUrl          += " site:" + this.options.scope;
+      this._baseApiUrl          += ` site:${this.options.scope}`;
     }
 
     /**
      * Locate user interface elements
      */
-    this._nextButton            = $('#' + this.options.nextButton);
-    this._previousButton        = $('#' + this.options.previousButton);
-    this._searchBox             = $('#' + this.options.searchBox);
+    this._nextButton            = $(`#${this.options.nextButton}`);
+    this._previousButton        = $(`#${this.options.previousButton}`);
+    this._searchBox             = $(`#${this.options.searchBox}`);
 
     /**
     * Pre-populate results page search input value
@@ -109,10 +109,10 @@
     */
   $.fn[pluginName] = function (options) {
     return this.each(function () {
-      if (!$.data(this, "plugin_" + pluginName)) {
+      if (!$.data(this, `plugin_${pluginName}`)) {
         $.data(
           this,
-          "plugin_" + pluginName,
+          `plugin_${pluginName}`,
           new Plugin(this, options)
         );
       }
@@ -129,7 +129,7 @@
   Plugin.prototype.getSearchResults = function(offset) {
     offset                      = offset? offset : 1;
     $.ajax({
-      url                       : this._baseApiUrl + '&start=' + offset,
+      url                       : `${this._baseApiUrl}&start=${offset}`,
       success                   : this.bindSearchResults.bind(this)
     });
 
@@ -157,12 +157,11 @@
       var displayUrl            = searchResults[i].displayLink;
       var snippet               = searchResults[i].htmlSnippet;
 
-      var searchResult          =
-        '<div class="result">' +
-        '  <a href="' + url + '" class="title">' + title + '</a><br />' +
-        '  <small> ' + displayUrl + '</small>' +
-        '  <p>' + snippet + '</p>' +
-        '</div>';
+      var searchResult          = `<div class="result">
+        <a href="${url}" class="title">${title}</a><br />
+        <small> ${displayUrl}</small>
+        <p>${snippet}</p>
+      </div>`;
 
       $(this.element).append(searchResult);
 
@@ -209,7 +208,7 @@
    */
   Plugin.prototype.getQuerystringValue = function(parameter) {
     var cleanParameter          = parameter.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-    var regex                   = new RegExp('[\\?&]' + cleanParameter + '=([^&#]*)');
+    var regex                   = new RegExp(`[\\?&]${cleanParameter}=([^&#]*)`);
     var results                 = regex.exec(location.search);
     return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
   };
@@ -226,7 +225,7 @@
 
     var source                  = $(event.currentTarget);
     var pageNumber              = Number(source.data("page") || 1);
-    window.location.hash        = "Page" + pageNumber;
+    window.location.hash        = `Page${pageNumber}`;
 
     this.getSearchResults((pageNumber-1)*this.options.pageSize+1);
 

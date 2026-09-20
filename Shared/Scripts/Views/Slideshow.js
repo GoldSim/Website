@@ -125,10 +125,10 @@
     */
   $.fn[pluginName] = function (options) {
     return this.each(function () {
-      if (!$.data(this, "plugin_" + pluginName)) {
+      if (!$.data(this, `plugin_${pluginName}`)) {
         $.data(
           this,
-          "plugin_" + pluginName,
+          `plugin_${pluginName}`,
           new Plugin(this, options)
         );
       }
@@ -157,8 +157,8 @@
    */
   Plugin.prototype.reflectDisabledState = function(navButton) {
     $('.owl-prev.custom, .owl-next.custom').removeClass('disabled');
-    if ($('.owl-nav.top ' + navButton).hasClass('disabled')) {
-      $(navButton + '.custom').addClass('disabled');
+    if ($(`.owl-nav.top ${navButton}`).hasClass('disabled')) {
+      $(`${navButton}.custom`).addClass('disabled');
     }
   };
 

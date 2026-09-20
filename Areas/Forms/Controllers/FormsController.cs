@@ -121,7 +121,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Optionally send internal receipt
       \-----------------------------------------------------------------------------------------------------------------------*/
       if (!viewModel.DisableEmailReceipt) {
-        var subject = (viewModel.EmailSubject + " " + requestType).Trim();
+        var subject = $"{viewModel.EmailSubject} {requestType}".Trim();
         await SendInternalReceipt(subject, viewModel.EmailRecipient, viewModel.EmailSender).ConfigureAwait(true);
       }
 
@@ -292,7 +292,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
-      subject                   ??= "GoldSim.com/Forms: " + CurrentTopic.Key;
+      subject                   ??= $"GoldSim.com/Forms: {CurrentTopic.Key}";
       recipient                 ??= "Software@GoldSim.com";
       sender                    ??= "Software@GoldSim.com";
 
@@ -437,7 +437,7 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
 
       bindingModel              = bindingModel with {
         ContentType             = contentType,
-        Key                     = contentType + "_" + DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)
+        Key                     = $"{contentType}_{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}"
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
