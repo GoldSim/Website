@@ -22,12 +22,7 @@
       <partial name="_Referral" for="BindingModel" />
 
       <!-- Training Course Check -->
-      <div class="cell">
-        <div class="checkbox">
-          <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
-          <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
-        </div>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.IsTrainingCourse, new { cssClass = "small-12" })
 
     </div>
   </fieldset>
@@ -63,12 +58,12 @@
   /*------------------------------------------------------------------------------------------------------------------------
   | Establish default state
   \-----------------------------------------------------------------------------------------------------------------------*/
-  $("#TrainerContactForm :input").prop("disabled", true);
+  $("#TrainerContactForm :input").prop("disabled", !$("input[name='BindingModel.IsTrainingCourse']").is(":checked"));
 
   /*------------------------------------------------------------------------------------------------------------------------
   | Handle trainer form
   \-----------------------------------------------------------------------------------------------------------------------*/
-  $("input[name='IsTrainingCourse']").click(function () {
+  $("input[name='BindingModel.IsTrainingCourse']").click(function () {
     $("#TrainerContactForm :input").prop("disabled", !$(this).is(":checked"));
   });
 

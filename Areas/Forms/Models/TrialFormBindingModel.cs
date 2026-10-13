@@ -40,6 +40,16 @@ namespace GoldSim.Web.Areas.Forms.Models {
     public string Province { get; set; }
 
     /*==========================================================================================================================
+    | PROPERTY: IS TRAINING COURSE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether the user is using the trial for a training course; if so, the <see cref="Trainer"/> contact
+    ///   information is enabled on the form.
+    /// </summary>
+    [Display(Name="Are you using this Trial Version for a training course?")]
+    public bool IsTrainingCourse { get; set; }
+
+    /*==========================================================================================================================
     | PROPERTY: TRAINER
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
