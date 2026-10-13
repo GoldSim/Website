@@ -10,7 +10,8 @@ A manifest's filename doesn't matter to the registry, but naming it after its `F
 - Two manifests sharing the same `FormIdentifier`
 - A manifest that fails to deserialize as valid JSON, 
 - A manifest with no field (or more than one) marked `isUniqueKey`
-- A field that sets both or neither of `sourceAttribute` and `constantValue`
+- A field that sets more than one, or none, of `sourceAttribute`, `constantValue`, and `sourceFlags`
+- A field whose `sourceFlags` names a lookup that isn't defined, or whose `hubSpotType` isn't `enumerationSet`
 
 These are considered configuration issues and throw exceptions so that authors can identify and resolve them at design time. 
 
@@ -28,7 +29,7 @@ Each entry in a manifest's `fields` array maps one HubSpot property to either a 
 }
 ```
 
-- `sourceAttribute` _or_ `constantValue`: `sourceAttribute` reads a `Topic` attribute; `constantValue` writes the same fixed value on every submission. Setting both, or neither, fails manifest validation at startup.
+- `sourceAttribute`, `constantValue`, _or_ `sourceFlags`: `sourceAttribute` reads a `Topic` attribute; `constantValue` writes the same fixed value on every submission; `sourceFlags` combines several boolean attributes into a checkbox list (see below). Setting more than one, or none, fails manifest validation at startup.
 - `hubSpotProperty`: The internal HubSpot property name.
 - `hubSpotType`: `string`, `enumeration` (dropdown), or `enumerationSet` (checkbox list).
 - `isRequired`: If the resolved value is empty, a required field throws an exception before any HubSpot call is made. Optional fields, by contrast, are simply omitted from the payload if they're empty.
@@ -56,6 +57,31 @@ HubSpot's `enumeration` and `enumerationSet` fields use internal option values t
 If `valueMap` is omitted, the source value is sent unchanged. If it's present and a source value has no entry, `HubSpotPayloadBuilder` throws—an unmapped value is never silently dropped or passed through, since HubSpot rejects unknown option values for the entire contact "upsert", not just the offending field. When adding an enumeration field, populate `valueMap` with _every_ value the source can actually produce, or leave it unset entirely if the source and HubSpot values already match verbatim.
 
 For `enumerationSet`, the source value is a single string with individual tokens separated by `HubSpotFieldMapping.MultiValueDelimiter` (a comma); each token is mapped independently through the same `valueMap`, then joined with HubSpot's delimiter (a semicolon) on write.
+
+### Boolean Flags and Shared Lookups
+
+Some forms store a checkbox list as several boolean attributes (e.g. `ModulesReliability`, `ModulesContaminantTransport`) rather than a single delimited value. `sourceFlags` maps these to a single HubSpot `enumerationSet` by naming a shared lookup that pairs each attribute with its HubSpot option value:
+
+```json
+{
+  "sourceFlags": "Modules",
+  "hubSpotProperty": "goldsim_info_addon_modules",
+  "hubSpotType": "enumerationSet"
+}
+```
+
+Shared lookups live in `Mappings/Shared/Lookups.json`, keyed by name, so that the same attribute-to-option pairs aren't repeated, and potentially drift, across manifests:
+
+```json
+{
+  "Modules": {
+    "ModulesReliability": "Reliability Module",
+    "ModulesContaminantTransport": "Contaminant Transport (CT) Module"
+  }
+}
+```
+
+Each attribute that's set to true has its option value included; if none are set, the field is treated as empty. A lookup may list attributes that a given form never sets (e.g. the Trial form only offers the transport modules), but any attribute that _is_ set must map to an option the target HubSpot property accepts. Since `HubSpotMappingRegistry` only loads manifests from the top level of `Mappings/`, the `Shared/` folder isn't mistaken for a manifest.
 
 ### Missing Tokens and Sync Failures
 
