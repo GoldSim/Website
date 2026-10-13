@@ -425,7 +425,9 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
     /// </summary>
     /// <remarks>
     ///   This first populating <see cref="CoreContact.ContentType"/> and <see cref="CoreContact.Key"/>, since <see cref=
-    ///   "IReverseTopicMappingService"/> requires both, and neither is otherwise set on the binding model.
+    ///   "IReverseTopicMappingService"/> requires both, and neither is otherwise set on the binding model. The <see cref=
+    ///   "CoreContact.Key"/> combines a timestamp with a random suffix, since submissions processed in parallel can otherwise
+    ///   share a timestamp, and duplicate sibling keys prevent the topic graph from loading.
     /// </remarks>
     /// <returns>The mapped, unsaved <see cref="Topic"/>.</returns>
     private async Task<Topic> MapToTopic(CoreContact bindingModel) {
@@ -434,10 +436,12 @@ namespace GoldSim.Web.Areas.Forms.Controllers {
       | Establish variables
       \-----------------------------------------------------------------------------------------------------------------------*/
       var contentType           = bindingModel.GetType().Name.Replace("BindingModel", "", StringComparison.Ordinal);
+      var timestamp             = DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture);
+      var suffix                = Guid.NewGuid().ToString("N", CultureInfo.InvariantCulture)[..8];
 
       bindingModel              = bindingModel with {
         ContentType             = contentType,
-        Key                     = $"{contentType}_{DateTime.Now.ToString("yyyyMMddHHmmssffff", CultureInfo.InvariantCulture)}"
+        Key                     = $"{contentType}_{timestamp}_{suffix}"
       };
 
       /*------------------------------------------------------------------------------------------------------------------------
