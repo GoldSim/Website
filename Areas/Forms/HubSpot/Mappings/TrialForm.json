@@ -77,6 +77,15 @@
       "hubSpotType": "enumerationSet"
     },
     {
+      "sourceAttribute": "IsTrainingCourse",
+      "hubSpotProperty": "goldsim_info_are_you_using_this_trial_version_for_a_training_course",
+      "hubSpotType": "enumeration",
+      "valueMap": {
+        "1": "true",
+        "0": "false"
+      }
+    },
+    {
       "sourceAttribute": "TrainerFirstName",
       "hubSpotProperty": "goldsim_info_trainer_first_name",
       "hubSpotType": "string"

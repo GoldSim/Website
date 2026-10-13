@@ -58,6 +58,8 @@ HubSpot's `enumeration` and `enumerationSet` fields use internal option values t
 
 If `valueMap` is omitted, the source value is sent unchanged. If it's present and a source value has no entry, `HubSpotPayloadBuilder` throws—an unmapped value is never silently dropped or passed through, since HubSpot rejects unknown option values for the entire contact "upsert", not just the offending field. When adding an enumeration field, populate `valueMap` with _every_ value the source can actually produce, or leave it unset entirely if the source and HubSpot values already match verbatim.
 
+This also applies to HubSpot's single checkbox (`booleancheckbox`) properties, which expect `true` or `false`, whereas OnTopic stores boolean attributes as `1` or `0`; map these as an `enumeration` with a `valueMap` of `{ "1": "true", "0": "false" }`.
+
 For `enumerationSet`, the source value is a single string with individual tokens separated by `HubSpotFieldMapping.MultiValueDelimiter` (a comma); each token is mapped independently through the same `valueMap`, then joined with HubSpot's delimiter (a semicolon) on write.
 
 By default, an `enumerationSet` value _replaces_ every option already selected on the contact. Setting `isAppended` prefixes the value with a semicolon, which HubSpot treats as "add these to the existing selections"; options that are already selected aren't duplicated. This matters for properties shared with other products, such as `datacor_product`, where replacing the value would remove another product's selection. (HubSpot also accepts this syntax on single-select `enumeration` properties, but stores the combined values in a field that expects one, which is why `isAppended` is limited to `enumerationSet`.)
