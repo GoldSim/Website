@@ -102,6 +102,19 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     public bool                 IsUniqueKey                     { get; init; }
 
     /*==========================================================================================================================
+    | PROPERTY: IS APPENDED?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets whether the field's values are appended to any values already selected on the HubSpot contact, instead of
+    ///   replacing them. Requires a <see cref="HubSpotType"/> of <c>enumerationSet</c>.
+    /// </summary>
+    /// <remarks>
+    ///   HubSpot appends, rather than overwrites, a multi-checkbox value that starts with its semicolon delimiter; any values
+    ///   that were already previously selected aren't duplicated when appending.
+    /// </remarks>
+    public bool                 IsAppended                      { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: VALUE MAP
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
