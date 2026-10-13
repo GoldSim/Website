@@ -3,6 +3,7 @@
 | Client        Goldsim
 | Project       Website
 \=============================================================================================================================*/
+using System.Text.Json.Serialization;
 
 namespace GoldSim.Web.Areas.Forms.HubSpot {
 
@@ -27,8 +28,8 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     | PROPERTY: SOURCE ATTRIBUTE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets the topic attribute key to read the field's value from. Mutually exclusive with <see cref="ConstantValue"/>; null
-    ///   when <see cref="ConstantValue"/> is set.
+    ///   Gets the topic attribute key to read the field's value from. Mutually exclusive with <see cref="ConstantValue"/> and
+    ///   <see cref="SourceFlags"/>; null when either is set.
     /// </summary>
     public string               SourceAttribute                 { get; init; }
 
@@ -37,9 +38,33 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets a fixed value to be written on every submission, bypassing the topic entirely. Mutually exclusive with <see cref=
-    ///   "SourceAttribute"/>; null when <see cref="SourceAttribute"/> is set.
+    ///   "SourceAttribute"/> and <see cref="SourceFlags"/>; null when either is set.
     /// </summary>
     public string               ConstantValue                   { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: SOURCE FLAGS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the name of a shared lookup that maps boolean topic attributes to HubSpot option values; each attribute that's
+    ///   set is mapped to its option value. Mutually exclusive with <see cref="SourceAttribute"/> and <see cref="ConstantValue"
+    ///   />; null when either is set. Requires a <see cref="HubSpotType"/> of <c>enumerationSet</c>.
+    /// </summary>
+    public string               SourceFlags                     { get; init; }
+
+    /*==========================================================================================================================
+    | PROPERTY: SOURCE FLAG MAP
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets the shared lookup named by <see cref="SourceFlags"/>, keyed by topic attribute and mapped to the HubSpot option
+    ///   value.
+    /// </summary>
+    /// <remarks>
+    ///   This isn't read from the manifest itself; <see cref="HubSpotMappingRegistry"/> resolves it from the shared lookups at
+    ///   startup.
+    /// </remarks>
+    [JsonIgnore]
+    public IReadOnlyDictionary<string, string> SourceFlagMap    { get; init; }
 
     /*==========================================================================================================================
     | PROPERTY: HUBSPOT PROPERTY
