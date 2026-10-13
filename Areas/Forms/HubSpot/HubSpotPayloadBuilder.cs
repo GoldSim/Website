@@ -128,5 +128,34 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
 
     }
 
+    /*==========================================================================================================================
+    | METHOD: GET FLAG VALUES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Collects the HubSpot option value for each boolean topic attribute in the given <paramref name="field"/>'s <see cref=
+    ///   "HubSpotFieldMapping.SourceFlagMap"/> that's set on the <paramref name="topic"/>.
+    /// </summary>
+    /// <remarks>
+    ///   Option values are joined directly with HubSpot's delimiter, instead of being routed through <see cref=
+    ///   "MapValueSet(HubSpotFieldMapping, string)"/>, since an option value may itself contain a <see cref=
+    ///   "HubSpotFieldMapping.MultiValueDelimiter"/>.
+    /// </remarks>
+    /// <param name="topic">The <see cref="Topic"/> to read the boolean attributes from.</param>
+    /// <param name="field">The <see cref="HubSpotFieldMapping"/> defining the flag attributes.</param>
+    /// <returns>
+    ///   A semicolon-delimited string of HubSpot option values, or an empty string if none of the attributes are set.
+    /// </returns>
+    private static string GetFlagValues(Topic topic, HubSpotFieldMapping field) {
+
+      // Select the option value for each attribute that's set
+      var optionValues          = field.SourceFlagMap
+        .Where(flag => topic.Attributes.GetBoolean(flag.Key))
+        .Select(flag => flag.Value);
+
+      // Join using HubSpot's semicolon delimiter
+      return string.Join(";", optionValues);
+
+    }
+
   } //Class
 } //Namespace
