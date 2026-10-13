@@ -176,6 +176,13 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
           $"ConstantValue, or SourceFlags."
         );
 
+        // Ensure IsAppended is only used with multi-checkbox fields
+        Contract.Requires(
+          !field.IsAppended || field.HubSpotType is "enumerationSet",
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' sets IsAppended, which requires a HubSpotType " +
+          $"of 'enumerationSet'."
+        );
+
         // Skip remaining checks unless the field uses SourceFlags
         if (field.SourceFlags is null) {
           continue;
