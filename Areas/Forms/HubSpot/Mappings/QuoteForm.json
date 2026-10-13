@@ -62,6 +62,11 @@
       "hubSpotType": "string"
     },
     {
+      "sourceAttribute": "Product",
+      "hubSpotProperty": "goldsim_info_product",
+      "hubSpotType": "enumeration"
+    },
+    {
       "sourceAttribute": "Quantity",
       "hubSpotProperty": "goldsim_info_license_quantity",
       "hubSpotType": "string"
