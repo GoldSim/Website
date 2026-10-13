@@ -68,6 +68,9 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
                                    )
         };
 
+        // Assign the value, prefixing appended values with HubSpot's delimiter so they don't replace existing selections
+        payload[field.HubSpotProperty] = field.IsAppended? $";{value}" : value;
+
       }
 
       // Return payload
