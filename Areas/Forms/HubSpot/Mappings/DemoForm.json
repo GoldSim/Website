@@ -85,7 +85,8 @@
     {
       "constantValue": "DemoForm",
       "hubSpotProperty": "goldsim_form_type",
-      "hubSpotType": "enumeration"
+      "hubSpotType": "enumerationSet",
+      "isAppended": true
     }
   ]
 }
