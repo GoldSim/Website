@@ -130,7 +130,7 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
         throw new InvalidOperationException($"The manifest at '{filePath}' deserialized to a null value.");
 
       // Validate manifest
-      ValidateManifest(manifest, filePath);
+      ValidateManifest(manifest, filePath, lookups);
 
       // Resolve shared lookups and return manifest
       return manifest with {
@@ -151,7 +151,12 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     /// </summary>
     /// <param name="manifest">The <see cref="HubSpotFormManifest"/> to validate.</param>
     /// <param name="filePath">The path of the manifest file that <paramref name="manifest"/> was loaded from.</param>
-    private static void ValidateManifest(HubSpotFormManifest manifest, string filePath) {
+    /// <param name="lookups">The shared lookups that fields may reference by name.</param>
+    private static void ValidateManifest(
+      HubSpotFormManifest       manifest,
+      string                    filePath,
+      IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> lookups
+    ) {
 
       // Ensure exactly one field is marked as the unique key
       Contract.Requires(
@@ -159,13 +164,37 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
         $"The manifest at '{filePath}' must have exactly one field with IsUniqueKey set to true."
       );
 
-      // Ensure each field maps to exactly one of either SourceAttribute or ConstantValue
+      // Validate each field's source
       foreach (var field in manifest.Fields) {
+
+        // Ensure each field maps to exactly one of SourceAttribute, ConstantValue, or SourceFlags
+        var exclusiveProperties = new[] { field.SourceAttribute, field.ConstantValue, field.SourceFlags };
+        var sourceCount         = exclusiveProperties.Count(source => source is not null);
         Contract.Requires(
-          field.SourceAttribute is null != field.ConstantValue is null,
-          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' must set exactly one of SourceAttribute or " +
-          $"ConstantValue."
+          sourceCount is 1,
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' must set exactly one of SourceAttribute, " +
+          $"ConstantValue, or SourceFlags."
         );
+
+        // Skip remaining checks unless the field uses SourceFlags
+        if (field.SourceFlags is null) {
+          continue;
+        }
+
+        // Ensure SourceFlags references a defined shared lookup
+        Contract.Requires(
+          lookups.ContainsKey(field.SourceFlags),
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' references a SourceFlags lookup of " +
+          $"'{field.SourceFlags}', which isn't defined in the shared lookups."
+        );
+
+        // Ensure SourceFlags is only used with multi-checkbox fields
+        Contract.Requires(
+          field.HubSpotType is "enumerationSet",
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' sets SourceFlags, which requires a " +
+          $"HubSpotType of 'enumerationSet'."
+        );
+
       }
 
     }
