@@ -38,8 +38,12 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
       // Map each field defined by the manifest
       foreach (var field in manifest.Fields) {
 
-        // Resolve source value from the topic, or otherwise from the field's constant value
-        var rawValue            = field.ConstantValue?? topic.Attributes.GetValue(field.SourceAttribute);
+        // Resolve source value from the field's constant value, flag attributes, or source attribute
+        var rawValue            = field.ConstantValue?? (
+          field.SourceFlagMap is not null?
+            GetFlagValues(topic, field) :
+            topic.Attributes.GetValue(field.SourceAttribute)
+          );
 
         // Skip empty optional fields; throw for empty required fields
         if (string.IsNullOrEmpty(rawValue)) {
@@ -52,10 +56,11 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
           continue;
         }
 
-        // Convert and assign the value according to the field's HubSpot type
-        payload[field.HubSpotProperty] = field.HubSpotType switch {
+        // Convert the value according to the field's HubSpot type
+        var value               = field.HubSpotType switch {
           "string"              => rawValue,
           "enumeration"         => MapValue(field, rawValue),
+          "enumerationSet" when field.SourceFlagMap is not null => rawValue,
           "enumerationSet"      => MapValueSet(field, rawValue),
           _                     => throw new InvalidOperationException(
                                      $"The '{field.HubSpotProperty}' HubSpot field specifies an unrecognized HubSpotType of " +
