@@ -48,6 +48,9 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
       // Establish manifest directory
       var mappingsPath          = Path.Combine(webHostEnvironment.ContentRootPath, "Areas", "Forms", "HubSpot", "Mappings");
 
+      // Load shared lookups, if any exist
+      var lookups               = LoadLookups(Path.Combine(mappingsPath, "Shared", "Lookups.json"));
+
       // Load and validate each manifest file, if any exist
       var manifests             = new Dictionary<string, HubSpotFormManifest>();
 
@@ -78,6 +81,31 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
 
       // Return manifest, if found
       return _manifests.TryGetValue(formIdentifier, out manifest);
+
+    }
+
+    /*==========================================================================================================================
+    | METHOD: LOAD LOOKUPS (PRIVATE)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Deserializes the shared lookups at the given <paramref name="filePath"/>, which manifests reference by name via <see
+    ///   cref="HubSpotFieldMapping.SourceFlags"/>.
+    /// </summary>
+    /// <param name="filePath">The path of the shared lookups file to load.</param>
+    /// <returns>
+    ///   The shared lookups, keyed by name, or an empty dictionary if <paramref name="filePath"/> doesn't exist.
+    /// </returns>
+    private static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> LoadLookups(string filePath) {
+
+      // Return an empty set if no shared lookups are defined
+      if (!File.Exists(filePath)) {
+        return new Dictionary<string, IReadOnlyDictionary<string, string>>();
+      }
+
+      // Deserialize lookups
+      var json                  = File.ReadAllText(filePath);
+      return JsonSerializer.Deserialize<IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>>>(json, _jsonOptions)??
+        throw new InvalidOperationException($"The shared lookups at '{filePath}' deserialized to a null value.");
 
     }
 
