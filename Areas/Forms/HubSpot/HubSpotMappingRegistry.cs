@@ -56,7 +56,7 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
 
       if (Directory.Exists(mappingsPath)) {
         foreach (var filePath in Directory.EnumerateFiles(mappingsPath, "*.json")) {
-          var manifest          = LoadManifest(filePath);
+          var manifest          = LoadManifest(filePath, lookups);
           if (!manifests.TryAdd(manifest.FormIdentifier, manifest)) {
             throw new InvalidOperationException(
               $"The FormIdentifier '{manifest.FormIdentifier}' is defined by more than one manifest under '{mappingsPath}'."
@@ -113,11 +113,16 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
     | METHOD: LOAD MANIFEST (PRIVATE)
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Deserializes and validates the <see cref="HubSpotFormManifest"/> at the given <paramref name="filePath"/>.
+    ///   Deserializes, validates, and resolves shared lookups for the <see cref="HubSpotFormManifest"/> at the given <paramref
+    ///   name="filePath"/>.
     /// </summary>
     /// <param name="filePath">The path of the manifest file to load.</param>
+    /// <param name="lookups">The shared lookups that fields may reference by name.</param>
     /// <returns>The deserialized and validated <see cref="HubSpotFormManifest"/>.</returns>
-    private static HubSpotFormManifest LoadManifest(string filePath) {
+    private static HubSpotFormManifest LoadManifest(
+      string                    filePath,
+      IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> lookups
+    ) {
 
       // Deserialize manifest
       var json                  = File.ReadAllText(filePath);
@@ -127,8 +132,14 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
       // Validate manifest
       ValidateManifest(manifest, filePath);
 
-      // Return manifest
-      return manifest;
+      // Resolve shared lookups and return manifest
+      return manifest with {
+        Fields                  = [
+          .. manifest.Fields.Select(field =>
+            field.SourceFlags is null? field : field with { SourceFlagMap = lookups[field.SourceFlags] }
+          )
+        ]
+      };
 
     }
 
