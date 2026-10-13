@@ -12,6 +12,7 @@ A manifest's filename doesn't matter to the registry, but naming it after its `F
 - A manifest with no field (or more than one) marked `isUniqueKey`
 - A field that sets more than one, or none, of `sourceAttribute`, `constantValue`, and `sourceFlags`
 - A field whose `sourceFlags` names a lookup that isn't defined, or whose `hubSpotType` isn't `enumerationSet`
+- A field that sets `isAppended` with a `hubSpotType` other than `enumerationSet`
 
 These are considered configuration issues and throw exceptions so that authors can identify and resolve them at design time. 
 
@@ -34,6 +35,7 @@ Each entry in a manifest's `fields` array maps one HubSpot property to either a 
 - `hubSpotType`: `string`, `enumeration` (dropdown), or `enumerationSet` (checkbox list).
 - `isRequired`: If the resolved value is empty, a required field throws an exception before any HubSpot call is made. Optional fields, by contrast, are simply omitted from the payload if they're empty.
 - `isUniqueKey`: Exactly one field per manifest must set this to `true`. Its resolved value becomes the `id`/`idProperty` HubSpot uses to decide whether to create or update a contact.
+- `isAppended`: Optional; for `enumerationSet` fields, adds the values to any already selected on the contact instead of replacing them (see below).
 - `valueMap`: Optional; see below.
 
 Empty optional fields are omitted from the payload rather than sent as null, since an explicit null would overwrite an existing HubSpot value on update.
@@ -57,6 +59,8 @@ HubSpot's `enumeration` and `enumerationSet` fields use internal option values t
 If `valueMap` is omitted, the source value is sent unchanged. If it's present and a source value has no entry, `HubSpotPayloadBuilder` throws—an unmapped value is never silently dropped or passed through, since HubSpot rejects unknown option values for the entire contact "upsert", not just the offending field. When adding an enumeration field, populate `valueMap` with _every_ value the source can actually produce, or leave it unset entirely if the source and HubSpot values already match verbatim.
 
 For `enumerationSet`, the source value is a single string with individual tokens separated by `HubSpotFieldMapping.MultiValueDelimiter` (a comma); each token is mapped independently through the same `valueMap`, then joined with HubSpot's delimiter (a semicolon) on write.
+
+By default, an `enumerationSet` value _replaces_ every option already selected on the contact. Setting `isAppended` prefixes the value with a semicolon, which HubSpot treats as "add these to the existing selections"; options that are already selected aren't duplicated. This matters for properties shared with other products, such as `datacor_product`, where replacing the value would remove another product's selection. (HubSpot also accepts this syntax on single-select `enumeration` properties, but stores the combined values in a field that expects one, which is why `isAppended` is limited to `enumerationSet`.)
 
 ### Boolean Flags and Shared Lookups
 
