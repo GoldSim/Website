@@ -39,7 +39,11 @@
   <fieldset>
     <legend>Trainer Contact Information</legend>
     <div class="grid-x grid-margin-x" id="TrainerContactForm">
-      <partial name="_CoreContact" for="BindingModel.Trainer" />
+      @Html.EditorFor(model => model.BindingModel.Trainer.FirstName)
+      @Html.EditorFor(model => model.BindingModel.Trainer.LastName)
+
+      @Html.EditorFor(model => model.BindingModel.Trainer.Organization)
+      @Html.EditorFor(model => model.BindingModel.Trainer.Email, "String")
     </div>
   </fieldset>
 
