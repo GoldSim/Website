@@ -34,16 +34,10 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /*==========================================================================================================================
     | PROPERTY: PROVINCE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the province (or state in America).
-    /// </summary>
+    /// <inheritdoc cref="FormFields.Province"/>
     /// <remarks>
     ///   This cannot be defined on <see cref="Contact"/> because that causes a conflict with <see cref="Address.Province"/>.
     /// </remarks>
-    [Required]
-    [StringLength(255)]
-    [Display(Name="State/Province")]
-    [Metadata("State")]
     public string Province { get; set; }
 
     /*==========================================================================================================================

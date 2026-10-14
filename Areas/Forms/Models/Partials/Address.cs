@@ -12,6 +12,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing street address.
   /// </summary>
+  [ModelMetadataType(typeof(FormFields))]
   public sealed class Address {
 
     /*==========================================================================================================================
@@ -48,13 +49,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     /*==========================================================================================================================
     | PROPERTY: PROVINCE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the province (or state in America).
-    /// </summary>
-    [Required]
-    [StringLength(255)]
-    [Display(Name="State/Province")]
-    [Metadata("State")]
+    /// <inheritdoc cref="FormFields.Province"/>
     public string Province { get; set; }
 
     /*==========================================================================================================================

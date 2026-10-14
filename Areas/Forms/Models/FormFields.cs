@@ -42,5 +42,17 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Display(Name="Job Title")]
     public string JobTitle { get; init; }
 
+    /*==========================================================================================================================
+    | PROPERTY: PROVINCE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets the province (or state in America).
+    /// </summary>
+    [Required]
+    [StringLength(255)]
+    [Display(Name="State/Province")]
+    [Metadata("State")]
+    public string Province { get; set; }
+
   } //Class
 } //Namespace
