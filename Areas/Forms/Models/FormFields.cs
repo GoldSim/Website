@@ -54,5 +54,16 @@ namespace GoldSim.Web.Areas.Forms.Models {
     [Metadata("State")]
     public string Province { get; set; }
 
+    /*==========================================================================================================================
+    | PROPERTY: OTHER TOOLS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
+    /// </summary>
+    [Required]
+    [StringLength(1000)]
+    [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
+    public string OtherTools { get; set; }
+
   } //Class
 } //Namespace
