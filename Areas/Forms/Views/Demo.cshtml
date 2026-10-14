@@ -5,8 +5,16 @@
   <fieldset>
     <div class="grid-x grid-margin-x">
 
-      <partial name="_Contact" for="BindingModel" />
-      <partial name="_ContactLocation" for="BindingModel" />
+      @Html.EditorFor(model => model.BindingModel.FirstName)
+      @Html.EditorFor(model => model.BindingModel.LastName)
+
+      @Html.EditorFor(model => model.BindingModel.Organization)
+
+      @Html.EditorFor(model => model.BindingModel.Email, "String")
+      @Html.EditorFor(model => model.BindingModel.PhoneNumber, "String")
+      <partial name="_EmailInstructions" />
+
+      @Html.EditorFor(model => model.BindingModel.Country, "Select")
       @Html.EditorFor(model => model.BindingModel.Province, "Select", new { cssClass = "medium-6 state-lookup is-hidden" })
       @Html.EditorFor(model => model.BindingModel.Province, new { cssClass = "medium-6 province-input" })
       <partial name="_Requirements" for="BindingModel" />
