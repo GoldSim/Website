@@ -13,7 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Demo(nstration) form.
   /// </summary>
-  public sealed record DemoFormBindingModel : ExtendedProfile {
+  public sealed record DemoFormBindingModel : Profile {
 
     /*==========================================================================================================================
     | PROPERTY: JOB TITLE
