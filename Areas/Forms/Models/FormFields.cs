@@ -38,6 +38,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /// <summary>
     ///   Gets or sets the user's job title.
     /// </summary>
+    [Required]
     [StringLength(255)]
     [Display(Name="Job Title")]
     public string JobTitle { get; init; }
