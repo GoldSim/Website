@@ -13,6 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Quote form.
   /// </summary>
+  [ModelMetadataType(typeof(FormFields))]
   public sealed record QuoteFormBindingModel : Contact {
 
     /*==========================================================================================================================
@@ -71,11 +72,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /*==========================================================================================================================
     | PROPERTY: JOB TITLE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the user's job title.
-    /// </summary>
-    [StringLength(255)]
-    [Display(Name="Job Title")]
+    /// <inheritdoc cref="FormFields.JobTitle"/>
     public string JobTitle { get; init; }
 
     /*==========================================================================================================================
