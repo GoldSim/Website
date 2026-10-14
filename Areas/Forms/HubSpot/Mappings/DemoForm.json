@@ -22,7 +22,8 @@
     {
       "sourceAttribute": "JobTitle",
       "hubSpotProperty": "jobtitle",
-      "hubSpotType": "string"
+      "hubSpotType": "string",
+      "isRequired": true
     },
     {
       "sourceAttribute": "Email",
