@@ -1,0 +1,98 @@
+{
+  "formIdentifier": "DemoForm",
+  "fields": [
+    {
+      "sourceAttribute": "FirstName",
+      "hubSpotProperty": "firstname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "LastName",
+      "hubSpotProperty": "lastname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Organization",
+      "hubSpotProperty": "company",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "JobTitle",
+      "hubSpotProperty": "jobtitle",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Email",
+      "hubSpotProperty": "email",
+      "hubSpotType": "string",
+      "isRequired": true,
+      "isUniqueKey": true
+    },
+    {
+      "sourceAttribute": "PhoneNumber",
+      "hubSpotProperty": "phone",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Province",
+      "hubSpotProperty": "state",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Country",
+      "hubSpotProperty": "country",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "ProblemStatement",
+      "hubSpotProperty": "goldsim_info_what_problem_are_you_trying_to_solve",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "OtherTools",
+      "hubSpotProperty": "goldsim_info_what_other_risk_analysis_tools_do_you_use_or_are_evaluating",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "AreaOfFocus",
+      "hubSpotProperty": "goldsim_info_area_of_focus",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "sourceAttribute": "AreaOfFocusOther",
+      "hubSpotProperty": "goldsim_info_area_of_focus_other",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "ReferralSource",
+      "hubSpotProperty": "goldsim_info_how_did_you_learn_about_goldsim",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "sourceAttribute": "ReferralDetails",
+      "hubSpotProperty": "goldsim_info_referral_details",
+      "hubSpotType": "string"
+    },
+    {
+      "constantValue": "User",
+      "hubSpotProperty": "goldsim_contact_type",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "constantValue": "GoldSim",
+      "hubSpotProperty": "datacor_product",
+      "hubSpotType": "enumerationSet",
+      "isAppended": true
+    },
+    {
+      "constantValue": "DemoForm",
+      "hubSpotProperty": "goldsim_form_type",
+      "hubSpotType": "enumerationSet",
+      "isAppended": true
+    }
+  ]
+}

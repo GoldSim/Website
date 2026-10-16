@@ -62,7 +62,7 @@ namespace GoldSim.Web.Areas.Administration.Controllers {
       /*------------------------------------------------------------------------------------------------------------------------
       | Return the Excel spreadsheet as a file stream
       \-----------------------------------------------------------------------------------------------------------------------*/
-      return File(memoryStream, _topicExportService.MimeType, "NewEntitlements" + _topicExportService.FileExtension);
+      return File(memoryStream, _topicExportService.MimeType, $"NewEntitlements{_topicExportService.FileExtension}");
 
     }
 

@@ -1,0 +1,8 @@
+{
+  "Modules": {
+    "ModulesRadionuclideTransport": "Radionuclide Transport (RT) Module",
+    "ModulesContaminantTransport": "Contaminant Transport (CT) Module",
+    "ModulesReliability": "Reliability Module",
+    "ModulesDistributedProcessing": "Distributed Processing (DP-Plus) Module"
+  }
+}

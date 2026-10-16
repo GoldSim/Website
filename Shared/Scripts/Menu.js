@@ -47,7 +47,7 @@
           this,
           'Navigation',
           'Click',
-          'Tier ' + indentLevel + ': ' + targetUrl
+          `Tier ${indentLevel}: ${targetUrl}`
         );
       }
     });

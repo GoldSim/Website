@@ -1,0 +1,108 @@
+{
+  "formIdentifier": "QuoteForm",
+  "fields": [
+    {
+      "sourceAttribute": "FirstName",
+      "hubSpotProperty": "firstname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "LastName",
+      "hubSpotProperty": "lastname",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Organization",
+      "hubSpotProperty": "company",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "JobTitle",
+      "hubSpotProperty": "jobtitle",
+      "hubSpotType": "string",
+      "isRequired": true
+    },
+    {
+      "sourceAttribute": "Email",
+      "hubSpotProperty": "email",
+      "hubSpotType": "string",
+      "isRequired": true,
+      "isUniqueKey": true
+    },
+    {
+      "sourceAttribute": "PhoneNumber",
+      "hubSpotProperty": "phone",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Street1",
+      "hubSpotProperty": "address",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "City",
+      "hubSpotProperty": "city",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "PostalCode",
+      "hubSpotProperty": "zip",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Province",
+      "hubSpotProperty": "state",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Country",
+      "hubSpotProperty": "country",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "FaxNumber",
+      "hubSpotProperty": "fax",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceAttribute": "Product",
+      "hubSpotProperty": "goldsim_info_product",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "sourceAttribute": "Quantity",
+      "hubSpotProperty": "goldsim_info_license_quantity",
+      "hubSpotType": "string"
+    },
+    {
+      "sourceFlags": "Modules",
+      "hubSpotProperty": "goldsim_info_addon_modules",
+      "hubSpotType": "enumerationSet"
+    },
+    {
+      "sourceAttribute": "Instructions",
+      "hubSpotProperty": "goldsim_info_additional_quote_instructions",
+      "hubSpotType": "string"
+    },
+    {
+      "constantValue": "User",
+      "hubSpotProperty": "goldsim_contact_type",
+      "hubSpotType": "enumeration"
+    },
+    {
+      "constantValue": "GoldSim",
+      "hubSpotProperty": "datacor_product",
+      "hubSpotType": "enumerationSet",
+      "isAppended": true
+    },
+    {
+      "constantValue": "QuoteForm",
+      "hubSpotProperty": "goldsim_form_type",
+      "hubSpotType": "enumerationSet",
+      "isAppended": true
+    }
+  ]
+}

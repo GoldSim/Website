@@ -5,9 +5,19 @@
   <fieldset>
     <div class="grid-x grid-margin-x">
 
-      <partial name="_Contact" for="BindingModel" />
-      @Html.EditorFor(model => model.BindingModel.Province)
-      <partial name="_ContactLocation" for="BindingModel" />
+      @Html.EditorFor(model => model.BindingModel.FirstName)
+      @Html.EditorFor(model => model.BindingModel.LastName)
+
+      @Html.EditorFor(model => model.BindingModel.Organization)
+      @Html.EditorFor(model => model.BindingModel.JobTitle)
+
+      @Html.EditorFor(model => model.BindingModel.Email, "String")
+      @Html.EditorFor(model => model.BindingModel.PhoneNumber, "String")
+      <partial name="_EmailInstructions" />
+
+      @Html.EditorFor(model => model.BindingModel.Country, "Select")
+      @Html.EditorFor(model => model.BindingModel.Province, "Select", new { cssClass = "medium-6 state-lookup is-hidden" })
+      @Html.EditorFor(model => model.BindingModel.Province, new { cssClass = "medium-6 province-input" })
       <partial name="_Requirements" for="BindingModel" />
 
       @Html.EditorFor(model => model.BindingModel.OtherTools, "TextArea")
@@ -21,12 +31,7 @@
       <partial name="_Referral" for="BindingModel" />
 
       <!-- Training Course Check -->
-      <div class="cell">
-        <div class="checkbox">
-          <input name="IsTrainingCourse" id="IsTrainingCourse" type="checkbox" />
-          <label for="IsTrainingCourse">Are you using this Trial Version for a training course?</label>
-        </div>
-      </div>
+      @Html.EditorFor(model => model.BindingModel.IsTrainingCourse, new { cssClass = "small-12" })
 
     </div>
   </fieldset>
@@ -34,7 +39,11 @@
   <fieldset>
     <legend>Trainer Contact Information</legend>
     <div class="grid-x grid-margin-x" id="TrainerContactForm">
-      <partial name="_CoreContact" for="BindingModel.Trainer" />
+      @Html.EditorFor(model => model.BindingModel.Trainer.FirstName)
+      @Html.EditorFor(model => model.BindingModel.Trainer.LastName)
+
+      @Html.EditorFor(model => model.BindingModel.Trainer.Organization)
+      @Html.EditorFor(model => model.BindingModel.Trainer.Email, "String")
     </div>
   </fieldset>
 
@@ -62,12 +71,12 @@
   /*------------------------------------------------------------------------------------------------------------------------
   | Establish default state
   \-----------------------------------------------------------------------------------------------------------------------*/
-  $("#TrainerContactForm :input").prop("disabled", true);
+  $("#TrainerContactForm :input").prop("disabled", !$("input[name='BindingModel.IsTrainingCourse']").is(":checked"));
 
   /*------------------------------------------------------------------------------------------------------------------------
   | Handle trainer form
   \-----------------------------------------------------------------------------------------------------------------------*/
-  $("input[name='IsTrainingCourse']").click(function () {
+  $("input[name='BindingModel.IsTrainingCourse']").click(function () {
     $("#TrainerContactForm :input").prop("disabled", !$(this).is(":checked"));
   });
 

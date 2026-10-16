@@ -4,6 +4,7 @@
 | Project       Website
 \=============================================================================================================================*/
 using GoldSim.Web.Areas.Forms.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Metadata;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using OnTopic;
@@ -75,9 +76,9 @@ namespace GoldSim.Web.Areas.Forms.Components {
       | Get metadata attribute
       \-----------------------------------------------------------------------------------------------------------------------*/
       var modelMetadata         = aspFor.Metadata;
-      var currentProperty       = modelMetadata.ContainerType.GetProperty(modelMetadata.Name);
-      var propertyAttributes    = currentProperty.GetCustomAttributes(typeof(MetadataAttribute), true);
-      var metadataAttribute     = propertyAttributes.FirstOrDefault() as MetadataAttribute;
+      var metadataAttribute     = (modelMetadata as DefaultModelMetadata)?.Attributes.PropertyAttributes
+        .OfType<MetadataAttribute>()
+        .FirstOrDefault();
       var metadataKey           = $"Configuration:Metadata:{metadataAttribute?.Key}:LookupList";
 
       /*------------------------------------------------------------------------------------------------------------------------
