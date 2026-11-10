@@ -47,11 +47,10 @@ namespace GoldSim.Web.Areas.Forms.Models {
     | PROPERTY: PROVINCE
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
-    ///   Gets or sets the province (or state in America).
+    ///   Gets or sets the state, if the country is the United States.
     /// </summary>
-    [Required]
     [StringLength(255)]
-    [Display(Name="State/Province")]
+    [Display(Name="State")]
     [Metadata("State")]
     public string Province { get; set; }
 
