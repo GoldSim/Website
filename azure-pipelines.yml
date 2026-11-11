@@ -3,7 +3,9 @@
 # https://learn.microsoft.com/azure/devops/pipelines/ecosystems/dotnet-core
 
 trigger:
-- develop
+- '*'
+
+pr: none
 
 pool:
   vmImage: 'windows-latest'
