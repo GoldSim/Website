@@ -249,7 +249,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
         mail.Subject = $"{emailSubject} {bindingModel.InvoiceNumber} Successful";
         emailBody.Insert(
           0,
-          "PAYMENT STATUS: " + transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)
+          $"PAYMENT STATUS: {transaction.Status.ToString().ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)}"
         );
         mail.Body = emailBody.ToString();
         await _smtpService.SendAsync(mail).ConfigureAwait(true);
@@ -268,7 +268,7 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
           status = transaction.Status.ToString();
         }
 
-        emailBody.Insert(0, "PAYMENT STATUS: " + status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal));
+        emailBody.Insert(0, $"PAYMENT STATUS: {status.ToUpper(CultureInfo.InvariantCulture).Replace("_", " ", StringComparison.Ordinal)}");
       }
       else {
         emailBody.Insert(0, "PAYMENT STATUS: NOT AVAILABLE");
@@ -287,14 +287,14 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
 
       // Display transaction message returned from Braintree
       if (!String.IsNullOrEmpty(result.Message)) {
-        ModelState.AddModelError("Transaction", "Payment Status: " + result.Message);
-        emailBody.AppendLine(" - Transaction Result: " + result.Message);
+        ModelState.AddModelError("Transaction", $"Payment Status: {result.Message}");
+        emailBody.AppendLine($" - Transaction Result: {result.Message}");
       }
 
       // Display any specific error messages returned from Braintree
       foreach (var error in result.Errors.DeepAll()) {
-        ModelState.AddModelError(error.Code.ToString(), "Error: " + error.Message);
-        emailBody.AppendLine(" - Error: " + error.Message);
+        ModelState.AddModelError(error.Code.ToString(), $"Error: {error.Message}");
+        emailBody.AppendLine($" - Error: {error.Message}");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------

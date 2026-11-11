@@ -117,7 +117,7 @@ provider.Mappings[".webmanifest"]                           = "application/manif
 var staticFileOptions           = new StaticFileOptions {
   ContentTypeProvider           = provider,
   OnPrepareResponse             = context => {
-    context.Context.Response.Headers[HeaderNames.CacheControl] = "public,max-age=" + duration;
+    context.Context.Response.Headers[HeaderNames.CacheControl] = $"public,max-age={duration}";
   }
 };
 app.UseStaticFiles(staticFileOptions);

@@ -3,6 +3,8 @@
 
 # Project specific
 node_modules/*
+docs/
+.junie/
 
 # These are needed, however, they're generated so don't need/want to track
 wwwroot/Shared/**/*

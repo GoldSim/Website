@@ -137,8 +137,8 @@ function executeBraintree(clientToken) {
                 // Set error styles for erring fields and their labels
                 $.each(tokenizeError.details.invalidFields, function (fieldContainer, element) {
                   var containerElement = element.getAttribute('id');
-                  $('label[for="' + containerElement + '"]').addClass('is-invalid-label');
-                  $('span#' + containerElement).addClass('is-invalid-input');
+                  $(`label[for="${containerElement}"]`).addClass('is-invalid-label');
+                  $(`span#${containerElement}`).addClass('is-invalid-input');
                   if (containerElement.startsWith('Expiration')) {
                     $('label[for="Expiration"]').addClass('is-invalid-label');
                   }

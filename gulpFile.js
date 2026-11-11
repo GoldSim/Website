@@ -110,7 +110,7 @@ function scssTask() {
       cssNano()
     ]))
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Styles/'));
+    .pipe(dest(`${outputDir}/Shared/Styles/`));
 }
 
 /*==============================================================================================================================
@@ -127,7 +127,7 @@ function jsTask() {
     .pipe(concat('Scripts.js'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Scripts/'));
+    .pipe(dest(`${outputDir}/Shared/Scripts/`));
 }
 
 /*==============================================================================================================================
@@ -142,7 +142,7 @@ function jsViewsTask() {
     .pipe(jshint.reporter('default'))
     .pipe(uglify())
     .pipe(sourceMaps.write('.'))
-    .pipe(dest(outputDir + '/Shared/Scripts/Views/'));
+    .pipe(dest(`${outputDir}/Shared/Scripts/Views/`));
 }
 
 /*==============================================================================================================================

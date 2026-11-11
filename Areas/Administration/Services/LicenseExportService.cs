@@ -158,16 +158,15 @@ namespace GoldSim.Web.Areas.Administration.Services {
         var isTrial             = request.ContentType.StartsWith("Trial", StringComparison.InvariantCultureIgnoreCase);
 
         // Determine part number.
-        var partNumber          = (isTrial? "LMTD-" : "ACAD-")
-                                + (requestedModule(request, "DistributedProcessing")? "DP-" : "00-")
-                                + (requestedModule(request, "Reliability")? "RL-" : "00-")
-                                + (
-                                    requestedModule(request, "ContaminantTransport")? "CT-" :
-                                    requestedModule(request, "RadionuclideTransport")? "RT-" :
-                                    "00-"
-                                  )
-                                + (isTrial? "V." : "A.")
-                                + "15.0";
+        var licensePrefix       = isTrial? "LMTD-" : "ACAD-";
+        var distributedPart     = requestedModule(request, "DistributedProcessing")? "DP-" : "00-";
+        var reliabilityPart     = requestedModule(request, "Reliability")? "RL-" : "00-";
+        var transportPart       =
+          requestedModule(request, "ContaminantTransport")? "CT-" :
+          requestedModule(request, "RadionuclideTransport")? "RT-" :
+          "00-";
+        var versionPrefix       = isTrial? "V." : "A.";
+        var partNumber          = $"{licensePrefix}{distributedPart}{reliabilityPart}{transportPart}{versionPrefix}15.0";
 
         //Define composite street address
         var street1             = request.Attributes.GetValue("Street1", "");

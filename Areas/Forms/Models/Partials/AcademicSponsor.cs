@@ -12,7 +12,7 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
   /// <summary>
   ///   Provides a strongly-typed data transfer object for representing the contact information of an academic sponsor.
   /// </summary>
-  public sealed record AcademicSponsor : Contact {
+  public sealed record AcademicSponsor : CoreContact {
 
     /*==========================================================================================================================
     | PROPERTY: FIRST NAME
@@ -43,18 +43,16 @@ namespace GoldSim.Web.Areas.Forms.Models.Partials {
     public override string Email { get; init; }
 
     /*==========================================================================================================================
-    | PROPERTY: COUNTRY
-    \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
-    [Required(AllowEmptyStrings = true)]
-    public override string Country { get; init; } = "";
-
-    /*==========================================================================================================================
     | PROPERTY: PHONE NUMBER
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <inheritdoc />
+    /// <summary>
+    ///   Gets or sets the sponsor's phone number.
+    /// </summary>
+    [Required]
+    [Phone]
+    [StringLength(50)]
     [Display(Name="Sponsor Phone Number")]
-    public override string PhoneNumber { get; init; }
+    public string PhoneNumber { get; init; }
 
   } //Class
 } //Namespace

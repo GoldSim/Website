@@ -13,6 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Quote form.
   /// </summary>
+  [ModelMetadataType(typeof(FormFields))]
   public sealed record QuoteFormBindingModel : Contact {
 
     /*==========================================================================================================================
@@ -69,13 +70,19 @@ namespace GoldSim.Web.Areas.Forms.Models {
     public string Instructions { get; set; }
 
     /*==========================================================================================================================
+    | PROPERTY: JOB TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc cref="FormFields.JobTitle"/>
+    public string JobTitle { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: ADDRESS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Gets or sets the user's physical address.
     /// </summary>
     [Required]
-    [MapToParent]
+    [MapToParent(AttributePrefix="")]
     public Address Address { get; } = new();
 
     /*==========================================================================================================================

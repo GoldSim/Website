@@ -5,7 +5,7 @@ module.exports = function(filename, projectPath, folderPath) {
     if (projectPath) {
         namespace = path.basename(projectPath, path.extname(projectPath));
         if (folderPath) {
-            namespace += "." + folderPath.replace(path.dirname(projectPath), "").substring(1).replace(/[\\\/]/g, ".");
+            namespace = `${namespace}.${folderPath.replace(path.dirname(projectPath), "").substring(1).replace(/[\\\/]/g, ".")}`;
         }
     }       
 

@@ -13,6 +13,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
   /// <summary>
   ///   Provides a strongly-typed binding model representing the Request a Trial form.
   /// </summary>
+  [ModelMetadataType(typeof(FormFields))]
   public sealed record TrialFormBindingModel : ExtendedProfile {
 
     /*==========================================================================================================================
@@ -25,18 +26,29 @@ namespace GoldSim.Web.Areas.Forms.Models {
     }
 
     /*==========================================================================================================================
+    | PROPERTY: JOB TITLE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc cref="FormFields.JobTitle"/>
+    public string JobTitle { get; init; }
+
+    /*==========================================================================================================================
     | PROPERTY: PROVINCE
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets the province (or state in America).
-    /// </summary>
+    /// <inheritdoc cref="FormFields.Province"/>
     /// <remarks>
     ///   This cannot be defined on <see cref="Contact"/> because that causes a conflict with <see cref="Address.Province"/>.
     /// </remarks>
-    [Required]
-    [StringLength(255)]
-    [Display(Name="State/Province")]
     public string Province { get; set; }
+
+    /*==========================================================================================================================
+    | PROPERTY: IS TRAINING COURSE?
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Gets or sets whether the user is using the trial for a training course; if so, the <see cref="Trainer"/> contact
+    ///   information is enabled on the form.
+    /// </summary>
+    [Display(Name="Are you using this Trial Version for a training course?")]
+    public bool IsTrainingCourse { get; set; }
 
     /*==========================================================================================================================
     | PROPERTY: TRAINER
@@ -51,12 +63,7 @@ namespace GoldSim.Web.Areas.Forms.Models {
     /*==========================================================================================================================
     | PROPERTY: OTHER TOOLS
     \-------------------------------------------------------------------------------------------------------------------------*/
-    /// <summary>
-    ///   Gets or sets what other risk analysis tools the user is currently using or is evaluating.
-    /// </summary>
-    [Required]
-    [StringLength(1000)]
-    [Display(Name="What other risk analysis tools do you use, or are evaluating?")]
+    /// <inheritdoc cref="FormFields.OtherTools"/>
     public string OtherTools { get; set; }
 
   } //Class

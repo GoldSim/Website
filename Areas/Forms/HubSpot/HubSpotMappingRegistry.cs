@@ -1,0 +1,210 @@
+﻿/*==============================================================================================================================
+| Author        Ignia, LLC
+| Client        Goldsim
+| Project       Website
+\=============================================================================================================================*/
+using System.Text.Json;
+
+namespace GoldSim.Web.Areas.Forms.HubSpot {
+
+  /*============================================================================================================================
+  | CLASS: HUBSPOT MAPPING REGISTRY
+  \---------------------------------------------------------------------------------------------------------------------------*/
+  /// <summary>
+  ///   Default implementation of <see cref="IHubSpotMappingRegistry"/>, which loads and validates <see cref=
+  ///   "HubSpotFormManifest"/> instances from the JSON files under the <c>Mappings/</c> directory at startup.
+  /// </summary>
+  /// <remarks>
+  ///   Manifests are loaded and validated once, up front, so that a malformed or misconfigured mapping file is reported as soon
+  ///   as the application starts, rather than on the first form submission that happens to use it.
+  /// </remarks>
+  public sealed class HubSpotMappingRegistry : IHubSpotMappingRegistry {
+
+    /*==========================================================================================================================
+    | PRIVATE VARIABLES
+    \-------------------------------------------------------------------------------------------------------------------------*/
+
+    private readonly            Dictionary<string, HubSpotFormManifest> _manifests;
+
+    private static readonly     JsonSerializerOptions           _jsonOptions                    = new() {
+      PropertyNameCaseInsensitive = true
+    };
+
+    /*==========================================================================================================================
+    | CONSTRUCTOR
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes a new instance of a <see cref="HubSpotMappingRegistry"/>, loading and validating every manifest under the
+    ///   <c>Mappings/</c> folder.
+    /// </summary>
+    /// <param name="webHostEnvironment">
+    ///   The <see cref="IWebHostEnvironment"/> used to resolve the manifest directory relative to the content root.
+    /// </param>
+    public HubSpotMappingRegistry(IWebHostEnvironment webHostEnvironment) {
+
+      // Validate parameters
+      Contract.Requires(webHostEnvironment, nameof(webHostEnvironment));
+
+      // Establish manifest directory
+      var mappingsPath          = Path.Combine(webHostEnvironment.ContentRootPath, "Areas", "Forms", "HubSpot", "Mappings");
+
+      // Load shared lookups, if any exist
+      var lookups               = LoadLookups(Path.Combine(mappingsPath, "Shared", "Lookups.json"));
+
+      // Load and validate each manifest file, if any exist
+      var manifests             = new Dictionary<string, HubSpotFormManifest>();
+
+      if (Directory.Exists(mappingsPath)) {
+        foreach (var filePath in Directory.EnumerateFiles(mappingsPath, "*.json")) {
+          var manifest          = LoadManifest(filePath, lookups);
+          if (!manifests.TryAdd(manifest.FormIdentifier, manifest)) {
+            throw new InvalidOperationException(
+              $"The FormIdentifier '{manifest.FormIdentifier}' is defined by more than one manifest under '{mappingsPath}'."
+            );
+          }
+        }
+      }
+
+      // Memoize the result
+      _manifests                = manifests;
+
+    }
+
+    /*==========================================================================================================================
+    | METHOD: TRY GET MANIFEST
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <inheritdoc/>
+    public bool TryGetManifest(string formIdentifier, out HubSpotFormManifest manifest) {
+
+      // Validate parameters
+      Contract.Requires(formIdentifier, nameof(formIdentifier));
+
+      // Return manifest, if found
+      return _manifests.TryGetValue(formIdentifier, out manifest);
+
+    }
+
+    /*==========================================================================================================================
+    | METHOD: LOAD LOOKUPS (PRIVATE)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Deserializes the shared lookups at the given <paramref name="filePath"/>, which manifests reference by name via <see
+    ///   cref="HubSpotFieldMapping.SourceFlags"/>.
+    /// </summary>
+    /// <param name="filePath">The path of the shared lookups file to load.</param>
+    /// <returns>
+    ///   The shared lookups, keyed by name, or an empty dictionary if <paramref name="filePath"/> doesn't exist.
+    /// </returns>
+    private static IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> LoadLookups(string filePath) {
+
+      // Return an empty set if no shared lookups are defined
+      if (!File.Exists(filePath)) {
+        return new Dictionary<string, IReadOnlyDictionary<string, string>>();
+      }
+
+      // Deserialize lookups
+      var json                  = File.ReadAllText(filePath);
+      return JsonSerializer.Deserialize<IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>>>(json, _jsonOptions)??
+        throw new InvalidOperationException($"The shared lookups at '{filePath}' deserialized to a null value.");
+
+    }
+
+    /*==========================================================================================================================
+    | METHOD: LOAD MANIFEST (PRIVATE)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Deserializes, validates, and resolves shared lookups for the <see cref="HubSpotFormManifest"/> at the given <paramref
+    ///   name="filePath"/>.
+    /// </summary>
+    /// <param name="filePath">The path of the manifest file to load.</param>
+    /// <param name="lookups">The shared lookups that fields may reference by name.</param>
+    /// <returns>The deserialized and validated <see cref="HubSpotFormManifest"/>.</returns>
+    private static HubSpotFormManifest LoadManifest(
+      string                    filePath,
+      IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> lookups
+    ) {
+
+      // Deserialize manifest
+      var json                  = File.ReadAllText(filePath);
+      var manifest              = JsonSerializer.Deserialize<HubSpotFormManifest>(json, _jsonOptions)??
+        throw new InvalidOperationException($"The manifest at '{filePath}' deserialized to a null value.");
+
+      // Validate manifest
+      ValidateManifest(manifest, filePath, lookups);
+
+      // Resolve shared lookups and return manifest
+      return manifest with {
+        Fields                  = [
+          .. manifest.Fields.Select(field =>
+            field.SourceFlags is null? field : field with { SourceFlagMap = lookups[field.SourceFlags] }
+          )
+        ]
+      };
+
+    }
+
+    /*==========================================================================================================================
+    | METHOD: VALIDATE MANIFEST (PRIVATE)
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Validates constraints on a <see cref="HubSpotFormManifest"/> that can't be expressed through required members alone.
+    /// </summary>
+    /// <param name="manifest">The <see cref="HubSpotFormManifest"/> to validate.</param>
+    /// <param name="filePath">The path of the manifest file that <paramref name="manifest"/> was loaded from.</param>
+    /// <param name="lookups">The shared lookups that fields may reference by name.</param>
+    private static void ValidateManifest(
+      HubSpotFormManifest       manifest,
+      string                    filePath,
+      IReadOnlyDictionary<string, IReadOnlyDictionary<string, string>> lookups
+    ) {
+
+      // Ensure exactly one field is marked as the unique key
+      Contract.Requires(
+        manifest.Fields.Count(f => f.IsUniqueKey) == 1,
+        $"The manifest at '{filePath}' must have exactly one field with IsUniqueKey set to true."
+      );
+
+      // Validate each field's source
+      foreach (var field in manifest.Fields) {
+
+        // Ensure each field maps to exactly one of SourceAttribute, ConstantValue, or SourceFlags
+        var exclusiveProperties = new[] { field.SourceAttribute, field.ConstantValue, field.SourceFlags };
+        var sourceCount         = exclusiveProperties.Count(source => source is not null);
+        Contract.Requires(
+          sourceCount is 1,
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' must set exactly one of SourceAttribute, " +
+          $"ConstantValue, or SourceFlags."
+        );
+
+        // Ensure IsAppended is only used with multi-checkbox fields
+        Contract.Requires(
+          !field.IsAppended || field.HubSpotType is "enumerationSet",
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' sets IsAppended, which requires a HubSpotType " +
+          $"of 'enumerationSet'."
+        );
+
+        // Skip remaining checks unless the field uses SourceFlags
+        if (field.SourceFlags is null) {
+          continue;
+        }
+
+        // Ensure SourceFlags references a defined shared lookup
+        Contract.Requires(
+          lookups.ContainsKey(field.SourceFlags),
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' references a SourceFlags lookup of " +
+          $"'{field.SourceFlags}', which isn't defined in the shared lookups."
+        );
+
+        // Ensure SourceFlags is only used with multi-checkbox fields
+        Contract.Requires(
+          field.HubSpotType is "enumerationSet",
+          $"The '{field.HubSpotProperty}' field in the manifest at '{filePath}' sets SourceFlags, which requires a " +
+          $"HubSpotType of 'enumerationSet'."
+        );
+
+      }
+
+    }
+
+  } //Class
+} //Namespace
