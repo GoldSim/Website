@@ -16,6 +16,10 @@ variables:
 
 steps:
 
+- task: UseNode@1
+  inputs:
+    version: '26.x'
+
 - task: Npm@1
   inputs:
     command: 'install'
