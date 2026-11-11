@@ -1,7 +1,6 @@
-# ASP.NET Core (.NET Framework)
-# Build and test ASP.NET Core projects targeting the full .NET Framework.
-# Add steps that publish symbols, save build artifacts, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+# ASP.NET Core
+# Build the front-end assets and the ASP.NET Core project, then deploy it to the test web app.
+# https://learn.microsoft.com/azure/devops/pipelines/ecosystems/dotnet-core
 
 trigger:
 - develop
@@ -10,8 +9,6 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  solution: '**/GoldSim*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
 steps:
@@ -30,21 +27,26 @@ steps:
     targets:
     enableCodeCoverage: false
 
-- task: NuGetToolInstaller@1
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '10.0.x'
 
-- task: NuGetCommand@2
+- task: DotNetCoreCLI@2
   inputs:
     command: 'restore'
-    restoreSolution: '$(solution)'
+    projects: 'GoldSim.Web.csproj'
     feedsToUse: 'config'
+    nugetConfigPath: 'NuGet.config'
     externalFeedCredentials: 'Ignia NuGet Server'
 
-- task: VSBuild@1
+- task: DotNetCoreCLI@2
   inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    command: 'publish'
+    publishWebProjects: false
+    projects: 'GoldSim.Web.csproj'
+    arguments: '--configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory) --no-restore'
+    zipAfterPublish: true
 
 - task: AzureRmWebAppDeployment@4
   inputs:
