@@ -1,4 +1,5 @@
 ﻿@model LicenseAdministrationTopicViewModel
+@using System.Globalization
 
 @section Head {
   <link href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -48,7 +49,7 @@
                 <td><a href="@($"/OnTopic/Edit{request.WebPath}")">@request.FirstName @request.LastName</a></td>
                 <td>@request.Organization</td>
                 <td>@request.GetType().Name.Replace("FormTopicViewModel", "")</td>
-                <td>@request.LastModified.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
+                <td>@request.LastModified.ToString("MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture)</td>
               </tr>
             }
           </tbody>
