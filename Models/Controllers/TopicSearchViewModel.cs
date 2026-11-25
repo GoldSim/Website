@@ -39,7 +39,7 @@ namespace GoldSim.Web.Models.Controllers {
     /// <summary>
     ///   Determines if the <see cref="Query"/> and <see cref="Replace"/> should support regular expressions.
     /// </summary>
-    public bool UseRegEx { get; init; }
+    public bool IsRegularExpression { get; init; }
 
     /*==========================================================================================================================
     | QUERY

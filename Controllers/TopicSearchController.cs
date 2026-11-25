@@ -40,7 +40,7 @@ namespace GoldSim.Web.Controllers {
     /// </summary>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
-    /// <param name="useRegEx">Determines whether the search should support regular expressions; defaults to false.</param>
+    /// <param name="isRegularExpression">Determines whether the search should support regular expressions; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet, HttpPost]
@@ -48,7 +48,7 @@ namespace GoldSim.Web.Controllers {
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
       string scope = "Web",
-      bool useRegEx = false,
+      bool isRegularExpression = false,
       string query = null,
       string replace = null
     ) {
@@ -75,7 +75,7 @@ namespace GoldSim.Web.Controllers {
       }
 
       // Validate regular expression
-      if (useRegEx && query is not null) {
+      if (isRegularExpression && query is not null) {
         try {
           _ = Regex.Match(String.Empty, query);
         }
@@ -88,7 +88,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(scopedTopic, useRegEx? query : Regex.Escape(query), replace, action, results);
+        FindReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, action, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -102,7 +102,7 @@ namespace GoldSim.Web.Controllers {
         Title                   = "Topic Search",
         Action                  = action,
         Scope                   = scope,
-        UseRegEx                = useRegEx,
+        IsRegularExpression     = isRegularExpression,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results),
