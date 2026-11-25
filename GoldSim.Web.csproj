@@ -23,6 +23,11 @@
   <ItemGroup>
     <PackageReference Include="Braintree" Version="5.36.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
+
+    <!-- EPPlus 4.5.3.3 depends on System.Drawing.Common 4.7.0, which has a critical advisory (GHSA-rxg9-xrhp-64gj) fixed in
+         4.7.2. EPPlus 5 and later require a commercial license, so the patched version of the dependency is pinned instead. -->
+    <PackageReference Include="System.Drawing.Common" Version="4.7.3" />
+
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.1.3" />
     <PackageReference Include="Postmark" Version="5.2.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
