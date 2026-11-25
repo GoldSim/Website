@@ -97,7 +97,7 @@ function scssTask() {
     //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
     .pipe(sass({
-      includePaths: [
+      loadPaths: [
         './Shared/Styles',
         './node_modules',
         './node_modules/foundation-sites/scss',
