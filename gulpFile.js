@@ -10,8 +10,7 @@
 const   {src, dest, parallel}   = require('gulp');
 
 const   gulpif                  = require('gulp-if'),
-        concat                  = require('gulp-concat'),
-        merge                   = require('merge2');
+        concat                  = require('gulp-concat');
 
 const   sass                    = require('gulp-sass')(require('sass')),
         postCss                 = require("gulp-postcss"),
@@ -54,7 +53,7 @@ const files = {
 const dependencies = {
   'Scripts': {
     'ApplicationInsights'       : 'node_modules/@microsoft/applicationinsights-web/dist/*.min.*',
-    'DashJS'                    : 'node_modules/dashjs/dist/dash.mediaplayer.*',
+    'DashJS'                    : 'node_modules/dashjs/dist/modern/umd/dash.mediaplayer.*',
     'GreenSock'                 : 'node_modules/gsap/dist/**',
     'jQuery'                    : 'node_modules/jquery/dist/*.*',
     'OwlCarousel'               : 'node_modules/owl.carousel/dist/*.js',
@@ -97,7 +96,7 @@ function scssTask() {
     //.pipe(sassUnicode())
     .pipe(sourceMaps.init())
     .pipe(sass({
-      includePaths: [
+      loadPaths: [
         './Shared/Styles',
         './node_modules',
         './node_modules/foundation-sites/scss',
@@ -150,18 +149,24 @@ function jsViewsTask() {
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies static dependencies from their source folders and into their appropriate build folders.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function dependenciesTask() {
+function dependenciesTask(done) {
   console.log("Beginning dependencies task");
-  var streams = [];
+  var copyTasks = [];
   for (var contentType in dependencies) {
     for (var dependency in dependencies[contentType]) {
-      streams.push(
-        src(dependencies[contentType][dependency])
-          .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)))
+      copyTasks.push(
+        copyDependency(contentType, dependency)
       );
     }
   }
-  return merge(streams);
+  return parallel(...copyTasks)(done);
+}
+
+function copyDependency(contentType, dependency) {
+  return function() {
+    return src(dependencies[contentType][dependency], { encoding: false })
+      .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)));
+  };
 }
 
 /*==============================================================================================================================
