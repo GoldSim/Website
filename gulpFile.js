@@ -10,8 +10,7 @@
 const   {src, dest, parallel}   = require('gulp');
 
 const   gulpif                  = require('gulp-if'),
-        concat                  = require('gulp-concat'),
-        merge                   = require('merge2');
+        concat                  = require('gulp-concat');
 
 const   sass                    = require('gulp-sass')(require('sass')),
         postCss                 = require("gulp-postcss"),
