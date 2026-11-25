@@ -60,18 +60,13 @@ builder.Services.AddAuthentication(options => {
 /*------------------------------------------------------------------------------------------------------------------------------
 | Enable: MVC, OnTopic, and OnTopic Editor
 \-----------------------------------------------------------------------------------------------------------------------------*/
-var mvcBuilder = builder.Services.AddControllersWithViews()
+builder.Services.AddControllersWithViews()
 
   //Add OnTopic support
   .AddTopicSupport()
 
   //Add OnTopic editor support
   .AddTopicEditor();
-
-//Conditionally add runtime compilation in development
-if (builder.Environment.IsDevelopment()) {
-  mvcBuilder.AddRazorRuntimeCompilation();
-}
 
 /*------------------------------------------------------------------------------------------------------------------------------
 | Configure: Sitemap
