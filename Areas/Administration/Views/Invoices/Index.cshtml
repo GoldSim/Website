@@ -1,4 +1,5 @@
 ﻿@model InvoiceListViewModel
+@using System.Globalization
 
 @section Head {
   <link href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css" rel="stylesheet" />
@@ -46,7 +47,7 @@
                 <td class="js-no-click"><input type="checkbox" name="topics" value=@invoice.Id /></td>
                 <td>@invoice.InvoiceNumber</td>
                 <td>$@invoice.InvoiceAmount</td>
-                <td>@invoice.DatePaid?.ToString("MM/dd/yyyy hh:mm:ss tt")</td>
+                <td>@invoice.DatePaid?.ToString("MM/dd/yyyy hh:mm:ss tt", CultureInfo.InvariantCulture)</td>
               </tr>
             }
           </tbody>

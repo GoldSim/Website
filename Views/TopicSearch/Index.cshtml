@@ -68,8 +68,8 @@
       }
 
       <div class="checkbox">
-        <input type="checkbox" id="UseRegEx" name="UseRegEx" value="true" @(Model.UseRegEx ? "checked" : "")>
-        <label for="UseRegEx">Use <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">regular expressions</a>.</label>
+        <input type="checkbox" id="IsRegularExpression" name="IsRegularExpression" value="true" @(Model.IsRegularExpression ? "checked" : "")>
+        <label for="IsRegularExpression">Use <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">regular expressions</a>.</label>
       </div>
 
       <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
@@ -97,7 +97,7 @@
         @foreach (var topic in Model.Results.Keys) {
           <li>
             <a href="/OnTopic/Edit/@topic.WebPath">@topic.WebPath.Replace(Model.Scope, "").Replace("//", "/")</a>
-            @if (!Model.UseRegEx) {
+            @if (!Model.IsRegularExpression) {
               var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { g.Key, Count = g.Count()}).OrderBy(x => x.Count).ToList();
               if (attributes.Count is 1) {
                 <span>(@(pluralize("instance", attributes.First().Count)) in <strong>@attributes.First().Key</strong>)</span>

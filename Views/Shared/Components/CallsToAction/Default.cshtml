@@ -20,7 +20,7 @@
 
   void callsToActionContents() {
 
-    var currentNavigationRoot   = Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLower() : "";
+    var currentNavigationRoot   = Model.NavigationRoot is not null ? Model.NavigationRoot.WebPath.ToLowerInvariant() : "";
     var callToActionType = currentNavigationRoot switch {
       "/web/purchase/" => "purchase",
       "/web/customers/" => "customers",

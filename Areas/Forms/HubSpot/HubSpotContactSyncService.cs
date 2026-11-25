@@ -107,12 +107,11 @@ namespace GoldSim.Web.Areas.Forms.HubSpot {
         };
 
         // Construct request
-        using var request       = new HttpRequestMessage(HttpMethod.Post, _requestUri) {
-          Content               = JsonContent.Create(requestBody),
-          Headers               = {
-            Authorization       = new("Bearer", _accessToken)
-          }
-        };
+        using var request       = new HttpRequestMessage(HttpMethod.Post, _requestUri);
+
+        // Assign content and authorization
+        request.Content         = JsonContent.Create(requestBody);
+        request.Headers.Authorization = new("Bearer", _accessToken);
 
         // Send request
         using var response      = await _httpClient.SendAsync(request).ConfigureAwait(true);
