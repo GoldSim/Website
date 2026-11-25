@@ -363,7 +363,7 @@ main {
     }
     button span:before {
       @include fa-icon;
-      font-family               : 'Font Awesome 6 Free';
+      font-family               : 'Font Awesome 7 Free';
       font-weight               : 900;
     }
     .owl-prev {
@@ -371,7 +371,7 @@ main {
       span.previous {
         left                    : rem-calc(4);
         &:before                {
-          content               : fa-content($fa-var-caret-left);
+          content               : fa-content($var-caret-left);
         }
         @include breakpoint(medium) {
           left                  : rem-calc(42);
@@ -382,7 +382,7 @@ main {
       right                     : 0;
       span.next {
         &:before                {
-          content               : fa-content($fa-var-caret-right);
+          content               : fa-content($var-caret-right);
         }
         right                   : rem-calc(4);
         @include breakpoint(medium) {

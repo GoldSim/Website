@@ -32,10 +32,10 @@
     }
     &:before {
       @include fa-icon;
-      font-family               : 'Font Awesome 6 Free';
+      font-family               : 'Font Awesome 7 Free';
       font-weight               : 900;
       padding-right             : rem-calc(3);
-      content                   : fa-content($fa-var-bullhorn);
+      content                   : fa-content($var-bullhorn);
       position                  : relative;
       top                       : 3px;
       margin-right              : 6px;

@@ -1,0 +1,10 @@
+﻿//==============================================================================================
+// FONT AWESOME
+//----------------------------------------------------------------------------------------------
+// Configures the Font Awesome variables module. Font Awesome loads its variables as a module,
+// so it ignores global overrides; this must be loaded with `@use` before any of its stylesheets
+// are imported.
+//==============================================================================================
+@forward "fontawesome-free/scss/variables" with (
+  $font-path: "/Shared/Fonts/Vendor/FontAwesome"
+);

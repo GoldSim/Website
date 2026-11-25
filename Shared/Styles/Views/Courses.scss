@@ -76,21 +76,21 @@
 
     a:before {
       @include fa-icon;
-      font-family               : 'Font Awesome 6 Free';
+      font-family               : 'Font Awesome 7 Free';
       color                     : $palette-yellow;
       font-size                 : smaller;
     }
 
     &.unstarted a:before {
-      content                   : fa-content($fa-var-circle);
+      content                   : fa-content($var-circle);
     }
 
     &.incomplete a:before {
-      content                   : fa-content($fa-var-dot-circle);
+      content                   : fa-content($var-dot-circle);
     }
 
     &.complete a:before {
-      content                   : fa-content($fa-var-check-circle);
+      content                   : fa-content($var-check-circle);
     }
 
   }

@@ -202,10 +202,10 @@ aside.help {
   }
   &:before {
     @include fa-icon;
-    font-family                 : 'Font Awesome 6 Free';
+    font-family                 : 'Font Awesome 7 Free';
     color                       : $palette-yellow;
     font-size                   : rem-calc(32);
-    content                     : fa-content($fa-var-question-circle);
+    content                     : fa-content($var-question-circle);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
     float                       : left;
@@ -228,10 +228,10 @@ blockquote.stop {
   }
   &:before {
     @include fa-icon;
-    font-family                 : 'Font Awesome 6 Free';
+    font-family                 : 'Font Awesome 7 Free';
     color                       : $palette-blue;
     font-size                   : rem-calc(32);
-    content                     : fa-content($fa-var-comment-alt);
+    content                     : fa-content($var-comment-alt);
     padding-right               : rem-calc(12);
     margin-left                 : rem-calc(-44);
     float                       : left;
@@ -262,7 +262,7 @@ blockquote.success {
   }
   &:before {
     color                       : $palette-green;
-    content                     : fa-content($fa-var-check-circle);
+    content                     : fa-content($var-check-circle);
     top                         : 0px;
   }
 }
@@ -277,7 +277,7 @@ blockquote.warning {
   &:before {
     font-weight                 : 900;
     color                       : $palette-yellow;
-    content                     : fa-content($fa-var-triangle-exclamation);
+    content                     : fa-content($var-triangle-exclamation);
   }
 }
 
@@ -294,7 +294,7 @@ blockquote.stop {
   }
   &:before {
     color                       : $palette-red;
-    content                     : fa-content($fa-var-pause-circle);
+    content                     : fa-content($var-pause-circle);
     top                         : 0px;
   }
 }
