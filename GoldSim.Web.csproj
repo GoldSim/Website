@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Braintree" Version="5.36.0" />
+    <PackageReference Include="Braintree" Version="5.42.0" />
     <PackageReference Include="EPPlus" Version="[4.5.3.3,5)" />
 
     <!-- EPPlus 4.5.3.3 depends on System.Drawing.Common 4.7.0, which has a critical advisory (GHSA-rxg9-xrhp-64gj) fixed in
