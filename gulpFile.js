@@ -150,18 +150,24 @@ function jsViewsTask() {
 >-------------------------------------------------------------------------------------------------------------------------------
 | Copies static dependencies from their source folders and into their appropriate build folders.
 \-----------------------------------------------------------------------------------------------------------------------------*/
-function dependenciesTask() {
+function dependenciesTask(done) {
   console.log("Beginning dependencies task");
-  var streams = [];
+  var copyTasks = [];
   for (var contentType in dependencies) {
     for (var dependency in dependencies[contentType]) {
-      streams.push(
-        src(dependencies[contentType][dependency])
-          .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)))
+      copyTasks.push(
+        copyDependency(contentType, dependency)
       );
     }
   }
-  return merge(streams);
+  return parallel(...copyTasks)(done);
+}
+
+function copyDependency(contentType, dependency) {
+  return function() {
+    return src(dependencies[contentType][dependency], { encoding: false })
+      .pipe(dest(outputDir.concat('/Shared/', contentType, '/Vendor/', dependency)));
+  };
 }
 
 /*==============================================================================================================================
