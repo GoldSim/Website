@@ -288,13 +288,13 @@ namespace GoldSim.Web.Areas.Payments.Controllers {
       // Display transaction message returned from Braintree
       if (!String.IsNullOrEmpty(result.Message)) {
         ModelState.AddModelError("Transaction", $"Payment Status: {result.Message}");
-        emailBody.AppendLine($" - Transaction Result: {result.Message}");
+        emailBody.AppendLine(CultureInfo.InvariantCulture, $" - Transaction Result: {result.Message}");
       }
 
       // Display any specific error messages returned from Braintree
       foreach (var error in result.Errors.DeepAll()) {
         ModelState.AddModelError(error.Code.ToString(), $"Error: {error.Message}");
-        emailBody.AppendLine($" - Error: {error.Message}");
+        emailBody.AppendLine(CultureInfo.InvariantCulture, $" - Error: {error.Message}");
       }
 
       /*------------------------------------------------------------------------------------------------------------------------
