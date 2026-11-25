@@ -46,6 +46,6 @@
     "postcss": "^8.5.33",
     "sass": "^1.108.2",
     "scrollmagic": "^2.0.9",
-    "what-input": "^5.2.12"
+    "what-input": "^6.0.2"
   }
 }
