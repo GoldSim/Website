@@ -261,3 +261,45 @@ span[id*="Validator"][style*="visibility:hidden"] {
 .validation-summary-errors {
   display                       : block;
 }
+
+// =============================================================================================
+// Topic Search
+// =============================================================================================
+// Results from the Topic Search tool, which can include long paths that need to be shortened.
+
+// Topic Search page, which must be allowed to shrink below the width of its content
+#TopicSearch {
+  min-width                     : 0;
+
+  // List of results
+  #SearchResults {
+
+    // Path to a topic, shortened in the middle if it exceeds the available width
+    .result-path {
+      display                   : inline-flex;
+      max-width                 : 100%;
+      vertical-align            : bottom;
+
+      // Leading directories, which are replaced with an ellipsis if there isn't enough space
+      .result-path-start {
+        flex                    : 0 100 auto;
+        min-width               : 0;
+        overflow                : hidden;
+        text-overflow           : ellipsis;
+        white-space             : nowrap;
+      }
+
+      // Last segment of the path, which is only shortened once the leading directories are gone
+      .result-path-end {
+        flex                    : 0 1 auto;
+        min-width               : 0;
+        overflow                : hidden;
+        text-overflow           : ellipsis;
+        white-space             : nowrap;
+      }
+
+    }
+
+  }
+
+}

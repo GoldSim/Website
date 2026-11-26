@@ -4,7 +4,7 @@
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Form.css" asp-append-version="true" />
 }
 
-<div>
+<div id="TopicSearch">
 
   <!-- Form -->
   <section class="panel">
@@ -116,8 +116,10 @@
         <h1>Results</h1>
         <ul>
         @foreach (var topic in Model.Results.Keys) {
+          var path = String.IsNullOrEmpty(Model.Scope)? topic.WebPath : topic.WebPath.Replace(Model.Scope, "").Replace("//", "/");
+          var lastSegmentIndex = path.TrimEnd('/').LastIndexOf('/') + 1;
           <li>
-            <a href="/OnTopic/Edit/@topic.WebPath">@(String.IsNullOrEmpty(Model.Scope)? topic.WebPath : topic.WebPath.Replace(Model.Scope, "").Replace("//", "/"))</a>
+            <a class="result-path" href="/OnTopic/Edit/@topic.WebPath" title="@topic.WebPath"><span class="result-path-start">@path[..lastSegmentIndex]</span><span class="result-path-end">@path[lastSegmentIndex..]</span></a>
             @if (!Model.IsRegularExpression) {
               var attributes = Model.Results[topic].GroupBy(t => t.AttributeKey).Select(g => new { g.Key, Count = g.Count()}).OrderBy(x => x.Count).ToList();
               if (attributes.Count is 1) {
