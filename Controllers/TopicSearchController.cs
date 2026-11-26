@@ -105,7 +105,7 @@ namespace GoldSim.Web.Controllers {
       \------------------------------------------------------------------------------------------------------------------------*/
       var scopedTopic           = GetScopedTopic(scope);
 
-      if (scopedTopic is not null && viewModel.Results.Count > 0) {
+      if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query) && viewModel.Results.Count > 0) {
         ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace);
       }
 
@@ -265,7 +265,7 @@ namespace GoldSim.Web.Controllers {
 
       // Replace matches in each attribute
       foreach (var attribute in topic.Attributes.ToList()) {
-        if (Regex.IsMatch(attribute.Value, query, _options)) {
+        if (attribute is { Key: not null, Value: not null } && Regex.IsMatch(attribute.Value, query, _options)) {
           var result            = Regex.Replace(attribute.Value, query, replace, _options);
           topic.Attributes.SetValue(attribute.Key, result);
           isModified            = true;
