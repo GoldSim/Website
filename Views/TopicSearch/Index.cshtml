@@ -72,13 +72,19 @@
         </label>
       }
 
-      <div class="checkbox">
-        <input type="checkbox" id="IsRegularExpression" name="IsRegularExpression" value="true" @(Model.IsRegularExpression ? "checked" : "") @(isConfirming ? "disabled" : "")>
-        <label for="IsRegularExpression">Use <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">regular expressions</a>.</label>
+      <div class="options">
+        <div class="checkbox">
+          <input type="checkbox" id="IsRegularExpression" name="IsRegularExpression" value="true" @(Model.IsRegularExpression ? "checked" : "") @(isConfirming ? "disabled" : "")>
+          <label for="IsRegularExpression">Use <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">regular expressions</a>.</label>
+        </div>
+        <div class="checkbox">
+          <input type="checkbox" id="IsCaseSensitive" name="IsCaseSensitive" value="true" @(Model.IsCaseSensitive ? "checked" : "") @(isConfirming ? "disabled" : "")>
+          <label for="IsCaseSensitive">Case sensitive.</label>
+        </div>
       </div>
 
       @if (isConfirming) {
-        <a class="button large secondary" href="/TopicSearch/?Scope=@Uri.EscapeDataString(Model.Scope ?? "")&amp;Query=@Uri.EscapeDataString(Model.Query)&amp;IsRegularExpression=@Model.IsRegularExpression.ToString().ToLowerInvariant()&amp;Action=Search">Cancel</a>
+        <a class="button large secondary" href="/TopicSearch/?Scope=@Uri.EscapeDataString(Model.Scope ?? "")&amp;Query=@Uri.EscapeDataString(Model.Query)&amp;IsRegularExpression=@Model.IsRegularExpression.ToString().ToLowerInvariant()&amp;IsCaseSensitive=@Model.IsCaseSensitive.ToString().ToLowerInvariant()&amp;Action=Search">Cancel</a>
       }
       else {
         <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
@@ -102,6 +108,7 @@
         <input type="hidden" name="Query" value="@Model.Query" />
         <input type="hidden" name="Replace" value="@Model.Replace" />
         <input type="hidden" name="IsRegularExpression" value="@Model.IsRegularExpression.ToString().ToLowerInvariant()" />
+        <input type="hidden" name="IsCaseSensitive" value="@Model.IsCaseSensitive.ToString().ToLowerInvariant()" />
       </form>
     }
 

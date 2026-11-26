@@ -271,6 +271,13 @@ span[id*="Validator"][style*="visibility:hidden"] {
 #TopicSearch {
   min-width                     : 0;
 
+  // Search options, which appear side by side if there is room
+  .options {
+    display                     : flex;
+    flex-wrap                   : wrap;
+    column-gap                  : rem-calc(32);
+  }
+
   // List of results
   #SearchResults {
 
