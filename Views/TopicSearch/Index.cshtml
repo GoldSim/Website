@@ -10,6 +10,7 @@
   <section class="panel">
 
     @if (Model.Query is not null) {
+      var instanceCount = Model.Results.Values.Sum(results => results.Count);
       <div style="margin-top: -2rem;">
         @if (Model.Errors.Count > 0) {
           @foreach(var error in Model.Errors) {
@@ -27,17 +28,17 @@
               break;
             case TopicSearchAction.Search:
               <blockquote class="success">
-                @Model.Results.Count topics were found for the search query.
+                @pluralize("instance", instanceCount) @(instanceCount is 1? "was" : "were") found across @pluralize("topic", Model.Results.Count) for the search query.
               </blockquote>
               break;
             case TopicSearchAction.ReplacePreview:
               <blockquote class="stop">
-                @Model.Results.Count topics will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
+                @pluralize("instance", instanceCount) across @pluralize("topic", Model.Results.Count) will be updated with the replacement expression. If the results look right, click "Replace" again to confirm.
               </blockquote>
               break;
             case TopicSearchAction.ReplaceConfirm:
               <blockquote class="success">
-                @Model.Results.Count topics were successfully updated with the replacement expression.
+                @pluralize("instance", instanceCount) across @pluralize("topic", Model.Results.Count) @(instanceCount is 1? "was" : "were") successfully updated with the replacement expression.
               </blockquote>
               break;
             default:
