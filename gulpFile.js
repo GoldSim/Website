@@ -52,7 +52,6 @@ const files = {
 \-----------------------------------------------------------------------------------------------------------------------------*/
 const dependencies = {
   'Scripts': {
-    'ApplicationInsights'       : 'node_modules/@microsoft/applicationinsights-web/dist/*.min.*',
     'DashJS'                    : 'node_modules/dashjs/dist/modern/umd/dash.mediaplayer.*',
     'GreenSock'                 : 'node_modules/gsap/dist/**',
     'jQuery'                    : 'node_modules/jquery/dist/*.*',
