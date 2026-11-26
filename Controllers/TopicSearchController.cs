@@ -38,19 +38,89 @@ namespace GoldSim.Web.Controllers {
     /// <summary>
     ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided.
     /// </summary>
+    /// <remarks>
+    ///   Requests for <see cref="TopicSearchAction.ReplaceConfirm"/> are treated as <see cref=
+    ///   "TopicSearchAction.ReplacePreview"/>; confirmed replacements must be submitted via <see cref="Replace"/>.
+    /// </remarks>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
     /// <param name="isRegularExpression">Determines whether the search should support regular expressions; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
-    [HttpGet, HttpPost]
-    [SuppressMessage("Security", "CA3012", Justification = "Internal tool, so source is trusted")]
+    [HttpGet]
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
       string scope = "Web",
       bool isRegularExpression = false,
       string query = null,
       string replace = null
+    ) {
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Prevent confirmed replacements via GET
+      \------------------------------------------------------------------------------------------------------------------------*/
+      if (action is TopicSearchAction.ReplaceConfirm) {
+        action                  = TopicSearchAction.ReplacePreview;
+      }
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Show results
+      \------------------------------------------------------------------------------------------------------------------------*/
+      return View(Search(action, scope, isRegularExpression, query, replace));
+
+    }
+
+    /*==========================================================================================================================
+    | REPLACE
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Replaces all matches of the <paramref name="query"/> in the supplied <see cref="topicRepository"/> with the <paramref
+    ///   name="replace"/> expression, and saves the changes.
+    /// </summary>
+    /// <remarks>
+    ///   Requires a <c>POST</c> request with a valid antiforgery token, to prevent a link from modifying topics.
+    /// </remarks>
+    /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
+    /// <param name="isRegularExpression">
+    ///   Determines whether the search should support regular expressions; defaults to false.
+    /// </param>
+    /// <param name="query">The search term to look for in each attribute.</param>
+    /// <param name="replace">The optional expression to replace all search results with.</param>
+    [HttpPost, ActionName("Index")]
+    [ValidateAntiForgeryToken]
+    public IActionResult Replace(
+      string scope = "Web",
+      bool isRegularExpression = false,
+      string query = null,
+      string replace = null
+    ) {
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Replace and show results
+      \------------------------------------------------------------------------------------------------------------------------*/
+      return View(Search(TopicSearchAction.ReplaceConfirm, scope, isRegularExpression, query, replace));
+
+    }
+
+    /*==========================================================================================================================
+    | SEARCH
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided, and
+    ///   returns a <see cref="TopicSearchViewModel"/> containing the results.
+    /// </summary>
+    /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
+    /// <param name="scope">The scope of the topic tree to search.</param>
+    /// <param name="isRegularExpression">Determines whether the search should support regular expressions.</param>
+    /// <param name="query">The search term to look for in each attribute.</param>
+    /// <param name="replace">The optional expression to replace all search results with.</param>
+    [SuppressMessage("Security", "CA3012", Justification = "Internal tool, so source is trusted")]
+    private TopicSearchViewModel Search(
+      TopicSearchAction action,
+      string scope,
+      bool isRegularExpression,
+      string query,
+      string replace
     ) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -94,7 +164,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Assemble view model
       \------------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = new TopicSearchViewModel {
+      return new() {
         Id                      = -1,
         WebPath                 = "/TopicSearch/",
         UniqueKey               = "TopicSearch",
@@ -108,11 +178,6 @@ namespace GoldSim.Web.Controllers {
         Results                 = new(results),
         Errors                  = new(errors)
       };
-
-      /*-------------------------------------------------------------------------------------------------------------------------
-      | Show results
-      \------------------------------------------------------------------------------------------------------------------------*/
-      return View(viewModel);
 
     }
 
