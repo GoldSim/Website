@@ -1,4 +1,5 @@
 ﻿@model TopicSearchViewModel;
+@using Microsoft.AspNetCore.WebUtilities
 
 @section Head {
   <link rel="stylesheet" type="text/css" href="/Shared/Styles/Views/Form.css" asp-append-version="true" />
@@ -84,7 +85,7 @@
       </div>
 
       @if (isConfirming) {
-        <a class="button large secondary" href="/TopicSearch/?Scope=@Uri.EscapeDataString(Model.Scope ?? "")&amp;Query=@Uri.EscapeDataString(Model.Query)&amp;IsRegularExpression=@Model.IsRegularExpression.ToString().ToLowerInvariant()&amp;IsCaseSensitive=@Model.IsCaseSensitive.ToString().ToLowerInvariant()&amp;Action=Search">Cancel</a>
+        <a class="button large secondary" href="@cancelUrl()">Cancel</a>
       }
       else {
         <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
@@ -166,6 +167,18 @@
 
 @{
   string pluralize(string label, int count) => count + " " + label + (count > 1? "s" : "");
+
+  // Returns to the search results for the current query, without replacing anything
+  string cancelUrl() => QueryHelpers.AddQueryString(
+    "/TopicSearch/",
+    new Dictionary<string, string> {
+      { "Scope", Model.Scope ?? "" },
+      { "Query", Model.Query },
+      { "IsRegularExpression", Model.IsRegularExpression.ToString().ToLowerInvariant() },
+      { "IsCaseSensitive", Model.IsCaseSensitive.ToString().ToLowerInvariant() },
+      { "Action", "Search" }
+    }
+  );
 }
 
 <!--
