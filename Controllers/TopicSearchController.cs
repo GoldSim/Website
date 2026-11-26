@@ -43,14 +43,14 @@ namespace GoldSim.Web.Controllers {
     ///   "TopicSearchAction.ReplacePreview"/>; confirmed replacements must be submitted via <see cref="Replace"/>.
     /// </remarks>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
-    /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
+    /// <param name="scope">The scope of the topic tree to search; defaults to the entire topic tree.</param>
     /// <param name="isRegularExpression">Determines whether the search should support regular expressions; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet]
     public IActionResult Index(
       [FromQuery]TopicSearchAction action,
-      string scope = "Web",
+      string scope = null,
       bool isRegularExpression = false,
       string query = null,
       string replace = null
@@ -80,7 +80,7 @@ namespace GoldSim.Web.Controllers {
     /// <remarks>
     ///   Requires a <c>POST</c> request with a valid antiforgery token, to prevent a link from modifying topics.
     /// </remarks>
-    /// <param name="scope">The scope of the topic tree to search; defaults to "Web".</param>
+    /// <param name="scope">The scope of the topic tree to search; defaults to the entire topic tree.</param>
     /// <param name="isRegularExpression">
     ///   Determines whether the search should support regular expressions; defaults to false.
     /// </param>
@@ -89,7 +89,7 @@ namespace GoldSim.Web.Controllers {
     [HttpPost, ActionName("Index")]
     [ValidateAntiForgeryToken]
     public IActionResult Replace(
-      string scope = "Web",
+      string scope = null,
       bool isRegularExpression = false,
       string query = null,
       string replace = null
