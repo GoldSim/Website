@@ -1,4 +1,5 @@
-﻿@model PageTopicViewModel
+﻿@inject JavaScriptSnippet JavaScriptSnippet
+@model PageTopicViewModel
 
 <!DOCTYPE html>
 <html xmlns="https://www.w3.org/1999/xhtml" lang="en" class="no-js">
@@ -31,17 +32,8 @@
     }
     <partial name="_Breadcrumbs" />
     @await RenderSectionAsync("Head", false)
-    <script type="text/javascript" src="/Shared/Scripts/Vendor/ApplicationInsights/applicationinsights-web.min.js"></script>
-    <script type="text/javascript">
-      var snippet = {
-        config: {
-          instrumentationKey: "2c86923b-7dd1-4cfb-91a2-b50d6a058e8d"
-        }
-      };
-      var init = new Microsoft.ApplicationInsights.ApplicationInsights(snippet);
-      var appInsights = init.loadAppInsights();
-      appInsights.trackPageView();
-    </script>
+    @* Use the same connection string as the server-side telemetry *@
+    @Html.Raw(JavaScriptSnippet.FullScript)
     <script>
       /**
        * Initialize Google Analytics
