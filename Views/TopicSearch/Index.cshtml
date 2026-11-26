@@ -79,10 +79,21 @@
       }
 
       @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
-        <button class="button primary large alert" type="submit" name="Action" value="ReplaceConfirm" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
+        <button class="button primary large alert" type="submit" form="ReplaceConfirmForm" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
       }
 
     </form>
+
+    <!-- Confirm replacement (POST, to confirm exactly what was previewed) -->
+    @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
+      <form id="ReplaceConfirmForm" method="post" action="/TopicSearch/">
+        @Html.AntiForgeryToken()
+        <input type="hidden" name="Scope" value="@Model.Scope" />
+        <input type="hidden" name="Query" value="@Model.Query" />
+        <input type="hidden" name="Replace" value="@Model.Replace" />
+        <input type="hidden" name="IsRegularExpression" value="@Model.IsRegularExpression.ToString().ToLowerInvariant()" />
+      </form>
+    }
 
   </section>
 
