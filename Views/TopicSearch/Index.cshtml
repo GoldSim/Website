@@ -46,46 +46,55 @@
   </div>
     }
 
+    @{
+      var isConfirming = Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null;
+    }
+
     <form id="SearchResultSearchForm" action="/TopicSearch/">
 
       <label class="form-field">
         <div class="input-group">
           <span class="input-group-label">https://www.goldsim.com/</span>
-          <input class="input-group-field" type="text" id="Scope" name="Scope" value="@Model.Scope" pattern="^[A-Za-z0-9_\-\/]*$" />
+          <input class="input-group-field" type="text" id="Scope" name="Scope" value="@Model.Scope" pattern="^[A-Za-z0-9_\-\/]*$" @(isConfirming ? "disabled" : "") />
         </div>
       </label>
 
       <label class="form-field">
         Query
-        <input type="search" name="Query" value="@Model.Query" />
+        <input type="search" name="Query" value="@Model.Query" @(isConfirming ? "disabled" : "") />
       </label>
 
       @if (Model.Query is not null) {
         <label class="form-field">
           Replacement Expression
-          <input type="text" name="Replace" value="@Model.Replace" @(Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
+          <input type="text" name="Replace" value="@Model.Replace" @(isConfirming || Model.Action is TopicSearchAction.ReplaceConfirm? "disabled" : "") />
         </label>
       }
 
       <div class="checkbox">
-        <input type="checkbox" id="IsRegularExpression" name="IsRegularExpression" value="true" @(Model.IsRegularExpression ? "checked" : "")>
+        <input type="checkbox" id="IsRegularExpression" name="IsRegularExpression" value="true" @(Model.IsRegularExpression ? "checked" : "") @(isConfirming ? "disabled" : "")>
         <label for="IsRegularExpression">Use <a href="https://learn.microsoft.com/en-us/dotnet/standard/base-types/regular-expression-language-quick-reference">regular expressions</a>.</label>
       </div>
 
-      <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
+      @if (isConfirming) {
+        <a class="button large secondary" href="/TopicSearch/?Scope=@Uri.EscapeDataString(Model.Scope ?? "")&amp;Query=@Uri.EscapeDataString(Model.Query)&amp;IsRegularExpression=@Model.IsRegularExpression.ToString().ToLowerInvariant()&amp;Action=Search">Cancel</a>
+      }
+      else {
+        <button class="button primary large" type="submit" name="Action" value="Search">Search</button>
+      }
 
       @if (Model.Action is TopicSearchAction.Search && Model.Query is not null) {
         <button class="button primary large success" type="submit" name="Action" value="ReplacePreview" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
       }
 
-      @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
+      @if (isConfirming) {
         <button class="button primary large alert" type="submit" form="ReplaceConfirmForm" @(Model.Results.Count is 0 ? "disabled" : "")>Replace</button>
       }
 
     </form>
 
     <!-- Confirm replacement (POST, to confirm exactly what was previewed) -->
-    @if (Model.Action is TopicSearchAction.ReplacePreview && Model.Query is not null) {
+    @if (isConfirming) {
       <form id="ReplaceConfirmForm" method="post" action="/TopicSearch/">
         @Html.AntiForgeryToken()
         <input type="hidden" name="Scope" value="@Model.Scope" />
