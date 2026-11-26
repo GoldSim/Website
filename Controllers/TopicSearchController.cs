@@ -96,9 +96,23 @@ namespace GoldSim.Web.Controllers {
     ) {
 
       /*-------------------------------------------------------------------------------------------------------------------------
-      | Replace and show results
+      | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
-      return View(Search(TopicSearchAction.ReplaceConfirm, scope, isRegularExpression, query, replace));
+      var viewModel             = Search(TopicSearchAction.ReplaceConfirm, scope, isRegularExpression, query, replace);
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Replace topics
+      \------------------------------------------------------------------------------------------------------------------------*/
+      var scopedTopic           = GetScopedTopic(scope);
+
+      if (scopedTopic is not null && viewModel.Results.Count > 0) {
+        ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace);
+      }
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Show results
+      \------------------------------------------------------------------------------------------------------------------------*/
+      return View(viewModel);
 
     }
 
@@ -107,7 +121,7 @@ namespace GoldSim.Web.Controllers {
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Searches all topics in the supplied <see cref="topicRepository"/> for the <paramref name="query"/>, if provided, and
-    ///   returns a <see cref="TopicSearchViewModel"/> containing the results.
+    ///   returns a <see cref="TopicSearchViewModel"/> containing the results. Does not modify any topics.
     /// </summary>
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="scope">The scope of the topic tree to search.</param>
@@ -132,8 +146,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find scope
       \------------------------------------------------------------------------------------------------------------------------*/
-      var uniqueKey             = $"Root:{scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')}";
-      var scopedTopic           = topicRepository.Load()?.GetByUniqueKey(uniqueKey);
+      var scopedTopic           = GetScopedTopic(scope);
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Validate inputs
@@ -158,7 +171,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
-        FindReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, action, results);
+        FindTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -182,25 +195,21 @@ namespace GoldSim.Web.Controllers {
     }
 
     /*==========================================================================================================================
-    | REPLACE TOPICS
+    | FIND TOPICS
     \-------------------------------------------------------------------------------------------------------------------------*/
     /// <summary>
     ///   Recursively searches all topics in the <paramref name="topic"/> tree for the supplied <paramref name="query"/> and
-    ///   adds any results to the <paramref name="results"/> set. Optionally replaces the references using the <paramref
-    ///   name="replace"/> expression, if available, and if <paramref name="action"/> is set to <see
-    ///   cref="TopicSearchAction.ReplaceConfirm"/>.
+    ///   adds any results to the <paramref name="results"/> set. Does not modify any topics.
     /// </summary>
     /// <param name="topic">The <see cref="Topic"/> to search within.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
-    /// <param name="replace">The expression to replace all search results with.</param>
-    /// <param name="action">The action being performed.</param>
+    /// <param name="replace">The expression used to preview the replacement of all search results.</param>
     /// <param name="results">The collection of positive matches.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
-    private void FindReplaceTopics(
+    private static void FindTopics(
       Topic topic,
       string query,
       string replace,
-      TopicSearchAction action,
       Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> results
     ) {
 
@@ -229,21 +238,68 @@ namespace GoldSim.Web.Controllers {
               }
             );
           }
-          if (action is TopicSearchAction.ReplaceConfirm) {
-            var result          = Regex.Replace(attribute.Value, query, replace, _options);
-            topic.Attributes.SetValue(attribute.Key, result);
-          }
         }
       }
 
-      if (topicReference is not null && action is TopicSearchAction.ReplaceConfirm) {
+      // Recursively find results for each child topic
+      foreach (var childTopic in topic.Children) {
+        FindTopics(childTopic, query, replace, results);
+      }
+
+    }
+
+    /*==========================================================================================================================
+    | REPLACE TOPICS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Recursively replaces all matches for the <paramref name="query"/> within the attributes of the <paramref
+    ///   name="topic"/> tree with the <paramref name="replace"/> expression, and saves any modified topics.
+    /// </summary>
+    /// <param name="topic">The <see cref="Topic"/> to replace within.</param>
+    /// <param name="query">The search term to look for in each attribute.</param>
+    /// <param name="replace">The expression to replace all search results with.</param>
+    [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
+    private void ReplaceTopics(Topic topic, string query, string replace) {
+
+      var isModified            = false;
+
+      // Replace matches in each attribute
+      foreach (var attribute in topic.Attributes.ToList()) {
+        if (Regex.IsMatch(attribute.Value, query, _options)) {
+          var result            = Regex.Replace(attribute.Value, query, replace, _options);
+          topic.Attributes.SetValue(attribute.Key, result);
+          isModified            = true;
+        }
+      }
+
+      // Save the topic, if modified
+      if (isModified) {
         topicRepository.Save(topic);
       }
 
       // Recursively replace results for each child topic
       foreach (var childTopic in topic.Children) {
-        FindReplaceTopics(childTopic, query, replace, action, results);
+        ReplaceTopics(childTopic, query, replace);
       }
+
+    }
+
+    /*==========================================================================================================================
+    | GET SCOPED TOPIC
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Retrieves the <see cref="Topic"/> from the <see cref="topicRepository"/> that corresponds to the <paramref
+    ///   name="scope"/>, if it exists.
+    /// </summary>
+    /// <param name="scope">The scope of the topic tree to search.</param>
+    private Topic GetScopedTopic(string scope) {
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Find scope
+      \------------------------------------------------------------------------------------------------------------------------*/
+      var uniqueKey             = $"Root:{scope?.Replace("/", ":", StringComparison.Ordinal).Trim(':')}";
+
+      return topicRepository.Load()?.GetByUniqueKey(uniqueKey);
 
     }
 
