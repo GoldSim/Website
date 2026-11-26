@@ -54,7 +54,7 @@
     \-------------------------------------------------------------------------------------------------------------------------*/
     dashPlayer.updateSettings({
       'streaming'               : {
-        'retryAttemps'          : {
+        'retryAttempts'         : {
           'MPD'                 : 2,
           'XLinkExpansion'      : 2,
           'IndexSegment'        : 3,
