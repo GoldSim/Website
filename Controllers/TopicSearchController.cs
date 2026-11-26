@@ -106,7 +106,7 @@ namespace GoldSim.Web.Controllers {
       var scopedTopic           = GetScopedTopic(scope);
 
       if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query) && viewModel.Results.Count > 0) {
-        ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace);
+        ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, _options);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -171,7 +171,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
-        FindTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, results);
+        FindTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, _options, results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -204,12 +204,14 @@ namespace GoldSim.Web.Controllers {
     /// <param name="topic">The <see cref="Topic"/> to search within.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The expression used to preview the replacement of all search results.</param>
+    /// <param name="options">The <see cref="RegexOptions"/> to apply when searching.</param>
     /// <param name="results">The collection of positive matches.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
     private static void FindTopics(
       Topic topic,
       string query,
       string replace,
+      RegexOptions options,
       Dictionary<AssociatedTopicViewModel, Collection<TopicSearchResult>> results
     ) {
 
@@ -217,7 +219,7 @@ namespace GoldSim.Web.Controllers {
 
       // Search each attribute for the given query
       foreach (var attribute in topic.Attributes.ToList()) {
-        var matches             = Regex.Matches(attribute.Value, query, _options);
+        var matches             = Regex.Matches(attribute.Value, query, options);
         if (matches.Count > 0) {
           topicReference        ??= new() {
             Title               = topic.Title,
@@ -243,7 +245,7 @@ namespace GoldSim.Web.Controllers {
 
       // Recursively find results for each child topic
       foreach (var childTopic in topic.Children) {
-        FindTopics(childTopic, query, replace, results);
+        FindTopics(childTopic, query, replace, options, results);
       }
 
     }
@@ -258,15 +260,16 @@ namespace GoldSim.Web.Controllers {
     /// <param name="topic">The <see cref="Topic"/> to replace within.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The expression to replace all search results with.</param>
+    /// <param name="options">The <see cref="RegexOptions"/> to apply when searching.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Risk of RegEx injection acceptable for admin tool")]
-    private void ReplaceTopics(Topic topic, string query, string replace) {
+    private void ReplaceTopics(Topic topic, string query, string replace, RegexOptions options) {
 
       var isModified            = false;
 
       // Replace matches in each attribute
       foreach (var attribute in topic.Attributes.ToList()) {
-        if (attribute is { Key: not null, Value: not null } && Regex.IsMatch(attribute.Value, query, _options)) {
-          var result            = Regex.Replace(attribute.Value, query, replace, _options);
+        if (attribute is { Key: not null, Value: not null } && Regex.IsMatch(attribute.Value, query, options)) {
+          var result            = Regex.Replace(attribute.Value, query, replace, options);
           topic.Attributes.SetValue(attribute.Key, result);
           isModified            = true;
         }
@@ -279,7 +282,7 @@ namespace GoldSim.Web.Controllers {
 
       // Recursively replace results for each child topic
       foreach (var childTopic in topic.Children) {
-        ReplaceTopics(childTopic, query, replace);
+        ReplaceTopics(childTopic, query, replace, options);
       }
 
     }
