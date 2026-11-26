@@ -30,7 +30,7 @@ namespace GoldSim.Web.Controllers {
     /*==========================================================================================================================
     | PRIVATE VARIABLES
     \-------------------------------------------------------------------------------------------------------------------------*/
-    private const               RegexOptions                    _options = RegexOptions.Compiled | RegexOptions.IgnoreCase;
+    private const               RegexOptions                    _options = RegexOptions.Compiled;
 
     /*==========================================================================================================================
     | INDEX
@@ -45,6 +45,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="scope">The scope of the topic tree to search; defaults to the entire topic tree.</param>
     /// <param name="isRegularExpression">Determines whether the search should support regular expressions; defaults to false.</param>
+    /// <param name="isCaseSensitive">Determines whether the search should be case sensitive; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpGet]
@@ -52,6 +53,7 @@ namespace GoldSim.Web.Controllers {
       [FromQuery]TopicSearchAction action,
       string scope = null,
       bool isRegularExpression = false,
+      bool isCaseSensitive = false,
       string query = null,
       string replace = null
     ) {
@@ -66,7 +68,7 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Show results
       \------------------------------------------------------------------------------------------------------------------------*/
-      return View(Search(action, scope, isRegularExpression, query, replace));
+      return View(Search(action, scope, isRegularExpression, isCaseSensitive, query, replace));
 
     }
 
@@ -84,6 +86,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="isRegularExpression">
     ///   Determines whether the search should support regular expressions; defaults to false.
     /// </param>
+    /// <param name="isCaseSensitive">Determines whether the search should be case sensitive; defaults to false.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [HttpPost, ActionName("Index")]
@@ -91,6 +94,7 @@ namespace GoldSim.Web.Controllers {
     public IActionResult Replace(
       string scope = null,
       bool isRegularExpression = false,
+      bool isCaseSensitive = false,
       string query = null,
       string replace = null
     ) {
@@ -98,7 +102,14 @@ namespace GoldSim.Web.Controllers {
       /*-------------------------------------------------------------------------------------------------------------------------
       | Find topics
       \------------------------------------------------------------------------------------------------------------------------*/
-      var viewModel             = Search(TopicSearchAction.ReplaceConfirm, scope, isRegularExpression, query, replace);
+      var viewModel             = Search(
+        TopicSearchAction.ReplaceConfirm,
+        scope,
+        isRegularExpression,
+        isCaseSensitive,
+        query,
+        replace
+      );
 
       /*-------------------------------------------------------------------------------------------------------------------------
       | Replace topics
@@ -106,7 +117,7 @@ namespace GoldSim.Web.Controllers {
       var scopedTopic           = GetScopedTopic(scope);
 
       if (scopedTopic is not null && !String.IsNullOrWhiteSpace(query) && viewModel.Results.Count > 0) {
-        ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, _options);
+        ReplaceTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, GetOptions(isCaseSensitive));
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -126,6 +137,7 @@ namespace GoldSim.Web.Controllers {
     /// <param name="action">The type of request being submitted, based on <see cref="TopicSearchAction"/>.</param>
     /// <param name="scope">The scope of the topic tree to search.</param>
     /// <param name="isRegularExpression">Determines whether the search should support regular expressions.</param>
+    /// <param name="isCaseSensitive">Determines whether the search should be case sensitive.</param>
     /// <param name="query">The search term to look for in each attribute.</param>
     /// <param name="replace">The optional expression to replace all search results with.</param>
     [SuppressMessage("Security", "CA3012", Justification = "Internal tool, so source is trusted")]
@@ -133,6 +145,7 @@ namespace GoldSim.Web.Controllers {
       TopicSearchAction action,
       string scope,
       bool isRegularExpression,
+      bool isCaseSensitive,
       string query,
       string replace
     ) {
@@ -171,7 +184,7 @@ namespace GoldSim.Web.Controllers {
       | Find the topic with the correct PageID.
       \------------------------------------------------------------------------------------------------------------------------*/
       if (errors.Count is 0 && scopedTopic is not null && !String.IsNullOrWhiteSpace(query)) {
-        FindTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, _options, results);
+        FindTopics(scopedTopic, isRegularExpression? query : Regex.Escape(query), replace, GetOptions(isCaseSensitive), results);
       }
 
       /*-------------------------------------------------------------------------------------------------------------------------
@@ -186,6 +199,7 @@ namespace GoldSim.Web.Controllers {
         Action                  = action,
         Scope                   = scope,
         IsRegularExpression     = isRegularExpression,
+        IsCaseSensitive         = isCaseSensitive,
         Query                   = query,
         Replace                 = replace,
         Results                 = new(results),
@@ -284,6 +298,22 @@ namespace GoldSim.Web.Controllers {
       foreach (var childTopic in topic.Children) {
         ReplaceTopics(childTopic, query, replace, options);
       }
+
+    }
+
+    /*==========================================================================================================================
+    | GET OPTIONS
+    \-------------------------------------------------------------------------------------------------------------------------*/
+    /// <summary>
+    ///   Establishes the <see cref="RegexOptions"/> to use when searching, based on whether the search is case-sensitive.
+    /// </summary>
+    /// <param name="isCaseSensitive">Determines whether the search should be case-sensitive.</param>
+    private static RegexOptions GetOptions(bool isCaseSensitive) {
+
+      /*-------------------------------------------------------------------------------------------------------------------------
+      | Establish options
+      \------------------------------------------------------------------------------------------------------------------------*/
+      return isCaseSensitive? _options : _options | RegexOptions.IgnoreCase;
 
     }
 
